@@ -1,0 +1,34 @@
+bind j focus down
+bind k focus up
+bind X remove
+
+# terminfo and termcap for nice 256 color terminal
+# allow bold colors - necessary for some reason
+attrcolor b ".I"
+# tell screen how to set colors. AB = background, AF=foreground
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+# erase background with current bg color
+defbce "on"
+
+multiuser on
+acladd kardamd
+acladd sumerj
+acladd eddytao
+acladd daveu
+acladd bharatr
+acladd anavarm
+#acladd bchadara
+defscrollback 10000
+
+#screen 0
+#screen 1
+#screen 2
+#screen 3
+#screen 4
+#screen 5
+#screen 6
+#caption always
+hardstatus string "%{.bW}%-Lw%{.rW}%n %t%{-}%+Lw %=%{..G} %H %{..Y}"
+hardstatus alwayslastline
+#hardstatus on
+
