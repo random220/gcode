@@ -1,0 +1,313 @@
+#!/usr/bin/perl
+use strict;
+use Data::Dumper;
+
+
+my $valid_commands =
+{
+    'mount' => 1,
+    'umount' => 1,
+    'sync' => 1,
+    'lsync' => 1,
+    'note' => 1,
+    'dirs' => 1,
+    'vmw' => 1,
+};
+
+my $CMD = $ARGV[0];
+if (!exists $valid_commands->{$CMD}) {
+    print "This command is not implemented yet: \"$CMD\"\n";
+    print "Valid commands:\n";
+    print Dumper($valid_commands);
+    exit 1;
+}
+
+if (0) {
+}
+elsif ($CMD eq 'vmw') {
+    # Mount is already done in set_variables
+    my @fglobs = ("'/etc/vmware/license-ws-'*",
+                  "'/Library/Preferences/VMware Fusion/license-fusion'*"
+                 );
+    my $winregistry = '[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\VMware, Inc.\VMware Workstation\License.ws.12.0.e1.201505]';
+    for my $fglob (@fglobs) {
+        my @f = `ls -1d $fglob 2>/dev/null`;
+        if ($? == 0) {
+            for my $f (@f) {
+                chomp $f;
+                my $cmd = "sudo rm -f '$f'";
+                system $cmd;
+            }
+        }
+    }
+
+    exit 0;
+}
+
+my $cmd;
+my $uname = `uname`; chomp $uname;
+my ($veracrypt,
+    %slot,
+    $proot, $pvol, $p,
+    $troot, $tvol, $t,
+    $lroot, $lvol, $l,
+    $llogdir, $llogfile,
+    $tcronroot, $tcronvol,
+    $tiddly_file,
+    );
+set_variables();
+
+if (0) {
+}
+elsif ($CMD eq 'dirs') {
+    # Mount is already done in set_variables
+    print "$p/mydata/OM/03-OFFICE/09-juniper/15-Skype\n";
+    exit 0;
+}
+elsif ($CMD eq 'mount') {
+    mountall();
+    exit 0;
+}
+elsif ($CMD eq 'umount') {
+    system "$veracrypt -d";
+    exit 0;
+}
+elsif ($CMD eq 'note') {
+    mount('p');
+    if ( ! -f "$p/$tiddly_file") {
+        die "Could not find file: $p/$tiddly_file\n";
+    }
+    if ($uname eq 'Darwin') {
+        system "open -a /Applications/Firefox.app '$p/$tiddly_file'";
+    }
+    elsif ($uname eq 'Linux') {
+        system "(/usr/bin/firefox '$p/$tiddly_file'&) 2>/dev/null";
+    }
+    else {
+        die "Don't know how to open tiddly on machines not mac or Linux\n";
+    }
+    print "\n\nexport p=$p\n";
+}
+elsif ($CMD eq 'sync') {
+    mount('p');
+    mount('t');
+    if (!-d $p or !-d $t) {
+        die "At least one of the mounts failed.\n";
+    }
+    system "~/gcode/bin/sync.2 $p $t | tee ~/a.sh";
+    system "cat ~/a.sh";
+    print "\n\nexport p=$p\nexport t=$t\n";
+}
+elsif ($CMD eq 'lsync') {
+    mount('p');
+    mount('l');
+    if (!-d $p or !-d $l) {
+        die "At least one of the mounts failed.\n";
+    }
+    my $cmd = "time rsync -a --delete $p/ $l/";
+    print("doing: $cmd\n");
+    system($cmd);
+    logthis_lsync($llogfile);
+    print "\n\nexport p=$p\nexport l=$l\n";
+}
+
+sub logthis_lsync
+{
+    my $logfile = shift;
+    system "rsync -a --delete $l/ >$logfile";
+}
+
+sub set_variables
+{
+    $slot{'p'} = 1;
+    $slot{'t'} = 2;
+    $slot{'l'} = 3;
+    if ( $uname eq 'Darwin' ) {
+        $veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt';
+
+        $pvol='/b/om/PCRUZER.vol';
+        $proot='/Volumes/PCRUZER';
+
+        ($tvol,$tcronvol)=get_usbstick_partition_mac();
+        $troot='/Volumes/TCRUZER';
+        $tcronroot='/Volumes/TCRON';
+
+        my @lvols=('/Volumes/data/LCRUZER.vol',
+                   '/Volumes/3TB/om/LCRUZER.vol',
+                   '/Volumes/SAMSUNG/om/LCRUZER.vol',
+                   );
+        undef $lvol;
+        undef $llogdir;
+        undef $llogfile;
+        undef $lroot;
+        for my $x (@lvols) {
+            if (-f $x) {
+                $lvol = $x;
+                last;
+            }
+        }
+        if (defined $lvol) {
+            $llogdir = $lvol;
+            $llogdir =~ s{[^/]+$}{lsync-logs};
+            if (!-d $llogdir) {
+                system "mkdir -p $llogdir";
+            }
+            my $now = nowtime();
+            $llogfile = "$llogdir/${now}.txt";
+            $lroot='/Volumes/LCRUZER';
+        }
+    }
+
+    if ( $uname eq 'Linux' ) {
+        $veracrypt='/usr/bin/veracrypt';
+        $proot='/media/veracrypt1';
+        $troot='/media/veracrypt10';
+        $pvol='/b/om/PCRUZER.vol';
+        ($tvol,$tcronvol)=get_usbstick_partition_linux();
+    }
+    $p="$proot/CRUZER";
+    $t="$troot/CRUZER";
+    $l="$lroot/CRUZER";
+    $tiddly_file="gitted/sandbox/tiddly.html";
+}
+
+sub nowtime
+{
+    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) =
+                                                 localtime(time);
+    $year += 1900;
+    $mon  += 1;
+    ($mon) = "00$mon" =~ m{(..)$};
+    ($mday) = "00$mday" =~ m{(..)$};
+    ($hour) = "00$hour" =~ m{(..)$};
+    ($min) = "00$min" =~ m{(..)$};
+    ($sec) = "00$sec" =~ m{(..)$};
+    return "${year}-${mon}-${mday}-${hour}${min}${sec}";
+}
+
+sub mount
+{
+    my $what = shift;
+    my $cmd;
+    my $slot = $slot{$what};
+    if ($what eq 'p') {
+        if ( ! -d $p ) {
+            $cmd="$veracrypt -t -k '' --pim=0 --slot=$slot --protect-hidden=no $pvol $proot";
+            system $cmd;
+            if ( ! -d $p ) {
+                print "$p not found\n";
+            }
+        }
+    }
+    elsif($what eq 't') {
+        if ( ! -d $t ) {
+            if ($tvol eq '') {
+                print "USB stick not found\n";
+            }
+            else {
+                $cmd="$veracrypt -t -k '' --pim=0 --slot=$slot --protect-hidden=no $tvol $troot";
+                system $cmd;
+                if ( ! -d $t ) {
+                    print "$t not found\n";
+                }
+            }
+        }
+    }
+    elsif($what eq 'l') {
+        if ( ! -d $l and -f $lvol ) {
+            $cmd="$veracrypt -t -k '' --pim=0 --slot=$slot --protect-hidden=no $lvol $lroot";
+            system $cmd;
+            if ( ! -d $l ) {
+                print "$l not found\n";
+            }
+        }
+    }
+}
+
+sub mountall
+{
+    mount('p');
+    mount('t');
+    mount('l');
+}
+
+sub get_usbstick_partition_mac
+{
+    my @disklist = `diskutil list`;
+# % diskutil list
+# /dev/disk0
+#    #:                       TYPE NAME                    SIZE       IDENTIFIER
+#    0:      GUID_partition_scheme                        *500.1 GB   disk0
+#    1:                        EFI EFI                     209.7 MB   disk0s1
+#    2:          Apple_CoreStorage                         499.2 GB   disk0s2
+#    3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
+# /dev/disk1
+#    #:                       TYPE NAME                    SIZE       IDENTIFIER
+#    0:                  Apple_HFS :                      *498.9 GB   disk1
+# /dev/disk2
+#    #:                       TYPE NAME                    SIZE       IDENTIFIER
+#    0:     FDisk_partition_scheme                        *15.8 GB    disk2
+#    1:                 DOS_FAT_32 P1                      2.0 GB     disk2s1
+#    2:                 DOS_FAT_32                         13.8 GB    disk2s2
+
+    my $tcruzer_disk = undef;
+    my $tcron_disk = undef;
+    for my $line (@disklist) {
+        chomp $line;
+        if ($line =~ m{DOS_FAT_32\s+13\.8 GB\s+(\S+)}) {
+            $tcruzer_disk = "/dev/r${1}";  # /dev/rdisk2s2
+        }
+        elsif ($line =~ m{DOS_FAT_32\s+16\.0 GB\s+(\S+)}) {
+            $tcruzer_disk = "/dev/r${1}";  # /dev/rdisk2s2
+        }
+        elsif ($line =~ m{DOS_FAT_32\s+8\.1 GB\s+(\S+)}) {
+            $tcron_disk = "/dev/r${1}";  # /dev/rdisk2s3
+        }
+    }
+    return ($tcruzer_disk, $tcron_disk);
+}
+
+
+sub get_usbstick_partition_linux
+{
+    my @disklist = `lsblk -l`;
+    # % lsblk -l
+    # NAME              MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+    # sda                 8:0    0   1.8T  0 disk 
+    # sda1                8:1    0   487M  0 part /boot
+    # sda2                8:2    0     1K  0 part 
+    # sda3                8:3    0   1.7T  0 part /b
+    # sda5                8:5    0   7.6G  0 part [SWAP]
+    # sda6                8:6    0  93.1G  0 part /
+    # sdb                 8:16   0   3.7T  0 disk 
+    # sdb1                8:17   0   3.7T  0 part /c
+    # sde                 8:64   1  29.9G  0 disk 
+    # sde1                8:65   1   7.5G  0 part 
+    # sde2                8:66   1  14.9G  0 part 
+    # sde3                8:67   1   7.5G  0 part 
+    # sr0                11:0    1  1024M  0 rom  
+    # loop0               7:0    0    16G  0 loop 
+    # veracrypt1 (dm-0) 252:0    0    16G  0 dm   /media/veracrypt1
+
+    my $disk16gig = undef;
+    my $disk8gig  = undef;
+    for my $line (@disklist) {
+        $line =~ s{\s*$}{}s;
+        # sde1                8:65   1   7.5G  0 part 
+        if ($line =~ m{^(\S+)\s+[\d\:]+\s+1\s+([\d\.]+)G\s+0\s+part$}) {
+            my ($part, $size) = ($1, $2);
+            # sde1, 7.5
+            # sde2, 14.9
+            # sde3, 7.5
+            if ($size == 7.5) {
+                $disk8gig = "/dev/$part";
+            }
+            elsif ($size == 14.9) {
+                $disk16gig = "/dev/$part";
+            }
+        }
+    }
+    return ($disk16gig, $disk8gig);
+}
+
+
