@@ -9,6 +9,7 @@ my $valid_commands =
     'umount' => 1,
     'sync' => 1,
     'lsync' => 1,
+    'hsync' => 1,
     'note' => 1,
     'dirs' => 1,
     'vmw' => 1,
@@ -54,6 +55,7 @@ my ($veracrypt,
     $llogdir, $llogfile,
     $tcronroot, $tcronvol,
     $tiddly_file,
+    $home_mountpoint, $home_ipaddr,
     );
 set_variables();
 
@@ -113,14 +115,11 @@ elsif ($CMD eq 'lsync') {
 elsif ($CMD eq 'hsync') {
     mount('p');
     mount('home');
-    if (!-d $p or !-d $l) {
-        die "At least one of the mounts failed.\n";
-    }
-    my $cmd = "time rsync -a --delete $p/ $l/";
+    $cmd = "rsync -a --delete $p/ om\@${home_ipaddr}:${home_mountpoint}/CRUZER/";
     print("doing: $cmd\n");
     system($cmd);
-    logthis_lsync($llogfile);
-    print "\n\nexport p=$p\nexport l=$l\n";
+    #logthis_hsync($llogfile);
+    #print "\n\nexport p=$p\nexport l=$l\n";
 }
 
 sub logthis_lsync
@@ -181,6 +180,16 @@ sub set_variables
     $t="$troot/CRUZER";
     $l="$lroot/CRUZER";
     $tiddly_file="gitted/sandbox/tiddly.html";
+
+    $home_mountpoint = '/b/m/p';
+    $home_ipaddr = '192.168.10.90';
+    system "(ifconfig -a|grep inet|egrep '^ *inet .*192\.168\.10\.') >/dev/null 2>&1";
+    if ($? == 0) {
+        # in home
+    }
+    else {
+        $home_ipaddr = 'www.crondite.com';
+    }
 }
 
 sub nowtime
@@ -235,7 +244,17 @@ sub mount
         }
     }
     elsif($what eq 'home') {
-        system $ENV{HOME}.'/bin/vmount'";
+        my $cmd;
+        system $ENV{HOME}.'/bin/vmount';
+        system $ENV{HOME}.'/gcode/bin/vmount';
+        $cmd = "ssh om\@${home_ipaddr} test -e ${home_mountpoint}/CRUZER";
+        system $cmd;
+        if ($? == 0) {
+            # home mount was successful
+        }
+        else {
+            die "Error: Home mount was not successful.\n";
+        }
     }
 }
 
@@ -287,7 +306,7 @@ sub get_usbstick_partition_linux
 {
     my @disklist = `lsblk -l`;
     # % lsblk -l
-    # NAME              MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+    # NAME              MAJ:MIN RM   SIZE RO TYPE home_mountpoint
     # sda                 8:0    0   1.8T  0 disk 
     # sda1                8:1    0   487M  0 part /boot
     # sda2                8:2    0     1K  0 part 
