@@ -2,7 +2,7 @@
 time veracrypt --create --size 20G --filesystem=ext4 /b/om/CRUZER.vol
 
 #mount
-mkdir -p /b/om/mnt-me
+mkdir -p /b/m/p
 veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no /b/om/CRUZER.vol /b/m/p
 #veracrypt --text --keyfiles='' --pim=0 --slot=9 --protect-hidden=no --filesystem=ext4 /b/om/CRUZER.vol
 
