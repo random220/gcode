@@ -1,2 +1,18 @@
 #!/bin/bash
-veracrypt -d /b/m/p
+#veracrypt -d /b/m/p
+
+(ifconfig wls3|egrep '192.168.10.9[01]') >/dev/null 2>&1
+if [[ $? == 0 ]]; then
+  # we are on tiny or t2
+  :
+else
+  ssh -t om@www.crondite.com vumount
+  exit $?
+fi
+
+mountpoint=/b/m/p
+
+veracrypt -d $mountpoint
+exit $?
+
+

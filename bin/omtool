@@ -110,6 +110,18 @@ elsif ($CMD eq 'lsync') {
     logthis_lsync($llogfile);
     print "\n\nexport p=$p\nexport l=$l\n";
 }
+elsif ($CMD eq 'hsync') {
+    mount('p');
+    mount('home');
+    if (!-d $p or !-d $l) {
+        die "At least one of the mounts failed.\n";
+    }
+    my $cmd = "time rsync -a --delete $p/ $l/";
+    print("doing: $cmd\n");
+    system($cmd);
+    logthis_lsync($llogfile);
+    print "\n\nexport p=$p\nexport l=$l\n";
+}
 
 sub logthis_lsync
 {
@@ -221,6 +233,9 @@ sub mount
                 print "$l not found\n";
             }
         }
+    }
+    elsif($what eq 'home') {
+        system $ENV{HOME}.'/bin/vmount'";
     }
 }
 
