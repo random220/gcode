@@ -1,0 +1,32 @@
+#!/bin/bash
+
+(ifconfig wls3|grep '192.168.10.90') >/dev/null 2>&1
+if [[ $? == 0 ]]; then
+  # we are on tiny
+  :
+else
+  ssh -t om@www.crondite.com vmount
+  exit $?
+fi
+
+vera_volume=/b/om/CRUZER.vol
+if [[ ! -f $vera_volume ]]; then
+  # nothing to do
+  exit 0
+fi
+
+mountpoint=/b/m/p
+if [[ ! -d $mountpoint ]]; then
+  sudo mkdir -p $mountpoint
+fi
+
+mount | egrep "veracrypt.* $mountpoint" >/dev/null 2>&1
+if [[ $? != 0 ]]; then 
+  # Not already mounted. So, try to mount
+  veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint
+fi
+
+mount | egrep "veracrypt.* $mountpoint" >/dev/null 2>&1
+exit $?
+
+
