@@ -1,8 +1,8 @@
 #!/bin/bash
 
-(ifconfig wls3|grep '192.168.10.90') >/dev/null 2>&1
+(ifconfig wls3|egrep '192.168.10.9[01]') >/dev/null 2>&1
 if [[ $? == 0 ]]; then
-  # we are on tiny
+  # we are on tiny or t2
   :
 else
   ssh -t om@www.crondite.com vmount
