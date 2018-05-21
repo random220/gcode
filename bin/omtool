@@ -184,8 +184,7 @@ sub set_variables
 
     $home_mountpoint = '/b/m/p';
     $home_ipaddr = '192.168.10.90';
-    system "(ifconfig -a|grep inet|egrep '^ *inet .*192\.168\.10\.') >/dev/null 2>&1";
-    if ($? == 0) {
+    if (`ifconfig|grep -c 'inet 192\.168\.10\.'` eq "1\n") {
         # in home
     }
     else {

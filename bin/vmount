@@ -4,7 +4,12 @@
 if [[ $? == 0 ]]; then
   # we are on tiny or t2
   :
+elif [[ $(ifconfig | grep -c 'inet 192.168.10.100') == 1 ]]; then
+  # We are on my mac at home
+  ssh -t om@192.168.10.90 vmount
+  exit $?
 else
+  # we are probably outside home
   ssh -t om@www.crondite.com vmount
   exit $?
 fi
