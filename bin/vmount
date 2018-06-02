@@ -4,6 +4,9 @@
 if [[ $? == 0 ]]; then
   # we are on tiny or t2
   :
+elif [[ $(hostname) == 'om-Latitude-E7450' ]]; then
+  # We are on linux graphical laptop
+  :
 elif [[ $(ifconfig | grep -c 'inet 192.168.10.100') == 1 ]]; then
   # We are on my mac at home
   ssh -t om@192.168.10.90 vmount
