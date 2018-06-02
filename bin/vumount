@@ -5,6 +5,9 @@
 if [[ $? == 0 ]]; then
   # we are on tiny or t2
   :
+elif [[ $(hostname) == 'om-Latitude-E7450' ]]; then
+  # We are on linux graphical laptop
+  :
 else
   ssh -t om@www.crondite.com vumount
   exit $?
