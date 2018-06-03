@@ -71,7 +71,7 @@ elsif ($CMD eq 'mount') {
     exit 0;
 }
 elsif ($CMD eq 'umount') {
-    system "$veracrypt -d";
+    system "$veracrypt --text -d";
     system $ENV{HOME}.'/gcode/bin/vumount';
     exit 0;
 }
