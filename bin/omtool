@@ -134,7 +134,8 @@ sub set_variables
     $slot{'p'} = 1;
     $slot{'t'} = 2;
     $slot{'l'} = 3;
-    if ( $uname eq 'Darwin' ) {
+    if(0) {}
+    elsif ( $uname eq 'Darwin' ) {
         $veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt';
 
         $pvol='/b/om/PCRUZER.vol';
@@ -170,13 +171,14 @@ sub set_variables
         }
     }
 
-    if ( $uname eq 'Linux' ) {
-        $veracrypt='/usr/bin/veracrypt';
-        $proot='/media/veracrypt1';
-        $troot='/media/veracrypt10';
-        $pvol='/b/om/PCRUZER.vol';
+    elsif ( $uname eq 'Linux' ) {
+        $veracrypt=$ENV{HOME}.'/bin/veracrypt';
+        $proot='/b/m/p';
+        $troot='/b/m/t';
+        $pvol='/b/om/CRUZER.vol';
         ($tvol,$tcronvol)=get_usbstick_partition_linux();
     }
+
     $p="$proot/CRUZER";
     $t="$troot/CRUZER";
     $l="$lroot/CRUZER";
@@ -213,7 +215,7 @@ sub mount
     my $slot = $slot{$what};
     if ($what eq 'p') {
         if ( ! -d $p ) {
-            $cmd="$veracrypt -t -k '' --pim=0 --slot=$slot --protect-hidden=no $pvol $proot";
+            $cmd="$veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $pvol $proot";
             system $cmd;
             if ( ! -d $p ) {
                 print "$p not found\n";
@@ -226,7 +228,7 @@ sub mount
                 print "USB stick not found\n";
             }
             else {
-                $cmd="$veracrypt -t -k '' --pim=0 --slot=$slot --protect-hidden=no $tvol $troot";
+                $cmd="$veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $tvol $troot";
                 system $cmd;
                 if ( ! -d $t ) {
                     print "$t not found\n";
@@ -236,7 +238,7 @@ sub mount
     }
     elsif($what eq 'l') {
         if ( ! -d $l and -f $lvol ) {
-            $cmd="$veracrypt -t -k '' --pim=0 --slot=$slot --protect-hidden=no $lvol $lroot";
+            $cmd="$veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $lvol $lroot";
             system $cmd;
             if ( ! -d $l ) {
                 print "$l not found\n";
