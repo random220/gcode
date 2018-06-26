@@ -1,40 +1,32 @@
 #!/bin/bash
 
 export PATH=$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+vera_volume=/b/om/CRUZER.vol
+mountpoint=/b/om/p
 
-(ifconfig wls3|egrep '192.168.10.9[01]') >/dev/null 2>&1
-if [[ $? == 0 ]]; then
-  # we are on tiny or t2
-  :
-elif [[ $(hostname) == 'om-Latitude-E7450' ]]; then
-  # We are on linux graphical laptop
-  :
-elif [[ $(ifconfig | grep -c 'inet 192.168.10.100') == 1 ]]; then
-  # We are on my mac at home
-  ssh -t om@192.168.10.90 vmount
-  exit $?
-else
-  # we are probably outside home
-  ssh -t om@www.crondite.com vmount
-  exit $?
+if [[ ! -f $vera_volume ]]; then
+  echo "Error: File not found: $vera_volume"
+  exit 1
+fi
+if [[ ! -d $mountpoint ]]; then
+  echo "Error: Mountpoint dir does not exist: $mountpoint"
+  exit 1
 fi
 
-vera_volume=/b/om/CRUZER.vol
-if [[ ! -f $vera_volume ]]; then
-  # nothing to do
+veracrypt --text --version >/dev/null 2>&1
+if [[ $? != 0 ]]; then
+  echo "Error: veracrypt not found"
+  exit 1
+fi
+
+mount | egrep "veracrypt.* $mountpoint " >/dev/null 2>&1
+if [[ $? == 0 ]]; then 
+  # Already mounted. Say so.
+  echo "Something is already mounted on $mountpoint"
   exit 0
 fi
 
-mountpoint=/b/m/p
-if [[ ! -d $mountpoint ]]; then
-  sudo mkdir -p $mountpoint
-fi
-
-mount | egrep "veracrypt.* $mountpoint" >/dev/null 2>&1
-if [[ $? != 0 ]]; then 
-  # Not already mounted. So, try to mount
-  veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint
-fi
+veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint
 
 mount | egrep "veracrypt.* $mountpoint" >/dev/null 2>&1
 exit $?

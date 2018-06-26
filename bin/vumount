@@ -3,21 +3,7 @@
 
 export PATH=$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
-(ifconfig wls3|egrep '192.168.10.9[01]') >/dev/null 2>&1
-if [[ $? == 0 ]]; then
-  # we are on tiny or t2
-  :
-elif [[ $(hostname) == 'om-Latitude-E7450' ]]; then
-  # We are on linux graphical laptop
-  :
-else
-  ssh -t om@www.crondite.com vumount
-  exit $?
-fi
-
-mountpoint=/b/m/p
-
-veracrypt -d $mountpoint
+mountpoint=/b/om/p
+veracrypt --text -d $mountpoint
 exit $?
-
 
