@@ -138,8 +138,8 @@ sub set_variables
     elsif ( $uname eq 'Darwin' ) {
         $veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt';
 
-        $pvol='/b/om/PCRUZER.vol';
-        $proot='/Volumes/PCRUZER';
+        $pvol='/b/om/CRUZER.vol';
+        $proot='/b/om/p';
 
         ($tvol,$tcronvol)=get_usbstick_partition_mac();
         $troot='/Volumes/TCRUZER';
@@ -214,13 +214,7 @@ sub mount
     my $cmd;
     my $slot = $slot{$what};
     if ($what eq 'p') {
-        if ( ! -d $p ) {
-            $cmd="$veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $pvol $proot";
-            system $cmd;
-            if ( ! -d $p ) {
-                print "$p not found\n";
-            }
-        }
+        system $ENV{HOME}.'/gcode/bin/vmount';
     }
     elsif($what eq 't') {
         if ( ! -d $t ) {
