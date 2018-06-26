@@ -1,8 +1,14 @@
 #!/bin/bash
 
-export PATH=$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 vera_volume=/b/om/CRUZER.vol
 mountpoint=/b/om/p
+
+veracrypt='veracrypt'
+uname=$(uname)
+if [[ $uname == 'Darwin' ]]; then
+  veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
+fi
 
 if [[ ! -f $vera_volume ]]; then
   echo "Error: File not found: $vera_volume"
@@ -13,7 +19,7 @@ if [[ ! -d $mountpoint ]]; then
   exit 1
 fi
 
-veracrypt --text --version >/dev/null 2>&1
+$veracrypt --text --version >/dev/null 2>&1
 if [[ $? != 0 ]]; then
   echo "Error: veracrypt not found"
   exit 1
@@ -26,7 +32,7 @@ if [[ $? == 0 ]]; then
   exit 0
 fi
 
-veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint
+$veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint
 
 mount | egrep "veracrypt.* $mountpoint" >/dev/null 2>&1
 exit $?

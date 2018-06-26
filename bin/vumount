@@ -1,9 +1,15 @@
 #!/bin/bash
-#veracrypt -d /b/m/p
 
-export PATH=$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
-
+export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+vera_volume=/b/om/CRUZER.vol
 mountpoint=/b/om/p
-veracrypt --text -d $mountpoint
+
+veracrypt='veracrypt'
+uname=$(uname)
+if [[ $uname == 'Darwin' ]]; then
+  veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
+fi
+
+$veracrypt --text -d $mountpoint
 exit $?
 
