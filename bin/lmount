@@ -1,0 +1,41 @@
+#!/bin/bash
+
+export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+vera_volume=/Volumes/3TB/om/LCRUZER.vol
+mountpoint=/b/om/l
+
+uname=$(uname)
+if [[ $uname != 'Darwin' ]]; then
+  echo "lmount works only on your mac"
+  exit 1
+fi
+veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
+
+if [[ ! -f $vera_volume ]]; then
+  echo "Error: File not found: $vera_volume"
+  exit 1
+fi
+if [[ ! -d $mountpoint ]]; then
+  echo "Error: Mountpoint dir does not exist: $mountpoint"
+  exit 1
+fi
+
+$veracrypt --text --version >/dev/null 2>&1
+if [[ $? != 0 ]]; then
+  echo "Error: veracrypt not found"
+  exit 1
+fi
+
+mount | egrep "veracrypt.* $mountpoint " >/dev/null 2>&1
+if [[ $? == 0 ]]; then 
+  # Already mounted. Say so.
+  echo "Something is already mounted on $mountpoint"
+  exit 0
+fi
+
+$veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint
+
+mount | egrep "veracrypt.* $mountpoint" >/dev/null 2>&1
+exit $?
+
+

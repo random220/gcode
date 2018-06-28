@@ -1,8 +1,6 @@
 #!/bin/bash
 
 export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
-vera_volume=/b/om/CRUZER.vol
-mountpoint=/b/om/p
 
 veracrypt='veracrypt'
 uname=$(uname)
@@ -10,6 +8,11 @@ if [[ $uname == 'Darwin' ]]; then
   veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
 fi
 
-$veracrypt --text -d $mountpoint
+# $veracrypt --text --list
+# % /Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text --list
+# 1: /Volumes/3TB/om/LCRUZER.vol /dev/disk4 /b/om/l
+# 2: /b/om/CRUZER.vol /dev/disk5 /b/om/p
+
+$veracrypt --text --dismount # dismount all
 exit $?
 
