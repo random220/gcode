@@ -5,9 +5,11 @@ use Data::Dumper;
 
 my $valid_commands =
 {
-    'mount' => 1,
-    'umount' => 1,
-    'sync' => 1,
+    'vmount' => 1,
+    'lmount' => 1,
+    'hmount' => 1,
+    'vumount' => 1,
+    'humount' => 1,
     'lsync' => 1,
     'hsync' => 1,
     'note' => 1,
@@ -48,14 +50,9 @@ elsif ($CMD eq 'vmw') {
 my $cmd;
 my $uname = `uname`; chomp $uname;
 my ($veracrypt,
-    %slot,
     $proot, $pvol, $p,
-    $troot, $tvol, $t,
     $lroot, $lvol, $l,
-    $llogdir, $llogfile,
-    $tcronroot, $tcronvol,
     $tiddly_file,
-    $home_mountpoint, $home_ipaddr,
     );
 set_variables();
 
@@ -66,17 +63,23 @@ elsif ($CMD eq 'dirs') {
     print "$p/mydata/OM/03-OFFICE/09-juniper/15-Skype\n";
     exit 0;
 }
-elsif ($CMD eq 'mount') {
-    mountall();
-    exit 0;
+elsif ($CMD eq 'vmount') {
+    vmount();
 }
-elsif ($CMD eq 'umount') {
-    system "$veracrypt --text -d";
-    system $ENV{HOME}.'/gcode/bin/vumount';
-    exit 0;
+elsif ($CMD eq 'lmount') {
+    lmount();
+}
+elsif ($CMD eq 'hmount') {
+    hmount();
+}
+elsif ($CMD eq 'vumount') {
+    vumount();
+}
+elsif ($CMD eq 'humount') {
+    humount();
 }
 elsif ($CMD eq 'note') {
-    mount('p');
+    system $ENV{HOME}.'/gcode/bin/vmount';
     if ( ! -f "$p/$tiddly_file") {
         die "Could not find file: $p/$tiddly_file\n";
     }
@@ -91,105 +94,43 @@ elsif ($CMD eq 'note') {
     }
     print "\n\nexport p=$p\n";
 }
-elsif ($CMD eq 'sync') {
-    mount('p');
-    mount('t');
-    if (!-d $p or !-d $t) {
-        die "At least one of the mounts failed.\n";
-    }
-    system "~/gcode/bin/sync.2 $p $t | tee ~/a.sh";
-    system "cat ~/a.sh";
-    print "\n\nexport p=$p\nexport t=$t\n";
-}
 elsif ($CMD eq 'lsync') {
-    mount('p');
-    mount('l');
+    vmount();
+    lmount();
     if (!-d $p or !-d $l) {
         die "At least one of the mounts failed.\n";
     }
     my $cmd = "time rsync -a --delete $p/ $l/";
     print("doing: $cmd\n");
     system($cmd);
-    logthis_lsync($llogfile);
     print "\n\nexport p=$p\nexport l=$l\n";
 }
 elsif ($CMD eq 'hsync') {
-    mount('p');
-    mount('home');
-    $cmd = "rsync -a --delete $p/ om\@${home_ipaddr}:${home_mountpoint}/CRUZER/";
+    vmount();
+    hmount();
+    $cmd = "rsync -a --delete $p/ om\@crondite.com:/b/om/p/CRUZER/";
     print("doing: $cmd\n");
     system($cmd);
-    #logthis_hsync($llogfile);
-    #print "\n\nexport p=$p\nexport l=$l\n";
-}
-
-sub logthis_lsync
-{
-    my $logfile = shift;
-    system "rsync -a --delete $l/ >$logfile";
 }
 
 sub set_variables
 {
-    $slot{'p'} = 1;
-    $slot{'t'} = 2;
-    $slot{'l'} = 3;
     $pvol='/b/om/CRUZER.vol';
+    $lvol='/Volumes/3TB/om/LCRUZER.vol';
     $proot='/b/om/p';
-    $troot='/b/om/t';
+    $lroot='/b/om/l';
     if(0) {}
     elsif ( $uname eq 'Darwin' ) {
         $veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt';
-
-
-        ($tvol,$tcronvol)=get_usbstick_partition_mac();
-        $troot='/Volumes/TCRUZER';
-        $tcronroot='/Volumes/TCRON';
-
-        my @lvols=('/Volumes/data/LCRUZER.vol',
-                   '/Volumes/3TB/om/LCRUZER.vol',
-                   '/Volumes/SAMSUNG/om/LCRUZER.vol',
-                   );
-        undef $lvol;
-        undef $llogdir;
-        undef $llogfile;
-        undef $lroot;
-        for my $x (@lvols) {
-            if (-f $x) {
-                $lvol = $x;
-                last;
-            }
-        }
-        if (defined $lvol) {
-            $llogdir = $lvol;
-            $llogdir =~ s{[^/]+$}{lsync-logs};
-            if (!-d $llogdir) {
-                system "mkdir -p $llogdir";
-            }
-            my $now = nowtime();
-            $llogfile = "$llogdir/${now}.txt";
-            $lroot='/Volumes/LCRUZER';
-        }
     }
-
     elsif ( $uname eq 'Linux' ) {
         $veracrypt=$ENV{HOME}.'/bin/veracrypt';
-        ($tvol,$tcronvol)=get_usbstick_partition_linux();
+        #($tvol,$tcronvol)=get_usbstick_partition_linux();
     }
 
     $p="$proot/CRUZER";
-    $t="$troot/CRUZER";
     $l="$lroot/CRUZER";
     $tiddly_file="gitted/sandbox/tiddly.html";
-
-    $home_mountpoint = '/b/m/p';
-    $home_ipaddr = '192.168.10.90';
-    if (`ifconfig|grep -c 'inet 192\.168\.10\.'` eq "1\n") {
-        # in home
-    }
-    else {
-        $home_ipaddr = 'www.crondite.com';
-    }
 }
 
 sub nowtime
@@ -206,58 +147,6 @@ sub nowtime
     return "${year}-${mon}-${mday}-${hour}${min}${sec}";
 }
 
-sub mount
-{
-    my $what = shift;
-    my $cmd;
-    my $slot = $slot{$what};
-    if ($what eq 'p') {
-        system $ENV{HOME}.'/gcode/bin/vmount';
-    }
-    elsif($what eq 't') {
-        if ( ! -d $t ) {
-            if ($tvol eq '') {
-                print "USB stick not found\n";
-            }
-            else {
-                $cmd="$veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $tvol $troot";
-                system $cmd;
-                if ( ! -d $t ) {
-                    print "$t not found\n";
-                }
-            }
-        }
-    }
-    elsif($what eq 'l') {
-        if ( ! -d $l and -f $lvol ) {
-            $cmd="$veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $lvol $lroot";
-            system $cmd;
-            if ( ! -d $l ) {
-                print "$l not found\n";
-            }
-        }
-    }
-    elsif($what eq 'home') {
-        my $cmd;
-        system $ENV{HOME}.'/bin/vmount';
-        system $ENV{HOME}.'/gcode/bin/vmount';
-        $cmd = "ssh om\@${home_ipaddr} test -e ${home_mountpoint}/CRUZER";
-        system $cmd;
-        if ($? == 0) {
-            # home mount was successful
-        }
-        else {
-            die "Error: Home mount was not successful.\n";
-        }
-    }
-}
-
-sub mountall
-{
-    mount('p');
-    mount('t');
-    mount('l');
-}
 
 sub get_usbstick_partition_mac
 {
@@ -338,4 +227,25 @@ sub get_usbstick_partition_linux
     return ($disk16gig, $disk8gig);
 }
 
+sub vmount
+{
+    system $ENV{HOME}.'/gcode/bin/vmount';
+}
+
+sub vumount
+{
+    system $ENV{HOME}.'/gcode/bin/vumount';
+}
+
+sub lmount {
+    system $ENV{HOME}.'/gcode/bin/lmount';
+}
+
+sub hmount {
+    system 'ssh -t om@crondite.com gcode/bin/vmount';
+}
+
+sub humount {
+    system 'ssh -t om@crondite.com gcode/bin/vumount';
+}
 
