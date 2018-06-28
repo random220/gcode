@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ssh -t om@crondite.com gcode/bin/vmount
