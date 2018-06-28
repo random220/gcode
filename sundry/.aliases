@@ -50,3 +50,15 @@ alias sd='ssh dbc'
 
 alias tt='ls -ld /Users/omandal/Downloads/tiddly.html /b/om/p/CRUZER/gitted/sandbox/tiddly.html && echo mv /Users/omandal/Downloads/tiddly.html /b/om/p/CRUZER/gitted/sandbox/tiddly.html'
 
+function t0
+{
+    local ls=$(tmux ls | grep -v ssh 2>/dev/null)
+    if [[ $ls == '' ]]; then
+        tmux
+    else
+        # 0: 2 windows (created Sat Oct 21 18:35:33 2017) [139x51] (attached)
+        local n=$(echo $ls | sed 's/:.*//')
+        tmux a -d -t $n
+    fi
+}
+
