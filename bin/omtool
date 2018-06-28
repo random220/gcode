@@ -134,12 +134,13 @@ sub set_variables
     $slot{'p'} = 1;
     $slot{'t'} = 2;
     $slot{'l'} = 3;
+    $pvol='/b/om/CRUZER.vol';
+    $proot='/b/om/p';
+    $troot='/b/om/t';
     if(0) {}
     elsif ( $uname eq 'Darwin' ) {
         $veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt';
 
-        $pvol='/b/om/CRUZER.vol';
-        $proot='/b/om/p';
 
         ($tvol,$tcronvol)=get_usbstick_partition_mac();
         $troot='/Volumes/TCRUZER';
@@ -173,9 +174,6 @@ sub set_variables
 
     elsif ( $uname eq 'Linux' ) {
         $veracrypt=$ENV{HOME}.'/bin/veracrypt';
-        $proot='/b/m/p';
-        $troot='/b/m/t';
-        $pvol='/b/om/CRUZER.vol';
         ($tvol,$tcronvol)=get_usbstick_partition_linux();
     }
 
