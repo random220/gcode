@@ -13,6 +13,7 @@ fi
 # 1: /Volumes/3TB/om/LCRUZER.vol /dev/disk4 /b/om/l
 # 2: /b/om/CRUZER.vol /dev/disk5 /b/om/p
 
+$veracrypt --text --list
 $veracrypt --text --dismount # dismount all
 exit $?
 
