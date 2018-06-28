@@ -1,0 +1,52 @@
+set bell-style none
+umask 022 
+export VISUAL=vi
+export EDITOR=vi
+export LC_ALL=C
+
+# Red prompt
+# export PS1="\[\e[31m\]\u@\h \w >\n%\[\e[m\] "
+# Green prompt
+# export PS1="\[\e[32m\]\u@\h \w >\n%\[\e[m\] "
+# Bright Green
+# export PS1="\[\e[01;32m\]\u@\h \w >\n%\[\e[m\] "
+# Blue prompt
+# export PS1="\[\e[34m\]\u@\h \w >\n%\[\e[m\] "
+# Bright Blue prompt
+# export PS1="\[\e[01;34m\]\u@\h \w >\n%\[\e[m\] "
+# Magenta prompt
+# export PS1="\[\e[01;35m\]\u@\h \w >\n%\[\e[m\] "
+
+export PS1="\[\e[01;32m\]\u@\h \w >\n%\[\e[m\] "
+alias ps1="echo export PS1=\''$PS1'\'"
+
+export HISTTIMEFORMAT="%F %T "
+export P4CONFIG=.p4config
+
+alias ll="ls -altr"
+alias vi=vim
+
+alias rw='vimdiff ~/zr.txt ~/zw.txt'
+alias lr='vimdiff ~/zl.txt ~/zr.txt'
+alias lw='vimdiff ~/zl.txt ~/zw.txt'
+
+alias glog='git log --all --graph --decorate --oneline'
+alias gs='git status -s'
+gits()
+{
+git config credential.helper store
+git config --global merge.conflictstyle diff3
+git config --global user.email omandal@localhost
+git config --global user.name "Om Mandal"
+}
+
+# vmware stuff
+alias pl='~/ww/bin/p4login'
+alias pcat='p4 -q print'
+alias ppcat='p4 -p perforce.eng.vmware.com:1666 -q print'
+alias plog='p4 -p perforce.eng.vmware.com:1666 describe -s $1'
+alias pani='p4 -q annotate -I'
+alias sd='ssh dbc'
+
+alias tt='ls -ld /Users/omandal/Downloads/tiddly.html /b/om/p/CRUZER/gitted/sandbox/tiddly.html && echo mv /Users/omandal/Downloads/tiddly.html /b/om/p/CRUZER/gitted/sandbox/tiddly.html'
+
