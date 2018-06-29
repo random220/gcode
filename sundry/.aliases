@@ -23,7 +23,11 @@ alias ps1="echo export PS1=\''$PS1'\'"
 export HISTTIMEFORMAT="%F %T "
 export P4CONFIG=.p4config
 
-alias ls='ls --color=auto'
+if [[ $(uname) == Linux ]]; then
+  alias ls='ls --color=auto'
+else
+  alias ls='ls -G'
+fi
 alias ll="ls -altr"
 alias vi=vim
 
