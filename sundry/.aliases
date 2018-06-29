@@ -62,6 +62,7 @@ tt()
     else
       ls -ld /Users/omandal/Downloads/tiddly.html /b/om/p/CRUZER/gitted/sandbox/tiddly.html
       echo "doing: mv /Users/omandal/Downloads/tiddly.html /b/om/p/CRUZER/gitted/sandbox/tiddly.html"
+      mv /Users/omandal/Downloads/tiddly.html /b/om/p/CRUZER/gitted/sandbox/tiddly.html
       (cd /b/om/p/CRUZER/gitted/sandbox && (git add .; git commit -m change))
     fi
   else
