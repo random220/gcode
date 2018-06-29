@@ -5,6 +5,7 @@ use Data::Dumper;
 
 my $valid_commands =
 {
+    'umount' => 1,
     'vmount' => 1,
     'lmount' => 1,
     'hmount' => 1,
@@ -62,6 +63,10 @@ elsif ($CMD eq 'dirs') {
     # Mount is already done in set_variables
     print "$p/mydata/OM/03-OFFICE/09-juniper/15-Skype\n";
     exit 0;
+}
+elsif ($CMD eq 'umount') {
+    vumount();
+    humount();
 }
 elsif ($CMD eq 'vmount') {
     vmount();
