@@ -1,3 +1,4 @@
 #!/bin/bash
 
 ssh -t om@crondite.com gcode/bin/vmount
+echo 'ssh om@crondite.com'
