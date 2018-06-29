@@ -48,5 +48,18 @@ alias plog='p4 -p perforce.eng.vmware.com:1666 describe -s $1'
 alias pani='p4 -q annotate -I'
 alias sd='ssh dbc'
 
-alias tt='ls -ld /Users/omandal/Downloads/tiddly.html /b/om/p/CRUZER/gitted/sandbox/tiddly.html && echo mv /Users/omandal/Downloads/tiddly.html /b/om/p/CRUZER/gitted/sandbox/tiddly.html'
-
+tt()
+{
+  if [[ -f /Users/omandal/Downloads/tiddly.html ]]; then
+    if [[ ! -f /b/om/p/CRUZER/gitted/sandbox/tiddly.html ]]; then
+      echo "Not found: /b/om/p/CRUZER/gitted/sandbox/tiddly.html"
+      echo "Consider rm -f /Users/omandal/Downloads/tiddly.html"
+    else
+      ls -ld /Users/omandal/Downloads/tiddly.html /b/om/p/CRUZER/gitted/sandbox/tiddly.html
+      echo "doing: mv /Users/omandal/Downloads/tiddly.html /b/om/p/CRUZER/gitted/sandbox/tiddly.html"
+      (cd /b/om/p/CRUZER/gitted/sandbox && (git add .; git commit -m change))
+    fi
+  else
+    echo "Not found: /Users/omandal/Downloads/tiddly.html"
+  fi
+}
