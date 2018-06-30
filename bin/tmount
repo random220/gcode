@@ -12,6 +12,9 @@ sub main
     if ($uname eq 'Darwin') {
         ($partition_1, $partition_2) = get_usbstick_partitions_mac();
     }
+    elsif ($uname eq 'Linux') {
+        ($partition_1, $partition_2) = get_usbstick_partitions_linux();
+    }
     my ($vera_volume, $mountpoint);
     if ($partition_1 ne '' and $partition_2 ne '') {
         $vera_volume = $partition_2;
@@ -62,45 +65,30 @@ sub get_usbstick_partitions_mac
 }
 
 
-sub get_usbstick_partition_linux
+sub get_usbstick_partitions_linux
 {
     my @disklist = `lsblk -l`;
     # % lsblk -l
-    # NAME              MAJ:MIN RM   SIZE RO TYPE home_mountpoint
-    # sda                 8:0    0   1.8T  0 disk 
-    # sda1                8:1    0   487M  0 part /boot
-    # sda2                8:2    0     1K  0 part 
-    # sda3                8:3    0   1.7T  0 part /b
-    # sda5                8:5    0   7.6G  0 part [SWAP]
-    # sda6                8:6    0  93.1G  0 part /
-    # sdb                 8:16   0   3.7T  0 disk 
-    # sdb1                8:17   0   3.7T  0 part /c
-    # sde                 8:64   1  29.9G  0 disk 
-    # sde1                8:65   1   7.5G  0 part 
-    # sde2                8:66   1  14.9G  0 part 
-    # sde3                8:67   1   7.5G  0 part 
-    # sr0                11:0    1  1024M  0 rom  
-    # loop0               7:0    0    16G  0 loop 
-    # veracrypt1 (dm-0) 252:0    0    16G  0 dm   /media/veracrypt1
+    # NAME MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+    # sda    8:0    0   20G  0 disk 
+    # sda1   8:1    0   19G  0 part /
+    # sda2   8:2    0    1K  0 part 
+    # sda5   8:5    0 1022M  0 part [SWAP]
+    # sdb    8:16   0  160G  0 disk 
+    # sdb1   8:17   0  160G  0 part /b
+    # sdc    8:32   1 29.9G  0 disk 
+    # sdc1   8:33   1  7.5G  0 part 
+    # sdc2   8:34   1 14.9G  0 part 
+    # sdc3   8:35   1  7.5G  0 part 
+    # sr0   11:0    1 1024M  0 rom  
 
     my $disk16gig = undef;
     my $disk8gig  = undef;
-    for my $line (@disklist) {
-        $line =~ s{\s*$}{}s;
-        # sde1                8:65   1   7.5G  0 part 
-        if ($line =~ m{^(\S+)\s+[\d\:]+\s+1\s+([\d\.]+)G\s+0\s+part$}) {
-            my ($part, $size) = ($1, $2);
-            # sde1, 7.5
-            # sde2, 14.9
-            # sde3, 7.5
-            if ($size == 7.5) {
-                $disk8gig = "/dev/$part";
-            }
-            elsif ($size == 14.9) {
-                $disk16gig = "/dev/$part";
-            }
-        }
+    my $disklist = join '', @disklist;
+    my ($partition_1, $partition_2) = $disklist =~ m{\s29\.9G  0 disk\s*\n\s*(\S+)\s.*?\spart\s*\n\s*(\S+)\s.*?\spart\s*\n}s;
+    if ($partition_1 ne '' and $partition_2 ne '') {
+        return ("/dev/$partition_1", "/dev/$partition_2");
     }
-    return ($disk16gig, $disk8gig);
+    return ('', '');
 }
 
