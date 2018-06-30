@@ -8,6 +8,7 @@ my $valid_commands =
     'umount' => 1,
     'vmount' => 1,
     'lmount' => 1,
+    'tmount' => 1,
     'hmount' => 1,
     'vumount' => 1,
     'humount' => 1,
@@ -72,6 +73,9 @@ elsif ($CMD eq 'vmount') {
 }
 elsif ($CMD eq 'lmount') {
     lmount();
+}
+elsif ($CMD eq 'tmount') {
+    tmount();
 }
 elsif ($CMD eq 'hmount') {
     hmount();
@@ -159,6 +163,10 @@ sub vumount
 
 sub lmount {
     system $ENV{HOME}.'/gcode/bin/lmount';
+}
+
+sub tmount {
+    system $ENV{HOME}.'/gcode/bin/tmount';
 }
 
 sub hmount {
