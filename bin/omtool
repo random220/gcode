@@ -13,6 +13,7 @@ my $valid_commands =
     'vumount' => 1,
     'humount' => 1,
     'lsync' => 1,
+    'tsync' => 1,
     'hsync' => 1,
     'note' => 1,
     'dirs' => 1,
@@ -112,6 +113,17 @@ elsif ($CMD eq 'lsync') {
     print("doing: $cmd\n");
     system($cmd);
     print "\n\nexport p=$p\nexport l=$l\n";
+}
+elsif ($CMD eq 'tsync') {
+    vmount();
+    tmount();
+    if (!-d $p or !-d $t) {
+        die "At least one of the mounts failed.\n";
+    }
+    my $cmd = "time rsync -a --delete $p/ $t/";
+    print("doing: $cmd\n");
+    system($cmd);
+    print "\n\nexport p=$p\nexport t=$t\n";
 }
 elsif ($CMD eq 'hsync') {
     vmount();
