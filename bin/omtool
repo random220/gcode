@@ -51,9 +51,8 @@ elsif ($CMD eq 'vmw') {
 my $cmd;
 my $uname = `uname`; chomp $uname;
 my ($veracrypt,
-    $proot, $pvol, $p,
-    $lroot, $lvol, $l,
     $tiddly_file,
+    $p, $l, $t,
     );
 set_variables();
 
@@ -120,22 +119,18 @@ elsif ($CMD eq 'hsync') {
 
 sub set_variables
 {
-    $pvol='/b/om/CRUZER.vol';
-    $lvol='/Volumes/3TB/om/LCRUZER.vol';
-    $proot='/b/om/p';
-    $lroot='/b/om/l';
-    if(0) {}
-    elsif ( $uname eq 'Darwin' ) {
-        $veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt';
-    }
-    elsif ( $uname eq 'Linux' ) {
-        $veracrypt=$ENV{HOME}.'/bin/veracrypt';
-        #($tvol,$tcronvol)=get_usbstick_partition_linux();
-    }
+    $p="/b/om/p/CRUZER";
+    $l="/b/om/l/CRUZER";
+    $t="/b/om/t/CRUZER";
 
-    $p="$proot/CRUZER";
-    $l="$lroot/CRUZER";
     $tiddly_file="gitted/sandbox/tiddly.html";
+    $veracrypt = $ENV{HOME}.'/bin/veracrypt';
+    if (!-f $veracrypt) {
+        die "Error: $veracrypt is not a file\n"
+          . "Please softlink to /Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt for mac\n"
+          . "or /usr/bin/veracrypt for Linux\n"
+          ;
+    }
 }
 
 sub nowtime
@@ -150,86 +145,6 @@ sub nowtime
     ($min) = "00$min" =~ m{(..)$};
     ($sec) = "00$sec" =~ m{(..)$};
     return "${year}-${mon}-${mday}-${hour}${min}${sec}";
-}
-
-
-sub get_usbstick_partition_mac
-{
-    my @disklist = `diskutil list`;
-# % diskutil list
-# /dev/disk0
-#    #:                       TYPE NAME                    SIZE       IDENTIFIER
-#    0:      GUID_partition_scheme                        *500.1 GB   disk0
-#    1:                        EFI EFI                     209.7 MB   disk0s1
-#    2:          Apple_CoreStorage                         499.2 GB   disk0s2
-#    3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
-# /dev/disk1
-#    #:                       TYPE NAME                    SIZE       IDENTIFIER
-#    0:                  Apple_HFS :                      *498.9 GB   disk1
-# /dev/disk2
-#    #:                       TYPE NAME                    SIZE       IDENTIFIER
-#    0:     FDisk_partition_scheme                        *15.8 GB    disk2
-#    1:                 DOS_FAT_32 P1                      2.0 GB     disk2s1
-#    2:                 DOS_FAT_32                         13.8 GB    disk2s2
-
-    my $tcruzer_disk = undef;
-    my $tcron_disk = undef;
-    for my $line (@disklist) {
-        chomp $line;
-        if ($line =~ m{DOS_FAT_32\s+13\.8 GB\s+(\S+)}) {
-            $tcruzer_disk = "/dev/r${1}";  # /dev/rdisk2s2
-        }
-        elsif ($line =~ m{DOS_FAT_32\s+16\.0 GB\s+(\S+)}) {
-            $tcruzer_disk = "/dev/r${1}";  # /dev/rdisk2s2
-        }
-        elsif ($line =~ m{DOS_FAT_32\s+8\.1 GB\s+(\S+)}) {
-            $tcron_disk = "/dev/r${1}";  # /dev/rdisk2s3
-        }
-    }
-    return ($tcruzer_disk, $tcron_disk);
-}
-
-
-sub get_usbstick_partition_linux
-{
-    my @disklist = `lsblk -l`;
-    # % lsblk -l
-    # NAME              MAJ:MIN RM   SIZE RO TYPE home_mountpoint
-    # sda                 8:0    0   1.8T  0 disk 
-    # sda1                8:1    0   487M  0 part /boot
-    # sda2                8:2    0     1K  0 part 
-    # sda3                8:3    0   1.7T  0 part /b
-    # sda5                8:5    0   7.6G  0 part [SWAP]
-    # sda6                8:6    0  93.1G  0 part /
-    # sdb                 8:16   0   3.7T  0 disk 
-    # sdb1                8:17   0   3.7T  0 part /c
-    # sde                 8:64   1  29.9G  0 disk 
-    # sde1                8:65   1   7.5G  0 part 
-    # sde2                8:66   1  14.9G  0 part 
-    # sde3                8:67   1   7.5G  0 part 
-    # sr0                11:0    1  1024M  0 rom  
-    # loop0               7:0    0    16G  0 loop 
-    # veracrypt1 (dm-0) 252:0    0    16G  0 dm   /media/veracrypt1
-
-    my $disk16gig = undef;
-    my $disk8gig  = undef;
-    for my $line (@disklist) {
-        $line =~ s{\s*$}{}s;
-        # sde1                8:65   1   7.5G  0 part 
-        if ($line =~ m{^(\S+)\s+[\d\:]+\s+1\s+([\d\.]+)G\s+0\s+part$}) {
-            my ($part, $size) = ($1, $2);
-            # sde1, 7.5
-            # sde2, 14.9
-            # sde3, 7.5
-            if ($size == 7.5) {
-                $disk8gig = "/dev/$part";
-            }
-            elsif ($size == 14.9) {
-                $disk16gig = "/dev/$part";
-            }
-        }
-    }
-    return ($disk16gig, $disk8gig);
 }
 
 sub vmount
