@@ -1,3 +1,11 @@
 #!/bin/bash
 
-ssh -t om@crondite.com gcode/bin/vumount
+target_machine='crondite.com'
+
+ifconfig -a|grep 'inet 192\.168\.10\.' >/dev/null 2>&1
+if [[ $? == 0 ]]; then
+  target_machine='192.168.10.91'
+fi
+cmd="ssh -t om@$target_machine gcode/bin/vumount"
+echo $cmd
+$cmd

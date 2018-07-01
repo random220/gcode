@@ -55,6 +55,7 @@ my $uname = `uname`; chomp $uname;
 my ($veracrypt,
     $tiddly_file,
     $p, $l, $t,
+    $home_machine,
     );
 set_variables();
 
@@ -128,7 +129,7 @@ elsif ($CMD eq 'tsync') {
 elsif ($CMD eq 'hsync') {
     vmount();
     hmount();
-    $cmd = "rsync -a --delete $p/ om\@crondite.com:/b/om/p/CRUZER/";
+    $cmd = "rsync -a --delete $p/ om\@${home_machine}:/b/om/p/CRUZER/";
     print("doing: $cmd\n");
     system($cmd);
 }
@@ -138,6 +139,11 @@ sub set_variables
     $p="/b/om/p/CRUZER";
     $l="/b/om/l/CRUZER";
     $t="/b/om/t/CRUZER";
+    $home_machine='crondite.com';
+    my $ifconfig = `ifconfig -a`;
+    if ($ifconfig =~ m{inet 192\.168\.10\.}s) {
+        $home_machine = '192.168.10.91';
+    }
 
     $tiddly_file="gitted/sandbox/tiddly.html";
     $veracrypt = $ENV{HOME}.'/bin/veracrypt';
@@ -182,10 +188,10 @@ sub tmount {
 }
 
 sub hmount {
-    system 'ssh -t om@crondite.com gcode/bin/vmount';
+    system $ENV{HOME}.'/gcode/bin/hmount';
 }
 
 sub humount {
-    system 'ssh -t om@crondite.com gcode/bin/vumount';
+    system $ENV{HOME}.'/gcode/bin/humount';
 }
 
