@@ -1,11 +1,11 @@
 #!/bin/bash
 
 target_machine='crondite.com'
-
 ifconfig -a|egrep 'inet .*192\.168\.10\.' >/dev/null 2>&1
 if [[ $? == 0 ]]; then
   target_machine='192.168.10.91'
 fi
+
 cmd="ssh -t om@$target_machine gcode/bin/vmount"
 echo $cmd
 $cmd

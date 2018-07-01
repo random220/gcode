@@ -1,0 +1,20 @@
+#!/bin/bash
+
+bindir=$(dirname $0)
+target_machine='crondite.com'
+ifconfig -a|egrep 'inet .*192\.168\.10\.' >/dev/null 2>&1
+if [[ $? == 0 ]]; then
+  target_machine='192.168.10.91'
+fi
+
+printf "Push to $target_machine? (y/n): "
+read yesno
+if [[ $yesno != 'y' ]]; then
+  exit 1
+fi
+
+$bindir/hmount
+cmd="rsync -a --delete /b/om/p/CRUZER/ om@$target_machine:/b/om/p/CRUZER/"
+echo "doing: $cmd"
+$cmd
+
