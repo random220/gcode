@@ -8,12 +8,7 @@ if [[ $yesno != 'y' ]]; then
   exit 1
 fi
 
-echo
-echo "Mounting T ..."
 $bindir/tmount || exit 1
-
-echo
-echo "Mounting V ..."
 $bindir/vmount || exit 1
 
 echo

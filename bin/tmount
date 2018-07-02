@@ -21,6 +21,7 @@ sub main
         $mountpoint = '/b/om/t';
     }
     if ($vera_volume ne '' and $mountpoint ne '') {
+        print "\nMounting T ...\n";
         system "$veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint";
         system "$veracrypt --text --list";
     }

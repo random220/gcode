@@ -10,6 +10,9 @@ fi
 
 $bindir/lmount || exit 1
 $bindir/vmount || exit 1
+
+echo
+echo "Syncing ..."
 cmd="rsync -a --delete /b/om/p/CRUZER/ /b/om/l/CRUZER/"
 echo "doing: $cmd"
 $cmd

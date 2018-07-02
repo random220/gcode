@@ -33,6 +33,8 @@ if [[ $? == 0 ]]; then
   exit 0
 fi
 
+echo
+echo "Mounting L ..."
 $veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint
 $veracrypt --text --list
 
