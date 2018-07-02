@@ -68,7 +68,7 @@ tt()
 {
   tiddly_new=$HOME/Downloads/tiddly.html
   tiddly_forever='/b/om/p/CRUZER/gitted/sandbox/tiddly.html'
-  if [[ -f $tiddly ]]; then
+  if [[ -f $tiddly_new ]]; then
     if [[ ! -f $tiddly_forever ]]; then
       echo "Not found: $tiddly_forever"
       echo "Consider rm -f $tiddly_new"
