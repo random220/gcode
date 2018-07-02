@@ -1,0 +1,17 @@
+#!/bin/bash
+
+bindir=$(dirname $0)
+
+printf "Push to /b/om/t/CRUZER ? (y/n): "
+read yesno
+if [[ $yesno != 'y' ]]; then
+  exit 1
+fi
+
+$bindir/tmount || exit 1
+$bindir/vmount || exit 1
+cmd="rsync -a --delete /b/om/p/CRUZER/ /b/om/t/CRUZER/"
+echo "doing: $cmd"
+$cmd
+$bindir/humount
+

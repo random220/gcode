@@ -24,6 +24,9 @@ sub main
         system "$veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint";
         system "$veracrypt --text --list";
     }
+    else {
+        exit 1;
+    }
 }
 
 
