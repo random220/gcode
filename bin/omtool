@@ -2,6 +2,11 @@
 use strict;
 use Data::Dumper;
 
+$ENV{PATH} = "$ENV{HOME}/bin:$ENV{HOME}/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games";
+
+my $cmd = "cd \$(dirname $0) && pwd";
+my $bindir = `$cmd`;
+chomp $bindir;
 
 my $valid_commands =
 {
@@ -14,7 +19,8 @@ my $valid_commands =
     'humount' => 1,
     'lsync' => 1,
     'tsync' => 1,
-    'hsync' => 1,
+    'hpush' => 1,
+    'hpull' => 1,
     'note' => 1,
     'dirs' => 1,
     'vmw' => 1,
@@ -126,12 +132,11 @@ elsif ($CMD eq 'tsync') {
     system($cmd);
     print "\n\nexport p=$p\nexport t=$t\n";
 }
-elsif ($CMD eq 'hsync') {
-    vmount();
-    hmount();
-    $cmd = "rsync -a --delete $p/ om\@${home_machine}:/b/om/p/CRUZER/";
-    print("doing: $cmd\n");
-    system($cmd);
+elsif ($CMD eq 'hpush') {
+    system "$bindir/hpush";
+}
+elsif ($CMD eq 'hpull') {
+    system "$bindir/hpull";
 }
 
 sub set_variables
