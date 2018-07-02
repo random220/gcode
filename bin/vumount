@@ -14,8 +14,9 @@ fi
 # 2: /b/om/CRUZER.vol /dev/disk5 /b/om/p
 
 
+hostname=$(hostname)
 echo
-echo "Unmounting ALL ..."
+echo "Unmounting ALL on $hostname ..."
 $veracrypt --text --list
 $veracrypt --text --dismount # dismount all
 exit $?
