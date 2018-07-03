@@ -8,17 +8,17 @@ sub main
     my $veracrypt = $ENV{HOME}.'/bin/veracrypt';
     my $uname = `uname`;
     chomp $uname;
-    my ($partition_1, $partition_2) = (undef, undef);
+    my $vera_volume;
+    my $mountpoint = '/b/om/t';
+
     if ($uname eq 'Darwin') {
-        ($partition_1, $partition_2) = get_usbstick_partitions_mac();
+        $vera_volume = get_usbstick_partition_mac();
     }
     elsif ($uname eq 'Linux') {
-        ($partition_1, $partition_2) = get_usbstick_partitions_linux();
+        $vera_volume = get_usbstick_partition_linux();
     }
-    my ($vera_volume, $mountpoint);
-    if ($partition_1 ne '' and $partition_2 ne '') {
-        $vera_volume = $partition_2;
-        $mountpoint = '/b/om/t';
+    if ($vera_volume eq '') {
+        die "Error: No appropriate USB stick found\n";
     }
     if (!-d $mountpoint) {
         system "mkdir -p $mountpoint";
@@ -33,7 +33,9 @@ sub main
         exit 0;
     }
     if ($vera_volume ne '') {
-        system "$veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint";
+        my $cmd = "$veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint";
+        print "doing: $cmd\n";
+        system $cmd;
         system "$veracrypt --text --list";
     }
     else {
@@ -42,7 +44,7 @@ sub main
 }
 
 
-sub get_usbstick_partitions_mac
+sub get_usbstick_partition_mac
 {
     my @disklist = `diskutil list`;
 # % diskutil list
@@ -71,18 +73,16 @@ sub get_usbstick_partitions_mac
     my $tcruzer_disk = undef;
     my $tcron_disk = undef;
     my $disklist = join '', @disklist;
-    my ($partition_1, $partition_2) = $disklist =~ m{\s0:\s+FDisk_partition_scheme\s+\*32\.1 GB\s+disk\d+\n.*?(disk\S+).*?(disk\S+)}s;
-    # (disk2s1, disk2s2)
-    if ($partition_1 ne '' and $partition_2 ne '') {
-        return ("/dev/$partition_1", "/dev/$partition_2");
+    if ($disklist =~ m{FDisk_partition_scheme\s+\*32.1 GB\s+(\S+)}s) {
+        return "/dev/${1}s2"; # /dev/disk2s2
     }
-    return ('', '');
+    return '';
 }
 
 
-sub get_usbstick_partitions_linux
+sub get_usbstick_partition_linux
 {
-    my @disklist = `lsblk -l`;
+    my $disklist = `lsblk -l`;
     # % lsblk -l
     # NAME MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
     # sda    8:0    0   20G  0 disk 
@@ -97,13 +97,9 @@ sub get_usbstick_partitions_linux
     # sdc3   8:35   1  7.5G  0 part 
     # sr0   11:0    1 1024M  0 rom  
 
-    my $disk16gig = undef;
-    my $disk8gig  = undef;
-    my $disklist = join '', @disklist;
-    my ($partition_1, $partition_2) = $disklist =~ m{\s29\.9G  0 disk\s*\n\s*(\S+)\s.*?\spart\s*\n\s*(\S+)\s.*?\spart\s*\n}s;
-    if ($partition_1 ne '' and $partition_2 ne '') {
-        return ("/dev/$partition_1", "/dev/$partition_2");
+    if ($disklist =~ m{\n(\S+)\s+.*?29\.9G\s+0\s+disk\s*\n}s) {
+        return "/dev/${1}2"; # /dev/sdc2
     }
-    return ('', '');
+    return '';
 }
 
