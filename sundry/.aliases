@@ -92,6 +92,6 @@ function t0
 }
 
 # vmware stuff
-if [[ -f $HOME/ww/.vmware_aliases]]; then
+if [[ -f $HOME/ww/.vmware_aliases ]]; then
   . $HOME/ww/.vmware_aliases
 fi
