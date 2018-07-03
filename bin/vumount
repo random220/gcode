@@ -14,7 +14,7 @@ fi
 # 2: /b/om/CRUZER.vol /dev/disk5 /b/om/p
 
 
-hostname=$(hostname)
+hostname=$(hostname | sed 's/\..*//')
 echo
 echo "Unmounting ALL on $hostname ..."
 $veracrypt --text --list

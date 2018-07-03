@@ -35,8 +35,9 @@ if [[ $? == 0 ]]; then
   exit 0
 fi
 
+hostname=$(hostname | sed 's/\..*//')
 echo
-echo "Mounting V ..."
+echo "Mounting V on $hostname ..."
 $veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint
 $veracrypt --text --list 2>&1 | tee /tmp/vmounts.txt
 # 1: /b/om/CRUZER.vol /dev/disk4 /b/om/p
