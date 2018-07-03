@@ -3,6 +3,7 @@ umask 022
 export VISUAL=vi
 export EDITOR=vi
 
+alias vera='(veracrypt&)'
 on_mint=0
 if [[ -f /etc/lsb-release ]]; then
   grep -q 'DISTRIB_ID=LinuxMint' /etc/lsb-release
@@ -56,14 +57,6 @@ git config --global user.email omandal@localhost
 git config --global user.name "Om Mandal"
 }
 
-# vmware stuff
-alias pl='~/ww/bin/p4login'
-alias pcat='p4 -q print'
-alias ppcat='p4 -p perforce.eng.vmware.com:1666 -q print'
-alias plog='p4 -p perforce.eng.vmware.com:1666 describe -s $1'
-alias pani='p4 -q annotate -I'
-alias sd='ssh dbc'
-
 tt()
 {
   tiddly_new=$HOME/Downloads/tiddly.html
@@ -88,13 +81,17 @@ tt()
 
 function t0
 {
-    local ls=$(tmux ls | grep -v ssh 2>/dev/null)
-    if [[ $ls == '' ]]; then
-        tmux
-    else
-        # 0: 2 windows (created Sat Oct 21 18:35:33 2017) [139x51] (attached)
-        local n=$(echo $ls | sed 's/:.*//')
-        tmux a -d -t $n
-    fi
+  local ls=$(tmux ls | grep -v ssh 2>/dev/null)
+  if [[ $ls == '' ]]; then
+    tmux
+  else
+    # 0: 2 windows (created Sat Oct 21 18:35:33 2017) [139x51] (attached)
+    local n=$(echo $ls | sed 's/:.*//')
+    tmux a -d -t $n
+  fi
 }
 
+# vmware stuff
+if [[ -f $HOME/ww/.vmware_aliases]]; then
+  . $HOME/ww/.vmware_aliases
+fi
