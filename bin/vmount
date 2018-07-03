@@ -15,7 +15,10 @@ if [[ ! -f $vera_volume ]]; then
   exit 1
 fi
 if [[ ! -d $mountpoint ]]; then
-  echo "Error: Mountpoint dir does not exist: $mountpoint"
+  mkdir -p $mountpoint
+fi
+if [[ ! -d $mountpoint ]]; then
+  echo "Error: Could not create mountpoint dir $mountpoint"
   exit 1
 fi
 
@@ -25,8 +28,8 @@ if [[ $? != 0 ]]; then
   exit 1
 fi
 
-mount | egrep "veracrypt.* $mountpoint " >/dev/null 2>&1
-if [[ $? == 0 ]]; then 
+$veracrypt --text --list | grep -q " $mountpoint\$"
+if [[ $? == 0 ]]; then
   # Already mounted. Say so.
   echo "Something is already mounted on $mountpoint"
   exit 0
@@ -39,7 +42,7 @@ $veracrypt --text --list 2>&1 | tee /tmp/vmounts.txt
 # 1: /b/om/CRUZER.vol /dev/disk4 /b/om/p
 # 2: /Volumes/3TB/om/LCRUZER.vol /dev/disk5 /b/om/l
 
-egrep -q " $vera_volume .* $mountpoint" /tmp/vmounts.txt
+egrep -q " $mountpoint" /tmp/vmounts.txt
 result=$?
 rm -f /tmp/vmounts.txt
 
