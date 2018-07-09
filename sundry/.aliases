@@ -49,6 +49,8 @@ alias lw='vimdiff ~/zl.txt ~/zw.txt'
 
 alias glog='git log --all --graph --decorate --oneline'
 alias gs='git status -s'
+alias vig='cp ~/gcode/sundry/viminfo-git.txt ~/.viminfo'
+alias vip='cp ~/gcode/sundry/viminfo-p4.txt ~/.viminfo'
 gits()
 {
 git config credential.helper store
