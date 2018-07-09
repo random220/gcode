@@ -1,0 +1,34 @@
+# Value of 'encoding' when this file was written
+*encoding=utf-8
+
+"b	CHAR	0
+	?^>>>> ORIGINAL Oomomomomma/^==== THEIRS mb/^==== YOURS :'b,.y'aPdd'akdd/^==== YOURS mb/^<<<<$:'b,.y'aPdd'akddddma/^<<<<$:'a,.d
+"h	CHAR	0
+	?^<<<<<<< dd/^||||||| /v/^=======$:d/^>>>>>>> dd
+"i	CHAR	0
+	/^==== 
+"l	CHAR	0
+	:loadview
+"m	CHAR	0
+	:mkview
+"n	CHAR	0
+	:set nopaste
+"p	CHAR	0
+	:set paste
+"r	CHAR	0
+	?^>>>> ORIGINAL ma/^==== THEIRS ok:'a,.dma/^==== YOURS mb/^<<<<$:'b,.d'add
+"w	CHAR	0
+	?^>>>> ORIGINAL ma/^==== YOURS ok:'a,.dma/^<<<<$dd'add
+"x	CHAR	0
+	?^<<<<<<< v/^||||||| :w! ~/wx.txt/v/^=======$:w! ~/lx.txt/v/^>>>>>>> :w! ~/rx.txt
+"u@	CHAR	0
+	:sp /tmp/auau.txt:%dj:%ykpkdd:%!openssl enc -base64:%s/^/"/:%s/$/\\n"/:%yjpk:q!
+"j	CHAR	0
+	i|j
+"z	CHAR	0
+	?^>>>> ORIGINAL ma/^==== THEIRS :'a,. w! ~/zl.txtma/^==== YOURS :'a,. w! ~/zr.txt:.,$ w! ~/zw.txt:sp ~/zl.txt1GddGdd:w!:e! ~/zr.txt1GddGdd:w!:e! ~/zw.txtGo0Da<<<<1G/^<<<<$:.,$d1Gdd:wq
+"f@	CHAR	0
+	365
+<ma:sp /tmp/a.txt:%dj1G/^>>>> ORIGINAL yykpkddj/^==== THEIRS yykpj/^==== YOURS yykp1Gvlllllllllllllxil='$a'j$a'0vlllllllllllxir='j0vllllllllllxiw='$a'@$Wopr€kb4 -q print "$l" >l.cp4 -q print "$r" >r.cp4 -q print "$w" >w.cp4 -q annotate -I "$l" >lann.c€kb€kbp4 -q annotate -I "$r" >rannp4 -q annotate -I "$w" >wannecho done:%!bash:q!'a
+"q	CHAR	0
+	1G/define FEATURES_DEF_ALLjjmaGk$a          \:'a,.!sort

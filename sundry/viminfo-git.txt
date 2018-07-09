@@ -1,0 +1,28 @@
+"b	CHAR	0
+	?^<<<<<<< yyp/^||||||| yypkv?^<<<<<<< :d/^>>>>>>> p/^||||||| dd?^>>>>>>> 2dd?^=======$v?^<<<<<<< :d
+"h	CHAR	0
+	?^<<<<<<< dd/^||||||| /v/^=======$:d/^>>>>>>> dd
+"i	CHAR	0
+	/^|||||||zz
+"l	CHAR	0
+	:loadview
+"m	CHAR	0
+	:mkview
+"n	CHAR	0
+	:set nopaste
+"p	CHAR	0
+	:set paste
+"r	CHAR	0
+	?^<<<<<<< v/^=======$:d/>>>>>> dd
+"w	CHAR	0
+	?<<<<<<< dd0/|||||| v/>>>>>>> :d
+"x	CHAR	0
+	?^<<<<<<< v/^||||||| :w! ~/wx.txt/v/^=======$:w! ~/lx.txt/v/^>>>>>>> :w! ~/rx.txt
+"u@	CHAR	0
+	:sp /tmp/auau.txt:%dj:%ykpkdd:%!openssl enc -base64:%s/^/"/:%s/$/\\n"/:%yjpk:q!
+"z	CHAR	0
+	?^<<<<<<< HEAD$ma/^||||||| merged common ancestors$:'a,. w! ~/zw.txtma/^=======$:'a,. w! ~/zl.txtma/^>>>>>>> :'a,. w! ~/zr.txt:sp ~/zl.txt1GddGdd:w!:e! ~/zr.txt1GddGdd:w!:e! ~/zw.txt1GddGdd:wqk
+"j	CHAR	0
+	i|j
+"q	CHAR	0
+	1G/define FEATURES_DEF_ALLjjmaGk$a          \:'a,.!sort
