@@ -65,3 +65,4 @@ endif
 " stop beeps
 "set belloff=all       " works on mac, not on ubuntu
 set noeb vb t_vb=      " works on both
+set nomodeline

@@ -13,6 +13,7 @@ if [[ -f /etc/lsb-release ]]; then
 fi
 if [[ $on_mint == 0 ]]; then
   export LC_ALL=C
+  export LANG=C
 fi
 unset on_mint
 
