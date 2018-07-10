@@ -1,25 +1,32 @@
 #!/bin/bash
 
-myname=$(basename $0)
-comment='checkpoint'
-if [[ $myname == 'ttc' ]]; then
-  printf "Comment: "
-  read comment
-fi
-
-tiddly_new=$HOME/Downloads/tiddly.html
-tiddly_forever='/b/om/p/CRUZER/gitted/sandbox/tiddly.html'
-if [[ -f $tiddly_new ]]; then
-  if [[ ! -f $tiddly_forever ]]; then
-    echo "Not found: $tiddly_forever"
-    echo "Consider rm -f $tiddly_new"
-  else
-    ls -ld $tiddly_new $tiddly_forever
-    cmd="mv $tiddly_new $tiddly_forever"
-    echo $cmd
-    $cmd
-    (cd /b/om/p/CRUZER/gitted/sandbox && (git add .; git commit -m "$comment"))
+set_comment() {
+  myname=$(basename $0)
+  comment='checkpoint'
+  if [[ $myname == 'ttc' ]]; then
+    printf "Comment: "
+    read comment
   fi
-else
-  echo "Not found: $tiddly_new"
-fi
+}
+
+main() {
+  tiddly_new=$HOME/Downloads/tiddly.html
+  tiddly_forever='/b/om/p/CRUZER/gitted/sandbox/tiddly.html'
+  if [[ -f $tiddly_new ]]; then
+    if [[ ! -f $tiddly_forever ]]; then
+      echo "Not found: $tiddly_forever"
+      echo "Consider rm -f $tiddly_new"
+    else
+      ls -ld $tiddly_new $tiddly_forever
+      cmd="mv $tiddly_new $tiddly_forever"
+      echo $cmd
+      $cmd
+      set_comment
+      (cd /b/om/p/CRUZER/gitted/sandbox && (git add .; git commit -m "$comment"))
+    fi
+  else
+    echo "Not found: $tiddly_new"
+  fi
+}
+
+main
