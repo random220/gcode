@@ -60,28 +60,6 @@ git config --global user.email omandal@localhost
 git config --global user.name "Om Mandal"
 }
 
-tt()
-{
-  tiddly_new=$HOME/Downloads/tiddly.html
-  tiddly_forever='/b/om/p/CRUZER/gitted/sandbox/tiddly.html'
-  if [[ -f $tiddly_new ]]; then
-    if [[ ! -f $tiddly_forever ]]; then
-      echo "Not found: $tiddly_forever"
-      echo "Consider rm -f $tiddly_new"
-    else
-      ls -ld $tiddly_new $tiddly_forever
-      cmd="mv $tiddly_new $tiddly_forever"
-      echo $cmd
-      $cmd
-      (cd /b/om/p/CRUZER/gitted/sandbox && (git add .; git commit -m change))
-    fi
-  else
-    echo "Not found: $tiddly_new"
-  fi
-  unset tiddly_new
-  unset tiddly_forever
-}
-
 function t0
 {
   local ls=$(tmux ls | grep -v ssh 2>/dev/null)
