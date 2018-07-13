@@ -1,8 +1,20 @@
 #!/bin/bash
 
 export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
-vera_volume=/Volumes/3TB/om/LCRUZER.vol
+
 mountpoint=/b/om/l
+vera_volume=''
+
+for v in '/Volumes/3TB/om/LCRUZER.vol' '/Volumes/1TB/CRUZER-20GB-MacOS.vol'; do
+  if [[ -f $v ]]; then
+    vera_volume=$v
+    break
+  fi
+done
+if [[ $vera_volume == '' ]]; then
+  echo "Error: Volume not found"
+  exit 1
+fi
 
 uname=$(uname)
 if [[ $uname != 'Darwin' ]]; then
