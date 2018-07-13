@@ -1,5 +1,7 @@
 #!/bin/bash
 
+arg=$1
+
 set_comment() {
   myname=$(basename $0)
   comment='checkpoint'
@@ -19,10 +21,18 @@ main() {
     else
       ls -ld $tiddly_new $tiddly_forever
       cmd="mv $tiddly_new $tiddly_forever"
-      echo $cmd
-      $cmd
+      printf "todo: $cmd\\n"
+      if [[ $arg == '' ]]; then
+        echo "Doing it"
+        eval $cmd
+      fi
       set_comment
-      (cd /b/om/p/CRUZER/gitted/sandbox && (git add .; git commit -m "$comment"))
+      cmd="(cd /b/om/p/CRUZER/gitted/sandbox && (git add .; git commit -m "$comment"))"
+      printf "todo: $cmd\\n"
+      if [[ $arg == '' ]]; then
+        echo "Doing it"
+        eval $cmd
+      fi
     fi
   else
     echo "Not found: $tiddly_new"

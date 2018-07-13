@@ -103,7 +103,15 @@ elsif ($CMD eq 'note') {
         system "open -a /Applications/Firefox.app '$p/$tiddly_file'";
     }
     elsif ($uname eq 'Linux') {
-        system "(/usr/bin/firefox '$p/$tiddly_file'&) 2>/dev/null";
+        if (-e '/usr/bin/google-chrome') {
+            system "(/usr/bin/google-chrome --incognito '$p/$tiddly_file' &) 2>/dev/null";
+        }
+        elsif (-e '/usr/bin/firefox') {
+            system "(/usr/bin/firefox '$p/$tiddly_file'&) 2>/dev/null";
+        }
+        else {
+            die "Error: Chrome or Firefox not found\n";
+        }
     }
     else {
         die "Don't know how to open tiddly on machines not mac or Linux\n";
