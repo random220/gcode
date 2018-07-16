@@ -100,7 +100,12 @@ elsif ($CMD eq 'note') {
         die "Could not find file: $p/$tiddly_file\n";
     }
     if ($uname eq 'Darwin') {
-        system "open -a /Applications/Firefox.app '$p/$tiddly_file'";
+        my $cmd;
+        $cmd = "open -a /Applications/Firefox.app '$p/$tiddly_file'";
+        if (-d '/Applications/Google Chrome.app' ) {
+            $cmd = "open '/Applications/Google Chrome.app' --args --incognito --file '$p/$tiddly_file'";
+        }
+        system $cmd;
     }
     elsif ($uname eq 'Linux') {
         if (-e '/usr/bin/google-chrome') {
