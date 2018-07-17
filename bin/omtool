@@ -104,7 +104,9 @@ elsif ($CMD eq 'note') {
         $cmd = "open -a /Applications/Firefox.app '$p/$tiddly_file'";
         if (-d '/Applications/Google Chrome.app' ) {
             $cmd = "open '/Applications/Google Chrome.app' --args --user-data-dir=/b/om/p/tmp/chrome-session-data --incognito '$p/$tiddly_file'";
+            $cmd = "('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=/b/om/p/tmp/chrome-session-data --incognito '/b/om/p/CRUZER/gitted/sandbox/tiddly.html' &)"
         }
+        print "doing: $cmd\n";
         system $cmd;
     }
     elsif ($uname eq 'Linux') {
