@@ -103,20 +103,23 @@ elsif ($CMD eq 'note') {
         my $cmd;
         $cmd = "open -a /Applications/Firefox.app '$p/$tiddly_file'";
         if (-d '/Applications/Google Chrome.app' ) {
-            $cmd = "open '/Applications/Google Chrome.app' --args --incognito --file '$p/$tiddly_file'";
+            $cmd = "open '/Applications/Google Chrome.app' --args --user-data-dir=/b/om/p/tmp/chrome-session-data --incognito '$p/$tiddly_file'";
         }
         system $cmd;
     }
     elsif ($uname eq 'Linux') {
+        my $cmd;
         if (-e '/usr/bin/google-chrome') {
-            system "(/usr/bin/google-chrome --incognito '$p/$tiddly_file' &) 2>/dev/null";
+            $cmd = "(/usr/bin/google-chrome --user-data-dir=/b/om/p/tmp/chrome-session-data --incognito '$p/$tiddly_file' &) 2>/dev/null";
         }
         elsif (-e '/usr/bin/firefox') {
-            system "(/usr/bin/firefox '$p/$tiddly_file'&) 2>/dev/null";
+            $cmd = "(/usr/bin/firefox '$p/$tiddly_file'&) 2>/dev/null";
         }
         else {
             die "Error: Chrome or Firefox not found\n";
         }
+        print "doing: $cmd\n";
+        system $cmd;
     }
     else {
         die "Don't know how to open tiddly on machines not mac or Linux\n";
