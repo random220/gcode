@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+myname=$(basename $0)
 
 veracrypt='veracrypt'
 uname=$(uname)
@@ -16,8 +17,26 @@ fi
 
 hostname=$(hostname | sed 's/\..*//')
 echo
+echo "Your mounted volumes on $hostname ..."
+list=$($veracrypt --text --list 2>/dev/null)
+printf "$list\n"
+
+if [[ $list == "" ]]; then
+  exit 0
+fi
+
+if [[ $myname == 'vumountn' ]]; then
+  echo
+  echo "Commands to unmount:"
+  printf "$list\n" | awk '{print $4}' | sed 's,^,/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text --dismount ,'
+  exit 0
+fi
+
+echo
 echo "Unmounting ALL on $hostname ..."
-$veracrypt --text --list
-$veracrypt --text --dismount # dismount all
+cmd="$veracrypt --text --dismount # dismount all"
+printf "$cmd\n"
+eval "$cmd"
 exit $?
+
 
