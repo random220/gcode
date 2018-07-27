@@ -12,30 +12,39 @@ set_comment() {
 }
 
 main() {
-  tiddly_new=$HOME/Downloads/tiddly.html
+  tiddly_new1=$HOME/Downloads/tiddly.html
+  tiddly_new2=/b/om/p/tmp/chrome-downloads/tiddly.html
+
+  tiddly_new=$tiddly_new1
+  if [[ ! -f $tiddly_new ]]; then
+    tiddly_new=$tiddly_new2
+  fi
+
+  if [[ ! -f $tiddly_new ]]; then
+    echo "Not found: $tiddly_new1"
+    echo "Not found: $tiddly_new2"
+    exit 1
+  fi
+
   tiddly_forever='/b/om/p/CRUZER/gitted/sandbox/tiddly.html'
-  if [[ -f $tiddly_new ]]; then
-    if [[ ! -f $tiddly_forever ]]; then
-      echo "Not found: $tiddly_forever"
-      echo "Consider rm -f $tiddly_new"
-    else
-      ls -ld $tiddly_new $tiddly_forever
-      cmd="mv $tiddly_new $tiddly_forever"
-      printf "todo: $cmd\\n"
-      if [[ $arg == '' ]]; then
-        echo "Doing it"
-        eval $cmd
-      fi
-      set_comment
-      cmd="(cd /b/om/p/CRUZER/gitted/sandbox && (git add .; git commit -m '$comment'))"
-      printf "todo: $cmd\\n"
-      if [[ $arg == '' ]]; then
-        echo "Doing it"
-        eval $cmd
-      fi
-    fi
+  if [[ ! -f $tiddly_forever ]]; then
+    echo "Not found: $tiddly_forever"
+    echo "Consider rm -f $tiddly_new"
   else
-    echo "Not found: $tiddly_new"
+    ls -ld $tiddly_new $tiddly_forever
+    cmd="mv $tiddly_new $tiddly_forever"
+    printf "todo: $cmd\\n"
+    if [[ $arg == '' ]]; then
+      echo "Doing it"
+      eval $cmd
+    fi
+    set_comment
+    cmd="(cd /b/om/p/CRUZER/gitted/sandbox && (git add .; git commit -m '$comment'))"
+    printf "todo: $cmd\\n"
+    if [[ $arg == '' ]]; then
+      echo "Doing it"
+      eval $cmd
+    fi
   fi
 }
 
