@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cat $* \
+| perl -pe 's/\cM//sg;s/[<>'"'"'"]/\n/sg' \
+| egrep 'mp3|pdf' |grep '/' \
+| perl -pe 's,^/,http://www.rockhousemethod.com/,; s/ /%20/g; s/\&amp;/%26/g; s/\&/%26/g; s/\(/%28/g; s/\)/%29/g; s/^/curl -O /'
