@@ -28,7 +28,7 @@ if [[ $? != 0 ]]; then
   exit 1
 fi
 
-$veracrypt --text --list | grep -q " $mountpoint\$"
+$veracrypt --text --list 2>/dev/null | grep -q " $mountpoint\$"
 if [[ $? == 0 ]]; then
   # Already mounted. Say so.
   echo "Something is already mounted on $mountpoint"

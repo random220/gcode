@@ -27,7 +27,7 @@ sub main
         die "Error: Could not create mountpoint dir $mountpoint\n";
     }
     print "\nMounting T ...\n";
-    my $out = `$veracrypt --text --list`;
+    my $out = `$veracrypt --text --list 2>/dev/null`;
     if ($out =~ m{ $mountpoint\s*?\n}) {
         print "Something is already mounted at $mountpoint.\n";
         exit 0;
@@ -36,7 +36,7 @@ sub main
         my $cmd = "$veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint";
         print "doing: $cmd\n";
         system $cmd;
-        system "$veracrypt --text --list";
+        system "$veracrypt --text --list 2>/dev/null";
     }
     else {
         exit 1;
