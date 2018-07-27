@@ -1,0 +1,17 @@
+#!/usr/bin/perl
+use strict;
+
+my $rootdir = '/b/om/p/CRUZER';
+if ($ARGV[0] ne '') {
+    $rootdir = $ARGV[0];
+}
+$rootdir =~ s{/+$}{};
+open LIST, "(rsync -a --delete $rootdir/)|";
+while (my $line = <LIST>) {
+    next if($line =~ m{^d});
+    my ($type, $size, $rest) = $line =~ m{^(\S+)\s+([\d,]+)\s+(.+)\n$}s;
+    next if($rest =~ /[\s\/]\.DS_Store$/);
+    $size =~ s{,}{}g;
+    print "$type $size $rest\n"
+}
+close FIND;
