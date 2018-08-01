@@ -1,0 +1,9 @@
+Ubuntu
+    cd /etc/ssh
+    mkdir back
+    mv ssh_host_* back
+    dpkg-reconfigure openssh-server
+    service ssh restart
+    or
+    systemctl restart ssh
+
