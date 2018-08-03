@@ -1,0 +1,21 @@
+#!/bin/bash
+
+
+if [[ x$DISPLAY == 'x' ]]; then
+  echo 'Error: No DISPLPAY set'
+  exit 1
+fi
+
+gtmp=/b/om/gtmp
+in=$1
+if [[ x$in == 'x' ]]; then
+  in='tmp'
+fi
+
+h=$(hostname)
+if [[ $h == 'om-Latitude-E7450' ]]; then
+  g='/usr/bin/google-chrome'
+fi
+
+cmd='(($g --user-data-dir=$gtmp/$in >/dev/null 2>&1)&)'
+eval "$cmd"
