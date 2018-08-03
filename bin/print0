@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+use strict;
+
+while (my $line = <STDIN>) {
+    $line =~ s{\cM}{}s;
+    $line =~ s{\n}{\0}s;
+    print $line;
+}
