@@ -1,21 +1,25 @@
 #!/bin/bash
 
 
-if [[ x$DISPLAY == 'x' ]]; then
-  echo 'Error: No DISPLPAY set'
-  exit 1
-fi
-
 gtmp=/b/om/gtmp
 in=$1
+
+if [[ $1 == 'clean' ]]; then
+  rm -rf /b/om/gtmp
+  in=$2
+fi
+
 if [[ x$in == 'x' ]]; then
   in='tmp'
 fi
 
-h=$(hostname)
+h=$(hostname | sed 's/\..*//')
 if [[ $h == 'om-Latitude-E7450' ]]; then
   g='/usr/bin/google-chrome'
+elif [[ $h == 'omandal-a01' ]]; then
+  g='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 fi
 
-cmd='(($g --user-data-dir=$gtmp/$in >/dev/null 2>&1)&)'
+cmd="(('$g' --user-data-dir=$gtmp/$in >/dev/null 2>&1)&)"
+printf "doing: $cmd\n";
 eval "$cmd"
