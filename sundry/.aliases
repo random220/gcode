@@ -50,7 +50,7 @@ alias lw='vimdiff ~/zl.txt ~/zw.txt'
 
 alias glog='git log --all --graph --decorate --oneline'
 alias gdesc='git show --name-status'
-alias gdescv='git log -M --summary'
+alias gdescv='git log --summary -1 -M'
 alias gs='git status -s'
 alias vig='cp ~/gcode/sundry/viminfo-git.txt ~/.viminfo'
 alias vip='cp ~/gcode/sundry/viminfo-p4.txt ~/.viminfo'
