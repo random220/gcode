@@ -1,0 +1,8 @@
+sudo hostnamectl set-hostname {new machine name}
+that should change /etc/hostname as well but check that anyway
+also change /etc/hosts
+
+edit /etc/cloud/cloud.cfg
+Make sure of this entry
+preserve_hostname: true
+
