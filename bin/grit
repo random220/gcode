@@ -1,0 +1,32 @@
+#!/usr/bin/perl
+use strict;
+
+print "grit to micron [1]\nor,\nmicron to grit [2] :  ";
+my $what = <STDIN>;
+chomp $what;
+
+print "Input : ";
+my $input = <STDIN>;
+chomp $input;
+
+if ($what == 1) {
+  grit_to_micron($input);
+}
+elsif ($what == 2) {
+  micron_to_grit($input);
+}
+
+sub grit_to_micron
+{
+  my $grit = shift;
+  my $micron = ($grit ** (-1/1.0685)) * 11764.7;
+  print "$grit grit == $micron micron\n";
+}
+
+sub micron_to_grit
+{
+  my $micron = shift;
+  my $grit = ($micron / 11764.7) ** -1.0685;
+  $grit =~ s{\..*}{};
+  print "$micron micron == $grit grit\n";
+}
