@@ -1,21 +1,33 @@
 #!/usr/bin/perl
 use strict;
 
-print "Input : ";
-my $in = <STDIN>;
-chomp $in;
-my $what = 0;
-my $input;
-if ($in =~ m{^([\d\.]+)g$}) {
+my ($input, $what);
+if ($ARGV[0] =~ m{^([\d\.]+)([gm])$}) {
   $input = $1;
-  $what = 'g2m';
-}
-elsif ($in =~ m{^([\d\.]+)m$}) {
-  $input = $1;
-  $what = 'm2g';
+  my $gm = $2;
+  if ($gm eq 'g') {
+    $what = 'g2m';
+  }
+  elsif ($gm eq 'm') {
+    $what = 'm2g';
+  }
 }
 else {
-  die "Input example: 30m or 600g\n";
+  print "Input : ";
+  my $in = <STDIN>; chomp $in;
+  $what = 0;
+  $input;
+  if ($in =~ m{^([\d\.]+)g$}) {
+    $input = $1;
+    $what = 'g2m';
+  }
+  elsif ($in =~ m{^([\d\.]+)m$}) {
+    $input = $1;
+    $what = 'm2g';
+  }
+  else {
+    die "Input example: 30m or 600g\n";
+  }
 }
 
 if ($what eq 'g2m') {
