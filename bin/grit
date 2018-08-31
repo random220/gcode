@@ -1,18 +1,27 @@
 #!/usr/bin/perl
 use strict;
 
-print "grit to micron [1]\nor,\nmicron to grit [2] :  ";
-my $what = <STDIN>;
-chomp $what;
-
 print "Input : ";
-my $input = <STDIN>;
-chomp $input;
+my $in = <STDIN>;
+chomp $in;
+my $what = 0;
+my $input;
+if ($in =~ m{^([\d\.]+)g$}) {
+  $input = $1;
+  $what = 'g2m';
+}
+elsif ($in =~ m{^([\d\.]+)m$}) {
+  $input = $1;
+  $what = 'm2g';
+}
+else {
+  die "Input example: 30m or 600g\n";
+}
 
-if ($what == 1) {
+if ($what eq 'g2m') {
   grit_to_micron($input);
 }
-elsif ($what == 2) {
+elsif ($what eq 'm2g') {
   micron_to_grit($input);
 }
 
