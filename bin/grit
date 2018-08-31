@@ -19,14 +19,14 @@ elsif ($what == 2) {
 sub grit_to_micron
 {
   my $grit = shift;
-  my $micron = ($grit ** (-1/1.0685)) * 11764.7;
+  my $micron = ($grit ** (-1/1.0685)) * 11764.71;
   print "$grit grit == $micron micron\n";
 }
 
 sub micron_to_grit
 {
   my $micron = shift;
-  my $grit = ($micron / 11764.7) ** -1.0685;
+  my $grit = ($micron / 11764.71) ** -1.0685;
   $grit =~ s{\..*}{};
   print "$micron micron == $grit grit\n";
 }
