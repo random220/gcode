@@ -1,0 +1,53 @@
+#!/usr/bin/perl
+use strict;
+
+my ($input, $what);
+if ($ARGV[0] =~ m{^([\d\.]+)([gm])$}) {
+  $input = $1;
+  my $gm = $2;
+  if ($gm eq 'g') {
+    $what = 'g2m';
+  }
+  elsif ($gm eq 'm') {
+    $what = 'm2g';
+  }
+}
+else {
+  print "Input : ";
+  my $in = <STDIN>; chomp $in;
+  $what = 0;
+  $input;
+  if ($in =~ m{^([\d\.]+)g$}) {
+    $input = $1;
+    $what = 'g2m';
+  }
+  elsif ($in =~ m{^([\d\.]+)m$}) {
+    $input = $1;
+    $what = 'm2g';
+  }
+  else {
+    die "Input example: 30m or 600g\n";
+  }
+}
+
+if ($what eq 'g2m') {
+  grit_to_micron($input);
+}
+elsif ($what eq 'm2g') {
+  micron_to_grit($input);
+}
+
+sub grit_to_micron
+{
+  my $grit = shift;
+  my $micron = ($grit ** (-1/1.0685)) * 11764.71;
+  print "$grit grit == $micron micron\n";
+}
+
+sub micron_to_grit
+{
+  my $micron = shift;
+  my $grit = ($micron / 11764.71) ** -1.0685;
+  $grit =~ s{\..*}{};
+  print "$micron micron == $grit grit\n";
+}
