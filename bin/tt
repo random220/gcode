@@ -2,6 +2,8 @@
 
 arg=$1
 
+echo "Destination: /b/om/p/CRUZER/gitted/sandbox"
+
 set_comment() {
   myname=$(basename $0)
   comment='checkpoint'
@@ -74,7 +76,7 @@ do_tiddly() {
       eval $cmd
     fi
     set_comment
-    cmd="(cd /b/om/p/CRUZER/gitted/sandbox && (git add .; git commit -m '$comment'))"
+    cmd="(cd /b/om/p/CRUZER/gitted/sandbox && (git add tiddly.html; git commit -m '$comment'))"
     printf "todo: $cmd\\n"
     if [[ $arg == '' ]]; then
       echo "Doing it"
