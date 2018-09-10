@@ -12,6 +12,41 @@ set_comment() {
 }
 
 main() {
+  do_tiddly
+  do_mint
+}
+
+do_mint() {
+  file_new1=$HOME/Downloads/transactions.csv
+  file_new2=$HOME/Desktop/transactions.csv
+
+  file_new=$file_new1
+  if [[ ! -f $file_new ]]; then
+    file_new=$file_new2
+  fi
+  if [[ ! -f $file_new ]]; then
+    echo "Not found: $file_new1"
+    echo "Not found: $file_new2"
+    return
+  fi
+  file_forever='/b/om/p/CRUZER/gitted/sandbox/mint-transactions.csv'
+  diff -q $file_new $file_forever >/dev/null 2>&1
+  if [[ $? == 0 ]]; then
+    # no diff
+    echo "rm -f $file_new"
+    rm -f $file_new
+    return
+  fi
+  mv $file_new $file_forever
+  (
+    cd /b/om/p/CRUZER/gitted/sandbox
+    git add mint-transactions.csv
+    datestring=$(date "+%Y-%m-%d %H:%M:%S")
+    git commit -m "mint $datestring"
+  )
+}
+
+do_tiddly() {
   tiddly_new1=$HOME/Downloads/tiddly.html
   tiddly_new2=/b/om/p/tmp/chrome-downloads/tiddly.html
 
@@ -23,7 +58,7 @@ main() {
   if [[ ! -f $tiddly_new ]]; then
     echo "Not found: $tiddly_new1"
     echo "Not found: $tiddly_new2"
-    exit 1
+    return
   fi
 
   tiddly_forever='/b/om/p/CRUZER/gitted/sandbox/tiddly.html'
