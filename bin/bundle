@@ -1,0 +1,43 @@
+#!/usr/bin/perl
+use strict;
+
+my $infile = $ARGV[0];
+
+if ($infile eq '' or !-f $infile) {
+    die "Need input file to bundle\n";
+}
+
+my ($basename) = $infile =~ m{([^/]+)$};
+my $outfile = "bundle-$basename.sh";
+unlink $outfile if(-f $outfile);
+open F, ">$outfile" or die;
+print F <<"EOF";
+#!/usr/bin/perl
+use strict;
+
+my \$outfile = '$basename';
+EOF
+
+print F <<'EOF';
+if (-f $outfile) {
+    die "File \"$outfile\" already exists\n";
+}
+open OUTFILE, ">$outfile" or die;
+binmode(DATA);
+binmode(OUTFILE);
+my $buffer;
+my $count = 0;
+my $BLOCK_SIZE = 1024*1024;
+
+while (my $nbytes = read(DATA, $buffer, $BLOCK_SIZE)) {
+    print OUTFILE $buffer if($nbytes);
+}
+close DATA;
+close OUTFILE;
+__DATA__
+EOF
+close F;
+
+system "cat $infile >>$outfile";
+system "chmod a+x $outfile";
+
