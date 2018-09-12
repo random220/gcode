@@ -3,7 +3,7 @@ use strict;
 
 my $infile = $ARGV[0];
 
-if ($infile eq '' or !-f $infile) {
+if (!-f $infile and !-d $infile) {
     die "Need input file to bundle\n";
 }
 
@@ -15,7 +15,7 @@ print F <<"EOF";
 #!/usr/bin/perl
 use strict;
 
-my \$outfile = '$basename';
+my \$outfile = 'tarfile';
 EOF
 
 print F <<'EOF';
@@ -34,10 +34,13 @@ while (my $nbytes = read(DATA, $buffer, $BLOCK_SIZE)) {
 }
 close DATA;
 close OUTFILE;
+
+system "tar xfj tarfile";
+unlink 'tarfile';
 __DATA__
 EOF
 close F;
 
-system "cat $infile >>$outfile";
+system "tar cfj - $infile >>$outfile";
 system "chmod a+x $outfile";
 
