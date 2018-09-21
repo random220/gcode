@@ -3,6 +3,7 @@
 import subprocess
 import os
 import sys
+from subprocess import PIPE, Popen
 
 os.environ['PATH'] = '/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin'
 passfile = '/etc/anayapass'
@@ -14,9 +15,10 @@ mac = False
 if myos[0] == 'Darwin':
     mac = True
 
-
 def main():
-    change_password('known')
+    #change_password('known')
+    change_password('secret')
+    kill_anaya_processes()
 
 def main2():
     print_anaya_processes()
@@ -27,9 +29,9 @@ def main2():
         change_password('known')
 
 def kill_anaya_processes():
-    if mac:
-        subprocess.check_output('pkill -u anaya'.split())
-        subprocess.check_output('pkill -9 -u anaya'.split())
+    # Same commands on mac or linux
+    subprocess.call('pkill -u anaya'.split())
+    subprocess.call('pkill -9 -u anaya'.split())
 
 def is_now_a_forbidden_time():
     return False
@@ -38,7 +40,7 @@ def change_password_to_known():
     return
 
 def change_password(what):
-    password =  getpass(what)
+    password = getpass(what)
     if password == None:
         print 'Doing nothing'
         return
@@ -47,6 +49,9 @@ def change_password(what):
     if mac:
         command = 'dscl . -passwd /Users/anaya'.split()
         command.append(password)
+    else:
+        p = Popen(['chpasswd'], stdin=PIPE, stdout=None, stderr=None, shell=False)
+        p.communicate(input='anaya:'+password+'\n')
 
     cmdout = subprocess.check_output(command)
     print cmdout
@@ -62,9 +67,6 @@ def getpass(what):
                 return words[1]
     else:
         return False
-
-def kill_anaya_processes():
-    return
 
 def print_anaya_processes():
     cmdout = subprocess.check_output(['ps', 'aux'])
