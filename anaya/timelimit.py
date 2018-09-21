@@ -2,8 +2,18 @@
 
 import subprocess
 import os
+import sys
+
 os.environ['PATH'] = '/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin'
 passfile = '/etc/anayapass'
+if not os.path.isfile(passfile):
+    sys.exit(0)
+
+myos = os.uname()
+mac = False
+if myos[0] == 'Darwin':
+    mac = True
+
 
 def main():
     change_password('known')
@@ -16,6 +26,11 @@ def main2():
     else:
         change_password('known')
 
+def kill_anaya_processes():
+    if mac:
+        subprocess.check_output('pkill -u anaya'.split())
+        subprocess.check_output('pkill -9 -u anaya'.split())
+
 def is_now_a_forbidden_time():
     return False
 
@@ -27,8 +42,12 @@ def change_password(what):
     if password == None:
         print 'Doing nothing'
         return
-    command = 'dscl . -passwd /Users/anaya'.split()
-    command.append(password)
+
+    command = ['echo']
+    if mac:
+        command = 'dscl . -passwd /Users/anaya'.split()
+        command.append(password)
+
     cmdout = subprocess.check_output(command)
     print cmdout
 
