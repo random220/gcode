@@ -4,6 +4,7 @@ import subprocess
 import os
 import sys
 from subprocess import PIPE, Popen
+import time
 
 os.environ['PATH'] = '/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin'
 passfile = '/etc/anayapass'
@@ -16,12 +17,7 @@ if myos[0] == 'Darwin':
     mac = True
 
 def main():
-    #change_password('known')
-    change_password('secret')
-    kill_anaya_processes()
-
-def main2():
-    print_anaya_processes()
+    #print_anaya_processes()
     if is_now_a_forbidden_time():
         change_password('secret')
         kill_anaya_processes()
@@ -34,7 +30,12 @@ def kill_anaya_processes():
     subprocess.call('pkill -9 -u anaya'.split())
 
 def is_now_a_forbidden_time():
-    return False
+    t = time.localtime()
+    # print t
+    # time.struct_time(tm_year=2018, tm_mon=9, tm_mday=21, tm_hour=9, tm_min=43, tm_sec=13, tm_wday=4, tm_yday=264, tm_isdst=1)
+    if t[3] >= 21 and t[3] < 22:
+        return False
+    return True
 
 def change_password_to_known():
     return
