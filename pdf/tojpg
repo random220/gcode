@@ -1,5 +1,0 @@
-#!/bin/bash
-f=$1
-if [[ -f $f ]]; then
-  convert -density 300 -quality 0 $1 page_%04d.jpg
-fi
