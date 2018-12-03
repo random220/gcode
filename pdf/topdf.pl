@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 use strict;
-my @jpgfiles = `file *.jpg`;
+my @xcf_files = `ls -1 *.xcf`;
 # 000.jpg:           JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 594x693, frames 3
 # page_0000.xcf.jpg: JPEG image data, JFIF standard 1.01, resolution (DPI), density 300x300, segment length 16, baseline, precision 8, 2373x3142, frames 3
 # page_0001.xcf.jpg: JPEG image data, JFIF standard 1.01, resolution (DPI), density 300x300, segment length 16, baseline, precision 8, 2373x3159, frames 3
@@ -14,7 +14,12 @@ my @jpgfiles = `file *.jpg`;
 
 my $join_cmd = "gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=finished.pdf \\\n";
 
-for my $line (@jpgfiles) {
+for my $xcf_file (@xcf_files) {
+    chomp $xcf_file;
+    my $jpg_file = $xcf_file;
+    $jpg_file =~ s{\.xcf}{.jpg};
+    print "convert -density 300 -quality 80 $xcf_file $jpg_file\n";
+
     # 000.jpg:           JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 594x693, frames 3
     if ($line =~ m{^([^\:]+\.jpg)\:\s+JPEG image data.*, density (\d+)x(\d+).+precision 8, (\d+)x(\d+)}) {
         my ($f, $density_x, $density_y, $x, $y) = ($1, $2, $3, $4, $5);
