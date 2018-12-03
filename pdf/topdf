@@ -1,2 +1,0 @@
-#!/bin/bash
-img2pdf -o aa.pdf --imgsize=100x100 --pagesize=Letter *.jpg

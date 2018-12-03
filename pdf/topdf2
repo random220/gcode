@@ -1,2 +1,0 @@
-#!/bin/bash
-img2pdf -o aa.pdf --pagesize Letter^T *.jpg
