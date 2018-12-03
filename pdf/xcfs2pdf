@@ -19,7 +19,12 @@ for my $xcf_file (@xcf_files) {
         my $x_inch = $x / 300;
         my $y_inch = $y / 300;
         $join_cmd .= "    $pdf_file \\\n";
-        print "img2pdf -o $pdf_file --imgsize=${x_inch}inx${y_inch}in --pagesize=Letter $jpg_file\n\n";
+        if ($y > $x) { # portrait
+            print "img2pdf -o $pdf_file --imgsize=${x_inch}inx${y_inch}in --pagesize=Letter $jpg_file\n\n";
+        }
+        else { # landscape
+            print "img2pdf -o $pdf_file --imgsize=${x_inch}inx${y_inch}in --pagesize=Letter^T $jpg_file\n\n";
+        }
     }
 }
 
