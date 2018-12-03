@@ -19,7 +19,7 @@ for my $xcf_file (@xcf_files) {
         my $x_inch = $x / 300;
         my $y_inch = $y / 300;
         $x_inch = sprintf("%.2f",$x_inch);
-        $y_inch = sprintf("%.2f",$x_inch);
+        $y_inch = sprintf("%.2f",$y_inch);
         $join_cmd .= "    $pdf_file \\\n";
         if ($y > $x) { # portrait
             print "img2pdf -o $pdf_file --imgsize=${x_inch}inx${y_inch}in --pagesize=Letter $jpg_file\n\n";
