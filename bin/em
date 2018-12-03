@@ -1,0 +1,6 @@
+osascript -e 'tell application "Microsoft Outlook"' \
+-e 'set newMessage to make new outgoing message with properties {subject:"My Subject"}' \
+-e 'make new recipient at newMessage with properties {email address:{name:"Om Mandal", address:"om.mandal@gmail.com"}}' \
+-e 'open newMessage' \
+-e 'end tell'
+

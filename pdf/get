@@ -1,0 +1,2 @@
+#!/bin/bash
+rsync -a --delete v:a/ a/
