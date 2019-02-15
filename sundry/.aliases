@@ -57,7 +57,7 @@ alias gs='git status -s'
 alias vig='cp ~/gcode/sundry/viminfo-git.txt ~/.viminfo'
 alias vip='cp ~/gcode/sundry/viminfo-p4.txt ~/.viminfo'
 
-alias pp='enscript -2rG --colo=1 --line-numbers -p out.ps --highlight=python -c mkbranch $*'
+alias pp='enscript -2rG --colo=1 --line-numbers -p out.ps --highlight=python -c mkbranch'
 
 gits()
 {
