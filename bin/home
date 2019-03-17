@@ -1,2 +1,2 @@
 #!/bin/bash
-ssh -R 2222:pa-dbc1123:22 om@crondite.com
+ssh -R 2222:pa-dbc1123:22 om@crondite.duckdns.org
