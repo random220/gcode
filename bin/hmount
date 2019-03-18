@@ -1,6 +1,6 @@
 #!/bin/bash
 
-target_machine='crondite.com'
+target_machine='crondite.duckdns.org'
 ifconfig -a|egrep 'inet .*192\.168\.10\.' >/dev/null 2>&1
 if [[ $? == 0 ]]; then
   target_machine='192.168.10.91'

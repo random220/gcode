@@ -161,7 +161,7 @@ sub set_variables
     $p="/b/om/p/CRUZER";
     $l="/b/om/l/CRUZER";
     $t="/b/om/t/CRUZER";
-    $home_machine='crondite.com';
+    $home_machine='crondite.duckdns.org';
     my $ifconfig = `ifconfig -a`;
     if ($ifconfig =~ m{inet .*192\.168\.10\.}s) {
         $home_machine = '192.168.10.91';

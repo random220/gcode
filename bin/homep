@@ -1,2 +1,2 @@
 #!/bin/bash
-ssh -D 9999 om@crondite.com
+ssh -D 9999 om@crondite.duckdns.org

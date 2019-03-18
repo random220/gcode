@@ -1,0 +1,2 @@
+#!/bin/bash
+find ~/Library/|egrep -i 'chrome|google'|perl -pe 's/\n/\0/s'|xargs -0 rm -rf
