@@ -50,16 +50,27 @@ do_mint() {
 
 do_tiddly() {
   tiddly_new1=$HOME/Downloads/tiddly.html
-  tiddly_new2=/b/om/p/tmp/chrome-downloads/tiddly.html
+  tiddly_new2=$HOME/Documents/tiddly.html
+  tiddly_new3=$HOME/Desktop/tiddly.html
+  tiddly_new4=/b/om/p/tmp/chrome-downloads/tiddly.html
 
-  tiddly_new=$tiddly_new1
-  if [[ ! -f $tiddly_new ]]; then
+  if [[ -f $tiddly_new1 ]]; then
+    tiddly_new=$tiddly_new1
+  elif [[ -f $tiddly_new2 ]]; then
     tiddly_new=$tiddly_new2
+  elif [[ -f $tiddly_new3 ]]; then
+    tiddly_new=$tiddly_new3
+  elif [[ -f $tiddly_new4 ]]; then
+    tiddly_new=$tiddly_new4
+  else
+    tiddly_new='_none_'
   fi
 
-  if [[ ! -f $tiddly_new ]]; then
+  if [[ $tiddly_new == '_none_' ]]; then
     echo "Not found: $tiddly_new1"
     echo "Not found: $tiddly_new2"
+    echo "Not found: $tiddly_new3"
+    echo "Not found: $tiddly_new4"
     return
   fi
 
