@@ -1,0 +1,15 @@
+Ubuntu
+
+sudo apt-get -y install cups
+ssh -L 8888:localhost:631 themachine
+
+With firefox (chrome does not prompt for passwd)
+You will have to know password for root account
+http://localhost:8888
+
+Add printer
+socket://10.20.88.20
+
+
+sudo apt-get -y install cups-bsd
+lpr -P prt1 file.pdf
