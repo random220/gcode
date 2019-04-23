@@ -164,7 +164,7 @@ sub set_variables
     $home_machine='crondite.duckdns.org';
     my $ifconfig = `ifconfig -a`;
     if ($ifconfig =~ m{inet .*192\.168\.10\.}s) {
-        $home_machine = '192.168.10.91';
+        $home_machine = '192.168.10.180';
     }
 
     $tiddly_file="gitted/sandbox/tiddly.html";

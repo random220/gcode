@@ -4,7 +4,7 @@ bindir=$(dirname $0)
 target_machine='crondite.duckdns.org'
 ifconfig -a|egrep 'inet .*192\.168\.10\.' >/dev/null 2>&1
 if [[ $? == 0 ]]; then
-  target_machine='192.168.10.91'
+  target_machine='192.168.10.180'
 fi
 
 printf "Push to $target_machine? (y/n): "
