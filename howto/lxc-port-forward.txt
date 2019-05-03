@@ -43,3 +43,25 @@ lxd       20963          100000    6u  IPv6 161288      0t0  TCP *:https (LISTEN
 
 To remove a proxy device, run
 $ lxc config device remove nginx nginx80
+
+
+
+For 16.04, proxy device is not available. Use iptables
+sudo apt install iptables-persistent
+
+PORT=80 PUBLIC_IP=10.160.202.194 CONTAINER_IP=10.206.19.166 \
+sudo -E bash -c \
+'iptables -t nat -I PREROUTING -i ens33 -p TCP '\
+'-d $PUBLIC_IP --dport $PORT -j DNAT '\
+'--to-destination $CONTAINER_IP:$PORT '\
+'-m comment --comment "forward 80 to the nginx container"'
+
+PORT=443 PUBLIC_IP=10.160.202.194 CONTAINER_IP=10.206.19.166 \
+sudo -E bash -c \
+'iptables -t nat -I PREROUTING -i ens33 -p TCP '\
+'-d $PUBLIC_IP --dport $PORT -j DNAT '\
+'--to-destination $CONTAINER_IP:$PORT '\
+'-m comment --comment "forward 443 to the nginx container"'
+
+sudo iptables-save
+
