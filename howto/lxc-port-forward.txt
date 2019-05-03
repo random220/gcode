@@ -17,7 +17,7 @@ What we do here is:
 
 To verify that LXD is listening on port 80 (http), run
 
-$ sudo lsof -i -n | grep http
+$ sudo lsof -i -n | grep lxd
 lxd       2157            root    5u  IPv6 668213      0t0  TCP *:http (LISTEN)
 lxd       2157            root    8u  IPv6 668213      0t0  TCP *:http (LISTEN)
 
