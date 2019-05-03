@@ -1,9 +1,16 @@
 
-Here are the commands to run on the host. You only need the name of the
-container to perform the setup. In my example I’ll use mycontainer.
+% lxc list
++-------+---------+----------------------+-----------------------------------------------+------------+-----------+
+| NAME  |  STATE  |         IPV4         |                     IPV6                      |    TYPE    | SNAPSHOTS |
++-------+---------+----------------------+-----------------------------------------------+------------+-----------+
+| nginx | RUNNING | 10.170.38.167 (eth0) | fd42:2adc:945c:4669:216:3eff:fe64:ed27 (eth0) | PERSISTENT | 0         |
++-------+---------+----------------------+-----------------------------------------------+------------+-----------+
 
-$ lxc config device add mycontainer myport80  proxy listen=tcp:0.0.0.0:80  connect=tcp:localhost:80
-$ lxc config device add mycontainer myport443 proxy listen=tcp:0.0.0.0:443 connect=tcp:localhost:443
+Here are the commands to run on the host. You only need the name of the
+container to perform the setup.
+
+$ lxc config device add nginx nginx80  proxy listen=tcp:0.0.0.0:80  connect=tcp:localhost:80
+$ lxc config device add nginx nginx443 proxy listen=tcp:0.0.0.0:443 connect=tcp:localhost:443
 
 What we do here is:
 
@@ -17,9 +24,22 @@ What we do here is:
 
 To verify that LXD is listening on port 80 (http), run
 
+% lxc config device show nginx
+nginx80:
+  connect: tcp:localhost:80
+  listen: tcp:0.0.0.0:80
+  type: proxy
+nginx443:
+  connect: tcp:localhost:443
+  listen: tcp:0.0.0.0:443
+  type: proxy
+
 $ sudo lsof -i -n | grep lxd
-lxd       2157            root    5u  IPv6 668213      0t0  TCP *:http (LISTEN)
-lxd       2157            root    8u  IPv6 668213      0t0  TCP *:http (LISTEN)
+lxd       18354          100000    4u  IPv6 145641      0t0  TCP *:http (LISTEN)
+lxd       18354          100000    6u  IPv6 145641      0t0  TCP *:http (LISTEN)
+lxd       20963          100000    4u  IPv6 161288      0t0  TCP *:https (LISTEN)
+lxd       20963          100000    6u  IPv6 161288      0t0  TCP *:https (LISTEN)
+
 
 To remove a proxy device, run
-$ lxc config device remove mycontainer myport80
+$ lxc config device remove nginx nginx80
