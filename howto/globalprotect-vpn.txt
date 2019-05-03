@@ -1,0 +1,5 @@
+https://github.com/dlenski/openconnect
+
+sudo apt install -y openconnect
+openconnect --protocol=gp gp.vmware.com --dump -vvv
+

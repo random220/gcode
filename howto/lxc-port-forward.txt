@@ -1,3 +1,25 @@
 
-lxc config device add mycontainer myport80 proxy listen=tcp:0.0.0.0:8080 connect=tcp:localhost:8080
+Here are the commands to run on the host. You only need the name of the
+container to perform the setup. In my example I’ll use mycontainer.
 
+$ lxc config device add mycontainer myport80  proxy listen=tcp:0.0.0.0:80  connect=tcp:localhost:80
+$ lxc config device add mycontainer myport443 proxy listen=tcp:0.0.0.0:443 connect=tcp:localhost:443
+
+What we do here is:
+
+    1. We add a proxy device on container mycontainer, giving it an arbitrary
+       name (myport80).
+    2. We set it up to listen on all (0.0.0.0) network interfaces on the host,
+       port 80. You can change the IP address to something more specific, if
+       you want to.
+    3. We set it up to make connections to the container mycontainer on the
+       localhost interface at port 80.
+
+To verify that LXD is listening on port 80 (http), run
+
+$ sudo lsof -i -n | grep http
+lxd       2157            root    5u  IPv6 668213      0t0  TCP *:http (LISTEN)
+lxd       2157            root    8u  IPv6 668213      0t0  TCP *:http (LISTEN)
+
+To remove a proxy device, run
+$ lxc config device remove mycontainer myport80
