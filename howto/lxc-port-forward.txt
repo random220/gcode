@@ -63,5 +63,15 @@ sudo -E bash -c \
 '--to-destination $CONTAINER_IP:$PORT '\
 '-m comment --comment "forward 443 to the nginx container"'
 
-sudo iptables-save
+To list rules
+    sudo iptables -t nat -L --line-numbers
+To delete a rule
+    sudo iptables -t nat -D PREROUTING 1
 
+sudo bash
+iptables-save >/etc/iptables/rules.v4
+ip6tables-save >/etc/iptables/rules.v6
+
+No need. Happens at reboot
+    iptables-restore /etc/iptables/rules.v4
+    ip6tables-restore /etc/iptables/rules.v6
