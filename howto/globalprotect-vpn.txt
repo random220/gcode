@@ -3,3 +3,79 @@ https://github.com/dlenski/openconnect
 sudo apt install -y openconnect
 openconnect --protocol=gp gp.vmware.com --dump -vvv
 
+Ubuntu 18.04, build from source
+
+sudo apt-get -y install automake
+
+git clone git://git.infradead.org/users/dwmw2/openconnect.git
+cd openconnect
+./autogen.sh
+    ./autogen.sh: 4: ./autogen.sh: aclocal: not found
+
+sudo apt-get -y install automake
+./autogen.sh
+    ./autogen.sh: 5: ./autogen.sh: libtoolize: not found
+
+sudo apt-get -y install libtool
+./autogen.sh
+    autoheader: warning: missing template: LIBPROXY_HDR
+    autoheader: Use AC_DEFINE([LIBPROXY_HDR], [], [Description])
+
+sudo apt-get -y install pkg-config
+./autogen.sh
+    configure.ac:121: installing './compile'
+    configure.ac:6: installing './config.guess'
+    configure.ac:6: installing './config.sub'
+    configure.ac:8: installing './install-sh'
+    configure.ac:8: installing './missing'
+    Makefile.am: installing './depcomp'
+    parallel-tests: installing './test-driver'
+
+
+./configure
+    ...
+    checking for vpnc-script in standard locations... configure: error: /etc/vpnc/vpnc-script does not seem to be executable.
+     OpenConnect will not function correctly without a vpnc-script.
+     See http://www.infradead.org/openconnect/vpnc-script.html for more details.
+
+     If you are building a distribution package, please ensure that your
+     packaging is correct, and that a vpnc-script will be installed when the
+     user installs your package. You should provide a --with-vpnc-script=
+     argument to this configure script, giving the full path where the script
+     will be installed.
+
+     The standard location is /etc/vpnc/vpnc-script. To bypass this error and
+     build OpenConnect to use the script from this location, even though it is
+     not present at the time you are building OpenConnect, pass the argument
+     "--with-vpnc-script=/etc/vpnc/vpnc-script"
+
+wget http://git.infradead.org/users/dwmw2/vpnc-scripts.git/blob_plain/HEAD:/vpnc-script
+chmod a+x vpnc-script
+sudo mkdir -p /etc/vpnc
+sudo cp vpnc-script /etc/vpnc
+./configure
+    configure: error: msgfmt could not be found. Try configuring with --disable-nls
+
+sudo apt-get -y install gettext
+./configure
+    checking for GNUTLS... no
+    checking for OPENSSL... no
+    checking for OpenSSL without pkg-config... no
+    configure: error: Could not build against OpenSSL
+
+
+sudo apt-get -y install libssl-dev
+./configure
+    configure: error: Package requirements (libxml-2.0) were not met:
+
+    No package 'libxml-2.0' found
+
+    Consider adjusting the PKG_CONFIG_PATH environment variable if you
+    installed software in a non-standard prefix.
+
+    Alternatively, you may set the environment variables LIBXML2_CFLAGS
+    and LIBXML2_LIBS to avoid the need to call pkg-config.
+    See the pkg-config man page for more details.
+
+
+
