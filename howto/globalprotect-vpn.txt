@@ -4,6 +4,8 @@ sudo apt install -y openconnect
 openconnect --protocol=gp gp.vmware.com --dump -vvv
 
 Ubuntu 18.04, build from source
+https://www.infradead.org/openconnect/
+==============================================================
 
 sudo apt-get -y install automake
 
@@ -78,4 +80,50 @@ sudo apt-get -y install libssl-dev
     See the pkg-config man page for more details.
 
 
+sudo apt-get -y install libxml2-dev
+./configure
+    BUILD OPTIONS:
+      SSL library:            OpenSSL
+      PKCS#11 support:        no
+      DTLS support:           yes
+      ESP support:            yes
+      libproxy support:       no
+      RSA SecurID support:    no
+      PSKC OATH file support: no
+      GSSAPI support:         no
+      Yubikey support:        no
+      LZ4 compression:        no
+      Java bindings:          no
+      Build docs:             no
+      Unit tests:             no
+      Net namespace tests:    no
+    configure: WARNING:
+    ***
+    *** Be sure to run "make check" to verify OpenSSL DTLS support
+    *** 
 
+
+sudo apt-get -y install libproxy-dev liblz4-dev
+./configure --prefix=/opt/om/openconnect
+    BUILD OPTIONS:
+      SSL library:            OpenSSL
+      PKCS#11 support:        no
+      DTLS support:           yes
+      ESP support:            yes
+      libproxy support:       yes
+      RSA SecurID support:    no
+      PSKC OATH file support: no
+      GSSAPI support:         no
+      Yubikey support:        no
+      LZ4 compression:        yes
+      Java bindings:          no
+      Build docs:             no
+      Unit tests:             no
+      Net namespace tests:    no
+    configure: WARNING:
+    ***
+    *** Be sure to run "make check" to verify OpenSSL DTLS support
+    ***
+
+make
+sudo make install
