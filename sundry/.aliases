@@ -3,6 +3,8 @@ umask 022
 export VISUAL=vi
 export EDITOR=vi
 
+export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+
 alias vera='(veracrypt&)'
 on_mint=0
 if [[ -f /etc/lsb-release ]]; then
