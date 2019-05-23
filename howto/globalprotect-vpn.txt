@@ -1,7 +1,7 @@
 https://github.com/dlenski/openconnect
 
 sudo apt install -y openconnect
-openconnect --protocol=gp gp.vmware.com --dump -vvv
+openconnect --protocol=gp gpu.vmware.com --dump -vvv
 
 Ubuntu 18.04, build from source
 https://www.infradead.org/openconnect/
@@ -127,3 +127,14 @@ sudo apt-get -y install libproxy-dev liblz4-dev
 
 make
 sudo make install
+
+And then do
+ldd /opt/om/openconnect/sbin/openconnect
+
+This should list all the shared libraries used.
+Copy them to /opt/om/openconnect/lib directory
+
+cd /
+sudo tar cfj ~om/openconnect-ub18.tbz etc/vpnc opt/om/openconnect
+
+
