@@ -1,0 +1,8 @@
+lxc launch ubnuntu u18
+lxc config set u18 security.nesting true
+
+lxc exec u18 -- apt-get -y update
+lxc exec u18 -- apt-get -y install docker.io
+lxc exec u18 -- useradd -s /bin/bash -m om
+lxc exec u18 -- usermod -a -G docker om
+lxc exec u18 -- su - om -c 'docker run hello-world'
