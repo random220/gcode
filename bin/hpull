@@ -13,6 +13,7 @@ if [[ $yesno != 'y' ]]; then
   exit 1
 fi
 
+/usr/bin/ssh-copy-id om@$target_machine
 $bindir/hmount
 $bindir/vmount
 
@@ -22,4 +23,4 @@ cmd="rsync -a --delete om@$target_machine:/b/om/p/CRUZER/ /b/om/p/CRUZER/"
 echo "doing: $cmd"
 $cmd
 $bindir/humount
-
+/usr/bin/ssh om@$target_machine 'rm -f .ssh/authorized_keys'
