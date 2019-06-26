@@ -1,5 +1,11 @@
 
+https://m2crypto.readthedocs.io/en/latest/howto.ca.html
+/usr/lib/ssl/misc/CA.pl
+/usr/lib/ssl/openssl.cnf
+
 https://www.wikihow.com/Be-Your-Own-Certificate-Authority
+
+0. Create a Ubuntu 18.04 machine and log on there
 
 1. Create key
    openssl genrsa -out server.CA.key 2048
