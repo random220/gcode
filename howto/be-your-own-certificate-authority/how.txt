@@ -1,0 +1,44 @@
+
+https://www.wikihow.com/Be-Your-Own-Certificate-Authority
+
+1. Create key
+   openssl genrsa -out server.CA.key 2048
+
+   This generated server.CA.key
+   This is encrypted with a password. Hint: Host!
+
+2. Create a certificate signing request.
+   openssl req -verbose -new -key server.CA.key -out server.CA.csr -sha256
+
+   These were my answers
+        Country Name (2 letter code) [AU]:US
+        State or Province Name (full name) [Some-State]:California
+        Locality Name (eg, city) []:San Jose
+        Organization Name (eg, company) [Internet Widgits Pty Ltd]:Om's Home
+        Organizational Unit Name (eg, section) []:Kitchen
+        Common Name (e.g. server FQDN or YOUR name) []:Om Mandal
+        Email Address []:om.mandal@gmail.com
+
+        Please enter the following 'extra' attributes
+        to be sent with your certificate request
+        A challenge password []:
+        An optional company name []:
+
+   That created server.CA.csr
+
+   (Save those two files under password protection. Retrieve them by running getkeys.sh)
+
+3. Self-sign your certificate:
+    openssl ca -extensions v3_ca \
+    -keyfile server.CA.key \
+    -infiles server.CA.csr \
+    -out server.CA-signed.crt \
+    -verbose \
+    -selfsign \
+    -md sha256 \
+    -enddate 301231235959Z
+
+    The end date of the certificate. The notation is YYMMDDHHMMSSZ where Z is
+    in GMT, sometimes known as "Zulu" time.
+
+
