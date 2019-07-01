@@ -10,3 +10,6 @@ cd barrier
 cd build
 sudo make install  # installs to /usr/local/
 
+
+How to use:
+https://www.rauchland.com/articles/using-barrier-to-control-multiple-pcs-with-one-keyboard-and-mouse/
