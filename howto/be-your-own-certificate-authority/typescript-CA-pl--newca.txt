@@ -1,0 +1,71 @@
+% /usr/lib/ssl/misc/CA.pl -newca
+CA certificate filename (or enter to create)
+
+Making CA certificate ...
+====
+openssl req  -new -keyout ./demoCA/private/cakey.pem -out ./demoCA/careq.pem 
+Generating a RSA private key
+.........................+++++
+........+++++
+writing new private key to './demoCA/private/cakey.pem'
+Enter PEM pass phrase:
+Verifying - Enter PEM pass phrase:
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:US
+State or Province Name (full name) [Some-State]:California
+Locality Name (eg, city) []:San Jose
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Crondite Technologies
+Organizational Unit Name (eg, section) []:unit-0
+Common Name (e.g. server FQDN or YOUR name) []:Crondite Technologies Certifacate Authority
+Email Address []:om.mandal@gmail.com
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+==> 0
+====
+====
+openssl ca  -create_serial -out ./demoCA/cacert.pem -days 1095 -batch -keyfile ./demoCA/private/cakey.pem -selfsign -extensions v3_ca  -infiles ./demoCA/careq.pem
+Using configuration from /usr/lib/ssl/openssl.cnf
+Enter pass phrase for ./demoCA/private/cakey.pem:
+Can't open ./demoCA/index.txt.attr for reading, No such file or directory
+140028204949952:error:02001002:system library:fopen:No such file or directory:../crypto/bio/bss_file.c:72:fopen('./demoCA/index.txt.attr','r')
+140028204949952:error:2006D080:BIO routines:BIO_new_file:no such file:../crypto/bio/bss_file.c:79:
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number:
+            1a:3d:86:1d:05:35:dd:ab:38:9d:08:be:3c:2b:16:69:5a:0d:58:67
+        Validity
+            Not Before: Jul 19 04:39:46 2019 GMT
+            Not After : Jul 18 04:39:46 2022 GMT
+        Subject:
+            countryName               = US
+            stateOrProvinceName       = California
+            organizationName          = Crondite Technologies
+            organizationalUnitName    = unit-0
+            commonName                = Crondite Technologies Certificate Authority
+            emailAddress              = om.mandal@gmail.com
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                BC:B7:BF:E5:BC:18:F1:67:EC:7A:F7:41:0C:1E:2B:1D:51:4B:22:94
+            X509v3 Authority Key Identifier: 
+                keyid:BC:B7:BF:E5:BC:18:F1:67:EC:7A:F7:41:0C:1E:2B:1D:51:4B:22:94
+
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+Certificate is to be certified until Jul 18 04:39:46 2022 GMT (1095 days)
+
+Write out database with 1 new entries
+Data Base Updated
+==> 0
+====
+CA certificate is in ./demoCA/cacert.pem

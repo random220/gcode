@@ -1,0 +1,41 @@
+% /usr/lib/ssl/misc/CA.pl -sign
+====
+openssl ca  -policy policy_anything -out newcert.pem  -infiles newreq.pem
+Using configuration from /usr/lib/ssl/openssl.cnf
+Enter pass phrase for ./demoCA/private/cakey.pem:
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number:
+            1a:3d:86:1d:05:35:dd:ab:38:9d:08:be:3c:2b:16:69:5a:0d:58:68
+        Validity
+            Not Before: Jul 19 05:19:14 2019 GMT
+            Not After : Jul 18 05:19:14 2020 GMT
+        Subject:
+            countryName               = US
+            stateOrProvinceName       = California
+            localityName              = Palo Alto
+            organizationName          = CPBU Partner Products, VMware
+            organizationalUnitName    = unit-0
+            commonName                = localhost.localdomain
+            emailAddress              = omandal@vmware.com
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                C6:23:24:61:57:78:D5:17:52:8F:9F:5B:89:B2:2C:F1:B7:31:93:B4
+            X509v3 Authority Key Identifier: 
+                keyid:BC:B7:BF:E5:BC:18:F1:67:EC:7A:F7:41:0C:1E:2B:1D:51:4B:22:94
+
+Certificate is to be certified until Jul 18 05:19:14 2020 GMT (365 days)
+Sign the certificate? [y/n]:y
+
+
+1 out of 1 certificate requests certified, commit? [y/n]y
+Write out database with 1 new entries
+Data Base Updated
+==> 0
+====
+Signed certificate is in newcert.pem

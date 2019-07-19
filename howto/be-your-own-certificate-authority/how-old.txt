@@ -1,0 +1,68 @@
+
+https://www.openssl.org/docs/man1.0.2/man1/openssl-ca.html
+ca is the minimal certification authority program.
+"openssl ca ..." is the command
+
+This is probably a more friendly certification authority application
+/usr/lib/ssl/misc/CA.pl
+
+
+
+https://m2crypto.readthedocs.io/en/latest/howto.ca.html
+/usr/lib/ssl/misc/CA.pl
+/usr/lib/ssl/openssl.cnf
+
+https://www.wikihow.com/Be-Your-Own-Certificate-Authority
+
+0. Create a Ubuntu 18.04 machine and log on there
+
+1. Create key
+   openssl genrsa -out server.CA.key 2048
+
+   This generated server.CA.key
+
+2. Create a certificate signing request.
+   openssl req -verbose -new -key server.CA.key -out server.CA.csr -sha256
+
+       Country Name (2 letter code) [AU]:US
+       State or Province Name (full name) [Some-State]:California
+       Locality Name (eg, city) []:San Jose
+       Organization Name (eg, company) [Internet Widgits Pty Ltd]:Crondite Technologies
+       Organizational Unit Name (eg, section) []:unit-0
+       Common Name (e.g. server FQDN or YOUR name) []:Om Mandal
+       Email Address []:om.mandal@gmail.com
+
+       Please enter the following 'extra' attributes
+       to be sent with your certificate request
+       A challenge password []:
+       An optional company name []:
+
+   That created server.CA.csr
+
+   (Save those two files under password protection. Retrieve them by running getkeys.sh)
+
+3. Self-sign your certificate:
+
+    touch ~/.rnd  # This file must exist, or error message below. The file
+                  # content gets created by the below invocation
+
+    openssl ca -extensions v3_ca \
+    -keyfile server.CA.key \
+    -infiles server.CA.csr \
+    -out server.CA-signed.crt \
+    -verbose \
+    -selfsign \
+    -md sha256 \
+    -enddate 301531235959Z
+
+    The end date of the certificate. The notation is YYMMDDHHMMSSZ where Z is
+    in GMT, sometimes known as "Zulu" time.
+
+Using configuration from /usr/lib/ssl/openssl.cnf
+Can't load /home/om/.rnd into RNG
+140188970906048:error:2406F079:random number generator:RAND_load_file:Cannot open file:../crypto/rand/randfile.c:88:Filename=/home/om/.rnd
+Can't open ./demoCA/cacert.pem for reading, No such file or directory
+140188970906048:error:02001002:system library:fopen:No such file or directory:../crypto/bio/bss_file.c:72:fopen('./demoCA/cacert.pem','r')
+140188970906048:error:2006D080:BIO routines:BIO_new_file:no such file:../crypto/bio/bss_file.c:79:
+unable to load certificate
+

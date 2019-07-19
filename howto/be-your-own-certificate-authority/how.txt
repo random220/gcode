@@ -1,50 +1,59 @@
+https://workaround.org/certificate-authority/
 
-https://m2crypto.readthedocs.io/en/latest/howto.ca.html
-/usr/lib/ssl/misc/CA.pl
-/usr/lib/ssl/openssl.cnf
+Become your own Certificate Authority
 
-https://www.wikihow.com/Be-Your-Own-Certificate-Authority
+    % /usr/lib/ssl/misc/CA.pl -newca # password Host!
 
-0. Create a Ubuntu 18.04 machine and log on there
+    see typescript-CA-pl--newca.txt for output
 
-1. Create key
-   openssl genrsa -out server.CA.key 2048
+    % find demoCA
+    demoCA/
+    demoCA/crl
+    demoCA/cacert.pem
+    demoCA/private
+    demoCA/private/cakey.pem
+    demoCA/careq.pem
+    demoCA/certs
+    demoCA/crlnumber
+    demoCA/newcerts
+    demoCA/newcerts/1A3D861D0535DDAB389D08BE3C2B16695A0D5867.pem
+    demoCA/serial
+    demoCA/index.txt.attr
+    demoCA/index.txt.old
+    demoCA/index.txt
 
-   This generated server.CA.key
-   This is encrypted with a password. Hint: Host!
+    Examine private key meta info
+    % openssl rsa  -in demoCA/private/cakey.pem -text -noout >a.txt
 
-2. Create a certificate signing request.
-   openssl req -verbose -new -key server.CA.key -out server.CA.csr -sha256
+    Examine certificate meta info
+    % openssl x509 -in demoCA/cacert.pem -text -noout >a.txt
 
-   These were my answers
-        Country Name (2 letter code) [AU]:US
-        State or Province Name (full name) [Some-State]:California
-        Locality Name (eg, city) []:San Jose
-        Organization Name (eg, company) [Internet Widgits Pty Ltd]:Om's Home
-        Organizational Unit Name (eg, section) []:Kitchen
-        Common Name (e.g. server FQDN or YOUR name) []:Om Mandal
-        Email Address []:om.mandal@gmail.com
+    tar cfj myCA.tbz demoCA
+    rm -rf demoCA
 
-        Please enter the following 'extra' attributes
-        to be sent with your certificate request
-        A challenge password []:
-        An optional company name []:
+Pretend that you are another business that needs a server certifcate.
+Create a key and a certificate request
 
-   That created server.CA.csr
+    % /usr/lib/ssl/misc/CA.pl -newreq # password host
+    See typescript-CA-pl--newreq.txt
+    That created newkey.pem and newreq.pem
 
-   (Save those two files under password protection. Retrieve them by running getkeys.sh)
+    Examine the key and the request
+    % openssl rsa -in newkey.pem -text -noout
+    % openssl req -in newreq.pem -text -noout
 
-3. Self-sign your certificate:
-    openssl ca -extensions v3_ca \
-    -keyfile server.CA.key \
-    -infiles server.CA.csr \
-    -out server.CA-signed.crt \
-    -verbose \
-    -selfsign \
-    -md sha256 \
-    -enddate 301231235959Z
+    tar cfj server1-key-and-req.tbz newkey.pem newreq.pem
 
-    The end date of the certificate. The notation is YYMMDDHHMMSSZ where Z is
-    in GMT, sometimes known as "Zulu" time.
+Become the certificate authority again and sign the incoming cert
+    % tar xf myCA.tbz
+    % tar xf server1-key-and-req.tbz
+    % /usr/lib/ssl/misc/CA.pl -sign
+    # See typescript-CA-pl--sign.txt
 
+
+To get back
+cat signing-workdir.tbz-aes256-iter1000-HostBang | openssl enc -d -aes256 -iter 1000 >a.tbz
+tar xf a.tbz
+cd workdir
+git reset --hard
 
