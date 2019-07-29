@@ -1,0 +1,102 @@
+# https://medium.com/@aldo_mx/simplest-way-to-configure-vnc-server-in-xubuntu-16-04-lts-and-newer-6c0b3ae21fe5
+
+sudo apt-get install vino
+
+#
+# Display all the preferences
+#
+gsettings list-recursively org.gnome.Vino >a.txt
+
+#
+# [x] Allow other users to view your desktop
+#     NOTE: This setting was removed
+#
+gsettings set org.gnome.Vino enabled true
+
+#
+# [x] Allow other users to control your desktop
+#     NOTE: Reverse Boolean
+#
+gsettings set org.gnome.Vino view-only false
+
+#
+# [ ] You must confirm each access to this machine
+#
+gsettings set org.gnome.Vino prompt-enabled false
+
+#
+# [ ] Require the user to enter this password
+#
+gsettings set org.gnome.Vino authentication-methods "['none']"
+gsettings set org.gnome.Vino vnc-password keyring
+
+#
+# [x] Require the user to enter this password
+#
+# Step 1. Ask for password (NOTE: Only tested with `bash` and `zsh`)
+echo -n "VNC Password: " && read -s password < /dev/tty && echo ""
+# Step 2. Set the preferences
+gsettings set org.gnome.Vino authentication-methods "['vnc']"
+gsettings set org.gnome.Vino vnc-password "$(echo $password | base64)"
+# Step 3. Clear the `$password` variable
+unset password
+
+#
+# [ ] Automatically configure UPnP router to open and forward ports
+#
+gsettings set org.gnome.Vino use-upnp false
+
+#
+# Show Notification Area Icon
+#
+# ( ) always  // Always
+# (o) client  // Only when someone is connected
+# ( ) never   // Never
+#
+gsettings set org.gnome.Vino icon-visibility client
+
+
+
+# If the Desktop Sharing entry is missing, you will need to add it by running
+# the following command:
+sudo cp /usr/share/applications/vino-server.desktop /etc/xdg/autostart/vino-server.desktop
+
+gsettings list-recursively org.gnome.Vino >b.txt
+
+# % diff -u a.txt b.txt
+# --- a.txt	2019-07-29 01:21:26.894826317 +0000
+# +++ b.txt	2019-07-29 01:22:01.778394972 +0000
+# @@ -5,11 +5,11 @@
+#  org.gnome.Vino icon-visibility 'client'
+#  org.gnome.Vino use-upnp false
+#  org.gnome.Vino view-only false
+# -org.gnome.Vino prompt-enabled true
+# +org.gnome.Vino prompt-enabled false
+#  org.gnome.Vino disable-xdamage false
+# -org.gnome.Vino authentication-methods ['none']
+# +org.gnome.Vino authentication-methods ['vnc']
+#  org.gnome.Vino network-interface ''
+#  org.gnome.Vino require-encryption true
+#  org.gnome.Vino mailto ''
+#  org.gnome.Vino lock-screen-on-disconnect false
+# -org.gnome.Vino vnc-password 'keyring'
+# +org.gnome.Vino vnc-password 'MjIwQWxhayEK'
+# 
+
+
+# Enable desktop sharing
+mkdir -p ~/.config/autostart
+cat >~/.config/autostart/vino-server.desktop <<EOF
+[Desktop Entry]
+Hidden=false
+EOF
+
+
+# Auto login without password
+sudo mkdir -p /usr/share/lightdm/lightdm.conf.d
+cat <<EOF | sudo bash -c 'cat >/usr/share/lightdm/lightdm.conf.d/60-xubuntu.conf'
+[Seat:*]
+user-session=xubuntu
+autologin-user=om
+EOF
+
