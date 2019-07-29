@@ -56,6 +56,10 @@ gsettings set org.gnome.Vino use-upnp false
 gsettings set org.gnome.Vino icon-visibility client
 
 
+#
+# Disable encryption (optional)
+#
+gsettings set org.gnome.Vino require-encryption false
 
 # If the Desktop Sharing entry is missing, you will need to add it by running
 # the following command:
