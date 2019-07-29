@@ -1,0 +1,20 @@
+root@nuc:~# ufw status
+Status: inactive
+
+root@nuc:~# ufw allow ssh/tcp
+Rules updated
+Rules updated (v6)
+
+root@nuc:~# ufw enable
+Command may disrupt existing ssh connections. Proceed with operation (y|n)? y
+Firewall is active and enabled on system startup
+
+root@nuc:~# ufw status
+Status: active
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW       Anywhere                  
+22/tcp (v6)                ALLOW       Anywhere (v6)             
+
+
