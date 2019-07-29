@@ -1,0 +1,17 @@
+#!/bin/bash
+export PATH='/Users/omandal/bin:/Users/omandal/ww/bin:/Users/omandal/gcode/bin:/Users/omandal/apps/ImageMagick-7.0.7/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin'
+
+h=$(hostname)
+if [[ $h != 'omandal-a01.vmware.com' ]]; then
+    exit 0
+fi
+
+ifc=$(ifconfig -a | grep 'inet 192\.168\.10\.')
+
+remote='192.168.10.180'
+if [[ $ifc == '' ]]; then
+    # We are outside home
+    remote='crondite.duckdns.org'
+fi
+
+ssh -L 5901:localhost:5900 om@$remote
