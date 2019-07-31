@@ -66,7 +66,7 @@ get_next_slot()
   # mounts=$($veracrypt --text --list)
   # 1: /b/om/CRUZER.vol /dev/disk4 /b/om/p
   # 2: /Volumes/3TB/om/LCRUZER.vol /dev/disk5 /b/om/l
-  last_slot=$($veracrypt --text --list | sed 's/:.*//'|tail -1)
+  last_slot=$($veracrypt --text --list 2>/dev/null | sed 's/:.*//'|tail -1)
   # 2
   let 'next_slot=last_slot+1'
   echo $next_slot
