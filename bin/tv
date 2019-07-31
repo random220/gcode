@@ -14,4 +14,8 @@ if [[ $ifc == '' ]]; then
     remote='crondite.duckdns.org'
 fi
 
-ssh -L 5901:localhost:5900 om@$remote
+ssh -D 9999 \
+-L 8888:192.168.10.1:80 \
+-L 9100:localhost:9100 \
+-L 5901:localhost:5900 \
+om@$remote
