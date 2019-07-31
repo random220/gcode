@@ -17,4 +17,6 @@ cmd="rsync -a --delete /b/om/p/CRUZER/ /b/om/s/CRUZER/"
 echo "doing: $cmd"
 $cmd
 
-(cd /Volumes/F32 && (rm -f lastsync*; touch $(date "+lastsync--%Y-%m-%d--%H-%M-%S")))
+lastsync=$(date "+lastsync--%Y-%m-%d--%H-%M-%S")
+(cd /Volumes/F32 && (rm -f lastsync*; touch $lastsync))
+(cd /b/om/s/     && (rm -f lastsync*; touch $lastsync))

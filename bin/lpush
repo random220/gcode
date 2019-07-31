@@ -8,8 +8,8 @@ if [[ $yesno != 'y' ]]; then
   exit 1
 fi
 
-$bindir/lmount || exit 1
 $bindir/vmount || exit 1
+$bindir/lmount || exit 1
 
 echo
 echo "Syncing ..."
@@ -17,3 +17,5 @@ cmd="rsync -a --delete /b/om/p/CRUZER/ /b/om/l/CRUZER/"
 echo "doing: $cmd"
 $cmd
 
+lastsync=$(date "+lastsync--%Y-%m-%d--%H-%M-%S")
+(cd /b/om/l && (rm -f lastsync*; touch $lastsync))
