@@ -1,0 +1,74 @@
+#!/bin/bash
+
+export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
+
+
+uname=$(uname)
+if [[ $uname != 'Darwin' ]]; then
+  echo "smount works only on your mac"
+  exit 1
+fi
+mountpoint=/b/om/s
+vera_volume=''
+
+if [[ ! -d '/Volumes/F32' ]]; then
+  echo "Please insert your Samsung USB stick"
+  exit 1
+fi
+
+
+# % mount
+# /dev/disk1 on / (hfs, local, journaled)
+# devfs on /dev (devfs, local, nobrowse)
+# map -hosts on /net (autofs, nosuid, automounted, nobrowse)
+# map auto_home on /home (autofs, automounted, nobrowse)
+# VeraCrypt@osxfuse1 on /private/var/folders/3p/bj5dmm5s35jf25dswz_521vw0000gr/T/.veracrypt_aux_mnt1 (osxfuse, nodev, nosuid, synchronous, nobrowse, mounted by omandal)
+# /dev/disk4 on /b/om/p (hfs, local, nodev, nosuid, journaled, noowners, mounted by omandal)
+# /dev/disk2s2 on /Volumes/F32 (msdos, local, nodev, nosuid, noowners)
+
+vera_volume=$(mount | grep ' /Volumes/F32 ' | sed 's/ .*//; s/.$/3/')
+# /dev/disk2s3
+
+
+if [[ ! -d $mountpoint ]]; then
+  mkdir -p $mountpoint
+fi
+if [[ ! -d $mountpoint ]]; then
+  echo "Error: Could not create mountpoint dir $mountpoint"
+  exit 1
+fi
+
+# Needs to be a block device
+if [[ ! -b $vera_volume ]]; then
+  echo "Error: Block device not found: $vera_volume"
+  exit 1
+fi
+
+$veracrypt --text --version >/dev/null 2>&1
+if [[ $? != 0 ]]; then
+  echo "Error: veracrypt not found"
+  exit 1
+fi
+
+$veracrypt --text --list 2>/dev/null | grep -q " $mountpoint\$"
+if [[ $? == 0 ]]; then
+  # Already mounted. Say so.
+  echo "Something is already mounted on $mountpoint"
+  exit 0
+fi
+
+echo
+echo "Mounting S ..."
+$veracrypt --text --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint
+mounts=$($veracrypt --text --list 2>/dev/null)
+printf "$mounts\n"
+# 1: /b/om/CRUZER.vol /dev/disk4 /b/om/p
+# 2: /Volumes/3TB/om/LCRUZER.vol /dev/disk5 /b/om/l
+
+printf "$mounts\n" | egrep -q " $mountpoint"
+result=$?
+
+exit $result
+
+

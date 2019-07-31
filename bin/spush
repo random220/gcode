@@ -1,0 +1,20 @@
+#!/bin/bash
+
+bindir=$(dirname $0)
+
+printf "Push to /b/om/s/CRUZER ? (y/n): "
+read yesno
+if [[ $yesno != 'y' ]]; then
+  exit 1
+fi
+
+$bindir/vmount || exit 1
+$bindir/smount || exit 1
+
+echo
+echo "Syncing ..."
+cmd="rsync -a --delete /b/om/p/CRUZER/ /b/om/s/CRUZER/"
+echo "doing: $cmd"
+$cmd
+
+(cd /Volumes/F32 && (rm -f lastsync*; touch $(date "+lastsync--%Y-%m-%d--%H-%M-%S")))
