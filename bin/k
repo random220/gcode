@@ -24,7 +24,7 @@ k()
 
 x=$(ifconfig -a |grep '192\.168\.10\.180')
 if [[ $x == '' ]]; then
-  ssh_and_k()
+  ssh_and_k
 else
-  k()
+  k
 fi
