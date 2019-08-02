@@ -16,10 +16,10 @@ ssh_and_k()
 
 k()
 {
+  pkill kodi
+  pkill kodi-x11
   sudo service lightdm stop
-  sleep 3
   sudo service lightdm start
-  sleep 3
   (nohup kodi &) >/dev/null 2>&1
 }
 
