@@ -17,7 +17,7 @@ k()
   sudo service lightdm stop
   sleep 1
   sudo service lightdm start
-  sleep 1
+  sleep 3
   export DISPLAY=:0.0
   (kodi&) >/dev/null 2>&1
 }
