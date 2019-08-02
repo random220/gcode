@@ -9,7 +9,7 @@ ssh_and_k()
   if [[ $x == '' ]]; then
     remote='crondite.duckdns.org'
   fi
-  ssh om@$remote 'gcode/bin/k'
+  ssh -t om@$remote 'gcode/bin/k'
 }
 
 k()
