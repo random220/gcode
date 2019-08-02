@@ -15,12 +15,10 @@ ssh_and_k()
 k()
 {
   sudo service lightdm stop
-  sleep 1
+  sleep 3
   sudo service lightdm start
   sleep 3
-  export DISPLAY=':0.0'
-  env
-  (kodi&) >/dev/null 2>&1
+  screen -dm kodi
 }
 
 x=$(ifconfig -a |grep '192\.168\.10\.180')
