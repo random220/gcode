@@ -18,7 +18,7 @@ k()
   sleep 3
   sudo service lightdm start
   sleep 3
-  screen -dm kodi
+  screen -dm bash -c 'DISPLAY=:0.0 kodi'
 }
 
 x=$(ifconfig -a |grep '192\.168\.10\.180')
