@@ -21,7 +21,7 @@ k()
   sleep 3
   pwd
   screen -wipe
-  screen -dm bash -c 'DISPLAY=:0.0 env >a.txt'
+  screen -dm bash -c 'DISPLAY=:0.0 env >~/a.txt'
 }
 
 x=$(ifconfig -a |grep '192\.168\.10\.180')
