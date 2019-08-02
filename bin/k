@@ -20,8 +20,7 @@ k()
   sleep 3
   sudo service lightdm start
   sleep 3
-  screen -wipe
-  kodi
+  (nohup kodi &) >/dev/null 2>&1
 }
 
 x=$(ifconfig -a |grep '192\.168\.10\.180')
