@@ -18,7 +18,8 @@ k()
   sleep 1
   sudo service lightdm start
   sleep 1
-  ((DISPLAY=:0.0 kodi)&) >/dev/null 2>&1
+  export DISPLAY=:0.0
+  (kodi&) >/dev/null 2>&1
 }
 
 x=$(ifconfig -a |grep '192\.168\.10\.180')
