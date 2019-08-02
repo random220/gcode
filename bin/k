@@ -2,6 +2,7 @@
 set -x
 
 export PATH="$HOME/bin:$HOME/gcode/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin"
+export DISPLAY=:0.0
 
 ssh_and_k()
 {
@@ -10,7 +11,7 @@ ssh_and_k()
   if [[ $x == '' ]]; then
     remote='crondite.duckdns.org'
   fi
-  ssh -t om@$remote 'gcode/bin/k'
+  ssh -t om@$remote 'screen -dm -S hi gcode/bin/k'
 }
 
 k()
@@ -19,9 +20,8 @@ k()
   sleep 3
   sudo service lightdm start
   sleep 3
-  pwd
   screen -wipe
-  screen -dm -S hi bash -c 'DISPLAY=:0.0 env >~/a.txt'
+  kodi
 }
 
 x=$(ifconfig -a |grep '192\.168\.10\.180')
