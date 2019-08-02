@@ -19,6 +19,7 @@ k()
   sleep 3
   sudo service lightdm start
   sleep 3
+  pwd
   screen -dm bash -c 'DISPLAY=:0.0 env >a.txt'
 }
 
