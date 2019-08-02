@@ -20,7 +20,12 @@ k()
   pkill kodi-x11
   sudo service lightdm stop
   sudo service lightdm start
-  (nohup kodi &) >/dev/null 2>&1
+  
+  (
+  set -x
+  export DISPLAY=:0.0
+  nohup kodi &
+  ) >/dev/null 2>&1
 }
 
 x=$(ifconfig -a |grep '192\.168\.10\.180')
