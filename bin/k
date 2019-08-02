@@ -1,0 +1,29 @@
+#!/bin/bash
+
+export PATH="$HOME/bin:$HOME/gcode/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin"
+
+ssh_and_k()
+{
+  remote='192.168.10.180'
+  x=$(ifconfig -a |grep '192\.168\.10\.')
+  if [[ $x == '' ]]; then
+    remote='crondite.duckdns.org'
+  fi
+  ssh om@$remote 'gcode/bin/k'
+}
+
+k()
+{
+  sudo service lightdm stop
+  sleep 1
+  sudo service lightdm start
+  sleep 1
+  ((DISPLAY=:0.0 kodi)&) >/dev/null 2>&1
+}
+
+x=$(ifconfig -a |grep '192\.168\.10\.180')
+if [[ $x == '' ]]; then
+  ssh_and_k()
+else
+  k()
+fi
