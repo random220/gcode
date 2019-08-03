@@ -24,11 +24,15 @@ k()
   #sudo service lightdm start
   #sleep 5
 
-  (
-  export DISPLAY=:0.0
-  nohup /usr/bin/kodi &
-  ) >/dev/null 2>&1
-
+  cat <<EOF >/tmp/a.sh
+(
+export DISPLAY=:0.0
+nohup /usr/bin/kodi &
+) >/dev/null 2>&1
+EOF
+  bash -x /tmp/a.sh
+  sleep 2
+  rm /tmp/a.sh
 }
 
 x=$(ifconfig -a |grep '192\.168\.10\.180')
