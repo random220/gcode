@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 export PATH="$HOME/bin:$HOME/gcode/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin"
 export DISPLAY=:0.0
@@ -32,7 +31,7 @@ nohup /usr/bin/kodi &
 ) >/dev/null 2>&1
 EOF
 
-  bash -x $tmpfile
+  bash $tmpfile
   sleep 2
   rm $tmpfile
 }
