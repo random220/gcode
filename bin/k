@@ -20,9 +20,9 @@ k()
 
   pkill kodi
   pkill kodi-x11
-  sudo service lightdm stop
-  sudo service lightdm start
-  sleep 5
+  #sudo service lightdm stop
+  #sudo service lightdm start
+  #sleep 5
 
   (
   export DISPLAY=:0.0
