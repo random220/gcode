@@ -16,21 +16,22 @@ ssh_and_k()
 
 k()
 {
-  export PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'
-
-  pkill kodi
-  pkill kodi-x11
-  sudo service lightdm stop
-  sudo service lightdm start
-  sleep 5
-
   tmpfile=$(mktemp)
+
   cat <<EOF >$tmpfile
 (
+export PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'
+
+pkill kodi
+pkill kodi-x11
+#sudo service lightdm stop
+#sudo service lightdm start
+sleep 5
 export DISPLAY=:0.0
 nohup /usr/bin/kodi &
 ) >/dev/null 2>&1
 EOF
+
   bash -x $tmpfile
   sleep 2
   rm $tmpfile
