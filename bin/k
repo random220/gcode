@@ -17,23 +17,33 @@ k()
 {
   tmpfile=$(mktemp)
 
-  cat <<EOF >$tmpfile
+  cat <<'EOF' >$tmpfile
 (
 export PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'
 
-pkill kodi
-pkill kodi-x11
+tf=$(mktemp)
+ps auxw >$tf
+
+egrep '/usr/lib/x86_64-linux-gnu/kodi/kodi-x11|/usr/bin/kodi' $tf|awk '{print $2}'|xargs kill -9
+# om        3451  0.6  1.2 1952888 103916 ?      Sl   10:11   0:14 /usr/lib/x86_64-linux-gnu/kodi/kodi-x11
+# om        4123  0.1  1.2 1887384 104564 ?      Sl   10:15   0:03 /usr/lib/x86_64-linux-gnu/kodi/kodi-x11
+# om        4719  0.2  1.2 1887512 104436 ?      Sl   10:16   0:04 /usr/lib/x86_64-linux-gnu/kodi/kodi-x11
+# om        5236  4.0  1.2 1887388 104476 ?      Sl   10:17   1:14 /usr/lib/x86_64-linux-gnu/kodi/kodi-x11
+# om        6683  0.0  0.0   4628  1740 pts/0    S    10:44   0:00 /bin/sh /usr/bin/kodi
+# om        6693  5.3  1.3 2003532 108804 pts/0  Sl   10:44   0:11 /usr/lib/x86_64-linux-gnu/kodi/kodi-x11
+rm -f $tf
+
 sudo service lightdm stop
 sudo service lightdm start
 sleep 5
 export DISPLAY=:0.0
-nohup /usr/bin/kodi &
+(nohup /usr/bin/kodi >/dev/null) &
 ) >/dev/null 2>&1
 EOF
 
   bash $tmpfile
   sleep 2
-  rm $tmpfile
+  rm -f $tmpfile
 }
 
 x=$(ifconfig -a |grep '192\.168\.10\.180')
