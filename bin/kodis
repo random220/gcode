@@ -1,0 +1,37 @@
+#!/bin/bash
+
+export _MYPID=$$
+(
+export PATH='/home/om/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'
+
+mkdir -p $HOME/.kodis
+if [[ -f $HOME/.kodis/pid ]]; then
+  # is alive?
+  oldpid=$(cat $HOME/.kodis/pid)
+  kill -s 0 $oldpid
+  if [[ $? == 0 ]]; then
+    # yes alive
+    exit 0
+  fi
+fi
+
+echo $_MYPID >$HOME/.kodis/pid
+
+while :; do
+  cat <<EOF | nc -l 8888 >/dev/null
+HTTP/1.1 200 OK
+Date: Sun, 18 Oct 2009 08:56:53 GMT
+Server: Apache/2.2.14 (Win32)
+Last-Modified: Sat, 20 Nov 2004 07:16:26 GMT
+ETag: "10000000565a5-2c-3e94b66c2e680"
+Accept-Ranges: bytes
+Content-Length: 44
+Connection: close
+Content-Type: text/html
+X-Pad: avoid browser bug
+
+<html><body><h1>It works!</h1></body></html>
+EOF
+  $HOME/gcode/bin/k
+done
+) >/dev/null 2>&1
