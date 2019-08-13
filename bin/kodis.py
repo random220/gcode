@@ -29,28 +29,26 @@ def main():
   # Data is read from the connection with recv() and transmitted with sendall()
 
   text_received = ''
-  print('--11')
-  while True:
-    print('--22')
-    print(text_received)
-    # Receive data 16 bytes of data
-    data = connection.recv(16)
-    if data:
-      print('--33')
+  recv_size = 100
+  try:
+    while True:
+      print(text_received)
+      # Receive data 16 bytes of data
+      data = connection.recv(recv_size)
       text_received = text_received+data
-    else:
-      print('--44')
-      break
-  print('--55')
-  print(text_received)
-
-  now = time.strftime("%a, %d %b %Y %H:%M:%S %Z", time.localtime())
-  # Mon, 12 Aug 2019 06:24:40 UTC
-  real_message = '<html><body><h1>It works!</h1></body></html>'
-  nbytes = str(len(real_message)-5)
+      if len(data) < recv_size:
+      #if len(data) == 0:
+        break
+    print(len(text_received))
+    print(text_received)
   
-  
-  text_tosend = '''\
+    now = time.strftime("%a, %d %b %Y %H:%M:%S %Z", time.localtime())
+    # Mon, 12 Aug 2019 06:24:40 UTC
+    real_message = '<html><body><h1>It works!</h1></body></html>'
+    nbytes = str(len(real_message) + 1)
+    
+    
+    text_tosend = '''\
 HTTP/1.1 200 OK
 Date: {now}
 Server: Apache/2.2.14 (Win32)
@@ -64,10 +62,11 @@ X-Pad: avoid browser bug
 
 {message}
 '''.format(now=now, nbytes=nbytes, message=real_message)
+  
+    connection.sendall(text_tosend)
 
-  print('----')
-  connection.sendall(text_tosend)
-  connection.close()
+  finally:
+    connection.close()
 
 main()
 
