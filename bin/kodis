@@ -5,7 +5,7 @@ export PATH='/home/om/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bi
 onerun()
 {
   tmpfile=$(mktemp)
-  cat <<EOF | nc -l 8888 >$tmpfile
+  cat <<EOF | nc -N -l 8888 >$tmpfile
 HTTP/1.1 200 OK
 Date: Sun, 18 Oct 2009 08:56:53 GMT
 Server: Apache/2.2.14 (Win32)
@@ -23,15 +23,12 @@ EOF
   grep 'GET /kodido ' $tmpfile >/dev/null 2>&1
   if [[ $? == 0 ]]; then
     $HOME/gcode/bin/k
-  else
-    echo no
   fi
   rm $tmpfile
 }
 
 tmpfile=$(mktemp)
-nc localhost 8888 >$tmpfile
-ls -ld $tmpfile
+echo hi | nc -N localhost 8888 >$tmpfile
 if [[ -s $tmpfile ]]; then
   rm $tmpfile
   exit 0
