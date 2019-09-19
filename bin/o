@@ -1,0 +1,11 @@
+#!/usr/bin/perl
+use strict;
+
+my $uname = `uname`;
+chomp $uname;
+if ($uname ne 'Darwin') {
+  exit(0);
+}
+my $arg = join ' ', @ARGV;
+$arg =~ s{^file://}{};
+system "open \"$arg\"";
