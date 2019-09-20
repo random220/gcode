@@ -32,6 +32,10 @@ if [[ $vera_volume == '' ]]; then
   mount_found=$(mount | egrep '^/dev/disk[0-9]+s1 on /Volumes/8GB \(msdos')
   if [[ $mount_found != '' ]]; then
     vera_volume=$(echo "$mount_found" | sed 's,s1 .*,s2,')
+    if [[ ! -b $vera_volume ]]; then
+      # Not a block device
+      vera_volume=''
+    fi
   fi
 fi
 
