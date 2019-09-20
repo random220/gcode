@@ -2,20 +2,6 @@
 
 export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
-mountpoint=/b/om/l
-vera_volume=''
-
-for v in '/Volumes/3TB/om/LCRUZER.vol' '/Volumes/1TB/CRUZER-20GB-MacOS.vol'; do
-  if [[ -f $v ]]; then
-    vera_volume=$v
-    break
-  fi
-done
-if [[ $vera_volume == '' ]]; then
-  echo "Error: Volume not found"
-  exit 1
-fi
-
 uname=$(uname)
 if [[ $uname != 'Darwin' ]]; then
   echo "lmount works only on your mac"
@@ -23,16 +9,42 @@ if [[ $uname != 'Darwin' ]]; then
 fi
 veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
 
+
+mountpoint=/b/om/l
+vera_volume=''
+
+if [[ $vera_volume == '' ]]; then
+  for v in '/Volumes/3TB/om/LCRUZER.vol' '/Volumes/1TB/CRUZER-20GB-MacOS.vol'; do
+    if [[ -f $v ]]; then
+      vera_volume=$v
+      break
+    fi
+  done
+fi
+if [[ $vera_volume == '' ]]; then
+  # % mount
+  # /dev/disk1 on / (hfs, local, journaled)
+  # devfs on /dev (devfs, local, nobrowse)
+  # map -hosts on /net (autofs, nosuid, automounted, nobrowse)
+  # map auto_home on /home (autofs, automounted, nobrowse)
+  # /dev/disk2s1 on /Volumes/8GB (msdos, local, nodev, nosuid, noowners)
+
+  mount_found=$(mount | egrep '^/dev/disk[0-9]+s1 on /Volumes/8GB \(msdos')
+  if [[ $mount_found != '' ]]; then
+    vera_volume=$(echo "$mount_found" | sed 's,s1 .*,s2,')
+  fi
+fi
+
+if [[ $vera_volume == '' ]]; then
+  echo "Error: Volume not found"
+  exit 1
+fi
+
 if [[ ! -d $mountpoint ]]; then
   mkdir -p $mountpoint
 fi
 if [[ ! -d $mountpoint ]]; then
   echo "Error: Could not create mountpoint dir $mountpoint"
-  exit 1
-fi
-
-if [[ ! -f $vera_volume ]]; then
-  echo "Error: File not found: $vera_volume"
   exit 1
 fi
 
