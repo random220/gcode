@@ -52,6 +52,7 @@ alias lw='vimdiff ~/zl.txt ~/zw.txt'
 
 alias glog='git log --all --graph --decorate --oneline'
 alias gl='git log --all --graph --pretty="%h %ad %Cred%d%Creset %an: %s" --date=short'
+alias dfiles='git diff --name-status'
 
 alias gdesc='git show --name-status'
 alias gdescv='git log --summary -1 -M'
