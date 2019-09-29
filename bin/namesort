@@ -1,0 +1,24 @@
+#!/usr/bin/perl
+use strict;
+
+while (my $d = <STDIN>) {
+    chomp $d;
+    if (-d $d) {
+        open CMD, ">/tmp/_cmd.sh" or die;
+        print CMD "(\n";
+        print CMD "cd \"$d\"\n";
+        print CMD "mkdir ___aaa\n";
+        print CMD "mv * ___aaa\n";
+        my $cmd = "cd \"$d\" && ls -1";
+        my @ls = `$cmd`;
+        for my $f (@ls) {
+            chomp $f;
+            print CMD "mv ___aaa/\"$f\" .\n";
+        }
+        print CMD "rm -rf ___aaa\n";
+        print CMD ")\n";
+        close CMD;
+        system 'cat /tmp/_cmd.sh';
+        unlink '/tmp/_cmd.sh';
+    }
+}
