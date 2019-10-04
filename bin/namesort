@@ -9,12 +9,14 @@ while (my $d = <STDIN>) {
         print CMD "cd \"$d\"\n";
         print CMD "mkdir ___aaa\n";
         print CMD "mv * ___aaa\n";
-        my $cmd = "cd \"$d\" && ls -1";
+        print CMD "sleep 1\n";
+        my $cmd = "cd ___aaa && ls -1";
         my @ls = `$cmd`;
         for my $f (@ls) {
             chomp $f;
             print CMD "mv ___aaa/\"$f\" .\n";
         }
+        print CMD "sleep 1\n";
         print CMD "rm -rf ___aaa\n";
         print CMD ")\n";
         close CMD;
