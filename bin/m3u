@@ -16,12 +16,10 @@ while (my $d = <STDIN>) {
     }
     @files = sort @files;
     next if ( scalar @files == 0);
-    mkdir "$d/___aaa";
+    my ($name) = $d =~ m{([^/]+)/?$};
+    open F, ">$d/$name.m3u" or die;
     for my $file (@files) {
-        rename "$d/$file", "$d/___aaa/$file";
+        print F "$file\n";
     }
-    for my $file (@files) {
-        rename "$d/___aaa/$file", "$d/$file";
-    }
-    rmdir "$d/___aaa";
+    close F;
 }
