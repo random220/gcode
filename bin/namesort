@@ -1,27 +1,107 @@
 #!/usr/bin/perl
 use strict;
+use File::Path;
 
-while (my $d = <STDIN>) {
-    chomp $d;
-    next if(!-d $d);
-    opendir my $dh, $d or die;
+my $rootdir = $ARGV[0];
+if (!-d $rootdir) {
+    die "Error: Need a root directory to start working from\n";
+}
+
+cleanup($rootdir);
+
+sub cleanup
+{
+    my $d = shift;
+    my @delete_these = ();
+    my @dirs = ();
     my @files = ();
+
+    opendir my $dh, $d or die;
     my @things = readdir $dh;
     closedir $dh;
     for my $thing (@things) {
-        next if($thing =~ m{^\._});
-        next if($thing !~ m{\.mp3$});
-        next if (! -f "$d/$thing");
-        push @files, $thing;
+        next if ($thing eq '.');
+        next if ($thing eq '..');
+        if ($thing =~ /^\._/) {
+            push @delete_these, $thing;
+        }
+        elsif ($thing =~ /DS_Store/) {
+            push @delete_these, $thing;
+        }
+        elsif ($thing eq '___aaa') {
+            push @delete_these, $thing;
+        }
+        elsif (-d "$d/$thing") {
+            push @dirs, $thing;
+        }
+        elsif (-f "$d/$thing") {
+            push @files, $thing;
+        }
+        else {
+            print "==> $d/$thing\n";
+        }
     }
-    @files = sort @files;
-    next if ( scalar @files == 0);
-    mkdir "$d/___aaa";
-    for my $file (@files) {
-        rename "$d/$file", "$d/___aaa/$file";
+    for my $delete_this (@delete_these) {
+        if(-f "$d/$delete_this") {
+            unlink "$d/$delete_this";
+        }
+        if(-d "$d/$delete_this") {
+            rmtree("$d/$delete_this");
+        }
     }
-    for my $file (@files) {
-        rename "$d/___aaa/$file", "$d/$file";
+    for my $dir (@dirs) {
+        cleanup("$d/$dir");
     }
-    rmdir "$d/___aaa";
+    if (scalar @files) {
+        mkdir("$d/___aaa");
+        for my $file (@files) {
+            rename "$d/$file", "$d/___aaa/$file";
+            print("rename \"$d/$file\", \"$d/___aaa/$file\"\n");
+        }
+        for my $file (sort by_desired_order @files) {
+            rename "$d/___aaa/$file", "$d/$file";
+            print("rename \"$d/___aaa/$file\", \"$d/$file\"\n");
+        }
+        rmtree("$d/___aaa");
+    }
 }
+
+sub by_desired_order
+{
+    my $track1 = '';
+    my $name1 = '';
+    my $track2 = '';
+    my $name2 = '';
+    if ($a =~ m{^\s*(\d+)[\s\-]+(\d+)[\s\-\_]*(.+)}) {
+        $track1 = "$1$2";
+        $name1 = $3;
+    }
+    elsif ($a =~ m{^\s*(\d+)[\s\-\_]*(.+)}) {
+        $track1 = "$1";
+        $name1 = $2;
+    }
+    if ($b =~ m{^\s*(\d+)[\s\-]*(\d+)[\s\-\_]*(.+)}) {
+        $track2 = "$1$2";
+        $name2 = $3;
+    }
+    elsif ($b =~ m{^\s*(\d+)[\s\-\_]*(.+)}) {
+        $track2 = "$1";
+        $name2 = $2;
+    }
+    if (($track1 ne '') and ($track2 eq '')) {
+        return -1;
+    }
+    elsif (($track1 eq '') and ($track2 ne '')) {
+        return 1;
+    }
+    elsif (($track1 eq '') and ($track2 eq '')) {
+        return $name1 cmp $name2;
+    }
+    else {
+        if ($track1 == $track2) {
+            return $name1 cmp $name2;
+        }
+        return $track1 <=> $track2;
+    }
+}
+
