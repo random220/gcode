@@ -72,8 +72,8 @@ sub cleanup
             rename "$tmpdir/$file", "$d/$file";
             print("rename \"$tmpdir/$file\", \"$d/$file\"\n");
         }
-        rmtree("$tmpdir");
     }
+    rmtree("$tmpdir");
 }
 
 sub by_desired_order
