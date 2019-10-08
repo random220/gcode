@@ -7,6 +7,16 @@ if (!-d $rootdir) {
     die "Error: Need a root directory to start working from\n";
 }
 
+my $tmpdir = "$rootdir/../___aaa";
+if (-d $tmpdir) {
+    die "Error: Already exists \"$tmpdir\"\n";
+}
+system "mkdir -p \"$tmpdir\"";
+if (! -d $tmpdir) {
+    die "Error: Could not create \"$tmpdir\"\n";
+}
+rmtree("$tmpdir");
+
 cleanup($rootdir);
 
 sub cleanup
@@ -52,17 +62,17 @@ sub cleanup
     for my $dir (@dirs) {
         cleanup("$d/$dir");
     }
+    system "mkdir -p \"$tmpdir\"";
     if (scalar @files) {
-        mkdir("$d/___aaa");
         for my $file (@files) {
-            rename "$d/$file", "$d/___aaa/$file";
-            print("rename \"$d/$file\", \"$d/___aaa/$file\"\n");
+            rename "$d/$file", "$tmpdir/$file";
+            print("rename \"$d/$file\", \"$tmpdir/$file\"\n");
         }
         for my $file (sort by_desired_order @files) {
-            rename "$d/___aaa/$file", "$d/$file";
-            print("rename \"$d/___aaa/$file\", \"$d/$file\"\n");
+            rename "$tmpdir/$file", "$d/$file";
+            print("rename \"$tmpdir/$file\", \"$d/$file\"\n");
         }
-        rmtree("$d/___aaa");
+        rmtree("$tmpdir");
     }
 }
 
@@ -72,7 +82,7 @@ sub by_desired_order
     my $name1 = '';
     my $track2 = '';
     my $name2 = '';
-    if ($a =~ m{^\s*(\d+)[\s\-]+(\d+)[\s\-\_]*(.+)}) {
+    if ($a =~ m{^\s*(\d+)\s*\-\s*(\d+)[\s\-\_]*(.+)}) {
         $track1 = "$1$2";
         $name1 = $3;
     }
@@ -80,7 +90,7 @@ sub by_desired_order
         $track1 = "$1";
         $name1 = $2;
     }
-    if ($b =~ m{^\s*(\d+)[\s\-]*(\d+)[\s\-\_]*(.+)}) {
+    if ($b =~ m{^\s*(\d+)\s*\-\s*(\d+)[\s\-\_]*(.+)}) {
         $track2 = "$1$2";
         $name2 = $3;
     }
