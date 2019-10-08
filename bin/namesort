@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 use strict;
 use File::Path;
+use File::Path qw(make_path remove_tree);
 
 my $rootdir = $ARGV[0];
 if (!-d $rootdir) {
@@ -11,11 +12,11 @@ my $tmpdir = "$rootdir/../___aaa";
 if (-d $tmpdir) {
     die "Error: Already exists \"$tmpdir\"\n";
 }
-system "mkdir -p \"$tmpdir\"";
+make_path($tmpdir);
 if (! -d $tmpdir) {
     die "Error: Could not create \"$tmpdir\"\n";
 }
-rmtree("$tmpdir");
+rmtree($tmpdir);
 
 cleanup($rootdir);
 
@@ -62,7 +63,7 @@ sub cleanup
     for my $dir (@dirs) {
         cleanup("$d/$dir");
     }
-    system "mkdir -p \"$tmpdir\"";
+    make_path($tmpdir);
     if (scalar @files) {
         for my $file (@files) {
             rename "$d/$file", "$tmpdir/$file";
@@ -73,7 +74,7 @@ sub cleanup
             print("rename \"$tmpdir/$file\", \"$d/$file\"\n");
         }
     }
-    rmtree("$tmpdir");
+    rmtree($tmpdir);
 }
 
 sub by_desired_order
