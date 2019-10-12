@@ -49,38 +49,52 @@ do_mint() {
 }
 
 do_tiddly() {
-  tiddly_new1=$HOME/Downloads/tiddly.html
-  tiddly_new2=$HOME/Documents/tiddly.html
-  tiddly_new3=$HOME/Desktop/tiddly.html
-  tiddly_new4=/b/om/p/tmp/chrome-downloads/tiddly.html
+  tmpdir=$(mktemp -d)
+  ls -1tr \
+  $HOME/Downloads/tiddly*.html \
+  $HOME/Documents/tiddly*.html \
+  $HOME/Desktop/tiddly*.html \
+  /b/om/p/tmp/chrome-downloads/tiddly*.html \
+  >$tmpdir/tiddlies.txt 2>/dev/null
 
-  if [[ -f $tiddly_new1 ]]; then
-    tiddly_new=$tiddly_new1
-  elif [[ -f $tiddly_new2 ]]; then
-    tiddly_new=$tiddly_new2
-  elif [[ -f $tiddly_new3 ]]; then
-    tiddly_new=$tiddly_new3
-  elif [[ -f $tiddly_new4 ]]; then
-    tiddly_new=$tiddly_new4
+  tiddly_new='_none_'
+  n=$(wc -l $tmpdir/tiddlies.txt | awk '{print $1}')
+  if [[ $n == 0 ]]; then
+    :
+  elif [[ $n == 1 ]]; then
+    tiddly_new=$(tail -1 $tmpdir/tiddlies.txt)
   else
-    tiddly_new='_none_'
+    echo "You have more than one tiddlies"
+    echo
+    cat $tmpdir/tiddlies.txt
+    echo
+    echo -n 'Proceed with the last one? [y/n] '
+    read ans
+    if [[ $ans == 'y' ]]; then
+      tiddly_new=$(tail -1 $tmpdir/tiddlies.txt)
+    else
+      echo
+      echo -n 'Delete all? [y/n] '
+      read ans
+      if [[ $ans == 'y' ]]; then
+        cat $tmpdir/tiddlies.txt | perl -pe 's/\n/\0/s' | xargs -0 rm
+      fi
+    fi
   fi
 
   if [[ $tiddly_new == '_none_' ]]; then
-    echo "Not found: $tiddly_new1"
-    echo "Not found: $tiddly_new2"
-    echo "Not found: $tiddly_new3"
-    echo "Not found: $tiddly_new4"
+    echo "No tiddly found"
+    rm -rf $tmpdir
     return
   fi
 
   tiddly_forever='/b/om/p/CRUZER/gitted/sandbox/tiddly.html'
   if [[ ! -f $tiddly_forever ]]; then
     echo "Not found: $tiddly_forever"
-    echo "Consider rm -f $tiddly_new"
+    echo "Consider rm -f \"$tiddly_new\""
   else
-    ls -ld $tiddly_new $tiddly_forever
-    cmd="mv $tiddly_new $tiddly_forever"
+    ls -ld "$tiddly_new" "$tiddly_forever"
+    cmd="cp \"$tiddly_new\" \"$tiddly_forever\""
     printf "todo: $cmd\\n"
     if [[ $arg == '' ]]; then
       echo "Doing it"
@@ -94,6 +108,9 @@ do_tiddly() {
       eval $cmd
     fi
   fi
+
+  cat $tmpdir/tiddlies.txt | perl -pe 's/\n/\0/s' | xargs -0 rm
+  rm -rf $tmpdir
 }
 
 main
