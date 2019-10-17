@@ -1,0 +1,6 @@
+#!/bin/bash
+
+system_profiler SPHardwareDataType | grep 'Serial Number' | sed 's/^.* //'
+ioreg -l | grep IOPlatformSerialNumber | sed 's/^.* //; s/"//g'
+
+
