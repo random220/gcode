@@ -1,0 +1,33 @@
+Install Desktop
+    $ sudo apt-get -y install xubuntu-desktop
+
+Install Kodi
+    $ sudo apt-get install software-properties-common
+    $ sudo add-apt-repository ppa:team-xbmc/ppa
+    $ sudo apt-get update
+    $ sudo apt-get install kodi
+
+Install xrdp
+    $ sudo apt-get -y install xrdp
+    $ # Modifiy /etc/xrdp/startwm.sh
+
+    $ sudo git diff
+    diff --git a/xrdp/startwm.sh b/xrdp/startwm.sh
+    index 4fde7aa..23e7af4 100755
+    --- a/xrdp/startwm.sh
+    +++ b/xrdp/startwm.sh
+    @@ -30,5 +30,7 @@ if test -r /etc/profile; then
+	    . /etc/profile
+     fi
+     
+    -test -x /etc/X11/Xsession && exec /etc/X11/Xsession
+    -exec /bin/sh /etc/X11/Xsession
+    +session_binary=/etc/X11/Xsession
+    +session_binary=/usr/bin/startxfce4
+    +test -x $session_binary && exec $session_binary
+    +exec $session_binary
+
+    $ sudo service xrdp restart
+    systemctl enable xrdp
+    $ ssh -L 3389:localhost:3389 hh
+
