@@ -64,15 +64,14 @@ sub cleanup
         cleanup("$d/$dir");
     }
     make_path($tmpdir);
-    if (scalar @files) {
-        for my $file (@files) {
-            rename "$d/$file", "$tmpdir/$file";
-            print("rename \"$d/$file\", \"$tmpdir/$file\"\n");
-        }
-        for my $file (sort by_desired_order @files) {
-            rename "$tmpdir/$file", "$d/$file";
-            print("rename \"$tmpdir/$file\", \"$d/$file\"\n");
-        }
+    my @dirs_and_files = sort by_desired_order (@dirs, @files);
+    for my $file (@dirs_and_files) {
+        rename "$d/$file", "$tmpdir/$file";
+        print("rename \"$d/$file\", \"$tmpdir/$file\"\n");
+    }
+    for my $file (@dirs_and_files) {
+        rename "$tmpdir/$file", "$d/$file";
+        print("rename \"$tmpdir/$file\", \"$d/$file\"\n");
     }
     rmtree($tmpdir);
 }
