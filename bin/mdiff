@@ -1,0 +1,17 @@
+#!/bin/bash
+
+dir1=$1
+dir2=$2
+if [[ ! -d $dir1 ]]; then
+  echo "$0 dir1 dir2"
+  exit 1
+fi
+if [[ ! -d $dir2 ]]; then
+  echo "$0 dir1 dir2"
+  exit 1
+fi
+
+rsync -a --delete "$dir1" | grep -v '\.DS_Store'|grep '^-' >.one.txt
+rsync -a --delete "$dir2" | grep -v '\.DS_Store'|grep '^-' >.two.txt
+
+vimdiff .one.txt .two.txt
