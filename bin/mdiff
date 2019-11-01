@@ -1,17 +1,17 @@
 #!/bin/bash
 
-dir1=$1
-dir2=$2
+dir1='/Users/omandal/Music/iTunes/iTunes Media/Music'
+dir2=$1
 if [[ ! -d $dir1 ]]; then
-  echo "$0 dir1 dir2"
+  echo "Cannot file \"$dir1\""
   exit 1
 fi
 if [[ ! -d $dir2 ]]; then
-  echo "$0 dir1 dir2"
+  echo "$0 dir2"
   exit 1
 fi
 
-rsync -a --delete "$dir1" | grep -v '\.DS_Store'|grep '^-' >.one.txt
-rsync -a --delete "$dir2" | grep -v '\.DS_Store'|grep '^-' >.two.txt
+rsync -a --delete "$dir1" | grep -v '\.DS_Store'|grep '^-' >.me.txt
+rsync -a --delete "$dir2" | grep -v '\.DS_Store'|grep '^-' >.them.txt
 
-vimdiff .one.txt .two.txt
+vimdiff .me.txt .them.txt
