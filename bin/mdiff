@@ -11,7 +11,7 @@ if [[ ! -d $dir2 ]]; then
   exit 1
 fi
 
-rsync -a --delete "$dir1" | grep -v '\.DS_Store'|grep '^-' >.me.txt
-rsync -a --delete "$dir2" | grep -v '\.DS_Store'|grep '^-' >.them.txt
+rsync -a --delete "$dir1" | grep -v '\.DS_Store'|grep '^-' |sed 's/^..........//' >.me.txt
+rsync -a --delete "$dir2" | grep -v '\.DS_Store'|grep '^-' |sed 's/^..........//' >.them.txt
 
 vimdiff .me.txt .them.txt
