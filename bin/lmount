@@ -60,7 +60,7 @@ if [[ $vera_volume == '' ]]; then
   # map auto_home on /home (autofs, automounted, nobrowse)
   # /dev/disk2s2 on /Volumes/F32 (msdos, local, nodev, nosuid, noowners)
 
-  mount_found=$(mount | egrep '^/dev/disk[0-9]+s2 on /Volumes/F32 \(msdos')
+  mount_found=$(mount | egrep '^/dev/disk[0-9]+s2 on /Volumes/8GBpart \(msdos')
   if [[ $mount_found != '' ]]; then
     vera_volume=$(echo "$mount_found" | sed 's,s2 .*,s3,')
     if [[ ! -b $vera_volume ]]; then
