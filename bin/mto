@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo time rsync -a --delete "'/Users/omandal/Music/iTunes/iTunes Media/Music'"/ "'$1'"/
