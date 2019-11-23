@@ -27,7 +27,7 @@ sub cleanup
     my @dirs = ();
     my @files = ();
 
-    opendir my $dh, $d or die;
+    opendir my $dh, $d or die "dead at $d\n";
     my @things = readdir $dh;
     closedir $dh;
     for my $thing (@things) {
@@ -60,18 +60,23 @@ sub cleanup
             rmtree("$d/$delete_this");
         }
     }
+    @dirs = sort by_desired_order @dirs;
+    @files = sort by_desired_order @files;
+    make_path($tmpdir);
+    for my $thing (@dirs, @files) {
+        rename "$d/$thing", "$tmpdir/$thing";
+        print("rename \"$d/$thing\", \"$tmpdir/$thing\"\n");
+    }
+    for my $thing (@dirs) {
+        rename "$tmpdir/$thing", "$d/$thing";
+        print("rename \"$tmpdir/$thing\", \"$d/$thing\"\n");
+    }
+    for my $thing (@files) {
+        rename "$tmpdir/$thing", "$d/$thing";
+        print("rename \"$tmpdir/$thing\", \"$d/$thing\"\n");
+    }
     for my $dir (@dirs) {
         cleanup("$d/$dir");
-    }
-    make_path($tmpdir);
-    my @dirs_and_files = sort by_desired_order (@dirs, @files);
-    for my $file (@dirs_and_files) {
-        rename "$d/$file", "$tmpdir/$file";
-        print("rename \"$d/$file\", \"$tmpdir/$file\"\n");
-    }
-    for my $file (@dirs_and_files) {
-        rename "$tmpdir/$file", "$d/$file";
-        print("rename \"$tmpdir/$file\", \"$d/$file\"\n");
     }
     rmtree($tmpdir);
 }
@@ -82,36 +87,42 @@ sub by_desired_order
     my $name1 = '';
     my $track2 = '';
     my $name2 = '';
-    if ($a =~ m{^\s*(\d+)\s*\-\s*(\d+)[\s\-\_]*(.+)}) {
-        $track1 = "$1$2";
-        $name1 = $3;
+    my $norm_a = name_normalize($a);
+    my $norm_b = name_normalize($b);
+    return $norm_a cmp $norm_b;
+}
+
+sub name_normalize {
+    my $name = shift;
+    $name =~ s{^\s*}{}s;
+    $name =~ s{\s*$}{}s;
+    my $n1 = 0;
+    my $n2 = 0;
+    my $text = $name;
+    my $isdir = 0;
+    if ($name =~ m{^(d|cd)\-?(\d+)[\s\-_]+(.+)}i) {
+        $n1 = $2;
+        $text = $3;
+        $isdir = 1;
     }
-    elsif ($a =~ m{^\s*(\d+)[\s\-\_]*(.+)}) {
-        $track1 = "$1";
-        $name1 = $2;
+    elsif($name =~ m{^(\d+)[\s\-_]+(\d+)[\s\-_]+(.+)}) {
+        $n1 = $1;
+        $n2 = $2;
+        $text = $3;
     }
-    if ($b =~ m{^\s*(\d+)\s*\-\s*(\d+)[\s\-\_]*(.+)}) {
-        $track2 = "$1$2";
-        $name2 = $3;
+    elsif($name =~ m{^(\d+)[\s\-_]+(.+)}) {
+        $n1 = $1;
+        $text = $2;
     }
-    elsif ($b =~ m{^\s*(\d+)[\s\-\_]*(.+)}) {
-        $track2 = "$1";
-        $name2 = $2;
+    $n1 = sprintf('%05d', $n1);
+    $n2 = sprintf('%05d', $n2);
+    my $normname;
+    $normname = "$n1$n2$text";
+    if ($isdir == 1) {
+        $normname = "0000000000$text$n1$n2";
     }
-    if (($track1 ne '') and ($track2 eq '')) {
-        return -1;
-    }
-    elsif (($track1 eq '') and ($track2 ne '')) {
-        return 1;
-    }
-    elsif (($track1 eq '') and ($track2 eq '')) {
-        return $name1 cmp $name2;
-    }
-    else {
-        if ($track1 == $track2) {
-            return $name1 cmp $name2;
-        }
-        return $track1 <=> $track2;
-    }
+    $normname =~ tr/A-Z/a-z/;
+    #print "==> $name||$normname\n";
+    return $normname;
 }
 
