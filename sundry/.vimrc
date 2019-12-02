@@ -35,6 +35,7 @@ if &diff
 endif
 
 
+set hlsearch        " highligh search patter
 set ai
 set nu
 set tabstop=8       " tab character counts as 8 spaces
