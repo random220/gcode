@@ -19,7 +19,15 @@ $bindir/vmount
 
 echo
 echo "Syncing ..."
-cmd="rsync -a --delete /b/om/p/CRUZER/ om@$target_machine:/b/om/p/CRUZER/"
+p=/b/om/p/CRUZER
+if [[ ! -d $p ]]; then
+  p=$HOME/b/om/p/CRUZER
+fi
+if [[ ! -d $p ]]; then
+  echo 'ERROR: Not found /b/om/p/CRUZER or $HOME/b/om/p/CRUZER'
+  exit 1
+fi
+cmd="rsync -a --delete $p/ om@$target_machine:/b/om/p/CRUZER/"
 echo "doing: $cmd"
 $cmd
 $bindir/humount
