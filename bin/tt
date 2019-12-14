@@ -2,7 +2,15 @@
 
 arg=$1
 
-echo "Destination: /b/om/p/CRUZER/gitted/sandbox"
+p=/b/om/p
+if [[ ! -d $p ]]; then
+  p=$HOME/b/om/p
+fi
+if [[ ! -d $p ]]; then
+  echo 'ERROR: Not found /b/om/p or $HOME/b/om/p'
+  exit 1
+fi
+echo "Destination: $p/CRUZER/gitted/sandbox"
 
 set_comment() {
   myname=$(basename $0)
@@ -31,7 +39,7 @@ do_mint() {
     echo "Not found: $file_new2"
     return
   fi
-  file_forever='/b/om/p/CRUZER/gitted/sandbox/mint-transactions.csv'
+  file_forever=$p/CRUZER/gitted/sandbox/mint-transactions.csv
   diff -q $file_new $file_forever >/dev/null 2>&1
   if [[ $? == 0 ]]; then
     # no diff
@@ -41,7 +49,7 @@ do_mint() {
   fi
   mv $file_new $file_forever
   (
-    cd /b/om/p/CRUZER/gitted/sandbox
+    cd $p/CRUZER/gitted/sandbox
     git add mint-transactions.csv
     datestring=$(date "+%Y-%m-%d %H:%M:%S")
     git commit -m "mint $datestring"
@@ -54,7 +62,7 @@ do_tiddly() {
   $HOME/Downloads/tiddly*.html \
   $HOME/Documents/tiddly*.html \
   $HOME/Desktop/tiddly*.html \
-  /b/om/p/tmp/chrome-downloads/tiddly*.html \
+  $p/tmp/chrome-downloads/tiddly*.html \
   >$tmpdir/tiddlies.txt 2>/dev/null
 
   tiddly_new='_none_'
@@ -88,7 +96,7 @@ do_tiddly() {
     return
   fi
 
-  tiddly_forever='/b/om/p/CRUZER/gitted/sandbox/tiddly.html'
+  tiddly_forever=$p/CRUZER/gitted/sandbox/tiddly.html
   if [[ ! -f $tiddly_forever ]]; then
     echo "Not found: $tiddly_forever"
     echo "Consider rm -f \"$tiddly_new\""
@@ -101,7 +109,7 @@ do_tiddly() {
       eval $cmd
     fi
     set_comment
-    cmd="(cd /b/om/p/CRUZER/gitted/sandbox && (git add tiddly.html; git commit -m '$comment'))"
+    cmd="(cd $p/CRUZER/gitted/sandbox && (git add tiddly.html; git commit -m '$comment'))"
     printf "todo: $cmd\\n"
     if [[ $arg == '' ]]; then
       echo "Doing it"
