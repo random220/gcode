@@ -102,8 +102,15 @@ elsif ($CMD eq 'note') {
     if ($uname eq 'Darwin') {
         my $cmd;
         $cmd = "open -a /Applications/Firefox.app '$p/$tiddly_file'";
+        my $tmpdir;
+        if (-d '/b/om/p/tmp') {
+            $tmpdir = '/b/om/p/tmp';
+        }
+        elsif(-d $ENV{'HOME'}.'/b/om/p/tmp') {
+            $tmpdir = $ENV{'HOME'}.'/b/om/p/tmp';
+        }
         if (-d '/Applications/Google Chrome.app' ) {
-            $cmd = "(('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=/b/om/p/tmp/chrome-session-data --incognito '/b/om/p/CRUZER/gitted/sandbox/tiddly.html' >/dev/null 2>&1)&)"
+            $cmd = "(('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=$tmpdir/chrome-session-data --incognito $p/gitted/sandbox/tiddly.html >/dev/null 2>&1)&)"
         }
         print "doing: $cmd\n";
         system $cmd;
@@ -158,9 +165,19 @@ elsif ($CMD eq 'hpull') {
 
 sub set_variables
 {
-    $p="/b/om/p/CRUZER";
-    $l="/b/om/l/CRUZER";
-    $t="/b/om/t/CRUZER";
+    if (-d '/b/om') {
+        $p="/b/om/p/CRUZER";
+        $l="/b/om/l/CRUZER";
+        $t="/b/om/t/CRUZER";
+    }
+    elsif (-d $ENV{'HOME'}.'/b/om') {
+        $p=$ENV{'HOME'}."/b/om/p/CRUZER";
+        $l=$ENV{'HOME'}."/b/om/l/CRUZER";
+        $t=$ENV{'HOME'}."/b/om/t/CRUZER";
+    }
+    else {
+        die "ERROR: /b/om or \$HOME/b/om not found.\n";
+    }
     $home_machine='crondite.duckdns.org';
     my $ifconfig = `ifconfig -a`;
     if ($ifconfig =~ m{inet .*192\.168\.10\.}s) {

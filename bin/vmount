@@ -1,8 +1,20 @@
 #!/bin/bash
 
 export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
-vera_volume=/b/om/CRUZER.vol
-mountpoint=/b/om/p
+if [[ -f /b/om/CRUZER.vol ]]; then
+  vera_volume=/b/om/CRUZER.vol
+elif [[ $HOME/b/om/CRUZER.vol ]]; then
+  vera_volume=$HOME/b/om/CRUZER.vol
+else
+  echo "ERROR: Did not find veracrypt volume
+  exit 1"
+fi
+
+if [[ -d /b/om/p ]]; then
+  mountpoint=/b/om/p
+elif [[ -d $HOME/b/om/p ]]; then
+  mountpoint=$HOME/b/om/p
+fi
 
 veracrypt='veracrypt'
 uname=$(uname)
