@@ -31,5 +31,6 @@ cmd="rsync -a --delete $p/ om@$target_machine:/b/om/p/CRUZER/"
 echo "doing: $cmd"
 $cmd
 $bindir/humount
+#/usr/bin/ssh om@$target_machine 'gcode/bin/vumount'
 /usr/bin/ssh om@$target_machine 'rm -f .ssh/authorized_keys'
 
