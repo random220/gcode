@@ -50,7 +50,8 @@ alias rw='vimdiff ~/zr.txt ~/zw.txt'
 alias lr='vimdiff ~/zl.txt ~/zr.txt'
 alias lw='vimdiff ~/zl.txt ~/zw.txt'
 
-alias glog='git log --all --graph --decorate --oneline'
+alias glog='git log --all --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit --date=relative'
+alias glog2='git log --all --graph --decorate --oneline'
 alias gl='git log --all --graph --pretty="%h %ad %Cred%d%Creset %an: %s" --date=short'
 alias dfiles='git diff --name-status'
 
