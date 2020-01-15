@@ -1,10 +1,22 @@
 #!/bin/bash
 
+# ~/.ssh/config
+# Host home_dns
+#     User om
+#     Hostname crondite.duckdns.org
+#     IdentityFile ~/.ssh/id_rsa
+# 
+# Host home_localip
+#     User om
+#     Hostname 192.168.10.180
+#     IdentityFile ~/.ssh/id_rsa
+# 
+
 bindir=$(dirname $0)
-target_machine='crondite.duckdns.org'
+target_machine='home_dns'
 ifconfig -a|egrep 'inet .*192\.168\.10\.' >/dev/null 2>&1
 if [[ $? == 0 ]]; then
-  target_machine='192.168.10.180'
+  target_machine='home_localip'
 fi
 
 printf "Push to $target_machine? (y/n): "
@@ -13,7 +25,7 @@ if [[ $yesno != 'y' ]]; then
   exit 1
 fi
 
-/usr/bin/ssh-copy-id om@$target_machine
+/usr/bin/ssh-copy-id -i ~/.ssh/id_rsa $target_machine
 $bindir/hmount
 $bindir/vmount
 
@@ -27,10 +39,9 @@ if [[ ! -d $p ]]; then
   echo 'ERROR: Not found /b/om/p/CRUZER or $HOME/b/om/p/CRUZER'
   exit 1
 fi
-cmd="rsync -a --delete $p/ om@$target_machine:/b/om/p/CRUZER/"
+cmd="rsync -a --delete $p/ $target_machine:/b/om/p/CRUZER/"
 echo "doing: $cmd"
 $cmd
 $bindir/humount
-#/usr/bin/ssh om@$target_machine 'gcode/bin/vumount'
-/usr/bin/ssh om@$target_machine 'rm -f .ssh/authorized_keys'
+/usr/bin/ssh $target_machine 'rm -f .ssh/authorized_keys'
 
