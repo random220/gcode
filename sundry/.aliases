@@ -90,3 +90,4 @@ if [[ -f $HOME/ww/.vmware_aliases ]]; then
   . $HOME/ww/.vmware_aliases
 fi
 alias ovftool='/Applications/VMware\ OVF\ Tool/ovftool'
+alias t='touch ~/a.txt; open ~/a.txt'
