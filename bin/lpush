@@ -2,7 +2,25 @@
 
 bindir=$(dirname $0)
 
-printf "Push to /b/om/l/CRUZER ? (y/n): "
+p=/b/om/p/CRUZER
+if [[ ! -d $p ]]; then
+    p=$HOME/b/om/p/CRUZER
+fi
+if [[ ! -d $p ]]; then
+    echo "ERROR: Not found \"$p\""
+    exit 1
+fi
+
+l=/b/om/l/CRUZER
+if [[ ! -d $l ]]; then
+    l=$HOME/b/om/l/CRUZER
+fi
+if [[ ! -d $l ]]; then
+    echo "ERROR: Not found \"$l\""
+    exit 1
+fi
+
+printf "Push to $l ? (y/n): "
 read yesno
 if [[ $yesno != 'y' ]]; then
   exit 1
@@ -13,9 +31,9 @@ $bindir/lmount || exit 1
 
 echo
 echo "Syncing ..."
-cmd="rsync -a --delete /b/om/p/CRUZER/ /b/om/l/CRUZER/"
+cmd="rsync -a --delete $p/ $l/"
 echo "doing: $cmd"
 $cmd
 
 lastsync=$(date "+lastsync--%Y-%m-%d--%H-%M-%S")
-(cd /b/om/l && (rm -f lastsync*; touch $lastsync))
+(cd $l/.. && (rm -f lastsync*; touch $lastsync))

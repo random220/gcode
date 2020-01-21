@@ -11,6 +11,13 @@ veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
 
 
 mountpoint=/b/om/l
+if [[ ! -d $mountpoint ]]; then
+  mountpoint=$HOME/b/om/l
+fi
+if [[ ! -d $mountpoint ]]; then
+  echo "ERROR: $mountpoint not found"
+  exit 1
+fi
 vera_volume=''
 
 tmpdir=$(mktemp -d)
