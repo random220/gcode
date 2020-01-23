@@ -2,32 +2,48 @@
 
 bindir=$(dirname $0)
 
-p=/b/om/p/CRUZER
+p=/b/om/p
 if [[ ! -d $p ]]; then
-    p=$HOME/b/om/p/CRUZER
+    p=$HOME/b/om/p
 fi
 if [[ ! -d $p ]]; then
     echo "ERROR: Not found \"$p\""
     exit 1
 fi
 
-l=/b/om/l/CRUZER
+l=/b/om/l
 if [[ ! -d $l ]]; then
-    l=$HOME/b/om/l/CRUZER
+    l=$HOME/b/om/l
 fi
 if [[ ! -d $l ]]; then
     echo "ERROR: Not found \"$l\""
     exit 1
 fi
 
-printf "Push to $l ? (y/n): "
+p=$p/CRUZER
+l=$l/CRUZER
+
+printf "Push $p ---> $l ? (y/n): "
 read yesno
 if [[ $yesno != 'y' ]]; then
   exit 1
+else
+    printf "Are you sure? (YES/no): "
+    read yesno
+    if [[ $yesno != 'YES' ]]; then
+      echo
+      echo "I assume you are not sure then ..."
+      echo
+      exit 1
+    fi
 fi
 
-$bindir/vmount || exit 1
-$bindir/lmount || exit 1
+if [[ ! -d $p ]]; then
+    $bindir/vmount || exit 1
+fi
+if [[ ! -d $l ]]; then
+    $bindir/lmount || exit 1
+fi
 
 echo
 echo "Syncing ..."

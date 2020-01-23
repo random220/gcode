@@ -2,24 +2,54 @@
 
 bindir=$(dirname $0)
 
-printf "Pull from /b/om/l/CRUZER ? (y/n): "
+p=/b/om/p
+if [[ ! -d $p ]]; then
+    p=$HOME/b/om/p
+fi
+if [[ ! -d $p ]]; then
+    echo "ERROR: Not found \"$p\""
+    exit 1
+fi
+
+l=/b/om/l
+if [[ ! -d $l ]]; then
+    l=$HOME/b/om/l
+fi
+if [[ ! -d $l ]]; then
+    echo "ERROR: Not found \"$l\""
+    exit 1
+fi
+
+p=$p/CRUZER
+l=$l/CRUZER
+
+printf "Pull $l ---> $p ? (y/n): "
 read yesno
 if [[ $yesno != 'y' ]]; then
   exit 1
+else
+    printf "Are you sure? (YES/no): "
+    read yesno
+    if [[ $yesno != 'YES' ]]; then
+      echo
+      echo "I assume you are not sure then ..."
+      echo
+      exit 1
+    fi
 fi
 
-printf "Are you doubly sure? (YES/n): "
-read yesno
-if [[ $yesno != 'YES' ]]; then
-  exit 1
+if [[ ! -d $p ]]; then
+    $bindir/vmount || exit 1
 fi
-
-$bindir/lmount || exit 1
-$bindir/vmount || exit 1
+if [[ ! -d $l ]]; then
+    $bindir/lmount || exit 1
+fi
 
 echo
 echo "Syncing ..."
-cmd="rsync -a --delete /b/om/l/CRUZER/ /b/om/p/CRUZER/"
+cmd="rsync -a --delete $l/ $p/"
 echo "doing: $cmd"
 $cmd
 
+# lastsync=$(date "+lastsync--%Y-%m-%d--%H-%M-%S")
+# (cd $l/.. && (rm -f lastsync*; touch $lastsync))
