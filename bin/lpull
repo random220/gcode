@@ -10,6 +10,7 @@ if [[ ! -d $p ]]; then
     echo "ERROR: Not found \"$p\""
     exit 1
 fi
+p=$(cd $p && pwd -P)
 
 l=/b/om/l
 if [[ ! -d $l ]]; then
@@ -19,6 +20,7 @@ if [[ ! -d $l ]]; then
     echo "ERROR: Not found \"$l\""
     exit 1
 fi
+l=$(cd $l && pwd -P)
 
 p=$p/CRUZER
 l=$l/CRUZER
