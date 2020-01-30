@@ -10,11 +10,15 @@ else
   exit 1"
 fi
 
-if [[ -d /b/om/p ]]; then
-  mountpoint=/b/om/p
-elif [[ -d $HOME/b/om/p ]]; then
+mountpoint=/b/om/p
+if [[ ! -d $mountpoint ]]; then
   mountpoint=$HOME/b/om/p
 fi
+if [[ ! -d $mountpoint ]]; then
+  echo "ERROR: $mountpoint not found"
+  exit 1
+fi
+mountpoint=$(cd $mountpoint && /bin/pwd -P)
 
 veracrypt='veracrypt'
 uname=$(uname)

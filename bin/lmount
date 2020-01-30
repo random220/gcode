@@ -18,6 +18,8 @@ if [[ ! -d $mountpoint ]]; then
   echo "ERROR: $mountpoint not found"
   exit 1
 fi
+mountpoint=$(cd $mountpoint && /bin/pwd -P)
+
 vera_volume=''
 
 tmpdir=$(mktemp -d)
