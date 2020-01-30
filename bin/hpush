@@ -56,6 +56,7 @@ if [[ ! -d $p ]]; then
   echo 'ERROR: Not found /b/om/p/CRUZER or $HOME/b/om/p/CRUZER'
   exit 1
 fi
+p=$(cd $p && pwd -P)
 cmd="rsync -a --delete $p/ $target_machine:/b/om/p/CRUZER/"
 echo "doing: $cmd"
 $cmd
