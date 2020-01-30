@@ -11,6 +11,23 @@
 #     Hostname 192.168.10.180
 #     IdentityFile ~/.ssh/id_rsa
 # 
+cp -p -f ~/.ssh/config ~/.ssh/config.000
+cat > ~/.ssh/config <<EOF
+StrictHostKeyChecking=no
+CheckHostIP=no
+EscapeChar=~
+UserKnownHostsFile=/dev/null
+
+Host home_dns
+    User om
+    Hostname crondite.duckdns.org
+    IdentityFile ~/.ssh/id_rsa
+
+Host home_localip
+    User om
+    Hostname 192.168.10.180
+    IdentityFile ~/.ssh/id_rsa
+EOF
 
 bindir=$(dirname $0)
 target_machine='home_dns'
@@ -44,4 +61,6 @@ echo "doing: $cmd"
 $cmd
 $bindir/humount
 /usr/bin/ssh $target_machine 'rm -f .ssh/authorized_keys'
+
+cp -p -f ~/.ssh/config.000 ~/.ssh/config
 
