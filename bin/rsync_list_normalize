@@ -1,6 +1,5 @@
 #!/usr/bin/perl
 use strict;
-my @lines = <STDIN>;
 
 my @newlines = ();
 while (my $line = <STDIN>) {
@@ -12,8 +11,8 @@ while (my $line = <STDIN>) {
     $line =~ s{^\S+\s+}{}; #167599 2016/02/09 00:30:48 000-Crondite/00-bills/00-bills-paid/20160209-ehost-Invoice 483995-1671435.pdf
     my ($size, $date, $time, $path) = $line =~ m{^(\S+)\s+(\S+)\s+(\S+)\s+(.+)$};
     $size =~ s{,}{}g; # remove commas if any
-    $line = sprintf('%s __::::__ %20d %s %s %s'."\n", $path, $size, $date, $time, $path);
-    push @newlines, $line;
+    my $newline = sprintf('%s __::::__ %20d %s %s %s'."\n", $path, $size, $date, $time, $path);
+    push @newlines, $newline;
 }
 
 @newlines = map {s/^.* __::::__ //; $_} sort @newlines;

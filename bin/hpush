@@ -57,11 +57,52 @@ if [[ ! -d $p ]]; then
   exit 1
 fi
 p=$(cd $p && pwd -P)
-cmd="rsync -a --delete $p/ $target_machine:/b/om/p/CRUZER/"
-echo "doing: $cmd"
-$cmd
-$bindir/humount
-/usr/bin/ssh $target_machine 'rm -f .ssh/authorized_keys'
 
+tmpdir=$(mktemp -d)
+
+cmd="(ssh om@$target_machine 'rsync -a --delete /b/om/p/CRUZER/') >'$tmpdir/list_remote.txt'"
+echo "doing: $cmd"
+eval $cmd
+
+cmd="(rsync -a --delete $p/) >'$tmpdir/list_local.txt'"
+echo "doing: $cmd"
+eval $cmd
+
+cmd="$bindir/rsync_list_normalize < '$tmpdir/list_remote.txt' >'$tmpdir/list_remote_normalized.txt'"
+echo "doing: $cmd"
+eval $cmd
+
+cmd="$bindir/rsync_list_normalize < '$tmpdir/list_local.txt' >'$tmpdir/list_local_normalized.txt'"
+echo "doing: $cmd"
+eval $cmd
+
+cmd="diff -u '$tmpdir/list_remote_normalized.txt' '$tmpdir/list_local_normalized.txt'"
+echo "doing: $cmd"
+eval $cmd
+
+exit_status=$?
+
+if [[ $exit_status != 0 ]]; then
+    echo
+    echo
+    echo
+    echo
+    printf "Again, PUSH to $target_machine? (YES/n): "
+    read yesno
+    if [[ $yesno != 'YES' ]]; then
+      exit_status=1
+    else
+        cmd="rsync -a --delete $p/ $target_machine:/b/om/p/CRUZER/"
+        echo "doing: $cmd"
+        eval $cmd
+    fi
+fi
+
+$bindir/humount
+/usr/bin/ssh om@$target_machine 'rm -f .ssh/authorized_keys'
 cp -p -f ~/.ssh/config.000 ~/.ssh/config
+cmd="rm -rf $tmpdir"
+echo "doing: $cmd"
+eval $cmd
+exit $exit_status
 
