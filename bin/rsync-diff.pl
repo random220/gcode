@@ -1,0 +1,23 @@
+use strict;
+open F, "<a.txt" or die;
+my @lines = <F>;
+close F;
+
+my @newlines = ();
+for my $line (@lines) {
+    chomp $line;
+    # -rw-r--r--       10244 2019/12/21 19:34:01 .DS_Store
+    # -rwxr-xr-x      167599 2016/02/09 00:30:48 000-Crondite/00-bills/00-bills-paid/20160209-ehost-Invoice 483995-1671435.pdf
+    next if ($line !~ m{^\-});
+    next if ($line =~ m{[\s/]\.DS_Store$});
+    $line =~ s{^\S+\s+}{}; #167599 2016/02/09 00:30:48 000-Crondite/00-bills/00-bills-paid/20160209-ehost-Invoice 483995-1671435.pdf
+    my ($size, $date, $time, $path) = $line =~ m{^(\S+)\s+(\S+)\s+(\S+)\s+(.+)$};
+    $size =~ s{,}{}g; # remove commas if any
+    $line = sprintf('%s __::::__ %20d %s %s %s'."\n", $path, $size, $date, $time, $path);
+    push @newlines, $line;
+}
+
+@newlines = map {s/^.* __::::__ //; $_} sort @newlines;
+open F, ">b.txt" or die;
+print F join '', @newlines;
+close F;
