@@ -11,7 +11,17 @@
 #     Hostname 192.168.10.180
 #     IdentityFile ~/.ssh/id_rsa
 # 
-cp -p -f ~/.ssh/config ~/.ssh/config.000
+
+ssh_config_backup=config._homesync
+if [[ -f ~/.ssh/$ssh_config_backup ]]; then
+    echo "ERROR: This file exists ~/.ssh/$ssh_config_backup"
+    exit 1
+fi
+
+cmd="cp -p -f ~/.ssh/config ~/.ssh/$ssh_config_backup"
+echo "doing: $cmd"
+eval $cmd
+
 cat > ~/.ssh/config <<EOF
 StrictHostKeyChecking=no
 CheckHostIP=no
@@ -103,7 +113,12 @@ fi
 
 $bindir/humount
 /usr/bin/ssh om@$target_machine 'rm -f .ssh/authorized_keys'
-cp -p -f ~/.ssh/config.000 ~/.ssh/config
+if [[ -f ~/.ssh/$ssh_config_backup ]]; then
+    cmd="mv  ~/.ssh/$ssh_config_backup ~/.ssh/config"
+    echo "doing: $cmd"
+    eval $cmd
+fi
+
 cmd="rm -rf $tmpdir"
 echo "doing: $cmd"
 eval $cmd
