@@ -76,11 +76,14 @@ cmd="$bindir/rsync_list_normalize < '$tmpdir/list_local.txt' >'$tmpdir/list_loca
 echo "doing: $cmd"
 eval $cmd
 
-cmd="diff -u '$tmpdir/list_remote_normalized.txt' '$tmpdir/list_local_normalized.txt'"
+cmd="diff -u '$tmpdir/list_remote_normalized.txt' '$tmpdir/list_local_normalized.txt' >'$tmpdir/diff.txt'"
 echo "doing: $cmd"
 eval $cmd
-
 exit_status=$?
+
+cmd="egrep -v 'gitted/sandbox/\.git/' <'$tmpdir/diff.txt'"
+echo "doing: $cmd"
+eval $cmd
 
 if [[ $exit_status != 0 ]]; then
     echo
