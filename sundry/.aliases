@@ -43,7 +43,7 @@ if [[ $(uname) == Linux ]]; then
 else
   alias ls='ls -G'
 fi
-alias ll="ls -altr"
+alias ll="ls -altr --quoting-style=shell-escape"
 alias vi=vim
 
 alias rw='vimdiff ~/zr.txt ~/zw.txt'
