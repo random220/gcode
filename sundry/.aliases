@@ -37,13 +37,15 @@ alias ps1="echo export PS1=\''$PS1'\'"
 
 export HISTTIMEFORMAT="%F %T "
 export P4CONFIG=.p4config
+export P4PORT=build-p4proxy.eng.vmware.com:1666
 
 if [[ $(uname) == Linux ]]; then
   alias ls='ls --color=auto'
 else
   alias ls='ls -G'
 fi
-alias ll="ls -altr --quoting-style=shell-escape"
+#alias ll="ls -altr --quoting-style=shell-escape"
+alias ll="ls -altr"
 alias vi=vim
 
 alias rw='vimdiff ~/zr.txt ~/zw.txt'
