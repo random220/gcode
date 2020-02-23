@@ -1,0 +1,15 @@
+#!/usr/bin/perl
+use strict;
+system 'mv front.jpeg "front 0.jpeg"';
+system 'mv back.jpeg "back 0.jpeg"';
+my $cmd = 'ls -1 front*.jpeg';
+my @fronts = `$cmd`;
+my $n = scalar @fronts;
+
+for (my $i = 0; $i < $n; $i++) {
+    my $x = $i;
+    my $y = $n - $i - 1;
+    my $z = sprintf('%03d', $x);
+    system "mv 'front $x'.jpeg $z-a.jpeg";
+    system "mv 'back $y'.jpeg $z-b.jpeg";
+}
