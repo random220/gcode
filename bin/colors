@@ -4,8 +4,5 @@ for $i (0..255) {
     $code = "\e[1m\e[38;5;${i}m ABCDE \e[0m\e[0m";
     printf(' | %03d : %s', $i, $code);
     $j++;
-    if ($j == 7) {
-        print " |\n";
-        $j = 0;
-    }
+    print "\n" if ($j % 4 == 0);
 }
