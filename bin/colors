@@ -1,0 +1,4 @@
+#!/usr/bin/perl
+for $i (0..255) {
+    print "$i : \e[1m\e[38;5;${i}m ABCDE \e[0m\e[0m\n";
+}
