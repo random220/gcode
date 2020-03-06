@@ -1,0 +1,127 @@
+apt-get -y install zfsutils-linux
+
+--------------------------------------------------------------------------------
+Delete any profile that uses a storage
+--------------------------------------------------------------------------------
+        lxc profile device remove default root
+
+        om@ub18:/b$ lxc profile list                      
+        +---------+---------+
+        |  NAME   | USED BY |
+        +---------+---------+
+        | default | 0       |
+        +---------+---------+
+
+        lxc profile show default
+
+        om@ub18:/b$ lxc profile show default
+        config: {}
+        description: Default LXD profile
+        devices:
+          eth0:
+            name: eth0
+            nictype: bridged
+            parent: lxdbr0
+            type: nic
+          root:
+            path: /
+            pool: default
+            type: disk
+        name: default
+        used_by: []
+
+        om@ub18:/b$ lxc profile device remove default root
+        Device root removed from default
+
+        om@ub18:/b$ lxc profile show default
+        config: {}
+        description: Default LXD profile
+        devices:
+          eth0:
+            name: eth0
+            nictype: bridged
+            parent: lxdbr0
+            type: nic
+        name: default
+        used_by: []
+
+--------------------------------------------------------------------------------
+Delete the storage
+--------------------------------------------------------------------------------
+        om@ub18:/b$ lxc storage list
+        +---------+-------------+--------+--------------------------------+---------+
+        |  NAME   | DESCRIPTION | DRIVER |             SOURCE             | USED BY |
+        +---------+-------------+--------+--------------------------------+---------+
+        | default |             | zfs    | /var/lib/lxd/disks/default.img | 0       |
+        +---------+-------------+--------+--------------------------------+---------+
+
+        om@ub18:/b$ lxc storage rm default
+        Storage pool default deleted
+
+	om@ub18:/b$ lxc storage list
+	+------+-------------+--------+--------+---------+
+	| NAME | DESCRIPTION | DRIVER | SOURCE | USED BY |
+	+------+-------------+--------+--------+---------+
+
+	om@ub18:/b$ sudo zpool list
+	no pools available
+
+--------------------------------------------------------------------------------
+Create a pool with zfs without involving lxd yet
+--------------------------------------------------------------------------------
+	sudo truncate -s 50G /b/50gb-zfsback.img
+		# % ls -dl /b/50gb-zfsback.img
+		# -rw-r--r-- 1 root root 53687091200 Mar  6 22:15 /b/50gb-zfsback.img
+		# % du -skh /b/50gb-zfsback.img
+		# 0        /b/50gb-zfsback.img
+	sudo zpool create zp0 /b/50gb-zfsback.img
+
+	om@ub18:/b$ sudo zfs list
+	NAME   USED  AVAIL  REFER  MOUNTPOINT
+	zp0   82.5K  48.2G    24K  /zp0
+
+--------------------------------------------------------------------------------
+Now give that to lxd to use
+--------------------------------------------------------------------------------
+	om@ub18:/b$ lxc storage create my-lxc-zp0 zfs source=zp0
+	Storage pool my-lxc-zp0 created
+
+	om@ub18:/b$ sudo zfs list 
+	NAME             USED  AVAIL  REFER  MOUNTPOINT
+	zp0              294K  48.2G    24K  none
+	zp0/containers    24K  48.2G    24K  none
+	zp0/custom        24K  48.2G    24K  none
+	zp0/deleted       24K  48.2G    24K  none
+	zp0/images        24K  48.2G    24K  none
+	zp0/snapshots     24K  48.2G    24K  none
+
+	om@ub18:/b$ lxc storage list
+	+------------+-------------+--------+--------+---------+
+	|    NAME    | DESCRIPTION | DRIVER | SOURCE | USED BY |
+	+------------+-------------+--------+--------+---------+
+	| my-lxc-zp0 |             | zfs    | zp0    | 0       |
+	+------------+-------------+--------+--------+---------+
+
+
+--------------------------------------------------------------------------------
+Make that the default storage pool
+--------------------------------------------------------------------------------
+	om@ub18:/b$ lxc profile device add default root disk path=/ pool=my-lxc-zp0
+	Device root added to default
+
+	om@ub18:/b$ lxc profile show default
+	config: {}
+	description: Default LXD profile
+	devices:
+	  eth0:
+	    name: eth0
+	    nictype: bridged
+	    parent: lxdbr0
+	    type: nic
+	  root:
+	    path: /
+	    pool: my-lxc-zp0
+	    type: disk
+	name: default
+	used_by: []
+
