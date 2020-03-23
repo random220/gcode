@@ -1,0 +1,30 @@
+#!/usr/bin/perl
+use strict;
+
+my $prevline;
+my $name;
+my $border;
+while(my $line = <STDIN>) {
+    # Content-type: image/jpeg; name="image007.jpg";
+    if ($line =~ m{^Content-type:.*; name="(.+?)"}) {
+        $name = $1;
+        $prevline =~ s{^\s*}{}s;
+        $prevline =~ s{\s*$}{}s;
+        $border = quotemeta $prevline;
+        if ($name =~ /pdf/) {
+            3;
+        }
+        while ($line = <STDIN>) {
+            last if($line =~ m{^\s*$}s);
+        }
+        open F, ">_a.txt" or die;
+        while($line = <STDIN>) {
+            last if($line =~ /$border/);
+            next if ($line =~ m{^\s*$}s);
+            print F $line;
+        }
+        close F;
+        system "openssl enc -d -base64 >'$name' <_a.txt";
+    }
+    $prevline = $line;
+}
