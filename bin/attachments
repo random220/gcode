@@ -11,9 +11,6 @@ while(my $line = <STDIN>) {
         $prevline =~ s{^\s*}{}s;
         $prevline =~ s{\s*$}{}s;
         $border = quotemeta $prevline;
-        if ($name =~ /pdf/) {
-            3;
-        }
         while ($line = <STDIN>) {
             last if($line =~ m{^\s*$}s);
         }
@@ -28,3 +25,5 @@ while(my $line = <STDIN>) {
     }
     $prevline = $line;
 }
+
+unlink '_a.txt';
