@@ -20,7 +20,7 @@ sub nextdate
 {
     if (!defined $CC) {
         $CC = '20';
-        $YY = '00';
+        $YY = '20';
         $MM = '01';
         $DD = '01';
         $hh = '00';
