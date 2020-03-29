@@ -1,0 +1,46 @@
+#!/usr/bin/perl
+use strict;
+use Data::Dumper;
+
+my @things = `ls -1`;
+@things = grep {/^\d\d\d\d--/} @things;
+@things = map {chomp; $_} @things;
+@things = sort {$a <=> $b} @things;
+
+for my $thing (@things) {
+    my $date = nextdate();
+    my $cmd = "touch -t $date \"$thing\"";
+    print "$cmd\n";
+}
+
+{
+my ($CC, $YY, $MM, $DD, $hh, $mm, $ss);
+#;use [[CC]YY]MMDDhhmm[.ss]
+sub nextdate
+{
+    if (!defined $CC) {
+        $CC = '20';
+        $YY = '00';
+        $MM = '01';
+        $DD = '01';
+        $hh = '00';
+        $mm = '00';
+        $ss = '00';
+    }
+    else {
+        $mm++;
+        if ($mm == 60) {
+            $mm = 0;
+            $hh++;
+        }
+        if ($hh == 60) {
+            $hh = 0;
+            $DD++;
+        }
+    }
+    return sprintf('%02d%02d%02d%02d%02d%02d.%02d', $CC, $YY, $MM, $DD, $hh, $mm, $ss);
+}
+}
+
+
+
