@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [[ "$1" == '' ]]; then
+  exit 0
+fi
+
+if [[ ! -f "$1" ]]; then
+  exit 0
+fi
+
+(
+cd ~/.config/transmission
+rm -rf blocklists resume torrents stats.json dht.dat
+)
+
+exec transmission-cli -f ~/bin/killme -w ~/Downloads/uu "$1"
