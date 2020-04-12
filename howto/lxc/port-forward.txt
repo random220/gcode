@@ -11,6 +11,8 @@ container to perform the setup.
 
 $ lxc config device add nginx nginx80  proxy listen=tcp:0.0.0.0:80  connect=tcp:localhost:80
 $ lxc config device add nginx nginx443 proxy listen=tcp:0.0.0.0:443 connect=tcp:localhost:443
+$ lxc config device add nginx p81 proxy listen=tcp:0.0.0.0:81 connect=tcp:localhost:80
+$ lxc config device add nginx p22 proxy listen=tcp:0.0.0.0:2222 connect=tcp:localhost:22
 
 What we do here is:
 
