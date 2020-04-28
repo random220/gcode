@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ ! -f /opt/google/chrome/chrome ]]; then
+  exit 1
+fi
+
+ddir=~/.google/shubro
+mkdir -p $ddir
+nohup /opt/google/chrome/chrome --user-data-dir=$ddir >/dev/null 2>&1 &
