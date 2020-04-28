@@ -1,9 +1,21 @@
 #!/bin/bash
 
-if [[ ! -f /opt/google/chrome/chrome ]]; then
+if [[ -f '/opt/google/chrome/chrome' ]]; then
+  g='/opt/google/chrome/chrome'
+elif [[ -f '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' ]]; then
+  g='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+else
   exit 1
 fi
 
-ddir=~/.google/shubro
+name=$(basename "$0")
+if [[ $name == 'gosh' ]]; then
+  ddir=~/.google/shubro
+elif [[ $name == 'gom' ]]; then
+  ddir=~/.google/om
+else
+  exit 1
+fi
+
 mkdir -p $ddir
-nohup /opt/google/chrome/chrome --user-data-dir=$ddir >/dev/null 2>&1 &
+bash -c "nohup '$g' --user-data-dir=$ddir >/dev/null 2>&1 &"
