@@ -1,0 +1,10 @@
+Found a way to do  the clobber merge
+The command should have been git checkout early-access; git merge -s theirs origin/main
+trouble is only -s ours works. Not -s theirs (edited) 
+So, workaround.
+git checkout main; git branch a; git checkout a
+git merge -s ours --no-ff early-access
+git checkout early-access
+git merge a
+git branch -d a
+that's it
