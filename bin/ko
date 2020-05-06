@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export _MYPID=$$
-#(
+(
 export PATH='/home/om/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'
 
 mkdir -p $HOME/.kodis
@@ -17,44 +17,22 @@ fi
 
 echo $_MYPID >$HOME/.kodis/pid
 
-do_respond()
-{
-  cat >a.txt
-  cat a.txt | grep '^GET /kodido' >/dev/null 2>&1
-  if [[ $? == 0 ]]; then
-    msg='<html><body><h1>It works!</h1></body></html>'
-    len='44'
-  else
-    msg='<html><body><h1>Oops!</h1></body></html>'
-    len='40'
-  fi
-
-  now=$(date)
-  cat <<EOF
+while :; do
+  temp_file=$(mktemp)
+  cat <<EOF | nc -l 8888 >a.txt
 HTTP/1.1 200 OK
-Date: $now
+Date: Sun, 18 Oct 2009 08:56:53 GMT
 Server: Apache/2.2.14 (Win32)
-Last-Modified: $now
+Last-Modified: Sat, 20 Nov 2004 07:16:26 GMT
 ETag: "10000000565a5-2c-3e94b66c2e680"
 Accept-Ranges: bytes
-Content-Length: $len
+Content-Length: 44
 Connection: close
 Content-Type: text/html
 X-Pad: avoid browser bug
 
-$msg
+<html><body><h1>It workss!</h1></body></html>
 EOF
-  #$HOME/gcode/bin/k >/dev/null 2>&1
-}
-
-
-while :; do
-  rm -f fifo
-  mknod -m 700 fifo p
-  cat fifo | do_respond | nc -l 8888 >fifo
+  #$HOME/gcode/bin/k
 done
-#) >/dev/null 2>&1
-
-
-
-
+) >/dev/null 2>&1

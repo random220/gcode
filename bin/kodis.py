@@ -8,7 +8,48 @@ import socket
 os.environ['PATH'] = '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 
 
+
 def main():
+    # https://realpython.com/python-sockets/#echo-client-and-server
+    HOST = '0.0.0.0'  # Standard loopback interface address (localhost)
+    PORT = 8888       # Port to listen on (non-privileged ports are > 1023)
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+	s.bind((HOST, PORT))
+	s.listen()
+	conn, addr = s.accept()
+	with conn:
+	    print('Connected by', addr)
+	    while True:
+		data = conn.recv(1024)
+		if not data:
+		    break
+		#conn.sendall(respond(data))
+		conn.sendall(data)
+
+def respond(data):
+    now = time.strftime("%a, %d %b %Y %H:%M:%S %Z", time.localtime())
+    # Mon, 12 Aug 2019 06:24:40 UTC
+    real_message = '<html><body><h1>It works!</h1></body></html>'
+    nbytes = str(len(real_message)+1)
+    
+    text_tosend = '''\
+HTTP/1.1 200 OK
+Date: {now}
+Server: Apache/2.2.14 (Win32)
+Last-Modified: {now}
+ETag: "10000000565a5-2c-3e94b66c2e680"
+Accept-Ranges: bytes
+Content-Length: {nbytes}
+Connection: close
+Content-Type: text/html
+X-Pad: avoid browser bug
+
+{message}
+'''.format(now=now, nbytes=nbytes, message=real_message)
+  
+    return text_tosend
+
+def main0():
   # https://pymotw.com/2/socket/tcp.html
 
   # Create a TCP/IP socket
@@ -32,20 +73,18 @@ def main():
   recv_size = 100
   try:
     while True:
-      print(text_received)
       # Receive data 16 bytes of data
       data = connection.recv(recv_size)
       text_received = text_received+data
       if len(data) < recv_size:
-      #if len(data) == 0:
         break
-    print(len(text_received))
-    print(text_received)
+    with open('a.txt', 'wt') as f:
+      f.write(text_received)
   
     now = time.strftime("%a, %d %b %Y %H:%M:%S %Z", time.localtime())
     # Mon, 12 Aug 2019 06:24:40 UTC
     real_message = '<html><body><h1>It works!</h1></body></html>'
-    nbytes = str(len(real_message) + 1)
+    nbytes = str(len(real_message)+1)
     
     
     text_tosend = '''\
@@ -65,8 +104,13 @@ X-Pad: avoid browser bug
   
     connection.sendall(text_tosend)
 
+  except:
+    print('--here')
   finally:
+    print('--there')
     connection.close()
+    sock.shutdown()
+    sock.close()
 
 main()
 
