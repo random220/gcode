@@ -20,9 +20,9 @@
 	?^<<<<<<< v/^||||||| :w! ~/wx.txt/v/^=======$:w! ~/lx.txt/v/^>>>>>>> :w! ~/rx.txt
 "u@	CHAR	0
 	:sp /tmp/auau.txt:%dj:%ykpkdd:%!openssl enc -base64:%s/^/"/:%s/$/\\n"/:%yjpk:q!
-"z	CHAR	0
-	?^<<<<<<< HEAD$ma/^||||||| merged common ancestors$:'a,. w! ~/zw.txtma/^=======$:'a,. w! ~/zl.txtma/^>>>>>>> :'a,. w! ~/zr.txt:sp ~/zl.txt1GddGdd:w!:e! ~/zr.txt1GddGdd:w!:e! ~/zw.txt1GddGdd:wqk
 "j	CHAR	0
 	i|j
 "q	CHAR	0
 	1G/define FEATURES_DEF_ALLjjmaGk$a          \:'a,.!sort
+"z@	CHAR	0
+	?^<<<<<<< ma/^||||||| :'a,.w! ~/zw.txtma/^=======$:'a,.w!~/zl.txtma/^>>>>>>> :'a,.w! ~/zr.txt:sp ~/zl.txt1GddGdd:w:e! ~/zr.txt1GddGdd:w:e! ~/zw.txt1GddGdd:w:q
