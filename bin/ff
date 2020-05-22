@@ -1,0 +1,19 @@
+#!/bin/bash
+
+ff=/Applications/Firefox.app/Contents/MacOS/firefox
+
+if [[ -f $ff ]]; then
+  :
+else
+  exit 1
+fi
+
+bn=$(basename "$0")
+ddir=~/.firefox/$bn
+mkdir -p $ddir
+
+if [[ $bn == 'ff' ]]; then
+  nohup bash -c "'$ff' --profile $ddir; rm -rf $ddir" >/dev/null 2>&1 &
+else
+  nohup bash -c "'$ff' --profile $ddir" >/dev/null 2>&1 &
+fi

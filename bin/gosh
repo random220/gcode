@@ -8,14 +8,6 @@ else
   exit 1
 fi
 
-name=$(basename "$0")
-if [[ $name == 'gosh' ]]; then
-  ddir=~/.google/shubro
-elif [[ $name == 'gom' ]]; then
-  ddir=~/.google/om
-else
-  exit 1
-fi
-
+ddir=~/.google/$(basename "$0")
 mkdir -p $ddir
 bash -c "nohup '$g' --user-data-dir=$ddir >/dev/null 2>&1 &"
