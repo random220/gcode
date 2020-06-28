@@ -5,6 +5,10 @@ ifconfig -a|egrep 'inet .*192\.168\.10\.' >/dev/null 2>&1
 if [[ $? == 0 ]]; then
   target_machine='192.168.10.180'
 fi
+ifconfig -a|egrep 'inet .*192\.168\.11\.' >/dev/null 2>&1
+if [[ $? == 0 ]]; then
+  target_machine='192.168.10.180'
+fi
 
 cmd="ssh -t om@$target_machine gcode/bin/vmount"
 echo $cmd
