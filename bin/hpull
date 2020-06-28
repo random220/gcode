@@ -45,6 +45,10 @@ ifconfig -a|egrep 'inet .*192\.168\.10\.' >/dev/null 2>&1
 if [[ $? == 0 ]]; then
   target_machine='home_localip'
 fi
+ifconfig -a|egrep 'inet .*192\.168\.11\.' >/dev/null 2>&1
+if [[ $? == 0 ]]; then
+  target_machine='home_localip'
+fi
 
 printf "Pull from $target_machine? (y/n): "
 read yesno
