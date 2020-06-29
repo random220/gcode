@@ -6,12 +6,16 @@ h=$(hostname)
 #    exit 0
 #fi
 
-ifc=$(ifconfig -a | grep '192\.168\.10\.')
 
-remote='192.168.10.180'
-if [[ $ifc == '' ]]; then
-    # We are outside home
-    remote='crondite.duckdns.org'
+# We are outside home
+remote='crondite.duckdns.org'
+ifc=$(ifconfig -a | grep '192\.168\.10\.')
+if [[ $ifc != '' ]]; then
+  remote='192.168.10.180'
+fi
+ifc=$(ifconfig -a | grep '192\.168\.11\.')
+if [[ $ifc != '' ]]; then
+  remote='192.168.10.180'
 fi
 
 ssh -D 9999 \
