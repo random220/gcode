@@ -1,0 +1,20 @@
+#!/bin/bash
+
+export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin
+
+ssh -t hh /home/om/gcode/bin/vmount
+vmount
+d=$HOME/b/om/p/CRUZER/gitted/sandbox
+if [[ ! -d $d ]]; then
+  d=/b/om/p/CRUZER/gitted/sandbox
+fi
+if [[ ! -d $d ]]; then
+  echo "$d not found"
+  exit 1
+fi
+
+cd $d
+git fetch hh:/b/om/p/CRUZER/gitted/sandbox/.git
+git branch b FETCH_HEAD
+git merge b
+bash
