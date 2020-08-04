@@ -111,3 +111,4 @@ if [[ -f $HOME/ww/.vmware_aliases ]]; then
 fi
 alias ovftool='/Applications/VMware\ OVF\ Tool/ovftool'
 alias t='touch ~/a.txt; open ~/a.txt'
+alias mp=multipass
