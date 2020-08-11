@@ -112,5 +112,6 @@ fi
 alias ovftool='/Applications/VMware\ OVF\ Tool/ovftool'
 alias t='touch ~/a.txt; open ~/a.txt'
 alias mp=multipass
-alias jl='jupyter lab --ContentsManager.allow_hidden=True'
+
+alias jl='LC_ALL=C.UTF-8 LANG=C.UTF-8 pipenv run jupyter lab --ContentsManager.allow_hidden=True'
 alias vmr='"/Applications/VMware Fusion.app/Contents/Library/vmrun"'
