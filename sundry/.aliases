@@ -7,7 +7,7 @@ fi
 export VISUAL=vi
 export EDITOR=vi
 
-export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+export PATH=$HOME/.local/bin:$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
 alias vera='(veracrypt&)'
 on_mint=0
@@ -115,3 +115,4 @@ alias mp=multipass
 
 alias jl='LC_ALL=C.UTF-8 LANG=C.UTF-8 pipenv run jupyter lab --ContentsManager.allow_hidden=True'
 alias vmr='"/Applications/VMware Fusion.app/Contents/Library/vmrun"'
+alias sd='ssh d'
