@@ -1,0 +1,13 @@
+#!/bin/bash
+
+today=$(date '+%Y-%m-%d')
+
+f=$HOME/Desktop/'Fidelity Investments.pdf'
+if [[ -f $f ]]; then
+  mv "$f" $HOME/b/om/p/CRUZER/mydata/OM/02-MONEYPIT/FINANCIAL-SNAPSHOTS/$today-fidelity.pdf
+fi
+
+f=$HOME/Desktop/'Mint _ Overview.pdf'
+if [[ -f $f ]]; then
+  mv "$f" $HOME/b/om/p/CRUZER/mydata/OM/02-MONEYPIT/FINANCIAL-SNAPSHOTS/$today-mint.pdf
+fi
