@@ -1,6 +1,7 @@
 #!/bin/bash
+set -x
 
-today=$(date '+%Y-%m-%d')
+today=$(date '+%Y-%m-%d--%H-%M-%S')
 
 f=$HOME/Desktop/'Fidelity Investments.pdf'
 if [[ -f $f ]]; then
