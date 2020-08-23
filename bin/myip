@@ -1,6 +1,7 @@
 #!/bin/bash
 #dig +short myip.opendns.com @resolver1.opendns.com
-curl checkip.amazonaws.com
+curl -4 icanhazip.com
+#curl checkip.amazonaws.com
 #curl ifconfig.me
 #curl icanhazip.com
 #curl ipecho.net/plain
