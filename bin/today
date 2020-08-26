@@ -3,12 +3,24 @@ set -x
 
 today=$(date '+%Y-%m-%d--%H-%M-%S')
 
+f=$HOME/Desktop/'Fidelity GPS _ Guided Portfolio Summary SM.pdf'
+if [[ -f $f ]]; then
+  mv "$f" $HOME/b/om/p/CRUZER/mydata/OM/02-MONEYPIT/FINANCIAL-SNAPSHOTS/$today-fidelity-analysis.pdf
+fi
+
+d=$HOME/b/om/p/CRUZER/mydata/OM/02-MONEYPIT/FINANCIAL-SNAPSHOTS
+if [[ ! -d $d ]]; then
+  echo "Not found $d"
+  exit 1
+fi
+
 f=$HOME/Desktop/'Fidelity Investments.pdf'
 if [[ -f $f ]]; then
-  mv "$f" $HOME/b/om/p/CRUZER/mydata/OM/02-MONEYPIT/FINANCIAL-SNAPSHOTS/$today-fidelity.pdf
+  mv "$f" $d/$today-fidelity.pdf
 fi
 
 f=$HOME/Desktop/'Mint _ Overview.pdf'
 if [[ -f $f ]]; then
-  mv "$f" $HOME/b/om/p/CRUZER/mydata/OM/02-MONEYPIT/FINANCIAL-SNAPSHOTS/$today-mint.pdf
+  mv "$f" $d/$today-mint.pdf
 fi
+open $d
