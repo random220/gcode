@@ -3,19 +3,24 @@ import re
 import os,sys
 from exif import Image
 
-def main():
+class G:
     fromroot = '/shares/data/memories/Blackmachine-under-om-desk'
     toroot   = '/shares/data/memories/SORTED'
 
-    for dirName, subdirList, fileList in os.walk(fromroot):
+def main():
+
+    for dirName, subdirList, fileList in os.walk(G.fromroot):
         for fileBaseName in fileList:
             filename = dirName+'/'+fileBaseName
+            print(filename)
             doit(filename)
 
 def doit(filename):
     if not os.path.isfile(filename):
         sys.exit(1)
     size = os.path.getsize(filename)
+    if size > 10*1024*1024:
+        return
 
     extn = ''
     m = re.search(r'\.([^\.]+)$', filename)
@@ -23,44 +28,56 @@ def doit(filename):
         extn = m.group(1)
 
     with open(filename, 'rb') as f:
-       i = Image(f)
-       try:
-           dt = i.datetime
-           # 2015:11:27 15:21:37
-       except KeyError:
-           print(f'NODATE: {filename}')
-           return
 
-       m = re.search(r'^(\d\d\d\d):(\d\d):(\d\d) (\d\d):(\d\d):(\d\d)$', dt)
-       if m:
-           (Y,M,D, h,m,s) = m.groups()
-       else:
-           print(f'NO-GOOD-DATE: {filename}')
-           return
+        try:
+            i = Image(f)
+        except:
+            print(f'NO EXIF: {filename}')
+            return
 
-       dest_dirname  = f'/shares/data/memories/sorted/{Y}-{M}-{D}'
-       cwd = os.getcwd()
-       dest_dirname  = f'{cwd}/shares/data/memories/sorted/{Y}-{M}-{D}'
-       dest_basename = f'{h}-{m}-{s}-size-{size}.{extn}'
-       dest = f'{dest_dirname}/{dest_basename}'
-       if os.path.isfile(dest):
-           print(f'DUPE {dest} : {filename}')
-           return
+        try:
+            dt = i.datetime
+            # 2015:11:27 15:21:37
+        except KeyError:
+            print(f'NODATE: {filename}')
+            return
+      
+        m = re.search(r'^(\d\d\d\d):(\d\d):(\d\d) (\d\d):(\d\d):(\d\d)$', dt)
+        if m:
+            (Y,M,D, h,m,s) = m.groups()
+        else:
+            print(f'NO-GOOD-DATE: {filename}')
+            return
+      
+        dest_dirname  = f'{G.toroot}/{Y}-{M}-{D}'
+        dest_basename = f'{h}-{m}-{s}-size-{size}.{extn}'
+        dest = f'{dest_dirname}/{dest_basename}'
+        if os.path.isfile(dest):
+            import hashlib
+            hash_dest = hashlib.md5(dest).hexdigest()
+            hash_new  = hashlib.md5(filename).hexdigest()
+            if hash_dest == hash_new:
+                print(f'DUPE {dest} : {filename}')
+                os.unlink(filename)
+            else:
+                print(f'DUPE-NOT {dest} : {filename}')
 
-       if not os.path.isdir(dest_dirname):
-           try:
-               os.makedirs(dest_dirname, exist_ok=True)
-           except:
-               print(f'ERROR: failed to create directory {dest_dirname}')
-               sys.exit(1)
-
-       try:
-           os.link(filename, dest)
-       except:
-           print(f'HARDLINKERROR: {filename}, {dest}')
-           return
-
-       os.unlink(filename)
+            return
+      
+        if not os.path.isdir(dest_dirname):
+            try:
+                os.makedirs(dest_dirname, exist_ok=True)
+            except:
+                print(f'ERROR: failed to create directory {dest_dirname}')
+                sys.exit(1)
+      
+        try:
+            os.link(filename, dest)
+        except:
+            print(f'HARDLINKERROR: {filename}, {dest}')
+            return
+      
+        os.unlink(filename)
 
 
 main()
