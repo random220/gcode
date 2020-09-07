@@ -54,8 +54,8 @@ def doit(filename):
         dest = f'{dest_dirname}/{dest_basename}'
         if os.path.isfile(dest):
             import hashlib
-            hash_dest = hashlib.md5(dest).hexdigest()
-            hash_new  = hashlib.md5(filename).hexdigest()
+            hash_dest = hashlib.md5(open(dest,'rb').read()).hexdigest()
+            hash_new  = hashlib.md5(open(filename,'rb').read()).hexdigest()
             if hash_dest == hash_new:
                 print(f'DUPE {dest} : {filename}')
                 os.unlink(filename)
