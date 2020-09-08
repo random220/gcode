@@ -9,6 +9,13 @@ class G:
 
 def main():
 
+    if len(sys.argv) == 2:
+        if os.path.isdir(sys.argv[1]):
+            G.fromroot = sys.argv[1]
+        else:
+            print('ERROR: not a dir '+sys.argv[1])
+            sys.exit(1)
+
     for dirName, subdirList, fileList in os.walk(G.fromroot):
         for fileBaseName in fileList:
             m = re.search(r'\.jpg$|\.jpeg$', fileBaseName, re.IGNORECASE)
@@ -37,11 +44,19 @@ def doit(filename):
             print(f'NO EXIF: {filename}')
             return
 
-        try:
-            dt = i.datetime
+        keys = set(dir(i))
+        if 'datetime_original' in keys:
+            dt = i.datetime_original
             # 2015:11:27 15:21:37
-        except KeyError:
+        elif 'datetime_digitized' in keys:
+            dt = i.datetime_digitized
+        elif 'datetime' in keys:
+            dt = i.datetime
+        else:
             print(f'NODATE: {filename}')
+            print(dir(i))
+            # TODO need to fix
+            sys.exit(1)
             return
       
         m = re.search(r'^(\d\d\d\d):(\d\d):(\d\d) (\d\d):(\d\d):(\d\d)$', dt)
@@ -51,8 +66,8 @@ def doit(filename):
             print(f'NO-GOOD-DATE: {filename}')
             return
       
-        dest_dirname  = f'{G.toroot}/{Y}-{M}-{D}'
-        dest_basename = f'{h}-{m}-{s}-size-{size}.{extn}'
+        dest_dirname  = f'{G.toroot}/{Y}/{Y}-{M}-{D}'
+        dest_basename = f'{Y}{M}{D}-{h}{m}{s}-size-{size}.{extn}'
         dest = f'{dest_dirname}/{dest_basename}'
         if os.path.isfile(dest):
             import hashlib
