@@ -11,9 +11,11 @@ def main():
 
     for dirName, subdirList, fileList in os.walk(G.fromroot):
         for fileBaseName in fileList:
-            filename = dirName+'/'+fileBaseName
-            print(filename)
-            doit(filename)
+            m = re.search(r'\.jpg$|\.jpeg$', fileBaseName, re.IGNORECASE)
+            if m:
+                filename = dirName+'/'+fileBaseName
+                print(filename)
+                doit(filename)
 
 def doit(filename):
     if not os.path.isfile(filename):
