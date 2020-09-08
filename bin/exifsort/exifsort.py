@@ -28,8 +28,8 @@ def doit(filename):
     if not os.path.isfile(filename):
         sys.exit(1)
     size = os.path.getsize(filename)
-    if size > 10*1024*1024:
-        return
+    # if size > 10*1024*1024:
+    #     return
 
     extn = ''
     m = re.search(r'\.([^\.]+)$', filename)
