@@ -1,0 +1,5 @@
+# pipenv install pyinstaller
+# pipenv install staticx
+# wget https://files.pythonhosted.org/packages/74/66/674a6a40d4bcfe55f2333da84d8cf7b65e89abe8debdc9964c53632d7509/exif-1.0.1-py3-none-any.whl
+# pipenv install exif-1.0.1-py3-none-any.whl
+# pipenv shell
