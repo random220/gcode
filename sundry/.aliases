@@ -85,7 +85,8 @@ alias pp='enscript -2rG --colo=1 --line-numbers -p out.ps --highlight=python -c'
 
 gits()
 {
-git config credential.helper store
+#git config credential.helper store
+git config --global credential.helper cache
 git config --global color.ui true
 git config --global push.default matching
 git config --global merge.conflictstyle diff3
