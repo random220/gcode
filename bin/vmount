@@ -1,24 +1,41 @@
 #!/bin/bash
 
 export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
-if [[ -f /b/om/CRUZER.vol ]]; then
-  vera_volume=/b/om/CRUZER.vol
-elif [[ $HOME/b/om/CRUZER.vol ]]; then
-  vera_volume=$HOME/b/om/CRUZER.vol
-else
+
+volpaths=('/b/om/CRUZER.vol' "$HOME/b/om/CRUZER.vol")
+
+vera_volume=''
+for v in ${volpaths[@]};  do
+  if [[ -f $v ]]; then
+    vera_volume=$v
+  fi
+done
+
+if [[ $vera_volume == '' ]]; then
   echo "ERROR: Did not find veracrypt volume
   exit 1"
 fi
 
-mountpoint=/b/om/p
-if [[ ! -d $mountpoint ]]; then
-  mountpoint=$HOME/b/om/p
+
+mountpoints=('/b/om/p' "$HOME/b/om/p")
+mountpoint=''
+for m in ${mountpoints[@]}; do
+  if [[ -d $m ]]; then
+    mountpoint=$(cd "$m" && /bin/pwd -P)
+  fi
+done
+
+if [[ $mountpoint == '' ]]; then
+  mountpoint="$HOME/b/om/l"
+  mkdir -p $mountpoint
 fi
+
 if [[ ! -d $mountpoint ]]; then
-  echo "ERROR: $mountpoint not found"
+  echo "Error: Could not create mountpoint dir $mountpoint"
   exit 1
 fi
-mountpoint=$(cd $mountpoint && /bin/pwd -P)
+mountpoint=$(cd "$mountpoint" && /bin/pwd -P)
+
 
 veracrypt='veracrypt'
 uname=$(uname)

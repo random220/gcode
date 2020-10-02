@@ -10,38 +10,34 @@ fi
 veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
 
 
-mountpoint=/b/om/l
-if [[ ! -d $mountpoint ]]; then
-  mountpoint=$HOME/b/om/l
+mountpoints=('/b/om/l' "$HOME/b/om/l")
+mountpoint=''
+for m in ${mountpoints[@]}; do
+  if [[ -d $m ]]; then
+    mountpoint=$(cd "$m" && /bin/pwd -P)
+  fi
+done
+
+if [[ $mountpoint == '' ]]; then
+  mountpoint="$HOME/b/om/l"
+  mkdir -p $mountpoint
 fi
+
 if [[ ! -d $mountpoint ]]; then
-  echo "ERROR: $mountpoint not found"
+  echo "Error: Could not create mountpoint dir $mountpoint"
   exit 1
 fi
-mountpoint=$(cd $mountpoint && /bin/pwd -P)
+mountpoint=$(cd "$mountpoint" && /bin/pwd -P)
 
 vera_volume=''
 
-tmpdir=$(mktemp -d)
-ls -1tr \
-/Volumes/3TB/om/LCRUZER.vol \
-/Volumes/1TB/CRUZER-20GB-MacOS.vol \
-/Volumes/data/LCRUZER.vol \
->$tmpdir/volfiles.txt 2>/dev/null
-
-n=$(wc -l $tmpdir/volfiles.txt | awk '{print $1}')
-if [[ $n == 0 ]]; then
-  :
-elif [[ $n == 1 ]]; then
-  vera_volume=$(cat $tmpdir/volfiles.txt)
-else
-  echo
-  echo 'You have multiple vera volumes. Not knowing which one to do, aborting.'
-  echo
-  cat $tmpdir/volfiles.txt
-  rm -rf $tmpdir
-  exit 1
-fi
+volfiles=('/Volumes/3TB/om/LCRUZER.vol' '/Volumes/1TB/CRUZER-20GB-MacOS.vol' '/Volumes/data/LCRUZER.vol')
+vera_volume=''
+for v in ${volfiles[@]}; do
+  if [[ -f $v ]]; then
+    vera_volume=$v
+  fi
+done
 
 if [[ $vera_volume == '' ]]; then
   # % mount
@@ -81,14 +77,6 @@ fi
 
 if [[ $vera_volume == '' ]]; then
   echo "Error: Volume not found"
-  exit 1
-fi
-
-if [[ ! -d $mountpoint ]]; then
-  mkdir -p $mountpoint
-fi
-if [[ ! -d $mountpoint ]]; then
-  echo "Error: Could not create mountpoint dir $mountpoint"
   exit 1
 fi
 
