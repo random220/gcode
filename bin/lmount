@@ -31,7 +31,11 @@ mountpoint=$(cd "$mountpoint" && /bin/pwd -P)
 
 vera_volume=''
 
-volfiles=('/Volumes/3TB/om/LCRUZER.vol' '/Volumes/1TB/CRUZER-20GB-MacOS.vol' '/Volumes/data/LCRUZER.vol')
+volfiles=('/Volumes/3TB/om/LCRUZER.vol'
+          '/Volumes/1TB/CRUZER-20GB-MacOS.vol'
+          '/Volumes/data/LCRUZER.vol'
+          '/Volumes/MAC/CRUZER.vol'
+          '/Volumes/1TBenc/CRUZER.vol')
 vera_volume=''
 for v in ${volfiles[@]}; do
   if [[ -f $v ]]; then
