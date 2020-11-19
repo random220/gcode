@@ -116,8 +116,9 @@ alias mp=multipass
 
 alias jl='LC_ALL=C.UTF-8 LANG=C.UTF-8 pipenv run jupyter lab --ContentsManager.allow_hidden=True'
 alias vmr='"/Applications/VMware Fusion.app/Contents/Library/vmrun"'
-alias sd='ssh d'
+alias sd1='ssh d1'
 alias sd2='ssh d2'
+alias sd='sd2'
 
 alias prx='ssh -g -N -f vmwgitlab'
 alias prk='kill $(ps uxw|grep '\''ssh -g -N -f vmwgitlab'\''|grep -v grep|awk '\''{print $2}'\'')'
