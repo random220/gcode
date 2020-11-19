@@ -4,5 +4,5 @@ export PATH='/Users/omandal/bin:/Users/omandal/ww/bin:/Users/omandal/gcode/bin:/
 ssh \
 -D 9999 \
 -L 2222:localhost:22 \
--J om@192.168.10.180 om@10.170.38.182
+-J om@192.168.10.180 om@10.170.38.20
 
