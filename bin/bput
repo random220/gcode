@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ ! -d /Volumes/mypart/Tech ]]; then
+  echo 'Not found /Volumes/mypart/Tech'
+  exit 1
+fi
+
+rsync -a /Volumes/mypart/ nas2:/shares/data/books-and-tutes/new/
+
