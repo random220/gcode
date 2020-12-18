@@ -25,6 +25,10 @@ l=$(cd $l && pwd -P)
 p=$p/CRUZER
 l=$l/CRUZER
 
+if [[ -d '/Volumes/Host!host!/CRUZER' ]]; then
+  l='/Volumes/Host!host!/CRUZER'
+fi
+
 printf "Push $p ---> $l ? (y/n): "
 read yesno
 if [[ $yesno != 'y' ]]; then

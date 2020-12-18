@@ -1,10 +1,16 @@
 #!/bin/bash
 
-#killall -9 apt-get
-#killall -9 dpkg
-dpkg --configure -a
-apt-get -y update
-apt-get -y dist-upgrade
+if [[ ! -f /om_UPDATED ]]; then
+  killall -9 apt-get
+  killall -9 dpkg
+  dpkg --configure -a
+  apt-get -y update
+  apt-get -y dist-upgrade
+  touch /om_UPDATED
+  reboot
+fi
+
+rm -f /om_UPDATED
 
 #uname -a
 #Linux ub20 5.4.0-58-generic #64-Ubuntu SMP Wed Dec 9 08:16:25 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
