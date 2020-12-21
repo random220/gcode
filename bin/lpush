@@ -31,6 +31,9 @@ fi
 if [[ -d '/Volumes/Hosta!host!/CRUZER' ]]; then
   l='/Volumes/Hosta!host!/CRUZER'
 fi
+if [[ -d '/Volumes/LVCRUZER/CRUZER' ]]; then
+  l='/Volumes/LVCRUZER/CRUZER'
+fi
 
 printf "Push $p ---> $l ? (y/n): "
 read yesno
