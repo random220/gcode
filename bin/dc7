@@ -11,21 +11,25 @@ case $myname in
   dmy)
   _name='myc7'
   _image='myc7:latest'
+  _u='om'
   ;;
 
   dc7)
   _name='c7'
   _image='centos:7'
+  _u='root'
   ;;
 
   dc8)
   _name='c8'
   _image='centos:8'
+  _u='root'
   ;;
 
   dub20)
   _name='ub20'
   _image='ubuntu:20.04'
+  _u='root'
   ;;
 esac
 
@@ -49,6 +53,6 @@ if [[ $running == 'no' ]]; then
   fi
 fi
 
-docker exec -ti $_name bash
+docker exec -u $_u -ti $_name bash
 
 
