@@ -8,6 +8,11 @@ running='no'
 myname=$(basename $0)
 
 case $myname in
+  dmy)
+  _name='myc7'
+  _image='myc7:latest'
+  ;;
+
   dc7)
   _name='c7'
   _image='centos:7'
@@ -35,7 +40,7 @@ if [[ $running == 'no' ]]; then
     exists='yes'
   fi
   if [[ $exists == 'no' ]]; then
-    docker run -itd -h $_name --name $_name --mount type=bind,source=$HOME/b/,target=/b $_image
+    docker run -itd -h $_name --name $_name --mount type=bind,source=$HOME/b/,target=/b $_image bash
     exists='yes'
     running='yes'
   else
