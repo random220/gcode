@@ -33,13 +33,13 @@ case $myname in
   ;;
 esac
 
-n=$(docker ps -q --filter "name=$_name"|wc -l|sed 's/ //g')
+n=$(docker ps -q --filter "name=^$_name\$"|wc -l|sed 's/ //g')
 if [[ $n != 0 ]]; then
   running='yes'
 fi
 
 if [[ $running == 'no' ]]; then
-  n=$(docker ps -aq --filter "name=$_name"|wc -l|sed 's/ //g')
+  n=$(docker ps -aq --filter "name=^$_name\$"|wc -l|sed 's/ //g')
   if [[ $n != 0 ]]; then
     exists='yes'
   fi
