@@ -55,4 +55,8 @@ fi
 
 docker exec -u $_u -ti $_name bash
 
-
+# docker export myc7 >a.tar
+# docker rm -f myc7
+# docker rmi myc7
+# docker import -m 'my c7' - myc7 <a.tar
+# rm -f a.tar
