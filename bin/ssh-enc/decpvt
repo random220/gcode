@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# decrypt with private key
+
+#ssh-keygen -f ./id_rsa.pub -m 'PEM' -e > ./id_rsa.pub.pem
+openssl rsa -in ./id_rsa -outform pem > id_rsa.pem
+openssl rsautl -decrypt -ssl -inkey ./id_rsa.pem -in ./message.enc-with-pub.txt -out ./message.dec-with-pvt.txt
+
