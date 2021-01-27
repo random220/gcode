@@ -61,6 +61,7 @@ else
 fi
 #alias ll="ls -altr --quoting-style=shell-escape"
 alias ll="ls -altr"
+alias cdp='cd -P'
 alias vi=vim
 
 alias rw='vimdiff ~/zr.txt ~/zw.txt'
