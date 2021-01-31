@@ -97,14 +97,22 @@ git config --global user.name "Om Mandal"
 
 function t0
 {
-  local ls=$(tmux ls | grep -v ssh 2>/dev/null)
-  if [[ $ls == '' ]]; then
-    tmux
-  else
-    # 0: 2 windows (created Sat Oct 21 18:35:33 2017) [139x51] (attached)
-    local n=$(echo $ls | sed 's/:.*//')
-    tmux a -d -t $n
+  local name=T0
+  if [[ $1 != '' ]]; then
+    name=$1
   fi
+  local ls=$(tmux ls | grep "^${name}:" 2>/dev/null)
+  if [[ $ls == '' ]]; then
+    tmux new -s $name
+  else
+    # T0: 2 windows (created Sat Oct 21 18:35:33 2017) [139x51] (attached)
+    tmux a -d -t $name
+  fi
+}
+
+function t1
+{
+  t0 T1
 }
 
 # vmware stuff
