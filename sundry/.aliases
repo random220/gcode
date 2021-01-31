@@ -110,10 +110,8 @@ function t0
   fi
 }
 
-function t1
-{
-  t0 T1
-}
+alias t1='t0 T1'
+alias tls='tmux ls'
 
 # vmware stuff
 if [[ -f $HOME/ww/.vmware_aliases ]]; then
