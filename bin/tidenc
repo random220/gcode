@@ -7,7 +7,7 @@ if [[ ! -f $f ]]; then
   exit 1
 fi
 
-cat $f|gzip -|openssl enc -aes256|openssl enc -base64 >a.txt
+cat $f|gzip -|openssl enc -aes256|openssl enc -base64 >__a.txt
 v=$(openssl version)
 u=$(uname -a)
 d=$(date)
@@ -21,5 +21,15 @@ cat <<EOF >tiddly-enc.sh
 cat <<EOF | openssl enc -d -base64|openssl enc -d -aes256 | gunzip - >tiddly.html
 EOF
 
-cat a.txt  >>tiddly-enc.sh
+cat __a.txt  >>tiddly-enc.sh
 echo 'EOF' >>tiddly-enc.sh
+
+echo >>tiddly-enc.sh
+echo 'exit' >>tiddly-enc.sh
+echo >>tiddly-enc.sh
+
+cat $0 >>tiddly-enc.sh
+rm -f __a.txt
+
+
+
