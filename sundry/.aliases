@@ -95,19 +95,18 @@ git config --global user.email omandal@localhost
 git config --global user.name "Om Mandal"
 }
 
-gfresh()
-{
-local b=(git branch|grep '*'|awk '{print $2}')
-git branch ____b
-git checkout ____b
-git branch|xargs git branch -D
-git tag|xargs git tag -d
-local o=$(git@gitlab.eng.vmware.com:engops/source-and-sdk/source/cloud-build.git)
-git remote rm origin
-git remote add origin $o
-git pull
-git checkout -b $b
-git branch -D ____b
+function gfresh() {
+    local b=$(git branch|grep '*'|awk '{print $2}')
+    git branch ____b
+    git checkout ____b
+    git branch|xargs git branch -D
+    git tag|xargs git tag -d
+    local o=$(git@gitlab.eng.vmware.com:engops/source-and-sdk/source/cloud-build.git)
+    git remote rm origin
+    git remote add origin $o
+    git pull
+    git checkout -b $b
+    git branch -D ____b
 }
 
 function t0
