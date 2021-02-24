@@ -101,7 +101,7 @@ function gfresh() {
     git checkout ____b
     git branch|xargs git branch -D
     git tag|xargs git tag -d
-    local o=$(git@gitlab.eng.vmware.com:engops/source-and-sdk/source/cloud-build.git)
+    local o=$(git remote -v|grep '^origin'|grep '(fetch)$'|awk '{print $2}')
     git remote rm origin
     git remote add origin $o
     git pull
