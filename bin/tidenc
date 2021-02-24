@@ -11,7 +11,8 @@ cat $f|gzip -|openssl enc -aes256 -md md5|openssl enc -base64 >__a.txt
 v=$(openssl version)
 u=$(uname -a)
 d=$(date)
-cat <<EOF >tiddly-enc.sh
+f=tiddly-enc-$(date +"%Y-%m-%d").sh
+cat <<EOF >$f
 #!/bin/bash
 
 # $v
@@ -21,14 +22,14 @@ cat <<EOF >tiddly-enc.sh
 cat <<EOF | openssl enc -d -base64|openssl enc -d -aes256 -md md5| gunzip - >tiddly.html
 EOF
 
-cat __a.txt  >>tiddly-enc.sh
-echo 'EOF' >>tiddly-enc.sh
+cat __a.txt  >>$f
+echo 'EOF' >>$f
 
-echo >>tiddly-enc.sh
-echo 'exit' >>tiddly-enc.sh
-echo >>tiddly-enc.sh
+echo >>$f
+echo 'exit' >>$f
+echo >>$f
 
-cat $0 >>tiddly-enc.sh
+cat $0 >>$f
 rm -f __a.txt
 
 
