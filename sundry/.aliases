@@ -105,7 +105,7 @@ function gfresh() {
     git remote rm origin
     git remote add origin $o
     git pull
-    git checkout -b $b
+    git checkout $b
     git branch -D ____b
 }
 
