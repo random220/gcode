@@ -7,7 +7,29 @@ fi
 export VISUAL=vi
 export EDITOR=vi
 
-export PATH=$HOME/.local/bin:$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+pcomps=(
+$HOME/.local/bin
+$HOME/bin
+$HOME/gcode/bin
+/usr/local/sbin
+/usr/local/bin
+/usr/sbin
+/usr/bin
+/sbin
+/bin
+)
+
+PATH=
+for p in ${pcomps[@]}; do
+  if [[ -d $p ]]; then
+    PATH="$PATH:$p"
+  fi
+done
+PATH=$(echo "$PATH"|sed 's/^://')
+export PATH
+unset p
+unset pcomps
+
 
 alias vera='(veracrypt&)'
 on_mint=0
