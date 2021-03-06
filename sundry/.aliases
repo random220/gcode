@@ -108,6 +108,12 @@ function gfresh() {
     git checkout $b
     git branch -D ____b
 }
+function glocal() {
+    for branch in $(git branch -r|grep -v -- '->'|grep 'origin/'|sed 's/^  origin\///'); do
+      git branch $branch origin/$branch
+    done
+    git remote rm origin
+}
 
 function t0
 {
