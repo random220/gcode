@@ -8,6 +8,19 @@ running='no'
 myname=$(basename $0)
 
 case $myname in
+  dgo)
+  _name='GO'
+  _image='ub20go:latest'
+  _u='om'
+  ;;
+
+  dphp)
+  _name='PHP'
+  _image='php:apache'
+  _u='root'
+  _cmd="docker run -itd --net dnet -h $_name --name $_name -p 80:80 $_image"
+  ;;
+
   dmy)
   _name='myc7'
   _image='myc7:latest'
@@ -44,7 +57,10 @@ if [[ $running == 'no' ]]; then
     exists='yes'
   fi
   if [[ $exists == 'no' ]]; then
-    docker run -itd -h $_name --name $_name --mount type=bind,source=$HOME/b/,target=/b $_image bash
+    if [[ $_cmd == '' ]]; then
+      _cmd="docker run -itd --net dnet -h $_name --name $_name --mount type=bind,source=$HOME/b/,target=/b $_image bash"
+    fi
+    eval "$_cmd"
     exists='yes'
     running='yes'
   else
