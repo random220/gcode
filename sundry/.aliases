@@ -153,6 +153,26 @@ function t0
   fi
 }
 
+fing () 
+{ 
+    if [[ $1 == '' ]]; then
+        return;
+    fi;
+    local _type;
+    for _type in '' obj release;
+    do
+        local cmd="lxc list --format=csv user.fingerprint=${1}-$_type";
+        local out=$(bash -c "$cmd");
+        if [[ $out != '' ]]; then
+            echo "$cmd";
+            echo "$out";
+            local container=$(echo "$out"|sed 's/,.*//');
+            lxc exec $container su - b;
+        fi;
+    done
+}
+
+
 alias t1='t0 T1'
 alias tls='tmux ls'
 
