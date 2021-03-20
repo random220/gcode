@@ -1,0 +1,125 @@
+Fri Mar 19 23:57:32 PDT 2021
+https://medium.com/@exesse/how-to-make-a-simple-router-gateway-from-ubuntu-server-18-04-lts-fd40b7bfec9
+
+root@ubs20:~# find /etc/netplan
+/etc/netplan
+/etc/netplan/00-installer-config.yaml
+
+root@ubs20:~# cat /etc/netplan/00-installer-config.yaml
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    ens33:
+      dhcp4: true
+  version: 2
+root@ubs20:~#
+
+
+root@ubs20:~# ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:50:56:22:b3:52 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.10.222/24 brd 192.168.10.255 scope global dynamic ens33
+       valid_lft 86153sec preferred_lft 86153sec
+    inet6 2600:1700:38c0:9100::30/128 scope global dynamic noprefixroute
+       valid_lft 3354sec preferred_lft 3354sec
+    inet6 2600:1700:38c0:9100:250:56ff:fe22:b352/64 scope global dynamic mngtmpaddr noprefixroute
+       valid_lft 3481sec preferred_lft 3481sec
+    inet6 fe80::250:56ff:fe22:b352/64 scope link
+       valid_lft forever preferred_lft forever
+3: ens37: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 00:0c:29:9b:d0:51 brd ff:ff:ff:ff:ff:ff
+root@ubs20:~#
+
+cat <<'EOF' >/etc/netplan/00-installer-config.yaml
+# This is the network config written by om
+network:
+  ethernets:
+    ens33:
+      dhcp4: true
+    ens37:
+      dhcp4: false
+      addresses:
+      - 192.168.2.1/24
+      # nameservers:
+      #    addresses:
+      #    - 8.8.8.8
+      #    - 8.8.4.4
+  version: 2
+EOF
+
+
+On /etc/sysctl.conf 
+-#net.ipv4.ip_forward=1
++net.ipv4.ip_forward=1
+
+reboot
+
+#check
+sysctl net.ipv4.ip_forward
+
+# Ask firewall to do NAT
+iptables -t nat -A POSTROUTING -o ens37 -j MASQUERADE  # This was wrong
+
+# And name permanent
+apt-get install iptables-persistent
+dpkg-reconfigure iptables-persistent
+
+# reboot and check
+root@ubs20:~# iptables -t nat -S
+-P PREROUTING ACCEPT
+-P INPUT ACCEPT
+-P OUTPUT ACCEPT
+-P POSTROUTING ACCEPT
+-A POSTROUTING -o ens37 -j MASQUERADE
+
+
+Or,
+root@ubs20:~# iptables -t nat -v -L POSTROUTING -n --line-number
+Chain POSTROUTING (policy ACCEPT 26 packets, 1641 bytes)
+num   pkts bytes target     prot opt in     out     source               destination
+1        0     0 MASQUERADE  all  --  *      ens37   0.0.0.0/0            0.0.0.0/0
+root@ubs20:~#
+
+Delete
+iptables -t nat -D POSTROUTING {number-here}
+iptables -t nat -D POSTROUTING 1
+
+iptables -t nat -A POSTROUTING -o ens33 -j MASQUERADE
+
+
+
+
+--------------
+Client
+--------------
+
+
+cat <<'EOF' >/etc/netplan/00-installer-config.yaml
+# This is the network config written by om
+network:
+  ethernets:
+    #ens33:
+    #  dhcp4: true
+    ens33:
+      dhcp4: false
+      addresses:
+      - 192.168.2.2/24
+      gateway4: 192.168.2.1
+      # nameservers:
+      #    addresses:
+      #    - 8.8.8.8
+      #    - 8.8.4.4
+  version: 2
+EOF
+
+
+
+sudo apt install openconnect
+sudo openconnect --protocol=gp gpu.vmware.com
+
