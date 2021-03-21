@@ -1,0 +1,37 @@
+Sat Mar 20 20:28:48 PDT 2021
+
+                                                             | /etc/netplan/00-installer-config.yaml
+                                                             | network:
+                                                             |   ethernets:
+                                                             |     ens33:
+                                                             |       dhcp4: true
+                                                             |     ens37:
+                    internet                                 |       dhcp4: false
+                        |                                    |       addresses: [192.168.2.1/24]
+                 +----ens33---+                              |       nameservers:
+                 |            |                              |         addresses: [8.8.8.8, 8.8.4.4]
+                 |   ubuntu   |                              |   version: 2
+                 |openconnect = tun0 = (corporate network)   |
+                 |     nat    |                              |
+                 |            |                              |  /etc/sysctl.conf
+                 +----ens37---+                              |  -#net.ipv4.ip_forward=1
+                        |                                    |  +net.ipv4.ip_forward=1
+                 +------+-----+                              |
+                 |  isolated  |                              |  reboot
+                 |   switch   |                              |  sudo apt-get -y install openconnect
+                 +------+-----+                              |  sudo openconnect --protocol=gp gpu.vmware.com
+                        |                                    |  sudo iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE
+                        |                                    |
+                        |                                    |  sudo apt-get install iptables-persistent
+                        |                                    |  sudo systemctl enable netfilter-persistent
+                        |                                    |  # Save the rules
+                        |                                    |  sudo bash -c 'iptables-save  >/etc/iptables/rules.v4'
+                        |                                    |  sudo bash -c 'ip6tables-save  >/etc/iptables/rules.v6'
+                        |                                    |
+            +-----------+-----------+                     ---+------------------------------------------------------------------
+            |                       |                        |
+     +----ens33---+           +----ens33---+                 | Static IP 192.168.2.2/24, 192.168.2.3/24 etc.
+     |   client   |           |   client   |                 | Gateway: 192.168.2.1
+     |  machine1  |           |  machine2  |                 | DNS servevers: corp server, google servers
+     +------------+           +------------+                 |
+                                                             |
