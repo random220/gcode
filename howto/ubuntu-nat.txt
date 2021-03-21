@@ -37,19 +37,16 @@ root@ubs20:~# ip addr
 root@ubs20:~#
 
 cat <<'EOF' >/etc/netplan/00-installer-config.yaml
-# This is the network config written by om
+# This network config is written by om
 network:
   ethernets:
     ens33:
       dhcp4: true
     ens37:
       dhcp4: false
-      addresses:
-      - 192.168.2.1/24
-      # nameservers:
-      #    addresses:
-      #    - 8.8.8.8
-      #    - 8.8.4.4
+      addresses: [192.168.2.1/24]
+      nameservers:
+        addresses: [8.8.8.8, 8.8.4.4]
   version: 2
 EOF
 
@@ -63,20 +60,29 @@ reboot
 #check
 sysctl net.ipv4.ip_forward
 
-# Ask firewall to do NAT
-iptables -t nat -A POSTROUTING -o ens37 -j MASQUERADE  # This was wrong
 
-# And name permanent
-apt-get install iptables-persistent
-dpkg-reconfigure iptables-persistent
+So that at reboot iptables rules are read from these two files
+/etc/iptables/rules.v4
+/etc/iptables/rules.v6
+do
+sudo apt-get install iptables-persistent
+sudo systemctl enable netfilter-persistent
+
+# Ask firewall to do NAT the interface connected to internet
+sudo iptables -t nat -A POSTROUTING -o ens33 -j MASQUERADE
+
+Save the rules
+sudo bash -c 'iptables-save  >/etc/iptables/rules.v4'
+sudo bash -c 'ip6tables-save  >/etc/iptables/rules.v6'
 
 # reboot and check
-root@ubs20:~# iptables -t nat -S
+sudo iptables -t nat -S
+
 -P PREROUTING ACCEPT
 -P INPUT ACCEPT
 -P OUTPUT ACCEPT
 -P POSTROUTING ACCEPT
--A POSTROUTING -o ens37 -j MASQUERADE
+-A POSTROUTING -o ens33 -j MASQUERADE
 
 
 Or,
@@ -87,13 +93,19 @@ num   pkts bytes target     prot opt in     out     source               destina
 root@ubs20:~#
 
 Delete
-iptables -t nat -D POSTROUTING {number-here}
+#iptables -t nat -D POSTROUTING {number-here}
 iptables -t nat -D POSTROUTING 1
 
 iptables -t nat -A POSTROUTING -o ens33 -j MASQUERADE
 
 
+sudo apt install openconnect
+sudo openconnect --protocol=gp gpu.vmware.com
 
+That created tun0
+Use that to nat into vmware
+iptables -t nat -D POSTROUTING 1
+iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE
 
 --------------
 Client
@@ -101,25 +113,19 @@ Client
 
 
 cat <<'EOF' >/etc/netplan/00-installer-config.yaml
-# This is the network config written by om
+# Om's config
 network:
   ethernets:
-    #ens33:
-    #  dhcp4: true
     ens33:
       dhcp4: false
-      addresses:
-      - 192.168.2.2/24
+      addresses: [192.168.2.2/24]
       gateway4: 192.168.2.1
-      # nameservers:
-      #    addresses:
-      #    - 8.8.8.8
-      #    - 8.8.4.4
+      nameservers:
+        #google dns
+        #addresses: [8.8.8.8, 8.8.4.4] 
+        #vmware and google dns
+        addresses: [10.166.1.201,8.8.8.8, 8.8.4.4]
   version: 2
 EOF
 
-
-
-sudo apt install openconnect
-sudo openconnect --protocol=gp gpu.vmware.com
 
