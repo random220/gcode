@@ -38,10 +38,10 @@ endif
 set hlsearch        " highligh search patter
 set ai
 set nu
-set tabstop=8       " tab character counts as 8 spaces
-set softtabstop=4   " tab key should insert 4 spaces
-set shiftwidth=4    " autoindent step should be 4 spaces
-set expandtab       " tab key should generate space chars only
+set tabstop=4       " tab character counts as 8 spaces
+"set softtabstop=4   " tab key should insert 4 spaces
+"set shiftwidth=4    " autoindent step should be 4 spaces
+"set expandtab       " tab key should generate space chars only
 "set textwidth=80   " wrap lines at this size
 "set tw=80          " wrap lines at this size
                     " use gq after visual selecting a block to wrap
