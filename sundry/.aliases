@@ -9,11 +9,13 @@ export EDITOR=vi
 
 pcomps=(
 $HOME/.local/bin
+$HOME/go/bin
 $HOME/bin
 $HOME/gcode/bin
 $HOME/go/bin
 /usr/local/sbin
 /usr/local/bin
+/usr/local/go/bin
 /usr/sbin
 /usr/bin
 /sbin
