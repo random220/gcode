@@ -11,6 +11,7 @@ pcomps=(
 $HOME/.local/bin
 $HOME/bin
 $HOME/gcode/bin
+$HOME/go/bin
 /usr/local/sbin
 /usr/local/bin
 /usr/sbin
