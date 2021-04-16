@@ -197,7 +197,7 @@ alias prx='ssh -g -N -f vmwgitlab'
 alias prk='kill $(ps uxw|grep '\''ssh -g -N -f vmwgitlab'\''|grep -v grep|awk '\''{print $2}'\'')'
 alias cdp='cd ~/sb/cloud-build/docker/deploy'
 
-function cetos_config() {
+function cent_config() {
   local cont=$1
   docker exec -ti $cont bash -c 'useradd -s /bin/bash -m om'
   docker exec -ti $cont bash -c 'yum -y install epel-release'
@@ -212,26 +212,36 @@ function cetos_config() {
 }
 
 
+function cent_start() {
+  local name=$1
+  if [[ $name == 'c7' ]]; then
+    local image='centos:7'
+  elif [[ $name == 'c8' ]]; then
+    local image='centos:8'
+  fi
+
+  local id=$(docker ps -qf name=$name)
+  if [[ $id == '' ]]; then
+    # not running. but is it still there but just dead?
+    local id=$(docker ps -aqf name=$name)
+    if [[ $id == '' ]]; then
+      # still not found. create
+      docker run -itd -h $name --name $name $image
+      cent_config $name
+    else
+      # found to be dead. wake
+      docker start $name
+    fi
+  fi
+
+  # get in
+  docker exec -ti $name su - om
+}
+
 function d7() {
-  local id=$(docker ps -qf name=c7)
-  if [[ $id == '' ]]; then
-    docker run -itd -h c7 --name c7 centos:7
-    cetos_config c7
-    docker exec -ti c7 su - om
-  else
-    docker exec -ti c7 su - om
-  fi
+  cent_start c7
 }
-
 function d8() {
-  local id=$(docker ps -qf name=c8)
-  if [[ $id == '' ]]; then
-    docker run -itd -h c8 --name c8 centos:8
-    cetos_config c8
-    docker exec -ti c8 su - om
-  else
-    docker exec -ti c8 su - om
-  fi
+  cent_start c8
 }
-
 
