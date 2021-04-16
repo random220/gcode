@@ -196,20 +196,38 @@ alias sd='sd2'
 alias prx='ssh -g -N -f vmwgitlab'
 alias prk='kill $(ps uxw|grep '\''ssh -g -N -f vmwgitlab'\''|grep -v grep|awk '\''{print $2}'\'')'
 alias cdp='cd ~/sb/cloud-build/docker/deploy'
+
+function cetos_config() {
+  local cont=$1
+  docker exec -ti $cont bash -c 'useradd -s /bin/bash -m om'
+  docker exec -ti $cont bash -c 'yum -y install epel-release'
+  docker exec -ti $cont bash -c 'yum -y install sudo tmux vim python3 perl perl-Data-Dumper make gcc wget curl git'
+  local d=$(mktemp -d)
+  echo 'om ALL=(ALL) NOPASSWD: ALL' >$d/om
+  docker cp $d/om $cont:/etc/sudoers.d/om
+  rm -rf $d
+  docker exec -ti $cont bash -c 'chown root:root /etc/sudoers.d/om; chmod 600 /etc/sudoers.d/om'
+  docker exec -ti $cont bash -c 'mkdir /tmp/x; cd /tmp/x; wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz; mkdir -p /usr/local; cd /usr/local; tar xf /tmp/x/go1.16.3.linux-amd64.tar.gz; cd /usr/bin; ln -s /usr/local/go/bin/* .; cd /; rm -rf /tmp/x'
+  docker exec -ti $cont su - om -c 'git clone https://github.com/random220/gcode; rm .bashrc; ln -s gcode/sundry/.bashrc .; ln -s gcode/sundry/.aliases .;ln -s gcode/sundry/.vimrc .; ln -s gcode/sundry/.tmux.conf .'
+}
+
+
+function d7() {
+  local id=$(docker ps -qf name=c7)
+  if [[ $id == '' ]]; then
+    docker run -itd -h c7 --name c7 centos:7
+    cetos_config c7
+    docker exec -ti c7 su - om
+  else
+    docker exec -ti c7 su - om
+  fi
+}
+
 function d8() {
   local id=$(docker ps -qf name=c8)
   if [[ $id == '' ]]; then
     docker run -itd -h c8 --name c8 centos:8
-    docker exec -ti c8 bash -c 'useradd -s /bin/bash -m om'
-    docker exec -ti c8 bash -c 'yum -y install epel-release'
-    docker exec -ti c8 bash -c 'yum -y install sudo tmux vim python3 perl make gcc wget curl git'
-    local d=$(mktemp -d)
-    echo 'om ALL=(ALL) NOPASSWD: ALL' >$d/om
-    docker cp $d/om c8:/etc/sudoers.d/om
-    rm -rf $d
-    docker exec -ti c8 bash -c 'chown root:root /etc/sudoers.d/om; chmod 600 /etc/sudoers.d/om'
-    docker exec -ti c8 bash -c 'mkdir /tmp/x; cd /tmp/x; wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz; mkdir -p /usr/local; cd /usr/local; tar xf /tmp/x/go1.16.3.linux-amd64.tar.gz; cd /usr/bin; ln -s /usr/local/go/bin/* .; cd /; rm -rf /tmp/x'
-    docker exec -ti c8 su - om -c 'git clone https://github.com/random220/gcode; rm .bashrc; ln -s gcode/sundry/.bashrc .; ln -s gcode/sundry/.aliases .;ln -s gcode/sundry/.vimrc .; ln -s gcode/sundry/.tmux.conf .'
+    cetos_config c8
     docker exec -ti c8 su - om
   else
     docker exec -ti c8 su - om
