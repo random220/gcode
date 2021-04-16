@@ -201,7 +201,7 @@ function cent_config() {
   local cont=$1
   docker exec -ti $cont bash -c 'useradd -s /bin/bash -m om'
   docker exec -ti $cont bash -c 'yum -y install epel-release'
-  docker exec -ti $cont bash -c 'yum -y install sudo tmux vim python3 perl perl-Data-Dumper make gcc wget curl git'
+  docker exec -ti $cont bash -c 'yum -y install sudo tmux vim python3 perl perl-Data-Dumper make gcc wget curl git rsync'
   local d=$(mktemp -d)
   echo 'om ALL=(ALL) NOPASSWD: ALL' >$d/om
   docker cp $d/om $cont:/etc/sudoers.d/om
