@@ -265,19 +265,15 @@ function cont_config() {
     c6)
       cent_fix_c6_repo
       cent_install $cont
-      docker exec -ti $cont su - om -c 'ssh-keygen -t rsa -b 2048 -N "" -f ~/.ssh/id_rsa -C om'
       ;;
     c7)
       cent_install $cont
-      docker exec -ti $cont su - om -c 'ssh-keygen -t rsa -b 2048 -N "" -f ~/.ssh/id_rsa -C om'
       ;;
     c8)
       cent_install $cont
-      docker exec -ti $cont su - om -c 'ssh-keygen -t rsa -b 2048 -N "" -f ~/.ssh/id_rsa -C om'
       ;;
     ub)
       ub_install $cont
-      docker exec -ti $cont su - om -c 'ssh-keygen -t rsa -b 2048 -N "" -f ~/.ssh/id_rsa -C om'
       ;;
     *)
       ;;
