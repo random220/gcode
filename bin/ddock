@@ -112,22 +112,26 @@ function cont_config() {
 
 function cont_start() {
   local name=$1
-  local image
+  local base_image
   case $name in
     c6)
-      image='centos:6'
+      base_image='centos:6'
+      my_image='myc6:latest'
       ;;
 
     c7)
-      image='centos:7'
+      base_image='centos:7'
+      my_image='myc7:latest'
       ;;
 
     c8)
-      image='centos:8'
+      base_image='centos:8'
+      my_image='myc8:latest'
       ;;
 
     ub)
-      image='ubuntu:20.04'
+      base_image='ubuntu:20.04'
+      my_image='myub:latest'
       ;;
 
     *)
@@ -140,9 +144,22 @@ function cont_start() {
   id=$(docker ps -aqf name=$name)
   if [[ $id == '' ]]; then
     # does not exist
-    # create and install packages
-    docker run -itd -h $name --name $name $image
-    cont_config $name
+    # ok, then does my custom image exist?
+    local iid=$(docker images -q $my_image)
+    if [[ $iid == '' ]]; then
+      # no, my image does not exist either
+      # create and install packages
+      docker run -itd -h $name --name $name $base_image
+      cont_config $name
+      # create image from $name to $my_image
+      docker stop $name
+      docker export $name | docker import - $my_image
+      docker start $name
+    else
+      # yes, my image exists
+      docker run -itd -h $name --name $name $my_image bash
+      # no need to configure
+    fi
   else
     id=$(docker ps -qf name=$name)
     if [[ $id == '' ]]; then
