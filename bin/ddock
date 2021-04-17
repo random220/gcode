@@ -1,0 +1,163 @@
+#!/bin/bash
+
+
+function main() {
+  local myname=$(basename $0)
+  case $myname in
+  ddock)
+    echo 'Noting to do'
+    ;;
+  d6)
+    cont_start c6
+    ;;
+  d7)
+    cont_start c7
+    ;;
+  d8)
+    cont_start c8
+    ;;
+  dub)
+    cont_start ub
+    ;;
+  *)
+    echo 'Noting to do'
+    ;;
+  esac
+  
+}
+
+function cent_fix_c6_repo() {
+  local d=$(mktemp -d)
+  cat <<EOF >$d/repoconf
+H4sIAL8remAAA7WVTWvbQBCG7/oVAzE+VVZyyaEgCg0hhFJq2uYQTA9jaSQtWu2K/Uijf99ZrfyR
+pDEksU9e7cy87+wz8uoMrki5H7/Sr2hpYajXyVlyBr8bgk4Yow3YwTrqwFuy4Hi70EpR4YSq4XYJ
+WJaGrAVdxaAULAeoyvDIQr4v0RFYh86PWYRFs5F2GnpRtNNjkEeuNTRVlSGBpVimJl0b7BtRoJQD
+22hLIbrzXADcaw+20V6WoVuOCQsV28QTTqI2NKVk6Hng/ODWofKjbGgmnEuzrNl0tRiB3MbzxT0p
+rMuh1ExEaQd/tWlHIxb8BGgBoWI9WCOfLZgUqMCZYVRgLUMdmpaPp73jJEveyBykUARCMWwsR88k
+WYXgn0RhR/k0ppkhSbz7wA2mEIbGgntdNc71n7Nst7MouFDbhTZ19mUqzvdU5miKJp8Fp7Cah1cg
+13YuVGUwn40/bLFp84n+vnZcZnvKWXjc6GbJvoJliQf08kl3l4uL82c1dV8XDRVtfhGWLQ15JSRx
+cUauyPpWZKbvUg5lP5ff05vlTfrt+j6dUF0mI+uxnXI7/dW0OIT1bvumHJ3s5H4MvJPU2xn/p/Dj
+oPkiEE5ohRJ6fu+xpun/3OEAawr/yMrLZEWPzuBB+tdjxingR+9jsI9Kb0f/su7D5F8Fz17E93Dl
+VRHjwg3jDfzI/MI1t0lPVrHNXvqDg1lyPDn6UHbezwbznrnsxF5hTArXksr8/J20+evnjFgzjS3s
+9TB+YbSFO0sm0Iw5h1BexZQT0IzCx0AZlU7C8R/bD74mdggAAA==
+EOF
+  docker cp $d/repoconf c6:/tmp/a.txt
+  rm -rf $d
+  docker exec -ti c6 bash -c 'cat /tmp/a.txt | base64 -d | gunzip - >/etc/yum.repos.d/CentOS-Base.repo; rm -f /tmp/a.txt'
+  docker exec -ti c6 yum clean all
+}
+
+function cent_install() {
+  local cont=$1
+  docker exec -ti $cont bash -c 'useradd -s /bin/bash -m om'
+  docker exec -ti $cont bash -c 'yum -y update'
+  docker exec -ti $cont bash -c 'yum -y install epel-release'
+  docker exec -ti $cont bash -c 'yum -y install sudo tmux vim python3 perl perl-Data-Dumper make gcc wget curl git rsync'
+  local d=$(mktemp -d)
+  echo 'om ALL=(ALL) NOPASSWD: ALL' >$d/om
+  docker cp $d/om $cont:/etc/sudoers.d/om
+  rm -rf $d
+  docker exec -ti $cont bash -c 'chown root:root /etc/sudoers.d/om; chmod 600 /etc/sudoers.d/om'
+  docker exec -ti $cont bash -c 'mkdir /tmp/x; cd /tmp/x; wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz; mkdir -p /usr/local; cd /usr/local; tar xf /tmp/x/go1.16.3.linux-amd64.tar.gz; cd /usr/bin; ln -s /usr/local/go/bin/* .; cd /; rm -rf /tmp/x'
+  docker exec -ti $cont su - om -c 'git clone https://github.com/random220/gcode; mv .bashrc .bashrc.0; ln -s gcode/sundry/.bashrc .; ln -s gcode/sundry/.aliases .;ln -s gcode/sundry/.vimrc .; ln -s gcode/sundry/.tmux.conf .'
+  docker exec -ti $cont su - om -c 'ssh-keygen -t rsa -b 2048 -N "" -f ~/.ssh/id_rsa -C om'
+  docker exec -ti $cont su - om -c 'cp ~/gcode/sundry/.ssh/config ~/.ssh/config; chmod go-w ~/.ssh/config'
+  docker stop $cont
+  docker start $cont
+  docker exec -ti $cont bash -c 'yum -y clean all'
+  docker exec -ti $cont su - om -c 'mkdir ~/sb; cd ~/sb; git clone https://github.com/go-delve/delve; cd delve; go install github.com/go-delve/delve/cmd/dlv; cd /; rm -rf ~/sb'
+}
+
+function ub_install() {
+  local cont=$1
+  docker exec -ti $cont bash -c 'useradd -s /bin/bash -m om'
+  docker exec -ti $cont bash -c 'apt-get -y update; apt-get -y dist-upgrade'
+  docker exec -ti $cont bash -c 'apt-get -y install sudo tmux vim python3 perl make gcc wget curl git rsync'
+  local d=$(mktemp -d)
+  echo 'om ALL=(ALL) NOPASSWD: ALL' >$d/om
+  docker cp $d/om $cont:/etc/sudoers.d/om
+  rm -rf $d
+  docker exec -ti $cont bash -c 'chown root:root /etc/sudoers.d/om; chmod 600 /etc/sudoers.d/om'
+  docker exec -ti $cont bash -c 'mkdir /tmp/x; cd /tmp/x; wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz; mkdir -p /usr/local; cd /usr/local; tar xf /tmp/x/go1.16.3.linux-amd64.tar.gz; cd /usr/bin; ln -s /usr/local/go/bin/* .; cd /; rm -rf /tmp/x'
+  docker exec -ti $cont su - om -c 'git clone https://github.com/random220/gcode; mv .bashrc .bashrc.0; ln -s gcode/sundry/.bashrc .; ln -s gcode/sundry/.aliases .;ln -s gcode/sundry/.vimrc .; ln -s gcode/sundry/.tmux.conf .'
+  docker exec -ti $cont su - om -c 'ssh-keygen -t rsa -b 2048 -N "" -f ~/.ssh/id_rsa -C om'
+  docker exec -ti $cont su - om -c 'cp ~/gcode/sundry/.ssh/config ~/.ssh/config; chmod go-w ~/.ssh/config'
+  docker stop $cont
+  docker start $cont
+  docker exec -ti $cont bash -c 'apt-get -y autoclean; apt-get -y autoremove'
+  docker exec -ti $cont su - om -c 'mkdir ~/sb; cd ~/sb; git clone https://github.com/go-delve/delve; cd delve; go install github.com/go-delve/delve/cmd/dlv; cd /; rm -rf ~/sb'
+}
+
+function cont_config() {
+  local cont=$1
+  case $cont in
+    c6)
+      cent_fix_c6_repo
+      cent_install $cont
+      ;;
+    c7)
+      cent_install $cont
+      ;;
+    c8)
+      cent_install $cont
+      ;;
+    ub)
+      ub_install $cont
+      ;;
+    *)
+      ;;
+  esac
+}
+
+
+function cont_start() {
+  local name=$1
+  local image
+  case $name in
+    c6)
+      image='centos:6'
+      ;;
+
+    c7)
+      image='centos:7'
+      ;;
+
+    c8)
+      image='centos:8'
+      ;;
+
+    ub)
+      image='ubuntu:20.04'
+      ;;
+
+    *)
+      return 0
+      ;;
+  esac
+
+  # does the container exist?
+  local id
+  id=$(docker ps -aqf name=$name)
+  if [[ $id == '' ]]; then
+    # does not exist
+    # create and install packages
+    docker run -itd -h $name --name $name $image
+    cont_config $name
+  else
+    id=$(docker ps -qf name=$name)
+    if [[ $id == '' ]]; then
+      # no, not alive
+      # just start and you are done
+      docker start $name
+    else
+      # yes, alive
+      # nothing to do
+      :
+    fi
+  fi
+
+  # get in
+  docker exec -ti $name su - om
+}
+
+main "$@"
