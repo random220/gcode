@@ -234,6 +234,10 @@ function cent_config() {
   docker exec -ti $cont bash -c 'chown root:root /etc/sudoers.d/om; chmod 600 /etc/sudoers.d/om'
   docker exec -ti $cont bash -c 'mkdir /tmp/x; cd /tmp/x; wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz; mkdir -p /usr/local; cd /usr/local; tar xf /tmp/x/go1.16.3.linux-amd64.tar.gz; cd /usr/bin; ln -s /usr/local/go/bin/* .; cd /; rm -rf /tmp/x'
   docker exec -ti $cont su - om -c 'git clone https://github.com/random220/gcode; rm .bashrc; ln -s gcode/sundry/.bashrc .; ln -s gcode/sundry/.aliases .;ln -s gcode/sundry/.vimrc .; ln -s gcode/sundry/.tmux.conf .'
+  docker stop $cont
+  docker start $cont
+  docker exec -ti $cont bash -c 'yum -y clean all'
+  docker exec -ti $cont su - om -c 'mkdir ~/sb; cd ~/sb; git clone https://github.com/go-delve/delve; cd delve; go install github.com/go-delve/delve/cmd/dlv; cd /; rm -rf ~/sb'
 }
 
 
