@@ -200,6 +200,7 @@ alias cdp='cd ~/sb/cloud-build/docker/deploy'
 function cent_config() {
   local cont=$1
   docker exec -ti $cont bash -c 'useradd -s /bin/bash -m om'
+  docker exec -ti $cont bash -c 'yum -y update'
   docker exec -ti $cont bash -c 'yum -y install epel-release'
   docker exec -ti $cont bash -c 'yum -y install sudo tmux vim python3 perl perl-Data-Dumper make gcc wget curl git rsync'
   local d=$(mktemp -d)
@@ -214,7 +215,9 @@ function cent_config() {
 
 function cent_start() {
   local name=$1
-  if [[ $name == 'c7' ]]; then
+  if [[ $name == 'c6' ]]; then
+    local image='centos:6'
+  elif [[ $name == 'c7' ]]; then
     local image='centos:7'
   elif [[ $name == 'c8' ]]; then
     local image='centos:8'
@@ -238,9 +241,13 @@ function cent_start() {
   docker exec -ti $name su - om
 }
 
+function d6() {
+  cent_start c6
+}
 function d7() {
   cent_start c7
 }
+
 function d8() {
   cent_start c8
 }
