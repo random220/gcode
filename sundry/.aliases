@@ -197,8 +197,32 @@ alias prx='ssh -g -N -f vmwgitlab'
 alias prk='kill $(ps uxw|grep '\''ssh -g -N -f vmwgitlab'\''|grep -v grep|awk '\''{print $2}'\'')'
 alias cdp='cd ~/sb/cloud-build/docker/deploy'
 
+function cent_fix_c6_repo() {
+  local d=$(mktemp -d)
+  cat <<EOF >$d/repoconf
+H4sIAL8remAAA7WVTWvbQBCG7/oVAzE+VVZyyaEgCg0hhFJq2uYQTA9jaSQtWu2K/Uijf99ZrfyR
+pDEksU9e7cy87+wz8uoMrki5H7/Sr2hpYajXyVlyBr8bgk4Yow3YwTrqwFuy4Hi70EpR4YSq4XYJ
+WJaGrAVdxaAULAeoyvDIQr4v0RFYh86PWYRFs5F2GnpRtNNjkEeuNTRVlSGBpVimJl0b7BtRoJQD
+22hLIbrzXADcaw+20V6WoVuOCQsV28QTTqI2NKVk6Hng/ODWofKjbGgmnEuzrNl0tRiB3MbzxT0p
+rMuh1ExEaQd/tWlHIxb8BGgBoWI9WCOfLZgUqMCZYVRgLUMdmpaPp73jJEveyBykUARCMWwsR88k
+WYXgn0RhR/k0ppkhSbz7wA2mEIbGgntdNc71n7Nst7MouFDbhTZ19mUqzvdU5miKJp8Fp7Cah1cg
+13YuVGUwn40/bLFp84n+vnZcZnvKWXjc6GbJvoJliQf08kl3l4uL82c1dV8XDRVtfhGWLQ15JSRx
+cUauyPpWZKbvUg5lP5ff05vlTfrt+j6dUF0mI+uxnXI7/dW0OIT1bvumHJ3s5H4MvJPU2xn/p/Dj
+oPkiEE5ohRJ6fu+xpun/3OEAawr/yMrLZEWPzuBB+tdjxingR+9jsI9Kb0f/su7D5F8Fz17E93Dl
+VRHjwg3jDfzI/MI1t0lPVrHNXvqDg1lyPDn6UHbezwbznrnsxF5hTArXksr8/J20+evnjFgzjS3s
+9TB+YbSFO0sm0Iw5h1BexZQT0IzCx0AZlU7C8R/bD74mdggAAA==
+EOF
+  docker cp $d/repoconf c6:/tmp/a.txt
+  rm -rf $d
+  docker exec -ti c6 bash -c 'cat /tmp/a.txt | base64 -d | gunzip - >/etc/yum.repos.d/CentOS-Base.repo; rm -f /tmp/a.txt'
+  docker exec -ti c6 yum clean all
+}
+
 function cent_config() {
   local cont=$1
+  if [[ $cont == 'c6' ]]; then
+    cent_fix_c6_repo
+  fi
   docker exec -ti $cont bash -c 'useradd -s /bin/bash -m om'
   docker exec -ti $cont bash -c 'yum -y update'
   docker exec -ti $cont bash -c 'yum -y install epel-release'
