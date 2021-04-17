@@ -232,7 +232,7 @@ function cent_install() {
   docker exec -ti $cont bash -c 'mkdir /tmp/x; cd /tmp/x; wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz; mkdir -p /usr/local; cd /usr/local; tar xf /tmp/x/go1.16.3.linux-amd64.tar.gz; cd /usr/bin; ln -s /usr/local/go/bin/* .; cd /; rm -rf /tmp/x'
   docker exec -ti $cont su - om -c 'git clone https://github.com/random220/gcode; mv .bashrc .bashrc.0; ln -s gcode/sundry/.bashrc .; ln -s gcode/sundry/.aliases .;ln -s gcode/sundry/.vimrc .; ln -s gcode/sundry/.tmux.conf .'
   docker exec -ti $cont su - om -c 'ssh-keygen -t rsa -b 2048 -N "" -f ~/.ssh/id_rsa -C om'
-  docker exec -ti $cont su - om -c 'cp ~/gcode/sundry/sshconf ~/.ssh/config; chmod go-w ~/.ssh/config'
+  docker exec -ti $cont su - om -c 'cp ~/gcode/sundry/.ssh/config ~/.ssh/config; chmod go-w ~/.ssh/config'
   docker stop $cont
   docker start $cont
   docker exec -ti $cont bash -c 'yum -y clean all'
@@ -252,7 +252,7 @@ function ub_install() {
   docker exec -ti $cont bash -c 'mkdir /tmp/x; cd /tmp/x; wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz; mkdir -p /usr/local; cd /usr/local; tar xf /tmp/x/go1.16.3.linux-amd64.tar.gz; cd /usr/bin; ln -s /usr/local/go/bin/* .; cd /; rm -rf /tmp/x'
   docker exec -ti $cont su - om -c 'git clone https://github.com/random220/gcode; mv .bashrc .bashrc.0; ln -s gcode/sundry/.bashrc .; ln -s gcode/sundry/.aliases .;ln -s gcode/sundry/.vimrc .; ln -s gcode/sundry/.tmux.conf .'
   docker exec -ti $cont su - om -c 'ssh-keygen -t rsa -b 2048 -N "" -f ~/.ssh/id_rsa -C om'
-  docker exec -ti $cont su - om -c 'cp ~/gcode/sundry/sshconf ~/.ssh/config; chmod go-w ~/.ssh/config'
+  docker exec -ti $cont su - om -c 'cp ~/gcode/sundry/.ssh/config ~/.ssh/config; chmod go-w ~/.ssh/config'
   docker stop $cont
   docker start $cont
   docker exec -ti $cont bash -c 'apt-get -y autoclean; apt-get -y autoremove'
