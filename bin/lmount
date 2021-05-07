@@ -30,77 +30,71 @@ fi
 mountpoint=$(cd "$mountpoint" && /bin/pwd -P)
 
 vera_volume=''
+mac_volume=''
 
-volfiles=('/Volumes/3TB/om/LCRUZER.vol'
-          '/Volumes/1TB/CRUZER-20GB-MacOS.vol'
-          '/Volumes/data/LCRUZER.vol'
-          '/Volumes/MAC/CRUZER.vol'
-          '/Volumes/1TBenc/CRUZER.vol')
-vera_volume=''
-for v in ${volfiles[@]}; do
-  if [[ -f $v ]]; then
-    vera_volume=$v
-  fi
-done
+function lookfor_mac_volume() {
+  mac_volfiles=(
+                 '/Volumes/64GB/Hosta!host!.dmg'
+               )
 
-if [[ $vera_volume == '' ]]; then
-  # % mount
-  # /dev/disk1 on / (hfs, local, journaled)
-  # devfs on /dev (devfs, local, nobrowse)
-  # map -hosts on /net (autofs, nosuid, automounted, nobrowse)
-  # map auto_home on /home (autofs, automounted, nobrowse)
-  # /dev/disk2s1 on /Volumes/8GB (msdos, local, nodev, nosuid, noowners)
+  for v in ${mac_volfiles[@]}; do
+    if [[ -f $v ]]; then
+      mac_volume=$v
+    fi
+  done
+}
 
-  mount_found=$(mount | egrep '^/dev/disk[0-9]+s1 on /Volumes/8GB \(msdos')
-  if [[ $mount_found != '' ]]; then
-    vera_volume=$(echo "$mount_found" | sed 's,s1 .*,s2,')
-    if [[ ! -b $vera_volume ]]; then
-      # Not a block device
-      vera_volume=''
+function lookfor_vera_volume() {
+  vera_volfiles=(
+                  '/Volumes/1TB/CRUZER-20GB-MacOS.vol'
+                  '/Volumes/1TBenc/CRUZER.vol'
+                  '/Volumes/3TB/om/LCRUZER.vol'
+                  '/Volumes/MAC/CRUZER.vol'
+                  '/Volumes/data/LCRUZER.vol'
+                )
+  for v in ${vera_volfiles[@]}; do
+    if [[ -f $v ]]; then
+      vera_volume=$v
+    fi
+  done
+  if [[ $vera_volume == '' ]]; then
+    # % mount
+    # /dev/disk1 on / (hfs, local, journaled)
+    # devfs on /dev (devfs, local, nobrowse)
+    # map -hosts on /net (autofs, nosuid, automounted, nobrowse)
+    # map auto_home on /home (autofs, automounted, nobrowse)
+    # /dev/disk2s1 on /Volumes/8GB (msdos, local, nodev, nosuid, noowners)
+
+    mount_found=$(mount | egrep '^/dev/disk[0-9]+s1 on /Volumes/8GB \(msdos')
+    if [[ $mount_found != '' ]]; then
+      vera_volume=$(echo "$mount_found" | sed 's,s1 .*,s2,')
+      if [[ ! -b $vera_volume ]]; then
+        # Not a block device
+        vera_volume=''
+      fi
     fi
   fi
-fi
 
-if [[ $vera_volume == '' ]]; then
-  # % mount
-  # /dev/disk1 on / (hfs, local, journaled)
-  # devfs on /dev (devfs, local, nobrowse)
-  # map -hosts on /net (autofs, nosuid, automounted, nobrowse)
-  # map auto_home on /home (autofs, automounted, nobrowse)
-  # /dev/disk2s2 on /Volumes/F32 (msdos, local, nodev, nosuid, noowners)
+  if [[ $vera_volume == '' ]]; then
+    # % mount
+    # /dev/disk1 on / (hfs, local, journaled)
+    # devfs on /dev (devfs, local, nobrowse)
+    # map -hosts on /net (autofs, nosuid, automounted, nobrowse)
+    # map auto_home on /home (autofs, automounted, nobrowse)
+    # /dev/disk2s2 on /Volumes/F32 (msdos, local, nodev, nosuid, noowners)
 
-  mount_found=$(mount | egrep -i '^/dev/disk[0-9]+s2 on /Volumes/8GBpart \(msdos')
-  if [[ $mount_found != '' ]]; then
-    vera_volume=$(echo "$mount_found" | sed 's,s2 .*,s3,')
-    if [[ ! -b $vera_volume ]]; then
-      # Not a block device
-      vera_volume=''
+    mount_found=$(mount | egrep -i '^/dev/disk[0-9]+s2 on /Volumes/8GBpart \(msdos')
+    if [[ $mount_found != '' ]]; then
+      vera_volume=$(echo "$mount_found" | sed 's,s2 .*,s3,')
+      if [[ ! -b $vera_volume ]]; then
+        # Not a block device
+        vera_volume=''
+      fi
     fi
   fi
-fi
+}
 
-if [[ $vera_volume == '' ]]; then
-  echo "Error: Volume not found"
-  exit 1
-fi
-
-$veracrypt --text --version >/dev/null 2>&1
-if [[ $? != 0 ]]; then
-  echo "Error: veracrypt not found"
-  exit 1
-fi
-
-$veracrypt --text --list 2>/dev/null | grep -q " $mountpoint\$"
-if [[ $? == 0 ]]; then
-  # Already mounted. Say so.
-  echo "Something is already mounted on $mountpoint"
-  exit 0
-fi
-
-echo
-echo "Mounting L ..."
-
-get_next_slot()
+vera_get_next_slot()
 {
   # mounts=$($veracrypt --text --list)
   # 1: /b/om/CRUZER.vol /dev/disk4 /b/om/p
@@ -111,16 +105,54 @@ get_next_slot()
   echo $next_slot
 }
 
-slot=$(get_next_slot)
-$veracrypt --text --slot=$slot --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint
-mounts=$($veracrypt --text --list 2>/dev/null)
-printf "$mounts\n"
-# 1: /b/om/CRUZER.vol /dev/disk4 /b/om/p
-# 2: /Volumes/3TB/om/LCRUZER.vol /dev/disk5 /b/om/l
+function mount_vera() {
+  $veracrypt --text --version >/dev/null 2>&1
+  if [[ $? != 0 ]]; then
+    echo "Error: veracrypt not found"
+    exit 1
+  fi
 
-printf "$mounts\n" | egrep -q " $mountpoint"
-result=$?
+  $veracrypt --text --list 2>/dev/null | grep -q " $mountpoint\$"
+  if [[ $? == 0 ]]; then
+    # Already mounted. Say so.
+    echo "Something is already mounted on $mountpoint"
+    exit 0
+  fi
 
-exit $result
+  echo
+  echo "Mounting L ..."
+
+
+  slot=$(vera_get_next_slot)
+  $veracrypt --text --slot=$slot --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint
+  mounts=$($veracrypt --text --list 2>/dev/null)
+  printf "$mounts\n"
+  # 1: /b/om/CRUZER.vol /dev/disk4 /b/om/p
+  # 2: /Volumes/3TB/om/LCRUZER.vol /dev/disk5 /b/om/l
+
+  printf "$mounts\n" | egrep -q " $mountpoint"
+  result=$?
+
+  exit $result
+}
+
+function mount_mac() {
+  hdiutil attach -mountpoint $mountpoint $mac_volume
+  exit $?
+}
+
+lookfor_vera_volume
+lookfor_mac_volume
+
+if [[ $vera_volume != '' ]]; then
+  mount_vera
+elif [[ $mac_volume != '' ]]; then
+  mount_mac
+else
+  echo "ERROR: No mountable volumes"
+  exit 1
+fi
+
+
 
 
