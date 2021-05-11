@@ -1,0 +1,38 @@
+# A	omandal@localhost:x/a.git (fetch)
+# A	omandal@localhost:x/a.git (push)
+# B	omandal@localhost:x/b.git (fetch)
+# B	omandal@localhost:x/b.git (push)
+
+A=omandal@localhost:x/a.git
+B=omandal@localhost:x/b.git
+
+git checkout $(git rev-parse HEAD) >/dev/null 2>&1
+git remote rm A
+git remote rm B
+git branch|xargs git branch -D
+git tag|xargs git tag -d
+git remote add A $A
+git remote add B $B
+git fetch --all
+for branch in $(git branch -r|sed 's,^....,,'|sort -u); do
+  n=$((git show -q A/$branch B/$branch|grep '^commit'|wc -l) 2>/dev/null|awk {'print $1'})
+  if [[ $n == '1' ]]; then
+    :
+  elif [[ $n == '0' ]]; then
+    git checkout -b $branch A/$branch 2>/dev/null
+    if [[ $? != 0 ]]; then
+      git checkout -b $branch B/$branch 2>/dev/null
+    fi
+  elif [[ $n == '2' ]]; then
+    git checkout -b $branch A/$branch 2>/dev/null
+    git merge B/$branch
+  fi
+done
+
+git push --all A
+git push --tags A
+git push --all B
+git push --tags B
+
+
+
