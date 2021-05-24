@@ -130,7 +130,7 @@ function gfresh() {
     git remote rm origin
     git remote add origin $o
     git fetch --all
-    git checkout $b
+    git checkout -b $b --track origin/$b
 }
 function glocal() {
     for branch in $(git branch -r|grep -v -- '->'|grep 'origin/'|sed 's/^  origin\///'); do
