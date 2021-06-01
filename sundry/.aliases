@@ -126,10 +126,17 @@ function gfresh() {
     git checkout $(git rev-parse HEAD) >/dev/null 2>&1
     git branch|grep -v '^\*'|xargs git branch -D
     git tag|xargs git tag -d
+    (
+    for bremote in $(git branch -r); do
+        blocal=$(echo $bremote|sed 's/^origin\///; s/$/_OMOM/')
+        echo "git branch $blocal $bremote"
+    done
+    )|bash -
     local o=$(git remote -v|grep '^origin'|grep '(fetch)$'|awk '{print $2}')
     git remote rm origin
     git remote add origin $o
     git fetch --all
+    git branch|grep -v '^\*'|xargs git branch -D
     git checkout -b $b --track origin/$b
 }
 function glocal() {
