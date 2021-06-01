@@ -1,0 +1,5 @@
+#!/bin/bash
+
+docker run -itd -p 8888:8888 -h jp --name jp jupyter/minimal-notebook
+sleep 3
+docker exec jp bash -c 'jupyter notebook list'
