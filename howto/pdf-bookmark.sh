@@ -1,3 +1,6 @@
+# reference: https://www.xmodulo.com/add-bookmarks-pdf-document-linux.html
+
+
 cat <<'EOF' >index.info
 [/Count 1 /Page 12 /Title (1. BASIC MATHEMATICS) /OUT pdfmark
 [/Page 13 /Title (1.1 Basic Mathematics) /OUT pdfmark
