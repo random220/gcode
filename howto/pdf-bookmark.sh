@@ -83,7 +83,7 @@ function repackit() {
 cat <<EOF | openssl enc -d -base64|gunzip - >a.sh
 _EOF
 
-    cat a.sh|gzip -9 -|openssl enc -base64 >>a.txt
+    cat $0|gzip -9 -|openssl enc -base64 >>a.txt
 
     cat >>a.txt <<'_EOF'
 EOF
