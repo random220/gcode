@@ -1,0 +1,6 @@
+# unbinds all submodules
+git submodule deinit -f .
+# checkout again
+git submodule update --init --recursive
+
+https://www.systutorials.com/how-to-reset-all-submodules-in-git/
