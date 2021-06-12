@@ -1,0 +1,117 @@
+29. ELECTROMAGNETIC WAVES 1-19 14
+    29.1 Introduction 15
+    29.2 Displacement Current 15
+    29.3 Electromagnetic Waves 18
+    29.4 Electromagnetic Spectrum 22
+    Solved Examples 25
+    Exercises 30
+    Answers 32
+
+30. REFLECTION OF LIGHT 21-70 34
+    30.1 Introduction 35
+    30.2 General Concepts used in Geometrical Optics 35
+    30.3 Reflection of Light 39
+    30.4 Reflection from a Spherical Surface 47
+    Miscellaneous Examples 67
+    Exercises 70
+    Answers 82
+
+31. REFRACTION OF LIGHT 71-190 84
+    31.1 Refraction of Light and Refractive Index of a Medium 85
+    31.2 Law of Refraction (Snell's Law) 85
+    31.3 Single Refraction from Plane Surface 92
+    31.4 Shift due to a Glass Slab 95
+    31.5 Refraction from Spherical Surface 99
+    31.6 Lens Theory 101
+    31.7 Total Internal Reflection (TIR) 133
+    31.8 Refraction Through Prism 139
+    31.9 Deviation 149
+    31.10 Optical Instruments 151
+    Final Touch Points 160
+    Solved Examples 166
+    Exercises 175
+    Answers 201
+
+32. INTERFERENCE AND DIFFRACTION OF LIGHT 191-251 204
+    32.1 Principle of Superposition 205
+    32.2 Resultant Amplitude and Intensity due to Coherent Sources 205
+    32.3 Interference 207
+    32.4 Young's Double Slit Experiment (YDSE) 211
+    32.5 Introduction to Diffraction 222
+    32.6 Diffraction from a Narrow Slit 224
+    Final Touch Points 228
+    Solved Examples 229
+    Exercises 250
+    Answers 263
+
+33. MODERN PHYSICS-I 253-323 266
+    33.1 Dual Nature of Electromagnetic Waves 267
+    33.2 Electromagnetic Spectrum 267
+    33.3 Momentum and Radiation Pressure 269
+    33.4 de-Broglie Wavelength of Matter Wave 270
+    33.5 Early Atomic Structure 273
+    33.6 The Bohr Hydrogen Atom 274
+    33.7 Hydrogen Like Atoms 278
+    33.8 X-Rays 285
+    33.9 Emission of Electrons 292
+    33.10 Photoelectric Effect 292
+    Final Touch Points 300
+    Solved Examples 301
+    Miscellaneous Examples 310
+    Exercises 318
+    Answers 335
+
+34. MODERN PHYSICS-II 325-374 338
+    34.1 Nuclear Stability and Radioactivity 339
+    34.2 The Radioactive Decay Law 343
+    34.3 Successive Disintegration 350
+    34.4 Equivalence of Mass and Energy 353
+    34.5 Binding Energy and Nuclear Stability 353
+    34.6 Nuclear Fission (Divide and Conquer) 355
+    34.7 Nuclear Fusion 357
+    Final Touch Points 361
+    Solved Examples 365
+    Miscellaneous Examples 371
+    Exercises 376
+    Answers 386
+
+35. SEMICONDUCTORS 375-414 388
+    35.1 Introduction 389
+    35.2 Energy Bands in Solids 389
+    35.3 Intrinsic and Extrinsic Semiconductors 391
+    35.4 p-n Junction Diode 394
+    35.5 Junction Diode as a Rectifier 397
+    35.6 Applications of p-n Junction Diodes 399
+    35.7 Junction Transistors 402
+    35.8 Transistor as an Amplifier 404
+    35.9 Digital Electronics and Logic Gates 409
+    Final Touch Points 416
+    Solved Examples 417
+    Exercises 423
+    Answers 427
+
+36. COMMUNICATION SYSTEM 415-431 428
+    36.1 Introduction 429
+    36.2 Different Terms Used in Communication System 429
+    36.3 Bandwidth of Signals 430
+    36.4 Bandwidth of Transmission Medium 430
+    36.5 Propagation of Electromagnetic Waves or Communication Channels 431
+    36.6 Modulation 435
+    36.7 Amplitude Modulation 436
+    36.8 Production of Amplitude Modulated Wave 438
+    36.9 Detection of Amplitude Modulated Wave 438
+    Solved Examples 440
+    Exercises 442
+    Answers 444
+
+* Hints & Solutions 433-518 446
+    29. Electromagnetic Waves 447
+    30. Reflection of Light 449
+    31. Refraction of Light 460
+    32. Interference and Diffraction of Light 485
+    33. Modern Physics-I 497
+    34. Modern Physics-II 516
+    35. Semiconductors 525
+    36. Communication System 529
+
+* JEE Main & Advanced Previous Years' Questions (2018-13) 1-28 532

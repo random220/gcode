@@ -1,0 +1,27 @@
+#!/usr/bin/perl
+use strict;
+
+open F, "<indexmaker-shell.txt" or die;
+my @shell_lines = <F>;
+close F;
+
+open F, "<.build/index-cooked.txt" or die;
+my @index_lines = <F>;
+close F;
+
+my @all_lines = ();
+my $i;
+for ($i = 0; $i < scalar @shell_lines; $i++) {
+    my $line = $shell_lines[$i];
+    last if($line eq "--COOKED-INDEX-HERE--\n");
+    push @all_lines, $line;
+}
+
+for my $line (@index_lines) {
+    push @all_lines, $line;
+}
+for ($i = $i+1; $i < scalar @shell_lines; $i++) {
+    push @all_lines, $shell_lines[$i];
+}
+
+print join '', @all_lines;

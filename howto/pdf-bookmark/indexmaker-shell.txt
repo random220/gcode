@@ -1,0 +1,49 @@
+#!/bin/bash
+
+cat <<'EOF'
+EOF
+
+function make_index() {
+    cat <<'EOF' >index.info
+--COOKED-INDEX-HERE--
+EOF
+
+    /usr/bin/gs -sDEVICE=pdfwrite -q -dBATCH -dNOPAUSE -sOutputFile=out.pdf -dPDFSETTINGS=/prepress index.info -f in.pdf
+}
+
+
+
+function repackit() {
+# -----------------------------------------------------------------------------
+# How to repack
+# -----------------------------------------------------------------------------
+    
+    cat >a.txt <<'_EOF'
+#
+# -----------------------------------------------------------------------------
+# How to generate bookmarks for this pdf book
+# -----------------------------------------------------------------------------
+# cat a.sh|gzip - -9|openssl enc - base64 >a.txt
+cat <<EOF | openssl enc -d -base64|gunzip - >a.sh
+_EOF
+
+    cat $0|gzip -9 -|openssl enc -base64 >>a.txt
+
+    cat >>a.txt <<'_EOF'
+EOF
+chmod a+x a.sh
+# -----------------------------------------------------------------------------
+#
+_EOF
+}
+
+if [[ $1 == idx ]]; then
+    make_index
+elif [[ $1 == repack ]]; then
+    repackit
+else
+    echo "$0 idx|repack"
+fi
+  
+
+
