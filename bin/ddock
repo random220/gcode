@@ -76,6 +76,7 @@ function ub_install() {
   docker exec -ti $cont bash -c 'DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata'
   docker exec -ti $cont bash -c 'rm -f /etc/localtime; ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime'
   docker exec -ti $cont bash -c 'apt-get -y install tesseract-ocr-eng tesseract-ocr-ben'
+  docker exec -ti $cont bash -c 'apt-get -y install ghostscript pdftk img2pdf'
   local d=$(mktemp -d)
   echo 'om ALL=(ALL) NOPASSWD: ALL' >$d/om
   docker cp $d/om $cont:/etc/sudoers.d/om
