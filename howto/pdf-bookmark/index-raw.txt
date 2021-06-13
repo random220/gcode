@@ -26,7 +26,7 @@ _offset 20
         2-2 Properties from Algebra 37
         2-3 Proving Theorems 43
     Theorems about Angles and Perpendicular Lines
-        2-4 Special Pairs of Angles 30
+        2-4 Special Pairs of Angles 50
         2-5 Perpendicular Lines 56
         2-6 Planning a Proof 60
 
