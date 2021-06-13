@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 use strict;
-system 'pdftk ~/in.pdf cat 1-809 output ~/a.pdf';
+system 'pdftk ~/in.pdf cat 1-893 output ~/a.pdf';
 system 'pdftk ~/a.pdf dump_data output ~/a.txt';
 
 my $home = $ENV{'HOME'};

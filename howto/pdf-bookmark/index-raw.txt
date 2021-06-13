@@ -1,6 +1,6 @@
 _offset 18
 1 Basic Concepts of Algebra
-    The Language of Algebra “
+    The Language of Algebra
         1-1 Real Numbers and Their Graphs 1
         1-2 Simplifying Expressions 6
 
