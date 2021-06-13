@@ -1,16 +1,16 @@
 _offset 18
-1 Basic Concepts of Algebra
-    The Language of Algebra
+1 Basic Concepts of Algebra 18*
+    The Language of Algebra 1
         1-1 Real Numbers and Their Graphs 1
         1-2 Simplifying Expressions 6
 
-    Operating with Real Numbers
+    Operating with Real Numbers 14
         1-3 Basic Properties of Real Numbers 14
         1-4 Sums and Differences 21
         1-5 Products 27
         1-6 Quotients 33
 
-    Solving Equations and Solving Problems
+    Solving Equations and Solving Problems 37
         1-7 Solving Equations in One Variable 37
         1-8 Words into Symbols 43
         1-9 Problem Solving with Equations 49
@@ -23,7 +23,7 @@ _offset 18
         Calculator Key-In 12
     * Special Topics
         Reading Algebra
-            Page xiv
+            Page xiv 12*
             Page 26
         Logical Symbols: Quantifiers 20
         Biographical Note 32
@@ -44,8 +44,8 @@ _offset 18
         Chapter Review 55
         Chapter Test 57
 
-2 Inequalities and Proof
-    Working with Inequalities
+2 Inequalities and Proof 58
+    Working with Inequalities 59
         2-1 Solving Inequalities in One Variable 59
         2-2 Solving Combined Inequalities 65
         2-3 Problem Solving Using Inequalities 69
@@ -81,19 +81,19 @@ _offset 18
         Mixed Problem Solving 98
         Preparing for College Entrance Exams 99
 
-3 Linear Equations and Functions
-    Linear Equations and Their Graphs
+3 Linear Equations and Functions 100
+    Linear Equations and Their Graphs 101
         3-1 Open Sentences in Two Variables 101
         3-2 Graphs of Linear Equations in Two Variables 107
         3-3 The Slope of a Line 112
         3-4 Finding an Equation of a Line 118
 
-    Linear Systems
+    Linear Systems 124
         3-5 Systems of Linear Equations in Two Variables 124
         3-6 Problem Solving: Using Systems 131
         3-7 Linear Inequalities in Two Variables 135
 
-    Functions and Relations
+    Functions and Relations 141
         3-8  Functions 141
         3-9  Linear Functions 146
         3-10 Relations 153
@@ -127,17 +127,17 @@ _offset 18
         Chapter Test 164
         Cumulative Review 165
 
-4 Products and Factors of Polynomials
-    Working with Polynomials
+4 Products and Factors of Polynomials 166
+    Working with Polynomials 167
         4-1 Polynomials 167
         4-2 Using Laws of Exponents 171
         4-3 Multiplying Polynomials 174
 
-    Factors of Polynomials
+    Factors of Polynomials 179
         4-4 Using Prime Factorization 179
         4-5 Factoring Polynomials 183
         4-6 Factoring Quadratic Polynomials 188
-    Applications of Factoring
+    Applications of Factoring 194
         4-7 Solving Polynomial Equations 194
         4-8 Problem Solving Using Polynomial Equations 198
         4-9 Solving Polynomial Inequalities 202
@@ -166,19 +166,19 @@ _offset 18
         Chapter Test 208
         Preparing for College Entrance Exams 209
 
-5 Rational Expressions
-    Using the Laws of Exponents
+5 Rational Expressions 210
+    Using the Laws of Exponents 211
         5-1 Quotients of Monomials 211
         5-2 Zero and Negative Exponents 216
         5-3 Scientific Notation and Significant Digits 221
 
-    Rational Expressions
+    Rational Expressions 227
         5-4 Rational Algebraic Expressions 227
         5-5 Products and Quotients of Rational Expressions 232
         5-6 Sums and Differences of Rational Expressions 235
         5-7 Complex Fractions 238
 
-    Problem Solving Using Fractional Equations
+    Problem Solving Using Fractional Equations 242
         5-8 Fractional Coefficients 242
         5-9 Fractional Equations 247
 
@@ -204,15 +204,15 @@ _offset 18
     Chapter Summary 254
     Chapter Review 255
     Chapter Test 257
-6 Irrational and Complex Numbers
-    Roots and Radicals
+6 Irrational and Complex Numbers 258
+    Roots and Radicals 259
         6-1 Roots of Real Numbers 259
         6-2 Properties of Radicals 264
         6-3 Sums of Radicals 270
         6-4 Binomials Containing Radicals 274
         6-5 Equations Containing Radicals 277
 
-    Real Numbers and Complex Numbers
+    Real Numbers and Complex Numbers 283
         6-6 Rational and Irrational Numbers 283
         6-7 The Imaginary Number i 288
         6-8 The Complex Numbers 292
@@ -241,16 +241,16 @@ _offset 18
         Mixed Problem Solving 304
         Preparing for College Entrance Exams 305
 
-7 Quadratic Equations and Functions
-    Solving Quadratic Equations
+7 Quadratic Equations and Functions 306
+    Solving Quadratic Equations 307
         7-1 Completing the Square 307
         7-2 The Quadratic Formula 311
 
-    Roots of Quadratic Equations
+    Roots of Quadratic Equations 317
         7-3 The Discriminant 317
         7-4 Equations in Quadratic Form 322
 
-    Quadratic Functions and Their Graphs
+    Quadratic Functions and Their Graphs 326
         7-5 Graphing y - k = a(x - h)^2 326
         7-6 Quadratic Functions 333
         7-7 Writing Quadratic Equations and Functions 338
@@ -278,18 +278,18 @@ _offset 18
         Chapter Review 346
         Chapter Test 348
         Cumulative Review 348
-8 Variation and Polynomial Equations
-    Variation and Proportion
+8 Variation and Polynomial Equations 350
+    Variation and Proportion 351
         8-1 Direct Variation and Proportion 351
         8-2 Inverse and Joint Variation 358
 
-    Polynomial Equations
+    Polynomial Equations 364
         8-3 Dividing Polynomials 364
         8-4 Synthetic Division 368
         8-5 The Remainder and Factor Theorems 372
         8-6 Some Useful Theorems 377
 
-    Solving Polynomial Equations
+    Solving Polynomial Equations 382
         8-7 Finding Rational Roots 382
         8-8 Approximating Irrational Roots 386
         8-9 Linear Interpolation 391
@@ -321,18 +321,18 @@ _offset 18
         Chapter Test 398
         Preparing for College Entrance Exams 399
 
-9 Analytic Geometry
-    Conic Sections: Circles and Parabolas
+9 Analytic Geometry 400
+    Conic Sections: Circles and Parabolas 401
         9-1 Distance and Midpoint Formulas 401
         9-2 Circles 407
         9-3 Parabolas 412
 
-    Conic Sections: Ellipses and Hyperholas
+    Conic Sections: Ellipses and Hyperholas 418
         9-4 Ellipses 418
         9-5 Hyperbolas 426
         9-6 More on Central Conics 432
 
-    Systems of Equations
+    Systems of Equations 436
         9-7 The Geometry of Quadratic Systems 436
         9-8 Solving Quadratic Systems 439
         9-9 Systems of Linear Equations in Three Variables 444
@@ -364,17 +364,17 @@ _offset 18
         Chapter Review 451
         Chapter Test 453
 
-10 Exponential and Logarithmic Functions
-    Exponential Functions
+10 Exponential and Logarithmic Functions 454
+    Exponential Functions 455
         10-1 Rational Exponents 455
         10-2 Real Number Exponents 459
         10-3 Composition and Inverses of Functions 463
 
-    Logarithmic Functions
+    Logarithmic Functions 468
         10-4 Definition of Logarithms 468
         10-5 Laws of Logarithms 473
 
-    Applications
+    Applications 478
         10-6 Applications of Logarithms 478
         10-7 Problem Solving: Exponential Growth and Decay 483
         10-8 The Natural Logarithm Function 489
@@ -407,16 +407,16 @@ _offset 18
         Mixed Problem Solving 498
         Preparing for College Entrance Exams 499
 
-11 Sequences and Series
-    Sequences
+11 Sequences and Series 500
+    Sequences 501
         11-1 Types of Sequences 501
         11-2 Arithmetic Sequences 507
         17-3 Geometric Sequences 510
-    Series
+    Series 518
         11-4 Senes and Sigma Notation 518
         11-5 Sums of Arithmetic and Geometric Series 525
         11-6 Infinite Geometric Series 531
-    Binomial Expansions
+    Binomial Expansions 537
         11-7 Powers of Binomials 537
         17-8 The General Binomial Expansion 540
 
@@ -445,15 +445,14 @@ _offset 18
         Chapter Test 546
         Cumulative Review 547
 
-12 Triangle Trigonometry
-
-    Trigonometric Functions
+12 Triangle Trigonometry 548
+    Trigonometric Functions 549
         12-1 Angles and Degree Measure 549
         12-2 Trigonometric Functions of Acute Angles 555
         12-3 Trigonometric Functions of General Angles 561
         12-4 Values of Trigonometric Functions 568
 
-    Triangle Trigonometry
+    Triangle Trigonometry 574
         12-5 Solving Right Triangles 574
         12-6 The Law of Cosines 580
         iZ-7 The Law of Sines 586
@@ -485,15 +484,15 @@ _offset 18
         Chapter Test 604
         Preparing for College Entrance Exams 605
 
-13 Trigonometric Graphs; Identities
-    Circular Functions and Their Graphs
+13 Trigonometric Graphs; Identities 606
+    Circular Functions and Their Graphs 607
         13-1 Radian Measure 607
         13-2 Circular Functions 613
         13-3 Periodicity and Symmetry 619
         13-4 Graphs of the Sine and Cosine 624
         13-5 Graphs of the Other Functions 630
 
-    Trigonometric Identities
+    Trigonometric Identities 636
         13-6 The Fundamental Identities 636
         13-7 Trigonometric Addition Formulas 641
         13-8 Double-Angle and Half-Angle Formulas 646
@@ -525,17 +524,17 @@ _offset 18
         Chapter Review 655
         Chapter Test 657
 
-14 Trigonometric Applications
-    Vectors
+14 Trigonometric Applications 658
+    Vectors 659
         14-1 Vector Operations 659
         14-2 Vectors in the Plane 666
 
-    Polar Coordinates and Complex Numbers
+    Polar Coordinates and Complex Numbers 673
         14-3 Polar Coordinates 673
         14-4 The Geometry of Complex Numbers 680
         14-5 De Moivre’s Theorem 685
 
-    Inverse Functions
+    Inverse Functions 689
         14-6 The Inverse Cosine and Inverse Sine 689
         14-7 Other Inverse Functions 693
         14-8 Trigonometric Equations 697
@@ -566,17 +565,17 @@ _offset 18
         Preparing for College Entrance Exams 706
         Cumulative Review 707
 
-15 Statistics and Probability
-    Statistics
+15 Statistics and Probability 708
+    Statistics 709
         15-1 Presenting Statistical Data 709
         15-2 Analyzing Statistical Data 713
         15-3 The Normal Distribution 719
         15-4 Correlation 724
-    Counting
+    Counting 730
         15-5 Fundamental Counting Principles 730
         15-6 Permutations 734
         15-7 Combinations 738
-    Probability
+    Probability 743
         15-8 Sample Spaces and Events 743
         13-9 Probability 745
         15-10 Mutually Exclusive and Independent Events 754
@@ -608,18 +607,18 @@ _offset 18
         Chapter Review 764
         Chapter Test 765
 
-16 Matrices and Determinants
-    Matrices
+16 Matrices and Determinants 766
+    Matrices 767
         16-1 Definition of Terms 767
         76-2 Addition and Scalar Multiplication 710
         16-3 Matrix Multiplication 774
         16-4 Applications of Matrices 779
 
-    Inverses of Matrices
+    Inverses of Matrices 787
         16-5 Determinants 787
         16-6 Inverses of Matrices 790
 
-    Working with Determinants
+    Working with Determinants 794
         16-7 Expansion of Determinants by Minors 794
         16-8 Properties of Determinants 798
         16-9 Cramer's Rule 801
