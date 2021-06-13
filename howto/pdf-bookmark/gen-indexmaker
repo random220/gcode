@@ -5,7 +5,7 @@ open F, "<indexmaker-shell.txt" or die;
 my @shell_lines = <F>;
 close F;
 
-open F, "<.build/index-cooked.txt" or die;
+open F, "<.build/index-cooked-gs.txt" or die;
 my @index_lines = <F>;
 close F;
 

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#pdftk C:\Users\Sid\Desktop\doc.pdf dump_data output C:\Users\Sid\Desktop\doc_data.txt
+pdftk $1 dump_data output $1.info.txt
