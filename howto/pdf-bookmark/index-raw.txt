@@ -1,5 +1,6 @@
+_offset 20
 1 POINTS, LINES, PLANES, AND ANGLES
-    some Basic Figures
+    Some Basic Figures
         1-1 A Game and Some Geometry 1
         1-2 Points, Lines, and Planes 5
     Definitions and Postulates

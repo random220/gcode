@@ -34,10 +34,15 @@ sub main
     @lines = map {s/\s*$//s; $_} @lines;   # remove end spaces
     @lines = grep {$_ !~ /^\s*$/} @lines;  # remove space-only lines
 
+    my $offset = 0;
+    if ($lines[0] =~ m{^_offset\s+(\d+)$}) {
+        $offset = $1;
+        shift @lines;
+    }
     my $tagged_lines = taglines(\@lines);
     my $tagexteded_hash = expand_tags($tagged_lines);
     #print(Dumper($tagexteded_hash));
-    printhash($tagexteded_hash);
+    printhash($tagexteded_hash, $offset);
 }
 
 sub taglines
@@ -85,7 +90,7 @@ sub expand_tags
 
 sub printhash
 {
-    my $h = shift;
+    my ($h, $offset) = @_;
     my $tag = $h->{'tag'};
     my $line = $h->{'line'};
     my @children = keys %$h;
@@ -103,10 +108,12 @@ sub printhash
                 $page = 1;
             }
             if ($nchild == 0) {
-                print("$space\[/Page $page /Title ($title) /OUT pdfmark\n");
+                my $p = $page + $offset;
+                print("$space\[/Page $p /Title ($title) /OUT pdfmark\n");
             }
             else {
-                print("$space\[/Count $nchild /Page $page /Title ($title) /OUT pdfmark\n");
+                my $p = $page + $offset;
+                print("$space\[/Count $nchild /Page $p /Title ($title) /OUT pdfmark\n");
             }
         }
     }
@@ -116,7 +123,7 @@ sub printhash
     }
 
     for my $child (@children) {
-        printhash($h->{$child});
+        printhash($h->{$child}, $offset);
     }
 }
 
