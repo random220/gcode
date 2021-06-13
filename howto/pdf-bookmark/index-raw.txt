@@ -425,7 +425,7 @@
         14-2 Reflections 377
         14-3 Translations and Glide Reflections 583
         14-4 Rotations 588
-        14-5 Dilations 992
+        14-5 Dilations 592
     Composition and Symmetry
         14-6 Composites of Mappings 599
         14-7 Inverses and the Identity 605
