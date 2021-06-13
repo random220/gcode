@@ -24,10 +24,10 @@ function repackit() {
 # How to generate bookmarks for this pdf book
 # -----------------------------------------------------------------------------
 # cat a.sh|gzip - -9|openssl enc - base64 >a.txt
-cat <<EOF | openssl enc -d -base64|gunzip - >a.sh
+cat <<EOF | base64 -d|gunzip - >a.sh
 _EOF
 
-    cat $0|gzip -9 -|openssl enc -base64 >>a.txt
+    cat $0|gzip -9 -|base64|perl -pe 's/(.{120})/$1\n/g' >>a.txt
 
     cat >>a.txt <<'_EOF'
 EOF
