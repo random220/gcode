@@ -21,8 +21,6 @@ use Data::Dumper;
 
 =cut
 
-my $newlines = {};
-my $newlines2 = {};
 sub main
 {
     if (scalar @ARGV == 0) {
@@ -33,27 +31,44 @@ sub main
     my @lines = <F>;
     close F;
     checkformat(\@lines);
-    @lines = map {s/\s*$//s; $_} @lines;
-    @lines = grep {$_ !~ /^\s*$/} @lines;
+    @lines = map {s/\s*$//s; $_} @lines;   # remove end spaces
+    @lines = grep {$_ !~ /^\s*$/} @lines;  # remove space-only lines
 
+    my $tagged_lines = taglines(\@lines);
+    my $tagexteded_hash = expand_tags($tagged_lines);
+    #print(Dumper($tagexteded_hash));
+    printhash($tagexteded_hash);
+}
 
-    $newlines->{0}->{'count'} = 0;
+sub taglines
+{
+    my $lines = shift;
+    my $tagged_lines = {};
+    $tagged_lines->{0}->{'count'} = 0;
     my $n = 0;
-    for my $line (@lines) {
+    for my $line (@$lines) {
         $n++;
         my ($space, $content) = $line =~ m{^(\s*)(.*)$};
         my $level = int(length($space)/4);
         my $tag = nextag($level, $n);
-        $newlines->{$n} = {'tag' => $tag, 'line' => $line};
+        $tagged_lines->{$n} = {'tag' => $tag, 'line' => $line};
     }
-    for my $n (sort {$a <=> $b} keys %$newlines) {
-        my $tag = $newlines->{$n}->{'tag'};
-        my $line = $newlines->{$n}->{'line'};
+    return $tagged_lines;
+}
+
+sub expand_tags
+{
+    my $tagged_hash = shift;
+
+    my $tag_expanded_hash = {};
+    for my $n (sort {$a <=> $b} keys %$tagged_hash) {
+        my $tag = $tagged_hash->{$n}->{'tag'};
+        my $line = $tagged_hash->{$n}->{'line'};
         #printf("\%-10s %s\n", $tag, $line);
-        # '.1.3.3' '$newlines2->{1}->{3}->{3}'
+        # '.1.3.3' '$tag_expanded_hash->{1}->{3}->{3}'
         my @n = split /\./, $tag;
         shift @n;
-        my $p = $newlines2;
+        my $p = $tag_expanded_hash;
         for my $x (@n) {
             if (!exists $p->{$x}) {
                 $p->{$x} = {};
@@ -63,8 +78,11 @@ sub main
         $p->{'line'} = $line;
         $p->{'tag'} = $tag;
     }
-    printhash($newlines2);
+    return $tag_expanded_hash;
 }
+
+
+
 sub printhash
 {
     my $h = shift;
@@ -75,14 +93,26 @@ sub printhash
     @children = grep {$_ !~ /^line$/} @children;
     @children = sort {$a <=> $b} @children;
     my $nchild = scalar @children;
-    my ($space, $title, $page) = $line =~ m{^(\s*)(.+)\s+(\d+)$};
-    if ($title ne '') {
-        if ($nchild == 0) {
-            print("$space\[/Page $page /Title ($title) /OUT pdfmark\n");
+    if ($line =~ m{^(\s*)(.*?)(\s+(\d+))?$}) {
+        my ($space, $title, $page) = ($1, $2, $4);
+        if ($title ne '') {
+            if ($page ne '') {
+                $title = "$title $page";
+            }
+            else {
+                $page = 1;
+            }
+            if ($nchild == 0) {
+                print("$space\[/Page $page /Title ($title) /OUT pdfmark\n");
+            }
+            else {
+                print("$space\[/Count $nchild /Page $page /Title ($title) /OUT pdfmark\n");
+            }
         }
-        else {
-            print("$space\[/Count $nchild /Page $page /Title ($title) /OUT pdfmark\n");
-        }
+    }
+    else {
+        print("$line\n");
+        die "should never happen";
     }
 
     for my $child (@children) {
@@ -136,3 +166,55 @@ sub checkformat
 }
 
 main();
+
+__END__
+cat <<EOF|base64 -d|gunzip - >idx-raw.txt
+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
+MAAA
+EOF
+
