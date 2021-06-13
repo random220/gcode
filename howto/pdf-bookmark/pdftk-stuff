@@ -1,0 +1,30 @@
+#!/usr/bin/perl
+use strict;
+system 'pdftk ~/in.pdf cat 1-809 output ~/a.pdf';
+system 'pdftk ~/a.pdf dump_data output ~/a.txt';
+
+my $home = $ENV{'HOME'};
+
+open O, ">$home/b.txt" or die;
+
+open F, "<$home/a.txt" or die;
+while (my $line = <F>) {
+    print O $line;
+    if ($line =~ m{^NumberOfPages:\s+\d+\s*$}s) {
+        last;
+    }
+}
+open G, '<.build/index-cooked-pdftk.txt' or die;
+while (my $line = <G>) {
+    print O $line;
+}
+close G;
+
+while (my $line = <F>) {
+    print O $line;
+}
+close F;
+
+close O;
+
+system 'pdftk ~/a.pdf update_info ~/b.txt output ~/b.pdf';
