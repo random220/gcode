@@ -1,5 +1,5 @@
 _offset 10
-11. CENTRE OF MASS, LINEAR MOMENTUM AND COLLISION 1-89 1
+11. CENTRE OF MASS, LINEAR MOMENTUM AND COLLISION 1-89 11*
     11.1 Centre of Mass 1
     11.2 Motion of the Centre of Mass 10
     11.3 Law of Conservation of Linear Momentum 15
@@ -11,7 +11,7 @@ _offset 10
     Miscellaneous Examples 54
     Exercises 61
     Answers 87
-12. ROTATIONAL MECHANICS 91-208 91
+12. ROTATIONAL MECHANICS 91-208 101*
     12.1 Introduction 92
     12.2 Moment of Inertia 92
     12.3 Angular Velocity 102
@@ -30,7 +30,7 @@ _offset 10
     Miscellaneous Examples 175
     Exercises 178
     Answers 206
-13. GRAVITATION 209-283 209
+13. GRAVITATION 209-283 219*
     13.1 Introduction 210
     13.2 Newton's Law of Gravitation 210
     13.3 Acceleration Due to Gravity 215
@@ -46,7 +46,7 @@ _offset 10
     Miscellaneous Examples 261
     Exercises 267
     Answers 282
-14. SIMPLE HARMONIC MOTION 285-371 285
+14. SIMPLE HARMONIC MOTION 285-371 295*
     14.1 Introduction 286
     14.2 Displacement Equation of SHM 288
     14.3 Time Equation of SHM 295
@@ -58,7 +58,7 @@ _offset 10
     Miscellaneous Examples 340
     Exercises 348
     Answers 370
-15. ELASTICITY 373-402 373
+15. ELASTICITY 373-402 383*
     15.1 Introduction 374
     15.2 Elasticity 374
     15.3 Stress and Strain 374
@@ -70,7 +70,7 @@ _offset 10
     Miscellaneous Examples 388
     Exercises 391
     Answers 402
-16. FLUID MECHANICS 403-517 403
+16. FLUID MECHANICS 403-517 413*
     16.1 Definition of a Fluid 404
     16.2 Density of a Liquid 404
     16.3 Pressure in a Fluid 406
@@ -86,5 +86,5 @@ _offset 10
     Miscellaneous Examples 478
     Exercises 485
     Answers 516
-* Hints & Solutions 519-648 519
-* JEE Main & Advanced Previous Years' Questions (2018-13) 1-28 649
+* Hints & Solutions 519-648 519 529*
+* JEE Main & Advanced Previous Years' Questions (2018-13) 1-28 649 659*
