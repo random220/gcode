@@ -1,5 +1,5 @@
 _offset 11
-17. WAVE MOTION 1-50 1*
+17. WAVE MOTION 1-50 12*
     17.1 Introduction 2
     17.2 Classification of a Wave 2
     17.3 Equation of a Travelling Wave 3
@@ -13,7 +13,7 @@ _offset 11
     Exercises 40
     Answers 49
 
-18. SUPERPOSITION OF WAVES 51-98 51*
+18. SUPERPOSITION OF WAVES 51-98 62*
     18.1 Principle of Superposition 52
     18.2 Resultant Amplitude and Intensity due to Coherent Sources 52
     18.3 Interference 54
@@ -26,7 +26,7 @@ _offset 11
     Exercises 85
     Answers 97
 
-19 SOUND WAVES 99-170 99*
+19 SOUND WAVES 99-170 110*
     19.1 Introduction 100
     19.2 Displacement Wave, Pressure Wave and Density Wave 100
     19.3 Speed of a Longitudinal Wave 105
@@ -41,7 +41,7 @@ _offset 11
     Exercises 151
     Answers 169
 
-20. THERMOMETRY, THERMAL EXPANSION & KINETIC THEORY OF GASES 171-236 171*
+20. THERMOMETRY, THERMAL EXPANSION & KINETIC THEORY OF GASES 171-236 182*
     20.1 Thermometers and The Celsius Temperature Scale 172
     20.2 The Constant Volume Gas Thermometer and The Absolute Temperature Scale 172
     20.3 Heat and Temperature 176
@@ -58,7 +58,7 @@ _offset 11
     Exercises 223
     Answers 235
 
-21. LAWS OF THERMODYNAMICS 237-305 237*
+21. LAWS OF THERMODYNAMICS 237-305 248*
     21.1 The First Law of Thermodynamics 238
     21.2 Further Explanation of Three Terms Used in First Law 240
     21.3 Different Thermodynamic Processes 249
@@ -72,7 +72,7 @@ _offset 11
     Exercises 284
     Answers 303
 
-22. CALORIMETRY & HEAT TRANSFER 307-352 307*
+22. CALORIMETRY & HEAT TRANSFER 307-352 318*
     22.1 Calorimetry 308
     22.2 Heat Transfer 313
     Solved Examples 327
