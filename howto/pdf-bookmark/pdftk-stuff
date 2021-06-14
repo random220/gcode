@@ -1,6 +1,20 @@
 #!/usr/bin/perl
 use strict;
-system 'pdftk ~/in.pdf cat 1-638 output ~/a.pdf';
+use Data::Dumper;
+
+=head aa
+my $cmd = 'pdftk ~/in.pdf cat 1-10000 2>&1';
+my @out = `$cmd`;
+my $pages = 0;
+for my $line (@out) {
+    if ($line =~ m{input PDF has: (\d+) pages}) {
+        $pages = $1;
+    }
+}
+system "pdftk ~/in.pdf cat 1-$pages output ~/a.pdf";
+=cut
+
+system "pdftk ~/in.pdf cat output ~/a.pdf";
 system 'pdftk ~/a.pdf dump_data output ~/a.txt';
 
 my $home = $ENV{'HOME'};
