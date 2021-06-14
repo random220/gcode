@@ -5,6 +5,8 @@ CONTENTS 6*
 SYLLABUS 9*
 1. BASIC MATHEMATICS 1
     1.1 Basic Mathematics 2
+    Exercises 10
+    Answers 11
 
 2. MEASUREMENT AND ERRORS 13
     2.1 Errors in Measurement and Least Count 14
