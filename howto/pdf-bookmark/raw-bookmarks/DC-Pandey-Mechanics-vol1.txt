@@ -1,0 +1,128 @@
+Cover 1
+PREFACE 5
+CONTENTS 6
+SYLLABUS 9
+1. BASIC MATHEMATICS 12
+    1.1 Basic Mathematics 13
+
+2. MEASUREMENT AND ERRORS 24
+    2.1 Errors in Measurement and Least Count 25
+    2.2 Significant Figures 25
+    2.3 Rounding off a Digit 27
+    2.4 Algebraic Operations with Significant Figures 28
+    2.5 Error Analysis 30
+    Final Touch Points 36
+    Solved Examples 37
+    Exercises 39
+    Answers 42
+
+3. EXPERIMENTS 44
+    3.1 Vernier Callipers 45
+    3.2 Screw Gauge 49
+    3.3 Determination of 'g' using a Simple Pendulum 52
+    3.4 Young's Modulus by Searle's Method 55
+    3.5 Determination of Specific Heat 60
+    3.6 Speed of Sound using Resonance Tube 63
+    3.7 Verification of Ohm's Law using Voltmeter and Ammeter 65
+    3.8 Meter Bridge Experiment 69
+    3.9 Post Office Box 73
+    3.10 Focal Length of a Concave Mirror using u-v method 75
+    3.11 Focal Length of a Convex Lens using u-v method 80
+    Exercises 83
+    Answers 89
+
+4. UNITS AND DIMENSIONS 79-96 90
+    4.1 Units 91
+    4.2 Fundamental and Derived Units 91
+    4.3 Dimensions 92
+    4.4 Uses of Dimensions 96
+    Final Touch Points 99
+    Solved Examples 100
+    Exercises 102
+    Answers 107
+
+5. VECTORS 97-125 108
+    5.1 Vector and Scalar Quantities 109
+    5.2 General Points regarding Vectors 109
+    5.3 Addition and Subtraction of Two Vectors 113
+    5.4 Components of a Vector 116
+    5.5 Product of Two Vectors 119
+    Final Touch Points 124
+    Solved Examples 127
+    Exercises 130
+    Answers 135
+
+6. KINEMATICS 127-214 138
+     6.1 Introduction to Mechanics and Kinematics 139
+     6.2 Few General Points of Motion 139
+     6.3 Classification of Motion 140
+     6.4 Basic Definition 142
+     6.5 Uniform Motion 145
+     6.6 One Dimensional Motion with Uniform Acceleration 147
+     6.7 One Dimensional Motion with Non-uniform Acceleration 152
+     6.8 Motion in Two and Three Dimensions 155
+     6.9 Graphs 158
+    6.10 Relative Motion 168
+    Final Touch Points 180
+    Solved Examples 183
+    Miscellaneous Examples 193
+    Exercises 200
+    Answers 222
+
+7. PROJECTILE MOTION 215-259 226
+    7.1 Introduction 227
+    7.2 Projectile Motion 227
+    7.3 Two Methods of Solving a Projectile Motion 228
+    7.4 Time of Flight, Maximum Height and Horizontal Range of a Projectile 232
+    7.5 Projectile Motion along an Inclined Plane 238
+    7.6 Relative Motion between Two Projectiles 241
+    Final Touch Points 244
+    Solved Examples 245
+    Miscellaneous Examples 253
+    Exercises 257
+    Answers 269
+
+8. LAWS OF MOTION 261-359 272
+    8.1 Types of Forces 273
+    8.2 Free Body Diagram 275
+    8.3 Equilibrium 277
+    8.4 Newton's Laws of Motion 287
+    8.5 Constraint Equations 296
+    8.6 Pseudo Force 302
+    8.7 Friction 305
+    Final Touch Points 314
+    Solved Examples 315
+    Miscellaneous Examples 328
+    Exercises 335
+    Answers 368
+
+9. WORK, ENERGY AND POWER 361-427 372
+    9.1 Introduction to Work 373
+    9.2 Work Done 373
+    9.3 Conservative and Non-conservative Forces 379
+    9.4 Kinetic Energy 381
+    9.5 Work-Energy Theorem 382
+    9.6 Potential Energy 386
+    9.7 Three Types of Equilibrium 389
+    9.8 Power of a Force 393
+    9.9 Law of Conservation of Mechanical Energy 395
+    Final Touch Points 396
+    Solved Examples 397
+    Miscellaneous Examples 408
+    Exercises 413
+    Answers 437
+
+10. CIRCULAR MOTION 429-476 440
+    10.1 Introduction 441
+    10.2 Kinematics of Circular Motion 441
+    10.3 Dynamics of Circular Motion 446
+    10.4 Centrifugal Force 454
+    10.5 Motion in a Vertical Circle 455
+    Final Touch Points 461
+    Solved Examples 464
+    Miscellaneous Examples 468
+    Exercises 471
+    Answers 486
+
+* Hints & Solutions 477-608 488
+* JEE Main & Advanced Previous Years' Questions (2018-13) 1-18 620
