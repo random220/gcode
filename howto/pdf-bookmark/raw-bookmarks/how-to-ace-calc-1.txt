@@ -1,0 +1,129 @@
+_offset 12
+Introduction 1
+Exactly Who and What Is Your Instructor? 3
+    2.1 Choosing an instructor 3
+    2.2 What to expect from your instructor 7
+    2.3 How to deal with your instructor 9
+
+General Principles of Acing Calculus 10
+
+Good and Bad Questions 14
+    4.1 Why ask questions? 14
+    4.2 Some sample questions 15
+    4.3 Questions not to ask 15
+
+Are You Ready? Cale Preregs 17
+    5.1 What you think you learned 17
+    5.2 What you really need to know on the first day of class 18
+    5.3. Computers and calculators: Our 2-bit friends 24
+
+How to Handle the Exam 27
+    6.1 What will be on the exam 28
+    6.2 How to study 28
+    6.3 How not to study for the exam 30
+    6.4 Taking the exam 30
+
+Lines, Circles, and Their Friends 33
+    7.1 Cartesian plane 33
+    7.2 General graphing tricks: The parable of the parabola 34
+    7.3 Lines 37
+    7.4 Circles 41
+    7.5 Ellipses, parabolas, and hyperbolas 42
+
+Limits: You Gotta Have Them 46
+    8.1 Basic idea 46
+    8.2 General procedure for taking a limit 49
+    8.3 One-sided limits 51
+    8.4 Limits of weird functions
+    8.5 Calculators and limits
+
+Continuity, or Why You Shouldn't Ski Down Discontinuous Slopes 57
+    9.1 The idea 57
+    9.2 Three conditions for continuity 57
+
+What Is the Derivative? Change Is Good 63
+
+Limit Definition of the Derivative: Finding Derivatives the Hard Way 68
+    11.1 Defining the derivative 68
+    11.2 Other forms for the limit definition of the derivative 74
+
+Derivatives: How to Find Them the Easy Way 77
+    12.1 Basic rules of differentiation 77
+    12.2 Power rule 77
+    12.3 Product rule 79
+    12.4 Quotient rule 80
+    12.5 Derivatives of trig functions 80
+    12.6 Second derivatives, third derivatives, and so on 82
+
+Velocity: Put the Pedal to the Metal 84
+    13.1 Velocity as a derivative 84
+    13.2 Position and velocity of a car 85
+    13.3 Velocity of a falling object 87
+
+Chain Rule: S&M Made Easy 88
+
+Graphing: How to Doodle Like an Expert 93
+    15.1 Graphing functions 93
+    15.2 Tricky graphs that can trip you up 97
+    15.3 Second derivative test 99
+    15.4 Concavity 100
+
+Maxima and Minima: The Bread and Butter Section 103
+    16.1 Maxima and minima over closed intervals 103
+    16.2 Applied max-min problems 104
+Implicit Differentiation: Let's Be Oblique 114
+
+Related Rates: You Change, I Change 117
+
+Differential: Estimating Your Way to Fame and Glory 126
+
+Intermediate Value Theorem and Mean Value Theorem 130
+    20.1 Intermediate value theorem: It ain't a sandwich unless there's something between the bread 130
+    20.2 Mean value theorem: Steep is steep 131
+
+Integration: Doing It All Backward 134
+    21.1 Indefinite integral 135
+    21.2 Integration method: The easy ones 137
+    21.3 Integration method: Substitution 140
+    21.4 Integration method: Eyeball technique 143
+    21.5 Integration method: Tables 144
+    21.6 Integration method: Computers and calculators 145
+
+The Definite Integral 146
+    22.1 How to find the definite integral 146
+    22.2 Area 147
+    22.3 Fundamental theorem of calculus 153
+    22.4 Some basic rules for definite integrals 155
+    22.5 Integration method: Numerical approximation 156
+    22.6 Riemann sum -- with nitty gritty details 161
+
+Modeling: From Toy Planes to the Runway 165
+    23.1 Real-life problem 166
+
+Exponents and Logarithms: A Review of All That "e" Hoopla 169
+    24.1 Exponents 169
+    24.2 Logarithms 171
+
+Doing That Calc Thing to Exponents and Logs 175
+    25.1 Differentiating e* and its friends 175
+    25.2 Integrating e* and its friends 176
+    25.3 Differentiating the natural log 177
+    25.4 Working with other bases 177
+    25.5 Integrals and the natural log 179
+Logarithmic Differentiation: Making the Hard Stuff Easy 181
+Exponential Growth and Decay: Rise and Fall of Slime 184
+
+Fancy-Pants Techniques of Integration 193
+    28.1 Integration method: Integration by parts 194
+    28.2 Integration method: Trigonometric substitution 196
+    28.3 Integration method: Partial fractions 200
+
+Twenty Most Common Exam Mistakes 203
+
+What's on the Final? 207
+
+Glossary: A Quick Guide to the Mathematical Jargon 213
+Index 227
+Just the Facts: Quick Reference Guide 243*
+
+
