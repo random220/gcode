@@ -1,0 +1,656 @@
+_offset 18
+1 Basic Concepts of Algebra 18*
+    The Language of Algebra 1
+        1-1 Real Numbers and Their Graphs 1
+        1-2 Simplifying Expressions 6
+
+    Operating with Real Numbers 14
+        1-3 Basic Properties of Real Numbers 14
+        1-4 Sums and Differences 21
+        1-5 Products 27
+        1-6 Quotients 33
+
+    Solving Equations and Solving Problems 37
+        1-7 Solving Equations in One Variable 37
+        1-8 Words into Symbols 43
+        1-9 Problem Solving with Equations 49
+
+    * Explorations: Exploring Irrational Numbers 832
+    * Technology
+        Computer Exercises
+            Page 5
+            Page 32
+        Calculator Key-In 12
+    * Special Topics
+        Reading Algebra
+            Page xiv 12*
+            Page 26
+        Logical Symbols: Quantifiers 20
+        Biographical Note 32
+        Historical Note 42
+        Challenge 48
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 5
+            Page 20
+            Page 31
+            Page 42
+            Page 54
+        Self-Tests
+            Page 13
+            Page 36
+            Page 54
+        Chapter Summary 55
+        Chapter Review 55
+        Chapter Test 57
+
+2 Inequalities and Proof 58
+    Working with Inequalities 59
+        2-1 Solving Inequalities in One Variable 59
+        2-2 Solving Combined Inequalities 65
+        2-3 Problem Solving Using Inequalities 69
+    Working with Absolute Value
+        2-4 Absolute Value in Open Sentences 73
+        2-5 Solving Absolute Value Sentences Graphically 76
+    Proving Theorems
+        2-6 Theorems and Proofs 81
+        2-7 Theorems about Order and Absolute Value 88
+    * Explorations: Exploring Inequalities 833
+    * Technology
+        Computer Exercises
+            Page 64
+            Page 75
+        Computer Key-In 80
+    * Special Topics
+        Career Note / Automotive Engineer 64
+        Historical Note 68
+        Symbolic Logic: Boolean Algebra 95
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 63
+            Page 72
+            Page 79
+            Page 91
+        Self-Tests
+            Page 72
+            Page 79
+            Page 92
+        Chapter Summary 92
+        Chapter Review 93
+        Chapter Test 94
+        Mixed Problem Solving 98
+        Preparing for College Entrance Exams 99
+
+3 Linear Equations and Functions 100
+    Linear Equations and Their Graphs 101
+        3-1 Open Sentences in Two Variables 101
+        3-2 Graphs of Linear Equations in Two Variables 107
+        3-3 The Slope of a Line 112
+        3-4 Finding an Equation of a Line 118
+
+    Linear Systems 124
+        3-5 Systems of Linear Equations in Two Variables 124
+        3-6 Problem Solving: Using Systems 131
+        3-7 Linear Inequalities in Two Variables 135
+
+    Functions and Relations 141
+        3-8  Functions 141
+        3-9  Linear Functions 146
+        3-10 Relations 153
+
+    * Explorations: Exploring Functions 834
+    * Technology
+        Computer Graphing Ideas 
+            Page 114
+            Page 119
+            Page 160
+        Computer Exercises 122
+    * Special Topics
+        Challenge
+            Page 140
+            Page 158
+        Historical Note 152
+        Application / Linear Programming 159
+     * Reviews and Tests'
+        Mixed Review Exercises
+            Page 106
+            Page 117
+            Page 130
+            Page 139
+            Page 152
+        Self-Tests
+            Page 123
+            Page 140
+            Page 158
+        Chapter Summary 161
+        Chapter Review 162
+        Chapter Test 164
+        Cumulative Review 165
+
+4 Products and Factors of Polynomials 166
+    Working with Polynomials 167
+        4-1 Polynomials 167
+        4-2 Using Laws of Exponents 171
+        4-3 Multiplying Polynomials 174
+
+    Factors of Polynomials 179
+        4-4 Using Prime Factorization 179
+        4-5 Factoring Polynomials 183
+        4-6 Factoring Quadratic Polynomials 188
+    Applications of Factoring 194
+        4-7 Solving Polynomial Equations 194
+        4-8 Problem Solving Using Polynomial Equations 198
+        4-9 Solving Polynomial Inequalities 202
+
+    * Explorations: Exploring Polynomial Factors 835
+    * Technology
+        Computer Exercises 187
+        Computer Key-In 193
+    * Special Topics
+        Biographical Note 177
+        Reading Algebra 178
+        Historical Note 182
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 170
+            Page 176
+            Page 187
+            Page 197
+            Page 205
+        Self-Tests
+            Page 177
+            Page 192
+            Page 205
+        Chapter Summary 206
+        Chapter Review 207
+        Chapter Test 208
+        Preparing for College Entrance Exams 209
+
+5 Rational Expressions 210
+    Using the Laws of Exponents 211
+        5-1 Quotients of Monomials 211
+        5-2 Zero and Negative Exponents 216
+        5-3 Scientific Notation and Significant Digits 221
+
+    Rational Expressions 227
+        5-4 Rational Algebraic Expressions 227
+        5-5 Products and Quotients of Rational Expressions 232
+        5-6 Sums and Differences of Rational Expressions 235
+        5-7 Complex Fractions 238
+
+    Problem Solving Using Fractional Equations 242
+        5-8 Fractional Coefficients 242
+        5-9 Fractional Equations 247
+
+    * Explorations: Exploring Continued Fractions 836
+    * Technology
+        Computer Key-In 215
+        Calculator Key-In 225
+    * Special Topics
+        Biographical Note 220
+        Graphing Rational Functions 230
+        Application / Electrical Circuits 253
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 215
+            Page 225
+            Page 234
+            Page 241
+            Page 252
+    Self-Tests
+        Page 226
+        Page 241
+        Page 252
+    Chapter Summary 254
+    Chapter Review 255
+    Chapter Test 257
+6 Irrational and Complex Numbers 258
+    Roots and Radicals 259
+        6-1 Roots of Real Numbers 259
+        6-2 Properties of Radicals 264
+        6-3 Sums of Radicals 270
+        6-4 Binomials Containing Radicals 274
+        6-5 Equations Containing Radicals 277
+
+    Real Numbers and Complex Numbers 283
+        6-6 Rational and Irrational Numbers 283
+        6-7 The Imaginary Number i 288
+        6-8 The Complex Numbers 292
+
+    * Explorations: Exploring Radicals 837
+    * Technology
+        Calculator Key-In
+            Page 263
+            Page 269
+    * Special Topics
+        The Irrationality of 2^(1/2) 273
+        Historical Note 297
+        Conjugates and Absolute Value 298
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 263
+            Page 273
+            Page 282
+            Page 291
+        Self-Tests
+            Page 282
+            Page 297
+        Chapter Summary 301
+        Chapter Review 302
+        Chapter Test 303
+        Mixed Problem Solving 304
+        Preparing for College Entrance Exams 305
+
+7 Quadratic Equations and Functions 306
+    Solving Quadratic Equations 307
+        7-1 Completing the Square 307
+        7-2 The Quadratic Formula 311
+
+    Roots of Quadratic Equations 317
+        7-3 The Discriminant 317
+        7-4 Equations in Quadratic Form 322
+
+    Quadratic Functions and Their Graphs 326
+        7-5 Graphing y - k = a(x - h)^2 326
+        7-6 Quadratic Functions 333
+        7-7 Writing Quadratic Equations and Functions 338
+
+    * Explorations: Exploring Quadratic Equations 838
+    * Technology
+        Computer Graphing Ideas
+            Page 327
+            Page 838
+        Computer Exercises 321
+    * Special Jopics
+        Biographical Note 316 Challenge 325
+        Career Note / Statistician 337
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 310
+            Page 321
+            Page 332
+            Page 345
+        self-Tests
+            Page 316
+            Page 325
+            Page 345
+        Chapter Summary 346
+        Chapter Review 346
+        Chapter Test 348
+        Cumulative Review 348
+8 Variation and Polynomial Equations 350
+    Variation and Proportion 351
+        8-1 Direct Variation and Proportion 351
+        8-2 Inverse and Joint Variation 358
+
+    Polynomial Equations 364
+        8-3 Dividing Polynomials 364
+        8-4 Synthetic Division 368
+        8-5 The Remainder and Factor Theorems 372
+        8-6 Some Useful Theorems 377
+
+    Solving Polynomial Equations 382
+        8-7 Finding Rational Roots 382
+        8-8 Approximating Irrational Roots 386
+        8-9 Linear Interpolation 391
+
+    * Explorations: Exploring Direct Variation 839
+
+    * Technology
+        Computer Graphing Ideas
+            Page 386
+            Page 387
+        Computer Key-In 389
+        Computer Exercises 395
+    * Special Topics
+        Challenge 363
+        Reading Algebra 371
+        Historical Note 385
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 357
+            Page 367
+            Page 376
+            Page 385
+        Self-Tests
+            Page 363
+            Page 381
+            Page 396
+        Chapter Summary 396
+        Chapter Review 397
+        Chapter Test 398
+        Preparing for College Entrance Exams 399
+
+9 Analytic Geometry 400
+    Conic Sections: Circles and Parabolas 401
+        9-1 Distance and Midpoint Formulas 401
+        9-2 Circles 407
+        9-3 Parabolas 412
+
+    Conic Sections: Ellipses and Hyperholas 418
+        9-4 Ellipses 418
+        9-5 Hyperbolas 426
+        9-6 More on Central Conics 432
+
+    Systems of Equations 436
+        9-7 The Geometry of Quadratic Systems 436
+        9-8 Solving Quadratic Systems 439
+        9-9 Systems of Linear Equations in Three Variables 444
+
+    * Explorations: Exploring Circles and Ellipses 840
+    * Technology
+        Computer Graphing Ideas
+            Page 436
+            Page 840
+        Computer Exercises 406
+    * Special Topics
+        Challenge 411
+        Career Note / Computer Graphics Artist 423
+        Application / Planetary Orbits 424
+        Historical Note 431
+   
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 406
+            Page 417
+            Page 431
+            Page 438
+            Page 449
+        Self-Tests
+            Page 417
+            Page 435
+            Page 450
+        Chapter Summary 450
+        Chapter Review 451
+        Chapter Test 453
+
+10 Exponential and Logarithmic Functions 454
+    Exponential Functions 455
+        10-1 Rational Exponents 455
+        10-2 Real Number Exponents 459
+        10-3 Composition and Inverses of Functions 463
+
+    Logarithmic Functions 468
+        10-4 Definition of Logarithms 468
+        10-5 Laws of Logarithms 473
+
+    Applications 478
+        10-6 Applications of Logarithms 478
+        10-7 Problem Solving: Exponential Growth and Decay 483
+        10-8 The Natural Logarithm Function 489
+
+    * Explorations Exploring Powers and Roots 541
+    * Technology
+        Computer Graphing
+            Page 460
+            Page 464
+            Page 841
+        Calculator Key-In 492
+    * Special Topics
+        Growth of Functions 462
+        Challenge 492
+        Application / Radiocarbon Dating 493
+        Historical Note 472
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 458
+            Page 467
+            Page 477
+            Page 488
+        Self-Tests
+            Page 467
+            Page 477
+            Page 493
+        Chapter Summary 495
+        Chapter Review 496
+        Chapter Test 497
+        Mixed Problem Solving 498
+        Preparing for College Entrance Exams 499
+
+11 Sequences and Series 500
+    Sequences 501
+        11-1 Types of Sequences 501
+        11-2 Arithmetic Sequences 507
+        17-3 Geometric Sequences 510
+    Series 518
+        11-4 Senes and Sigma Notation 518
+        11-5 Sums of Arithmetic and Geometric Series 525
+        11-6 Infinite Geometric Series 531
+    Binomial Expansions 537
+        11-7 Powers of Binomials 537
+        17-8 The General Binomial Expansion 540
+
+    * Explorations Exploring Pascal's Triangle 842
+    * Technology
+        Computer Exercises 530
+        Calculator Key-In 543
+    * Special Topics
+        Challenge 516
+        Graphing Sequences 517
+        Career Note / Marine Biologist 522
+        Induction 523
+        Biographical Note 544
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 506
+            Page 515
+            Page 530
+            Page 539
+        Self-Tests
+            Page 516
+            Page 536
+            Page 543
+        Chapter Summary 544
+        Chapter Review 545
+        Chapter Test 546
+        Cumulative Review 547
+
+12 Triangle Trigonometry 548
+    Trigonometric Functions 549
+        12-1 Angles and Degree Measure 549
+        12-2 Trigonometric Functions of Acute Angles 555
+        12-3 Trigonometric Functions of General Angles 561
+        12-4 Values of Trigonometric Functions 568
+
+    Triangle Trigonometry 574
+        12-5 Solving Right Triangles 574
+        12-6 The Law of Cosines 580
+        iZ-7 The Law of Sines 586
+        12-6 Solving General Triangles 591
+        12-9 Areas of Triangles 597
+
+    * Explorations Exploring Trigonometric Ratios 843
+    * Technology
+        Calculator Key-In 554
+        Computer Exercises 584
+    * Special Topics
+        Career Note / Flight Engineer 567
+        Historical Note 573
+        Reading Algebra 585
+        Biographical Note 601
+        Challenge 601
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 554
+            Page 567
+            Page 579
+            Page 590
+            Page 600
+        self-Tests
+            Page 572
+            Page 600
+        Chapter Summary 602
+        Chapter Review 602
+        Chapter Test 604
+        Preparing for College Entrance Exams 605
+
+13 Trigonometric Graphs; Identities 606
+    Circular Functions and Their Graphs 607
+        13-1 Radian Measure 607
+        13-2 Circular Functions 613
+        13-3 Periodicity and Symmetry 619
+        13-4 Graphs of the Sine and Cosine 624
+        13-5 Graphs of the Other Functions 630
+
+    Trigonometric Identities 636
+        13-6 The Fundamental Identities 636
+        13-7 Trigonometric Addition Formulas 641
+        13-8 Double-Angle and Half-Angle Formulas 646
+        13-9 Formulas for the Tangent 650
+
+    * Explorations Exploring Sine Curves 844
+    * Technology
+        Computer Graphing
+            Page 624
+            Page 625
+            Page 631
+        Computer Exercises 645
+    * Special Topics
+        Biographical Note 618
+        Historical Note 618
+        Challenge 623
+        Application / Frequencies in Music 634
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 612
+            Page 623
+            Page 633
+            Page 645
+            Page 653
+        Self-Tests
+            Page 634
+            Page 654
+        Chapter Summary 654
+        Chapter Review 655
+        Chapter Test 657
+
+14 Trigonometric Applications 658
+    Vectors 659
+        14-1 Vector Operations 659
+        14-2 Vectors in the Plane 666
+
+    Polar Coordinates and Complex Numbers 673
+        14-3 Polar Coordinates 673
+        14-4 The Geometry of Complex Numbers 680
+        14-5 De Moivre’s Theorem 685
+
+    Inverse Functions 689
+        14-6 The Inverse Cosine and Inverse Sine 689
+        14-7 Other Inverse Functions 693
+        14-8 Trigonometric Equations 697
+
+    * Explorations Exploring Polar Coordinate Equations 845
+    * Technology
+        Computer Exercises 670
+        Computer Key-In 701
+        Computer Graphing Ideas 845
+    * Special Topics
+        Application / Force, Work, and Energy 672
+        Spirals 679
+        Biographical Note 684
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 665
+            Page 679
+            Page 688
+            Page 696
+        Self-Tests
+            Page 671
+            Page 688
+            Page 700
+        Chapter Summary 702
+        Chapter Review 703
+        Chapter Test 704
+        Mixed Problem Solving 705
+        Preparing for College Entrance Exams 706
+        Cumulative Review 707
+
+15 Statistics and Probability 708
+    Statistics 709
+        15-1 Presenting Statistical Data 709
+        15-2 Analyzing Statistical Data 713
+        15-3 The Normal Distribution 719
+        15-4 Correlation 724
+    Counting 730
+        15-5 Fundamental Counting Principles 730
+        15-6 Permutations 734
+        15-7 Combinations 738
+    Probability 743
+        15-8 Sample Spaces and Events 743
+        13-9 Probability 745
+        15-10 Mutually Exclusive and Independent Events 754
+
+    * Explorations Exploring Probability with Experiments 846
+    * Technology
+        Computer Exercises
+            Page 742
+            Page 750
+        Computer Key-In 762
+    * Special Topics
+        Career Note / Electrician 718
+        Challenge 733
+        Reading Algebra 751
+        Application / Sampling 752
+        Random Numbers 753
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 712
+            Page 723
+            Page 733
+            Page 741
+            Page 750
+        Self-Tests
+            Page 729
+            Page 742
+            Page 761
+        Chapter Summary 763
+        Chapter Review 764
+        Chapter Test 765
+
+16 Matrices and Determinants 766
+    Matrices 767
+        16-1 Definition of Terms 767
+        76-2 Addition and Scalar Multiplication 710
+        16-3 Matrix Multiplication 774
+        16-4 Applications of Matrices 779
+
+    Inverses of Matrices 787
+        16-5 Determinants 787
+        16-6 Inverses of Matrices 790
+
+    Working with Determinants 794
+        16-7 Expansion of Determinants by Minors 794
+        16-8 Properties of Determinants 798
+        16-9 Cramer's Rule 801
+
+    * Explorations Exploring Matrices in Geometry 847
+    * Special Topics
+        Augmented Matrices 785
+        Historical Note 793
+    * Reviews and Tests
+        Mixed Review Exercises
+            Page 769
+            Page 778
+            Page 789
+            Page 797
+            Page 805
+        Self-Tests
+            Page 784
+            Page 793
+            Page 805
+        Chapter Summary 806
+        Chapter Review 806
+        Chapter Test 808
+        Preparing for College Entrance Exams 809
+
+Tables 810
+Explorations 832
+Portfolio Projects 846
+Appendix
+    A-1 Common Logarithms: Notation and Interpolation 856
+    A-2 Common Logarithms: Computation 858
+    A-3 Discrete Mathematics 862
+    A-4 Preparing for College Entrance Exams 864
+    A-5 Using Permutations and Combinations to Compute Probabilities 869
+    A-6 Checking the Validity of a Proof 871
+    A-7 The Sum, Difference, Product, and Quotient of Functions 873

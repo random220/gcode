@@ -1,0 +1,92 @@
+_offset 11
+17. WAVE MOTION 1-50 12*
+    17.1 Introduction 2
+    17.2 Classification of a Wave 2
+    17.3 Equation of a Travelling Wave 3
+    17.4 Sine Wave 7
+    17.5 Two Graphs in Sine Wave 11
+    17.6 Wave Speed 17
+    17.7 Energy in Wave Motion 22
+    List of Formulae 25
+    Solved Examples 27
+    Miscellaneous Examples 33
+    Exercises 40
+    Answers 49
+
+18. SUPERPOSITION OF WAVES 51-98 62*
+    18.1 Principle of Superposition 52
+    18.2 Resultant Amplitude and Intensity due to Coherent Sources 52
+    18.3 Interference 54
+    18.4 Standing Wave 58
+    18.5 Normal Modes of a String 63
+    18.6 Reflection and Transmission of a Wave 68
+    Final Touch Points 73
+    Solved Examples 74
+    Miscellaneous Examples 79
+    Exercises 85
+    Answers 97
+
+19 SOUND WAVES 99-170 110*
+    19.1 Introduction 100
+    19.2 Displacement Wave, Pressure Wave and Density Wave 100
+    19.3 Speed of a Longitudinal Wave 105
+    19.4 Sound Waves in Gases 106
+    19.5 Sound Intensity 109
+    19.6 Interference in Sound Wave and Stationary Wave 112
+    19.7 Standing Longitudinal Waves in Organ Pipes 114
+    19.8 Beats 119
+    19.9 The Doppler's Effect 122
+    Solved Examples 131
+    Miscellaneous Examples 142
+    Exercises 151
+    Answers 169
+
+20. THERMOMETRY, THERMAL EXPANSION & KINETIC THEORY OF GASES 171-236 182*
+    20.1 Thermometers and The Celsius Temperature Scale 172
+    20.2 The Constant Volume Gas Thermometer and The Absolute Temperature Scale 172
+    20.3 Heat and Temperature 176
+    20.4 Thermal Expansion 177
+    20.5 Behaviour of Gases 185
+    20.6 Degree of Freedom 193
+    20.7 Internal Energy of an Ideal Gas 195
+    20.8 Law of Equipartition of Energy 195
+    20.9 Molar Heat Capacity 198
+    20.10 Kinetic Theory of Gases 201
+    Final Touch Points 210
+    Solved Examples 213
+    Miscellaneous Examples 218
+    Exercises 223
+    Answers 235
+
+21. LAWS OF THERMODYNAMICS 237-305 248*
+    21.1 The First Law of Thermodynamics 238
+    21.2 Further Explanation of Three Terms Used in First Law 240
+    21.3 Different Thermodynamic Processes 249
+    21.4 Heat Engine and its Efficiency 257
+    21.5 Refrigerator 259
+    21.6 Zeroth Law of Thermodynamics 264
+    21.7 Second Law of Thermodynamics 265
+    Final Touch Points 266
+    Solved Examples 270
+    Miscellaneous Examples 274
+    Exercises 284
+    Answers 303
+
+22. CALORIMETRY & HEAT TRANSFER 307-352 318*
+    22.1 Calorimetry 308
+    22.2 Heat Transfer 313
+    Solved Examples 327
+    Miscellaneous Examples 334
+    Exercises 343
+    Answers 353
+
+Complete Answers 365*
+    17. Wave Motion 354
+    18. Superposition of Waves 363
+    19. Sound Waves 376
+    20. Thermometry, Thermal Expansion and Kinetic Theory of Gases 395
+    21. Laws of Thermodynamics 407
+    22. Calorimetry and Heat Transfer 426
+
+* JEE Main & Advanced Previous Years' Questions (2018-13) 1-19 446*
+

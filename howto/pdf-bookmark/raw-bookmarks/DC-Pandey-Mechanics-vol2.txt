@@ -1,0 +1,90 @@
+_offset 10
+11. CENTRE OF MASS, LINEAR MOMENTUM AND COLLISION 1-89 11*
+    11.1 Centre of Mass 1
+    11.2 Motion of the Centre of Mass 10
+    11.3 Law of Conservation of Linear Momentum 15
+    11.4 Variable Mass 20
+    11.5 Linear Impulse 24
+    11.6 Collision 27
+    Final Touch Points 39
+    Solved Examples 42
+    Miscellaneous Examples 54
+    Exercises 61
+    Answers 87
+12. ROTATIONAL MECHANICS 91-208 101*
+    12.1 Introduction 92
+    12.2 Moment of Inertia 92
+    12.3 Angular Velocity 102
+    12.4 Torque 106
+    12.5 Rotation of a Rigid Body about a Fixed Axis 109
+    12.6 Angular Momentum 115
+    12.7 Conservation of Angular Momentum 120
+    12.8 Combined Translational and Rotational Motion of a Rigid Body 121
+    12.9 Uniform Pure Rolling 126
+    12.10 Instantaneous Axis of Rotation 130
+    12.11 Accelerated Pure Rolling 132
+    12.12 Angular Impulse 138
+    12.13 Toppling 141
+    Final Touch Points 143
+    Solved Examples 145
+    Miscellaneous Examples 175
+    Exercises 178
+    Answers 206
+13. GRAVITATION 209-283 219*
+    13.1 Introduction 210
+    13.2 Newton's Law of Gravitation 210
+    13.3 Acceleration Due to Gravity 215
+    13.4 Gravitational Field and Field Strength 220
+    13.5 Gravitational Potential 222
+    13.6 Relation between Gravitational Field and Potential 227
+    13.7 Gravitational Potential Energy 231
+    13.8 Binding Energy 235
+    13.9 Motion of Satellites 237
+    13.10 Kepler's Laws of Planetary Motion 241
+    Final Touch Points 245
+    Solved Examples 248
+    Miscellaneous Examples 261
+    Exercises 267
+    Answers 282
+14. SIMPLE HARMONIC MOTION 285-371 295*
+    14.1 Introduction 286
+    14.2 Displacement Equation of SHM 288
+    14.3 Time Equation of SHM 295
+    14.4 Relation between SHM and Uniform Circular Motion 304
+    14.5 Methods of Finding Time Period of a SHM 305
+    14.6 Vector Method of Combining Two or More SHM 312
+    Final Touch Points 304
+    Solved Examples 320
+    Miscellaneous Examples 340
+    Exercises 348
+    Answers 370
+15. ELASTICITY 373-402 383*
+    15.1 Introduction 374
+    15.2 Elasticity 374
+    15.3 Stress and Strain 374
+    15.4 Hooke's Law and Modulus of Elasticity 375
+    15.5 The Stress-Strain Curve 378
+    15.6 Potential Energy Stored in a Stretched Wire 379
+    15.7 Thermal Stresses or Strain 379
+    Solved Examples 384
+    Miscellaneous Examples 388
+    Exercises 391
+    Answers 402
+16. FLUID MECHANICS 403-517 413*
+    16.1 Definition of a Fluid 404
+    16.2 Density of a Liquid 404
+    16.3 Pressure in a Fluid 406
+    16.4 Pressure Difference in Accelerating Fluids 414
+    16.5 Archimedes' Principle 420
+    16.6 Flow of Fluids 425
+    16.7 Application based on Bernoulli's Equation 431
+    16.8 Viscosity 438
+    16.9 Surface Tension 443
+    16.10 Capillary Rise or Fall 451
+    Final Touch Points 459
+    Solved Examples 460
+    Miscellaneous Examples 478
+    Exercises 485
+    Answers 516
+* Hints & Solutions 519-648 519 529*
+* JEE Main & Advanced Previous Years' Questions (2018-13) 1-28 649 659*

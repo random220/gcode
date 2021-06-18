@@ -66,10 +66,15 @@ sub mkbookmark
     my ($lines, $offset) = @_;
     my $bookmark = [];
     for my $line (@$lines) {
+        my $offset = $offset;
         my ($space, $title, $page) = ('','','','');
         if ($line =~ m{^(\s*)(.+)\s+(\d+)$}) {
             ($space, $title, $page) = ($1, $2, $3);
             $title = "$title $page";
+        }
+        elsif ($line =~ m{^(\s*)(.+)\s+(\d+)\*$}) {
+            ($space, $title, $page) = ($1, $2, $3);
+            $offset = 0;
         }
         elsif ($line =~ m{^(\s*)(.+)$}) {
             ($space, $title) = ($1, $2);

@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+import re
+with open ('a.txt', 'rt') as f:
+    for l in f:
+        m = re.search(r'^BookmarkTitle: (.+)\n', l)
+        if m:
+            title = m.group(1)
+            continue
+        m = re.search(r'^BookmarkLevel: (\d+)\n', l)
+        if m:
+            level = int(m.group(1))
+            continue
+        m = re.search(r'^BookmarkPageNumber: (\d+)\n', l)
+        if m:
+            page = m.group(1)
+            space = ''
+            while level > 1:
+                space = space+'    '
+                level -= 1;
+            print(space+title+' '+page)
+            continue

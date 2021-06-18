@@ -1,0 +1,15 @@
+import re
+offset=10
+with open('a.txt', 'rt') as f:
+    for l in f:
+        l = l.rstrip()
+        m = re.search(r'^(\s*).*/Page (\d+).*/Title \((.+)\) /OUT', l)
+        if m:
+            space = m.group(1)
+            page = int(m.group(2))
+            page -= offset
+            line = m.group(3)
+            print('{space}{line} {page}'.format(space=space, line=line, page=page))
+        else:
+            print(l)
+

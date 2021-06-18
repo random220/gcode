@@ -1,0 +1,6 @@
+#!/bin/bash
+if [[ $1 == '' ]]; then
+  echo $0 firstpage lastpage pdf-file
+  exit 0
+fi
+/usr/bin/gs -dNOPAUSE -q -sDEVICE=png16m -r600 -dBATCH -dFirstPage=$1 -dLastPage=$2 -sOutputFile=page-%d.png $3

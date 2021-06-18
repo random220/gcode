@@ -27,7 +27,15 @@ function repackit() {
 cat <<EOF | base64 -d|gunzip - >a.sh
 _EOF
 
-    cat $0|gzip -9 -|base64|perl -pe 's/(.{120})/$1\n/g' >>a.txt
+    uname=$(uname)
+    if [[ $uname == 'Darwin' ]]; then
+        cat $0|gzip -9 -|base64 -b 120 >>a.txt
+    elif [[ $uname == 'Linux' ]]; then
+        cat $0|gzip -9 -|base64 -w 120 >>a.txt
+    else
+        echo 'ERROR: Not Linux or Darwin'
+        exit 1
+    fi
 
     cat >>a.txt <<'_EOF'
 EOF

@@ -1,0 +1,24 @@
+#!/usr/bin/perl
+use strict;
+
+my $idxfile = $ARGV[0];
+
+open F, "<$idxfile" or die;
+my $offset = 0;
+print "_offset 0\n";
+while (my $l = <F>) {
+    $l =~ s{\s*$}{}s;
+    if ($l =~ m{^\s*_offset\s*(\d+)$}s) {
+        $offset = $1;
+        next;
+    }
+    if ($l =~ m{^(.+)\s+(\d+)$}) {
+        my ($pre, $page) = ($1, $2);
+        my $page2 = $page+$offset;
+        print "$pre $page $page2*\n";
+    }
+    else {
+        print "$l\n";
+    }
+}
+close F;

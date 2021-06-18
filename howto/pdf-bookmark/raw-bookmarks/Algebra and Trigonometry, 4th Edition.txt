@@ -1,0 +1,167 @@
+_offset 0
+Contents 10
+Preface 15
+To the Student 22
+Are You Ready for This Course? 24
+Prologue: Principles of Problem Solving 28
+Ch P: Prerequisites 32
+    Section P.1: Modeling the Real World with Algebra 33
+    Section P.2: Real Numbers 37
+    Section P.3: Integer Exponents and Scientific Notation 49
+    Section P.4: Rational Exponents and Radicals 56
+    Section P.5: Algebraic Expressions 63
+    Section P.6: Factoring 68
+    Section P.7: Rational Expressions 75
+    Section P.8: Solving Basic Equations 84
+    Section P.9: Modeling with Equations 92
+    Chapter P Review 105
+    Chapter P Test 110
+    Focus on Modeling: Making the Best Decisions 112
+Ch 1: Equations and Graphs 118
+    Section 1.1: The Coordinate Plane 119
+    Section 1.2: Graphs of Equations in Two Variables; Circles 125
+    Section 1.3: Lines 135
+    Section 1.4: Solving Quadratic Equations 146
+    Section 1.5: Complex Numbers 157
+    Section 1.6: Solving Other Types of Equations 163
+    Section 1.7: Solving Inequalities 172
+    Section 1.8: Solving Absolute Value Equations and Inequalities 181
+    Section 1.9: Solving Equations and Inequalities Graphically 185
+    Section 1.10: Modeling Variation 190
+    Chapter 1 Review 198
+    Chapter 1 Test 203
+    Focus on Modeling: Fitting Lines to Data 205
+Ch 2: Functions 214
+    Section 2.1: Functions 215
+    Section 2.2: Graphs of Functions 226
+    Section 2.3: Getting Information from the Graph of a Function 237
+    Section 2.4: Average Rate of Change of a Function 250
+    Section 2.5: Linear Functions and Models 257
+    Section 2.6: Transformations of Functions 265
+    Section 2.7: Combining Functions 277
+    Section 2.8: One-to-One Functions and Their Inverses 286
+    Chapter 2 Review 296
+    Chapter 2 Test 302
+    Focus on Modeling: Modeling with Functions 304
+Ch 3: Polynomial and Rational Functions 312
+    Section 3.1: Quadratic Functions and Models 313
+    Section 3.2: Polynomial Functions and Their Graphs 321
+    Section 3.3: Dividing Polynomials 336
+    Section 3.4: Real Zeros of Polynomials 342
+    Section 3.5: Complex Zeros and the Fundamental Theorem of Algebra 354
+    Section 3.6: Rational Functions 362
+    Section 3.7: Polynomial and Rational Inequalities 378
+    Chapter 3 Review 384
+    Chapter 3 Test 390
+    Focus on Modeling: Fitting Polynomial Curves to Data 392
+Ch 4: Exponential and Logarithmic Functions 396
+    Section 4.1: Exponential Functions 397
+    Section 4.2: The Natural Exponential Function 405
+    Section 4.3: Logarithmic Functions 411
+    Section 4.4: Laws of Logarithms 421
+    Section 4.5: Exponential and Logarithmic Equations 427
+    Section 4.6: Modeling with Exponential Functions 437
+    Section 4.7: Logarithmic Scales 448
+    Chapter 4 Review 453
+    Chapter 4 Test 458
+    Focus on Modeling: Fitting Exponential and Power Curves to Data  459
+Ch 5: Trigonometric Functions: Right Triangle Approach 468
+    Section 5.1: Angle Measure 469
+    Section 5.2: Trigonometry of Right Triangles 479
+    Section 5.3: Trigonometric Functions of Angles 488
+    Section 5.4: Inverse Trigonometric Functions and Right Triangles 498
+    Section 5.5: The Law of Sines 505
+    Section 5.6: The Law of Cosines 513
+    Chapter 5 Review 521
+    Chapter 5 Test 528
+    Focus on Modeling: Surveying 530
+Ch 6: Trigonometric Functions: Unit Circle Approach 534
+    Section 6.1: The Unit Circle 535
+    Section 6.2: Trigonometric Functions of Real Numbers 542
+    Section 6.3: Trigonometric Graphs 552
+    Section 6.4: More Trigonometric Graphs 565
+    Section 6.5: Inverse Trigonometric Functions and Their Graphs 572
+    Section 6.6: Modeling Harmonic Motion 578
+    Chapter 6 Review 593
+    Chapter 6 Test 598
+    Focus on Modeling: Fitting Sinusoidal Curves to Data 599
+Ch 7: Analytic Trigonometry 604
+    Section 7.1: Trigonometric Identities 605
+    Section 7.2: Addition and Subtraction Formulas 612
+    Section 7.3: Double-Angle, Half-Angle, and Product-Sum Formulas 620
+    Section 7.4: Basic Trigonometric Equations 631
+    Section 7.5: More Trigonometric Equations 637
+    Chapter 7 Review 643
+    Chapter 7 Test 647
+    Focus on Modeling: Traveling and Standing Waves 648
+Ch 8: Polar Coordinates and Parametric Equations 654
+    Chapter Overview 654
+    Section 8.1: Polar Coordinates 655
+    Section 8.2: Graphs of Polar Equations 661
+    Section 8.3: Polar Form of Complex Numbers; De Moivre&apos;s Theorem 669
+    Section 8.4: Plane Curves and Parametric Equations 678
+    Chapter 8 Review 687
+    Chapter 8 Test 691
+    Focus on Modeling: The Path of a Projectile 692
+Ch 9: Vectors in Two and Three Dimensions 696
+    Section 9.1: Vectors in Two Dimensions 697
+    Section 9.2: The Dot Product 706
+    Section 9.3: Three-Dimensional Coordinate Geometry 714
+    Section 9.4: Vectors in Three Dimensions 720
+    Section 9.5: The Cross Product 726
+    Section 9.6: Equations of Lines and Planes 733
+    Chapter 9 Review 737
+    Chapter 9 Test 742
+    Focus on Modeling: Vector Fields 743
+Ch 10: Systems of Equations and Inequalities 746
+    Chapter Overview 746
+    Section 10.1: Systems of Linear Equations in Two Variables 747
+    Section 10.2: Systems of Linear Equations in Several Variables 757
+    Section 10.3: Partial Fractions 766
+    Section 10.4: Systems of Nonlinear Equations 771
+    Section 10.5: Systems of Inequalities 776
+    Chapter 10 Review 786
+    Chapter 10 Test 790
+    Focus on Modeling: Linear Programming 791
+Ch 11: Matrices and Determinants 798
+    Section 11.1: Matrices and Systems of Linear Equations 799
+    Section 11.2: The Algebra of Matrices 812
+    Section 11.3: Inverses of Matrices and Matrix Equations 824
+    Section 11.4: Determinants and Cramer&apos;s Rule 834
+    Chapter 11 Review 845
+    Chapter 11 Test 850
+    Focus on Modeling: Computer Graphics 851
+Ch 12: Conic Sections 856
+    Section 12.1: Parabolas 857
+    Section 12.2: Ellipses 865
+    Section 12.3: Hyperbolas 874
+    Section 12.4: Shifted Conics 882
+    Section 12.5: Rotation of Axes 891
+    Section 12.6: Polar Equations of Conics 899
+    Chapter 12 Review 906
+    Chapter 12 Test 910
+    Focus on Modeling: Conics in Architecture 911
+Ch 13: Sequences and Series 916
+    Section 13.1: Sequences and Summation Notation 917
+    Section 13.2: Arithmetic Sequences 928
+    Section 13.3: Geometric Sequences 933
+    Section 13.4: Mathematics of Finance 942
+    Section 13.5: Mathematical Induction 948
+    Section 13.6: The Binomial Theorem 954
+    Chapter 13 Review 962
+    Chapter 13 Test 967
+    Focus on Modeling: Modeling with Recursive Sequences 968
+Ch 14: Counting and Probability 972
+    Section 14.1: Counting 973
+    Section 14.2: Probability 985
+    Section 14.3: Binomial Probability 997
+    Section 14.4: Expected Value 1002
+    Chapter 14 Review 1006
+    Chapter 14 Test 1011
+    Focus on Modeling: The Monte Carlo Method 1012
+Appendix A: Geometry Review 1016
+Appendix B: Calculations and Significant Figures 1022
+Appendix C: Graphing with a Graphing Calculator 1024
+Appendix D: Using the TI-83/84 Graphing Calculator 1030
+Answers 1040
+Index 1128
