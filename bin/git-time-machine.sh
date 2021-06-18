@@ -1,6 +1,10 @@
 #!/bin/bash
 
 function main() {
+  :
+}
+
+function test_main() {
   local REPOS=(
     backup-2021-02-20.git
     backup-2021-02-25.git
@@ -16,18 +20,18 @@ function main() {
     backup-2021-06-07.git
     backup-2021-06-17.git
   )
-  if [[ ! -d x ]]; then
-    mkdir x
+  if [[ ! -d data ]]; then
+    mkdir data
   fi
-  if [[ ! -d x/.git ]]; then
-    (cd x && git init)
+  if [[ ! -d data/.git ]]; then
+    (cd data && git init)
   fi
-  if [[ ! -d y ]]; then
-    mkdir y
+  if [[ ! -d metadata ]]; then
+    mkdir metadata
   fi
-  if [[ ! -d y/.git ]]; then
+  if [[ ! -d metadata/.git ]]; then
     (
-      cd y
+      cd metadata
       git init
       git config user.email root@localhost
       git config user.name root
@@ -36,7 +40,7 @@ function main() {
 
   local repo
   for repo in ${REPOS[@]}; do
-    ( cd x && stashit $repo )
+    ( cd data && stashit $repo )
   done
 }
 
@@ -46,9 +50,9 @@ function stashit() {
   git fetch --all
   local r=$(git rev-list --all -1)
   echo $r >.git/HEAD
-  rsync -a --delete .git/refs/ ../y/refs/
+  rsync -a --delete .git/refs/ ../metadata/refs/
   (
-  cd ../y
+  cd ../metadata
   rm -rf refs/heads
   git add -Af
   git commit -m "$(date +%s) $(date) $repo"
@@ -77,4 +81,4 @@ function stashit() {
 }
 
 
-main
+test_main
