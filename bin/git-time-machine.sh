@@ -1,8 +1,7 @@
 #!/bin/bash
 
-REPO='/Users/omandal/sb/repos/backup-2021-02-20.git'
-REPO='git-aws:repos/priv-intel-VTd_SIOV_TR--multirel.git'
 REPO='omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-09-27.git'
+REPO='git-aws:repos/priv-intel-VTd_SIOV_TR--multirel.git'
 
 function init_main() {
   ensure_data_dirs
@@ -155,5 +154,6 @@ function save_refs() {
   )
 }
 
-init_main
+#init_main
+main
 
