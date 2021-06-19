@@ -151,6 +151,6 @@ function save_refs() {
   )
 }
 
-init_main
-#main
+#init_main
+main
 
