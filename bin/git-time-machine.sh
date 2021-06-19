@@ -1,5 +1,7 @@
 #!/bin/bash
 
+umask 022
+
 REPO='omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-09-27.git'
 REPO='git-aws:repos/priv-intel-VTd_SIOV_TR--multirel.git'
 
@@ -111,15 +113,16 @@ function refetch() {
   local R=$RANDOM
 
   local TIPS=$(git rev-list --branches --remotes --children --tags|grep -v ' ')
-  local BRANCHES=$(git branch|grep -v '\*')
+
+  local BRANCHES=$(git branch|grep -v '>'|sed 's/^..//')
   local TAGS=$(git tag)
   
   # Create branches to anchor all tip revisions found above
   local n=0
-  local rev
-  for rev in $TIPS; do
+  local _hash
+  for _hash in $TIPS; do
     let n+=1
-    git branch __b__${NOW}__${R}__${n} $rev
+    git branch __b__${NOW}__${R}__${n} $_hash
   done
   
   # Delete all local branches and tags that existed before we created our
@@ -142,12 +145,30 @@ function save_refs() {
   local DATE=$(date)
   local REMOTE=$(git remote -v | grep fetch|awk '{print $2}')
 
-  rsync -a --delete .git/refs/ ../metadata/refs/
+  rm -rf ../metadata/branches ../metadata/tags
+  mkdir ../metadata/branches ../metadata/tags
+
+  local branches=$(git branch -r)
+  local branch
+  for branch in $branches; do
+    rev=$(git rev-list -1 $branch)
+    dest_path="../metadata/branches/$branch"
+    mkdir -p $(dirname "$dest_path")
+    echo $rev >"$dest_path"
+  done
+
+  local tags=$(git tag)
+  local tag
+  for tag in $tags; do
+    rev=$(git rev-list -1 $tag)
+    dest_path="../metadata/tags/$tag"
+    mkdir -p $(dirname "$dest_path")
+    echo $rev >"$dest_path"
+  done
   (
     cd ../metadata
-    rm -rf refs/heads
     git add -Af
-    git commit -m "$NOW $DATE REMOTE: $REMOTE"
+    git commit -m "${NOW} ${DATE} REMOTE: ${REMOTE}"
   )
 }
 
