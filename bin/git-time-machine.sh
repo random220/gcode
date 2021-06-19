@@ -107,14 +107,13 @@ function ensure_data_dirs() {
 }
 
 function refetch() {
-  # Now refetch
-  anchor_branches_and_tags
+  anchor_branch_tips
   git remote rm origin
   git remote add origin $REPO
   git fetch --all
 }
 
-function anchor_branches_and_tags() {
+function anchor_branch_tips() {
   local NOW=$(date +%s)
   local R=$RANDOM
 
