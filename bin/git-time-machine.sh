@@ -76,7 +76,6 @@ function main() {
   ensure_data_dirs
   (
     cd data
-    save_refs
     refetch
     save_refs
   )
@@ -108,12 +107,18 @@ function ensure_data_dirs() {
 }
 
 function refetch() {
+  # Now refetch
+  anchor_branches_and_tags
+  git remote rm origin
+  git remote add origin $REPO
+  git fetch --all
+}
+
+function anchor_branches_and_tags() {
   local NOW=$(date +%s)
-  local DATE=$(date)
   local R=$RANDOM
 
   local TIPS=$(git rev-list --branches --remotes --children --tags|grep -v ' ')
-
   local BRANCHES=$(git branch|grep -v '>'|sed 's/^..//')
   local TAGS=$(git tag)
   
@@ -133,11 +138,6 @@ function refetch() {
   if [[ $TAGS != '' ]]; then
     git tag -d $TAGS
   fi
-
-  # Now refetch
-  git remote rm origin
-  git remote add origin $REPO
-  git fetch --all
 }
 
 function save_refs() {
