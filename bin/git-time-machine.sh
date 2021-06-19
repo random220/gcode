@@ -1,30 +1,18 @@
 #!/bin/bash
 
-function main() {
-  :
-}
+REPO='git-aws:repos/priv-intel-VTd_SIOV_TR--multirel.git'
 
-function test_main() {
-  local REPOS=(
-    backup-2021-02-20.git
-    backup-2021-02-25.git
-    backup-2021-03-12.git
-    backup-2021-03-13.git
-    backup-2021-03-31.git
-    backup-2021-04-04.git
-    backup-2021-04-13.git
-    backup-2021-04-18.git
-    backup-2021-05-14.git
-    backup-2021-05-19.git
-    backup-2021-06-02.git
-    backup-2021-06-07.git
-    backup-2021-06-17.git
-  )
+function main() {
   if [[ ! -d data ]]; then
     mkdir data
   fi
   if [[ ! -d data/.git ]]; then
-    (cd data && git init)
+    (
+      cd data
+      git init
+      git remote add origin $REPO
+      git fetch --all
+    )
   fi
   if [[ ! -d metadata ]]; then
     mkdir metadata
@@ -38,47 +26,70 @@ function test_main() {
     )
   fi
 
-  local repo
-  for repo in ${REPOS[@]}; do
-    ( cd data && stashit $repo )
+  while true; do
+    (
+      cd data
+      stashit
+      refetch
+      stashit
+    )
+    sleep 300
   done
 }
 
-function stashit() {
-  local repo=$1
-  git remote add a file:///Users/omandal/sb/repos/$repo
+
+function refetch() {
+  local NOW=$(date +%s)
+  local DATE=$(date)
+  local REMOTE=$(git remote -v | grep fetch|awk '{print $2}')
+
+  if [[ $REMOTE == '' ]]; then
+    REMOTE=$REPO
+    git remote add origin $REMOTE
+  else
+    git remote rm origin
+    git remote add origin $REMOTE
+  fi
   git fetch --all
+}
+
+function stashit() {
+  local NOW=$(date +%s)
+  local DATE=$(date)
+  local REMOTE==$(git remote -v | grep fetch|awk '{print $2}')
+
   local r=$(git rev-list --all -1)
   echo $r >.git/HEAD
   rsync -a --delete .git/refs/ ../metadata/refs/
   (
-  cd ../metadata
-  rm -rf refs/heads
-  git add -Af
-  git commit -m "$(date +%s) $(date) $repo"
+    cd ../metadata
+    rm -rf refs/heads
+    git add -Af
+    git commit -m "$NOW $DATE REMOTE: $REMOTE"
   )
   
   local TIPS=$(git rev-list --branches --remotes --children --tags|grep -v ' ')
   local BRANCHES=$(git branch|grep -v '\*')
   local TAGS=$(git tag)
   
-  local NOW=$(date +%s)
+  # Create branches to anchor all tip revisions found above
   local n=0
   local rev
   for rev in $TIPS; do
     let n+=1
-    git branch b_${NOW}_${n} $rev
+    git branch __b__${NOW}__${n} $rev
   done
   
+  # Delete all local branches and tags that existed before we created our
+  # anchor branches
   if [[ $BRANCHES != '' ]]; then
     git branch -D $BRANCHES
   fi
   if [[ $TAGS != '' ]]; then
     git tag -d $TAGS
   fi
-  
-  git remote rm a
 }
 
 
-test_main
+main
+
