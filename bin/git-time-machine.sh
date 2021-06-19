@@ -2,22 +2,66 @@
 
 REPO='/Users/omandal/sb/repos/backup-2021-02-20.git'
 REPO='git-aws:repos/priv-intel-VTd_SIOV_TR--multirel.git'
+REPO='omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-09-27.git'
 
 function init_main() {
   ensure_data_dirs
   for REPO in \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-09-27.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-09-30.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-10-01.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-10-03.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-10-10.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-10-12.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-10-13.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-10-28.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-11-03.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-11-05.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-11-11.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-12-10.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-12-17.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-12-19.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2021-01-11.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2021-01-14.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2021-01-24.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2021-01-28.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2021-02-02.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-02-03.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2021-02-03.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-02-04.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-02-05.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-02-10.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-02-15.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-02-16.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-02-18.git \
+        /Users/omandal/sb/repos/backup-2021-02-20.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-02-20.git \
         /Users/omandal/sb/repos/backup-2021-02-25.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-02-25.git \
         /Users/omandal/sb/repos/backup-2021-03-12.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-03-12.git \
         /Users/omandal/sb/repos/backup-2021-03-13.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-03-13.git \
         /Users/omandal/sb/repos/backup-2021-03-31.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-03-31.git \
         /Users/omandal/sb/repos/backup-2021-04-04.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-04-08.git \
+        omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2021-04-08.git \
         /Users/omandal/sb/repos/backup-2021-04-13.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-04-13.git \
         /Users/omandal/sb/repos/backup-2021-04-18.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-04-18.git \
         /Users/omandal/sb/repos/backup-2021-05-14.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-05-14.git \
         /Users/omandal/sb/repos/backup-2021-05-19.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-05-19.git \
         /Users/omandal/sb/repos/backup-2021-06-02.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-06-02.git \
         /Users/omandal/sb/repos/backup-2021-06-07.git \
-        /Users/omandal/sb/repos/backup-2021-06-17.git; do
+        omandal@engops-db2:/b/cb-repos/backup-2021-06-07.git \
+        /Users/omandal/sb/repos/backup-2021-06-17.git \
+        omandal@engops-db2:/b/cb-repos/backup-2021-06-17.git \
+        ; do
     (
       cd data
       save_refs
@@ -68,6 +112,7 @@ function ensure_data_dirs() {
 function refetch() {
   local NOW=$(date +%s)
   local DATE=$(date)
+  local R=$RANDOM
 
   local TIPS=$(git rev-list --branches --remotes --children --tags|grep -v ' ')
   local BRANCHES=$(git branch|grep -v '\*')
@@ -78,7 +123,7 @@ function refetch() {
   local rev
   for rev in $TIPS; do
     let n+=1
-    git branch __b__${NOW}__${n} $rev
+    git branch __b__${NOW}__${R}__${n} $rev
   done
   
   # Delete all local branches and tags that existed before we created our
@@ -110,5 +155,5 @@ function save_refs() {
   )
 }
 
-main
+init_main
 
