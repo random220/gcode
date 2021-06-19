@@ -1,7 +1,7 @@
 #!/bin/bash
 
-REPO='omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-09-27.git'
 REPO='git-aws:repos/priv-intel-VTd_SIOV_TR--multirel.git'
+REPO='omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-09-27.git'
 
 function init_main() {
   ensure_data_dirs
@@ -72,15 +72,12 @@ function init_main() {
 
 function main() {
   ensure_data_dirs
-  while true; do
-    (
-      cd data
-      save_refs
-      refetch
-      save_refs
-    )
-    sleep 300
-  done
+  (
+    cd data
+    save_refs
+    refetch
+    save_refs
+  )
 }
 
 function ensure_data_dirs() {
@@ -154,6 +151,6 @@ function save_refs() {
   )
 }
 
-#init_main
-main
+init_main
+#main
 
