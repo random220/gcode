@@ -30,7 +30,7 @@ function save_refs() {
 
   >../metadata/packed-revs
 
-  local branches=$(git branch -r|sed 's/^..//'|sort)
+  local branches=$(git branch -r|sed 's/^..//')
   local branch
   for branch in $branches; do
     rev=$(git rev-list -1 $branch)
@@ -41,7 +41,7 @@ function save_refs() {
     echo "$rev branches/$justbranch" >>../metadata/packed-revs
   done
 
-  local tags=$(git tag|sort)
+  local tags=$(git tag)
   local tag
   for tag in $tags; do
     rev=$(git rev-list -1 $tag)
