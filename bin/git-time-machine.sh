@@ -2,8 +2,60 @@
 
 umask 022
 
-REPO='omandal@sc-dbc2131:/dbc/sc-dbc2131/omandal/repos/backup-2020-09-27.git'
 REPO='git-aws:repos/priv-intel-VTd_SIOV_TR--multirel.git'
+
+function main() {
+  ensure_data_dirs
+  (
+    cd data
+    refetch
+    save_refs
+  )
+}
+
+function refetch() {
+  anchor_branch_tips
+  git remote rm origin
+  git remote add origin $REPO
+  git fetch --all
+}
+
+function save_refs() {
+  local NOW=$(date +%s)
+  local DATE=$(date)
+  local REMOTE=$(git remote -v | grep fetch|awk '{print $2}')
+
+  rm -rf ../metadata/branches ../metadata/tags
+  mkdir ../metadata/branches ../metadata/tags
+
+  >../metadata/packed-revs
+
+  local branches=$(git branch -r|sed 's/^..//'|sort)
+  local branch
+  for branch in $branches; do
+    rev=$(git rev-list -1 $branch)
+    justbranch=$(echo "$branch" | sed 's/^origin\///')
+    dest_path="../metadata/branches/$justbranch"
+    mkdir -p $(dirname "$dest_path")
+    echo $rev >"$dest_path"
+    echo "$rev branches/$justbranch" >>../metadata/packed-revs
+  done
+
+  local tags=$(git tag|sort)
+  local tag
+  for tag in $tags; do
+    rev=$(git rev-list -1 $tag)
+    dest_path="../metadata/tags/$tag"
+    mkdir -p $(dirname "$dest_path")
+    echo $rev >"$dest_path"
+    echo "$rev tags/$tag" >>../metadata/packed-revs
+  done
+  (
+    cd ../metadata
+    git add -Af
+    git commit -m "${NOW} ${DATE} REMOTE: ${REMOTE}"
+  )
+}
 
 function init_main() {
   ensure_data_dirs
@@ -65,20 +117,10 @@ function init_main() {
         ; do
     (
       cd data
-      save_refs
       refetch
       save_refs
     )
   done
-}
-
-function main() {
-  ensure_data_dirs
-  (
-    cd data
-    refetch
-    save_refs
-  )
 }
 
 function ensure_data_dirs() {
@@ -89,8 +131,7 @@ function ensure_data_dirs() {
     (
       cd data
       git init
-      git remote add origin $REPO
-      git fetch --all
+      git remote add origin whatever
     )
   fi
   if [[ ! -d metadata ]]; then
@@ -106,18 +147,11 @@ function ensure_data_dirs() {
   fi
 }
 
-function refetch() {
-  anchor_branch_tips
-  git remote rm origin
-  git remote add origin $REPO
-  git fetch --all
-}
-
 function anchor_branch_tips() {
   local NOW=$(date +%s)
   local R=$RANDOM
 
-  local TIPS=$(git rev-list --branches --remotes --children --tags|grep -v ' ')
+  local TIPS=$(git rev-list --all --children|grep -v ' ')
   local BRANCHES=$(git branch|grep -v '>'|sed 's/^..//')
   local TAGS=$(git tag)
   
@@ -137,38 +171,6 @@ function anchor_branch_tips() {
   if [[ $TAGS != '' ]]; then
     git tag -d $TAGS
   fi
-}
-
-function save_refs() {
-  local NOW=$(date +%s)
-  local DATE=$(date)
-  local REMOTE=$(git remote -v | grep fetch|awk '{print $2}')
-
-  rm -rf ../metadata/branches ../metadata/tags
-  mkdir ../metadata/branches ../metadata/tags
-
-  local branches=$(git branch -r)
-  local branch
-  for branch in $branches; do
-    rev=$(git rev-list -1 $branch)
-    dest_path="../metadata/branches/$branch"
-    mkdir -p $(dirname "$dest_path")
-    echo $rev >"$dest_path"
-  done
-
-  local tags=$(git tag)
-  local tag
-  for tag in $tags; do
-    rev=$(git rev-list -1 $tag)
-    dest_path="../metadata/tags/$tag"
-    mkdir -p $(dirname "$dest_path")
-    echo $rev >"$dest_path"
-  done
-  (
-    cd ../metadata
-    git add -Af
-    git commit -m "${NOW} ${DATE} REMOTE: ${REMOTE}"
-  )
 }
 
 #init_main
