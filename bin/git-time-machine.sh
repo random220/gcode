@@ -29,6 +29,31 @@ function save_refs() {
   mkdir ../metadata/branches ../metadata/tags
 
   >../metadata/packed-revs
+  cat <<'EOF' >../metadata/restore-script.sh
+rev=$(git rev-list --all -1)
+echo $rev >.git/HEAD
+
+OLD_REMOTES=$(git remote)
+OLD_BRANCHES=$(git branch|egrep -v '^\*')
+OLD_TAGS=$(git tag)
+TIPS=$(git rev-list --all --children | grep -v ' ')
+n=0
+for rev in $TIPS; do
+  let n+=1
+  git branch __b__safe__$n $rev
+done
+
+for remote in $OLD_REMOTES; do
+  git remote rm $remote
+done
+for branch in $OLD_BRANCHES; do
+  git branch -D $branch
+done
+for tag in $OLD_TAGS; do
+  git tag -d $tag
+done
+
+EOF
 
   local branches=$(git branch -r|sed 's/^..//')
   local branch
@@ -39,6 +64,7 @@ function save_refs() {
     mkdir -p $(dirname "$dest_path")
     echo $rev >"$dest_path"
     echo "$rev branches/$justbranch" >>../metadata/packed-revs
+    echo "git branch $justbranch $rev" >>../metadata/restore-script.sh
   done
 
   local tags=$(git tag)
@@ -49,7 +75,15 @@ function save_refs() {
     mkdir -p $(dirname "$dest_path")
     echo $rev >"$dest_path"
     echo "$rev tags/$tag" >>../metadata/packed-revs
+    echo "git tag $tag $rev" >>../metadata/restore-script.sh
   done
+  cat <<'EOF' >>../metadata/restore-script.sh
+
+git branch|grep __b__safe__|xargs git branch -D
+rev=$(git branch|grep -v '\*'|head -1|xargs git rev-list -1)
+echo $rev >.git/HEAD
+EOF
+
   (
     cd ../metadata
     git add -Af
@@ -173,6 +207,6 @@ function anchor_branch_tips() {
   fi
 }
 
-#init_main
-main
+init_main
+#main
 
