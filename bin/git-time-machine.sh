@@ -207,6 +207,6 @@ function anchor_branch_tips() {
   fi
 }
 
-init_main
-#main
+#init_main
+main
 
