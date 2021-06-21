@@ -121,6 +121,26 @@ git config --global user.email omandal@localhost
 git config --global user.name "Om Mandal"
 }
 
+function gf() {
+    local b=$(git branch|grep '\*'|sed 's/^.* //')
+    local r=$(git rev-list -1 HEAD)
+    echo $r >.git/HEAD
+    prefix=__b__${RANDOM}__
+    n=0
+    for rev in $(git rev-list --all --children|grep -v ' '); do
+        git branch ${prefix}_$n $rev
+        let n+=1
+    done
+    git branch|grep -v '\*'|grep -v $prefix|xargs -r git branch -D
+    git tag|xargs -r git tag -d
+    remote=$(git remote -v|grep '(fetch)'|awk '{print $2}')
+    git remote rm origin
+    git remote add origin $remote
+    git fetch --all
+    git branch |grep $prefix|xargs -r git branch -D
+    git checkout $b origin/$b
+}
+
 function gfresh() {
     local b=$(git branch|grep '^\*'|awk '{print $2}')
     git checkout $(git rev-parse HEAD) >/dev/null 2>&1
