@@ -138,7 +138,7 @@ function gf() {
     git remote add origin $remote
     git fetch --all
     git branch |grep $prefix|xargs -r git branch -D
-    git checkout $b origin/$b
+    git checkout -b $b --track origin/$b
 }
 
 function gfresh() {
