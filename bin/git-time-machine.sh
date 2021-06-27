@@ -2,7 +2,7 @@
 
 umask 022
 
-REPO='git-aws:repos/priv-intel-VTd_SIOV_TR--multirel.git'
+REPO='git-aws-real:repos/priv-intel-VTd_SIOV_TR--multirel.git'
 
 function main() {
   ensure_data_dirs
