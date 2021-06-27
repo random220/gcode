@@ -221,4 +221,5 @@ alias sd='sd2'
 alias prx='ssh -g -N -f vmwgitlab'
 alias prk='kill $(ps uxw|grep '\''ssh -g -N -f vmwgitlab'\''|grep -v grep|awk '\''{print $2}'\'')'
 alias cdp='cd ~/sb/cloud-build/docker/deploy'
-alias pdf2png='gs -sDevice=png16m -sOutputFile="out.png"'
+alias pdf2png='/usr/bin/gs -dNOPAUSE -dBATCH -sDevice=png16m -sOutputFile="out.png"'
+
