@@ -122,9 +122,10 @@ git config --global user.name "Om Mandal"
 }
 
 function gf() {
+    local dotgit=$(git rev-parse --show-toplevel)/.git
     local b=$(git branch|grep '\*'|sed 's/^.* //')
     local r=$(git rev-list -1 HEAD)
-    echo $r >.git/HEAD
+    echo $r >$dotgit/HEAD
     prefix=__b__${RANDOM}__
     n=0
     for rev in $(git rev-list --all --children|grep -v ' '); do
