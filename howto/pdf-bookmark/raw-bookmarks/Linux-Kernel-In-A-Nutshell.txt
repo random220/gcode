@@ -1,0 +1,81 @@
+Preface ix
+Part I. Building the Kernel
+    1. Introduction 3
+        Using This Book 4
+    2. Requirements for Building and Using the Kernel 5
+        Tools to Build the Kernel 5
+        Tools to Use the Kernel 6
+    3. Retrieving the Kernel Source 12
+        What Tree to Use 12
+        Where to Find the Kernel Source 13
+        What to Do with the Source 15
+    4. Configuring and Building 17
+        Creating a Configuration 17
+        Modifying the Configuration 18
+        Building the Kernel 23
+        Advanced Building Options 26
+    5. Installing and Booting from a Kernel 29
+        Using a Distribution's Installation Scripts 30
+        Installing by Hand 31
+        Modifying the Bootloader for the New Kernel 32
+    6. Upgrading a Kernel 35
+        Download the New Source 36
+        Applying the Patch 38
+        Reconfigure the Kernel 40
+        Can't This Be Automated? 42
+
+Part II. Major Customizations
+    7. Customizing a Kernel 45
+        Using a Distribution Kernel 45
+        Determining the Correct Module from Scratch 52
+    8. Kernel Configuration Recipes 63
+        Disks 63
+        Devices 66
+        CPU 71
+        Networking 75
+        Filesystems 80
+        Security 82
+        Kernel Debugging 83
+Part III. Kernel Reference
+    9. Kernel Boot Command-Line Parameter Reference 87
+        Module-Specific Options 87
+        Console Options 88
+        Interrupt Options 91
+        Memory Options 92
+        Suspend Options 94
+        CPU Options 95
+        Scheduler Options 97
+        Ramdisk Options 98
+        Root Disk Options 99
+        Init Options 101
+        kexec Options 101
+        RCU Options 102
+        ACPI Options 103
+        SCSI Options 106
+        PCI Options 107
+        Plug and Play BIOS Options 109
+        SELinux Options 110
+        Network Options 111
+        Network File System Options 111
+        Hardware-Specific Options 113
+        Timer-Specific Options 114
+        Miscellaneous Options 115
+    10. Kernel Build Command-Line Reference 117
+        Informational Targets 117
+        Cleaning Targets 118
+        Configuration Targets 118
+        Build Targets 119
+        Packaging Targets 120
+        Documentation Targets 121
+        Architecture-Specific Targets 121
+        Analysis Targets 121
+    11. Kernel Configuration Option Reference 122
+
+Part IV. Additional Information
+    A. Helpful Utilities 161
+        Managing Your Patches with quilt 163
+        git 165
+        ketchup 166
+    B. Bibliography 168
+
+Index 171
