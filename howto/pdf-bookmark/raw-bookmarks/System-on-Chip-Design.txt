@@ -1,0 +1,224 @@
+Foreword 4
+Preface 16
+Example Codes and Projects / Disclaimer / A note about the scope of this book 17
+About the Author 18
+Acknowledgments 19
+
+1. Introduction to Arm Cortex-M
+    1.1 Why learn Cortex-M system design? 22
+        1.1.1 Starting Cortex-M system design is easy 22
+        1.1.2 Cortex-M processor systems on FPGA 23
+    1.2 Understanding different types of Arm processors 24
+    1.3 Cortex-M deliverables 27
+        1.3.1 Licensing through Arm Flexible Access and Arm DesignStart 27
+        1.3.2 Obfuscated Verilog – DesignStart Eval 28
+        1.3.3 Verilog RTL sources – DesignStart Pro 28
+        1.3.4 FPGA Packages – DesignStart FPGA 28
+        1.3.5 Documentation 28
+
+2. Introduction to system design with Cortex-M processors
+    2.1 Overview of Cortex-M Processors 32
+    2.2 What memories are needed? 33
+        2.2.1 Overview of memories 33
+        2.2.2 Memory declarations in FPGA design tools 34
+        2.2.3 Memory handling in ASIC designs 36
+        2.2.4 Memory endianness 37
+    2.3 Defining the peripherals 37
+    2.4 Memory map definition 38
+    2.5 Bus and memory system design 40
+    2.6 TCM integration 41
+    2.7 Cache integration 41
+    2.8 Defining the processor’s configuration options 42
+    2.9 Interrupt signals and related areas 42
+    2.10 Event interface 44
+    2.11 Clock generation 45
+    2.12 Reset generation 47
+    2.13 SysTick 49
+    2.14 Debug integration 50
+    2.15 Power management features 51
+    2.16 Top-level pin assignment and pin multiplexing 51
+    2.17 Miscellaneous signals 52
+    2.18 Sign off requirements 52
+
+3. AMBA, AHB, and APB
+    3.1 What is AMBA? 56
+        3.1.1 Introduction to Advanced Microcontroller Bus Architecture 56
+        3.1.2 History of AMBA 56
+        3.1.3 Various versions of AMBA specification 57
+    3.2 Overview of AHB 58
+        3.2.1 Various versions of AHB 58
+        3.2.2 AHB signals 58
+        3.2.3 Basic operations 60
+        3.2.4 Minimal AHB systems 62
+        3.2.5 Handling of multiple bus masters 63
+    3.3 More details on the AHB protocol 65
+        3.3.1 Address phase signals 65
+        3.3.2 Data phase signals 71
+        3.3.3 Legacy arbiter handshake signals 75
+    3.4 Exclusive access operations 77
+        3.4.1 Introduction to exclusive accesses 77
+        3.4.2 AHB5 exclusive access support 80
+        3.4.3 Mapping of Cortex-M3/M4/M7 exclusive access signals to AHB5 81
+    3.5 AHB5 TrustZone support 82
+    3.6 Overview of APB 83
+        3.6.1 Introduction to the APB bus system 83
+        3.6.2 APB signals and connection 84
+        3.6.3 Additional signals in APB protocol v2.0 88
+        3.6.4 Data values on APB 89
+        3.6.5 Mixing different versions of APB components 89
+
+4. Building simple bus systems for Cortex-M processors
+    4.1 Introduction to the basics of bus design 92
+    4.2 Building a simple Cortex-M0 system 93
+    4.3 Building a simple Cortex-M0+ system 94
+    4.4 Building a simple Cortex-M1 system 96
+    4.5 Building a simple Cortex-M3/Cortex-M4 system 98
+    4.6 Handling multiple bus masters 104
+    4.7 Exclusive access support 106
+    4.8 Address remap 108
+    4.9 AHB- based memory connection versus TCM 109
+    4.10 Handling of embedded flash memories 111
+        4.10.1 IP requirements 111
+        4.10.2 Flash programming 111
+        4.10.3 Bringing up a new device without a valid program image 112
+
+5. Debug integration with Cortex-M processor systems
+    5.1 Overview of debug and trace features 116
+    5.2 CoreSight Debug Architecture 118
+        5.2.1 Introduction to Arm CoreSight 118
+        5.2.2 Debug connection protocols 119
+        5.2.3 Debug connection concept - Debug Access Port (DAP) 120
+        5.2.4 Various arrangements of debug interface structure 121
+        5.2.5 Trace connection concept 122
+        5.2.6 Timestamp 124
+        5.2.7 Debug components discovery (ROM table and component IDs) 124
+        5.2.8 Debug authentication 126
+        5.2.9 Debug power request 127
+        5.2.10 Debug reset request 128
+        5.2.11 Cross Trigger Interface 128
+    5.3 Debug integration 129
+        5.3.1 JTAG / Serial Wire Debug connections 129
+        5.3.2 Trace port connections 130
+        5.3.3 Clocks for the debug and trace system 131
+        5.3.4 Multi-drop serial wire support 133
+        5.3.5 Debug authentication 134
+    5.4 Other related topics 136
+        5.4.1 Other signal connections 136
+        5.4.2 Daisy chain of JTAG connection 136
+
+6. Low-power support
+    6.1 Overview of low-power Cortex-M features 140
+    6.2 Low-power design basics 141
+    6.3 Cortex-M low-power interfaces 143
+        6.3.1 Sleep status and GATEHCLK output 143
+        6.3.2 Q-channel low-power interface (Cortex-M23, Cortex-M33, Cortex-M35P) 144
+        6.3.3 Sleep hold interface 146
+        6.3.4 Wakeup Interrupt Controller (WIC) 148
+        6.3.5 SRPG’s impact on software 152
+        6.3.6 Software power-saving approach 152
+    6.4 Cortex-M processor characteristics that enable low-power designs 153
+        6.4.1 High code density 153
+        6.4.2 Short pipeline 153
+        6.4.3 Instruction fetch optimizations 154
+    6.5 System-level design considerations 155
+        6.5.1 Low-power designs overview 155
+        6.5.2 Clock sources 155
+        6.5.3 Low-power memories 155
+        6.5.4 Caches 155
+        6.5.5 Low-power analog components 156
+        6.5.6 Maximizing clock gating opportunities 156
+        6.5.7 Sleep mode that completely powers down the processor 157
+
+7. Design of bus infrastructure components
+    7.1 Overview of a simple AMBA system design 162
+    7.2 Typical AHB slave design rules 164
+    7.3 Typical AHB infrastructure components 166
+        7.3.1 AHB decoders 166
+        7.3.2 Default slave 167
+        7.3.3 AHB Slave multiplexer 169
+        7.3.4 ROM and RAM with AHB interface 171
+        7.3.5 AHB to APB Bridge 179
+    7.4 Bridging from Cortex-M3/Cortex-M4 AHB Lite to AHB5 188
+
+8. Design of simple peripherals
+    8.1 Common practices for peripheral designs 192
+    8.2 Designing Simple APB Peripherals 193
+        8.2.1 General Purpose Input Output (GPIO) interface 200
+        8.2.2 Simple APB Timer 206
+        8.2.3 Simple UART 210
+    8.3 ID registers 219
+    8.4 Other peripheral design considerations 220
+        8.4.1 Security of system control functions 220
+        8.4.2 Handling of 64-bit data 220
+
+9. Putting the system together
+    9.1 Creating a simple microcontroller-like system 224
+    9.2 Design partitioning 225
+    9.3 What is inside a simulation environment? 226
+    9.4 Prepare the minimal software support for simulation 227
+        9.4.1 Overview of example code based on CMSIS-CORE 227
+        9.4.2 Device header file for example MCU (cm3_mcu.h) 228
+        9.4.3 Device start-up file for example MCU (startup_cm3_mcu.s) 231
+        9.4.4 UART utilities 232
+        9.4.5 System initialization function 233
+        9.4.6 Retargeting 234
+        9.4.7 Other software support package considerations 235
+    9.5 System-level simulation 236
+        9.5.1 Compiling hello world 236
+        9.5.2 Using Modelsim/QuestaSim to compile and simulate the design 237
+    9.6 Advanced processor systems and Corstone Foundation IP 240
+    9.7 Verification 241
+    9.8 ASIC implementation flow 243
+    9.9 Design for Testing/Testability (DFT) 244
+
+10. Beyond the processor system
+    10.1 Clock system design 250
+        10.1.1 Clock system design overview 250
+        10.1.2 Clock switching 251
+        10.1.3 Low-power considerations 252
+        10.1.4 DFT considerations 252
+    10.2 Multiple power domains and power gating 252
+    10.3 Arm processors in a mixed-signal world 255
+        10.3.1 Convergence of microcontrollers and mixed-signal designs 255
+        10.3.2 Analog to digital conversions 256
+        10.3.3 Digital to analog conversions 261
+        10.3.4 Other analog interface approaches 262
+        10.3.5 Connecting ADC and DAC IPs into a Cortex-M system 262
+    10.4 Bring an SoC to life – Beetle test chip case study 263
+        10.4.1 Beetle test chip overview 263
+        10.4.2 Beetle test chip challenges 265
+        10.4.3 Beetle test chip system design 266
+        10.4.4 Implementation of the Beetle test chip 266
+        10.4.5 Other related tasks 267
+
+11. Software Development
+    11.1 Introduction to CMSIS (Cortex Microcontroller Software Interface Standard) 272
+    11.2 Creating software support for multiple toolchains 274
+        11.2.1 What is needed for creating multiple toolchain support? 274
+        11.2.2 Compilation with Arm Compiler 6 274
+        11.2.3 Compilation with gcc 276
+    11.3 Introduction of the Arm Development Studio featuring Arm Keil Microcontroller Development Kit (MDK) 281
+        11.3.1 Overview of Keil MDK 281
+        11.3.2 Keil MDK Installation 282
+        11.3.3 Create an application 283
+        11.3.4 Using the project wizard to create a project 284
+        11.3.5 Create and add source files 286
+        11.3.6 Edit the source files 288
+        11.3.7 Defining project options 289
+        11.3.8 Compile the project 292
+        11.3.9 Download and debug the application 292
+        11.3.10 Using ITM for text message output (printf) 294
+        11.3.11 Software development in collaborative environments 299
+    11.4 Using an RTOS 299
+        11.4.1 RTOS software concepts 299
+        11.4.2 Using Keil RTX 300
+        11.4.3 Optimizing memory usage 302
+            11.4.3.1 The need for RAM usage analysis 302
+            11.4.3.2 Configure RTX for stack watermarking 302
+            11.4.3.2 RTX RTOS viewer in Watch windows 303
+    11.5 Other toolchains 306
+
+Glossary of Terms 308
+References 321
+Index 322
+
