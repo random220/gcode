@@ -11,9 +11,9 @@ Acknowledgments 19
     1.2 Understanding different types of Arm processors 24
     1.3 Cortex-M deliverables 27
         1.3.1 Licensing through Arm Flexible Access and Arm DesignStart 27
-        1.3.2 Obfuscated Verilog – DesignStart Eval 28
-        1.3.3 Verilog RTL sources – DesignStart Pro 28
-        1.3.4 FPGA Packages – DesignStart FPGA 28
+        1.3.2 Obfuscated Verilog - DesignStart Eval 28
+        1.3.3 Verilog RTL sources - DesignStart Pro 28
+        1.3.4 FPGA Packages - DesignStart FPGA 28
         1.3.5 Documentation 28
 
 2. Introduction to system design with Cortex-M processors
@@ -28,7 +28,7 @@ Acknowledgments 19
     2.5 Bus and memory system design 40
     2.6 TCM integration 41
     2.7 Cache integration 41
-    2.8 Defining the processor’s configuration options 42
+    2.8 Defining the processor's configuration options 42
     2.9 Interrupt signals and related areas 42
     2.10 Event interface 44
     2.11 Clock generation 45
@@ -114,7 +114,7 @@ Acknowledgments 19
         6.3.2 Q-channel low-power interface (Cortex-M23, Cortex-M33, Cortex-M35P) 144
         6.3.3 Sleep hold interface 146
         6.3.4 Wakeup Interrupt Controller (WIC) 148
-        6.3.5 SRPG’s impact on software 152
+        6.3.5 SRPG's impact on software 152
         6.3.6 Software power-saving approach 152
     6.4 Cortex-M processor characteristics that enable low-power designs 153
         6.4.1 High code density 153
@@ -184,7 +184,7 @@ Acknowledgments 19
         10.3.3 Digital to analog conversions 261
         10.3.4 Other analog interface approaches 262
         10.3.5 Connecting ADC and DAC IPs into a Cortex-M system 262
-    10.4 Bring an SoC to life – Beetle test chip case study 263
+    10.4 Bring an SoC to life - Beetle test chip case study 263
         10.4.1 Beetle test chip overview 263
         10.4.2 Beetle test chip challenges 265
         10.4.3 Beetle test chip system design 266
