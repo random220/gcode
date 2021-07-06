@@ -9,7 +9,7 @@ Chapter 2: The Project 7
 Chapter 3: The Code 43
     3.1 Firmware Standards 43
     3.2 Code Inspections 54
-    3.3 Design by Contract ™ 62
+    3.3 Design by Contract(TM) 62
     3.4 Other Ways to Insure Quality Code 75
     3.5 Encapsulation 83
 

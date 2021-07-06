@@ -14,6 +14,9 @@ for my $line (@out) {
 system "pdftk ~/in.pdf cat 1-$pages output ~/a.pdf";
 =cut
 
+if (!-f $ENV{HOME}.'/in.pdf') {
+    die "Error: Cannot find ~/in.pdf\n";
+}
 system "pdftk ~/in.pdf cat output ~/a.pdf";
 system 'pdftk ~/a.pdf dump_data output ~/a.txt';
 

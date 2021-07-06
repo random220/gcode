@@ -8,4 +8,5 @@ all:
 	chmod a+x .build/idxmaker.sh
 	(cd .build && ./idxmaker.sh repack)
 	mv .build/a.txt .build/idxmaker-packed.txt
+	./add-index-with-pdftk.pl
 
