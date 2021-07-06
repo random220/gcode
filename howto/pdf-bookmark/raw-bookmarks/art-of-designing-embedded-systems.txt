@@ -1,0 +1,61 @@
+offset 11
+Acknowledgments ix 10*
+
+Chapter 1: Introduction 1
+Chapter 2: The Project 7
+    2.1 Partitioning 7
+    2.2 Scheduling 33
+
+Chapter 3: The Code 43
+    3.1 Firmware Standards 43
+    3.2 Code Inspections 54
+    3.3 Design by Contract ™ 62
+    3.4 Other Ways to Insure Quality Code 75
+    3.5 Encapsulation 83
+
+Chapter 4: Real Time 89
+    4.1 Real Time Means Right Now 89
+    4.2 Reentrancy 108
+    4.3 eXtreme Instrumenting 126
+    4.4 Floating Point Approximations 140
+
+Chapter 5: The Real World 183
+    5.1 Electromagnetics for Firmware People 183
+    5.2 Debouncing 189
+
+Chapter 6: Disciplined Development 215
+    6.1 Disciplined Development 215
+    6.2 The Seven Step Plan 222
+    6.3 The Postmortem 237
+
+Appendix A: A Firmware Standard 245
+    A.1 Scope 245
+    A.2 Projects 246
+    A.3 Modules 251
+    A.4 Variables 254
+    A.5 Functions 256
+    A.6 Interrupt Service Routines 257
+    A.7 Comments 258
+    A.8 Coding Conventions 260
+
+Appendix B: A Simple Drawing System 265
+    B.1 Scope 265
+    B.2 Drawings and Drawing Storage 266
+    B.3 Master Drawing Book 268
+    B.4 Confi guration Drawings 269
+    B.5 Bills of Materials 270
+    B.6 ROMs and PALs 274
+    B.7 ROM and PAL File Names 275
+    B.8 Engineering Change Orders 276
+    B.9 Responsibilities 279
+
+Appendix C: A Boss's Guide to Process Improvement 281
+    C.1 Version Control 282
+    C.2 Firmware Standards 283
+    C.3 Code Inspections 285
+    C.4 Chuck Bad Code 287
+    C.5 Tools 288
+    C.6 Peopleware 289
+    C.7 Other Tidbits 291
+
+Index 295
