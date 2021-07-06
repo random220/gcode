@@ -1,4 +1,5 @@
-Preface xi
+_offset 16
+Preface xi 11*
 
 1. Introduction  1
     Linux Versus Other Unix-Like Kernels 2
@@ -61,7 +62,7 @@ Preface xi
     Noncontiguous Memory Area Management 342
 
 9. Process Address Space  351
-    The Process’s Address Space 352
+    The Process's Address Space 352
     The Memory Descriptor 353
     Memory Regions 357
     Page Fault Exception Handler 376
