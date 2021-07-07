@@ -1,3 +1,6 @@
+all:
+	echo do nothing
+
 tk:
 	rm -rf .build; mkdir .build
 	./saveindex.sh
