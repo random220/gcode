@@ -10,11 +10,9 @@ Chapter 2: Before You Start-Fundamental Decisions 9
     Recommended Laboratory Equipment 30
     Free Development Toolchains 32
     Free Embedded Operating Systems 36
-    GNU and You-How Using “Free” Software
-    Affects Your Product 44
+    GNU and You-How Using "Free" Software Affects Your Product 44
     Choices of Development Operating System 51
-    Special PCB Layout and Initial Bring-Up Rules
-    for the Shoestring Prototype 53
+    Special PCB Layout and Initial Bring-Up Rules for the Shoestring Prototype 53
     Hints for Surface-Mounting by Hand 62
     Choosing PCB Layout Software 65
 
@@ -41,7 +39,7 @@ Chapter 3: The GNU Toolchain 71
         Special Considerations for C++ 136
         Further ld Information 137
     Converting Files with Objcopy 138
-    Objdump-Check Your Executable’s Layout 139
+    Objdump-Check Your Executable's Layout 139
     Size-Check the Load Size of Your Executable 143
     Gdb-The GNU Debugger 143
         Invoking and Quitting gdb and Loading Your Program 145
@@ -49,8 +47,7 @@ Chapter 3: The GNU Toolchain 71
         Breakpoints and Other Conditional Breaks 149
         Getting Further Help 151
 
-Chapter 4: Example Firmware Walkthroughs
-    and Debugging Techniques 153
+Chapter 4: Example Firmware Walkthroughs and Debugging Techniques 153
     A Quick Introduction to ARM and the Atmel EB40 153
     First Step-the LED Flasher (in Assembler) 158
         Bringing Up a Simple C Program-The LED Flasher (in C) 167
