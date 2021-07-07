@@ -1,0 +1,68 @@
+Acknowledgments iv
+Chapter 1: Introduction 1
+
+Chapter 2: Before You Start-Fundamental Decisions 9
+    General Microcontroller Selection Considerations 9
+    Choosing the Right Core 13
+    Building Custom Peripherals with FPGAs 19
+    Whose Development Hardware to Use-Chicken or Egg? 21
+    Our Hardware Choice-The Atmel EB40 29
+    Recommended Laboratory Equipment 30
+    Free Development Toolchains 32
+    Free Embedded Operating Systems 36
+    GNU and You-How Using “Free” Software
+    Affects Your Product 44
+    Choices of Development Operating System 51
+    Special PCB Layout and Initial Bring-Up Rules
+    for the Shoestring Prototype 53
+    Hints for Surface-Mounting by Hand 62
+    Choosing PCB Layout Software 65
+
+Chapter 3: The GNU Toolchain 71
+    Building the Toolchain 71
+    Overview of the GNU Build Environment 76
+    GNU Make and an Introduction to Makefiles 80
+    Gas-The GNU Assembler 87
+        Comments 88
+        Symbols and Labels 88
+        Code Sections and Section Directives 90
+        Pseudo-Operations 96
+        Conditional Assembly Directives 108
+        Macros, Assembler Loops and Synthetic Instructions 111
+    Ld-GNU Linker 114
+        Introduction 114
+        The SECTIONS command 118
+        Symbol Assignments, Expressions and Functions 119
+        Output Section Descriptions 124
+        Overlay Section Descriptions 127
+        Emitting Data Directly into the Executable 131
+        Input Section Descriptions 132
+        Named Memory Regions 134
+        Special Considerations for C++ 136
+        Further ld Information 137
+    Converting Files with Objcopy 138
+    Objdump-Check Your Executable’s Layout 139
+    Size-Check the Load Size of Your Executable 143
+    Gdb-The GNU Debugger 143
+        Invoking and Quitting gdb and Loading Your Program 145
+        Examining Target Memory 148
+        Breakpoints and Other Conditional Breaks 149
+        Getting Further Help 151
+
+Chapter 4: Example Firmware Walkthroughs
+    and Debugging Techniques 153
+    A Quick Introduction to ARM and the Atmel EB40 153
+    First Step-the LED Flasher (in Assembler) 158
+        Bringing Up a Simple C Program-The LED Flasher (in C) 167
+        Writing a Simple Flash-Loader (and Inspecting Memory with gdb) 172
+        A Simple ROM-Startup Program 180
+        A Complete ROM-Startup Application in C 185
+        Blind-Debugging Your Program 194
+        Miscellaneous Glue-Handling Hardware Exceptions in C with gcc 199
+
+Chapter 5: Portability and Reliability Considerations 203
+
+Chapter 6: Useful Vendors and Other Web Resources 221
+Index of CD-ROM Contents 223
+About the Author 227
+Index 229
