@@ -1,4 +1,6 @@
 _offset 14
+Cover 1*
+Table of Content 5*
 Preface ix 9*
 Part I. Building the Kernel 1
     1. Introduction 3
