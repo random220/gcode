@@ -1,7 +1,9 @@
-_offset 16
-Preface xi 11*
+_offset 17
+Cover 1*
+Table of Content 6*
+Preface xi 12*
 
-1. Introduction  1
+1. Introduction 1
     Linux Versus Other Unix-Like Kernels 2
     Hardware Dependency 6
     Linux Versions 7
@@ -9,21 +11,21 @@ Preface xi 11*
     An Overview of the Unix Filesystem 12
     An Overview of Unix Kernels 19
 
-2. Memory Addressing  35
+2. Memory Addressing 35
     Memory Addresses 35
     Segmentation in Hardware 36
     Segmentation in Linux 41
     Paging in Hardware 45
     Paging in Linux 57
 
-3. Processes  79
+3. Processes 79
     Processes, Lightweight Processes, and Threads 79
     Process Descriptor 81
     Process Switch 102
     Creating Processes 114
     Destroying Processes 126
 
-4. Interrupts and Exceptions  131
+4. Interrupts and Exceptions 131
     The Role of Interrupt Signals 132
     Interrupts and Exceptions 133
     Nested Execution of Exception and Interrupt Handlers 143
@@ -34,13 +36,13 @@ Preface xi 11*
     Work Queues 180
     Returning from Interrupts and Exceptions 183
 
-5. Kernel Synchronization  189
+5. Kernel Synchronization 189
     How the Kernel Services Requests 189
     Synchronization Primitives 194
     Synchronizing Accesses to Kernel Data Structures 217
     Examples of Race Condition Prevention 222
 
-6. Timing Measurements  227
+6. Timing Measurements 227
     Clock and Timer Circuits 228
     The Linux Timekeeping Architecture 232
     Updating the Time and Date 240
@@ -48,7 +50,7 @@ Preface xi 11*
     Software Timers and Delay Functions 244
     System Calls Related to Timing Measurements 252
 
-7. Process Scheduling  258
+7. Process Scheduling 258
     Scheduling Policy 258
     The Scheduling Algorithm 262
     Data Structures Used by the Scheduler 266
@@ -56,12 +58,12 @@ Preface xi 11*
     Runqueue Balancing in Multiprocessor Systems 284
     System Calls Related to Scheduling 290
 
-8. Memory Management  294
+8. Memory Management 294
     Page Frame Management 294
     Memory Area Management 323
     Noncontiguous Memory Area Management 342
 
-9. Process Address Space  351
+9. Process Address Space 351
     The Process's Address Space 352
     The Memory Descriptor 353
     Memory Regions 357
@@ -69,20 +71,20 @@ Preface xi 11*
     Creating and Deleting a Process Address Space 392
     Managing the Heap 395
 
-10. System Calls  398
+10. System Calls 398
     POSIX APIs and System Calls 398
     System Call Handler and Service Routines 399
     Entering and Exiting a System Call 401
     Parameter Passing 409
     Kernel Wrapper Routines 418
 
-11. Signals  420
+11. Signals 420
     The Role of Signals 420
     Generating a Signal 433
     Delivering a Signal 439
     System Calls Related to Signal Handling 450
 
-12. The Virtual Filesystem  456
+12. The Virtual Filesystem 456
     The Role of the Virtual Filesystem (VFS) 456
     VFS Data Structures 462
     Filesystem Types 481
@@ -91,39 +93,39 @@ Preface xi 11*
     Implementations of VFS System Calls 505
     File Locking 510
 
-13. I/O Architecture and Device Drivers  519
+13. I/O Architecture and Device Drivers 519
     I/O Architecture 519
     The Device Driver Model 526
     Device Files 536
     Device Drivers 540
     Character Device Drivers 552
 
-14. Block Device Drivers  560
+14. Block Device Drivers 560
     Block Devices Handling 560
     The Generic Block Layer 566
     The I/O Scheduler 572
     Block Device Drivers 585
     Opening a Block Device File 595
 
-15. The Page Cache  599
+15. The Page Cache 599
     The Page Cache 600
     Storing Blocks in the Page Cache 611
     Writing Dirty Pages to Disk 622
     The sync( ), fsync( ), and fdatasync() System Calls 629
 
-16. Accessing Files  631
+16. Accessing Files 631
     Reading and Writing a File 632
     Memory Mapping 657
     Direct I/O Transfers 668
     Asynchronous I/O 671
 
-17. Page Frame Reclaiming  676
+17. Page Frame Reclaiming 676
     The Page Frame Reclaiming Algorithm 676
     Reverse Mapping 680
     Implementing the PFRA 689
     Swapping 712
 
-18. The Ext2 and Ext3 Filesystems  738
+18. The Ext2 and Ext3 Filesystems 738
     General Characteristics of Ext2 738
     Ext2 Disk Data Structures 741
     Ext2 Memory Data Structures 750
@@ -132,20 +134,20 @@ Preface xi 11*
     Managing Ext2 Disk Space 757
     The Ext3 Filesystem 766
 
-19. Process Communication  775
+19. Process Communication 775
     Pipes 776
     FIFOs 787
     System V IPC 789
     POSIX Message Queues 806
 
-20. Program Execution  808
+20. Program Execution 808
     Executable Files 809
     Executable Formats 824
     Execution Domains 827
     The exec Functions 828
-    A. System Startup  835
-    B. Modules  842
+    A. System Startup 835
+    B. Modules 842
 
 Bibliography 852
-Source Code Index  857
+Source Code Index 857
 Index 905
