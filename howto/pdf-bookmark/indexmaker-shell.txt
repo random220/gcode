@@ -8,7 +8,7 @@ function make_index() {
 --COOKED-INDEX-HERE--
 EOF
 
-    /usr/bin/gs -sDEVICE=pdfwrite -q -dBATCH -dNOPAUSE -sOutputFile=out.pdf -dPDFSETTINGS=/prepress index.info -f in.pdf
+    /usr/bin/gs -sDEVICE=pdfwrite -q -dBATCH -dNOPAUSE -sOutputFile=out.pdf -dPDFSETTINGS=/prepress index.info -f ~/in.pdf
 }
 
 
