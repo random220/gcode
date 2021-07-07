@@ -98,28 +98,27 @@ sub printhash
     @children = grep {$_ !~ /^line$/} @children;
     @children = sort {$a <=> $b} @children;
     my $nchild = scalar @children;
-    if ($line =~ m{^(\s*)(.*?)(\s+(\d+))?$}) {
-        my ($space, $title, $page) = ($1, $2, $4);
-        if ($title ne '') {
-            if ($page ne '') {
-                $title = "$title $page";
-            }
-            else {
-                $page = 1;
-            }
-            if ($nchild == 0) {
-                my $p = $page + $offset;
-                print("$space\[/Page $p /Title ($title) /OUT pdfmark\n");
-            }
-            else {
-                my $p = $page + $offset;
-                print("$space\[/Count $nchild /Page $p /Title ($title) /OUT pdfmark\n");
-            }
-        }
+    my ($space, $title, $page);
+
+    if ($line =~ m{^(\s*)(.+?\s+(\d+))$}) {
+        ($space, $title, $page) = ($1, $2, $3);
     }
-    else {
-        print("$line\n");
-        die "should never happen";
+    elsif ($line =~ m{^(\s*)(.+?)\s+(\d+)\*$}) {
+        ($space, $title, $page) = ($1, $2, $3);
+    }
+    elsif ($line =~ m{^(\s*)(.+)$}) {
+        ($space, $title) = ($1, $2);
+        $page = 1;
+    }
+    if (defined($line)) {
+        if ($nchild == 0) {
+            my $p = $page + $offset;
+            print("$space\[/Page $p /Title ($title) /OUT pdfmark\n");
+        }
+        else {
+            my $p = $page + $offset;
+            print("$space\[/Count $nchild /Page $p /Title ($title) /OUT pdfmark\n");
+        }
     }
 
     for my $child (@children) {
