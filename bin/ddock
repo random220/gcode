@@ -155,7 +155,7 @@ function cont_start() {
     if [[ $iid == '' ]]; then
       # no, my image does not exist either
       # create and install packages
-      docker run -itd -h $name --name $name $base_image
+      docker run -itd -h $name --name $name -p4433:4433 $base_image
       cont_config $name
       # create image from $name to $my_image
       docker stop $name
@@ -163,7 +163,7 @@ function cont_start() {
       docker start $name
     else
       # yes, my image exists
-      docker run -itd -h $name --name $name $my_image bash
+      docker run -itd -h $name --name $name -p4433:4433 $my_image bash
       # no need to configure
     fi
   else
