@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+use strict;
+
+open F, "<$ARGV[0]" or die;
+while (my $line = <F>) {
+    chomp $line;
+    my ($title, $level, $page);
+    if ($line =~ m{^BookmarkTitle: (.+)}) {
+        $title = $1;
+    }
+    elsif ($line =~ m{^BookmarkLevel: (.+)}) {
+        $level = $1;
+    }
+    elsif ($line =~ m{^BookmarkPageNumber: (.+)}) {
+        $page = $1;
+        my $spaces = '';
+        $level--;
+        while ($level > 0) {
+            $spaces .= '    ';
+            $level--;
+        }
+        print "$spaces$title $page\*\n";
+    }
+}
+close F;
