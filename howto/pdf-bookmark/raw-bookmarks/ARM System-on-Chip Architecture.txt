@@ -1,0 +1,161 @@
+Preface 1*
+Contents 5*
+_offset 9
+1 An Introduction to Processor Design 1
+    1.1 Processor architecture and organization 2
+    1.2 Abstraction in hardware design 3
+    1.3 MU0 - a simple processor 7
+_offset 10
+    1.4 Instruction set design 14
+    1.5 Processor design trade-offs 19
+    1.6 The Reduced Instruction Set Computer 24
+    1.7 Design for low power consumption 28
+    1.8 Examples and exercises 32
+
+2 The ARM Architecture 35
+    2.1 The Acorn RISC Machine 36
+    2.2 Architectural inheritance 37
+    2.3 The ARM programmer's model 39
+    2.4 ARM development tools 43
+    2.5 Example and exercises 47
+
+3 ARM Assembly Language Programming 49
+    3.1 Data processing instructions 50
+    3.2 Data transfer instructions 55
+    3.3 Control flow instructions 63
+    3.4 Writing simple assembly language programs 69
+    3.5 Examples and exercises 72
+
+4 ARM Organization and Implementation 74
+    4.1 3-stage pipeline ARM organization 75
+    4.2 5-stage pipeline ARM organization 78
+    4.3 ARM instruction execution 82
+    4.4 ARM implementation 86
+    4.5 The ARM coprocessor interface 101
+    4.6 Examples and exercises 103
+
+5 The ARM Instruction Set 105
+    5.1 Introduction 106
+    5.2 Exceptions 108
+    5.3 Conditional execution 111
+    5.4 Branch and Branch with Link (B, BL) 113
+    5.5 Branch, Branch with Link and eXchange (BX, BLX) 115
+    5.6 Software Interrupt (SWI) 117
+    5.7 Data processing instructions 119
+    5.8 Multiply instructions 122
+    5.9 Count leading zeros (CLZ - architecture v5T only) 124
+    5.10 Single word and unsigned byte data transfer instructions 125
+    5.11 Half-word and signed byte data transfer instructions 128
+    5.12 Multiple register transfer instructions 130
+    5.13 Swap memory and register instructions (SWP) 132
+    5.14 Status register to general register transfer instructions 133
+    5.15 General register to status register transfer instructions 134
+    5.16 Coprocessor instructions 136
+    5.17 Coprocessor data operations 137
+    5.18 Coprocessor data transfers 138
+    5.19 Coprocessor register transfers 139
+    5.20 Breakpoint instruction (BRK - architecture v5T only) 141
+    5.21 Unused instruction space 142
+    5.22 Memory faults 143
+    5.23 ARM architecture variants 147
+    5.24 Example and exercises 149
+
+6 Architectural Support for High-Level Languages 151
+    6.1 Abstraction in software design 152
+    6.2 Data types 153
+    6.3 Floating-point data types 158
+    6.4 The ARM floating-point architecture 163
+    6.5 Expressions 168
+    6.6 Conditional statements 170
+    6.7 Loops 173
+    6.8 Functions and procedures 175
+    6.9 Use of memory 180
+    6.10 Run-time environment 185
+    6.11 Examples and exercises 186
+
+7 The Thumb Instruction Set 188
+    7.1 The Thumb bit in the CPSR 189
+    7.2 The Thumb programmer's model 190
+    7.3 Thumb branch instructions 191
+    7.4 Thumb software interrupt instruction 194
+    7.5 Thumb data processing instructions 195
+    7.6 Thumb single register data transfer instructions 198
+    7.7 Thumb multiple register data transfer instructions 199
+    7.8 Thumb breakpoint instruction 200
+    7.9 Thumb implementation 201
+    7.10 Thumb applications 203
+    7.11 Example and exercises 204
+
+8 Architectural Support for System Development 207
+    8.1 The ARM memory interface 208
+    8.2 The Advanced Microcontroller Bus Architecture (AMBA) 216
+    8.3 The ARM reference peripheral specification 220
+    8.4 Hardware system prototyping tools 223
+    8.5 The ARMulator 225
+    8.6 The JTAG boundary scan test architecture 226
+    8.7 The ARM debug architecture 232
+    8.8 Embedded Trace 237
+    8.9 Signal processing support 239
+    8.10 Example and exercises 245
+
+9 ARM Processor Cores 247
+    9.1 ARM7TDMI 248
+    9.2 ARM8 256
+    9.3 ARM9TDMI 260
+    9.4 ARM10TDMI 263
+    9.5 Discussion 266
+    9.6 Example and exercises 267
+
+10 Memory Hierarchy 269
+    10.1 Memory size and speed 270
+    10.2 On-chip memory 271
+    10.3 Caches 272
+    10.4 Cache design - an example 279
+    10.5 Memory management 283
+    10.6 Examples and exercises 289
+
+11 Architectural Support for Operating Systems 290
+    11.1 An introduction to operating systems 291
+    11.2 The ARM system control coprocessor 293
+    11.3 CP15 protection unit registers 294
+    11.4 ARM protection unit 297
+    11.5 CP15 MMU registers 298
+    11.6 ARM MMU architecture 302
+    11.7 Synchronization 309
+    11.8 Context switching 310
+    11.9 Input/Output 312
+    11.10 Example and exercises 316
+12 ARM CPU Cores 317
+    12.1 The ARM710T, ARM720T and ARM740T 318
+    12.2 The ARM810 323
+    12.3 The StrongARM SA-110 327
+    12.4 The ARM920T and ARM940T 335
+    12.5 The ARM946E-S and ARM966E-S 339
+    12.6 The ARM1020E 341
+    12.7 Discussion 344
+    12.8 Example and exercises 346
+
+13 Embedded ARM Applications 347
+    13.1 The VLSI Ruby II Advanced Communication Processor 348
+    13.2 The VLSI ISDN Subscriber Processor 349
+    13.3 The OneC(TM) VWS22100 GSM chip 352
+    13.4 The Ericsson-VLSI Bluetooth Baseband Controller 355
+    13.5 The ARM7500 and ARM7500FE 360
+    13.6 The ARM7100 364
+    13.7 The SA-1100 368
+    13.8 Examples and exercises 371
+
+14 The AMULET Asynchronous ARM Processors 374
+    14.1 Self-timed design 375
+    14.2 AMULET1 377
+    14.3 AMULET2 381
+    14.4 AMULET2e 384
+    14.5 AMULET3 387
+    14.6 The DRACO telecommunications controller 390
+    14.7 A self-timed future? 396
+    14.8 Example and exercises 397
+Appendix: Computer Logic 399
+Glossary 405
+Bibliography 410
+Index 413
+
