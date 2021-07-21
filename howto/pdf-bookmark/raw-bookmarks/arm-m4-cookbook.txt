@@ -1,0 +1,84 @@
+Cover 1*
+Preface v 8*
+
+_offset 13
+Chapter 1: A Practical Introduction to ARM&#174; CORTEX&#174; 1
+    Introduction 1
+    Installing uVision5 2
+    Linking an evaluation board 4
+    Running an example program 8
+    Writing a simple program 9
+    Understanding the simple use of GPIO 16
+    Estimating microcontroller performance 21
+
+Chapter 2: C Language Programming 25
+    Introduction 25
+    Configuring the hardware abstraction layer 26
+    Writing a C program to blink each LED in turn 31
+    Writing a function 37
+    Writing to the console window 42
+    Writing to the GLCD 52
+    Creating a game application - Stage 1 55
+    Creating a game application - Stage 2 61
+    Debugging your code using print statements 68
+    Using the debugger 71
+
+Chapter 3: Programming I/O 75
+    Introduction 75
+    Performing arithmetic operations 76
+    Illustrating machine storage classes 83
+    Configuring GPIO ports 85
+    Configuring UART ports 95
+    Handling interrupts 101
+    Using timers to create a digital clock 105
+
+Chapter 4: Assembly Language Programming 109
+    Introduction 109
+    Writing Cortex-M4 assembly language 111
+    Passing parameters between C and the assembly language 116
+    Handling interrupts in assembly language 121
+    Implementing a jump table 127
+    Debugging assembly language 131
+
+Chapter 5: Data Conversion 135
+    Introduction 135
+    Setting up the ADC 137
+    Configuring general-purpose timers 144
+    Using timers to trigger conversions 150
+    Setting up the DAC 153
+    Generating a sine wave 157
+
+Chapter 6: Multimedia Support 163
+    Introduction 163
+    Setting the RTE for the I2C Peripheral Bus 164
+    How to use the LCD touchscreen 167
+    Writing a driver for the audio codec 171
+    How to use the audio codec 179
+    How to use the camera 184
+    Designing bitmapped graphics 189
+    Ideas for games using sound and graphics 194
+
+Chapter 7: Real-Time Signal Processing 195
+    Introduction 195
+    Configuring the audio codec 196
+    How to play prerecorded audio 205
+    Designing a low-pass digital filter 208
+    How to make an audio tone control 215
+
+Chapter 8: Real-Time Embedded Systems 219
+    Introduction 219
+    Multithreaded programs using event flags 222
+    Multithreaded programs using mailboxes 229
+    Why ensuring mutual exclusion is important when accessing shared resources 232
+    Why we must use a mutex to access the GLCD 237
+    How to write a multithreaded Pong game 241
+    Debugging programs that use CMSIS-RTOS 244
+
+Chapter 9: Embedded Toolchain 249
+    Introduction 249
+    Installing GNU ARM Eclipse 250
+    Programming the MCBSTM32F400 evaluation board 255
+    How to use the STM32CubeMX Framework (API) 260
+    How to port uVision projects to GNU ARM Eclipse 269
+
+Index 273
