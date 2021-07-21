@@ -1,0 +1,337 @@
+Cover 1*
+Contents 8*
+Foreword xvii 18*
+Preface xix 20*
+Acknowledgments xxi 22*
+
+_offset 23
+Chapter 1: Introduction to the Cortex-M Processor Family 1
+    Cortex Profiles 1
+    Cortex-M3 3
+    Advanced Architectural Features 7
+    Cortex-M0 10
+    Cortex-M01 13
+    Cortex-M4 16
+    DSP Instructions 18
+    Cortex-M7 19
+    Conclusion 21
+
+Chapter 2: Developing Software for the Cortex-M Family 23
+    Introduction 23
+    Keil Microcontroller Development Kit 23
+    Software Packs 24
+    The Tutorial Exercises 24
+    Installation 25
+    Exercise 2.1 Building a First Program 27
+    The Blinky Project 28
+    Project Configuration 52
+    Exercise 2.2 Hardware Debug 65
+    Conclusion 69
+
+Chapter 3: Cortex-M Architecture 71
+    Introduction 71
+    Cortex-M Instruction Set 71
+    Programmer's Model and CPU Registers 72
+    Program Status Register 74
+    Q Bit and Saturated Maths Instructions 75
+    Interrupts and Multicycle Instructions 76
+    Conditional Execution-If Then Blocks 76
+    Exercise 3.1 Saturated Maths and Conditional Execution 78
+    Cortex-M Memory Map and Busses 84
+    Write Buffer 87
+    Memory Barrier Instructions 87
+    System Control Block 87
+    Bit Manipulation 89
+    Exercise 3.2 Bit Banding 91
+    Dedicated Bit Manipulation Instructions 92
+    SysTick Timer 93
+    Nested Vector Interrupt Controller 94
+    Operating Modes 94
+    Interrupt Handling-Entry 95
+    Interrupt Handling-Exit 96
+    Interrupt Handling-Exit Important! 97
+    Exercise 3.3 SysTick Interrupt 97
+    Cortex-M Processor Exceptions 102
+        Usage Fault 103
+        Bus Fault 103
+        Memory Manager Fault 104
+        Hard Fault 104
+        Enabling Fault Exceptions 104
+    Priority and Preemption 104
+    Groups and Subgroup 106
+    Runtime Priority Control 107
+    Exception Model 107
+        NVIC Tail Chaining 108
+        NVIC Late Arriving 109
+        NVIC POP Preemption 110
+    Exercise 3.3 Working with Multiple Interrupts 110
+    Bootloader Support 115
+    Exercise 3.4 Bootloader 116
+    Power Management 121
+        Entering Low-Power Modes 123
+        Configuring the Low-Power Modes 123
+        Exercise 3.3 Low-Power Modes 124
+    Moving From the Cortex-M3 126
+    Cortex-M4 127
+    Cortex-M0 127
+    Cortex-M01 129
+    Conclusion 130
+
+Chapter 4: Cortex Microcontroller Software Interface Standard 131
+    Introduction 131
+    CMSIS Specifications 133
+    CMSIS-Core 134
+    CMSIS-RTOS 134
+    CMSIS-DSP 135
+    CMSIS-Driver 135
+    CMSIS-SVD and DAP 135
+    CMSIS-Pack 136
+    Foundations of CMSIS 136
+    Coding Rules 137
+    MISRA-C 137
+    CMSIS-Core Structure 139
+    Startup Code 140
+    System Code 141
+    Device Header File 141
+    CMSIS-Core Header Files 143
+    Interrupts and Exceptions 144
+    Exercise 4.1 CMSIS and User Code Comparison 147
+        CMSIS-Core Register Access 148
+    CMSIS-Core CPU Intrinsic Instructions 149
+    Exercise 4.2 Intrinsic Bit Manipulation 150
+    CMSIS-SIMD Intrinsics 151
+    CMSIS-Core Debug Functions 152
+        Hardware Breakpoint 152
+        Instrumentation Trace 152
+    CMSIS-Core Functions for Corex-M7 153
+    Conclusion 153
+
+Chapter 5: Advanced Architecture Features 155
+    Introduction 155
+    Cortex Processor Operating Modes 155
+    Exercise 5.1 Stack Configuration 158
+    Supervisor Call 161
+    Exercise 5.2 Supervisor Call 163
+    PEND_SV Exception 166
+    Example Pend_SV 167
+    Interprocessor Events 169
+    Exclusive Access 169
+    Exercise 5.4 Exclusive Access 172
+    Memory Protection Unit 173
+    Configuring the MPU 175
+    Exercise 5.5 MPU Configuration 178
+    MPU Subregions 184
+    MPU Limitations 185
+    AHB Lite Bus Interface 185
+    Conclusion 187
+
+Chapter 6: Cortex-M7 Processor 189
+    Superscalar Architecture 190
+    Branch Prediction 191
+    Exercise 6.1 Simple Loop 191
+    Bus Structure 193
+    Memory Hierarchy 195
+    Exercise 6.2 Locating Code and Data into the TCM 197
+    Cache Units 199
+    Cache Operation 200
+    Instruction Cache 203
+    Exercise 6.3 Instruction Cache 203
+    Data Cache 204
+    Memory Barriers 205
+    Exercise 6.4 Example Data Cache 206
+    Memory Protection Unit and Cache Configuration 206
+    Cache Policy 207
+    Managing the Data Cache 209
+        Switch Off the Cache 209
+        Disable Caching over a Region of System Memory 209
+        Change the Cache Policy for a Region of System Memory 209
+        Use the Cache Management Functions to Guarantee Coherency 209
+    Exercise 6.5 Data Cache Configuration 209
+    Double Precision Floating Point Unit 213
+    Functional Safety 214
+    Cortex-M7 Safety Features 215
+    Safety Documentation 215
+    Development Tools 216
+    Conclusion 216
+
+Chapter 7: Debugging with CoreSight 217
+    Introduction 217
+    CoreSight Hardware 219
+    Debugger Hardware 220
+    CoreSight Debug Architecture 221
+    Exercise 7.1 CoreSight Debug 221
+    Hardware Configuration 222
+    Software Configuration 223
+    Debug Limitations 229
+    Instrumentation Trace 229
+    Exercise 7.2 Setting Up the ITM 230
+    System Control Block Debug Support 233
+    Tracking Faults 234
+    Exercise 7.3 Processor Fault Exceptions 235
+    Instruction Trace with the Embedded Trace Macrocell 239
+    Exercise 7.4 Using the ETM Trace 241
+    CMSIS-DAP 244
+    Cortex-M01 MTB 245
+    Exercise 7.5 Micro Trace Buffer 246
+    CMSIS System Viewer Description 248
+    Exercise 7.6 CMSIS-SVD 249
+    Conclusion Debug Features Summary 254
+
+Chapter 8: Practical DSP for Cortex-M4 and Cortex-M7 255
+    Introduction 255
+    Hardware FPU 255
+    FPU Integration 256
+    FPU Registers 257
+    Cortex-M7 FPU 258
+    Enabling the FPU 258
+    Exceptions and the FPU 258
+    Using the FPU 259
+    Exercise 8.1 Floating Point Unit 259
+    Cortex-M4/M7 DSP and SIMD Instructions 265
+    Exercise 8.2 SIMD Instructions 269
+    Exercise 8.3 Optimizing DSP Algorithms 272
+    The CMSIS-DSP Library 279
+    CMSIS-DSP Library Functions 279
+    Exercise 8.3 Using the CMSIS-DSP Library 280
+    DSP Data Processing Techniques 285
+    Exercise 8.4 FIR Filter with Block Processing 286
+    Fixed Point DSP with Q Numbers 289
+    Exercise 8.5 Fixed Point FFT Transform 290
+    Conclusion 292
+
+Chapter 9: Cortex Microcontroller Software Interface Standard-Real-Time
+    Operating System 293
+    Introduction 293
+    First Steps with CMSIS-RTOS 294
+    Accessing the CMSIS-RTOS API 294
+    Threads 295
+    Starting the RTOS 296
+    Exercise 9.1 A First CMSIS-RTOS Project 297
+    Creating Threads 306
+    Exercise 9.2 Creating and Managing Threads 307
+    Thread Management and Priority 310
+    Exercise 9.3 Creating and Managing Threads II 311
+    Multiple Instances 312
+    Exercise 9.4 Multiple Thread Instances 313
+    Time Management 314
+    Time Delay 314
+    Waiting for an Event 315
+    Exercise 9.5 Time Management 315
+    Virtual Timers 316
+    Exercise 9.6 Virtual Timer 317
+    Sub-Millisecond Delays 319
+    Idle Demon 319
+    Exercise 9.7 Idle Thread 320
+    Inter-Thread Communication 323
+    Signals 323
+    Exercise 9.8 Signals 324
+    Semaphores 325
+    Exercise 9.9 Semaphore Signaling 326
+    Using Semaphores 328
+    Signaling 328
+    Multiplex 329
+    Exercise 9.10 Multiplex 329
+    Rendezvous 330
+    Exercise 9.11 Rendezvous 330
+    Barrier Turnstile 331
+    Exercise 9.12 Semaphore Barrier 332
+    Semaphore Caveats 332
+    Mutex 333
+    Exercise 9.13 Mutex 333
+    Mutex Caveats 335
+    Data Exchange 335
+    Message Queue 337
+    Exercise 9.14 Message Queue 338
+    Memory Pool 339
+    Exercise 9.15 Memory Pool 340
+    Mail Queue 341
+    Exercise 9.16 Mailbox 342
+    Configuration 343
+    Thread Definition 344
+    Kernel Debug Support 344
+    System Timer Configuration 346
+    Timeslice Configuration 346
+    Scheduling Options 346
+        Preemptive Scheduling 347
+        Round-Robin Scheduling 347
+        Round-Robin Preemptive Scheduling 348
+        Cooperative Multitasking 348
+    RTX Source Code 348
+    RTX License 349
+    Conclusion 350
+
+Chapter 10: RTOS Techniques 351
+    Introduction 351
+    RTOS and Interrupts 351
+    RTOS Interrupt Handling 352
+    Exercise 10.1 RTOS Interrupt Exercise Handling 354
+    User Supervisor Functions 355
+    Exercise 10.2 RTOS and User SVC Exceptions 356
+    Power Management 358
+    Power Management First Steps 358
+    Power Management Strategy 360
+    Watchdog Management 362
+    Integrating ISRs 363
+    Exercise 10.3 Power and Watchdog Management 364
+    Startup Barrier 369
+    Designing for Real Time 370
+        Buffering Techniques-The Double or Circular Buffer 370
+        Buffering Techniques FIFO Message Queue 371
+        Balancing the Load 375
+    Exercise 10.4 RTX Real Time 375
+    Shouldering the Load, the Direct Memory Access Controller 380
+    Designing for Debug 381
+    Exercise 10.5 Run-Time Diagnostics 382
+    Conclusion 385
+
+Chapter 11: Test Driven Development 387
+    Introduction 387
+        The TDD Development Cycle 389
+        Test Framework 389
+        Test Automation 389
+    Installing the Unity Framework 390
+    Exercise 11.1 Test Driven Development 390
+        Adding the Unity Test Framework 391
+        Configuring the Project Build Targets 393
+        Adding the Test Cases 397
+        Automating the TDD Cycle 399
+    Testing RTOS Threads 402
+    Exercise 11.2 Testing RTOS Threads 404
+        Decoupling Low Level Functions 405
+        Testing Interrupts 406
+    Exercise 11.3 Testing with Interrupts 407
+    Conclusion 409
+
+Chapter 12: Software Components 411
+    Introduction 411
+    CMSIS Driver 412
+        CMSIS Driver API 413
+        Exercise 12.1 CMSIS-Driver 414
+    Driver Validation 419
+        Exercise 12.2 Driver Validation 419
+    Designing a Software Component 424
+        Exercise 12.3 GPS Component 424
+    Creating a Software Pack 427
+        Software Pack Structure 427
+        Software Pack Utilities 428
+    Configuration Wizard 439
+        Exercise 12.4 Configuration Wizard 440
+    Deploying Software Components 443
+    Conclusion 444
+
+Chapter 13: ARMv8-M 445
+    Introduction 445
+    Common Architectural Enhancements 446
+    ARMv8 Baseline Enhancements 446
+    ARMv8-M Mainline Enhancements 447
+    TrustZone 448
+        Interrupts and Exceptions 451
+    Software Development 454
+        Compiler 454
+        Real-Time Operating System 454
+        Debugger 454
+        Cortex Microcontroller Software Interface Standard 455
+    Conclusion 455
+
+Appendix 457
+Index 461
