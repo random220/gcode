@@ -1,0 +1,5 @@
+https://www.freeformatter.com/html-entities.html
+
+®   (R)  &reg;     &#174;   Registered trademark
+™   (TM) &trade;   &#8482;  Trademark
+©   (C)  &copy;    &#169;	Copyright
