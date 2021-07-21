@@ -1,0 +1,21 @@
+#!/bin/bash
+docker rm -f webs
+docker run -itd -p 5678:5678 -h webs --name webs --restart always ubuntu:20.04
+d=$(mktemp -d)
+cat <<'EOF' >$d/a.sh
+apt-get -y update
+apt-get -y dist-upgrade
+apt-get -y install python3-pip
+apt-get -y install python-is-python3
+pip3 install websockets
+
+apt-get -y install git vim tmux curl wget netcat
+useradd -s /bin/bash -m webs
+mkdir /home/webs/bin
+chown webs:webs /home/webs/bin
+EOF
+docker cp $d/a.sh webs:/tmp/a.sh
+docker exec webs bash /tmp/a.sh
+docker exec webs rm /tmp/a.sh
+rm -rf $d
+

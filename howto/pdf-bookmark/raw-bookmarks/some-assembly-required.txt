@@ -1,0 +1,405 @@
+Front Cover 1*
+Contents 8*
+Acknowledgments, xxi 22*
+Author, xxiii 24*
+INTRODUCTION, XXV 26*
+
+_offset 31
+Chapter 1 : Computer Systems 1
+    BASIC PROCESSOR ARCHITECTURE 1
+    COMPONENTS OF A COMPUTER SYSTEM 2
+        Central Processing Unit 2
+        Storage 3
+        Input and Output 4
+    CLASSIFICATION OF PROCESSORS 5
+        CISC versus RISC 5
+        Functionality 5
+        Architecture 7
+    NUMERATION SYSTEMS 7
+        The Nature of Data 8
+        Binary, Octal, Hexadecimal, Decimal ... 10
+        Conversions 12
+        Repeated Division Algorithm 14
+        Polynomial Evaluation Algorithm 14
+        Horner's Algorithm 14
+    BOOLEAN DATA 16
+        Boolean Operations 17	
+        Applications of Boolean Operations 18
+        Mask Out, Clear, Zero 20
+        Set and Union 20
+        Toggle 21
+        Shifting and Rotating Bits 22
+    EXERCISES 23
+
+Chapter 2 : The Atmel AVR Microcontroller Family 27
+    THE AVR CORE 27
+        Instructions 28
+        Registers 28
+        Clock 29
+    MACHINE LANGUAGE FOR THE AVR MICROCONTROLLER 30
+        One Plus One Equals? 30
+        Load Immediate 31
+        Add 34
+        Expanding Opcodes 36
+        Execution Trace 37
+        Jump 39
+    AVR STUDIO 42
+        New Project 42
+        Editor 43
+        Assembling 43
+        Debugger 44
+        Mnemonics 48
+    AVR DEVELOPMENT PLATFORMS 50
+        STK-500 Development Kit 50
+        The ATAVRXPLAIN Demonstration Kit 52
+    INTRODUCTION TO AVR ASSEMBLY LANGUAGE 53
+        Assembly Language Source Files 53
+        Line Format 54
+        Additional Features 54
+    SAMPLE AVR ASSEMBLY LANGUAGE PROGRAM 55
+        A Counting Program 56
+        Explanation of the Statements 57
+        Assembling the Program 58
+        Obtaining a Listing File 58
+        The Map File 59
+        Simulating Execution 59
+        Downloading to the AVR Processor 60
+        Adjusting the Clock Speed 64
+    EXERCISES 66
+    PROGRAMMING EXERCISES 68
+    ALTERNATE PROGRAMS FOR THE XPLAIN
+    DEMONSTRATION KIT 69
+        Program 2.2a: Counter 69
+
+
+Chapter 3 : Assembly Language 73
+    DIRECTIVES 75
+        The Assembler's Location Counters 75
+    EXPRESSIONS 79
+        Symbols and Literals 80
+    DATA DEFINITION DIRECTIVES 82
+        Operators Used in Expressions 83
+        Functions Used in Expressions 86
+    INSTRUCTIONS 87
+        Zero-Operand Instructions 89
+        One-Operand Instructions 90
+        Two-Operand Instructions 90
+    THE TOGGLER PROGRAM: SAMPLE I/O 90
+        AVR Digital I/O Ports and STK-500/XPLAIN LEDs 92
+        AVR Digital I/O Ports and STK-500/XPLAIN Pushbuttons 94
+        The Toggler Program 95
+    EXERCISES 99
+    PROGRAMMING EXERCISES 102
+    ALTERNATE PROGRAMS FOR THE XPLAIN DEMONSTRATION KIT 103
+        Program 3.1a: Toggler 103
+        Program Notes 106
+
+
+Chapter 4 : Integer Data Representation 109
+    UNSIGNED INTEGER DATA 109
+    CHARACTER DATA 115
+    SIGNED INTEGER DATA 116
+        Two's Complement 116
+        One's Complement 121
+        Sign and Magnitude 121
+        Excess-N 122
+    BINARY CODED DECIMAL 123
+    DATA VALUES IN PROGRAMS 124
+        Define Byte, Word, and Others 124
+        Data Encoding 125
+    ASSIGNMENT STATEMENTS 128
+        Simple Variables 128
+        Assignment 130
+        Register-Based Variables 132
+        Evaluating Expressions 134
+    BRANCH INSTRUCTIONS 135
+    EXERCISES 137
+    PROGRAMMING EXERCISES 142
+
+
+Chapter 5 : AVR Core: Startup, Reset, and Memories 145
+    AVR RESET SIGNAL 147
+        Interrupt Jump Table 148
+    BASIC SYSTEM ORGANIZATION 150
+        Program Memory 150
+        General Purpose Registers 150
+        I/O Registers and Data Space 150
+        Stack 151
+        EEPROM Storage 154
+    PROGRAM MEMORY 154
+        Program Indirect Addressing 154
+    DATA SPACE 158
+        Data Direct Addressing 158
+        I/O Direct Addressing 160
+        Data Indirect Addressing 160
+        Data Indirect Addressing with Postincrement
+        or Predecrement 161
+        Data Indirect Addressing with Displacement 162
+    EEPROM 163
+        The Standard Include File 166
+        EEPROM Read 167
+        Defining EEPROM Data 167
+        Using EEPROM Data in the AVR Simulator 168
+        Downloading EEPROM Data to the Microcontroller 171
+        Writing Data to EEPROM 172
+    EXERCISES 173
+    PROGRAMMING EXERCISES 176
+    ALTERNATE PROGRAMS FOR THE XPLAIN DEMONSTRATION KIT 177
+        Program 5.1a: LED Patterns 177
+        The Standard Include File 180
+        EEPROM Read 181
+        Defining EEPROM Data 182
+        Using EEPROM Data in the AVR Simulator 2 183
+        Downloading EEPROM Data 184
+        Writing Data to EEPROM 185
+
+
+Chapter 6 : The Stack and Function Calls 189
+    STACK 189
+        Stack Pointer 190
+        Push and Pop 190
+    FUNCTIONS 191
+        Defining a Function 192
+        Function Call Instructions 193
+        Return Address and RET Instructions 195
+    ARGUMENTS, PARAMETERS, AND
+    RETURN VALUES 196
+        Return Values 196
+        Arguments and Parameters: Call by Value/Call
+        by Reference 199
+        Memory Allocation for Parameters 200
+        Register Parameters 201
+        Stack Parameters 204
+        Inline Parameters 207
+    LOCAL STORAGE 211
+        Parameter and Local Storage Access
+        in Stack Frames 215
+        Fibonacci Numbers Example 215
+        Stack Frame Naming Conventions 218
+        Function Fibonacci Continued 219
+        Stack Cleanup: Automatic Parameter Removal 221
+        Preprocessor Macros 222
+    AUXILIARY DATA STACK (SOFTWARE STACK) 224
+        Macros for the Data Stack 226
+        Fibonacci with Data Stack 228
+    CALL BY REFERENCE EXAMPLE 230
+    EXERCISES 233
+    PROGRAMMING EXERCISES 238
+
+
+Chapter 7 : Serial Communications Using the
+        Universal Synchronous and Asynchronous
+        Serial Receiver and Transmitter 241
+    RS-232 241
+    SERIAL COMMUNICATION BASICS 243
+        Mark and Space 244
+        Serial Data Frame 244
+    AVR USART CONFIGURATION 246
+        Baud Rate 246
+        Data, Parity, and Stop Bits 248
+        Physical Connections 251
+        Terminal Programs 253
+        XPLAIN Programming Notes 254
+    AVR USART TRANSMIT AND RECEIVE 255
+        Enabling the Transmitter and Receiver 255
+        Transmitting Data 256
+        Receiving Data 259
+        Disabling the Transmitter or Receiver 259
+    SERIAL TRANSMISSION ERRORS 260
+        Detecting Errors 260
+    POLLED I/O 262
+    SERIAL COMMUNICATIONS EXAMPLE 262
+        Transmit Time 266
+    EXERCISES 266
+    PROGRAMMING EXERCISES 268
+    ALTERNATE PROGRAMS FOR THE XPLAIN
+    DEMONSTRATION KIT 270
+        Program 7.1a: Serial Echo 270
+
+
+Chapter 8 : Logical Operations 275
+    BITWISE LOGICAL OPERATIONS 275
+        Status Flags 276
+    USES OF LOGICAL INSTRUCTIONS 278
+        Clearing, Setting, and Toggling 280
+        Masks 281
+    SHIFT AND ROTATE 282
+        Arithmetic Shifting 284
+        Other Applications of Shift and Rotate 285
+    SPECIAL BITWISE OPERATIONS 287
+    AVR TIMER/COUNTER 288
+        Timer/Counter 1 Configuration: ATMEGA16A 289
+        Timer/Counter 1 Compare Match (ATMEGA16A) 290
+        Timer/Counter Configuration: ATxmega128A1 292
+        Timer/Counter Period: ATxmega128A1 293
+    TIMER/COUNTER EXAMPLE: LED BLINKER 295
+    EXERCISES 297
+    PROGRAMMING EXERCISES 299
+    ALTERNATE PROGRAMS FOR THE XPLAIN
+    DEMONSTRATION KIT 301
+        Program 8.1a: LED Blinker 301
+
+
+Chapter 9 : Control Structures 305
+    ALTERING THE FLOW OF CONTROL 306
+        Jump 306
+        Call and Return 307
+        Conditional Branch 307
+    JUMP AND CONDITIONAL BRANCH INSTRUCTIONS 308
+        Comparisons 310
+        Conditional Skip Instructions 311
+    SELECTION 311
+        If Else 312
+        Compound Conditions 312
+        Multiway Selection Structure 318
+        Computed Goto 319
+    LOOPING 320
+        While, For, and Do Until 321
+    PSEUDOCODE DEVELOPMENT: A CHECKSUM
+    PROGRAM 326
+    EXERCISES 338
+    PROGRAMMING EXERCISES 342
+    ALTERNATE PROGRAMS FOR THE XPLAIN
+    DEMONSTRATION KIT 344
+
+
+Chapter 10 : Interrupts 355
+    INTERRUPT PROCESSING 355
+        Interrupt Vector Table 357
+        Interrupt Signals 358
+        Global Interrupt Flag 360
+        Interrupts and the SREG 361
+    GENERAL EXTERNAL INTERRUPTS 362
+        External Interrupt Behavior 363
+        External Interrupt Control Registers (ATMEGA16A) 364
+        External Interrupt Control Registers (XMEGA Series) 366
+        Other External Interrupts 367
+    INTERRUPT-CONTROLLED UP/DOWN COUNTER 368
+    TIMER COUNTER INTERRUPTS 372
+        AVR Timer/Counters Interrupts 373
+        Prescaler Units 376
+    INTERRUPT-BASED SWITCH BOUNCE ELIMINATION 377
+    USART INTERRUPTS 385
+    EXERCISES 392
+    PROGRAMMING EXERCISES 395
+    ALTERNATE PROGRAMS FOR THE XPLAIN
+    DEMONSTRATION KIT 398
+
+
+Chapter 11 : Arithmetic Operations 411
+    ADDITION AND SUBTRACTION 411
+        Half-Adder 411
+        Full-Adder 412
+        Ripple Carry Adder 412
+        Example: An 8-Bit Ripple Carry Addition 414
+        Status Flags 416
+        Addition 416
+        Subtraction 417
+        Subtraction Using Addition 418
+    AVR ADDITION AND SUBTRACTION 418
+        16-Bit Addition and Subtraction 419
+        Immediate Data 421
+        Comparisons 423
+        16-Bit Support 424
+        Increment and Decrement 425
+        Negation 428
+        Widening and Narrowing Conversions 429
+    BCD ADDITION AND SUBTRACTION 429
+    BINARY/BCD CONVERSION 431
+    MULTIPLICATION AND DIVISION 433
+        8-Bit Multiplication 433
+        Extended Precision Multiplication 434
+        Multiplication Algorithm 436
+        Division Algorithm 439
+    NUMERIC I/O AND TYPE CONVERSIONS 443
+        Unsigned to ASCII 443
+        ASCII to Unsigned 445
+    SIEVE OF ERATOSTHENES 446
+    EXERCISES 459
+    PROGRAMMING EXERCISES 462
+    ALTERNATE PROGRAMS FOR THE XPLAIN
+    DEMONSTRATION KIT 464
+
+
+Chapter 12 : Arrays 477
+    DECLARING AND USING ARRAYS 477
+        Element Access 478
+        Array Traversals 479
+    MULTIDIMENSIONAL ARRAYS 480
+        Array Sizes 483
+    STRINGS 485
+        Fixed-Length Strings 485
+        Variable Length Strings 485
+    STORAGE ALLOCATION 488
+        Dynamic Memory Allocation 488
+        String Constants and String Initialization 489
+        String Operations 491
+    DYNAMIC MEMORY ALLOCATION 492
+        A Heap for Strings 493
+    STRUCTURES 503
+        Linked Lists 506
+    A BETTER HEAP 508
+    EXERCISES 511
+    PROGRAMMING EXERCISES 515
+
+
+Chapter 13 : Real Numbers 517
+    IEEE FLOATING POINT REPRESENTATION 517
+        Range and Precision 518
+        Decoding IEEE Single Precision Codes 519
+        Encoding IEEE Single Precision Codes 520
+        Denormalized Form 522
+        Infinity and NaN 523
+        Single Precision Range and Precision 524
+    ADDITION AND SUBTRACTION OF IEEE FLOATING
+    POINT NUMBERS 525
+        Addition 525
+        Subtraction 526
+        Comparison of Floating Point Numbers 527
+    MULTIPLICATION AND DIVISION OF FLOATING
+    POINT NUMBERS 528
+        Multiplication 529
+        Division 530
+    FIXED POINT ARITHMETIC 530
+        Encoding and Decoding Fixed Point Representations 531
+        Fixed Point Addition and Subtraction 531
+        Fixed Point Multiplication and Division 532
+        Fixed Point Notation 533
+        AVR FMUL, FMULS, and FMULSU Instructions 534
+    SUMMARY 535
+    EXERCISES 535
+    PROGRAMMING EXERCISES 537
+
+
+Chapter 14 : Programming the AVR in C 539
+    OBJECT FILES AND LINKERS 540
+        Standard Functions 541
+        Executables 542
+    ANATOMY OF A C PROGRAM 542
+        Main Function 542
+        Sample AVR GCC Project 543
+    FUNDAMENTALS OF C PROGRAMMING 551
+        Comments 551
+        Include Files 551
+        Functions 553
+        Variables 554
+        Allocation Classes 554
+        Scope 555
+        Special Types 558
+        GCC Compiler and Variable Allocation 558
+        Arrays and Pointers 564
+        Typedef and Struct 566
+        Literals, Characters, and Strings 567
+        String Functions 567
+        Control Structures 568
+        Arguments and Parameters 569
+        AVR-Specific Syntax 571
+        Function Conventions 573
+        Program Memory 574
+        Delay Library 576
+        Math Library 576
+    ASSEMBLY LANGUAGE AND C 577
+    EXERCISES 580
+    PROGRAMMING EXERCISES 583
+    APPENDIX A: GETTING STARTED WITH THE XPLAIN
+    EVALUATION KIT, 585

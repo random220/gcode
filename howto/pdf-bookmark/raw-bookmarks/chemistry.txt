@@ -1,0 +1,317 @@
+Cover 1*
+Title 5*
+_offset 2
+Brief Contents 7*
+Contents 8*
+Essays 19*
+Preface 20*
+A Note to Students 24*
+About the Authors 25*
+Ch 1: Chemistry and Measurement 27*
+    Ch 1: Contents and Concepts 27*
+    1.1: Modern Chemistry: A Brief Glimpse 29*
+    1.2: Experiment and Explanation 30*
+    1.3: Law of Conservation of Mass 32*
+    1.4: Matter: Physical State and Chemical Composition 34*
+    1.5: Measurement and Significant Figures 41*
+    1.6: SI Units 44*
+    1.7: Derived Units 47*
+    1.8: Units and Dimensional Analysis (Factor-Label Method) 51*
+    Ch 1: A Checklist for Review 54*
+    Ch 1: Questions and Problems 56*
+Ch 2: Atoms, Molecules, and Ions 69*
+    Ch 2: Contents and Concepts 69*
+    2.1: Atomic Theory of Matter 71*
+    2.2: The Structure of the Atom 73*
+    2.3: Nuclear Structure; Isotopes 76*
+    2.4: Atomic Weights 78*
+    2.5: Periodic Table of the Elements 81*
+    2.6: Chemical Formulas; Molecular and Ionic Substances 84*
+    2.7: Organic Compounds 89*
+    2.8: Naming Simple Compounds 90*
+    2.9: Writing Chemical Equations 101*
+    2.10: Balancing Chemical Equations 102*
+    Ch 2: A Checklist for Review 105*
+    Ch 2: Questions and Problems 108*
+Ch 3: Calculations with Chemical Formulas and Equations 118*
+    Ch 3: Contents and Concepts 118*
+    3.1: Molecular Weight and Formula Weight 119*
+    3.2: The Mole Concept 121*
+    3.3: Mass Percentages from the Formula 126*
+    3.4: Elemental Analysis: Percentages of Carbon, Hydrogen, and Oxygen 128*
+    3.5: Determining Formulas 130*
+    3.6: Molar Interpretation of a Chemical Equation 136*
+    3.7: Amounts of Substances in a Chemical Reaction 137*
+    3.8: Limiting Reactant; Theoretical and Percentage Yields 141*
+    Ch 3: A Checklist for Review 147*
+    Ch 3: Questions and Problems 149*
+Ch 4: Chemical Reactions 160*
+    Ch 4: Contents and Concepts 160*
+    4.1: Ionic Theory of Solutions and Solubility Rules 161*
+    4.2: Molecular and Ionic Equations 166*
+    4.3: Precipitation Reactions 169*
+    4.4: Acid&#8211;Base Reactions 172*
+    4.5: Oxidation&#8211;Reduction Reactions 180*
+    4.6: Balancing Simple Oxidation&#8211;Reduction Equations 187*
+    4.7: Molar Concentration 189*
+    4.8: Diluting Solutions 191*
+    4.9: Gravimetric Analysis 193*
+    4.10: Volumetric Analysis 195*
+    Ch 4: A Checklist for Review 198*
+    Ch 4: Questions and Problems 200*
+Ch 5: The Gaseous State 213*
+    Ch 5: Contents and Concepts 213*
+    5.1: Gas Pressure and Its Measurement 214*
+    5.2: Empirical Gas Laws 216*
+    5.3: The Ideal Gas Law 225*
+    5.4: Stoichiometry Problems Involving Gas Volumes 230*
+    5.5: Gas Mixtures; Law of Partial Pressures 232*
+    5.6: Kinetic Theory of an Ideal Gas 237*
+    5.7: Molecular Speeds; Diffusion and Effusion 240*
+    5.8: Real Gases 245*
+    Ch 5: A Checklist for Review 249*
+    Ch 5: Questions and Problems 251*
+Ch 6: Thermochemistry 262*
+    Ch 6: Contents and Concepts 262*
+    6.1: Energy and Its Units 264*
+    6.2: First Law of Thermodynamics; Work and Heat 266*
+    6.3: Heat of Reaction; Enthalpy of Reaction 270*
+    6.4: Thermochemical Equations 274*
+    6.5: Applying Stoichiometry to Heats of Reaction 276*
+    6.6: Measuring Heats of Reaction 278*
+    6.7: Hess&#8217;s Law 282*
+    6.8: Standard Enthalpies of Formation 286*
+    6.9: Fuels&#8212;Foods, Commercial Fuels, and Rocket Fuels 290*
+    Ch 6: A Checklist for Review 293*
+    Ch 6: Questions and Problems 295*
+Ch 7: Quantum Theory of the Atom 307*
+    Ch 7: Contents and Concepts 307*
+    7.1: The Wave Nature of Light 309*
+    7.2: Quantum Effects and Photons 311*
+    7.3: The Bohr Theory of the Hydrogen Atom 314*
+    7.4: Quantum Mechanics 320*
+    7.5: Quantum Numbers and Atomic Orbitals 323*
+    Ch 7: A Checklist for Review 329*
+    Ch 7: Questions and Problems 330*
+Ch 8: Electron Configurations and Periodicity 339*
+    8.1 Electron Spin and the Pauli Exclusion Principle 340*
+    Ch 8: Contents and Concepts 339*
+    8.2: Building-Up Principle and the Periodic Table 345*
+    8.3: Writing Electron Configurations Using the Periodic Table 349*
+    8.4: Orbital Diagrams of Atoms; Hund&#8217;s Rule 353*
+    8.5: Mendeleev&#8217;s Predictions from the Periodic Table 356*
+    8.6: Some Periodic Properties 358*
+    8.7: Periodicity in the Main-Group Elements 365*
+    Ch 8: A Checklist for Review 367*
+    Ch 8: Questions and Problems 369*
+Ch 9: Ionic and Covalent Bonding 375*
+    Ch 9: Contents and Concepts 375*
+    9.1: Describing Ionic Bonds 376*
+    9.2: Electron Configurations of Ions 382*
+    9.3: Ionic Radii 385*
+    9.4: Describing Covalent Bonds 388*
+    9.5: Polar Covalent Bonds; Electronegativity 390*
+    9.6: Writing Lewis Electron-Dot Formulas 393*
+    9.7: Delocalized Bonding: Resonance 397*
+    9.8: Exceptions to the Octet Rule 399*
+    9.9: Formal Charge and Lewis Formulas 402*
+    9.10: Bond Length and Bond Order 405*
+    9.11: Bond Enthalpy 407*
+    Ch 9: A Checklist for Review 412*
+    Ch 9: Questions and Problems 414*
+Ch 10: Molecular Geometry and Chemical Bonding Theory 423*
+    Ch 10: Contents and Concepts 423*
+    10.1: The Valence-Shell Electron-Pair Repulsion (VSEPR) Model 425*
+    10.2: Dipole Moment and Molecular Geometry 435*
+    10.3: Valence Bond Theory 439*
+    10.4: Description of Multiple Bonding 445*
+    10.5: Principles of Molecular Orbital Theory 450*
+    10.6: Electron Configurations of Diatomic Molecules of the Second-Period Elements 453*
+    10.7: Molecular Orbitals and Delocalized Bonding 456*
+    Ch 10: A Checklist for Review 460*
+    Ch 10: Questions and Problems 462*
+Ch 11: States of Matter; Liquids and Solids 471*
+    Ch 11: Contents and Concepts 471*
+    11.1: Comparison of Gases, Liquids, and Solids 472*
+    11.2: Phase Transitions 473*
+    11.3: Phase Diagrams 483*
+    11.4: Properties of Liquids; Surface Tension and Viscosity 485*
+    11.5: Intermolecular Forces; Explaining Liquid Properties 489*
+    11.6: Classification of Solids by Type of Attraction of Units 498*
+    11.7: Crystalline Solids; Crystal Lattices and Unit Cells 502*
+    11.8: Structures of Some Crystalline Solids 507*
+    11.9: Calculations Involving Unit-Cell Dimensions 512*
+    11.10: Determining Crystal Structure by X-Ray Diffraction 515*
+    Ch 11: A Checklist for Review 520*
+    Ch 11: Questions and Problems 522*
+Ch 12: Solutions 535*
+    Ch 12: Contents and Concepts 535*
+    12.1: Types of Solutions 536*
+    12.2: Solubility and the Solution Process 538*
+    12.3: Effects of Temperature and Pressure on Solubility 544*
+    12.4: Ways of Expressing Concentration 547*
+    12.5: Vapor Pressure of a Solution 554*
+    12.6: Boiling-Point Elevation and Freezing-Point Depression 557*
+    12.7: Osmosis 561*
+    12.8: Colligative Properties of Ionic Solutions 565*
+    12.9: Colloids 566*
+    Ch 12: A Checklist for Review 572*
+    Ch 12: Questions and Problems 574*
+Ch 13: Rates of Reaction 583*
+    Ch 13: Contents and Concepts 583*
+    13.1: Definition of Reaction Rate 585*
+    13.2: Experimental Determination of Rate 589*
+    13.3: Dependence of Rate on Concentration 590*
+    13.4: Change of Concentration with Time 596*
+    13.5: Temperature and Rate; Collision and Transition-State Theories 604*
+    13.6: Arrhenius Equation 608*
+    13.7: Elementary Reactions 610*
+    13.8: The Rate Law and the Mechanism 614*
+    13.9: Catalysis 620*
+    Ch 13: A Checklist for Review 624*
+    Ch 13: Questions and Problems 627*
+Ch 14: Chemical Equilibrium 640*
+    Ch 14: Contents and Concepts 640*
+    14.1: Chemical Equilibrium&#8212;A Dynamic Equilibrium 641*
+    14.2: The Equilibrium Constant 644*
+    14.3: Heterogeneous Equilibria; Solvents in Homogeneous Equilibria 651*
+    14.4: Qualitatively Interpreting the Equilibrium Constant 654*
+    14.5: Predicting the Direction of Reaction 655*
+    14.6: Calculating Equilibrium Concentrations 657*
+    14.7: Removing Products or Adding Reactants 662*
+    14.8: Changing the Pressure and Temperature 664*
+    14.9: Effect of a Catalyst 670*
+    Ch 14: A Checklist for Review 671*
+    Ch 14: Questions and Problems 673*
+Ch 15: Acids and Bases 686*
+    Ch 15: Contents and Concepts 686*
+    15.1: Arrhenius Concept of Acids and Bases 687*
+    15.2: Br&#248;nsted&#8211;Lowry Concept of Acids and Bases 688*
+    15.3: Lewis Concept of Acids and Bases 691*
+    15.4: Relative Strengths of Acids and Bases 694*
+    15.5: Molecular Structure and Acid Strength 697*
+    15.6: Autoionization of Water 700*
+    15.7: Solutions of a Strong Acid or Base 700*
+    15.8: The pH of a Solution 703*
+    Ch 15: A Checklist for Review 707*
+    Ch 15: Questions and Problems 709*
+Ch 16: Acid&#8211;Base Equilibria 717*
+    Ch 16: Contents and Concepts 717*
+    16.1: Acid-Ionization Equilibria 718*
+    16.2: Polyprotic Acids 725*
+    16.3: Base-Ionization Equilibria 729*
+    16.4: Acid&#8211;Base Properties of Salt Solutions 732*
+    16.5: Common-Ion Effect 737*
+    16.6: Buffers 740*
+    16.7: Acid&#8211;Base Titration Curves 747*
+    Ch 16: A Checklist for Review 753*
+    Ch 16: Questions and Problems 755*
+Ch 17: Solubility and Complex-Ion Equilibria 766*
+    Ch 17: Contents and Concepts 766*
+    17.1: The Solubility Product Constant 767*
+    17.2: Solubility and the Common-Ion Effect 772*
+    17.3: Precipitation Calculations 774*
+    17.4: Effect of pH on Solubility 778*
+    17.5: Complex-Ion Formation 781*
+    17.6: Complex Ions and Solubility 784*
+    17.7: Qualitative Analysis of Metal Ions 786*
+    Ch 17: A Checklist for Review 788*
+    Ch 17: Questions and Problems 790*
+Ch 18: Thermodynamics and Equilibrium 798*
+    Ch 18: Contents and Concepts 798*
+    18.1: First Law of Thermodynamics: A Review 799*
+    18.2: Entropy and the Second Law of Thermodynamics 801*
+    18.3: Standard Entropies and the Third Law of Thermodynamics 807*
+    18.4: Free Energy and Spontaneity 811*
+    18.5: Interpretation of Free Energy 815*
+    18.6: Relating &#916;G&#176; to the Equilibrium Constant 818*
+    18.7: Change of Free Energy with Temperature 822*
+    Ch 18: A Checklist for Review 825*
+    Ch 18: Questions and Problems 827*
+Ch 19: Electrochemistry 838*
+    Ch 19: Contents and Concepts 838*
+    19.1: Balancing Oxidation&#8211;Reduction Reactions in Acidic and Basic Solutions 839*
+    19.2: Construction of Voltaic Cells 844*
+    19.3: Notation for Voltaic Cells 847*
+    19.4: Cell Potential 849*
+    19.5: Standard Cell Potentials and Standard Electrode Potentials 851*
+    19.6: Equilibrium Constants from Cell Potentials 859*
+    19.7: Dependence of Cell Potential on Concentration 862*
+    19.8: Some Commercial Voltaic Cells 865*
+    19.9: Electrolysis of Molten Salts 870*
+    19.10: Aqueous Electrolysis 872*
+    19.11: Stoichiometry of Electrolysis 877*
+    Ch 19: A Checklist for Review 879*
+    Ch 19: Questions and Problems 881*
+Ch 20: Nuclear Chemistry 892*
+    Ch 20: Contents and Concepts 892*
+    20.1: Radioactivity 893*
+    20.2: Nuclear Bombardment Reactions 904*
+    20.3: Radiations and Matter: Detection and Biological Effects 908*
+    20.4: Rate of Radioactive Decay 910*
+    20.5: Applications of Radioactive Isotopes 917*
+    20.6: Mass&#8211;Energy Calculations 922*
+    20.7: Nuclear Fission and Nuclear Fusion 926*
+    Ch 20: A Checklist for Review 929*
+    Ch 20: Questions and Problems 932*
+Ch 21: Chemistry of the Main-Group Elements 938*
+    Ch 21: Contents and Concepts 938*
+    21.1: General Observations About the Main-Group Elements 939*
+    21.2: Metals: Characteristics and Production 942*
+    21.3: Bonding in Metals 946*
+    21.4: Group 1A: The Alkali Metals 948*
+    21.5: Group 2A: The Alkaline Earth Metals 955*
+    21.6: Group 3A and Group 4A Metals 960*
+    21.7: Hydrogen 965*
+    21.8: Group 4A: The Carbon Family 968*
+    21.9: Group 5A: Nitrogen and the Phosphorus Family 973*
+    21.10: Group 6A: Oxygen and the Sulfur Family 981*
+    21.11: Group 7A: The Halogens 986*
+    21.12: Group 8A: The Noble Gases 989*
+    Ch 21: A Checklist for Review 991*
+    Ch 21: Questions and Problems 995*
+Ch 22: The Transition Elements and Coordination Compounds 1003*
+    Ch 22: Contents and Concepts 1003*
+    22.1: Periodic Trends in the Transition Elements 1004*
+    22.2: The Chemistry of Two Transition Elements 1008*
+    22.3: Formation and Structure of Complexes 1011*
+    22.4: Naming Coordination Compounds 1015*
+    22.5: Structure and Isomerism in Coordination Compounds 1019*
+    22.6: Valence Bond Theory of Complexes 1026*
+    22.7: Crystal Field Theory 1027*
+    Ch 22: A Checklist for Review 1035*
+    Ch 22: Questions and Problems 1037*
+Ch 23: Organic Chemistry 1041*
+    Ch 23: Contents and Concepts 1041*
+    23.1: The Bonding of Carbon 1042*
+    23.2: Alkanes and Cycloalkanes 1043*
+    23.3: Alkenes and Alkynes 1050*
+    23.4: Aromatic Hydrocarbons 1054*
+    23.5: Naming Hydrocarbons 1057*
+    23.6: Organic Compounds Containing Oxygen 1064*
+    23.7: Organic Compounds Containing Nitrogen 1068*
+    Ch 23: A Checklist for Review 1069*
+    Ch 23: Questions and Problems 1070*
+Ch 24: Polymer Materials: Synthetic and Biological 1077*
+    Ch 24: Contents and Concepts 1077*
+    24.1: Synthesis of Organic Polymers 1079*
+    24.2: Electrically Conducting Polymers 1083*
+    24.3: Proteins 1085*
+    24.4: Nucleic Acids 1090*
+    Ch 24: A Checklist for Review 1099*
+    Ch 24: Questions and Problems 1100*
+Appendixes 1105*
+    Appendix A: Mathematical Skills 1105*
+    Appendix B: Vapor Pressure of Water at Various Temperatures 1111*
+    Appendix C: Thermodynamic Quantities for Substances and Ions at 25&#176;C 1111*
+    Appendix D: Electron Configurations of Atoms in the Ground State 1116*
+    Appendix E: Acid-Ionization Constants at 25&#176;C 1117*
+    Appendix F: Base-Ionization Constants at 25&#176;C 1118*
+    Appendix G: Solubility Product Constants at 25&#176;C 1119*
+    Appendix H: Formation Constants of Complex Ions at 25&#176;C 1120*
+    Appendix I: Standard Electrode (Reduction) Potentials in Aqueous Solution at 25&#176;C 1120*
+Answers to Exercises 1122*
+Answers to Concept Checks 1126*
+Answer Section Selected Odd Problems 1129*
+Glossary 1145*
+Index 1157*
