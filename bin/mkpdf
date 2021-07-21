@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ ! -d ~/Desktop/scans ]]; then
+  echo Missing "~/Desktop/scans"
+  exit 1
+fi
+docker exec ub bash -c 'rm -rf /home/om/x'
+docker cp ~/Desktop/scans/ ub:/home/om/x/
+docker exec ub bash -c 'cd /home/om/x/; rm -f /home/om/b.pdf; img2pdf --output /home/om/b.pdf *'
+docker cp ub:/home/om/b.pdf .
