@@ -11,9 +11,21 @@ pip3 install websockets
 
 apt-get -y install git vim tmux curl wget netcat
 useradd -s /bin/bash -m webs
+
+mkdir /home/webs/raw
+cd /home/webs/raw
+wget https://nodejs.org/dist/v14.17.3/node-v14.17.3-linux-x64.tar.xz
+cd /opt
+tar xf /home/webs/raw/node-v14.17.3-linux-x64.tar.xz
+cd /usr/local/bin
+ln -s /opt/node-v14.17.3-linux-x64/bin/* .
+rm -rf /home/webs/raw
+
 mkdir /home/webs/bin
-chown webs:webs /home/webs/bin
+chown -R webs:webs /home/webs
+
 EOF
+
 docker cp $d/a.sh webs:/tmp/a.sh
 docker exec webs bash /tmp/a.sh
 docker exec webs rm /tmp/a.sh

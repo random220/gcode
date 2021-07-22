@@ -5,18 +5,22 @@
   </head>
   <body>
     <script>
-      //var ws       = new WebSocket("ws://10.92.0.22:5678/"),
-      var ws       = new WebSocket("ws://localhost:5678/"),
-          messages = document.createElement('ul');
+      var connection  = new WebSocket("ws://localhost:5678/")
+      var output_list = document.createElement('ol')
 
-      ws.onmessage = function (event) {
-        var messages = document.getElementsByTagName('ul')[0],
-            message  = document.createElement('li'),
-            content  = document.createTextNode(event.data);
-        message.appendChild(content);
-        messages.appendChild(message);
-      };
-      document.body.appendChild(messages);
+      //connection.onmessage = function(e) {
+      //or, equivalently
+      //connection.onmessage = (e) => {
+
+      connection.onmessage = function(e) {
+        var content_received = document.createTextNode(e.data)
+
+        var message_lines_so_far = document.getElementsByTagName('ol')[0]
+        var new_message_line     = document.createElement('li')
+        new_message_line.appendChild(content_received);
+        message_lines_so_far.appendChild(new_message_line);
+      }
+      document.body.appendChild(output_list)
     </script>
   </body>
 </html>
