@@ -3,9 +3,11 @@
 all:
 	./mkcont
 
-deploy:
-	#docker stop webs; docker start webs
-	docker cp server webs:/home/webs/bin/server
+deploy-py:
+	docker stop webs; docker start webs
+	docker cp server.py webs:/home/webs/bin/server.py
 	docker exec webs bash -c 'chown -R webs:webs /home/webs'
-	docker exec webs su - webs -c 'nohup ~/bin/server >/dev/null 2>&1 &'
+	docker exec webs su - webs -c 'nohup ~/bin/server.py >/dev/null 2>&1 &'
 
+py:
+	make deploy-py
