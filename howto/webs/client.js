@@ -1,7 +1,12 @@
+#!/Users/omandal/bin/node
+
 /*
+https://flaviocopes.com/node-websockets/
+
 npm init
 npm install ws
 */
+
 const WebSocket = require('ws')
 var connection  = new WebSocket("ws://localhost:5678/")
 
