@@ -7,11 +7,10 @@ import datetime
 import random
 import websockets
 
-class G:
-
 async def lcfc(websocket, path):
     async for message in websocket:
         await websocket.send(f'got "{message}"')
+        #await websocket.send(f'got "milk"')
 
 server = websockets.serve(lcfc, "0.0.0.0", 5678)
 

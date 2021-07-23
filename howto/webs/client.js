@@ -1,4 +1,4 @@
-#!/Users/omandal/bin/node
+#!/usr/bin/env node
 
 /*
 https://flaviocopes.com/node-websockets/
