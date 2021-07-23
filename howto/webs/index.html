@@ -12,6 +12,10 @@
       //or, equivalently
       //connection.onmessage = (e) => {
 
+      connection.onopen = function(e) {
+        connection.send('hi')
+        connection.send('ho')
+      }
       connection.onmessage = function(e) {
         var content_received = document.createTextNode(e.data)
 
