@@ -23,7 +23,7 @@
       //connection.onmessage = (e) => {
 
       connection.onopen = function(e) {
-        connection.send(`user\nomandal`)
+        connection.send(`user\n${user}`)
       }
       connection.onmessage = function(e) {
         //var lines_joined = document.createTextNode(e.data)
