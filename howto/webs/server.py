@@ -8,17 +8,12 @@ import random
 import websockets
 
 class G:
-    ID = 99
 
-async def time(websocket, path):
-    G.ID = G.ID + 1
-    myid = G.ID
-    while True:
-        now = datetime.datetime.utcnow().isoformat() + "Z"
-        await websocket.send('ID: '+str(myid)+' '+now)
-        await asyncio.sleep(random.random() * 3)
+async def lcfc(websocket, path):
+    async for message in websocket:
+        await websocket.send(f'got "{message}"')
 
-start_server = websockets.serve(time, "0.0.0.0", 5678)
+server = websockets.serve(lcfc, "0.0.0.0", 5678)
 
-asyncio.get_event_loop().run_until_complete(start_server)
+asyncio.get_event_loop().run_until_complete(server)
 asyncio.get_event_loop().run_forever()

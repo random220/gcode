@@ -14,6 +14,9 @@ var connection  = new WebSocket("ws://localhost:5678/")
 //or, equivalently
 //connection.onmessage = (e) => {
 
+connection.onconnect = function(e) {
+  connection.send('hi')
+}
 connection.onmessage = function(e) {
   console.log(e.data)
 }
