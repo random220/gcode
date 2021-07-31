@@ -54,6 +54,12 @@ def op(arg):
     elif  arg == 'neg' or  arg == '0-':
         a = G.stack.pop()
         G.stack.append(0 - a)
+    elif  arg == 'sq':
+        a = G.stack.pop()
+        G.stack.append(a*a)
+    elif  arg == 'sqrt':
+        a = G.stack.pop()
+        G.stack.append(match.sqrt(a))
     elif  arg == '^':
         b = G.stack.pop()
         a = G.stack.pop()
@@ -130,9 +136,10 @@ def op(arg):
         G.stack.append(a)
 
 def print_stack():
+    print('    ---{mode}---'.format(mode=G.mode))
     n = 0
     for i in G.stack:
-        print('{n}: {i}'.format(n=n, i=i))
+        print('    {n}: {i}'.format(n=n, i=i))
         n += 1
 
 def re_match(rex, line):
@@ -143,7 +150,7 @@ def re_match(rex, line):
         
 
 while True:
-    line = raw_input(': ')
+    line = raw_input('>>> ')
     calc(line)
     print_stack()
 
