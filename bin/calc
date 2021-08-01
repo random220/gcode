@@ -11,10 +11,25 @@ class G:
 def calc(line):
     args = re.split(r'\s+', line)
     for arg in args:
-        if re_match(r'^([+-]?)([\d\.]+)$', arg):
+        if re_match(r'^([+-]?)([\d\.]+)([kmgKMG]?)(e([+-]?)(\d+))?$', arg):
             n = float(G.m.group(2))
+            power = G.m.group(3)
+            expo = G.m.group(4)
+            exposign = G.m.group(5)
+            exponum = G.m.group(6)
             if G.m.group(1) == '-':
                 n = 0 - n
+            if power == 'k' or power == 'K':
+                n = n * 1000
+            elif power == 'm' or power == 'M':
+                n = n * 1000000
+            elif power == 'g' or power == 'G':
+                n = n * 1000000000
+            if expo is not None:
+                exponum = float(exponum)
+                if exposign == '-':
+                    exponum = 0-exponum
+                n = n * math.pow(10, exponum)
             G.stack.append(n)
         elif arg == 'pi':
             n = math.pi
@@ -59,7 +74,7 @@ def op(arg):
         G.stack.append(a*a)
     elif  arg == 'sqrt':
         a = G.stack.pop()
-        G.stack.append(match.sqrt(a))
+        G.stack.append(math.sqrt(a))
     elif  arg == '^':
         b = G.stack.pop()
         a = G.stack.pop()
@@ -70,10 +85,10 @@ def op(arg):
     elif  arg == 'ln':
         a = G.stack.pop()
         G.stack.append(math.log(a))
-    elif  arg == 'log2':
+    elif  arg == 'log2' or arg == 'logb':
         b = G.stack.pop()
         a = G.stack.pop()
-        G.stack.append(math.log(b) / math.log(a))
+        G.stack.append(math.log(b, a))
     elif  arg == 'rad':
         G.mode = 'RAD'
     elif  arg == 'deg':
@@ -134,6 +149,11 @@ def op(arg):
         a = G.stack.pop()
         G.stack.append(b)
         G.stack.append(a)
+    else:
+        if arg == '':
+            pass
+        else:
+            print('IGNORED: {arg}'.format(arg=arg))
 
 def print_stack():
     print('    ---{mode}---'.format(mode=G.mode))
