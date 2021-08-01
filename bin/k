@@ -3,6 +3,15 @@
 export PATH="$HOME/bin:$HOME/gcode/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin"
 export DISPLAY=:0.0
 
+function main() {
+  x=$(ifconfig -a |grep '192\.168\.10\.180')
+  if [[ $x == '' ]]; then
+    ssh_and_k
+  else
+    k
+  fi
+}
+
 ssh_and_k()
 {
   remote='192.168.10.180'
@@ -37,8 +46,7 @@ sudo service lightdm stop
 sudo service lightdm start
 sleep 5
 export DISPLAY=:0.0
-(nohup /usr/bin/kodi >/dev/null) &
-) >/dev/null 2>&1
+(nohup /usr/bin/kodi >/dev/null 2>& &)
 EOF
 
   bash $tmpfile
@@ -46,9 +54,4 @@ EOF
   rm -f $tmpfile
 }
 
-x=$(ifconfig -a |grep '192\.168\.10\.180')
-if [[ $x == '' ]]; then
-  ssh_and_k
-else
-  k
-fi
+main
