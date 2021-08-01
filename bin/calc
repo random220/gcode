@@ -178,8 +178,13 @@ def re_match(rex, line):
     return False
         
 
-while True:
-    line = raw_input('>>> ')
+if len(sys.argv) > 1:
+    line = ' '.join(sys.argv[1:])
     calc(line)
     print_stack()
+else:
+    while True:
+        line = raw_input('>>> ')
+        calc(line)
+        print_stack()
 
