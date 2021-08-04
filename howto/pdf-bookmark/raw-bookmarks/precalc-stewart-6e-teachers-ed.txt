@@ -1,7 +1,16 @@
-PREFACE xi
-TO THE STUDENT xix
-PROLOGUE: PRINCIPLES OF PROBLEM SOLVING P1
+Cover 1*
+Formulae 2*
+Skills and concepts you need 5*
+Introduction 13*
+Authors 14*
+Contents 17*
+Preface 22*
+Ancillaries 27*
+To The Student 29*
+Abbreviations 30*
+Prologue: Principles of Problem Solving P1 32*
 
+_offset 35
 CHAPTER 1 FUNDAMENTALS 1
     Chapter Overview 1
     1.1 Real Numbers 2
@@ -183,5 +192,7 @@ CHAPTER 14 PROBABILITY AND STATISTICS 889
     FOCUS ON MODELING The Monte Carlo Method 967
 
 APPENDIX: Calculations and Significant Figures 971
-ANSWERS A1
-INDEX I1
+ANSWERS A1 1007*
+INDEX I1 1146*
+
+Formulae 1160*
