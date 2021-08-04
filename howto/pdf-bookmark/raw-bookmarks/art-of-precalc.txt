@@ -1,0 +1,101 @@
+How to Use This Book iii
+Acknowledgements vii
+
+1 Functions Review 1
+    1.1 Function Basics  1
+    1.2 Graphing Functions 9
+    1.3. Composition 16
+    1.4 Inverse Furictions 19
+    1.5 Summary 24
+
+2 Introduction to Trigonometric Functions 29
+    2.1 The Unit Circle 30
+    2.2 Radians 40
+    2.3 Graphs of Trigonometric Functions 45
+    2.4 Transformations of Trig Functions 55
+    2.5 Inverse Trig Functions 64
+    2.6 Summary 76
+
+3 Trigonometric Identities 83
+    3.1 Introduction to Trig Identities 84
+    3.2 Sums and Differences of Angles 91
+    3.3 Double and Half Angles 100
+    3.4 Sum-to-product and Product-to-sum 106
+    3.5 Problem Solving with Identities 112
+    3.6 Summary 123
+
+4 Applications to Geometry 128
+    4.1 Right Triangle Trigonometry 128
+    4.2 Law of Cosines 136
+    4.3 Law of Sines 141
+    4.4 More Triangle Relationships 148
+    4.5 Summary 152
+
+5 Parameterization and Trigonometric Coordinate Systems 158
+    5.1 Parameterization 158
+    5.2 Polar Coordinates 167
+    5.3 Coordinates in Three Dimensions 177
+    5.4 Summary 187
+
+6 Basics of Complex Numbers 192
+    6.1 Complex Number Arithmetic 192
+    6.2 The Complex Plane 198
+    6.3 Real and Imaginary Parts 202
+    6.4 Nonreal Roots of Polynomials 208
+    6.5 Summary 214
+
+7 Trigonometry and Complex Numbers 219
+    7.1 Polar Form of Complex Numbers 219
+    7.2 Exponential Form of Complex Numbers 225
+    7.3 Roots of Unity 233
+    7.4 Problems Involving Roots of Unity 242
+    7.5 Summary 250
+8 Geometry of Complex Numbers 256
+    8.1 Transformations of the Complex Plane 256
+    8.2 Parallel and Perpendicular Lines 265
+    8.3 Distance 272
+    8.4 Regular Polygons 278
+    8.5 Classic Theorems  286
+    8.6 Summary 293
+
+9 Vectors in Two Dimensions 298
+    9.1 What's a Vector? 298
+    9.2 The Dot Product 305
+    9.3 Lines and Linear Dependence 313
+    9.4 Projections 323
+    9.5 Summary 331
+
+10 Matrices in Two Dimensions 335
+    10.1 What is a Matrix? 335
+    10.2 Multiplying Matrices 340
+    10.3 Matrices as Transformations 348
+    10.4 The Determinant 355
+    10.5 Geometric Interpretation of the Determinant 364
+    10.6 Inverting a Matrix 369
+    10.7 Summary  375
+
+11 Vectors and Matrices in Three Dimensions, Part 1 380
+    11.1 Vectors in Three Dimensions 380
+    11.2 3x3 Matrices 384
+    11.3 Determinants of 3x3 Matrices 395
+    11.4 More Than Just 2x2 and 3x3 409
+    11.5 Summary 415
+
+12 Vectors and Matrices in Three Dimensions, Part 2 421
+    12.1 Lines and Planes in Three Dimensions 421
+    12.2 More Planes in Three Dimensions 428
+    12.3 The Cross Product 442
+    12.4 Geometric Interpretation of the Determinant 450
+
+    12.5 Inverse of a 3x3 Matrix 454
+    12.6 Summary 457
+
+13 Vector Geometry 463
+    13.1 Introduction 463
+    13.2 Vectorsinthe Triangle 469
+    13.3 Vectors, Complex Numbers, and Challenging Problems 476
+    13.4 Summary 485
+
+References 488
+Hints to Selected Problems 489
+Index 501
