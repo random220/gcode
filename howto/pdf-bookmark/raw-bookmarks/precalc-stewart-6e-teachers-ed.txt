@@ -1,0 +1,187 @@
+PREFACE xi
+TO THE STUDENT xix
+PROLOGUE: PRINCIPLES OF PROBLEM SOLVING P1
+
+CHAPTER 1 FUNDAMENTALS 1
+    Chapter Overview 1
+    1.1 Real Numbers 2
+    1.2 Exponents and Radicals 12
+    1.3 Algebraic Expressions 24
+    1.4 Rational Expressions 35
+    1.5 Equations 44
+    1.6 Modeling with Equations 57
+    1.7 Inequalities 73
+    1.8 Coordinate Geometry 83
+    1.9 Graphing Calculators; Solving Equations and Inequalities Graphically 96
+    1.10 Lines 106
+    1.11 Making Models Using Variation 118
+    Chapter 1 Review 124
+    Chapter 1 Test 128
+    FOCUS ON MODELING Fitting Lines to Data 130
+
+CHAPTER 2 FUNCTIONS 141
+    Chapter Overview 141
+    2.1 What Is a Function? 142
+    2.2 Graphs of Functions 152
+    2.3 Getting Information from the Graph of a Function 163
+    2.4 Average Rate of Change of a Function 1/72
+    2.5 Transformations of Functions 179
+    2.6 Combining Functions 190
+    2.7 One-to-One Functions and Their Inverses 199
+    Chapter 2 Review 207
+    Chapter 2 Test 211
+    FOCUS ON MODELING Modeling with Functions 213
+
+CHAPTER 3 POLYNOMIAL AND RATIONAL FUNCTIONS 223
+    Chapter Overview 223
+    3.1 Quadratic Functions and Models 224
+    3.2 Polynomial Functions and Their Graphs 232
+    3.3 Dividing Polynomials 246
+    3.4 Real Zeros of Polynomials 253
+    3.5 Complex Numbers 264
+    3.6 Complex Zeros and the Fundamental Theorem of Algebra 269
+    3.7 Rational Functions 277
+    Chapter 3 Review 292
+    Chapter 3 Test 295
+    FOCUS ON MODELING Fitting Polynomial Curves to Data 296
+
+CHAPTER 4 EXPONENTIAL AND LOGARITHMIC FUNCTIONS 301
+    Chapter Overview 301
+    4.1 Exponential Functions 302
+    4.2 The Natural Exponential Function 310
+    4.3 Logarithmic Functions 315
+    4.4 Laws of Logarithms 325
+    4.5 Exponential and Logarithmic Equations 331
+    4.6 Modeling with Exponential and Logarithmic Functions 340
+    Chapter 4 Review 353
+    Chapter 4 Test 356
+    FOCUS ON MODELING Fitting Exponential and Power Curves to Data 357
+    Cumulative Review Test: Chapters 2,3,and4 367
+
+CHAPTER 5 TRIGONOMETRIC FUNCTIONS: Unit CiRCLE APPROACH 369
+    Chapter Overview 369
+    5.1 The Unit Circle 370
+    5.2 Trigonometric Functions of Real Numbers 377
+    5.3 Trigonometric Graphs 386
+    5.4 More Trigonometric Graphs 399
+    3.9 Inverse Trigonometric Functions and Their Graphs 406
+    5.6 Modeling Harmonic Motion 412
+    Chapter 5 Review 423
+    Chapter 5 Test 426
+    FOCUS ON MODELING Fitting Sinusoidal Curves to Data 427
+
+CHAPTER 6 TRIGONOMETRIC FUNCTIONS: RIGHT TRIANGLE APPROACH 433
+    Chapter Overview 433
+    6.1 Angle Measure 434
+    6.2 Trigonometry of Right Triangles 443
+    6.3 Trigonometric Functions of Angles 451
+    6.4 Inverse Trigonometric Functions and Right Triangles 462
+    6.5 The Law of Sines 469
+    6.6 The Law of Cosines 476
+    Chapter 6 Review 483
+    Chapter 6 Test 487
+    FOCUS ON MODELING Surveying 489
+
+CHAPTER 7 ANALYTIC TRIGONOMETRY 493
+    Chapter Overview 493
+    7.1 Trigonometric Identities 494
+    7.2 Addition and Subtraction Formulas 500
+    7.3 Double-Angle, Half-Angle, and Product-Sum Formulas 507
+    7.4 Basic Trigonometric Equations 517
+    7.5 More Trigonometric Equations 524
+    Chapter 7 Review 530
+    Chapter 7 Test 532
+    FOCUS ON MODELING Traveling and Standing Waves 533
+    Cumulative Review Test: Chapters 5,6,and7 538
+
+CHAPTER 8 POLAR COORDINATES AND PARAMETRIC EQUATIONS 541
+    Chapter Overview 541
+    8.1 Polar Coordinates 542
+    8.2 Graphs of Polar Equations 547
+    8.3 Polar Form of Complex Numbers; De Moivre's Theorem 555
+    8.4 Plane Curves and Parametric Equations 564
+    Chapter 8 Review 5/72
+    Chapter 8 Test 574
+    FOCUS ON MODELING The Path of a Projectile 575
+
+CHAPTER 9 VECTORS IN TWO AND THREE DIMENSIONS 579
+    Chapter Overview 579
+    9.1 Vectors in Two Dimensions 580
+    9.2 The Dot Product 589
+    9.3 Three-Dimensional Coordinate Geometry 597
+    9.4 Vectors in Three Dimensions 603
+    9.5 The Cross Product 610
+    9.6 Equations of Lines and Planes 616
+    Chapter 9 Review 620
+    Chapter 9 Test 623
+    FOCUS ON MODELING Vector Fields 624
+    Cumulative Review Test: Chapters 8and9 628
+
+CHAPTER 10 SYSTEMS OF EQUATIONS AND INEQUALITIES 629
+    Chapter Overview 629
+    10.1 Systems of Linear Equations in Two Variables 630
+    10.2 Systems of Linear Equations in Several Variables 640
+    10.3 Matrices and Systems of Linear Equations 649
+    10.4 The Algebra of Matrices 661
+    10.5 Inverses of Matrices and Matrix Equations 672
+    10.6 Determinants and Cramer's Rule 682
+    10.7 Partial Fractions 693
+    10.8 Systems of Nonlinear Equations 698
+    10.9 Systems of Inequalities 703
+    Chapter 10 Review 710
+    Chapter 10 Test 714
+    FOCUS ON MODELING Linear Programming 716
+
+CHAPTER 11 Conic SECTIONS 723
+    Chapter Overview 723
+    11.1 Parabolas 724
+    11.2 Ellipses 732
+    11.3 Hyperbolas 741
+    11.4 Shifted Conics 750
+    11.5 Rotation of Axes 757
+    11.6 Polar Equations of Conics 765
+    Chapter 11 Review 772
+    Chapter 11 Test 775
+    FOCUS ON MODELING Conics in Architecture 776
+    Cumulative Review Test: Chapters 10 and 11 780
+
+CHAPTER 12 SEQUENCES AND SERIES 783
+    Chapter Overview 783
+    12.1 Sequences and Summation Notation 784
+    12.2 Arithmetic Sequences 794
+    12.3 Geometric Sequences 800
+    12.4 Mathematics of Finance 808
+    12.5 Mathematical Induction 814
+    12.6 The Binomial Theorem 820
+    Chapter 12 Review 829
+    Chapter 12 Test 832
+    FOCUS ON MODELING Modeling with Recursive Sequences 833
+
+CHAPTER 13 Limits: A Preview OF CALCULUS 839
+    Chapter Overview 839
+    13.1 Finding Limits Numerically and Graphically 840
+    13.2 Finding Limits Algebraically 848
+    13.3 Tangent Lines and Derivatives 856
+    13.4 Limits at Infinity; Limits of Sequences 865
+    13.5 Areas 872
+    Chapter 13 Review 881
+    Chapter 13 Test 883
+    FOCUS ON MODELING Interpretations of Area 884
+    Cumulative Review Test: Chapters 12 and 13 888
+
+CHAPTER 14 PROBABILITY AND STATISTICS 889
+    Counting 890
+    14.1 Probability 900
+    14.2 Binomial Probability 912
+    14.3 Expected Value 918
+    14.4 Descriptive Statistics (Numerical) 922
+    14.5 Descriptive Statistics (Graphical) 934
+    14.6 Introduction to Statistical Thinking 943
+    14.7 Introduction to Inferential Statistics 953
+    14.8 Chapter 14 Review 960
+    Chapter 14 Test 965
+    FOCUS ON MODELING The Monte Carlo Method 967
+
+APPENDIX: Calculations and Significant Figures 971
+ANSWERS A1
+INDEX I1
