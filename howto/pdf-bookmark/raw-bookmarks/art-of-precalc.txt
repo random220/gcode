@@ -1,6 +1,9 @@
-How to Use This Book iii
-Acknowledgements vii
+Cover 1*
+How to Use This Book iii 5*
+Acknowledgements vii 9*
+Contents ix 11*
 
+_offset 18
 1 Functions Review 1
     1.1 Function Basics  1
     1.2 Graphing Functions 9
