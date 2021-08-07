@@ -41,7 +41,6 @@ _offset 10
     5.5 Branch, Branch with Link and eXchange (BX, BLX) 115
     5.6 Software Interrupt (SWI) 117
     5.7 Data processing instructions 119
-_offset 9
     5.8 Multiply instructions 122
     5.9 Count leading zeros (CLZ - architecture v5T only) 124
     5.10 Single word and unsigned byte data transfer instructions 125
@@ -88,7 +87,6 @@ _offset 9
 
 8 Architectural Support for System Development 207
     8.1 The ARM memory interface 208
-_offset 10
     8.2 The Advanced Microcontroller Bus Architecture (AMBA) 216
     8.3 The ARM reference peripheral specification 220
     8.4 Hardware system prototyping tools 223
