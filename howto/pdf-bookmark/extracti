@@ -10,4 +10,4 @@ fi
 page=$1
 file=$2
 pdftk $file cat $page-$page output _a.pdf
-pdfimages -j _a.pdf _aa
+pdfimages -all _a.pdf _aa
