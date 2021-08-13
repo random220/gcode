@@ -20,3 +20,5 @@ py:
 	make deploy-py
 js:
 	make deploy-js
+w:
+	docker exec -ti webs su - webs
