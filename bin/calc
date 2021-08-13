@@ -9,10 +9,24 @@ class G:
     S = {}
 
 
+def main():
+    if len(sys.argv) > 1:
+        line = ' '.join(sys.argv[1:])
+        calc(line)
+        if len(G.stack) == 1:
+            print(G.stack[0])
+        else:
+            print_stack()
+    else:
+        while True:
+            line = raw_input('>>> ')
+            calc(line)
+            print_stack()
+
 def calc(line):
     args = re.split(r'\s+', line)
     for arg in args:
-        if re_match(r'^([+-]?)([\d\.]+)([kmgKMG]?)(e([+-]?)(\d+))?$', arg):
+        if re_match(r'^([+-]?)([\d\.]+)([kmgKMG]?)(e([+-]?)(\d+))?$', arg):    # is it a number ?
             n = float(G.m.group(2))
             power = G.m.group(3)
             expo = G.m.group(4)
@@ -32,6 +46,14 @@ def calc(line):
                     exponum = 0-exponum
                 n = n * math.pow(10, exponum)
             G.stack.append(n)
+        elif re_match(r'^S(.+)', arg):  # Is it a variable to be saved?
+            G.S[G.m.group(1)] = G.stack[-1]
+        elif re_match(r'^R(.+)', arg):  # Is it a named variable being recalled?
+            if G.m.group(1) in G.S:
+                G.stack.append(G.S[G.m.group(1)])
+        elif re_match(r'\$(.+)', arg):  # Is it a named variable in another format being recalled?
+            if G.m.group(1) in G.S:
+                G.stack.append(G.S[G.m.group(1)])
         elif arg == 'pi':
             n = math.pi
             G.stack.append(n)
@@ -144,20 +166,15 @@ def op(arg):
         elif G.mode == 'GRAD':
             a = a * 200 / math.pi
         G.stack.append(a)
-    elif  arg == 'pop':
+    elif  arg == 'pop' or arg == 'p':
         G.stack.pop()
-    elif  arg == 'c':
+    elif  arg == 'clr' or arg == 'c':
         G.stack = []
     elif  arg == 'x':
         b = G.stack.pop()
         a = G.stack.pop()
         G.stack.append(b)
         G.stack.append(a)
-    elif re_match(r'^S(.+)', arg):
-        G.S[G.m.group(1)] = G.stack[-1]
-    elif re_match(r'^R(.+)', arg):
-        if G.m.group(1) in G.S:
-            G.stack.append(G.S[G.m.group(1)])
     else:
         if arg == '':
             pass
@@ -177,17 +194,4 @@ def re_match(rex, line):
         return True
     return False
         
-
-if len(sys.argv) > 1:
-    line = ' '.join(sys.argv[1:])
-    calc(line)
-    if len(G.stack) == 1:
-        print(G.stack[0])
-    else:
-        print_stack()
-else:
-    while True:
-        line = raw_input('>>> ')
-        calc(line)
-        print_stack()
-
+main()
