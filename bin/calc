@@ -26,8 +26,10 @@ def main():
 def calc(line):
     args = re.split(r'\s+', line)
     for arg in args:
-        if re_match(r'^([+-]?)([\d\.]+)([kmgKMG]?)(e([+-]?)(\d+))?$', arg):    # is it a number ?
-            n = float(G.m.group(2))
+        if re_match(r'^([+-]?)([\d\.,]+)([kmgKMG]?)(e([+-]?)(\d+))?$', arg):    # is it a number ?
+            n = G.m.group(2)
+            n = n.replace(',','') # remove commas
+            n = float(n)
             power = G.m.group(3)
             expo = G.m.group(4)
             exposign = G.m.group(5)
@@ -68,9 +70,15 @@ def calc(line):
 
 def op(arg):
     if  arg == '+':
-        b = G.stack.pop()
-        a = G.stack.pop()
-        G.stack.append(a+b)
+        ans = 0
+        ans += G.stack.pop()
+        ans += G.stack.pop()
+        G.stack.append(ans)
+    elif  arg == 'sum':
+        ans = 0 
+        while len(G.stack) > 0:
+            ans += G.stack.pop()
+        G.stack.append(ans)
     elif  arg == '-':
         b = G.stack.pop()
         a = G.stack.pop()
@@ -79,6 +87,11 @@ def op(arg):
         b = G.stack.pop()
         a = G.stack.pop()
         G.stack.append(a*b)
+    elif  arg == 'mul':
+        ans = 1 
+        while len(G.stack) > 0:
+            ans *= G.stack.pop()
+        G.stack.append(ans)
     elif  arg == '/':
         b = G.stack.pop()
         a = G.stack.pop()
