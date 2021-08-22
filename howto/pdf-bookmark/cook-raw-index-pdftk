@@ -49,6 +49,7 @@ sub main
     #checkformat(\@lines);
     @lines = map {s/\s*$//s; $_} @lines;   # remove end spaces
     @lines = grep {$_ !~ /^\s*$/} @lines;  # remove space-only lines
+    @lines = grep {$_ !~ /^\s*\#/} @lines;  # remove comment lines
 
     my $offset = 0;
     if ($lines[0] =~ m{^_offset\s+(\d+)$}) {

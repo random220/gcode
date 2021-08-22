@@ -1,0 +1,27 @@
+Cover 1*
+Contents 5*
+_offset 6
+Chapter 1 Chemistry and Measurements 1
+Chapter 2 Atoms, Molecules, And Ions 18
+Chapter 3 Calculations with Chemical Formulas and Equations 34
+Chapter 4 Chemical Reactions 59
+Chapter 5 The Gaseous State 83
+#Chapter 6 Thermochemistry 108
+#Chapter 7 Quantum Theory Of the Atom 129
+#Chapter 8 Electron Configurations and Periodicity 142
+#Chapter 9 Ionic and Covalent Bonding 152
+#Chapter 10 Molecular Geometry and Chemical Bonding Theory 177
+#Chapter 11 States of Matter; Liquids and Solids 196
+#Chapter 12 Solutions 216
+#Chapter 13 Rates Of Reaction 237
+#Chapter 14 Chemical Equilibrium 259
+#Chapter 15 Acids and Bases 282
+#Chapter 16 Acid-Base Equilibria 295
+#Chapter 17 Solubility and Complex-Ion Equilibria 339
+#Chapter 18 Thermodynamics and Equilibrium 363
+#Chapter 19 Electrochemistry 383
+#Chapter 20 Nuclear Chemistry 415
+#Chapter 21 Chemistry of the Main-Group Element 433
+#Chapter 22 The Transition Elements and Coordination Compounds 453
+#Chapter 23 Organic Chemistry 466
+#Chapter 24 Polymer Materials: Synthetic and Biological 482
