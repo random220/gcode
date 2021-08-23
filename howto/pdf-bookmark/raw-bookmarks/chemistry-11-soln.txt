@@ -12,11 +12,11 @@ Chapter 8 Electron Configurations and Periodicity 142
 Chapter 9 Ionic and Covalent Bonding 152
 Chapter 10 Molecular Geometry and Chemical Bonding Theory 177
 Chapter 11 States of Matter; Liquids and Solids 196
-#Chapter 12 Solutions 216
-#Chapter 13 Rates Of Reaction 237
-#Chapter 14 Chemical Equilibrium 259
-#Chapter 15 Acids and Bases 282
-#Chapter 16 Acid-Base Equilibria 295
+Chapter 12 Solutions 216
+Chapter 13 Rates Of Reaction 237
+Chapter 14 Chemical Equilibrium 259
+Chapter 15 Acids and Bases 282
+Chapter 16 Acid-Base Equilibria 295
 #Chapter 17 Solubility and Complex-Ion Equilibria 339
 #Chapter 18 Thermodynamics and Equilibrium 363
 #Chapter 19 Electrochemistry 383
