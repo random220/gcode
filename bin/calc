@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import sys
 import re
 import math
@@ -20,7 +20,7 @@ def main():
             print_all()
     else:
         while True:
-            line = raw_input('>>> ')
+            line = input('>>> ')
             calc(line)
             print_all()
 
