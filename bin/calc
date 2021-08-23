@@ -7,6 +7,7 @@ class G:
     stack = []
     mode = 'DEG'
     S = {}
+    num = 0
 
 
 def main():
@@ -26,28 +27,8 @@ def main():
 def calc(line):
     args = re.split(r'\s+', line)
     for arg in args:
-        if re_match(r'^([+-]?)([\d\.,]+)([kmgKMG]?)(e([+-]?)(\d+))?$', arg):    # is it a number ?
-            n = G.m.group(2)
-            n = n.replace(',','') # remove commas
-            n = float(n)
-            power = G.m.group(3)
-            expo = G.m.group(4)
-            exposign = G.m.group(5)
-            exponum = G.m.group(6)
-            if G.m.group(1) == '-':
-                n = 0 - n
-            if power == 'k' or power == 'K':
-                n = n * 1000
-            elif power == 'm' or power == 'M':
-                n = n * 1000000
-            elif power == 'g' or power == 'G':
-                n = n * 1000000000
-            if expo is not None:
-                exponum = float(exponum)
-                if exposign == '-':
-                    exponum = 0-exponum
-                n = n * math.pow(10, exponum)
-            G.stack.append(n)
+        if tonum(arg):    # is it a number ?
+            G.stack.append(G.num)
         elif re_match(r'^[S>](.+)', arg):  # Is it a variable to be saved?
             G.S[G.m.group(1)] = G.stack[-1]
         elif re_match(r'^[R<\$](.+)', arg):  # Is it a named variable being recalled?
@@ -64,6 +45,33 @@ def calc(line):
             G.stack.append(n)
         else:
             op(arg)
+
+def tonum(arg):           
+    if re_match(r'^([+-]?)([\d\.,]+)([kmgKMG]?)(e([+-]?)(\d+))?$', arg):    # is it a number ?
+        n = G.m.group(2)
+        n = n.replace(',','') # remove commas
+        n = float(n)
+        power = G.m.group(3)
+        expo = G.m.group(4)
+        exposign = G.m.group(5)
+        exponum = G.m.group(6)
+        if G.m.group(1) == '-':
+            n = 0 - n
+        if power == 'k' or power == 'K':
+            n = n * 1000
+        elif power == 'm' or power == 'M':
+            n = n * 1000000
+        elif power == 'g' or power == 'G':
+            n = n * 1000000000
+        if expo is not None:
+            exponum = float(exponum)
+            if exposign == '-':
+                exponum = 0-exponum
+            n = n * math.pow(10, exponum)
+        G.num = n
+        return True
+    return False
+
 
 def op(arg):
     if  arg == '+':
@@ -99,9 +107,18 @@ def op(arg):
         a = int(a)
         b = int(b)
         G.stack.append(a % b)
-    elif  arg == '1/' or  arg == 'inv':
+    elif  arg == 'inv':
         a = G.stack.pop()
         G.stack.append(1/a)
+    elif  re_match(r'^(.+)/$', arg):
+        n = G.m.group(1)
+        if tonum(n):
+            n = G.num
+            a = G.stack.pop()
+            G.stack.append(n/a)
+        else:
+            # ignore
+            pass
     elif  arg == 'neg' or  arg == '0-':
         a = G.stack.pop()
         G.stack.append(0 - a)
