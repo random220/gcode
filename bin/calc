@@ -110,12 +110,20 @@ def op(arg):
     elif  arg == 'inv':
         a = G.stack.pop()
         G.stack.append(1/a)
-    elif  re_match(r'^(.+)/$', arg):
+    elif  re_match(r'^(.+)([\+\-\*/])$', arg):
         n = G.m.group(1)
+        thisop = G.m.group(2)
         if tonum(n):
-            n = G.num
-            a = G.stack.pop()
-            G.stack.append(n/a)
+            a = G.num
+            b = G.stack.pop()
+            if thisop == '+':
+                G.stack.append(a+b)
+            elif thisop == '-':
+                G.stack.append(a-b)
+            elif thisop == '*':
+                G.stack.append(a*b)
+            elif thisop == '/':
+                G.stack.append(a/b)
         else:
             # ignore
             pass
