@@ -24,3 +24,9 @@ if [[ -f $f ]]; then
   mv "$f" $d/$today-mint.pdf
 fi
 open $d
+
+f=$HOME/Desktop/'Mint _ Trends.pdf'
+if [[ -f $f ]]; then
+  mv "$f" $d/$today-mint-trend.pdf
+fi
+open $d
