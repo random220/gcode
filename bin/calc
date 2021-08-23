@@ -27,10 +27,18 @@ def main():
 def calc(line):
     args = re.split(r'\s+', line)
     for arg in args:
-        if tonum(arg):    # is it a number ?
+        if arg == '.':
+            sys.exit(0)
+        elif tonum(arg):    # is it a number ?
             G.stack.append(G.num)
-        elif re_match(r'^[S>](.+)', arg):  # Is it a variable to be saved?
-            G.S[G.m.group(1)] = G.stack[-1]
+        elif re_match(r'(.*)>(.+)', arg):  # Is it a variable to be saved?
+            n = G.m.group(1)
+            v = G.m.group(2)
+            if n == '':
+                G.S[v] = G.stack[-1]
+            else:
+                if tonum(n):
+                    G.S[v] = G.num
         elif re_match(r'^[R<\$](.+)', arg):  # Is it a named variable being recalled?
             if G.m.group(1) in G.S:
                 G.stack.append(G.S[G.m.group(1)])
@@ -211,7 +219,7 @@ def op(arg):
         G.stack.append(b)
         G.stack.append(a)
     elif  arg == 'm':
-        print_mem()
+        print_stack()
     elif  arg == 'mc':
         G.S = {}
     else:
@@ -222,15 +230,16 @@ def op(arg):
 
 def print_stack():
     print('    ---{mode}---'.format(mode=G.mode))
+
+    print('    ---Memory---')
+    for key in sorted(G.S.keys()):
+        print('    {key}: {val}'.format(key=key, val=G.S[key]))
+
+    print('    ---Stack---')
     n = 0
     for i in G.stack:
         print('    {n}: {i}'.format(n=n, i=i))
         n += 1
-
-def print_mem():
-    print('    ---Memory---')
-    for key in G.S:
-        print('    {key}: {val}'.format(key=key, val=G.S[key]))
 
 def re_match(rex, line):
     G.m = re.search(rex, line)
