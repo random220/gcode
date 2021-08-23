@@ -17,12 +17,12 @@ def main():
         if len(G.stack) == 1:
             print(G.stack[0])
         else:
-            print_stack()
+            print_all()
     else:
         while True:
             line = raw_input('>>> ')
             calc(line)
-            print_stack()
+            print_all()
 
 def calc(line):
     args = re.split(r'\s+', line)
@@ -219,7 +219,7 @@ def op(arg):
         G.stack.append(b)
         G.stack.append(a)
     elif  arg == 'm':
-        print_stack()
+        print_all()
     elif  arg == 'mc':
         G.S = {}
     else:
@@ -228,7 +228,7 @@ def op(arg):
         else:
             print('IGNORED: {arg}'.format(arg=arg))
 
-def print_stack():
+def print_all():
     print('    ---{mode}---'.format(mode=G.mode))
 
     print('    ---Memory---')
