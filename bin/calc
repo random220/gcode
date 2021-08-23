@@ -96,6 +96,78 @@ def op(arg):
         b = G.stack.pop()
         a = G.stack.pop()
         G.stack.append(a-b)
+    elif  re_match(r'^\*(.+)\+$', arg):
+        n = G.m.group(1)
+        if tonum(n):
+            x = G.num
+            n = len(G.stack)
+            while n > 0:
+                G.stack[n-1] = G.stack[n-1] + x
+                n -= 1
+    elif  re_match(r'^\*(.+)\-$', arg):
+        n = G.m.group(1)
+        if tonum(n):
+            x = G.num
+            n = len(G.stack)
+            while n > 0:
+                G.stack[n-1] = G.stack[n-1] - x
+                n -= 1
+    elif  re_match(r'^\*(.+)\*$', arg):
+        n = G.m.group(1)
+        if tonum(n):
+            x = G.num
+            n = len(G.stack)
+            while n > 0:
+                G.stack[n-1] = G.stack[n-1] * x
+                n -= 1
+    elif  re_match(r'^\*(.+)/$', arg):
+        n = G.m.group(1)
+        if tonum(n):
+            x = G.num
+            n = len(G.stack)
+            while n > 0:
+                G.stack[n-1] = G.stack[n-1] / x
+                n -= 1
+    elif  arg == '*sin':
+        n = len(G.stack)
+        while n > 0:
+            mysin(n-1)
+            n -= 1
+    elif  arg == '*cos':
+        n = len(G.stack)
+        while n > 0:
+            mycos(n-1)
+            n -= 1
+    elif  arg == '*tan':
+        n = len(G.stack)
+        while n > 0:
+            mytan(n-1)
+            n -= 1
+    elif  arg == '*asin':
+        n = len(G.stack)
+        while n > 0:
+            myasin(n-1)
+            n -= 1
+    elif  arg == '*acos':
+        n = len(G.stack)
+        while n > 0:
+            myacos(n-1)
+            n -= 1
+    elif  arg == '*atan':
+        n = len(G.stack)
+        while n > 0:
+            myatan(n-1)
+            n -= 1
+    elif  arg == '*sq':
+        n = len(G.stack)
+        while n > 0:
+            G.stack[n-1] = G.stack[n-1] * G.stack[n-1]
+            n -= 1
+    elif  arg == '*sqrt':
+        n = len(G.stack)
+        while n > 0:
+            G.stack[n-1] = math.sqrt(G.stack[n-1])
+            n -= 1
     elif  arg == '*':
         b = G.stack.pop()
         a = G.stack.pop()
@@ -118,6 +190,11 @@ def op(arg):
     elif  arg == 'inv':
         a = G.stack.pop()
         G.stack.append(1/a)
+    elif  arg == '*inv':
+        n = len(G.stack)
+        while n>0:
+            G.stack[n-1] = 1 / G.stack[n-1]
+            n -= 1
     elif  re_match(r'^(.+)([\+\-\*/])$', arg):
         n = G.m.group(1)
         thisop = G.m.group(2)
@@ -164,51 +241,19 @@ def op(arg):
         G.mode = 'DEG'
     elif  arg == 'grad':
         G.mode = 'GRAD'
+
     elif  arg == 'sin':
-        a = G.stack.pop()
-        if G.mode == 'DEG':
-            a = math.pi * a / 180
-        elif G.mode == 'GRAD':
-            a = math.pi * a / 200 
-        G.stack.append(math.sin(a))
+        mysin(-1)
     elif  arg == 'cos':
-        a = G.stack.pop()
-        if G.mode == 'DEG':
-            a = math.pi * a / 180
-        elif G.mode == 'GRAD':
-            a = math.pi * a / 200 
-        G.stack.append(math.cos(a))
+        mycos(-1)
     elif  arg == 'tan':
-        a = G.stack.pop()
-        if G.mode == 'DEG':
-            a = math.pi * a / 180
-        elif G.mode == 'GRAD':
-            a = math.pi * a / 200 
-        G.stack.append(math.tan(a))
+        mytan(-1)
     elif  arg == 'asin':
-        a = G.stack.pop()
-        a = math.asin(a)
-        if G.mode == 'DEG':
-            a = a * 180 / math.pi
-        elif G.mode == 'GRAD':
-            a = a * 200 / math.pi
-        G.stack.append(a)
+        myasin(-1)
     elif  arg == 'acos':
-        a = G.stack.pop()
-        a = math.acos(a)
-        if G.mode == 'DEG':
-            a = a * 180 / math.pi
-        elif G.mode == 'GRAD':
-            a = a * 200 / math.pi
-        G.stack.append(a)
+        myacos(-1)
     elif  arg == 'atan':
-        a = G.stack.pop()
-        a = math.atan(a)
-        if G.mode == 'DEG':
-            a = a * 180 / math.pi
-        elif G.mode == 'GRAD':
-            a = a * 200 / math.pi
-        G.stack.append(a)
+        myatan(-1)
     elif  arg == 'pop' or arg == 'p':
         G.stack.pop()
     elif  arg == 'clr' or arg == 'c':
@@ -227,6 +272,45 @@ def op(arg):
             pass
         else:
             print('IGNORED: {arg}'.format(arg=arg))
+
+def rad2a(a):
+    if G.mode == 'RAD':
+        return a
+    if G.mode == 'DEG':
+        return 180 * a / math.pi
+    if G.mode == 'GRAD':
+        return 200 * a / math.pi
+def a2rad(a):
+    if G.mode == 'RAD':
+        return a
+    if G.mode == 'DEG':
+        return math.pi * a / 180
+    if G.mode == 'GRAD':
+        return math.pi * a / 200
+def mysin(i):
+    a = a2rad(G.stack[i])
+    G.stack[i] = math.sin(a)
+def mycos(i):
+    a = a2rad(G.stack[i])
+    G.stack[i] = math.cos(a)
+def mytan(i):
+    a = a2rad(G.stack[i])
+    G.stack[i] = math.tan(a)
+def myasin(i):
+    a = G.stack[i]
+    a = math.asin(a)
+    a = rad2a(a)
+    G.stack[i] = a
+def myacos(i):
+    a = G.stack[i]
+    a = math.acos(a)
+    a = rad2a(a)
+    G.stack[i] = a
+def myatan(i):
+    a = G.stack[i]
+    a = math.atan(a)
+    a = rad2a(a)
+    G.stack[i] = a
 
 def print_all():
     print('    ---{mode}---'.format(mode=G.mode))
