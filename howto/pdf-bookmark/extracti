@@ -1,6 +1,26 @@
-#!/bin/bash
+#!/usr/bin/env python3
+import sys
+import os
+
+def print_help():
+    print(sys.argv[0] + ' {pdf-file}')
+    print(sys.argv[0] + ' {page1} {pdf-file}')
+    print(sys.argv[0] + ' {page1} {page2} {pdf-file}')
+
+if len(sys.argv) == 1:  # ./extracti a.pdf : whole fil
+    print_help();
+    sys.exit(1)
+if len(sys.argv) == 2:  # ./extracti a.pdf : whole fil
+    pdf = sys.argv[1]
+    if not os.path.isfile(pdf):
+        print_help();
+        sys.exit(1)
+    os.system('rm -rf .out; mkdir .out')
+    os.system('pdfimages -all {f} .out/page'.format(f=pdf))
+'''
 if [[ $1 == '' ]]; then
   echo "$0 page pdf-file"
+  echo "$0 pdf-file"
   exit 0
 fi
 if [[ $2 == '' ]]; then
@@ -11,3 +31,4 @@ page=$1
 file=$2
 pdftk $file cat $page-$page output _a.pdf
 pdfimages -all _a.pdf _aa
+'''
