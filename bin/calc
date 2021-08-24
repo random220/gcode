@@ -236,9 +236,15 @@ def op(arg):
     elif  arg == 'log':
         a = G.stack.pop()
         G.stack.append(math.log10(a))
+    elif  arg == 'alog':
+        a = G.stack.pop()
+        G.stack.append(10 ** a)
     elif  arg == 'ln':
         a = G.stack.pop()
         G.stack.append(math.log(a))
+    elif  arg == 'aln':
+        a = G.stack.pop()
+        G.stack.append(math.exp(a))
     elif  arg == 'log2' or arg == 'logb':
         b = G.stack.pop()
         a = G.stack.pop()
