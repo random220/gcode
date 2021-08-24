@@ -20,7 +20,10 @@ def main():
             print_all()
     else:
         while True:
-            line = input('>>> ')
+            try:
+                line = input('>>> ')
+            except:
+                sys.exit(0)
             calc(line)
             print_all()
 
