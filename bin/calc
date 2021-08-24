@@ -176,6 +176,26 @@ def op(arg):
         while n > 0:
             G.stack[n-1] = math.sqrt(G.stack[n-1])
             n -= 1
+    elif  arg == '*log':
+        n = len(G.stack)
+        while n > 0:
+            G.stack[n-1] = math.log10(G.stack[n-1])
+            n -= 1
+    elif  arg == '*alog':
+        n = len(G.stack)
+        while n > 0:
+            G.stack[n-1] = 10 ** G.stack[n-1]
+            n -= 1
+    elif  arg == '*ln':
+        n = len(G.stack)
+        while n > 0:
+            G.stack[n-1] = math.log(G.stack[n-1])
+            n -= 1
+    elif  arg == '*aln':
+        n = len(G.stack)
+        while n > 0:
+            G.stack[n-1] = math.exp(G.stack[n-1])
+            n -= 1
     elif  arg == '*':
         b = G.stack.pop()
         a = G.stack.pop()
