@@ -34,22 +34,50 @@ def calc(line):
             sys.exit(0)
         elif tonum(arg):    # is it a number ?
             G.stack.append(G.num)
-        elif re_match(r'(.*)>(.+)', arg):  # Is it a variable to be saved?
-            n = G.m.group(1)
-            v = G.m.group(2)
-            if re_match(r'^(.+)\-$', v):   # Is this a variable to be deleted ?
-                v = G.m.group(1)
-                if v in G.S:
-                    del G.S[v]
+        elif re_match(r'^(.*)>(.+?)(-?)$', arg):  # Is it a variable or a stack element to be saved?
+            num = G.m.group(1)    # num, if any
+            var = G.m.group(2)    # named var or stack elem
+            isdel = G.m.group(3)  # possibly '-' to denote deletion
+
+            if isdel == '-':
+                isdel = True
             else:
-                if n == '':
-                    G.S[v] = G.stack[-1]
+                isdel = False
+
+            if num != '':
+                if tonum(num):
+                    num = G.num
                 else:
-                    if tonum(n):
-                        G.S[v] = G.num
-        elif re_match(r'^<(.+)', arg):  # Is it a named variable being recalled?
-            if G.m.group(1) in G.S:
-                G.stack.append(G.S[G.m.group(1)])
+                    num = 0
+            else:
+                if len(G.stack) > 0:
+                    num = G.stack[-1]
+                else:
+                    num = 0
+
+            if re_match(r'^\d+$', var):  # stack elem
+                idx = int(var)
+                if isdel:
+                    if 0 <= idx and idx < len(G.stack):
+                        del G.stack[idx]
+                else:
+                    if 0 <= idx and idx < len(G.stack):
+                        G.stack[idx] = num
+            else:                       # named variable
+                if isdel:
+                    if var in G.S:
+                        del G.S[var]
+                else:
+                    G.S[var] = num
+
+        elif re_match(r'^<(.+)', arg):  # Is it a named variable or a stack member being recalled?
+            v = G.m.group(1)
+            if re_match(r'^\d+$', v):   # Is it a stack member ?
+                v = int(v)
+                if v < len(G.stack):    # Safety first
+                    G.stack.append(G.stack[v])
+            elif v in G.S:              # Name variable then if it exists
+                G.stack.append(G.S[v])
         elif arg == 'pi':
             n = math.pi
             G.stack.append(n)
