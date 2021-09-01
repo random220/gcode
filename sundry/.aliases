@@ -204,23 +204,29 @@ fing ()
 
 alias t1='t0 T1'
 alias tls='tmux ls'
+alias t='touch ~/a.txt; open ~/a.txt'
+alias ovftool='/Applications/VMware\ OVF\ Tool/ovftool'
+alias jl='LC_ALL=C.UTF-8 LANG=C.UTF-8 pipenv run jupyter lab --ContentsManager.allow_hidden=True'
+alias vmr='"/Applications/VMware Fusion.app/Contents/Library/vmrun"'
 
 # vmware stuff
 if [[ -f $HOME/ww/.vmware_aliases ]]; then
   . $HOME/ww/.vmware_aliases
 fi
-alias ovftool='/Applications/VMware\ OVF\ Tool/ovftool'
-alias t='touch ~/a.txt; open ~/a.txt'
-alias mp=multipass
 
-alias jl='LC_ALL=C.UTF-8 LANG=C.UTF-8 pipenv run jupyter lab --ContentsManager.allow_hidden=True'
-alias vmr='"/Applications/VMware Fusion.app/Contents/Library/vmrun"'
 alias sd1='ssh d1'
 alias sd2='ssh d2'
 alias sd='sd2'
 
 alias prx='ssh -g -N -f vmwgitlab'
 alias prk='kill $(ps uxw|grep '\''ssh -g -N -f vmwgitlab'\''|grep -v grep|awk '\''{print $2}'\'')'
-alias cdp='cd ~/sb/cloud-build/docker/deploy'
-alias pdf2png='/usr/bin/gs -dNOPAUSE -dBATCH -sDEVICE=png16m -r600 -dFirstPage=1 -dLastPage=1 -sOutputFile=a.png'
 
+alias a6='docker exec -ti 67ga bash'
+alias a7='docker exec -ti 70ga bash'
+alias a3='docker exec -ti 70u3 bash'
+
+export P4USER=omandal
+alias plog='p4 -p perforce.eng.vmware.com:1666 describe -s $1'
+function phead() {
+  od -b $1 | sed 1q | cut -d " " -f1-11
+}
