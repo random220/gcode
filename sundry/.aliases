@@ -228,5 +228,17 @@ alias a3='docker exec -ti 70u3 bash'
 export P4USER=omandal
 alias plog='p4 -p perforce.eng.vmware.com:1666 describe -s $1'
 function phead() {
-  od -b $1 | sed 1q | cut -d " " -f1-11
+  vib=$1
+  local d=$(mktemp -d)
+  cp "$vib" $d/a.vib
+  (
+  cd $d
+  ar x a.vib
+  chmod 666 *
+  local payload=$(egrep 'payload +name="' descriptor.xml|perl -pe 's/^.*<payload\s+name="//; s/".*//')
+  od -b $payload | sed 1q | cut -d " " -f1-11
+  cat $payload|gunzip - >payload.bin
+  od -b payload.bin | sed 1q | cut -d " " -f1-11
+  )
+  rm -rf $d
 }
