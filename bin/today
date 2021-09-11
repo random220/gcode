@@ -30,3 +30,10 @@ if [[ -f $f ]]; then
   mv "$f" $d/$today-mint-trend.pdf
 fi
 open $d
+
+f=$HOME/Desktop/'Portfolio_Position_*.csv'
+f=$(bash -c "ls -1tr $f|tail -1")
+if [[ -f $f ]]; then
+  mv "$f" $d/$today-mint-positions.csv
+fi
+open $d
