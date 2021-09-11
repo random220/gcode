@@ -53,6 +53,7 @@ function cent_install() {
   docker exec -ti $cont bash -c 'yum -y update'
   docker exec -ti $cont bash -c 'yum -y install epel-release'
   docker exec -ti $cont bash -c 'yum -y install sudo tmux vim python3 perl perl-Data-Dumper make gcc wget curl git rsync'
+  docker exec -ti $cont bash -c 'pip3 install pyinstaller==3.6'
   local d=$(mktemp -d)
   echo 'om ALL=(ALL) NOPASSWD: ALL' >$d/om
   docker cp $d/om $cont:/etc/sudoers.d/om
@@ -72,7 +73,7 @@ function ub_install() {
   local cont=$1
   docker exec -ti $cont bash -c 'useradd -s /bin/bash -m om'
   docker exec -ti $cont bash -c 'apt-get -y update; apt-get -y dist-upgrade'
-  docker exec -ti $cont bash -c 'apt-get -y install sudo tmux vim python3 perl make gcc wget curl git rsync'
+  docker exec -ti $cont bash -c 'apt-get -y install sudo tmux vim python3 perl make gcc wget curl git rsync jq'
   docker exec -ti $cont bash -c 'DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata'
   docker exec -ti $cont bash -c 'rm -f /etc/localtime; ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime'
   docker exec -ti $cont bash -c 'apt-get -y install tesseract-ocr-eng tesseract-ocr-ben'
@@ -80,6 +81,7 @@ function ub_install() {
   docker exec -ti $cont bash -c 'apt-get -y install pdftk'
   docker exec -ti $cont bash -c 'apt-get -y install img2pdf'
   docker exec -ti $cont bash -c 'apt-get -y install poppler-utils' # for pdfimages
+  docker exec -ti $cont bash -c 'apt-get -y install imagemagick'   # for commandline image processing
   local d=$(mktemp -d)
   echo 'om ALL=(ALL) NOPASSWD: ALL' >$d/om
   docker cp $d/om $cont:/etc/sudoers.d/om
