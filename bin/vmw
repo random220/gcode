@@ -1,2 +1,7 @@
 #!/bin/bash
-sudo /opt/om/openconnect/sbin/openconnect --protocol=gp gpu.vmware.com
+if [[ ! -f /usr/sbin/openconnect ]]; then
+  sudo apt-get -y install openconnect
+fi
+if [[ -f /usr/sbin/openconnect ]]; then
+  sudo /usr/sbin/openconnect --protocol=gp --csd-wrapper=/usr/libexec/openconnect/hipreport.sh gpu.vmware.com
+fi
