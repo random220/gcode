@@ -13,6 +13,7 @@ $HOME/go/bin
 $HOME/bin
 $HOME/gcode/bin
 $HOME/go/bin
+/snap/bin
 /usr/local/sbin
 /usr/local/bin
 /usr/local/go/bin
