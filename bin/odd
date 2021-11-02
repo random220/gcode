@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# https://apple.stackexchange.com/questions/326388/terminal-command-to-record-audio-through-macbook-microphone
+
+mkdir -p ~/odd
+ffmpeg -f avfoundation -i ":1" -t 3600 ~/odd/odd-$(date +%s).mp3 >/dev/null 2>&1
