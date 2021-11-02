@@ -1,0 +1,3 @@
+#!/bin/bash
+
+bash -c "$(tmux ls|head -1|sed 's/^/tmux a -d -t /; s/:.*//')"
