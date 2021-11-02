@@ -1,0 +1,4 @@
+#!/bin/bash
+
+tmux new-session -d -s odd-$(date +%s) ~/gcode/bin/odd
+
