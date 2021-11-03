@@ -228,7 +228,7 @@ alias a7='docker exec -ti 70ga bash'
 alias a3='docker exec -ti 70u3 bash'
 
 export P4USER=omandal
-alias plog='p4 -p perforce.eng.vmware.com:1666 describe -s $1'
+alias plog='p4 -p perforce.crondite.com:1666 describe -s $1'
 function phead() {
   vib=$1
   local d=$(mktemp -d)
@@ -244,3 +244,5 @@ function phead() {
   )
   rm -rf $d
 }
+
+alias op=afplay
