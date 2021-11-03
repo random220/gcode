@@ -1,0 +1,4 @@
+#!/bin/bash
+
+bash -c "$(tmux ls|grep '^odd'|head -1|sed 's/:.*/ C-c/; s/^/tmux send-keys -t /; s/:.*/ C-c/')"
+
