@@ -2,5 +2,12 @@
 
 # https://apple.stackexchange.com/questions/326388/terminal-command-to-record-audio-through-macbook-microphone
 
+# ffmpeg -f avfoundation -list_devices true -i "" 2>&1 |grep 'MacBook Pro Microphone'
+# [AVFoundation indev @ 0x7f787f905000] [0] MacBook Pro Microphone
+
+# device=$(ffmpeg -f avfoundation -list_devices true -i "" 2>&1 |grep 'MacBook Pro Microphone'|perl -pe '/\[(\d+)\]/; $_ = "$1\n"')
+# 0
+
 mkdir -p ~/odd
-ffmpeg -f avfoundation -i ":1" -t 3600 ~/odd/odd-$(date +%s).mp3 >/dev/null 2>&1
+device=$(ffmpeg -f avfoundation -list_devices true -i "" 2>&1 |grep 'MacBook Pro Microphone'|perl -pe '/\[(\d+)\]/; $_ = "$1\n"')
+ffmpeg -f avfoundation -i ":$device" -t 3600 ~/odd/odd-$(date +%s).mp3 >/dev/null 2>&1
