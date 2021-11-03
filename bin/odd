@@ -9,5 +9,12 @@
 # 0
 
 mkdir -p ~/odd
-device=$(ffmpeg -f avfoundation -list_devices true -i "" 2>&1 |grep 'MacBook Pro Microphone'|perl -pe '/\[(\d+)\]/; $_ = "$1\n"')
-ffmpeg -f avfoundation -i ":$device" -t 3600 ~/odd/odd-$(date +%s).mp3 >/dev/null 2>&1
+MICNAME='MacBook Pro Microphone'
+MICDEVICE=$(ffmpeg -f avfoundation -list_devices true -i "" 2>&1 |grep "$MICNAME" |perl -pe '/\[(\d+)\]/; $_ = "$1\n"')
+if [[ $MICDEVICE == '' ]]; then
+    MICNAME='External Microphone'
+    MICDEVICE=$(ffmpeg -f avfoundation -list_devices true -i "" 2>&1 |grep "$MICNAME" |perl -pe '/\[(\d+)\]/; $_ = "$1\n"')
+fi
+if [[ $MICDEVICE != '' ]]; then
+    ffmpeg -f avfoundation -i ":$MICDEVICE" -t 3600 ~/odd/odd-$(date +%s).mp3 >/dev/null 2>&1
+fi
