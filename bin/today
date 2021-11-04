@@ -7,6 +7,10 @@ f=$HOME/Desktop/'Fidelity GPS _ Guided Portfolio Summary SM.pdf'
 if [[ -f $f ]]; then
   mv "$f" $HOME/b/om/p/CRUZER/mydata/OM/02-MONEYPIT/FINANCIAL-SNAPSHOTS/$today-fidelity-analysis.pdf
 fi
+f=$HOME/Desktop/'Fidelity-GuidedPortfolioSummary.pdf'
+if [[ -f $f ]]; then
+  mv "$f" $HOME/b/om/p/CRUZER/mydata/OM/02-MONEYPIT/FINANCIAL-SNAPSHOTS/$today-fidelity-GuidedPortfolioSummary.pdf
+fi
 
 d=$HOME/b/om/p/CRUZER/mydata/OM/02-MONEYPIT/FINANCIAL-SNAPSHOTS
 if [[ ! -d $d ]]; then

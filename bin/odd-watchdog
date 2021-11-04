@@ -1,0 +1,18 @@
+#!/bin/bash
+
+while true; do
+  if [[ -f ~/odd/STOP ]]; then
+    for session in $(tmux ls 2>/dev/null |grep '^odd-'|sed 's/:.*//'); do
+      tmux send-keys -t $session C-c
+    done
+    rm -f ~/odd/STOP
+    rm -f ~/odd/START
+  fi
+  if [[ -f ~/odd/START ]]; then
+    tmux ls 2>/dev/null |grep '^odd-' >/dev/null 2>&1
+    if [[ $? != 0 ]]; then
+      tmux new-session -d -s odd-$(date +%s) ~/gcode/bin/odd
+    fi
+  fi
+  sleep 1
+done

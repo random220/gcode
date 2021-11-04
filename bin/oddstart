@@ -1,0 +1,10 @@
+#!/bin/bash
+
+x=$(ps aux|grep odd-watchdog|grep -v 'grep odd-watchdog')
+if [[ $x == '' ]]; then
+  nohup ~/gcode/bin/odd-watchdog >/dev/null 2>&1 &
+fi
+rm -f ~/odd/STOP
+touch ~/odd/START
+
+
