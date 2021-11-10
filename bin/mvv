@@ -1,17 +1,22 @@
 #!/bin/bash
 
-if [[ $1 == '' ]]; then
-  echo $0 somestring somemp3file
+f=$1
+if [[ ! -f $f ]]; then
+  echo "$0 {file} {name}"
   exit 1
 fi
-if [[ $2 == '' ]]; then
-  echo $0 somestring somemp3file
-  exit 1
-fi
-if [[ ! -f $2 ]]; then
-  echo $0 somestring somemp3file
-  exit 1
-fi
-d=$(date '+%Y-%m-%d')
-mv "$2" "$d-$1.mp3"
 
+ext=$(echo "$f"|sed 's/^.*\.//')
+if [[ $ext == $f ]]; then
+  ext=''
+else
+  ext=".$ext"
+fi
+timestamp=$(date -r "$f" "+%Y-%m-%d--%H-%M-%S")
+name_in="${@:2}" # ./mvv hi there -> hi there
+if [[ $name_in == '' ]]; then
+  name_in=$(echo "$f"|sed 's/^[0-9\-]+//; s/\..*$//')
+fi
+name_final="${timestamp}-${name_in}${ext}"
+
+echo "mv \"$f\" \"$name_final\""
