@@ -1,5 +1,9 @@
 #!/bin/bash
 
+SwitchAudioSource -t input -s 'MacBook Pro Microphone'
+#SwitchAudioSource -t input -s 'BlackHole 2ch'
+osascript -e "set volume input volume 100"
+
 x=$(ps aux|grep odd-watchdog|grep -v 'grep odd-watchdog')
 if [[ $x == '' ]]; then
   nohup ~/gcode/bin/odd-watchdog >/dev/null 2>&1 &

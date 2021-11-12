@@ -1,22 +1,57 @@
-#!/bin/bash
+#!/usr/bin/python
 
-f=$1
-if [[ ! -f $f ]]; then
-  echo "$0 {file} {name}"
-  exit 1
-fi
+import os, sys
+import re
+import time
 
-ext=$(echo "$f"|sed 's/^.*\.//')
-if [[ $ext == $f ]]; then
-  ext=''
-else
-  ext=".$ext"
-fi
-timestamp=$(date -r "$f" "+%Y-%m-%d--%H-%M-%S")
-name_in="${@:2}" # ./mvv hi there -> hi there
-if [[ $name_in == '' ]]; then
-  name_in=$(echo "$f"|sed 's/^[0-9\-]+//; s/\..*$//')
-fi
-name_final="${timestamp}-${name_in}${ext}"
+def main():
+    args = sys.argv[1:]
+    n = len(args)
+    if n == 0:
+        print_help()
+        sys.exit()
 
-echo "mv \"$f\" \"$name_final\""
+    f = args[0]
+    if os.path.isfile(f):
+        base, ext = base_ext(f)
+        if n > 1:
+            base = ' '.join(args[1:])
+    else:
+        f = args[-1]
+        if os.path.isfile(f):
+            base, ext = base_ext(f)
+            if n > 1:
+                base = ' '.join(args[0:n-1])
+        else:
+            print_help()
+            sys.exit()
+
+    ts = timestamp(f)
+    print('mv "{f}" "{ts}--{b}{e}"'.format(f=f, ts=ts, b=base, e=ext))
+
+def timestamp(f):
+    statinfo = os.stat(f)
+    ts = time.strftime("%Y-%m-%d--%H-%M-%S", time.localtime(statinfo.st_birthtime))
+    return ts
+    #return '2021-11-11--00-58-13'
+
+def print_help():
+    print("Help:")
+    print("    mvv something.mp3 a b c")
+    print("    mvv a b c something.mp3")
+
+def base_ext(f):
+    m = re.search(r'([^/]+?)(\.[^/\.]*)?$', f)
+    if m:
+        base = m.group(1)
+        ext = m.group(2)
+        if ext is None:
+            ext = ''
+    else:
+        print('should not happen')
+        sys.exit()
+
+    return base, ext
+
+main()
+
