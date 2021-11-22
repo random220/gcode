@@ -1,0 +1,22 @@
+#!/bin/bash
+
+target_machine='crondite.duckdns.org'
+ifconfig -a|egrep 'inet .*192\.168\.10\.' >/dev/null 2>&1
+if [[ $? == 0 ]]; then
+  target_machine='192.168.10.180'
+fi
+ifconfig -a|egrep 'inet .*192\.168\.86\.' >/dev/null 2>&1
+if [[ $? == 0 ]]; then
+  target_machine='192.168.10.180'
+fi
+
+umount ~/b/om/p
+
+cmd="ssh -t om@$target_machine gcode/bin/vumount"
+echo $cmd
+$cmd
+
+cmd="ssh -t om@$target_machine bash -c 'rm -f ~/.ssh/authorized_keys'"
+echo $cmd
+$cmd
+
