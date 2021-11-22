@@ -35,9 +35,9 @@ if [[ -f $f ]]; then
 fi
 open $d
 
-f=$HOME/Desktop/'Portfolio_Position_*.csv'
+f=$HOME/Desktop/'Portfolio_Position*.csv'
 f=$(bash -c "ls -1tr $f|tail -1")
 if [[ -f $f ]]; then
-  mv "$f" $d/$today-mint-positions.csv
+  mv "$f" $d/$today-fidelity-positions.csv
 fi
 open $d
