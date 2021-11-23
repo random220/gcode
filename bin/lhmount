@@ -26,3 +26,4 @@ mkdir -p ~/b/om/pp
 umount ~/b/om/pp
 sshfs om@$target_machine:/b/om/p ~/b/om/pp
 
+open ~/b/om/pp
