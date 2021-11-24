@@ -22,8 +22,9 @@ cmd="ssh -t om@$target_machine gcode/bin/vmount"
 echo $cmd
 $cmd
 
-mkdir -p ~/b/om/pp
-umount ~/b/om/pp
-sshfs om@$target_machine:/b/om/p ~/b/om/pp
+proot=~/b/om/p
+mkdir -p $proot
+umount $proot
+sshfs om@$target_machine:/b/om/p $proot
 
-open ~/b/om/pp
+open $proot

@@ -10,7 +10,8 @@ if [[ $? == 0 ]]; then
   target_machine='192.168.10.180'
 fi
 
-umount ~/b/om/pp
+proot=~/b/om/p
+umount $proot
 
 cmd="ssh -t om@$target_machine gcode/bin/vumount"
 echo $cmd
