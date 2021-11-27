@@ -23,8 +23,18 @@ echo $cmd
 $cmd
 
 proot=~/b/om/p
+ptmp=~/b/om/ptmp
 mkdir -p $proot
 umount $proot
 sshfs om@$target_machine:/b/om/p $proot
 
 open $proot
+rm -rf $ptmp
+if [[ $1 != '' ]]; then
+mkdir -p $ptmp
+(
+nohup '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=$ptmp --incognito "$proot/CRUZER/gitted/sandbox/tiddly.html" >/dev/null 2>&1
+rm -rf $ptmp
+)&
+fi
+
