@@ -38,7 +38,7 @@ if [[ $1 == 'close' ]]; then
 fi
 
 if [[ $1 == 'check' ]]; then
-  f=(find /etc/hosts -type f -mmin +10)
+  f=$(find /etc/hosts -type f -mmin +10)
   if [[ $f == '/etc/hosts' ]]; then
     cat /etc/hosts.close >/etc/hosts
     date=$(date)
