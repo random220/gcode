@@ -21,6 +21,8 @@ if [[ ! -f /etc/hosts.close ]]; then
   echo '127.0.0.1 www.instagram.com' >>/etc/hosts.close
   echo '127.0.0.1 discord.com' >>/etc/hosts.close
   echo '127.0.0.1 www.discord.com' >>/etc/hosts.close
+  echo '127.0.0.1 netflix.com' >>/etc/hosts.close
+  echo '127.0.0.1 www.netflix.com' >>/etc/hosts.close
 fi
 
 if [[ $1 == 'open' ]]; then
