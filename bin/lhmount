@@ -22,8 +22,19 @@ cmd="ssh -t om@$target_machine gcode/bin/vmount"
 echo $cmd
 $cmd
 
-mkdir -p ~/b/om/pp
-umount ~/b/om/pp
-sshfs om@$target_machine:/b/om/p ~/b/om/pp
+proot=~/b/om/p
+ptmp=~/b/om/ptmp
+mkdir -p $proot
+umount $proot
+sshfs om@$target_machine:/b/om/p $proot
 
-open ~/b/om/pp
+open $proot
+rm -rf $ptmp
+if [[ $1 != '' ]]; then
+mkdir -p $ptmp
+(
+nohup '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=$ptmp --incognito "$proot/CRUZER/gitted/sandbox/tiddly.html" >/dev/null 2>&1
+rm -rf $ptmp
+)&
+fi
+

@@ -21,6 +21,7 @@ $HOME/go/bin
 /usr/bin
 /sbin
 /bin
+/opt/homebrew/bin
 )
 
 PATH=

@@ -1,0 +1,6 @@
+#!/bin/bash
+cat <<'EOF'
+gcc -o block.bin block.c
+sudo chown root block.bin
+sudo chmod a+s block.bin
+EOF

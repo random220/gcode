@@ -1,0 +1,39 @@
+Sat Dec 11 06:34:41 UTC 2021
+
+https://www.tutorialspoint.com/apache_kafka/index.htm
+
+1. java
+2. zookeeper
+
+# apt-get -y install openjdk-11-jdk
+# zookeeper
+    cd
+    wget https://dlcdn.apache.org/zookeeper/zookeeper-3.7.0/apache-zookeeper-3.7.0-bin.tar.gz
+    cd /opt
+    sudo tar xf ~/apache-zookeeper-3.7.0-bin.tar.gz
+    mkdir ~/bin
+    cd ~/bin
+    mkdir zook; cd zook
+    ln -s /opt/apache-zookeeper-3.7.0-bin/bin/*.sh .
+    rsync -a --delete /opt/apache-zookeeper-3.7.0-bin/conf/ conf/
+    cd conf
+    cp zoo_sample.cfg zoo.cfg
+    cat <<'EOF' | patch zoo.cfg
+--- zoo_sample.cfg      2021-03-17 09:45:24.000000000 +0000
++++ zoo.cfg     2021-12-11 07:00:35.784613646 +0000
+@@ -9,7 +9,7 @@
+ # the directory where the snapshot is stored.
+ # do not use /tmp for storage, /tmp here is just 
+ # example sakes.
+-dataDir=/tmp/zookeeper
++dataDir=/home/om/zookeeper-data
+ # the port at which the clients will connect
+ clientPort=2181
+ # the maximum number of client connections.
+EOF
+
+    cd ..
+    mkdir /home/om/zookeeper-data
+    ZOOCFGDIR=`pwd`/conf ./zkServer.sh start
+
+
