@@ -18,8 +18,9 @@ def main():
 def guess(orig):
     o = breakout(orig)
     inw = sys.stdin.readline().strip().lower()
-    if inw == 'h':
-        print(orig)
+    if inw == 'h' or inw == 'q':
+        print(orig.upper())
+        sys.exit(0)
         return('')
     if inw not in G.words_dict:
         return('')
