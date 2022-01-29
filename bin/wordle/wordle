@@ -8,18 +8,17 @@ def main():
 
     n = len(words_list)
     i = random.randint(0, n-1)
-    #print(i, words_list[i])
+    G.word = words_list[i]
+    G.word_hash = breakout(G.word)
     
     while True:
-        out = guess(words_list[i])
-        if out == words_list[i]:
+        if G.word == guess():
             sys.exit(0)
 
-def guess(orig):
-    o = breakout(orig)
+def guess():
     inw = sys.stdin.readline().strip().lower()
-    if inw == 'h' or inw == 'q':
-        print(orig.upper())
+    if inw == 'h' or inw == 'q' or inw == '.':
+        print(G.word.upper())
         sys.exit(0)
         return('')
     if inw not in G.words_dict:
@@ -30,8 +29,8 @@ def guess(orig):
     i = 0
     for c in inw:
         i += 1
-        if c in o:
-            if i in o[c]:
+        if c in G.word_hash:
+            if i in G.word_hash[c]:
                 x = x+c.upper()
                 G.leftover = G.leftover.replace(c.lower(), c.upper())
             else:
