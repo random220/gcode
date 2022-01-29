@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import json
 import random
 import sys
 
@@ -39,10 +38,12 @@ def guess_right():
             x = x+'*'
             G.leftover = G.leftover.replace(c.lower(), '.')
     print('=> '+x)
-    print(G.leftover)
+    print()
 
     if inw == G.word:
         return True
+
+    print(G.leftover)
     return False
 
 def breakout(w):
@@ -2917,7 +2918,6 @@ class G:
     }
 
     leftover = '''\
-
     abcd  efgh
     ijkl  mnop
     qrst  uvwx
