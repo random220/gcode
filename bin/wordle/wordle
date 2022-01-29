@@ -32,11 +32,15 @@ def guess(orig):
         if c in o:
             if i in o[c]:
                 x = x+c.upper()
+                G.leftover = G.leftover.replace(c.lower(), c.upper())
             else:
                 x = x+c.lower()
+                G.leftover = G.leftover.replace(c.upper(), c.lower())
         else:
             x = x+'*'
+            G.leftover = G.leftover.replace(c.lower(), '.')
     print('=> '+x)
+    print(G.leftover)
     return(inw)
 
 def breakout(w):
@@ -2909,5 +2913,12 @@ class G:
         "zoned": True,
         "zones": True,
     }
+
+    leftover = '''\
+
+    abcd  efgh
+    ijkl  mnop
+    qrst  uvwx
+        yz'''
 
 main()
