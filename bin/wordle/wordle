@@ -11,11 +11,10 @@ def main():
     G.word = words_list[i]
     G.word_hash = breakout(G.word)
     
-    while True:
-        if G.word == guess():
-            sys.exit(0)
+    while not guess_right():
+        pass
 
-def guess():
+def guess_right():
     inw = sys.stdin.readline().strip().lower()
     if inw == 'h' or inw == 'q' or inw == '.':
         print(G.word.upper())
@@ -41,7 +40,10 @@ def guess():
             G.leftover = G.leftover.replace(c.lower(), '.')
     print('=> '+x)
     print(G.leftover)
-    return(inw)
+
+    if inw == G.word:
+        return True
+    return False
 
 def breakout(w):
     word = {}
@@ -2919,6 +2921,7 @@ class G:
     abcd  efgh
     ijkl  mnop
     qrst  uvwx
-        yz'''
+        yz
+'''
 
 main()
