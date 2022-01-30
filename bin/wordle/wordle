@@ -20,6 +20,7 @@ def guess_right():
         sys.exit(0)
         return('')
     if inw not in G.words_dict:
+        print('Not in dictionary')
         return('')
 
     n = breakout(inw)
@@ -585,6 +586,7 @@ class G:
         "empty": True,
         "enact": True,
         "endow": True,
+        "enemy": True,
         "enjoy": True,
         "enrol": True,
         "entry": True,
@@ -595,6 +597,7 @@ class G:
         "epoxy": True,
         "equal": True,
         "equip": True,
+        "erase": True,
         "ergot": True,
         "erica": True,
         "erupt": True,
