@@ -1875,6 +1875,7 @@ class G:
         "waver": True,
         "waxen": True,
         "weary": True,
+        "weave": True,
         "weigh": True,
         "weird": True,
         "welsh": True,
