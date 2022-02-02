@@ -944,6 +944,7 @@ class G:
         "koran": True,
         "korea": True,
         "kraft": True,
+        "label": True,
         "laden": True,
         "lager": True,
         "laird": True,
