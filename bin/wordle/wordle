@@ -1888,6 +1888,7 @@ class G:
         "whale": True,
         "wharf": True,
         "wheat": True,
+        "wheel": True,
         "whelk": True,
         "whelp": True,
         "while": True,
