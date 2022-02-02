@@ -951,6 +951,7 @@ class G:
         "laity": True,
         "lance": True,
         "lanky": True,
+        "lapel": True,
         "lapse": True,
         "larch": True,
         "large": True,
