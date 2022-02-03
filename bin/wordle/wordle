@@ -561,6 +561,7 @@ class G:
         "drone": True,
         "drove": True,
         "drown": True,
+        "druid": True,
         "drunk": True,
         "duchy": True,
         "dumpy": True,
