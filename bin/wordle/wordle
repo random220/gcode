@@ -1179,6 +1179,7 @@ class G:
         "ovary": True,
         "ovate": True,
         "overt": True,
+        "ovlue": True,
         "owing": True,
         "owlet": True,
         "owner": True,
