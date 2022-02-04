@@ -417,6 +417,7 @@ class G:
         "cobra": True,
         "coder": True,
         "codex": True,
+        "cogent": True,
         "comer": True,
         "comet": True,
         "comfy": True,
