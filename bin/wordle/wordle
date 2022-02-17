@@ -14,14 +14,14 @@ def main():
 
 def guess_right():
     G.inword = sys.stdin.readline().strip().lower()
-    if len(G.inword) != 5:
-        return False
     if G.inword == 'h' or G.inword == 'q' or G.inword == '.':
         print(G.word.upper())
         sys.exit(0)
         return False
     if G.inword not in G.words_dict and G.inword not in G.other_wild_guesses_dict:
         print('Not in dictionary')
+        print(G.match)
+        print(G.leftover)
         return False
 
     m = match_word()
@@ -66,6 +66,7 @@ def match_word():
 
 class G:
 
+    match = '*****'
     leftover = '''\
     abcd  efgh
     ijkl  mnop
