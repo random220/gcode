@@ -8,55 +8,61 @@ def main():
     n = len(words_list)
     i = random.randint(0, n-1)
     G.word = words_list[i]
-    G.word_hash = breakout(G.word)
     
     while not guess_right():
         pass
 
 def guess_right():
-    inw = sys.stdin.readline().strip().lower()
-    if inw == 'h' or inw == 'q' or inw == '.':
+    G.inword = sys.stdin.readline().strip().lower()
+    if len(G.inword) != 5:
+        return False
+    if G.inword == 'h' or G.inword == 'q' or G.inword == '.':
         print(G.word.upper())
         sys.exit(0)
-        return('')
-    if inw not in G.words_dict and inw not in G.other_wild_guesses_dict:
+        return False
+    if G.inword not in G.words_dict and G.inword not in G.other_wild_guesses_dict:
         print('Not in dictionary')
-        return('')
+        return False
 
-    n = breakout(inw)
-    x = ''
-    i = 0
-    for c in inw:
-        i += 1
-        if c in G.word_hash:
-            if i in G.word_hash[c]:
-                x = x+c.upper()
-                G.leftover = G.leftover.replace(c.lower(), c.upper())
-            else:
-                x = x+c.lower()
-                G.leftover = G.leftover.replace(c.upper(), c.lower())
-        else:
-            x = x+'*'
-            G.leftover = G.leftover.replace(c.lower(), '.')
-    print('=> '+x)
-    print()
+    m = match_word()
+    if m:
+        print(G.word.upper())
+        return True
+    else:
+        print(G.match)
+        print(G.leftover)
+        return False
 
-    if inw == G.word:
+def match_word():
+
+    if G.word == G.inword:
         return True
 
-    print(G.leftover)
-    return False
+    G.match = list('*****')
+    a = list(G.word)
+    b = list(G.inword)
+    for i in range(0,5):
+        if a[i] == b[i]:
+            G.match[i] = a[i].upper()
+            G.leftover = G.leftover.replace(a[i], a[i].upper())
+            a[i] = '*'
+            b[i] = '*'
 
-def breakout(w):
-    word = {}
-    n = 1
-    for c in w:
-        c = c.lower()
-        if c not in word:
-            word[c] = {}
-        word[c][n] = True
-        n = n+1
-    return word
+    for j in range(0,5):
+        if b[j] == '*':
+            continue
+        found = False
+        for i in range(0,5):
+            if a[i] == b[j]:
+                found = True
+                G.match[j] = b[j]
+                a[i] = '*'
+                b[j] = '*'
+                break
+        if not found:
+            G.leftover = G.leftover.replace(b[j], '.')
+    G.match = ''.join(G.match)
+                
 
 class G:
 
