@@ -39,30 +39,42 @@ def match_word():
         return True
 
     G.match = list('*****')
-    a = list(G.word)
-    b = list(G.inword)
-    for i in range(0,5):
-        if a[i] == b[i]:
-            G.match[i] = a[i].upper()
-            G.leftover = G.leftover.replace(a[i], a[i].upper())
-            a[i] = '*'
-            b[i] = '*'
-
-    for j in range(0,5):
-        if b[j] == '*':
+    a = breakout(G.word)
+    b = breakout(G.inword)
+    for c in list(b.keys()):
+        if not c in a:
+            G.leftover = G.leftover.replace(c, '.')
+            del b[c]
             continue
-        found = False
-        for i in range(0,5):
-            if a[i] == b[j]:
-                found = True
-                G.match[j] = b[j]
-                a[i] = '*'
-                b[j] = '*'
-                break
-        if not found:
-            G.leftover = G.leftover.replace(b[j], '.')
+
+        for i in list(b[c].keys()):
+            if i in a[c]:
+                G.match[i] = c.upper()
+                G.leftover = G.leftover.replace(c, c.upper())
+                del a[c][i]
+                del b[c][i]
+    for c in list(b.keys()):
+        for i in list(b[c].keys()):
+            found1 = False
+            if c in list(a.keys()):
+                for j in a[c]:
+                    found1 = True
+                    G.match[i] = c
+                    del a[c][j]
+                    del b[c][i]
+                    break
+
     G.match = ''.join(G.match)
                 
+def breakout(word):
+    s = {}
+    n = 0
+    for c in word:
+        if c not in s:
+            s[c] = {}
+        s[c][n] = True
+        n += 1
+    return s
 
 class G:
 
