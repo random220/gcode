@@ -230,6 +230,17 @@ alias prk='kill $(ps uxw|grep '\''ssh -g -N -f vmwgitlab'\''|grep -v grep|awk '\
 alias a6='docker exec -ti 67ga bash'
 alias a7='docker exec -ti 70ga bash'
 alias a3='docker exec -ti 70u3 bash'
+function dp() {
+  local f=$1
+  if [[ $f == '' ]]; then
+    echo 'Need a file to copy'
+    return 1
+  fi
+  local b=$(basename "$f")
+  docker exec ub bash -c 'mkdir -p /home/om/aaa'
+  docker cp "$f" ub:/home/om/aaa/"$b"
+  docker exec ub bash -c 'chown -R om:om /home/om/aaa'
+}
 
 export P4USER=omandal
 alias plog='p4 -p perforce.crondite.com:1666 describe -s $1'
