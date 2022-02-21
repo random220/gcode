@@ -1,12 +1,34 @@
 #!/usr/bin/python3
+import re
 import random
 import sys
 
 def main():
     words_list = list(G.words_dict.keys())
+    n = 0
+    for w in words_list:
+        G.words_dict[w] = n
+        n += 1
 
     n = len(words_list)
-    i = random.randint(0, n-1)
+    i = -1
+    if len(sys.argv) == 2:
+        m = re.search(r'^\d+$', sys.argv[1])
+        if m:
+            i = int(sys.argv[1])
+            i = i % n
+        else:
+            G.word = sys.argv[1].lower()
+            if G.word in G.words_dict:
+                i = G.words_dict[G.word]
+            else:
+                print(f'Not in dictionary: {G.word}')
+                sys.exit(1)
+                
+    if i == -1:
+        i = random.randint(0, n-1)
+    print(i+n)
+    print('')
     G.word = words_list[i]
     
     while not guess_right():
