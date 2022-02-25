@@ -1,5 +1,19 @@
 #!/bin/bash
 
-cat <(date; echo) ~/.tw.txt >~/.twt.txt
-mv ~/.twt.txt ~/.tw.txt
-vi ~/.tw.txt
+d=~/sb/omwork
+if [[ ! -d $d ]]; then
+  mkdir -p ~/sb
+  cd ~/sb
+  git clone git@github.com:om-mandal/work.git omwork
+fi
+mkdir -p ~/sb/omwork/twits
+cd ~/sb/omwork/twits
+git pull
+
+cat <(date; echo) tw.txt >.twt.txt
+mv .twt.txt tw.txt
+vi tw.txt
+
+git add tw.txt
+git commit -m "$(date)"
+git push

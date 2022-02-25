@@ -1,8 +1,20 @@
 #!/bin/bash
 
-echo >>~/.twt.txt
-date >>~/.twt.txt
-cat - | sed 's/^/    /' >>~/.twt.txt
-cat ~/.twt.txt ~/.tw.txt >~/.twtt.txt
-mv ~/.twtt.txt ~/.tw.txt
-#vi ~/.tw.txt
+d=~/sb/omwork
+if [[ ! -d $d ]]; then
+  mkdir -p ~/sb
+  cd ~/sb
+  git clone git@github.com:om-mandal/work.git omwork
+fi
+mkdir -p ~/sb/omwork/twits
+cd ~/sb/omwork/twits
+git pull
+echo >>.twt.txt
+date >>.twt.txt
+cat - | sed 's/^/    /' >>.twt.txt
+cat .twt.txt tw.txt >.twtt.txt
+rm -f .twt.txt
+mv .twtt.txt tw.txt
+git add tw.txt
+git commit -m "$(date)"
+git push

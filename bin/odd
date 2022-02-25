@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 # https://apple.stackexchange.com/questions/326388/terminal-command-to-record-audio-through-macbook-microphone
 
 # ffmpeg -f avfoundation -list_devices true -i "" 2>&1 |grep 'MacBook Pro Microphone'
