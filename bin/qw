@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cat <(date; echo) ~/.tw.txt >~/.twt.txt
+mv ~/.twt.txt ~/.tw.txt
+vi ~/.tw.txt

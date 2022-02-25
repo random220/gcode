@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo >>~/.twt.txt
+date >>~/.twt.txt
+cat - | sed 's/^/    /' >>~/.twt.txt
+cat ~/.twt.txt ~/.tw.txt >~/.twtt.txt
+mv ~/.twtt.txt ~/.tw.txt
+#vi ~/.tw.txt
