@@ -1,23 +1,6 @@
 #!/bin/bash
 
 d=~/sb/omwork
-f=events
-case $1 in
-  '')
-    f=events
-    ;;
-  'e')
-    f=events
-    ;;
-  'p')
-    f=people
-    ;;
-  *)
-    f="$1"
-    ;;
-esac
-f=twit-"$f".txt
-
 if [[ ! -d $d ]]; then
   mkdir -p ~/sb
   cd ~/sb
@@ -26,11 +9,12 @@ fi
 mkdir -p ~/sb/omwork/twits
 cd ~/sb/omwork/twits
 git pull
-
-cat <(date; echo) "$f" >.twt.txt
-mv .twt.txt "$f"
-vi "$f"
-
-git add "$f"
+echo >>.twt.txt
+date >>.twt.txt
+cat - | sed 's/^/    /' >>.twt.txt
+cat .twt.txt tw.txt >.twtt.txt
+rm -f .twt.txt
+mv .twtt.txt tw.txt
+git add tw.txt
 git commit -m "$(date)"
 git push
