@@ -1,0 +1,169 @@
+VBoxManage modifyvm ub20 --nested-hw-virt on
+
+
+https://linuxize.com/post/how-to-install-kvm-on-ubuntu-20-04/
+
+apt-get -y update
+apt-get -y install cpu-checker
+kvm-ok
+
+INFO: /dev/kvm exists
+KVM acceleration can be used
+
+apt-get -y install qemu-kvm libvirt-daemon-system libvirt-clients virtinst bridge-utils virt-manager
+apt-get -y install libguestfs-tools # for virt-customize
+systemctl is-active libvirtd
+
+Output:
+active
+
+snapshot KVM0
+
+
+# ----------------------------------------------------------------------------------------------------
+# Bridge network (too involved. skip for now)
+# https://levelup.gitconnected.com/how-to-setup-bridge-networking-with-kvm-on-ubuntu-20-04-9c560b3e3991
+# https://help.ubuntu.com/community/KVM/Networking
+# ----------------------------------------------------------------------------------------------------
+
+
+
+
+# usermod -aG libvirt ir
+# usermod -aG kvm ir
+
+# ----------------------------------------------------------------------------------------------------
+# Create a new overlay image on top a backing file
+# ----------------------------------------------------------------------------------------------------
+# https://dustymabe.com/2015/01/11/qemu-img-backing-files-a-poor-mans-snapshotrollback/
+# https://libvirt.org/kbase/backing_chains.html
+# https://techpiezo.com/linux/use-and-implementation-of-backing-file-and-snapshot-in-qemu-kvm/
+# ----------------------------------------------------------------------------------------------------
+cd /b
+qemu-img create -f qcow2 -b /b/.lp-golden-latest.qcow2 ./mydisk.qcow2
+# Make sure the backend disk at least uses absolute path
+ls -la
+    # -r--r--r--  1 root root 3667396608 Mar 13 06:10 .lp-golden-latest.qcow2
+    # -rw-r--r--  1 root root     198208 Mar 13 06:18 mydisk.qcow2
+cd
+qemu-img info /b/mydisk.qcow2
+    # image: /b/mydisk.qcow2
+    # file format: qcow2
+    # virtual size: 100 GiB (107374182400 bytes)
+    # disk size: 196 KiB
+    # cluster_size: 65536
+    # backing file: /b/.lp-golden-latest.qcow2
+    # Format specific information:
+    #     compat: 1.1
+    #     lazy refcounts: false
+    #     refcount bits: 16
+    #     corrupt: false
+# ----------------------------------------------------------------------------------------------------
+# Create a VM using this image
+# ----------------------------------------------------------------------------------------------------
+# https://access.redhat.com/solutions/641193
+# ----------------------------------------------------------------------------------------------------
+
+cat <<'EOF'|openssl enc -d -base64|gunzip - >irp598-c01-lp.xml
+H4sIAHOrLWIAA61Xy3KrOBDd5yvYaTGFwfidAhZ3OzWr+YBbQpKNygIRSTj2309L
+CAOJuZVk7IULtU53n36oESmVFeZ1YG4Ny9D5UqGA0wytttv1Zo/ylyBIa1yxnKtm
+c9iHJF6GokkjJ7Obbctpvmf4sFsnmzAp1ttwXaz2Id5REibHQ7FiW7Y6sGMaOajV
+qVgl1S1oa24y9Df/hfL9ar/fxvs06rYcirRKsdr8Mw+eIJzOhTRt0AhMWAUbGdIG
+G05QnqSR3XIYxbRsFXH0YdlgZbjhss6jCpOS1yyNBplViMYaqdRe0WYswIqUGbru
+t7+3axR4AxlqSMjX6/h4DVXJxG4RL2KUl5cqjayWN1BIaQLKLhkqKYo6V5319Miw
+acGtR2LS8Kh/bjjx4DEqtZFXkoJz0mojK8vGWHLsiolBASkZOWfo2AqBvCkLF8ER
+C1FgtydVwSnKfymJ6TsTAuphIR7u3QWNFJzcMqTYW8sVQ4FtBggCIlMXrqVC0dc0
+rhpfmGxMH3xfISIkOQfyeNQMatga0hM2vGLKKysQB1Dcc2+c2HDb5u58DG64mYIh
+Knx7CC0bBtgG0uo6qJZ3dpZV1wL170a+MwUMc8q0UfIGlRsJPUgxW+IcTBloKAfx
+Ig8gCutyYqKT2O2m8uR0qxtW09DIEE5HwGpcCEYHZlMI5fr8GQMt7cyl0G6c3PuK
+Va3ARqo8arWKBC/YlZHoDcTh2Tbrfb+DO9vdoDhyAWXsrEE2YcPXyMIUv9zTaY0h
+r/RG5HvSk7a03akKrK0MRRQbHF24Mi0WoT9JOprMnelqwavTyJrtYV6f/gW+bMKS
+15RdM7S8M7SdKRUcDw9T+H2w8yNeC9GEJykoq0NIGNRzyu0Du4FzNBbfpdAtJ+ZH
+w4ViFBSthiegwOUoYCw41j7N3aarfjyGUArdp32cDeFQMzfvMxRfY/h523aBAi2k
+cc87FBzbmtgJ6Nb3RousA/9MZA1tKwSUujPf6uKebLDmRkeGOCkPISsJH/I/YW61
+/jfhzZTwbiA8sPwB7fartCusDRh057yRypJ6elCWWysMH2SyfmKcyc/iTJ4e5/KJ
+Qa1+FtT66UEl3wnKOfkUFEhDBS+PxyHB7iL+jhM/MTRTHIuRuz+Nlw78hNbezg6Y
+T8R5DcU5wo3O+ygUpyeGRtUjgWeRoU3yulm/xpvXw/41Xr4m8ee3Tadv7cTL0e5k
+5tbMLMc90F2UxnmbGcOg+ITsrGazc0/GUFUtRZ+axtzgVWtu9qXFLlFjdJTs0McE
+NNiUU8SnLEwiDR4MtFHInsK0hFbSUyxxXd+zp+H2yi4VQX922ZuuForREpuF01vY
+JMGNvrtxgJuaEcPoHLHO8Xw9PpyAofPcqesK00c/Hkqd3Xt7Nm3P3thbl/GqdsY8
+5OU05lm5iTbr3Ck/cF3JVjOv1+iZWe4UvmDszG6FxIp+yV7y2N5J4abkRI/r3sez
+OcR7FODWyG59YxoFgsMUhn5fJu5zaTF673Zb3pLPFhoO/aAx5JRX+MSgpJW9yOvu
+bXk8DlR7ev0FWrY1Hb09to8DdrAnHPD17AF3HvziwimTD2fQ2xX6VeEqQ9vNZgXD
+9DJZnIAsLJfb1R48lQxTmyX7UQNpUbcu4XP3SPD5hAiT2QhHUcGnOOUKBtFwYmbH
+xJikU/vWCRo1ae/zCRSW36GwmqUAxSrgG1zKuu9APwYfevbQJ9RoP1ujgVH38Tj6
+akw1IwIX91akN6DFyf2WQjE8K+YgXaN5o06S/7WMd6/2L406wctwXD8hRlJHo3ed
+vwAlF2D+8vIfyS9CjcESAAA=
+EOF
+# Change root password to welcome
+cd /b
+apt-get -y install libguestfs-tools
+time virt-customize -a mydisk.qcow2 --root-password password:welcome
+    # [   0.0] Examining the guest ...
+    # [  25.1] Setting a random seed
+    # [  25.5] Setting passwords
+    # [  28.2] Finishing off
+    # 
+    # real    0m28.520s
+    # user    0m19.250s
+    # sys     0m2.497s
+
+# Uninstall cloud-init
+time virt-customize -a mydisk.qcow2 --root-password password:welcome --uninstall cloud-init
+    # [   0.0] Examining the guest ...
+    # [  19.9] Setting a random seed
+    # [  20.1] Uninstalling packages: cloud-init
+    # [  22.5] Setting passwords
+    # [  24.9] Finishing off
+    # 
+    # real    0m25.094s
+    # user    0m20.177s
+    # sys     0m0.804s
+
+time  virt-install \
+  --import \
+  --name c7 \
+  --memory 2048 \
+  --vcpus 2 \
+  --disk /b/mydisk.qcow2 \
+  --os-variant rhel7.0 \
+  --graphics vnc \
+  --noautoconsole \
+  --network network=default
+
+virt-install \
+--name RuckusNetworkDirector2.0 \
+--vcpus 2 \
+--ram 4096 \
+--controller type=ide \
+--disk=/home/sqa/RND2.0/RuckusNetworkDirector2.0.qcow2,bus=ide,size=40 \
+--import \
+--disk size=40,bus=ide \
+--graphics vnc \
+--noautoconsole \
+--network bridge=br0 \
+
+
+https://linuxconfig.org/how-to-create-and-manage-kvm-virtual-machines-from-cli
+https://www.cyberciti.biz/faq/how-to-install-kvm-on-centos-7-rhel-7-headless-server/
+
+
+Fresh machine out of cdrom
+    virt-install --name=c7 \
+    --vcpus=1 \
+    --memory=1024 \
+    --cdrom=/b/ir/CentOS-7-x86_64-Minimal-2009.iso \
+    --disk path=/b/ir/c7.qcow2,size=40,bus=virtio,format=qcow2 \
+    --os-variant=centos7.0 \
+    --graphics vnc \
+
+
+        # to find os variant
+        apt install libosinfo-bin
+        osinfo-query os
+
+    virsh dumpxml c7 | grep vnc
+
+
+
+
