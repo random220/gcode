@@ -1,0 +1,15 @@
+#!/bin/bash
+if [[ ! -d ~/sb/omwork ]]; then
+  mkdir -p ~/sb
+  cd ~/sb
+  git clone git@github.com:om-mandal/work.git
+fi
+
+if [[ ! -d ~/sb/omwork ]]; then
+  echo 'FAILED git clone git@github.com:om-mandal/work.git'
+  exit
+fi
+
+cd ~/sb/omwork
+git pull
+find ~/sb/omwork/twits
