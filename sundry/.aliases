@@ -44,10 +44,10 @@ if [[ -f /etc/lsb-release ]]; then
     on_mint=1
   fi
 fi
-if [[ $on_mint == 0 ]]; then
-  export LC_ALL=C
-  export LANG=C
-fi
+# if [[ $on_mint == 0 ]]; then
+#   export LC_ALL=C
+#   export LANG=C
+# fi
 unset on_mint
 
 # Red prompt
