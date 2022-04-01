@@ -12,4 +12,4 @@ fi
 
 cd ~/sb/omwork
 git pull
-find ~/sb/omwork/twits
+find ~/sb/omwork/twits|sed 's,^.*twit-,,; s/\.txt$//; s/^/q /'
