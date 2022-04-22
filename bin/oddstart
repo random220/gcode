@@ -1,4 +1,5 @@
 #!/bin/bash
+mkdir -p ~/odd
 
 SwitchAudioSource -t input -s 'MacBook Pro Microphone'
 #SwitchAudioSource -t input -s 'BlackHole 2ch'
