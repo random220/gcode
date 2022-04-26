@@ -86,6 +86,7 @@ function ub_install() {
   docker exec -ti $cont bash -c 'apt-get -y install img2pdf'
   docker exec -ti $cont bash -c 'apt-get -y install poppler-utils' # for pdfimages
   docker exec -ti $cont bash -c 'apt-get -y install imagemagick'   # for commandline image processing
+  docker exec -ti $cont bash -c 'apt-get -y install postgresql-client'   # for commandline psql client
   local d=$(mktemp -d)
   echo 'om ALL=(ALL) NOPASSWD: ALL' >$d/om
   docker cp $d/om $cont:/etc/sudoers.d/om
