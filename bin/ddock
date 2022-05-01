@@ -17,6 +17,10 @@ function main() {
     cont_start c8
     ;;
   dub)
+    if [[ "$1" == '0' ]]; then
+      docker rm -f ub
+      docker rmi -f myub
+    fi
     cont_start ub
     ;;
   *)
