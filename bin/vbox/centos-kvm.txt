@@ -92,6 +92,8 @@ virsh net-dumpxml default
 
 snapshot KVM0
 
+----
+----
 
 # ----------------------------------------------------------------------------------------------------
 # Create a new overlay image on top a backing file
@@ -100,6 +102,39 @@ snapshot KVM0
 # https://libvirt.org/kbase/backing_chains.html
 # https://techpiezo.com/linux/use-and-implementation-of-backing-file-and-snapshot-in-qemu-kvm/
 # ----------------------------------------------------------------------------------------------------
+ssh root@irp201-v36
+cd /dogfoods/glacier/vmvip4/irp598-c01-lp/omandal
+
+[root@irp201-v36 omandal]# realpath ../.lp-golden-latest.img
+/dogfoods/glacier/vmvip4/irp598-c01-lp/.lp-golden-latest.img
+
+[root@irp201-v36 omandal]# qemu-img info /dogfoods/glacier/vmvip4/irp598-c01-lp/.lp-golden-latest.img
+image: /dogfoods/glacier/vmvip4/irp598-c01-lp/.lp-golden-latest.img
+file format: qcow2
+virtual size: 100G (107374182400 bytes)
+disk size: 3.4G
+cluster_size: 65536
+Format specific information:
+    compat: 1.1
+    lazy refcounts: false
+
+qemu-img create -f qcow2 -b /dogfoods/glacier/vmvip4/irp598-c01-lp/.lp-golden-latest.img mydisk.qcow2
+Formatting 'mydisk.qcow2', fmt=qcow2 size=107374182400 backing_file='/dogfoods/glacier/vmvip4/irp598-c01-lp/.lp-golden-latest.img' encryption=off cluster_size=65536 lazy_refcounts=off
+
+qemu-img info mydisk.qcow2
+[root@irp201-v36 omandal]# qemu-img info mydisk.qcow2
+image: mydisk.qcow2
+file format: qcow2
+virtual size: 100G (107374182400 bytes)
+disk size: 194K
+cluster_size: 65536
+backing file: /dogfoods/glacier/vmvip4/irp598-c01-lp/.lp-golden-latest.img
+Format specific information:
+    compat: 1.1
+    lazy refcounts: false
+
+
+
 cd /b
 qemu-img create -f qcow2 -b /b/.lp-golden-latest.qcow2 ./mydisk.qcow2
 # Make sure the backend disk at least uses absolute path
