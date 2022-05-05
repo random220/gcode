@@ -4,10 +4,14 @@ d=~/sb/omwork
 f=events
 case $1 in
   '')
-    f=events
+    find ~/sb/omwork/twits -type f
+    exit 0
     ;;
   'e')
     f=events
+    ;;
+  'd')
+    f=down
     ;;
   'p')
     f=people
@@ -16,7 +20,16 @@ case $1 in
     f="$1"
     ;;
 esac
-f=twit-"$f".txt
+if [[ "$f" =~ ^twit- ]]; then
+  :
+else
+  f="twit-$f"
+fi
+if [[ "$f" =~ \.txt$ ]]; then
+  :
+else
+  f="${f}.txt"
+fi
 
 if [[ ! -d $d ]]; then
   mkdir -p ~/sb
