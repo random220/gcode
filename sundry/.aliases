@@ -50,8 +50,7 @@ fi
 # fi
 unset on_mint
 
-# Red prompt
-# export PS1="\[\e[31m\]\u@\h \w >\n%\[\e[m\] "
+# export PS1="\[\e[31m\]\u@\h \w >\[\e[m\]\n% "
 # Green prompt
 # export PS1="\[\e[32m\]\u@\h \w >\n%\[\e[m\] "
 # Bright Green
@@ -62,19 +61,21 @@ unset on_mint
 # export PS1="\[\e[01;34m\]\u@\h \w >\n%\[\e[m\] "
 # Magenta prompt
 # export PS1="\[\e[01;35m\]\u@\h \w >\n%\[\e[m\] "
+# Red prompt
+# export PS1="\[\e[31m\]\u@\h \w >\[\e[m\]\n% "
 
 # echo -e "\e[1m  BOLD   \e[0m"
 # echo -e "\e[38;5;20m  BLUE   \e[0m"
 # echo -e "\e[38;5;22m  GREEN   \e[0m"
 # "\u@\h \w >\n% "   : The actual prompt 'om@om-Latitude-E7450 ~ '
 
-export PS1="\e[1m\e[38;5;20m\u@\h \w >\n% \e[0m\e[0m"    # blue
-export PS1="\e[1m\e[38;5;199m\u@\h \w >\n% \e[0m\e[0m"   # magenta
-export PS1="\e[1m\e[38;5;40m\u@\h \w >\n% \e[0m\e[0m"    # green
-export PS1="\e[1m\e[38;5;23m\u@\h \w >\n% \e[0m\e[0m"    # darker green
-export PS1="\e[1m\e[38;5;56m\u@\h \w >\n% \e[0m\e[0m"    # nice blueish magenta
-export PS1="\e[1m\e[38;5;199m\u@\h \w >\n% \e[0m\e[0m"   # magenta
-export PS1="\e[1m\e[38;5;20m\u@\h \w >\n% \e[0m\e[0m"    # sulekha blue
+export PS1="\e[1m\e[38;5;20m\u@\h \w >\e[0m\e[0m\n% "    # blue
+export PS1="\e[1m\e[38;5;199m\u@\h \w >\e[0m\e[0m\n% "   # magenta
+export PS1="\e[1m\e[38;5;40m\u@\h \w >\e[0m\e[0m\n% "    # green
+export PS1="\e[1m\e[38;5;23m\u@\h \w >\e[0m\e[0m\n% "    # darker green
+export PS1="\e[1m\e[38;5;56m\u@\h \w >\e[0m\e[0m\n% "    # nice blueish magenta
+export PS1="\e[1m\e[38;5;199m\u@\h \w >\e[0m\e[0m\n% "   # magenta
+export PS1="\e[1m\e[38;5;20m\u@\h \w >\e[0m\e[0m\n% "    # sulekha blue
 alias ps1="echo export PS1=\''$PS1'\'"
 
 export HISTTIMEFORMAT="%F %T "
