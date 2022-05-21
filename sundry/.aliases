@@ -216,6 +216,7 @@ alias ovftool='/Applications/VMware\ OVF\ Tool/ovftool'
 alias jl='LC_ALL=C.UTF-8 LANG=C.UTF-8 pipenv run jupyter lab --ContentsManager.allow_hidden=True'
 alias vmr='"/Applications/VMware Fusion.app/Contents/Library/vmrun"'
 
+
 # vmware stuff
 if [[ -f $HOME/ww/.vmware_aliases ]]; then
   . $HOME/ww/.vmware_aliases
@@ -260,5 +261,13 @@ function phead() {
   )
   rm -rf $d
 }
+
+function unix() {
+  f="$1"
+  if [[ -f "$f" ]]; then
+    perl -i -pe 's/\cM//s' "$f"
+  fi
+}
+
 
 alias op=afplay
