@@ -1,0 +1,54 @@
+#!/usr/bin/env python
+import sys, os, re, tempfile, shutil, json
+
+class G:
+    N = 5
+    LINES = []
+    lens = {}
+    pad = 4
+
+def main():
+    if len(sys.argv) < 3:
+        print(sys.argv[0]+' n filename')
+        sys.exit(0)
+
+    G.N = int(sys.argv[1])
+    fn = sys.argv[2]
+    with open(fn, 'r') as f:
+        for line in f:
+            line = line.strip()
+            parts = re.split(r'[\s\:]+', line, maxsplit=G.N)
+            collect_lengths(parts)
+            G.LINES.append(parts)
+
+    print_formatted()
+
+def print_formatted():
+    for lineparts in G.LINES:
+        print_formatted_line(lineparts)
+
+def print_formatted_line(lineparts):
+    i = 0
+    line = ''
+    for part in lineparts:
+        if i < G.N:
+            line = line+'{s:{n}}'.format(s=part, n=G.lens[i]+G.pad)
+        else:
+            line = line+'{s}'.format(s=part)
+        i += 1
+    print(line)
+
+
+def collect_lengths(parts):
+    i = 0
+    for part in parts:
+        n = len(part)
+        if i not in G.lens:
+            G.lens[i] = 0
+        if n > G.lens[i]:
+            G.lens[i] = n
+        i += 1
+        if i >= G.N:
+            break
+
+main()
