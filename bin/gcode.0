@@ -1,0 +1,13 @@
+#!/bin/bash
+if [[ ! -d ~/gcode ]]; then
+  cd
+  git clone https://github.com/random220/gcode
+  rm -f .bashrc .aliases .vimrc .tmux.conf
+  ln -s gcode/sundry/.bashrc
+  ln -s gcode/sundry/.aliases
+  ln -s gcode/sundry/.vimrc
+  ln -s gcode/sundry/.tmux.conf 
+  . ~/.bashrc
+fi
+
+
