@@ -4,6 +4,7 @@ function main() {
     lxc launch ubuntu:20.04 taiga
     lxc config set taiga security.nesting true
     lxc config device add taiga port9001 proxy listen=tcp:0.0.0.0:9001 connect=tcp:127.0.0.1:9001
+    lxc config device add taiga port9000 proxy listen=tcp:0.0.0.0:9000 connect=tcp:127.0.0.1:9000
     install_docker_on_taiga
     install_docker_compose_on_taiga
     start_taiga
