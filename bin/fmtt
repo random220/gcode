@@ -14,13 +14,19 @@ def main():
 
     G.N = int(sys.argv[1])
     fn = sys.argv[2]
-    with open(fn, 'r') as f:
-        for line in f:
-            line = line.strip()
-            parts = re.split(r'[\s\:]+', line, maxsplit=G.N)
-            collect_lengths(parts)
-            G.LINES.append(parts)
-
+    if fn == '-':
+        f = sys.stdin
+    else:
+        try:
+            f = open(fn, 'r')
+        except:
+            sys.exit(1)
+    for line in f:
+        line = line.strip()
+        parts = re.split(r'[\s\:]+', line, maxsplit=G.N)
+        collect_lengths(parts)
+        G.LINES.append(parts)
+    f.close()
     print_formatted()
 
 def print_formatted():
