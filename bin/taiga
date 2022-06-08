@@ -1,0 +1,55 @@
+#!/bin/bash
+
+function main() {
+    lxc launch ubuntu:20.04 taiga
+    lxc config set taiga security.nesting true
+    lxc config device add taiga port9001 proxy listen=tcp:0.0.0.0:9001 connect=tcp:127.0.0.1:9001
+    install_docker_on_taiga
+    install_docker_compose_on_taiga
+    start_taiga
+}
+
+function start_taiga() {
+    cat <<'EOF' | lxc exec taiga bash -
+set -x
+mkdir sb
+cd sb
+git clone https://github.com/kaleidos-ventures/taiga-docker.git
+cd taiga-docker
+./launch-all.sh
+EOF
+}
+
+function install_docker_compose_on_taiga() {
+    cat <<'EOF' | lxc exec taiga bash -
+curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+EOF
+}
+
+
+function install_docker_on_taiga() {
+    cat <<'EOF' | lxc exec taiga bash -
+set -x
+apt-get -y update
+apt-get -y install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+mkdir -p /etc/apt/keyrings
+rm -f /etc/apt/keyrings/docker.gpg
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get -y update
+apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+apt-get -y autoremove
+EOF
+}
+
+main
+
+
