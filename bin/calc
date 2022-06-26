@@ -11,6 +11,7 @@ class G:
 
 
 def main():
+    print('hi')
     if len(sys.argv) > 1:
         line = ' '.join(sys.argv[1:])
         calc(line)
