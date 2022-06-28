@@ -1,0 +1,11 @@
+#!/bin/bash
+set -x
+remote=$1
+
+if [[ $remote == '' ]]; then
+  echo need remote
+  exit 1
+fi
+
+cd
+tar cfz - .ssh | ssh $remote "bash -c 'tar xfz -'"
