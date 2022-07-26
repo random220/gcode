@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ x$1 == '' ]] || [[ $2 == '' ]]; then
+  echo "$0 container port"
+  exit 1
+fi
+
+container=$1
+port=$2
+
+echo lxc config device add $container port$port proxy listen=tcp:0.0.0.0:$port     connect=tcp:127.0.0.1:$port
+
