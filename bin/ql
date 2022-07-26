@@ -2,7 +2,7 @@
 if [[ ! -d ~/sb/omwork ]]; then
   mkdir -p ~/sb
   cd ~/sb
-  git clone git@github.com:om-mandal/work.git
+  git clone git@github.com:om-mandal/work.git omwork
 fi
 
 if [[ ! -d ~/sb/omwork ]]; then
