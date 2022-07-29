@@ -80,7 +80,7 @@ alias ps1="echo export PS1=\''$PS1'\'"
 
 export HISTTIMEFORMAT="%F %T "
 export P4CONFIG=.p4config
-export P4PORT=build-p4proxy.eng.vmware.com:1666
+export P4PORT=perforce:1666
 
 if [[ $(uname) == Linux ]]; then
   alias ls='ls --color=auto'
@@ -112,9 +112,6 @@ alias vip='cp ~/gcode/sundry/viminfo-p4.txt ~/.viminfo'
 alias p4m='p4 diff=3 merge3 -r' # 'p4 help merge3' /path/to/base /path/to/theirs /path/to/yours
 
 alias pp='enscript -2rG --colo=1 --line-numbers -p out.ps --highlight=python -c'
-function vml0() {
-  ls -1 "/Library/Preferences/VMware Fusion/license-fusion"* | sed 's/^/"/; s/$/"/'
-}
 
 gits()
 {
@@ -217,11 +214,6 @@ alias jl='LC_ALL=C.UTF-8 LANG=C.UTF-8 pipenv run jupyter lab --ContentsManager.a
 alias vmr='"/Applications/VMware Fusion.app/Contents/Library/vmrun"'
 
 
-# vmware stuff
-if [[ -f $HOME/ww/.vmware_aliases ]]; then
-  . $HOME/ww/.vmware_aliases
-fi
-
 alias sd1='ssh d1'
 alias sd2='ssh d2'
 alias sd='sd2'
@@ -244,7 +236,7 @@ function dp() {
   docker exec ub bash -c 'chown -R om:om /home/om/aaa'
 }
 
-export P4USER=omandal
+#export P4USER=omandal
 alias plog='p4 -p perforce.crondite.com:1666 describe -s $1'
 function phead() {
   vib=$1
