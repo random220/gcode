@@ -100,18 +100,30 @@ elsif ($CMD eq 'note') {
         die "Could not find file: $p/$tiddly_file\n";
     }
     if ($uname eq 'Darwin') {
-        my $cmd;
-        $cmd = "open -a /Applications/Firefox.app '$p/$tiddly_file'";
-        my $tmpdir;
-        if (-d '/b/om/p/tmp') {
-            $tmpdir = '/b/om/p/tmp';
+        my $tmpdir = $ENV{'HOME'}.'/.tmp';
+        system "mkdir -p $tmpdir; chmod 700 $tmpdir";
+
+        my $session_dir = "$tmpdir/browser-session-data";
+        system "rm -rf $session_dir; mkdir $session_dir";
+
+        my $browsers = [
+            [ '/Applications/Firefox.app/Contents/MacOS/firefox' => '--profile' ],
+            [ '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' => '--user-data-dir' ]
+        ];
+        my $binary = undef;
+        my $session_arg = undef;
+        for my $browser (@$browsers) {
+            $binary = $browser->[0];
+            if (-f $binary) {
+                $session_arg = $browser->[1];
+                last;
+            }
         }
-        elsif(-d $ENV{'HOME'}.'/b/om/p/tmp') {
-            $tmpdir = $ENV{'HOME'}.'/b/om/p/tmp';
+        if (! defined $binary) {
+            die "Error: No browser binary found\n";
         }
-        if (-d '/Applications/Google Chrome.app' ) {
-            $cmd = "(('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=$tmpdir/chrome-session-data --incognito $p/gitted/sandbox/tiddly.html >/dev/null 2>&1)&)"
-        }
+
+        $cmd = "((($binary $session_arg $session_dir $p/gitted/sandbox/tiddly.html; rm -rf $session_dir) >/dev/null 2>&1) &)";
         print "doing: $cmd\n";
         system $cmd;
     }
@@ -187,7 +199,8 @@ sub set_variables
     $tiddly_file="gitted/sandbox/tiddly.html";
     $veracrypt = $ENV{HOME}.'/bin/veracrypt';
     if (!-f $veracrypt) {
-        die "Error: $veracrypt is not a file\n"
+        $veracrypt = '';
+        print "Error: $veracrypt is not a file\n"
           . "Please softlink to /Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt for mac\n"
           . "or /usr/bin/veracrypt for Linux\n"
           ;
