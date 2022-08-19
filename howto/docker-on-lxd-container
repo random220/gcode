@@ -6,7 +6,7 @@ sudo snap remove --purge lxd
 sudo snap install lxd
 sudo usermod -aG lxd $LOGNAME
 
-sudo lxd init --auto --storage-backend=btrfs --storage-create-loop=40G --storage-pool=default
+sudo lxd init --auto --storage-backend=btrfs --storage-create-loop=40 --storage-pool=default
 
 
 lxc storage list
