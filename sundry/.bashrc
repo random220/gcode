@@ -10,5 +10,9 @@ if [[ -e $HOME/.localsetup ]]; then
   . $HOME/.localsetup
 fi
 
+if [[ -e $HOME/.puresetup ]]; then
+  . $HOME/.puresetup
+fi
+
 #export LC_ALL=C.UTF-8
 #export LANG=C.UTF-8
