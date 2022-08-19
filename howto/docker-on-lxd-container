@@ -1,8 +1,33 @@
-lxc launch ubnuntu u18
-lxc config set u18 security.nesting true
+https://ubuntu.com/tutorials/how-to-run-docker-inside-lxd-containers#2-create-lxd-container
 
-lxc exec u18 -- apt-get -y update
-lxc exec u18 -- apt-get -y install docker.io
-lxc exec u18 -- useradd -s /bin/bash -m om
-lxc exec u18 -- usermod -a -G docker om
-lxc exec u18 -- su - om -c 'docker run hello-world'
+Make sure volume is btrfs. zfs will suck for this
+
+lxc launch ubuntu:18.04 u18-00
+lxc stop u18-00
+lxc config set \
+    u18-00 security.nesting=true \
+    security.syscalls.intercept.mknod=true \
+    security.syscalls.intercept.setxattr=true
+
+lxc start u18-00
+lxc exec u18-00 su -
+userdel -r ubuntu
+groupdel ubuntu
+useradd -s /bin/bash -m ir
+passwd ir
+welcome
+echo 'ir ALL=(ALL:ALL) NOPASSWD: ALL' >/etc/sudoers.d/ir
+exit
+lxc exec u18-00 su - ir
+sudo apt-get -y update
+sudo apt-get -y dist-upgrade
+
+exit
+
+
+lxc stop u18-00
+lxc snapshot u18-00
+lxc copy u18-00/snap0 u18
+
+gcode/bin/docki  # to install docker
+sudo usermod -aG docker $LOGNAME
