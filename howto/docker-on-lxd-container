@@ -1,75 +1,115 @@
-https://ubuntu.com/tutorials/how-to-run-docker-inside-lxd-containers#2-create-lxd-container
+#!/bin/bash
+# https://ubuntu.com/tutorials/how-to-run-docker-inside-lxd-containers#2-create-lxd-container
+# Make sure volume is btrfs. zfs will suck for this
+
+sudo snap remove --purge lxd
+sudo snap install lxd
+sudo usermod -aG lxd $LOGNAME
+
+sudo lxd init --auto --storage-backend=btrfs --storage-create-loop=40G --storage-pool=default
 
 
+lxc storage list
+    # +---------+--------+--------------------------------------------+-------------+---------+---------+
+    # |  NAME   | DRIVER |                   SOURCE                   | DESCRIPTION | USED BY |  STATE  |
+    # +---------+--------+--------------------------------------------+-------------+---------+---------+
+    # | default | btrfs  | /var/snap/lxd/common/lxd/disks/default.img |             | 1       | CREATED |
+    # +---------+--------+--------------------------------------------+-------------+---------+---------+
 
-need in /etc/resolv.conf
-nameserver 10.14.244.53
-nameserver 10.14.236.53
-search dev.purestorage.com
-
-
-
-Make sure volume is btrfs. zfs will suck for this
-lxc network set lxdbr0 raw.dnsmasq "dhcp-option-force=option:domain-search,lxd,dev.purestorage.com"
-
-lxc network set lxdbr0 raw.dnsmasq "dhcp-option-force=option:domain-search,lxd,dev.purestorage.com"
-
-
-lxc network set lxdbr0 raw.dnsmasq dhcp-option=6,8.8.8.8,8.8.4.4 #(6 means the DNS configuration)
-
-
-
-lxc network set lxdbr0 raw.dnsmasq "dhcp-option-force=option:domain-search,lxd,dev.purestorage.com
-lxc network set lxdbr0 raw.dnsmasq dhcp-option=6,10.14.244.53,10.14.244.53 #(6 means the DNS configuration)
-
-
-lxc network set lxdbr0 raw.dnsmasq "dhcp-option=option:dns-server,10.14.244.53"
-lxc network set lxdbr0 raw.dnsmasq "dhcp-option-force=option:dns-server,10.14.244.53"
-lxc network set lxdbr0 raw.dnsmasq "dhcp-option-force=option:dns-server,10.14.236.53"
+lxc storage info default
+    # To start your first container, try: lxc launch ubuntu:22.04
+    # Or for a virtual machine: lxc launch ubuntu:22.04 --vm
+    # 
+    # info:
+    #   description: ""
+    #   driver: btrfs
+    #   name: default
+    #   space used: 3.56MiB
+    #   total space: 37.25GiB
+    # used by:
+    #   profiles:
+    #   - default
 
 lxc launch ubuntu:18.04 u18py37dock-00
+cat <<EOF | lxc exec u18py37dock-00 bash -
+umask 022
+rm -f /etc/resolv.conf
+cat <<_EOF >/etc/resolv.conf
+nameserver 10.14.244.53
+nameserver 10.14.236.53
+search lxd dev.purestorage.com
+_EOF
+EOF
+
 lxc stop u18py37dock-00
 lxc config set u18py37dock-00 \
     security.nesting=true \
     security.syscalls.intercept.mknod=true \
     security.syscalls.intercept.setxattr=true
-
-
-
 lxc start u18py37dock-00
-lxc exec u18py37dock-00 su -
-userdel -r ubuntu
-groupdel ubuntu
-useradd -s /bin/bash -m ir
-passwd ir
-welcome
-echo 'ir ALL=(ALL:ALL) NOPASSWD: ALL' >/etc/sudoers.d/ir
-exit
-lxc exec u18py37dock-00 su - ir
-sudo apt-get -y update
-sudo apt-get -y dist-upgrade
 
-. <(curl -s https://raw.githubusercontent.com/random220/gcode/main/bin/gcode.0)
-gcode/bin/docki  # to install docker
-sudo usermod -aG docker $LOGNAME
+cat <<'EOF' | lxc exec u18py37dock-00 bash -
+umask 022
+apt-get -y update
+apt-get -y dist-upgrade
+sudo apt autoremove -y
+
+#-----------------------------------------------------------------------------------------------------------------
+# Install docker
+#-----------------------------------------------------------------------------------------------------------------
+# https://docs.docker.com/engine/install/ubuntu/
+
+apt-get -y remove docker docker-engine docker.io containerd runc
+apt-get -y update
+apt-get -y install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get -y update
+apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 
-#pyenv python3.7.13
+sudo curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+#-----------------------------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------------------------
+# In preparation of pyenv
+#-----------------------------------------------------------------------------------------------------------------
 sudo apt-get -y install make build-essential libssl-dev zlib1g-dev\
     libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev\
     libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl\
     git
+#-----------------------------------------------------------------------------------------------------------------
+
+
+#-----------------------------------------------------------------------------------------------------------------
+# User account ir
+#-----------------------------------------------------------------------------------------------------------------
+userdel -r ubuntu
+useradd -s /bin/bash -m ir
+echo 'ir:welcome' | chpasswd 
+echo 'ir ALL=(ALL:ALL) NOPASSWD: ALL' >/etc/sudoers.d/ir
+usermod -aG docker ir
+
+cat <<'_EOF' | su -c 'bash -'  - ir bash -
+. <(curl -s https://raw.githubusercontent.com/random220/gcode/main/bin/gcode.0)
 
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
-cat <<'EOF' >>~/.bashrc
-
+cat <<'__EOF' >>~/.bashrc
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
-EOF
+__EOF
 
 . ~/.bashrc
 
@@ -78,13 +118,16 @@ pyenv install 3.7.13
 pyenv versions                   # list what are installed
 
 pyenv global 3.7.13              # Activate this even for all subsequent logins
-% python --version
-Python 3.7.13
-% python3 --version
-Python 3.7.13
+# % python --version
+# Python 3.7.13
+# % python3 --version
+# Python 3.7.13
+
+_EOF
+#-----------------------------------------------------------------------------------------------------------------
 
 
-exit
+EOF
 
 
 lxc stop u18py37dock-00
@@ -93,6 +136,5 @@ lxc snapshot u18py37dock-00
 lxc copy u18py37dock-00/snap0 citi
 lxc start citi
 lxc exec citi su - ir
-
 
 
