@@ -9,6 +9,9 @@ lxc config set \
     security.syscalls.intercept.mknod=true \
     security.syscalls.intercept.setxattr=true
 
+lxc network set lxdbr0 raw.dnsmasq "dhcp-option-force=option:domain-search,lxd,dev.purestorage.com"
+
+
 lxc start u18-00
 lxc exec u18-00 su -
 userdel -r ubuntu
@@ -21,13 +24,18 @@ exit
 lxc exec u18-00 su - ir
 sudo apt-get -y update
 sudo apt-get -y dist-upgrade
+echo 'search dev.purestorage.com' >>/etc/resolv.conf
+
+gcode/bin/docki  # to install docker
+sudo usermod -aG docker $LOGNAME
+
 
 exit
 
 
 lxc stop u18-00
 lxc snapshot u18-00
-lxc copy u18-00/snap0 u18
 
-gcode/bin/docki  # to install docker
-sudo usermod -aG docker $LOGNAME
+lxc copy u18-00/snap0 citi
+lxc start citi
+lxc exec citi su - ir
