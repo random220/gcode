@@ -10,9 +10,10 @@ fi
 
 bn=$(basename "$0")
 ddir=~/.firefox/$bn
-mkdir -p $ddir
 
 if [[ $bn == 'ff' ]]; then
+  rm -rf "$ddir"
+  mkdir -p $ddir
   cat <<EOF|openssl enc -d -base64 >"$ddir/user.js"
 dXNlcl9wcmVmKCJuZXR3b3JrLnByb3h5LnNvY2tzIiwgImxvY2FsaG9zdCIpOwp1
 c2VyX3ByZWYoIm5ldHdvcmsucHJveHkuc29ja3NfcG9ydCIsIDk5OTkpOwp1c2Vy
@@ -22,6 +23,7 @@ dHdvcmsudHJyLm1vZGUiLCAyKTsK
 EOF
   nohup bash -c "'$ff' --profile $ddir; rm -rf $ddir" >/dev/null 2>&1 &
 else
+  mkdir -p $ddir
   nohup bash -c "'$ff' --profile $ddir" >/dev/null 2>&1 &
 fi
 
