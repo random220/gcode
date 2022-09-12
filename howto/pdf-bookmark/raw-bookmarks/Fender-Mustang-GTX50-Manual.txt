@@ -1,0 +1,37 @@
+_offset 2
+Introduction 1
+Control Panel 2
+Rear Panel 3
+Presets 4
+    Preset Basics 4
+    Editing and Saving Presets 5
+    Editing Preset Amplifier Control Knob Settings 6
+    Replacing Preset Amplifier Models 8
+    List of Amplifier Models 9
+    List of Cabinet Models 10
+    Editing Effects 12
+    Editing Effects Settings 20
+    List of Effects Types 24
+Menu Functions 28
+Setlists 29
+WiFi Use 32
+Bluetooth Use 35
+Built-in Tuner 37
+Auxiliary and Headphone Jacks 38
+USB Connectivity 38
+Line Out and FX Send/Return 38
+Footswitch Use
+    GTX-7 Footswitch 39
+    Looper 42
+    EXP-1 Expression Pedal 45
+EQ & Amp Settings 49
+    Global EQ 49
+    Line Out/USB Gain 50
+    Preset Organizer 51
+    Restore Settings and Restore All 53
+    About this Amp 54
+Cloud Presets 54
+Backup/Restore for Presets and Setlists 56
+Firmware Updates and Factory Restore 60
+Fender Tone(TM) App 62
+Specifications 63
