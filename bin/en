@@ -1,0 +1,28 @@
+#!/bin/bash
+
+echo -n 'Password: '
+read -s password
+export password
+
+rm -rf .xxx; mkdir .xxx
+cd .xxx
+rsync -a --delete ~/.ssh/ .ssh/
+
+cat <<'EOF' >encthis
+#!/bin/bash
+srcpath="$1"
+g=$(echo "$srcpath"|openssl enc -aes256 -k "$password" -K 48ef8|base64|perl -pe 's/\n//gs; s{/}{^}g')
+openssl enc -aes256 -in "$srcpath" -out "$g" -k "$password" -K 48ef8
+rm -f "$srcpath"
+EOF
+chmod a+x encthis
+
+find .ssh -type f -print0|xargs -0 -L 1 ./encthis
+rm -f encthis
+
+git init
+git add -Af
+git commit -m zero
+rm -rf .ssh *
+git reset --hard
+rm -rf .git

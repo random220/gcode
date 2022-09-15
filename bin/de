@@ -1,0 +1,25 @@
+#!/bin/bash
+
+echo -n 'Password: '
+read -s password
+export password
+
+rsync -a --delete .xxx/ .yyy/
+rm -rf .zzz; mkdir .zzz
+cd .zzz
+cat <<'EOF' >decthis
+#!/bin/bash
+
+# echo 'U2FsdGVkX19bjDT^aHA^zdZvPKcq9q0ytvj9NFRxwobsU5NCGCcwlDqQiZ10FiO1o7vGprIuWiPkC0qvZEk+^w=='|perl -pe 's{\^}{/}g'|base64 -d|openssl enc -d -aes256 -k "somepasswd" -K 48ef8
+
+infile_abspath="$1"
+base=$(basename "$infile_abspath")
+outpath=$(echo "$base"|perl -pe 's{\^}{/}g'|base64 -d|openssl enc -d -aes256 -k "$password" -K 48ef8)
+outdir=$(dirname "$outpath")
+mkdir -p "$outdir"
+openssl enc -d -aes256 -in "$infile_abspath" -out "$outpath" -k "$password" -K 48ef8
+EOF
+chmod a+x decthis
+
+find $(pwd)/../.yyy -type f -print0 | xargs -0 -L 1  ./decthis
+rm -f decthis
