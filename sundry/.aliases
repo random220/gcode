@@ -261,5 +261,14 @@ function unix() {
   fi
 }
 
+function p() {
+    if [[ "$1" != '' ]]; then
+        docker cp "$1" ub:/home/om/_a
+        docker exec -u om ub bash -c 'cd ~om; tesseract _a _a'
+        docker cp ub:/home/om/_a.txt .
+        vi _a.txt
+    fi
+}
+
 
 alias op=afplay
