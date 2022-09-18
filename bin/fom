@@ -1,1 +1,3 @@
-ff
+#!/bin/bash
+bindir=$(cd $(dirname $0) && pwd -P)
+. $bindir/ff
