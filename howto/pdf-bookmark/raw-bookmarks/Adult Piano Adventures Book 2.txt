@@ -1,0 +1,184 @@
+Cover 1*
+Welcome 3*
+Contents 5*
+
+_offset 1
+
+UNIT 1 Music Fundamentals (Review of Book 1) 6-15 7*
+    note values, time signatures, grand staff notes, dynamic marks, intervals, C major and G major scale and primary chords 7* (I, IV, V7) 7*
+
+    Allegro Moderato (Review Piece) 14
+
+UNIT 2 Ledger Lines 16-29 17*
+    ledger line Cs, D.C. al Coda, connected pedaling, lead sheet in the Key of C 17*
+
+    Octave Warm-up 16
+    Cathedral Chimes 17
+    Niagara Falls 18
+    Pedal Exercise 20
+    Taps 21
+    'O Sole Mio! 22
+    Yellow Bird 24
+    3-MINUTE TECHNIQUE 26
+    MUSIC THEORY (Brahms' Lullaby) 28
+
+
+UNIT 3 The F Major Scale 30-43 31*
+    Key of F major: tonic, dominant, leading tone, I-IV-V7 chords; swing rhythm, finger substitution, lead sheet in the Key of F 31*
+
+    Theory of the F Major Scale 30
+    Playing the F Major Scale 31
+    Sloop John B 32
+    Primary Chords (I-IV-V7) in F Major 34
+    The V7 Chord in F Major: C7 35
+    Allegro in F Major (Beyer) 36
+    The Lion Sleeps Tonight 38
+    3-MINUTE TECHNIQUE 40
+    MUSIC THEORY (Londonderry Air) 42
+
+UNIT 4 Major and Minor Triads 44-53 45*
+    major and minor 3rds, major and minor triads, primary and secondary chords in F Major 45*
+
+    Major and Minor 3rds; Major and Minor Triads 44
+    Malaguefia 46
+    Long, Long Ago 48
+    3-MINUTE TECHNIQUE 50
+    MUSIC THEORY (Aura Lee) 52
+
+UNIT 5 Triad Inversions 54-63 55*
+    root position, Ist inversion and 2nd inversion, accompanying with chord roots 55*
+
+    1st Inversion Study 54
+    Westminster Chimes 55
+    2nd Inversion Study 56
+    Gavotte (Carr) 57
+    Swing Low, Sweet Chariot 58
+    3-MINUTE TECHNIQUE 60
+    MUSIC THEORY (Song of Joy) 62
+
+UNIT 6 Eighth Rest 64-73 65*
+    eighth rest, i-vi-ii-V chord progression, Alberti bass, primary and secondary chords, triads on the G Major scale 65*
+
+    Coffee House Boogie 64
+    Amen 66
+    Looking Glass River 68
+    3-MINUTE TECHNIQUE 70
+    MUSIC THEORY (Shenandoah) 72
+
+UNIT 7 Dotted Quarter Note 74-85 75*
+    dotted quarter note, motive and sequence, imitation, primary and secondary triads 75*
+
+    The Dotted Quarter Note 74
+    Deck the Keys with Dotted Quarters 74
+    Kum Ba Yah 76
+    Theme from Scheherazade (Rimsky-Korsakov) 78
+    In My Red Convertible 80
+    3-MINUTE TECHNIQUE 82
+    MUSIC THEORY (Auld Lang Syne) 84
+
+UNIT 8 Theory of Minor Scales 86-101 87*
+    Key of A minor, relative minor, natural and harmonic minor scales in Am, primary chords in Am, ostinato, inner ledger note A, triplet, i-VII-VI-V progression 87*
+
+    Theory of Minor Scales 86
+    A Natural and Harmonic Minor Scales 87
+    Sakura 88
+    Etude in A Minor (Kohler) 90
+    Primary Chords in A Minor 92
+    The V7 Chord in A Minor: E7 93
+    Finale: 'From The New World' Symphony (Dvorak) 94
+    Hava Nagila 96
+    3-MINUTE TECHNIQUE 98
+    MUSIC THEORY (Greensleeves) 100
+
+UNIT 9 Interval of a Seventh (7th) 102-109 103*
+    interval of a seventh (7th), common time (C), cut time (C|), lead sheet with waltz accompaniment 103*
+
+    7th St. Blues 102
+    Land of the Silver Birch 103
+    Give My Regards to Broadway 104
+    3-MINUTE TECHNIQUE 106
+    MUSIC THEORY (Mexican Clapping Song) 108
+
+UNIT 10 Key of D Minor 110-121 111*
+    theory of the Key of D minor, D natural minor and D harmonic minor scales; primary chords in Dm, lead sheet in D minor 111*
+
+    Theory of the Key of D Minor 110
+    D natural and harmonic minor scales 111
+    Primary Chords in D minor 112
+    The V7 Chord in D minor: A7 113
+    Habanera from Carmen (Bizet) 114
+    Joshua Fought the Battle of Jericho 116
+    3-MINUTE TECHNIQUE 118
+    MUSIC THEORY (Dark Eyes) 120
+
+UNIT 11 3/8 and 6/8 Time Signatures 122-133 123*
+    3/8 time signature, 6/8 time signature, dotted quarter rest () lead sheet in 6/8 time 123*
+
+    Scarborough Fair 122
+    6/8 Rhythms 124
+    Familiar 6/8 Melodies 125
+    Campbells are Coming 126
+    Funiculi, Funicula 128
+    3-MINUTE TECHNIQUE 130
+    MUSIC THEORY (Barcarolle) 132
+
+UNIT 12 More Ledger Lines 134-143 135*
+    upper ledger lines, inner ledger lines, lower ledger lines, lead sheet with ledger lines 135*
+
+    Ledger Lines 134
+    March Slav (Tchaikovsky) 135
+    The Erie Canal 136
+    Morning (Grieg) 138
+    3-MINUTE TECHNIQUE 140
+    MUSIC THEORY (The Glow Worm) 142
+
+UNIT 13 Key of E Minor 144-155 145*
+    theory of the Key of E minor, E natural minor and harmonic minor scales, primary chords in Em, tenuto mark, lead sheet in E minor 145*
+
+    Theory of the Key of E Minor 144
+    E Natural and Harmonic Minor Scales 145
+    Primary Chords in E Minor 146
+    The V7 Chord in E Minor: B7 147
+    Lunar Eclipse 148
+    Swan Lake (Tchaikovsky) 150
+    3-MINUTE TECHNIQUE 152
+    MUSIC THEORY (House of the Rising Sun) 154
+
+UNIT 14 Key of D Major 156-167 157*
+    Key of D major: tonic, dominant, leading tone, I-IV-V7 chords; lead Sheet in D Major 157*
+
+    Theory of the D Major Scale 156
+    The D Major Scale in Parallel and Contrary Motion. 157
+    Primary Chords in D Major 158
+    The V7 Chord in D Major: A7 159
+    Song of Joy (Beethoven) 160
+    Gavotte in D Major (Hook) 162
+    3-MINUTE TECHNIQUE 164
+    MUSIC THEORY (Worried Man Blues) 166
+
+UNIT 15 One-Octave Arpeggios 168-177 169*
+    major and minor one-octave arpeggios, fortissimo (ff), syncopation, lead sheet with arpeggio accompaniment 169*
+
+    One-Octave Arpeggios 168
+    Eine Kleine Nachtmusik (Mozart) 169
+    Wedding March (Mendelssohn). 170
+    Fiesta Espafia 172
+    3-MINUTE TECHNIQUE 174
+    MUSIC THEORY (Liebestraum) 176
+
+UNIT 16 Sixteenth Notes 178-187 179*
+    sixteenth note patterns: JJJJ JJJ Jjj jjJ, counting 1 e + a, lead sheet with 16th notes 179*
+
+    Sixteenth-Note Rhythms 178
+    Rhythm Warm-up 179
+    Sea Chantey 180
+    Musetta's Waltz (Puccini) 182
+    3-MINUTE TECHNIQUE 184
+    MUSIC THEORY (Nocturne) 186
+
+Review Piece: Pachelbel Canon 188
+
+Scale Chart 192
+Chord Chart 194
+Dictionary of Musical Terms 196
+
