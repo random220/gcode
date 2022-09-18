@@ -1,13 +1,3 @@
 #!/bin/bash
-
-if [[ -f '/opt/google/chrome/chrome' ]]; then
-  g='/opt/google/chrome/chrome'
-elif [[ -f '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' ]]; then
-  g='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-else
-  exit 1
-fi
-
-ddir=~/.google/$(basename "$0")
-mkdir -p $ddir
-bash -c "nohup '$g' --user-data-dir=$ddir >/dev/null 2>&1 &"
+bindir=$(cd $(dirname $0) && pwd -P)
+. $bindir/gg
