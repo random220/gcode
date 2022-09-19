@@ -8,5 +8,12 @@ cd ~/b 2>/dev/null || nothing ~/b
 
 [[ -d dotssh.git ]] || nothing ~/b/dotssh.git
 rm -f dotssh.zip
+rm -rf a.git
+git init --bare a.git
+cd dotssh.git
+git push --mirror ../a.git
+cd ..
+rm -rf dotssh.git
+mv a.git dotssh.git
 zip -r -y -e dotssh.zip dotssh.git
 scp dotssh.zip k1:__dotssh__.zip
