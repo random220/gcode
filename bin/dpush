@@ -1,0 +1,12 @@
+#!/bin/bash
+
+nothing() {
+  echo Error no "$1"
+  exit 1
+}
+cd ~/b 2>/dev/null || nothing ~/b
+
+[[ -d dotssh.git ]] || nothing ~/b/dotssh.git
+rm -f dotssh.zip
+zip -r -y -e dotssh.zip dotssh.git
+scp dotssh.zip k1:__dotssh__.zip
