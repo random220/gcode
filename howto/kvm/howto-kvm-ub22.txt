@@ -34,8 +34,10 @@ chown -R libvirt-qemu:kvm /b/kvms/om
 #
 su - om
 cd
-ln -s /b/kvms/om kvms
+umask 022
+chmod 755 .
 mkdir ~/raw
+ln -s /b/kvms/om kvms
 cd ~/raw
 wget https://releases.ubuntu.com/22.04/ubuntu-22.04.1-live-server-amd64.iso
 
@@ -44,13 +46,17 @@ mkdir -p ~/kvms/ub22
 chgrp kvm ~/kvms/ub22
 chmod g+rwX ~/kvms/ub22
 
+as root
 virt-install \
+    --connect qemu:///system \
+    --virt-type kvm \
+    --graphics vnc \
     --name ub22 \
     --memory 2048 \
-    --disk path=~/kvms/ub22/d0.img,size=20 \
+    --cdrom ~om/raw/ubuntu-22.04.1-live-server-amd64.iso \
+    --disk path=/b/kvms/om/ub22/d0.img,size=20 \
     --network network=default \
     --os-variant ubuntujammy \
-    --cdrom ~/raw/ubuntu-22.04.1-live-server-amd64.iso
 
 % virt-install --os-variant list|grep -i ubuntu|grep 22
 ubuntu-lts-latest, ubuntu-stable-latest, ubuntu22.04, ubuntujammy
