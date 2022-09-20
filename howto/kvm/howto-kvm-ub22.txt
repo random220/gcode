@@ -1,0 +1,57 @@
+Sun Aug 28 19:17:23 PDT 2022
+
+https://www.linuxtechi.com/how-to-install-kvm-on-ubuntu-22-04/
+
+sudo su -
+apt-get -y install cpu-checker
+root@u22min:~# kvm-ok
+INFO: /dev/kvm exists
+KVM acceleration can be used
+
+apt-get -y install qemu-kvm virt-manager libvirt-daemon-system virtinst libvirt-clients bridge-utils
+
+    qemu-kvm  – An opensource emulator and virtualization package that provides hardware emulation.
+    virt-manager – A Qt-based graphical interface for managing virtual machines via the libvirt daemon.
+    libvirt-daemon-system – A package that provides configuration files required to run the libvirt daemon.
+    virtinst – A  set of command-line utilities for provisioning and modifying virtual machines.
+    libvirt-clients – A set of client-side libraries and APIs for managing and controlling virtual machines & hypervisors from the command line.
+    bridge-utils – A set of tools for creating and managing bridge devices.
+
+systemctl enable --now libvirtd
+systemctl start libvirtd
+
+usermod -aG kvm om
+usermod -aG libvirt om
+
+
+https://www.clouvider.com/knowledge_base/virsh-a-quick-guide-to-everyday-use-commands-linux-kvm/
+https://www.answertopia.com/ubuntu/creating-ubuntu-kvm-virtual-machines-with-virt-install-and-virsh/
+
+mkdir -p /b/kvms/om
+chown -R libvirt-qemu:kvm /b/kvms/om
+
+
+#
+su - om
+cd
+ln -s /b/kvms/om kvms
+mkdir ~/raw
+cd ~/raw
+wget https://releases.ubuntu.com/22.04/ubuntu-22.04.1-live-server-amd64.iso
+
+
+mkdir -p ~/kvms/ub22
+chgrp kvm ~/kvms/ub22
+chmod g+rwX ~/kvms/ub22
+
+virt-install \
+    --name ub22 \
+    --memory 2048 \
+    --disk path=~/kvms/ub22/d0.img,size=20 \
+    --network network=default \
+    --os-variant ubuntujammy \
+    --cdrom ~/raw/ubuntu-22.04.1-live-server-amd64.iso
+
+% virt-install --os-variant list|grep -i ubuntu|grep 22
+ubuntu-lts-latest, ubuntu-stable-latest, ubuntu22.04, ubuntujammy
+
