@@ -28,8 +28,15 @@ Become your own Certificate Authority
     Examine certificate meta info
     % openssl x509 -in demoCA/cacert.pem -text -noout >a.txt
 
-    tar cfj myCA.tbz demoCA
-    rm -rf demoCA
+    Archive
+    % git init
+    % git add demoCA
+    % git commit -m "$(date)"
+    % mkdir om
+    % git init --bare om/CA.git
+    % git push --mirror om/CA.git
+
+
 
 Pretend that you are another business that needs a server certifcate.
 Create a key and a certificate request
@@ -38,22 +45,40 @@ Create a key and a certificate request
     See typescript-CA-pl--newreq.txt
     That created newkey.pem and newreq.pem
 
+    Create naked server key
+    % openssl rsa -in newkey.pem -out newkey.key   # host
+    % rm newkey.pem
+
     Examine the key and the request
     % openssl rsa -in newkey.pem -text -noout
     % openssl req -in newreq.pem -text -noout
 
-    tar cfj server1-key-and-req.tbz newkey.pem newreq.pem
+    % mkdir om/business
+    % mv newkey.key om/business
+
+    Send newreq.pem to the cert authority
+    % mkdir tosign
+    % mv newreq.pem tosign
+    
+
 
 Become the certificate authority again and sign the incoming cert
-    % tar xf myCA.tbz
-    % tar xf server1-key-and-req.tbz
+   
+    % cd tosign
+    % git clone ../om/CA.git
+    % mv newreq.pem CA
+    % cd CA
     % /usr/lib/ssl/misc/CA.pl -sign
     # See typescript-CA-pl--sign.txt
 
+Give it to business
+    % mv newcert.pem ../om/business
+    % mv newcert.pem ../../om/business/
+    % cp demoCA/cacert.pem ../om/business
 
-To get back
-cat signing-workdir.tbz-aes256-iter1000-HostBang | openssl enc -d -aes256 -iter 1000 >a.tbz
-tar xf a.tbz
-cd workdir
-git reset --hard
+Archive again
+    % rm newreq.pem
+    % git add .
+    % git commit -m "$(date)"
+    % git push
 
