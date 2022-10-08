@@ -72,9 +72,8 @@ Become the certificate authority again and sign the incoming cert
     # See typescript-CA-pl--sign.txt
 
 Give it to business
-    % mv newcert.pem ../om/business
     % mv newcert.pem ../../om/business/
-    % cp demoCA/cacert.pem ../om/business
+    % cp demoCA/cacert.pem ../../om/business
 
 Archive again
     % rm newreq.pem
