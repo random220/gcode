@@ -33,7 +33,7 @@ export PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 tf=$(mktemp)
 ps auxw >$tf
 
-egrep '/usr/lib/x86_64-linux-gnu/kodi/kodi-x11|/usr/bin/kodi' $tf|awk '{print $2}'|xargs kill -9
+egrep '/usr/lib/x86_64-linux-gnu/kodi/kodi-x11|/usr/bin/kodi' $tf|awk '{print $2}'|xargs -r kill -9
 # om        3451  0.6  1.2 1952888 103916 ?      Sl   10:11   0:14 /usr/lib/x86_64-linux-gnu/kodi/kodi-x11
 # om        4123  0.1  1.2 1887384 104564 ?      Sl   10:15   0:03 /usr/lib/x86_64-linux-gnu/kodi/kodi-x11
 # om        4719  0.2  1.2 1887512 104436 ?      Sl   10:16   0:04 /usr/lib/x86_64-linux-gnu/kodi/kodi-x11
@@ -46,7 +46,8 @@ sudo service lightdm stop
 sudo service lightdm start
 sleep 5
 export DISPLAY=:0.0
-(nohup /usr/bin/kodi >/dev/null 2>& &)
+nohup /usr/bin/kodi >/dev/null 2>&1 &
+)
 EOF
 
   bash $tmpfile
