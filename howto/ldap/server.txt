@@ -1,0 +1,52 @@
+Sun Oct 23 14:22:30 PDT 2022
+#https://www.openldap.org/doc/admin26/quickstart.html
+https://ubuntu.com/server/docs/service-ldap
+
+docker run -itd --name ldap -h ldap ubuntu:22.04
+docker exec -it ldap su -
+apt-get -y update; apt-get -y dist-upgrade
+apt-get -y install slapd ldap-utils
+    Administrator password: welcome
+==> did not work. needs runlevel etc because wants to install as service
+
+-----
+Setting up slapd (2.5.13+dfsg-0ubuntu0.22.04.1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 78.)
+debconf: falling back to frontend: Readline
+  Creating new user openldap... done.
+  Creating initial configuration... done.
+  Creating LDAP directory... done.
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
+-----
+
+
+
+Go with prepackaged stuff
+https://computingforgeeks.com/run-openldap-server-in-docker-containers/
+
+#rm -rf ~/slapd-data
+
+docker run \
+	--name openldap-server \
+	-p 1389:389 \
+	-p 1636:636 \
+	--hostname ldap.computingforgeeks.com \
+	--env LDAP_ORGANISATION="My Company" \
+	--env LDAP_DOMAIN="computingforgeeks.com" \
+	--env LDAP_ADMIN_PASSWORD="StrongAdminPassw0rd" \
+	--env LDAP_BASE_DN="dc=computingforgeeks,dc=com" \
+	--volume ~/data/slapd/database:/var/lib/ldap \
+	--volume ~/data/slapd/config:/etc/ldap/slapd.d \
+	--detach osixia/openldap:latest
+
+docker run \
+    --name phpldapadmin \
+    -p 10080:80 \
+    -p 10443:443 \
+    --hostname phpldapadmin-service \
+    --link openldap-server:ldap-host \
+    --env PHPLDAPADMIN_LDAP_HOSTS=ldap.computingforgeeks.com \
+    --detach osixia/phpldapadmin:latest
