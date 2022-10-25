@@ -9,3 +9,5 @@ docker run -v ~/bitb:/var/atlassian/application-data/bitbucket --name="bitbucket
 http://localhost:7990
 
 
+Link them together
+https://confluence.atlassian.com/bitbucketserver/link-bitbucket-with-jira-776640408.html#:~:text=To%20link%20Bitbucket%20to%20a,connect%20Bitbucket%20to%20your%20Jira.
