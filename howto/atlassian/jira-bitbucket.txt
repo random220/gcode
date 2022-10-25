@@ -1,0 +1,11 @@
+docker run -v ~/jira:/var/atlassian/application-data/jira --name="jira" -h jira -d -p 8080:8080 atlassian/jira-software
+http://localhost:8080
+admin / welcome
+
+
+
+Bitbucket
+docker run -v ~/bitb:/var/atlassian/application-data/bitbucket --name="bitbucket" -h bitbucket -d -p 7990:7990 -p 7999:7999 atlassian/bitbucket
+http://localhost:7990
+
+
