@@ -1,4 +1,5 @@
 https://workaround.org/certificate-authority/
+https://www.openssl.org/docs/man1.1.1/man1/CA.pl.html
 
 Become your own Certificate Authority
 
