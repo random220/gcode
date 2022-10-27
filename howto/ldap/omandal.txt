@@ -1,0 +1,100 @@
+dn: CN=Om Mandal,OU=70000-Iridium,OU=Workday,OU=Okta,OU=PSUsers,DC=purestorage,DC=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: user
+cn: Om Mandal
+sn: Mandal
+c: US
+l: Mountain View
+st: California
+title: Member of Technical Staff
+description: 70000-FB Engineering Services
+postalCode: 94041
+physicalDeliveryOfficeName: Office - Mountain View (599)
+givenName: Om
+distinguishedName: CN=Om Mandal,OU=70000-Iridium,OU=Workday,OU=Okta,OU=PSUsers,DC=purestorage,DC=com
+instanceType: 4
+whenCreated: 20211007034939.0Z
+whenChanged: 20221020163712.0Z
+uSNCreated: 128194052
+info: Supervisory Org: FB Eng Productivity | CC Hierarchy: 70000 Flashblade | Cost Center: 70000-FB Engineering Services
+memberOf: CN=AppsNucleus_FB,OU=Okta,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=GHE-FB-ALL,OU=OktaManaged,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=AppsO365_PowerBI,OU=Okta,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=sn-appskfenroller,OU=OktaManaged,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=sn-appsfuse,OU=OktaManaged,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=AppsLinkedInTalentSolutions,OU=Okta,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=GitHubEnterprise,OU=Eng,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=o-ad-cch-70000,OU=CCHierarchy,OU=OktaManaged,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=o-ad-cc-70000,OU=cc-70000-Flashblade,OU=CostCenter,OU=OktaManaged,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=AppsEtrade,OU=Okta,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=Eng_CITI,OU=CITI,OU=Eng,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=confluence-rd-static,OU=Confluence,OU=Eng,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=confluence-rd,OU=Jira,OU=Eng,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=Jira-Default,OU=Jira,OU=Eng,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=AppsRedCat_PROD,OU=Okta,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=AppsHub2.0,OU=Okta,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=LDAPGitHub,OU=LDAP,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=Jira_Iridium,OU=Jira,OU=Eng,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=LDAPBitBucket,OU=LDAP,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=_location-US,OU=Loc,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=__PureEmployees,OU=ITGroups,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=ptec-IridiumSales,OU=PureTec,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=AppsNetsuite,OU=Okta,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=70000-Iridium,OU=Dept,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=AppsPagerDuty,OU=Okta,OU=PSGroups,DC=purestorage,DC=com
+memberOf: CN=ConfluenceUsers,OU=PSGroups,DC=purestorage,DC=com
+uSNChanged: 159895302
+co: United States
+department: FB Engineering Services
+company: Pure Storage
+streetAddress: 599 Castro Street
+employeeType: Regular
+name: Om Mandal
+objectGUID:: s2teGP4g7U2JwCfNhKCWyw==
+userAccountControl: 512
+badPwdCount: 0
+codePage: 0
+countryCode: 840
+employeeID: 109666
+badPasswordTime: 133105976446445944
+lastLogoff: 0
+lastLogon: 133112308140447602
+pwdLastSet: 132802525896101655
+primaryGroupID: 513
+objectSid:: AQUAAAAAAAUVAAAAAHnmmHGlF2pZvKTm8VcAAA==
+comment: Workday-Mastered
+accountExpires: 9223372036854775807
+logonCount: 775
+sAMAccountName: omandal
+division: FB Eng Productivity
+sAMAccountType: 805306368
+userPrincipalName: omandal@purestorage.com
+lockoutTime: 0
+objectCategory: CN=Person,CN=Schema,CN=Configuration,DC=purestorage,DC=com
+dSCorePropagationData: 20220913193358.0Z
+dSCorePropagationData: 20220430152345.0Z
+dSCorePropagationData: 20220223225550.0Z
+dSCorePropagationData: 20211020000139.0Z
+dSCorePropagationData: 16010101181633.0Z
+lastLogonTimestamp: 133107574321997377
+uid: omandal
+mail: omandal@purestorage.com
+manager: CN=Arun Theebaprakasam,OU=PSUsers,DC=purestorage,DC=com
+mobile: +1 (408) 5506263
+departmentNumber: 70000
+msSFU30Name: omandal
+msSFU30NisDomain: purestorage
+uidNumber: 1557716576
+gidNumber: 10000
+unixHomeDirectory: /u/omandal
+loginShell: /bin/bash
+slackUsername: @omandal
+startDate: 2021-11-01
+
+# refldap://ForestDnsZones.purestorage.com/DC=ForestDnsZones,DC=purestorage,DC=com
+
+# refldap://DomainDnsZones.purestorage.com/DC=DomainDnsZones,DC=purestorage,DC=com
+
+# refldap://purestorage.com/CN=Configuration,DC=purestorage,DC=com

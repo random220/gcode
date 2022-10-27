@@ -30,23 +30,59 @@ https://computingforgeeks.com/run-openldap-server-in-docker-containers/
 #rm -rf ~/slapd-data
 
 docker run \
+    -itd \
 	--name openldap-server \
 	-p 1389:389 \
 	-p 1636:636 \
-	--hostname ldap.computingforgeeks.com \
-	--env LDAP_ORGANISATION="My Company" \
-	--env LDAP_DOMAIN="computingforgeeks.com" \
+	--hostname omldap.purestorage.com \
+	--env LDAP_ORGANISATION="Fake Purestorage" \
+	--env LDAP_DOMAIN="purestorage.com" \
 	--env LDAP_ADMIN_PASSWORD="StrongAdminPassw0rd" \
-	--env LDAP_BASE_DN="dc=computingforgeeks,dc=com" \
+	--env LDAP_BASE_DN="dc=purestorage,dc=com" \
 	--volume ~/data/slapd/database:/var/lib/ldap \
 	--volume ~/data/slapd/config:/etc/ldap/slapd.d \
-	--detach osixia/openldap:latest
+    osixia/openldap:latest
 
 docker run \
+    -itd \
     --name phpldapadmin \
-    -p 10080:80 \
-    -p 10443:443 \
+    -p 1080:80 \
+    -p 1443:443 \
     --hostname phpldapadmin-service \
     --link openldap-server:ldap-host \
-    --env PHPLDAPADMIN_LDAP_HOSTS=ldap.computingforgeeks.com \
-    --detach osixia/phpldapadmin:latest
+    --env PHPLDAPADMIN_LDAP_HOSTS=omldap.purestorage.com \
+    osixia/phpldapadmin:latest
+
+https://localhost:1443
+
+Login DN = cn=admin,dc=purestorage,dc=com
+Password = StrongAdminPassw0rd
+
+See omandal.txt for the fields you need
+
+https://bitbucket.purestorage.com/users/omandal/repos/tools/browse/ghe-migration/docs/howto-setup-ldap-authentication-screenshots/01.png?at=refs%2Fheads%2Fwip
+Host:               ldap.purestorage.com 389 StartTLS
+Domain search user: CN=Om Mandal,OU=70000-iridium,OU=Workday,OU=Okta,OU=PSUsers,DC=purestorage,DC=com
+Domain base:        DC=purestorage,DC=com
+
+docker run \
+    -itd \
+    --name real \
+    --hostname real \
+    -p 2080:80 \
+    -p 2443:443 \
+    --env PHPLDAPADMIN_LDAP_HOSTS=ldap.purestorage.com \
+    osixia/phpldapadmin:latest
+
+https://localhost:2443
+
+Login DN:  CN=Om Mandal,OU=70000-iridium,OU=Workday,OU=Okta,OU=PSUsers,DC=purestorage,DC=com
+Password: My ldap password
+
+---
+
+gh auth login
+
+
+
+
