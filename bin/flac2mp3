@@ -1,0 +1,9 @@
+#!/bin/bash
+flacfile="$1"
+mp3file=$(echo "$flacfile"|sed 's/flac$/mp3/')
+
+if [[ "$flacfile" == '' ]]; then
+  exit 1
+fi
+
+ffmpeg -i "$flacfile" -ab 320k -map_metadata 0 -id3v2_version 3 "$mp3file"
