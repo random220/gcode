@@ -1,8 +1,14 @@
 #!/bin/bash
 
 umask 077
-docker rm -f vanilla
-docker run -itd --name vanilla -h vanilla ubuntu:20.04
+contname=vanilla
+cid=$(docker ps -aqf name=$contname)
+if [[ $cid != '' ]]; then
+    docker exec -it $contname su - om
+    exit $?
+fi
+
+docker run -itd --name $contname -h $contname ubuntu:20.04
 
 d=$(mktemp -d)
 (cd ~/ && tar cfz "$d/a.tgz" .ssh)
@@ -39,4 +45,4 @@ EOF
 
 __EOF
 
-
+docker exec -it $contname su - om
