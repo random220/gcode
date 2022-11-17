@@ -27,6 +27,7 @@ ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 dpkg-reconfigure --frontend noninteractive tzdata
 
 apt-get -y install curl wget perl python3 git tmux vim sudo zip unzip
+apt-get -y install jq netcat
 
 useradd -s /bin/bash -m om
 echo 'om ALL=(ALL:ALL) NOPASSWD: ALL' >/etc/sudoers.d/om
