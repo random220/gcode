@@ -144,7 +144,7 @@ function cont_start() {
       ;;
 
     ub)
-      base_image='ubuntu:20.04'
+      base_image='ubuntu:22.04'
       my_image='myub:latest'
       ;;
 
