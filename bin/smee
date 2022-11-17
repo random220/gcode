@@ -1,0 +1,12 @@
+#!/bin/bash
+
+umask 077
+contname=smee
+cid=$(docker ps -aqf name=$contname)
+if [[ $cid != '' ]]; then
+    docker exec -it $contname su - om
+    exit $?
+fi
+
+docker run -itd --name $contname -h $contname smee bash
+docker exec -it $contname su - om
