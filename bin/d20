@@ -1,7 +1,10 @@
 #!/bin/bash
 
 umask 077
-contname=vanilla
+contname=$1
+if [[ $contname == '' ]]; then
+    contname=vanila
+fi
 cid=$(docker ps -aqf name=$contname)
 if [[ $cid != '' ]]; then
     docker exec -it $contname su - om
@@ -12,10 +15,10 @@ docker run -itd --name $contname -h $contname ubuntu:20.04
 
 d=$(mktemp -d)
 (cd ~/ && tar cfz "$d/a.tgz" .ssh)
-docker cp "$d/a.tgz" vanilla:/tmp/a.tgz
+docker cp "$d/a.tgz" $contname:/tmp/a.tgz
 rm -rf "$d"
 
-cat <<'__EOF' | docker exec -i vanilla bash -
+cat <<'__EOF' | docker exec -i $contname bash -
 apt-get -y update
 apt-get -y dist-upgrade
 
@@ -46,4 +49,4 @@ EOF
 
 __EOF
 
-docker exec -it $contname su - om
+#docker exec -it $contname su - om
