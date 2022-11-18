@@ -10,3 +10,4 @@ fi
 
 docker run -itd --name $contname -h $contname smee bash
 docker exec -it $contname su - om
+#export GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY=1
