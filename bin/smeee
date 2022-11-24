@@ -1,0 +1,44 @@
+#!/bin/bash
+
+if [[ $1 == '0' ]]; then
+    docker rm -f smee
+fi
+if [[ $1 == '00' ]]; then
+    docker rm -f smee
+    docker rmi -f smee
+fi
+
+umask 077
+bindir=$(cd $(dirname $0) && pwd -P)
+contname=smee
+cid=$(docker ps -aqf name=$contname)
+if [[ $cid != '' ]]; then
+    docker exec -it $contname su - om
+    exit $?
+fi
+
+mkimage() {
+    $bindir/d20 smee0
+    cat <<'EOF' | docker exec -i smee0 bash -
+apt-get -y install npm
+npm install --global smee-client
+
+mv ~om/.ssh ~om/.ssh0
+mkdir ~om/.ssh
+mv ~om/.ssh0/config* ~om/.ssh
+chown -R om:om ~om/.ssh
+rm -rf ~om/.ssh0
+
+EOF
+    docker stop smee0
+    docker export smee0|docker import - smee
+    docker rm -f smee0
+}
+
+ref=$(docker images -q --filter=reference=smee)
+if [[ $ref == '' ]]; then
+    mkimage
+fi
+docker run -itd --name $contname -h $contname smee bash
+docker exec -it $contname su - om
+#export GITHUB_ACTIONS_RUNNER_TLS_NO_VERIFY=1

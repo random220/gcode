@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+
+# % multipass ls
+# Name                    State             IPv4             Image
+# vpn                     Running           192.168.64.3     Ubuntu 20.04 LTS
+
+undef $/;
+$out = `multipass ls`;
+if ( $out =~ m{\nvpn\s+Running\s+([\d\.]+)}s) {
+    $ip = $1;
+    exec "ssh -D 9900 om\@$ip";
+}

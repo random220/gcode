@@ -1,0 +1,52 @@
+#!/bin/bash
+
+umask 077
+contname=$1
+if [[ $contname == '' ]]; then
+    contname=vanila
+fi
+cid=$(docker ps -aqf name=$contname)
+if [[ $cid != '' ]]; then
+    docker exec -it $contname su - om
+    exit $?
+fi
+
+docker run -itd --name $contname -h $contname ubuntu:20.04
+
+d=$(mktemp -d)
+(cd ~/ && tar cfz "$d/a.tgz" .ssh)
+docker cp "$d/a.tgz" $contname:/tmp/a.tgz
+rm -rf "$d"
+
+cat <<'__EOF' | docker exec -i $contname bash -
+apt-get -y update
+apt-get -y dist-upgrade
+
+export DEBIAN_FRONTEND=noninteractive
+TZ=Etc/UTC apt-get -y install tzdata
+apt-get -y install tzdata
+rm -f /etc/localtime
+ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+dpkg-reconfigure --frontend noninteractive tzdata
+
+apt-get -y install curl wget perl python3 git tmux vim sudo zip unzip
+apt-get -y install jq netcat
+
+useradd -s /bin/bash -m om
+echo 'om ALL=(ALL:ALL) NOPASSWD: ALL' >/etc/sudoers.d/om
+
+cat <<'EOF' | su - om -c bash -
+cd
+sudo chmod a+r /tmp/a.tgz
+tar xfz /tmp/a.tgz
+sudo rm -f /tmp/a.tgz
+
+. <(curl -s https://raw.githubusercontent.com/random220/gcode/main/bin/gcode.0)
+
+mkdir ~/bin
+
+EOF
+
+__EOF
+
+#docker exec -it $contname su - om
