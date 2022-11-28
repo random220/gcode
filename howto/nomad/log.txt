@@ -1,0 +1,98 @@
+Sun Nov 27 20:33:00 PST 2022
+https://developer.hashicorp.com/nomad/tutorials/enterprise/production-deployment-guide-vm-with-consul#download-nomad
+https://github.com/jdxlabs/hello-nomad
+https://medium.com/hashicorp-engineering/hashicorp-nomad-from-zero-to-wow-1615345aa539
+
+
+sudo apt-get -y install curl wget vim tmux git perl python3 zip unzip
+
+#It's a single binary
+mkdir -p ~/raw
+cd raw
+export NOMAD_VERSION="1.1.0"
+curl --silent --remote-name https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip
+mkdir x
+cd x
+unzip ../nomad_1.1.0_linux_amd64.zip
+sudo mv nomad /usr/local/bin
+sudo chown root:root /usr/local/bin/nomad
+#autocomplete
+nomad -autocomplete-install
+complete -C /usr/local/bin/nomad nomad
+
+#data dir
+sudo mkdir -p /opt/nomad
+
+#nomad user for running server (client should run as root)
+sudo useradd --system --home /etc/nomad.d --shell /bin/false nomad
+sudo mkdir /etc/nomad.d
+
+# for nomand service
+sudo su -
+cat <<'EOF' | openssl enc -d -base64|gunzip - >/etc/systemd/system/nomad.service
+H4sIAFQ9hGMCA31UTU/bQBC9+1eMRA8tUuwAgkNVV+KrNCpJEAFxQEjZrCfxks2u
+tbPGpL++s2uHAiW9WfPx5r2Zt76/Nco/JGdI0qnKK2vykV2JIjmzsl6h8SLGSu8r
++pplTdOkJuQrZx9R+lTZrLCSsuROGE+5Qd9Yt+xZo5XB1Au3QJ8czz26LblkB+5K
+NFCTMguIs6FRvoRTa6jWoDwoAmM9GJRIJNwavAXidr+pmStHPoWbEgkZL8DT24oZ
+zq3DDl4QCAOW1a7U76gvIIonq4quQtvFgukwli/FCwjzqI14EkqLmUbgRJxRV2my
+08qXsTAldE9KMpVW+Ltocj9pvx6C+HZgyKEDKm2tC2YLrjaBpy8R4r55P+jSrlpq
+xZch7v6nwVnrk1sK645nvHC2rrrv5PwZ5TVqK4o8mymTLZXW0Pt5ewWfhseD0dXg
+LJZMgqo8q8ll2kqhY23LQix4MPRY0VwtIEMv20RaJL8YbGgLzNka4VAxMFELI3Q+
+GVwMRjfJJS/cj8Y/Bpfn+dHh4cFRF7m6Hp/miiHZi+vkGuNac2t6c9517XATmqDM
+93lpO+EiTIBTfBHV3QGc8MjHZ0S+XQrB2QRNqWQJgitjERawCk7gu5oAtDur2Tu7
+wF5gzwTjKRPcsasMn+5J6DYFVHEwoAQnVuh4SMB6caIw6wAXsHkyIUzjFqO+QQfF
+9Kdg3UepKXwusEJThEdgIzNak8dVAewLYot+CbPki+xgDFmiXIaGDVdmUbxGPwna
+pgHsTW9pG1gx4ZY6BTmvILhAaG0bLOKLAg7WvBpeC88MWNKuwo+B1bcPLXQUOBe1
+9pQGS78jADkcxqN9uJH4qojB+IG+10zwPYf9g36yrTeHvT5twf4/8LetuBvQG0FL
+Gornv8Ycj4cTyQc+Lh5r8nlvr9/v82seGN6j1g/xF4jFyTpf8SpUL77Y7i/3B74d
+evJnBQAA
+EOF
+
+
+# common config
+#-------------------
+cat <<'EOF' >/etc/nomad.d/nomad.hcl
+datacenter = "dc1"
+data_dir = "/opt/nomad"
+EOF
+
+# server config
+#-------------------
+cat <<'EOF' >/etc/nomad.d/server.hcl
+server {
+  enabled = true
+  bootstrap_expect = 3
+}
+EOF
+
+# client config
+#-------------------
+cat <<'EOF' >/etc/nomad.d/client.hcl
+client {
+  enabled = true
+}
+EOF
+
+
+sudo chmod -R go-rwx /etc/nomad.d
+
+#service enable and start
+sudo systemctl enable nomad
+sudo systemctl start nomad
+sudo systemctl status nomad
+
+#-----
+create idential except for hostname servers nom-s1, nom-s2, nom-s3
+boot up
+
+% nomad server members
+Name           Address        Port  Status  Leader  Protocol  Build  Datacenter  Region
+nom-s1.global  172.16.75.155  4648  alive   false   2         1.1.0  dc1         global
+nom-s2.global  172.16.75.157  4648  alive   false   2         1.1.0  dc1         global
+nom-s3.global  172.16.75.156  4648  alive   true    2         1.1.0  dc1         global
+
+
+
+
+
+
