@@ -1,0 +1,7 @@
+#!/bin/bash
+cat <<'EOF'
+Github
+curl -XGET -H 'authorization: token <personal token>' '<https://api.github.com/repos/><owner>/<repo>'
+Github Enterprise
+curl -XGET -H 'authorization: token <personal token>' 'https://<GHE url>/api/v3/repos/<owner>/<repo>'
+EOF
