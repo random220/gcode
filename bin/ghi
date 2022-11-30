@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cat <<'EOF'
+curl -o gh.deb -L https://github.com/cli/cli/releases/download/v2.20.2/gh_2.20.2_linux_amd64.deb
+sudo dpkg -i ./gh.deb
+rm -f gh.deb
+EOF
