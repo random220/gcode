@@ -9,27 +9,25 @@ sudo apt-get -y install curl wget vim tmux git perl python3 zip unzip
 #It's a single binary
 mkdir -p ~/raw
 cd raw
-export NOMAD_VERSION="1.1.0"
-curl --silent --remote-name https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip
-mkdir x
-cd x
-unzip ../nomad_1.1.0_linux_amd64.zip
+wget https://releases.hashicorp.com/nomad/1.4.3/nomad_1.4.3_linux_amd64.zip
+unzip nomad_1.4.3_linux_amd64.zip
 sudo mv nomad /usr/local/bin
 sudo chown root:root /usr/local/bin/nomad
+
 #autocomplete
 nomad -autocomplete-install
 complete -C /usr/local/bin/nomad nomad
 
 #data dir
 sudo mkdir -p /opt/nomad
+sudo chown -R nomad:nomad /opt/nomad
 
 #nomad user for running server (client should run as root)
 sudo useradd --system --home /etc/nomad.d --shell /bin/false nomad
 sudo mkdir /etc/nomad.d
 
 # for nomand service
-sudo su -
-cat <<'EOF' | openssl enc -d -base64|gunzip - >/etc/systemd/system/nomad.service
+cat <<'EOF' | openssl enc -d -base64|gunzip - |sudo tee /etc/systemd/system/nomad.service >/dev/null
 H4sIAFQ9hGMCA31UTU/bQBC9+1eMRA8tUuwAgkNVV+KrNCpJEAFxQEjZrCfxks2u
 tbPGpL++s2uHAiW9WfPx5r2Zt76/Nco/JGdI0qnKK2vykV2JIjmzsl6h8SLGSu8r
 +pplTdOkJuQrZx9R+lTZrLCSsuROGE+5Qd9Yt+xZo5XB1Au3QJ8czz26LblkB+5K
@@ -51,14 +49,14 @@ EOF
 
 # common config
 #-------------------
-cat <<'EOF' >/etc/nomad.d/nomad.hcl
+cat <<'EOF' | sudo tee /etc/nomad.d/nomad.hcl >/dev/null
 datacenter = "dc1"
 data_dir = "/opt/nomad"
 EOF
 
 # server config
 #-------------------
-cat <<'EOF' >/etc/nomad.d/server.hcl
+cat <<'EOF' |sudo tee /etc/nomad.d/server.hcl >/dev/null
 server {
   enabled = true
   bootstrap_expect = 3
@@ -67,32 +65,33 @@ EOF
 
 # client config
 #-------------------
-cat <<'EOF' >/etc/nomad.d/client.hcl
+cat <<'EOF' | sudo tee /etc/nomad.d/client.hcl >/dev/null
 client {
   enabled = true
 }
 EOF
 
 
-sudo chmod -R go-rwx /etc/nomad.d
+sudo chmod -R a+rX /etc/nomad.d
 
 #service enable and start
 sudo systemctl enable nomad
 sudo systemctl start nomad
 sudo systemctl status nomad
 
-#-----
-create idential except for hostname servers nom-s1, nom-s2, nom-s3
-boot up
 
-% nomad server members
-Name           Address        Port  Status  Leader  Protocol  Build  Datacenter  Region
-nom-s1.global  172.16.75.155  4648  alive   false   2         1.1.0  dc1         global
-nom-s2.global  172.16.75.157  4648  alive   false   2         1.1.0  dc1         global
-nom-s3.global  172.16.75.156  4648  alive   true    2         1.1.0  dc1         global
+-----
+copy machines to noms1 noms2 and noms3
+192.168.2.139, 192.168.2.146, 192.168.2.146
 
-
-
-
+ssh s1 "sudo su nomad -s /bin/bash -c 'nomad server join 192.168.2.148 192.168.2.149'"
+% ssh s3 nomad server members
+Name          Address        Port  Status  Leader  Raft Version  Build  Datacenter  Region
+noms1.global  192.168.2.150  4648  alive   false   3             1.4.3  dc1         global
+noms2.global  192.168.2.149  4648  alive   true    3             1.4.3  dc1         global
+noms3.global  192.168.2.148  4648  alive   false   3             1.4.3  dc1         global
 
 
+
+http://192.168.2.150:4646/ui/clients
+http://192.168.2.150:4646/ui/servers
