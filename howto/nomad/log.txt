@@ -82,9 +82,14 @@ sudo systemctl status nomad
 
 -----
 copy machines to noms1 noms2 and noms3
-192.168.2.139, 192.168.2.146, 192.168.2.146
+10.32.32.128 10.32.32.129 10.32.32.130
 
-ssh s1 "sudo su nomad -s /bin/bash -c 'nomad server join 192.168.2.148 192.168.2.149'"
+ssh s1 "sudo su nomad -s /bin/bash -c 'nomad server join 10.32.32.129'"
+ssh s3 "sudo su nomad -s /bin/bash -c 'nomad server join 10.32.32.129'"
+ssh s1 "sudo su nomad -s /bin/bash -c 'nomad server join 10.32.32.129 10.32.32.130'"
+ssh s1 sudo systemctl status nomad
+ssh s2 sudo systemctl status nomad
+ssh s3 sudo systemctl status nomad
 % ssh s3 nomad server members
 Name          Address        Port  Status  Leader  Raft Version  Build  Datacenter  Region
 noms1.global  192.168.2.150  4648  alive   false   3             1.4.3  dc1         global
@@ -94,4 +99,4 @@ noms3.global  192.168.2.148  4648  alive   false   3             1.4.3  dc1     
 
 
 http://192.168.2.150:4646/ui/clients
-http://192.168.2.150:4646/ui/servers
+http://193.168.2.150:4646/ui/servers
