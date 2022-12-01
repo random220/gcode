@@ -1,0 +1,37 @@
+
+https://developer.hashicorp.com/nomad/tutorials/get-started/get-started-run
+ssh c1 sudo usermod -aG docker om
+ssh c2 sudo usermod -aG docker om
+
+ssh c1
+nomad server members
+nomad node status
+
+
+
+
+mkdir x
+cd x
+nomad job init  # that created example.nomad 
+nomad job run example.nomad
+nomad job status
+nomad job status example
+nomad alloc status db3b14a9
+nomad alloc logs db3b14a9
+nomad alloc logs db3b14a9 redis
+
+edit exmaple.nomad to change count from 1 to 3
+nomad job plan example.nomad
+
+nomad job run -check-index 53 example.nomad
+
+nomad job stop example
+nomad job status
+docker ps -a # all gone
+docker images #images exist
+nomad system gc #images gone
+
+nomad job stop -purge <job>
+
+
+
