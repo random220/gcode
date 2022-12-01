@@ -13,6 +13,14 @@ host noms3 {
     hardware ethernet 00:50:56:2C:20:42;
     fixed-address 11.32.32.130;
 }
+host c1 {
+    hardware ethernet 00:50:56:3A:0F:62;
+    fixed-address 11.32.32.151;
+}
+host c2 {
+    hardware ethernet 00:50:56:3B:0E:14;
+    fixed-address 11.32.32.152;
+}
 EOF
 
 cat a.txt | sudo tee '/Library/Preferences/VMware Fusion/vmnet2/dhcpd.conf'
@@ -26,7 +34,7 @@ x=s3
 
 ssh om@$(eval echo '$'$x)
 
-sudo perl -i -pe "s/nom0/nom$x/" /etc/hosts /etc/hostname
+sudo perl -i -pe "s/nom/nomc1/" /etc/hosts /etc/hostname
 sudo reboot
 
 ssh om@$x
