@@ -11,20 +11,19 @@ host noms2 {
 }
 host noms3 {
     hardware ethernet 00:50:56:2C:20:42;
-    fixed-address 11.32.32.130;
+    fixed-address 10.32.32.130;
 }
-host c1 {
-    hardware ethernet 00:50:56:3A:0F:62;
-    fixed-address 11.32.32.151;
+host nomc1 {
+    hardware ethernet 00:50:56:2B:78:0C;
+    fixed-address 10.32.32.151;
 }
 host c2 {
     hardware ethernet 00:50:56:3B:0E:14;
-    fixed-address 11.32.32.152;
+    fixed-address 10.32.32.152;
 }
 EOF
 
 cat a.txt | sudo tee '/Library/Preferences/VMware Fusion/vmnet2/dhcpd.conf'
-
 --------------------------------------------------------
 
 s1=10.32.32.128
@@ -61,6 +60,40 @@ ssh s1 systemctl status nomad
 ssh s2 systemctl status nomad
 ssh s3 systemctl status nomad
 ssh s1 "sudo su nomad -s /bin/bash -c 'nomad server join 10.32.32.129 10.32.32.130'"
+
+ssh c1
+sudo systemctl stop nomad
+sudo chown -R root:root /etc/nomad.d
+sudo chmod -R a+rX /etc/nomad.d
+sudo rm -f /etc/nomad.d/server.hcl
+
+sudo perl -i -pe 's/User=nomad/User=root/' /etc/systemd/system/nomad.service
+sudo perl -i -pe 's/Group=nomad/Group=root/' /etc/systemd/system/nomad.service
+sudo bash -c 'rm -rf /opt/nomad/*'
+
+sudo shutdown -h now
+
+
+ssh c1
+as om
+nomad node config -update-servers 10.32.32.129:4647
+
+ssh c2
+as om
+nomad node config -update-servers 10.32.32.129:4647
+
+
+Shows here
+http://10.32.32.129:4646/ui/clients
+
+
+
+
+
+
+
+
+
 
 
 
