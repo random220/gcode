@@ -113,6 +113,8 @@ alias p4m='p4 diff=3 merge3 -r' # 'p4 help merge3' /path/to/base /path/to/theirs
 
 alias pp='enscript -2rG --colo=1 --line-numbers -p out.ps --highlight=python -c'
 
+alias mp=multipass
+
 gits()
 {
 #git config credential.helper store
