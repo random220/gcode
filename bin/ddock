@@ -75,31 +75,59 @@ function cent_install() {
 
 function ub_install() {
   local cont=$1
-  docker exec -ti $cont bash -c 'useradd -s /bin/bash -m om'
-  docker exec -ti $cont bash -c 'apt-get -y update; apt-get -y dist-upgrade'
-  docker exec -ti $cont bash -c 'apt-get -y install sudo tmux vim python3 perl make gcc wget curl git rsync jq'
-  docker exec -ti $cont bash -c 'DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata'
-  docker exec -ti $cont bash -c 'rm -f /etc/localtime; ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime'
-  docker exec -ti $cont bash -c 'apt-get -y install tesseract-ocr-eng tesseract-ocr-ben'
-  docker exec -ti $cont bash -c 'apt-get -y install ghostscript'
-  docker exec -ti $cont bash -c 'apt-get -y install pdftk'
-  docker exec -ti $cont bash -c 'apt-get -y install img2pdf'
-  docker exec -ti $cont bash -c 'apt-get -y install poppler-utils' # for pdfimages
-  docker exec -ti $cont bash -c 'apt-get -y install imagemagick'   # for commandline image processing
-  docker exec -ti $cont bash -c 'apt-get -y install postgresql-client'   # for commandline psql client
-  local d=$(mktemp -d)
-  echo 'om ALL=(ALL) NOPASSWD: ALL' >$d/om
-  docker cp $d/om $cont:/etc/sudoers.d/om
-  rm -rf $d
-  docker exec -ti $cont bash -c 'chown root:root /etc/sudoers.d/om; chmod 600 /etc/sudoers.d/om'
-  docker exec -ti $cont bash -c 'mkdir /tmp/x; cd /tmp/x; wget https://golang.org/dl/go1.16.5.linux-amd64.tar.gz; mkdir -p /usr/local; cd /usr/local; tar xf /tmp/x/go1.16.5.linux-amd64.tar.gz; cd /usr/bin; ln -s /usr/local/go/bin/* .; cd /; rm -rf /tmp/x'
-  docker exec -ti $cont su - om -c 'git clone https://github.com/random220/gcode; mv .bashrc .bashrc.0; ln -s gcode/sundry/.bashrc .; ln -s gcode/sundry/.aliases .;ln -s gcode/sundry/.vimrc .; ln -s gcode/sundry/.tmux.conf .'
-  docker exec -ti $cont su - om -c 'ssh-keygen -t rsa -b 2048 -N "" -f ~/.ssh/id_rsa -C om'
-  docker exec -ti $cont su - om -c 'cp ~/gcode/sundry/.ssh/config ~/.ssh/config; chmod go-w ~/.ssh/config'
-  docker stop $cont
-  docker start $cont
-  docker exec -ti $cont bash -c 'apt-get -y autoclean; apt-get -y autoremove'
-  docker exec -ti $cont su - om -c 'mkdir ~/sb; cd ~/sb; git clone https://github.com/go-delve/delve; cd delve; go install github.com/go-delve/delve/cmd/dlv; cd /; rm -rf ~/sb'
+  cat <<'EOF' | docker exec -i $cont bash -
+apt-get -y update
+apt-get -y dist-upgrade
+DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata
+rm -f /etc/localtime; ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+
+apt-get -y install sudo
+useradd -s /bin/bash -m om
+echo "om ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/om
+
+apt-get -y install tmux vim perl make gcc wget curl git rsync jq
+apt-get -y install tesseract-ocr-eng tesseract-ocr-ben
+apt-get -y install ghostscript
+apt-get -y install pdftk
+apt-get -y install img2pdf
+apt-get -y install poppler-utils         # for pdfimage
+apt-get -y install imagemagick           # for commandline image processin
+apt-get -y install postgresql-client     # for commandline psql clien
+
+apt-get -y install python3
+apt-get -y install python3-pip
+
+d=$(mktemp -d)
+cd $d
+wget https://go.dev/dl/go1.19.4.linux-amd64.tar.gz
+rm -rf /usr/local/go
+mkdir -p /usr/local
+tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz
+cd /usr/bin
+ln -sf /usr/local/go/bin/* .
+cd /
+rm -rf $d
+
+apt-get -y install npm
+npm install -g typescript
+
+apt-get -y autoclean
+apt-get -y autoremove
+EOF
+
+  cat <<'EOF' | docker exec -u om -i $cont bash -
+cd
+bash -x <(curl -s https://raw.githubusercontent.com/random220/gcode/main/bin/gcode.0)
+
+d=$(mktemp -d)
+cd $d
+git clone https://github.com/go-delve/delve
+cd delve
+go install github.com/go-delve/delve/cmd/dlv
+cd /
+rm -rf $d
+EOF
+
 }
 
 function cont_config() {
