@@ -85,7 +85,8 @@ apt-get -y install sudo
 useradd -s /bin/bash -m om
 echo "om ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/om
 
-apt-get -y install tmux vim perl make gcc wget curl git rsync jq
+apt-get -y install tmux vim wget curl git rsync zip unzip jq
+apt-get -y install perl make gcc
 apt-get -y install tesseract-ocr-eng tesseract-ocr-ben
 apt-get -y install ghostscript
 apt-get -y install pdftk
@@ -97,22 +98,30 @@ apt-get -y install postgresql-client     # for commandline psql clien
 apt-get -y install python3
 apt-get -y install python3-pip
 
+mkdir -p /usr/local/bin
+
 d=$(mktemp -d)
-cd $d
-wget https://go.dev/dl/go1.19.4.linux-amd64.tar.gz
-rm -rf /usr/local/go
-mkdir -p /usr/local
-tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz
-cd /usr/bin
-ln -sf /usr/local/go/bin/* .
-cd /
-rm -rf $d
+cd "$d"
+curl -sL -O  https://go.dev/dl/go1.19.4.linux-amd64.tar.gz
+cd /opt
+rm -rf go
+tar xfz "$d/go1.19.4.linux-amd64.tar.gz"
+rm -rf "$d"
+cd /usr/local/bin
+ln -s /opt/go/bin/* .
 
 apt-get -y install npm
 npm install -g typescript
 
 apt-get -y install openjdk-11-jdk
-apt-get -y install groovy
+d=$(mktemp -d)
+cd "$d"
+curl -sL -O https://dlcdn.apache.org/groovy/4.0.7/distribution/apache-groovy-binary-4.0.7.zip
+cd /opt
+unzip "$d/apache-groovy-binary-4.0.7.zip"
+rm -rf "$d"
+cd /usr/local/bin
+find /opt/groovy-4.0.7/bin -type f|egrep -v '\.bat$|\.ico$'|xargs -L 1 ln -s
 
 apt-get -y autoclean
 apt-get -y autoremove
