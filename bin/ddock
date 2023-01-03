@@ -111,6 +111,9 @@ rm -rf $d
 apt-get -y install npm
 npm install -g typescript
 
+apt-get -y install openjdk-11-jdk
+apt-get -y install groovy
+
 apt-get -y autoclean
 apt-get -y autoremove
 EOF
