@@ -86,6 +86,7 @@ useradd -s /bin/bash -m om
 echo "om ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/om
 
 apt-get -y install tmux vim wget curl git rsync zip unzip jq
+apt-get -y install iproute2 inetutils-ping
 apt-get -y install perl make gcc
 apt-get -y install tesseract-ocr-eng tesseract-ocr-ben
 apt-get -y install ghostscript
