@@ -14,6 +14,7 @@ $HOME/bin
 $HOME/gcode/bin
 $HOME/go/bin
 $HOME/Library/Python/3.9/bin
+/Library/Frameworks/Python.framework/Versions/3.10/bin
 /snap/bin
 /usr/local/sbin
 /usr/local/bin
