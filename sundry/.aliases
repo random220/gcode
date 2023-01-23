@@ -128,7 +128,7 @@ git config --global user.name "Om Mandal"
 git config --global pull.rebase false
 }
 
-function gf() {
+function gf0() {
     local dotgit=$(git rev-parse --show-toplevel)/.git
     local b=$(git branch|grep '\*'|sed 's/^.* //')
     local r=$(git rev-list -1 HEAD)
@@ -147,6 +147,23 @@ function gf() {
     git fetch --all
     git branch |grep $prefix|xargs -r git branch -D
     git checkout -b $b --track origin/$b
+}
+
+function gf() {
+    local top
+    local headref
+    local current_branch
+
+    top=$(git rev-parse --show-toplevel)
+    headref=$(git rev-list -1 HEAD)
+    current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+    cd "$top"
+    git pack-refs --all
+    echo "$headref refs/heads/ref_$headref" >.git/packed-refs
+    echo "ref: refs/heads/ref_$headref" >.git/HEAD
+    git fetch -f origin
+    git checkout "$current_branch" && git branch -D "ref_$headref"
 }
 
 function gfresh() {
