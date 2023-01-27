@@ -163,8 +163,8 @@ function gf() {
     git pack-refs --all
     echo "$headref refs/heads/ref_$headref" >.git/packed-refs
     echo "ref: refs/heads/ref_$headref" >.git/HEAD
-    git fetch -f origin
-    git checkout "$current_branch" && git branch -D "ref_$headref"
+    git fetch --all
+    git checkout --track origin/"$current_branch" && git branch -D "ref_$headref"
 }
 
 function gfresh() {
