@@ -1,7 +1,7 @@
 #!/bin/bash
 
 showcode() {
-cat <<EOF|openssl enc -d -base64|gunzip -
+cat <<EOF|base64 -d|gunzip -
 H4sIAG+H02MCA5VX+6+jxhX+nb+CJlE3KfIdwLycZlNhjG2MjW1sA3bUXvEYHuZpXga0yt/ese/eJBu1qxZp0DBzHt+cc3Tm49u/ACfKgGNXIYY1qV3FOMnzGNammZ3C
 j22RYZGP//IL/h2Ff/yIfyA/4P/859/xOoQZhqMnbZI6Kuyqwj2YwBrio1HRlAHEv3uzgPkRhv0ulFSfghIW+Df/+ryPf4P/DDzYgqxJEpz++a/Uu79/PPyR/81bVdtl
 /ZuTL/dgB933LbxqvBy98BGep0852EVI8R9/BmY3mRvio+w3xVGK0wt85OEUucD93LUTzLVr/KefPry+ytv5B/zTV10+IoqPMLuoRwGs8VGPN4Vn1/CPK15U1aOmCErb
