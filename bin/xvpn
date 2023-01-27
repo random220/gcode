@@ -1,12 +1,36 @@
 #!/usr/bin/perl
+use strict;
 
 # % multipass ls
 # Name                    State             IPv4             Image
 # vpn                     Running           192.168.64.3     Ubuntu 20.04 LTS
 
 undef $/;
-$out = `multipass ls`;
+my $out = `multipass ls`;
+my $ip = undef;
 if ( $out =~ m{\nvpn\s+Running\s+([\d\.]+)}s) {
     $ip = $1;
-    exec "ssh -D 9900 om\@$ip";
 }
+
+my $sshconfig = <<EOF;
+StrictHostKeyChecking=no
+CheckHostIP=no
+EscapeChar=~
+UserKnownHostsFile=/dev/null
+LogLevel ERROR
+
+Host vpn
+    User om
+    Hostname $ip
+    IdentityFile ~/.ssh/id_rsa-ghrandom
+    DynamicForward 9900
+    LocalForward 2222 irdv-omandal2.dev.purestorage.com:2222
+    LocalForward 7999 bitbucket.purestorage.com:7999
+
+EOF
+open F, ">/tmp/sshconfig" or die;
+print F $sshconfig;
+close F;
+
+system("ssh -F /tmp/sshconfig vpn");
+
