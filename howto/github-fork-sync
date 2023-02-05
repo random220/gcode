@@ -1,7 +1,8 @@
-Yes, you can sync a forked repository using the GitHub API. You can use the "Patch Repository" endpoint of the GitHub API to update the repository and sync it with the upstream repository. You will need to send a PATCH request to the endpoint with the necessary parameters. Here's an example using cURL:
+Yes, you can sync a forked repository using the GitHub API. You can use the
+"Patch Repository" endpoint of the GitHub API to update the repository and sync
+it with the upstream repository. You will need to send a PATCH request to the
+endpoint with the necessary parameters. Here's an example using cURL:
 
-css
-Copy code
 curl --request PATCH \
   --url https://api.github.com/repos/{OWNER}/{REPO} \
   --header 'authorization: token {YOUR_ACCESS_TOKEN}' \
@@ -10,4 +11,11 @@ curl --request PATCH \
   "base": "upstream-repo",
   "head": "upstream-repo:master"
 }'
-Replace {OWNER} with the username of the repository owner and {REPO} with the name of the repository. Also, replace {YOUR_ACCESS_TOKEN} with your personal access token.
+
+Replace {OWNER} with the username of the repository owner and {REPO} with the
+name of the repository. Also, replace {YOUR_ACCESS_TOKEN} with your personal
+access token.
+
+
+Also
+https://cli.github.com/manual/gh_repo_sync
