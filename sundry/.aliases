@@ -167,6 +167,14 @@ function gf() {
     git checkout --track origin/"$current_branch" && git branch -D "ref_$headref"
 }
 
+gf2() {
+    br=_branch_$(date +%s)
+    git checkout -b $br
+    git branch|grep -v '\*'|xargs -r git branch -D
+    git tag|xargs -r git tag -d
+    git fetch --all -p -f
+}
+
 function gfresh() {
     local b=$(git branch|grep '^\*'|awk '{print $2}')
     git checkout $(git rev-parse HEAD) >/dev/null 2>&1
