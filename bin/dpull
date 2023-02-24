@@ -8,6 +8,6 @@ cd ~/b 2>/dev/null || nothing ~/b
 
 rm -rf dotssh.git.bak
 mv dotssh.git dotssh.git.bak 2>/dev/null
-scp i2:__dotssh__.zip dotssh.zip
+scp k1:__dotssh__.zip dotssh.zip
 unzip dotssh.zip
 rm -f dotssh.zip
