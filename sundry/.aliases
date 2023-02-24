@@ -168,11 +168,14 @@ function gf() {
 }
 
 gf2() {
-    br=_branch_$(date +%s)
+    local br0=$(git branch|grep '\*'|awk '{print $2}')
+    local br=_branch_$(date +%s)
     git checkout -b $br
     git branch|grep -v '\*'|xargs -r git branch -D
     git tag|xargs -r git tag -d
     git fetch --all -p -f
+    git checkout $br0
+    git branch -D $br
 }
 
 function gfresh() {
