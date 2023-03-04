@@ -98,6 +98,7 @@ alias rw='vimdiff ~/zr.txt ~/zw.txt'
 alias lr='vimdiff ~/zl.txt ~/zr.txt'
 alias lw='vimdiff ~/zl.txt ~/zw.txt'
 
+alias glogn='echo|gh auth login; gh auth setup-git'
 alias glog='git log --all --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit --date=relative'
 alias glog1='git log --graph --decorate --oneline'
 alias glog2='git log --all --graph --decorate --oneline'
