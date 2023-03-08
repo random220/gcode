@@ -175,7 +175,7 @@ gf2() {
     git branch|grep -v '\*'|xargs -r git branch -D
     git tag|xargs -r git tag -d
     git fetch --all -p -f
-    git checkout $br0
+    git checkout --track origin/$br0
     git branch -D $br
 }
 
