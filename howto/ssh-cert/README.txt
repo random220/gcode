@@ -20,4 +20,11 @@ sudo service ssh restart
 sudo useradd -s /bin/bash -m omandal
 ssh -i ~/x/user-key omandal@vpn
 
-yee!
+yeeah!
+
+
+Github specific
+https://docs.github.com/en/enterprise-cloud@latest/organizations/managing-git-access-to-your-organizations-repositories/about-ssh-certificate-authorities
+
+ssh-keygen -s user_ca -V '+1d' -I KEY-IDENTITY -O extension:login@github.com=omandal_pure ~/.ssh/id_rsa.pub
+
