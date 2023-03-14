@@ -1,0 +1,17 @@
+
+
+================== !! Congratulations !!  ==================
+  You have successfully built r. Now you just need
+  to do the following to make it work.
+============================================================
+
+# Do this on the machine you built this
+mkdir /tmp/jmz-$$
+cp r /tmp/jmz-$$
+(
+  cd /tmp/jmz-$$
+  sudo chown root:root r
+  sudo chmod a+s r
+)
+
+
