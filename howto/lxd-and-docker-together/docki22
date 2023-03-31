@@ -11,7 +11,16 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docke
 sudo apt-get -y update
 apt-cache policy docker-ce
 sudo apt-get -y install docker-ce
-#sudo systemctl status docker
 sudo usermod -aG docker ${USER}
-sudo iptables -I DOCKER-USER  -j ACCEPT
+
+# https://serverfault.com/questions/1005648/docker-changes-iptables-forward-policy-to-drop
+# temp
+# sudo iptables -I DOCKER-USER  -j ACCEPT
+
+# perm
+cat <<'EOF' | sudo bash -
+echo "net.ipv4.ip_forward=1" >>/etc/sysctl.conf
+echo "net.ipv6.conf.all.forwarding=1" >>/etc/sysctl.conf
+EOF
+
 

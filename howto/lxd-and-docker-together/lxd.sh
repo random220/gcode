@@ -7,6 +7,13 @@ sudo snap install lxd
 sudo usermod -aG lxd $USER
 
 
+sudo lxd init --auto --storage-backend=zfs --storage-create-device=/dev/sdb
+
+
+
+
+---------------------------------------------------------------------------------------------------------
+
 sudo lxd init --minimal
 # % lxc storage list
 # To start your first container, try: lxc launch ubuntu:22.04
