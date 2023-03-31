@@ -19,6 +19,9 @@ apt-get -y install openjdk-11-jdk-headless
 useradd -s /bin/bash -m ir
 echo 'ir:welcome'|chpasswd
 umask 077
+mkdir ~ir/.ssh
+ssh-keygen -t ed25519 -f ~ir/.ssh/id_ed25519 -N ''
+chown -R ir:ir ~ir/.ssh
 echo 'ir ALL=(ALL:ALL) NOPASSWD: ALL' >/etc/sudoers.d/ir
 perl -i -pe 's/^PasswordAuthentication.*/PasswordAuthentication yes\n/s' /etc/ssh/sshd_config
 EOF
