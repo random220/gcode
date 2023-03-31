@@ -38,4 +38,10 @@ lxc cp java11/snap0 cl8
 lxc cp java11/snap0 cl9
 lxc start cl0 cl1 cl2 cl3 cl4 cl5 cl6 cl7 cl8 cl9
 
+mkdir jenkins_home
+chmod 777 jenkins_home
+docker run -itd \
+-p 8080:8080 -p 50000:50000 \
+-v `pwd`/jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk11
+
 
