@@ -8,6 +8,7 @@ sudo usermod -aG lxd $USER
 
 
 sudo lxd init --auto --storage-backend=zfs --storage-create-device=/dev/sdb
+sudo lxd init --auto --storage-backend=zfs --storage-create-loop=60
 
 
 
