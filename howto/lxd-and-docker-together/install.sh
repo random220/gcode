@@ -5,5 +5,6 @@
 
 mydir=$(cd "$(dirname $0)" && pwd -P)
 "$mydir/docki22"
+"$mydir/lxdi.sh"
 
 
