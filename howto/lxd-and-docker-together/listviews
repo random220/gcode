@@ -1,0 +1,19 @@
+#!/bin/bash
+
+code=$(
+cat <<'EOF'
+Jenkins.instance.views.each {
+  view ->
+  println "${view.name}"
+  view.items.each {
+    item ->
+    println "\t- ${item.name}"
+  }
+}
+EOF
+)
+
+curl -sL -d "script=$code" \
+--user "$(cat $HOME/.ssh/token-gaia)" \
+http://gaia:8080/scriptText
+
