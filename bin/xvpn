@@ -1,11 +1,13 @@
 #!/bin/bash
 
+vmname=favpn
+
 set -x
 # % multipass ls
 # Name                    State             IPv4             Image
 # favpn                   Running           192.168.64.3     Ubuntu 20.04 LTS
 
-ip=$(multipass ls|grep -E '^favpn *Running'|awk '{print $3}')
+ip=$(multipass ls|grep -E "^$vmname *Running"|awk '{print $3}')
 
 umask 077;
 d=$(mktemp -d)
@@ -28,8 +30,8 @@ Host vpn
 EOF
 
 ssh-keygen -t ed25519 -N '' -f id_ed25519
-multipass transfer id_ed25519.pub fvpn:/tmp/a.txt
-cat <<'EOF' | multipass exec fvpn bash -
+multipass transfer id_ed25519.pub $vmname:/tmp/a.txt
+cat <<'EOF' | multipass exec $vmname bash -
 sudo mv /tmp/a.txt /home/om/.ssh/authorized_keys
 sudo chown -R om:om /home/om
 sudo chmod 644 /home/om/.ssh/authorized_keys

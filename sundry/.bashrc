@@ -13,3 +13,4 @@ fi
 #export LC_ALL=C.UTF-8
 #export LANG=C.UTF-8
 
+source /Users/om/.docker/init-bash.sh || true # Added by Docker Desktop
