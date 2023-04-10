@@ -1,18 +1,18 @@
-#!/usr/bin/perl
-use strict;
+#!/bin/bash
 
+set -x
 # % multipass ls
 # Name                    State             IPv4             Image
-# vpn                     Running           192.168.64.3     Ubuntu 20.04 LTS
+# favpn                   Running           192.168.64.3     Ubuntu 20.04 LTS
 
-undef $/;
-my $out = `multipass ls`;
-my $ip = undef;
-if ( $out =~ m{\nvpn\s+Running\s+([\d\.]+)}s) {
-    $ip = $1;
-}
+ip=$(multipass ls|grep -E '^favpn *Running'|awk '{print $3}')
 
-my $sshconfig = <<EOF;
+umask 077;
+d=$(mktemp -d)
+echo "==> $d"
+mkdir "$d/.ssh"
+cd "$d/.ssh"
+cat <<EOF  >config
 StrictHostKeyChecking=no
 CheckHostIP=no
 EscapeChar=~
@@ -22,15 +22,19 @@ LogLevel ERROR
 Host vpn
     User om
     Hostname $ip
-    IdentityFile ~/.ssh/id_rsa-ghrandom
-    DynamicForward 9900
-    LocalForward 2222 irdv-omandal2.dev.purestorage.com:2222
-    LocalForward 7999 bitbucket.purestorage.com:7999
+    IdentityFile $d/.ssh/id_ed25519
+    DynamicForward 9999
 
 EOF
-open F, ">/tmp/sshconfig" or die;
-print F $sshconfig;
-close F;
 
-system("ssh -F /tmp/sshconfig vpn");
+ssh-keygen -t ed25519 -N '' -f id_ed25519
+multipass transfer id_ed25519.pub fvpn:/tmp/a.txt
+cat <<'EOF' | multipass exec fvpn bash -
+sudo mv /tmp/a.txt /home/om/.ssh/authorized_keys
+sudo chown -R om:om /home/om
+sudo chmod 644 /home/om/.ssh/authorized_keys
+EOF
 
+ssh -F "$d/.ssh/config" vpn
+cd /
+rm -rf "$d"
