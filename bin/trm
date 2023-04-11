@@ -13,4 +13,14 @@ cd ~/.config/transmission
 rm -rf blocklists resume torrents stats.json dht.dat
 )
 
+pid=$$
+
+cat <<EOF >~/bin/killme
+#!/bin/bash
+kill -SIGINT $pid
+EOF
+
+chmod 700 ~/bin/killme
+
+mkdir -p ~/Downloads/uu
 exec transmission-cli -f ~/bin/killme -w ~/Downloads/uu "$1"
