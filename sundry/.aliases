@@ -102,20 +102,28 @@ alias glogn='echo|gh auth login; gh auth setup-git'
 alias glog='git log --all --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit --date=relative'
 alias glog1='git log --graph --decorate --oneline'
 alias glog2='git log --all --graph --decorate --oneline'
+
 heads () 
 { 
     git pack-refs --all
-    packed_refs_file="$(git rev-parse --show-toplevel)"/.git/packed-refs
-    (
-    for ref in $(git rev-list --all --children|grep -v ' '); do
+    packed_refs_file='./packed-refs'
+    if [[ ! -f "$packed_refs_file" ]]; then
+        packed_refs_file="$(git rev-parse --show-toplevel)"/.git/packed-refs
+    fi
+    if [[ ! -f "$packed_refs_file" ]]; then
+        echo "Error: Could not find packed-refs file"
+        return 1
+    fi
+    ( for ref in $(git rev-list --all --children|grep -v ' ')
+    do
         refnames=$(grep $ref $packed_refs_file|sed 's/^.* //'|sort|xargs)
         if [[ $refnames != '' ]]; then
             refdate=$(git log -1 --pretty=format:'%cs' $ref)
             echo "$refdate $ref $refnames"
         fi
-    done
-    ) | sort -nr
+    done ) | sort -nr
 }
+
 alias grel='git branch -r|grep origin/RELEASE|xargs git log --graph --decorate --oneline'
 alias gl='git log --all --graph --pretty="%h %ad %Cred%d%Creset %an: %s" --date=short'
 alias gconv='git config --local --bool core.bare false'
