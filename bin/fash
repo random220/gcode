@@ -1,0 +1,35 @@
+#!/bin/bash
+
+umask 077
+rm -rf ~/.ssh/fash
+mkdir -p ~/.ssh/fash
+cd ~/.ssh/fash
+ssh-keygen -t ed25519 -N '' -f id_ed25519
+multipass transfer id_ed25519.pub favpn:/tmp/a.txt
+
+cat <<'EOF' |  multipass exec favpn bash -
+umask 077
+sudo mkdir -p ~om/.ssh
+sudo mv /tmp/a.txt ~om/.ssh/authorized_keys
+sudo chown -R om:om ~om/.ssh
+EOF
+
+ipaddr=$(multipass ls |grep favpn|grep Ubuntu|awk '{print $3}')
+
+mkdir -p ~/.ssh/config.d
+cat <<EOF >~/.ssh/config.d/fash
+StrictHostKeyChecking=no
+CheckHostIP=no
+EscapeChar=~
+UserKnownHostsFile=/dev/null
+LogLevel ERROR
+
+
+Host favpn fash
+    User om
+    Hostname $ipaddr
+    IdentityFile ~/.ssh/fash/id_ed25519
+EOF
+
+ssh favpn
+
