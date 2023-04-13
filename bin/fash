@@ -5,7 +5,7 @@ rm -rf ~/.ssh/fash
 mkdir -p ~/.ssh/fash
 cd ~/.ssh/fash
 ssh-keygen -t ed25519 -N '' -f id_ed25519
-multipass transfer id_ed25519.pub favpn:/tmp/a.txt
+multipass transfer <(cat id_ed25519.pub) favpn:/tmp/a.txt
 
 cat <<'EOF' |  multipass exec favpn bash -
 umask 077
@@ -31,5 +31,11 @@ Host favpn fash
     IdentityFile ~/.ssh/fash/id_ed25519
 EOF
 
+grep 'Include ~/\.ssh/config.d/\*' ~/.ssh/config
+if [[ $? != 0 ]]; then
+    echo 'Include ~/.ssh/config.d/*' >~/.ssh/config.new
+    cat ~/.ssh/config >>~/.ssh/config.new
+    mv ~/.ssh/config.new ~/.ssh/config
+fi
 ssh favpn
 
