@@ -1,11 +1,12 @@
 #!/bin/bash
 
+set -x
 umask 077
 rm -rf ~/.ssh/fash
 mkdir -p ~/.ssh/fash
 cd ~/.ssh/fash
 ssh-keygen -t ed25519 -N '' -f id_ed25519
-multipass transfer <(cat id_ed25519.pub) favpn:/tmp/a.txt
+cat id_ed25519.pub | multipass exec favpn bash -- -c 'cat - >/tmp/a.txt'
 
 cat <<'EOF' |  multipass exec favpn bash -
 umask 077
