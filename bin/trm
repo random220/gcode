@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -x
+app=$(readlink -f $0)
+torrent=$(readlink -f "$1")
 if [[ "$1" == '' ]]; then
   exit 0
 fi
@@ -19,18 +22,14 @@ EOF
 
 chmod 700 ~/bin/killme
 
-mkdir -p ~/Downloads/uu
-(
-    cd ~/Downloads/uu
-    # % df -kh .
-    # Filesystem              Size  Used Avail Use% Mounted on
-    # 192.168.10.182:/shares  2.0G  4.0K  2.0G   1% /home/om/x
-    df -kh .|grep 192.168.10.182
-    if [[ $? != 0 ]]; then
-        cd ~/
-        sshfs 192.168.10.182:/shares/data/movies/uu ~/Downloads/uu
-    fi
-)
+# % df -kh .
+# Filesystem              Size  Used Avail Use% Mounted on
+# 192.168.10.182:/shares  2.0G  4.0K  2.0G   1% /home/om/x
 
+(cd ~/Downloads/uu && df -kh .)|grep 192.168.10.182
+if [[ $? != 0 ]]; then
+    mkdir -p ~/Downloads/uu
+    bash -c "sshfs 192.168.10.182:/shares/data/movies/uu $HOME/Downloads/uu"
+fi
 
 exec transmission-cli -f ~/bin/killme -w ~/Downloads/uu "$1"
