@@ -38,5 +38,40 @@ if [[ $? != 0 ]]; then
     cat ~/.ssh/config >>~/.ssh/config.new
     mv ~/.ssh/config.new ~/.ssh/config
 fi
+
+cat <<'EOF' | ssh favpn bash -
+umask 077
+if [[ ! -f ~/.ssh/config ]]; then
+    mkdir -p ~/.ssh
+    touch ~/.ssh/config
+fi
+grep '^Include ~/\.ssh/config.d/\*' ~/.ssh/config
+if [[ $? != 0 ]]; then
+    echo 'Include ~/.ssh/config.d/*' >~/.ssh/config.new
+    cat ~/.ssh/config >>~/.ssh/config.new
+    mv ~/.ssh/config.new ~/.ssh/config
+fi
+
+#% ip a|grep inet|grep metric
+#    inet 10.88.161.50/24 metric 100 brd 10.88.161.255 scope global ens3
+ipaddr=$(ip a|grep inet|grep metric|awk '{print $2}'|perl -pe 's{\.[^\.]*$}{.1}')
+
+cat <<EOF_1 >~/.ssh/config.d/mom
+StrictHostKeyChecking=no
+CheckHostIP=no
+EscapeChar=~
+UserKnownHostsFile=/dev/null
+LogLevel ERROR
+
+
+Host mom
+    Hostname $ipaddr
+EOF_1
+
+
+EOF
+
 ssh favpn
+
+
 
