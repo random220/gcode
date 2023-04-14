@@ -1,30 +1,40 @@
 #!/bin/bash
 
-set -x
+#set -x
 umask 077
-rm -rf ~/.ssh/fash
-mkdir -p ~/.ssh/fash
-cd ~/.ssh/fash
-ssh-keygen -t ed25519 -N '' -f id_ed25519
-cat id_ed25519.pub | multipass exec favpn bash -- -c 'cat - >/tmp/a.txt'
 
-cat <<'EOF' |  multipass exec favpn bash -
+main() {
+    mk_new_keypair
+    add_ssh_config_for_fash
+    add_ssh_config_for_mon_on_favpn
+    ssh favpn
+}
+
+mk_new_keypair() {
+    rm -rf ~/.ssh/fash
+    mkdir -p ~/.ssh/fash
+    cd ~/.ssh/fash
+    ssh-keygen -t ed25519 -N '' -f id_ed25519
+    cat id_ed25519.pub | multipass exec favpn bash -- -c 'cat - >/tmp/a.txt'
+    cat <<'EOF' |  multipass exec favpn bash -
 umask 077
 sudo mkdir -p ~om/.ssh
 sudo mv /tmp/a.txt ~om/.ssh/authorized_keys
 sudo chown -R om:om ~om/.ssh
 EOF
+}
 
-ipaddr=$(multipass ls |grep favpn|grep Ubuntu|awk '{print $3}')
 
-mkdir -p ~/.ssh/config.d
-cat <<EOF >~/.ssh/config.d/fash
+add_ssh_config_for_fash() {
+    ipaddr=$(multipass ls |grep favpn|grep Ubuntu|awk '{print $3}')
+
+    mkdir -p ~/.ssh/config.d
+    cat <<EOF >~/.ssh/config.d/fash
 StrictHostKeyChecking=no
 CheckHostIP=no
 EscapeChar=~
 UserKnownHostsFile=/dev/null
 LogLevel ERROR
-
 
 Host favpn fash
     User om
@@ -32,20 +42,23 @@ Host favpn fash
     IdentityFile ~/.ssh/fash/id_ed25519
 EOF
 
-grep 'Include ~/\.ssh/config.d/\*' ~/.ssh/config
-if [[ $? != 0 ]]; then
-    echo 'Include ~/.ssh/config.d/*' >~/.ssh/config.new
-    cat ~/.ssh/config >>~/.ssh/config.new
-    mv ~/.ssh/config.new ~/.ssh/config
-fi
+    grep -q 'Include ~/\.ssh/config.d/\*' ~/.ssh/config
+    if [[ $? != 0 ]]; then
+        echo 'Include ~/.ssh/config.d/*' >~/.ssh/config.new
+        cat ~/.ssh/config >>~/.ssh/config.new
+        mv ~/.ssh/config.new ~/.ssh/config
+    fi
+}
 
-cat <<'EOF' | ssh favpn bash -
+add_ssh_config_for_mon_on_favpn() {
+
+    cat <<'EOF' | ssh favpn bash -
 umask 077
 if [[ ! -f ~/.ssh/config ]]; then
     mkdir -p ~/.ssh
     touch ~/.ssh/config
 fi
-grep '^Include ~/\.ssh/config.d/\*' ~/.ssh/config
+grep -q '^Include ~/\.ssh/config.d/\*' ~/.ssh/config
 if [[ $? != 0 ]]; then
     echo 'Include ~/.ssh/config.d/*' >~/.ssh/config.new
     cat ~/.ssh/config >>~/.ssh/config.new
@@ -68,10 +81,9 @@ Host mom
     Hostname $ipaddr
 EOF_1
 
-
 EOF
 
-ssh favpn
+}
 
 
-
+main "$@"
