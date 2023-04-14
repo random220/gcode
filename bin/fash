@@ -6,7 +6,7 @@ umask 077
 main() {
     mk_new_keypair
     add_ssh_config_for_fash
-    add_ssh_config_for_mon_on_favpn
+    add_ssh_config_for_mom_on_favpn
     ssh favpn
 }
 
@@ -50,7 +50,7 @@ EOF
     fi
 }
 
-add_ssh_config_for_mon_on_favpn() {
+add_ssh_config_for_mom_on_favpn() {
 
     cat <<'EOF' | ssh favpn bash -
 umask 077
@@ -69,6 +69,7 @@ fi
 #    inet 10.88.161.50/24 metric 100 brd 10.88.161.255 scope global ens3
 ipaddr=$(ip a|grep inet|grep metric|awk '{print $2}'|perl -pe 's{\.[^\.]*$}{.1}')
 
+mkdir -p ~/.ssh/config.d
 cat <<EOF_1 >~/.ssh/config.d/mom
 StrictHostKeyChecking=no
 CheckHostIP=no
