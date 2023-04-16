@@ -1,0 +1,40 @@
+#!/bin/bash
+umask 077
+rm -rf ~/.ssh/nfash
+mkdir ~/.ssh/nfash
+ssh-keygen -t ed25519 -N '' -f ~/.ssh/nfash/id_nuc
+cat <<'EOF' >~/.ssh/nfash/config
+StrictHostKeyChecking=no
+CheckHostIP=no
+EscapeChar=~
+UserKnownHostsFile=/dev/null
+LogLevel ERROR
+
+Host nuc
+    User om
+    Hostname 192.168.10.180
+    IdentityFile ~/.ssh/nfash/id_nuc
+
+EOF
+scp ~/.ssh/nfash/id_nuc.pub nuc:.ssh/authorized_keys
+rsync -e "ssh -F $HOME/.ssh/nfash/config" -a nuc:.ssh/fash/ ~/.ssh/nfash/
+out=$(ssh -F ~/.ssh/nfash/config nuc multipass ls)
+# %  ssh -F ~/.ssh/nfash/config nuc multipass ls
+# Name                    State             IPv4             Image
+# favpn                   Running           10.88.161.250    Ubuntu 22.04 LTS
+#                                           10.15.0.4
+ipaddr=$(grep 'favpn' <<<"$out" | grep Ubuntu|awk '{print $3}')
+# 10.88.161.250
+
+cat <<EOF >>~/.ssh/nfash/config
+Host nfash
+    User om
+    Hostname $ipaddr
+    IdentityFile ~/.ssh/nfash/id_ed25519
+    ProxyJump nuc
+    DynamicForward 9999
+
+EOF
+
+ssh -F ~/.ssh/nfash/config nfash
+
