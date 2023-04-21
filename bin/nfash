@@ -36,5 +36,9 @@ Host nfash
 
 EOF
 
+networksetup -setsocksfirewallproxy Wi-Fi localhost 9999
+#networksetup -setsocksfirewallproxy Wi-Fi '' ''
+#networksetup -setsocksfirewallproxystate Wi-Fi off
+
 ssh -F ~/.ssh/nfash/config nfash
 

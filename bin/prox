@@ -1,0 +1,5 @@
+#!/bin/bash
+
+networksetup -setsocksfirewallproxy Wi-Fi localhost 9999
+#networksetup -setsocksfirewallproxy Wi-Fi '' ''
+#networksetup -setsocksfirewallproxystate Wi-Fi off
