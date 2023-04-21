@@ -8,9 +8,28 @@ if [[ "$1" == '' ]]; then
   exit 0
 fi
 
-if [[ ! -f "$1" ]]; then
-  exit 0
+input="$1"
+if [[ "$input" =~ .torrent$ ]]; then
+  if [[ -f "$input" ]]; then
+    :
+  else
+    echo "ERROR: Torrent file \"$input\" not found"
+    exit 1
+  fi
+elif [[ "$input" =~ .mag$ ]]; then
+  if [[ -f "$input" ]]; then
+    input=$(cat "$input")
+  else
+    echo "ERROR: Magnet link file \"$input\" not found"
+    exit 1
+  fi
+elif [[ "$input" =~ ^magnet: ]]; then
+  :
+else
+  echo "ERROR: input \"$input\" not recognized"
+  exit 1
 fi
+
 
 ( cd ~/.config/transmission && rm -rf blocklists resume torrents stats.json dht.dat )
 
@@ -38,4 +57,4 @@ if [[ $? != 0 ]]; then
     fi
 fi
 
-exec transmission-cli -f ~/bin/killme -w ~/Downloads/uu "$1"
+exec transmission-cli -f ~/bin/killme -w ~/Downloads/uu "$input"
