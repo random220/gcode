@@ -1,0 +1,70 @@
+
+mkdir ~/p4test
+cd ~/p4test
+p4d -p localhost:1666 -d
+
+mkdir ~/p4c
+cd ~/p4c
+
+export P4PORT=localhost:1666
+# % p4 depots
+    # Depot depot 2023/04/22 local depot/... 'Default depot'
+
+# % p4 client -o xxx|egrep -v '^#|^$'
+    # Client:	xxx
+    # Owner:	om
+    # Host:	oms-macbook-pro.lan
+    # Description:
+    # 	Created by om.
+    # Root:	/Users/om/p4c
+    # Options:	noallwrite noclobber nocompress unlocked nomodtime normdir
+    # SubmitOptions:	submitunchanged
+    # LineEnd:	local
+    # View:
+    # 	//depot/... //xxx/...
+    # 
+
+
+cat <<'EOF' | p4 client -i
+Client:	xxx
+Owner:	om
+Host:	oms-macbook-pro.lan
+Description:
+	Created by om.
+Root:	/Users/om/p4c
+Options:	noallwrite noclobber nocompress unlocked nomodtime rmdir
+
+# see https://www.perforce.com/manuals/p4guide/Content/P4Guide/configuration.workspace.submit_options.html
+SubmitOptions:	revertunchanged+reopen
+
+LineEnd:	local
+View:
+	//depot/... //xxx/...
+
+EOF
+
+export P4CONFIG=.p4config
+cat <<EOF >.p4config
+P4PORT=localhost:1666
+P4CLIENT=xxx
+EOF
+
+rsync -a --delete ~/gcode/ gcode/
+rm -rf gcode/.git
+p4 add ...
+p4 submit -d 'hi there'
+
+
+mkdir ~/p4c2
+cd ~/p4c2
+
+export P4CONFIG=.p4config
+cat <<EOF >.p4config
+P4PORT=localhost:1666
+P4CLIENT=yyy
+EOF
+
+p4 client -o|p4 client -i
+p4 sync
+
+
