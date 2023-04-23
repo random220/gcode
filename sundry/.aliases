@@ -82,6 +82,9 @@ export PS1="\e[1m\e[38;5;23m\u@\h \w >\e[0m\e[0m\n% "    # darker green
 export PS1="\e[1m\e[38;5;56m\u@\h \w >\e[0m\e[0m\n% "    # nice blueish magenta
 export PS1="\e[1m\e[38;5;199m\u@\h \w >\e[0m\e[0m\n% "   # magenta
 export PS1="\e[1m\e[38;5;20m\u@\h \w >\e[0m\e[0m\n% "    # sulekha blue
+if [[ "$LOGNAME" == "sm" ]]; then
+    export PS1="\e[1m\e[38;5;199m\u@\h \w >\e[0m\e[0m\n% "   # magenta
+fi
 alias ps1="echo export PS1=\''$PS1'\'"
 
 export HISTTIMEFORMAT="%F %T "
