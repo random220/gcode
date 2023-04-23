@@ -89,7 +89,7 @@ alias ps1="echo export PS1=\''$PS1'\'"
 
 export HISTTIMEFORMAT="%F %T "
 export P4CONFIG=.p4config
-export P4PORT=perforce:1666
+#export P4PORT=perforce:1666
 
 if [[ $(uname) == Linux ]]; then
   alias ls='ls --color=auto'
