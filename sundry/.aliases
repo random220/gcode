@@ -7,35 +7,39 @@ fi
 export VISUAL=vi
 export EDITOR=vi
 
-pcomps=(
-$HOME/.local/bin
-$HOME/go/bin
-$HOME/bin
-$HOME/gcode/bin
-$HOME/go/bin
-$HOME/Library/Python/3.9/bin
-/Library/Frameworks/Python.framework/Versions/3.10/bin
-/snap/bin
-/usr/local/sbin
-/usr/local/bin
-/usr/local/go/bin
-/usr/sbin
-/usr/bin
-/sbin
-/bin
-/opt/homebrew/bin
-)
+set_path() {
+  #set -x
+  local pcomps=(
+    $HOME/.local/bin
+    $HOME/go/bin
+    $HOME/bin
+    $HOME/gcode/bin
+    $HOME/go/bin
+    $HOME/Library/Python/3.9/bin
+    /snap/bin
+    /usr/local/sbin
+    /usr/local/bin
+    /usr/local/go/bin
+    /usr/sbin
+    /usr/bin
+    /sbin
+    /bin
+    /opt/homebrew/bin
+  )
 
-PATH=
-for p in ${pcomps[@]}; do
-  if [[ -d $p ]]; then
-    PATH="$PATH:$p"
-  fi
-done
-PATH=$(echo "$PATH"|sed 's/^://')
-export PATH
-unset p
-unset pcomps
+  local p
+  for p in ${pcomps[@]}; do
+    if [[ -d $p ]]; then
+      tr ':' $'\n' <<<"$PATH" | grep -E -q "^$p\$"
+      if [[ $? != 0 ]]; then
+        PATH="$PATH:$p"
+      fi
+    fi
+  done
+  export PATH
+}
+
+set_path
 
 
 alias vera='(veracrypt&)'
