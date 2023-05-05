@@ -1,0 +1,28 @@
+Thu May  4 17:57:48 PDT 2023
+https://github.com/openai/whisper
+
+docker run -itd -h whisper --name whisper ubuntu:22.04 bash
+docker exec -it whisper bash
+apt-get -y update
+apt-get -y dist-upgrade
+apt-get -y install vim tmux curl python3 git sudo
+
+useradd -s /bin/bash -m om
+echo 'om ALL=(ALL:ALL) NOPASSWD: ALL' >/etc/sudoers.d/om
+
+-----
+
+
+
+docker exec -it whisper su - om
+sudo apt-get -y install python3-pip
+pip install -U openai-whisper
+pip install git+https://github.com/openai/whisper.git
+pip install --upgrade --no-deps --force-reinstall git+https://github.com/openai/whisper.git
+sudo apt-get -y update && sudo apt-get -y install ffmpeg
+pip install setuptools-rust
+#pip install setuptools-rust
+
+
+
+
