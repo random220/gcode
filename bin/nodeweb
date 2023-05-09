@@ -1,0 +1,7 @@
+#!/bin/bash
+#sudo npm install -g http-server
+read -p 'port ' port
+if [[ $port == '' ]]; then
+  port=7777
+fi
+npx http-server -p $port
