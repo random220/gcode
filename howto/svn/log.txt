@@ -1,0 +1,61 @@
+Sun May 21 11:51:40 PDT 2023
+
+
+repodir=$HOME/.REPOS/svn/repo1   # /home/om/.REPOS/svn/repo1
+mkdir -p $repodir
+rm -rf $repodir
+svnadmin create $repodir
+svn mkdir -m 'root dir' --parents file://$repodir/src/trunk
+svn list -R file://$repodir
+# src/
+# src/trunk/
+
+mkdir ~/x
+cd ~/x
+svn co file://$repodir/src/trunk
+cd trunk
+rsync -a --delete ~/gcode/ gcode/
+rm -rf gcode/.git
+svn add --parents gcode
+svn commit -m 'gcode things'
+
+
+cd
+rm -rf x
+mkdir x
+cd x
+svn co file://$repodir/src/trunk
+cd trunk
+svn log
+
+# % svn log
+# ------------------------------------------------------------------------
+# r2 | om | 2023-05-21 12:08:55 -0700 (Sun, 21 May 2023) | 1 line
+# 
+# gcode things
+# ------------------------------------------------------------------------
+# r1 | om | 2023-05-21 12:04:08 -0700 (Sun, 21 May 2023) | 1 line
+# 
+# root dir
+# ------------------------------------------------------------------------
+# 
+
+% svn log -r 1
+------------------------------------------------------------------------
+r1 | om | 2023-05-21 12:04:08 -0700 (Sun, 21 May 2023) | 1 line
+
+root dir
+------------------------------------------------------------------------
+
+
+% svn log -r 1 -v
+------------------------------------------------------------------------
+r1 | om | 2023-05-21 12:04:08 -0700 (Sun, 21 May 2023) | 1 line
+Changed paths:
+   A /src
+   A /src/trunk
+
+root dir
+------------------------------------------------------------------------
+
+
