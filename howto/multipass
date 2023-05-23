@@ -1,0 +1,3 @@
+brew remove multipall
+sudo rm -rf /var/root/Library/Application Support/multipass*
+brew install multipass
