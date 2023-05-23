@@ -1,3 +1,8 @@
+sudo bash '/Library/Application Support//com.canonical.multipass/uninstall.sh'
 brew remove multipall
 sudo rm -rf /var/root/Library/Application Support/multipass*
-brew install multipass
+brew reinstall --cask multipass
+#reboot
+
+#hyperkit is broken for now for multipass
+multipass set local.driver=qemu
