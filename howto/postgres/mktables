@@ -1,0 +1,133 @@
+CREATE TABLE Employees (
+  employee_id SERIAL PRIMARY KEY,
+  employee_name VARCHAR(50),
+  department_id INT
+);
+
+-- Populate
+INSERT INTO Employees (employee_name, department_id)
+VALUES
+  ('John Doe', 1),
+  ('Jane Smith', 2),
+  ('Mike Johnson', 3),
+  ('Mary Brown', NULL);
+
+-- Create Departments table
+CREATE TABLE Departments (
+  department_id SERIAL PRIMARY KEY,
+  department_name VARCHAR(50),
+);
+
+-- Populate
+INSERT INTO Department (departname_name)
+VALUES
+  ('Sales'),
+  ('Marketing'),
+  ('IT'),
+  ('HR');
+
+
+
+
+INNER JOIN:
+The INNER JOIN returns the rows that have matching values in both tables.
+
+    SELECT Employees.employee_id, Employees.employee_name, Departments.department_name
+    FROM Employees
+    INNER JOIN Departments
+    ON Employees.department_id = Departments.department_id;
+
+    employee_id | employee_name | department_name
+    ------------+---------------+-----------------
+    1           | John Doe      | Sales
+    2           | Jane Smith    | Marketing
+    3           | Mike Johnson  | IT
+
+
+LEFT JOIN:
+The LEFT JOIN returns all rows from the left table and the matching rows from
+the right table. If there are no matching rows in the right table, NULL values
+are returned for the right table columns.
+
+    SELECT Employees.employee_id, Employees.employee_name, Departments.department_name
+    FROM Employees
+    LEFT JOIN Departments
+    ON Employees.department_id = Departments.department_id;
+
+    employee_id | employee_name | department_name
+    ------------+---------------+-----------------
+    1           | John Doe      | Sales
+    2           | Jane Smith    | Marketing
+    3           | Mike Johnson  | IT
+    4           | Mary Brown    | NULL
+
+
+
+RIGHT JOIN:
+The RIGHT JOIN returns all rows from the right table and the matching rows from
+the left table. If there are no matching rows in the left table, NULL values
+are returned for the left table columns.
+
+    SELECT Employees.employee_id, Employees.employee_name, Departments.department_name
+    FROM Employees
+    RIGHT JOIN Departments
+    ON Employees.department_id = Departments.department_id;
+
+    employee_id | employee_name | department_name
+    ------------+---------------+-----------------
+    1           | John Doe      | Sales
+    2           | Jane Smith    | Marketing
+    3           | Mike Johnson  | IT
+    NULL        | NULL          | HR
+
+
+FULL JOIN:
+The FULL JOIN returns all rows from both tables, combining the results of both
+the LEFT JOIN and RIGHT JOIN. If there are no matching rows, NULL values are
+returned for the columns of the non-matching table.
+
+    SELECT Employees.employee_id, Employees.employee_name, Departments.department_name
+    FROM Employees
+    FULL JOIN Departments
+    ON Employees.department_id = Departments.department_id;
+
+    employee_id | employee_name | department_name
+    ------------+---------------+-----------------
+    1           | John Doe      | Sales
+    2           | Jane Smith    | Marketing
+    3           | Mike Johnson  | IT
+    4           | Mary Brown    | NULL
+    NULL        | NULL          | HR
+
+
+CROSS JOIN:
+The CROSS JOIN returns the Cartesian product of both tables, combining every
+row from the first table with every row from the second table. It doesn't
+require a specific join condition.
+
+    SELECT Employees.employee_id, Employees.employee_name, Departments.department_name
+    FROM Employees
+    CROSS JOIN Departments;
+
+        employee_id   employee_name    department_name
+     1	1             John Doe         Sales
+     2	2             Jane Smith       Sales
+     3	3             Mike Johnson     Sales
+     4	4             Mary Brown       Sales
+     5	1             John Doe         Marketing
+     6	2             Jane Smith       Marketing
+     7	3             Mike Johnson     Marketing
+     8	4             Mary Brown       Marketing
+     9	1             John Doe         IT
+    10	2             Jane Smith       IT
+    11	3             Mike Johnson     IT
+    12	4             Mary Brown       IT
+    13	1             John Doe         HR
+    14	2             Jane Smith       HR
+    15	3             Mike Johnson     HR
+    16	4             Mary Brown       HR
+
+    This is same as
+    SELECT Employees.employee_id, Employees.employee_name, Departments.department_name
+    FROM Departments, Employees;
+
