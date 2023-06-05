@@ -37,5 +37,5 @@ cat <<'EOF'
 # Host name/address: postgres
 # Port: 5432
 # Maintenance database: postgres
-# Username: postgres
+# Username/passwd : postgres / secret
 EOF
