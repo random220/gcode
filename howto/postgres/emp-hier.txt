@@ -1,0 +1,62 @@
+create table employees (
+	emp_id int primary key,
+	emp_name varchar not null,
+	manager_id int
+);
+
+insert into employees (emp_id, emp_name, manager_id)
+values
+  (7, 'john', null),
+  (1, 'jack', 7),
+  (6, 'jill', 7),
+  (5, 'mary', 7),
+  (4, 'mo', 5),
+  (2, 'jane', 6),
+  (3, 'mike', 6)
+;
+
+
+Given the above data, could you write a query so that the output is the following?
+
+john/jack
+john/jill
+john/jill/jane
+john/jill/mike
+john/mary
+john/mary/mo
+
+
+ChatGPT successful solution
+
+WITH RECURSIVE employee_hierarchy AS (
+    SELECT
+        emp_id,
+        emp_name,
+        manager_id,
+        emp_name AS employee_path
+    FROM
+        employees
+    WHERE
+        manager_id IS NULL
+    UNION ALL
+    SELECT
+        e.emp_id,
+        e.emp_name,
+        e.manager_id,
+        CONCAT(eh.employee_path, '/', e.emp_name)
+    FROM
+        employees e
+    JOIN
+        employee_hierarchy eh ON e.manager_id = eh.emp_id
+)
+SELECT
+    employee_path AS employee_hierarchy
+FROM
+    employee_hierarchy
+WHERE
+    employee_path != 'john'; -- Specify the starting employee name here
+
+
+
+
+
