@@ -1,0 +1,112 @@
+#!/usr/bin/perl
+use strict;
+use Data::Dumper;
+use Cwd 'abs_path';
+use File::Basename;
+
+my $dir = '/home/om/sb/jencomps/cron/ldap';
+
+chdir "$dir";
+
+my $node = {};
+my $uid_per_dn = {};
+my $dn_per_uid = {};
+my $dntree = {};
+my $uidtree = {};
+
+open ALLUSERS, "<allusers.txt" or die;
+while (my $line = <ALLUSERS>) {
+    chomp $line;
+    if ($line eq '') {
+        process_node($node);
+        $node = {};
+        next;
+    }
+    my ($key, $value) = $line =~ m{^(.+?)\s*:\s*(.+)$};
+    $node->{$key} = $value;
+}
+close ALLUSERS;
+
+dntree_to_uidtree();
+if (scalar @ARGV > 1) {
+    for my $u (@ARGV) {
+        print_me($u);
+    }
+}
+else {
+    for my $u (@ARGV) {
+        print_tree($u);
+    }
+}
+
+sub print_me
+{
+    my $uid = shift;
+    my $me = get_uplevel($uid);
+    print "$me\n";
+}
+
+sub print_tree
+{
+    my $uid = shift;
+    my $managers = get_uplevel($uid);
+    $managers =~ s{/[^/]+$}{};
+    print_reports($managers, $uid);
+}
+
+sub print_reports
+{
+    my ($managers, $uid) = @_;
+    print "$managers/$uid\n";
+    for my $r (sort keys %{$uidtree->{$uid}->{reports}}) {
+        next if ($r eq $uid);
+        print_reports("$managers/$uid", $r);
+    }
+}
+
+sub get_uplevel
+{
+    my $uid = shift;
+    if (exists $uidtree->{$uid}->{manager}) {
+        if ($uid eq $uidtree->{$uid}->{manager}) {
+            return "/$uid";
+        }
+        else {
+            return get_uplevel($uidtree->{$uid}->{manager})."/$uid";
+        }
+    }
+    else {
+        return "/$uid";
+    }
+}
+
+sub dntree_to_uidtree
+{
+    for my $dn (keys %$dntree) {
+        my $uid = $uid_per_dn->{$dn};
+        if (exists $dntree->{$dn}->{manager}) {
+            my $manager_uid = $uid_per_dn->{$dntree->{$dn}->{manager}};
+            $uidtree->{$uid}->{manager} = $manager_uid;
+        }
+        for my $report_dn (keys %{$dntree->{$dn}->{reports}}) {
+            $uidtree->{$uid}->{reports}->{$uid_per_dn->{$report_dn}} = 1;
+        }
+    }
+}
+
+sub process_node
+{
+    my $node = shift;
+    return if (!exists $node->{dn});
+    return if ($node->{dn} =~ m{OU=Disabled_Users-Office365});
+    $uid_per_dn->{$node->{dn}} = $node->{sAMAccountName};
+    $dn_per_uid->{$node->{sAMAccountName}} = $node->{dn};
+    if (exists $node->{manager}) {
+        my $manager_dn = $node->{manager};
+        $dntree->{$node->{dn}}->{manager} = $node->{manager};
+        $dntree->{$node->{manager}}->{reports}->{$node->{dn}} = 1;
+    }
+}
+
+
+
