@@ -33,11 +33,15 @@ for sm in recs['sm']:
     mdn = recs['sm'][sm]['mdn']
     msm = recs['dn'][mdn]['sm']
     recs['sm'][sm]['msm'] = msm
+    recs['sm'][sm]['emps'] = {}
 
 recs['dn'] = {}
 
-lines = []
 for sm in recs['sm']:
+    msm = recs['sm'][sm]['msm']
+    recs['sm'][msm]['emps'][sm] = True
+
+def parents(sm):
     epath = sm
     while True:
         msm = recs['sm'][sm]['msm']
@@ -46,12 +50,36 @@ for sm in recs['sm']:
             sm = msm
         else:
             break
-    lines.append(epath)
+    return epath
 
-lines.sort()
-for line in lines:
-    print(line)
+arg = None
+if len(sys.argv) != 1:
+    arg = sys.argv[1]
 
+if arg is None:
+    lines = []
+    for sm in recs['sm']:
+        lines.append(parents(sm))
 
+    lines.sort()
+    for line in lines:
+        print(line)
+else:
+    todo = {arg: True}
+    done = {}
+    while len(todo) != 0:
+        for sm in list(todo.keys()):
+            if sm not in done:
+                done[sm] = True
+                for key in recs['sm'][sm]['emps']:
+                    todo[key] = True
+            del todo[sm]
 
+    lines = []
+    for sm in done:
+        lines.append(parents(sm))
+    lines.sort()
+    for line in lines:
+        print(line)
+        
 
