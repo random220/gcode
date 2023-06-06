@@ -95,6 +95,7 @@ apt-get -y install img2pdf
 apt-get -y install poppler-utils         # for pdfimage
 apt-get -y install imagemagick           # for commandline image processin
 apt-get -y install postgresql-client     # for commandline psql clien
+apt-get -y install sqlite3
 
 apt-get -y install python3
 apt-get -y install python3-pip
