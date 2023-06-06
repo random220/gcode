@@ -1,0 +1,15 @@
+#!/bin/bash
+
+jpeg="$1"
+
+docker cp "$jpeg" ub:/tmp/a.jpg
+
+cat <<'EOF' | docker exec -i ub bash -
+cd /tmp
+sudo chown -R om:om .
+img2pdf --out a.pdf a.jpg
+EOF
+
+docker cp ub:/tmp/a.pdf ~/Desktop/_a.pdf
+
+
