@@ -1,0 +1,26 @@
+#!/bin/bash
+
+docker run -itd --name aws -h aws ubuntu:22.04 bash
+cat <<'EOF' | docker exec -i aws bash -
+apt-get -y update
+apt-get -y dist-upgrade
+apt-get -y install vim git curl openssh-client zip unzip sudo python3
+
+mkdir /tmp/a
+cd /tmp/a
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+cd 
+rm -rf /tmp/a
+
+useradd -s /bin/bash -m om
+echo 'om ALL=(ALL:ALL) NOPASSWD: ALL' >/etc/sudoers.d/om
+
+EOF
+
+docker exec -it aws su - om
+
+
