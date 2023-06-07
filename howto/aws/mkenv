@@ -4,7 +4,7 @@ docker run -itd --name aws -h aws ubuntu:22.04 bash
 cat <<'EOF' | docker exec -i aws bash -
 apt-get -y update
 apt-get -y dist-upgrade
-apt-get -y install vim git curl openssh-client zip unzip sudo python3
+apt-get -y install vim git curl openssh-client zip unzip sudo python3 tmux
 
 mkdir /tmp/a
 cd /tmp/a
@@ -15,6 +15,9 @@ sudo ./aws/install
 
 cd 
 rm -rf /tmp/a
+
+apt-get -y install mandoc # needed for "aws help" command
+apt-get -y install jq     # needed for json manipulation
 
 useradd -s /bin/bash -m om
 echo 'om ALL=(ALL:ALL) NOPASSWD: ALL' >/etc/sudoers.d/om
