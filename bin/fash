@@ -40,6 +40,7 @@ Host favpn fash
     User om
     Hostname $ipaddr
     IdentityFile ~/.ssh/fash/id_ed25519
+    DynamicForward 9999
 EOF
 
     grep -q 'Include ~/\.ssh/config.d/\*' ~/.ssh/config
