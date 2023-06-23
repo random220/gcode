@@ -1,0 +1,16 @@
+Cover 1*
+Contents 6*
+_offset -3
+Kakababu O Sinduk Rahasya 11
+_offset -5
+Kakababu O Ekti Sada Ghora 111
+_offset -7
+Ebar Kakababur Pratishodh 199
+_offset -9
+Kakababur Chokhe Jal 303
+_offset -11
+Kakababu Ar Bagher Galpo 377
+_offset -12
+Agneogirir Peter Modhye 453
+_offset -14
+Granthoporichoy 545

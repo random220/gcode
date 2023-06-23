@@ -8,7 +8,7 @@ my $offset = 0;
 print "_offset 0\n";
 while (my $l = <F>) {
     $l =~ s{\s*$}{}s;
-    if ($l =~ m{^\s*_offset\s*(\d+)$}s) {
+    if ($l =~ m{^\s*_offset\s*(\-?\d+)$}s) {
         $offset = $1;
         next;
     }
