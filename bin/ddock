@@ -92,6 +92,7 @@ apt-get -y install tesseract-ocr-eng tesseract-ocr-ben
 apt-get -y install ghostscript
 apt-get -y install pdftk
 apt-get -y install img2pdf
+apt-get -y install djvulibre-bin         # for djvused
 apt-get -y install poppler-utils         # for pdfimage
 apt-get -y install imagemagick           # for commandline image processin
 apt-get -y install postgresql-client     # for commandline psql clien
