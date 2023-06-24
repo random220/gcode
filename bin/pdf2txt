@@ -18,9 +18,7 @@ pdftoppm -png -r 300 a.pdf aa
 for i in aa*png; do
     tesseract $i $i
 done
-rm *pdf *png
 cat aa*txt >a.txt
-rm aa*txt
 
 cd
 find "$d"
