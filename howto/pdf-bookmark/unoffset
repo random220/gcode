@@ -9,6 +9,7 @@ print "_offset 0\n";
 while (my $l = <F>) {
     $l =~ s{\s*$}{}s;
     $l =~ s{\s+(\S+)$}{ $1};
+    $l =~ s{\s+(\S+)\s+(\d+\*)$}{ $1 $2};
     if ($l =~ m{^\s*_offset\s*(\-?\d+)$}s) {
         $offset = $1;
         next;

@@ -643,11 +643,11 @@ Unit 6 Plant Structure and Function                                             
         Photoperiodism                                                                         637
     EVOLUTION CONNECTION Plants, Bugs, and People                                              638
 
-Appendices                                                                                     A-1
-    A Metric Conversion Table                                                                  A-1
-    B The Periodic Table                                                                       A-3
-    C Credits                                                                                  A-5
-    D Selected Answers                                                                         A-13
-Glossary                                                                                       G-1
-Index                                                                                          1-1
+Appendices                                                                                     A-1  679*
+    A Metric Conversion Table                                                                  A-1  679*
+    B The Periodic Table                                                                       A-3  681*
+    C Credits                                                                                  A-5  683*
+    D Selected Answers                                                                         A-13 691*
+Glossary                                                                                       G-1  699*
+Index                                                                                          1-1  723*
 
