@@ -1,4 +1,9 @@
-Unit 0 Orientation                                                                             1
+Cover 1*
+Brief Contents 2*
+Authors 5*
+Detailed Contents 26*
+_offset 38
+Unit 0 Orientation                                                                             2
     1 Learning About Life                                                                      2
     CHAPTER THREAD Swimming with the Turtles                                                   3
     BIOLOGY AND SOCIETY A Passion for Life                                                     3
