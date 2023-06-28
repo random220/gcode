@@ -1,0 +1,653 @@
+Cover 1*
+Brief Contents 2*
+Authors 5*
+Detailed Contents 26*
+_offset 38
+Unit 0 Orientation                                                                             2
+    1 Learning About Life                                                                      2
+    CHAPTER THREAD Swimming with the Turtles                                                   3
+    BIOLOGY AND SOCIETY A Passion for Life                                                     3
+    The Scientific Study of Life                                                               4
+        An Overview of the Process of Science                                                  4
+        Hypotheses, Theories, and Facts Controlled Experiments                                 7
+        Controlled Experiments                                                                 8
+    THE PROCESS OF SCIENCE Do Baby Turtles Swim?                                               8
+        Evaluating Scientific Claims                                                           9
+    The Properties of Life                                                                     10
+    Major Themes in Biology                                                                    11
+        The Relationship of Structure to Function                                              12
+        Information Flow                                                                       12
+        Pathways That Transform Energy and Matter                                              13
+        Interactions within Biological Systems                                                 14
+        Evolution                                                                              16
+    EVOLUTION CONNECTION Turtles in the Tree of Life                                           18
+
+Unit 1 Cells                                                                                   21
+    2 Essential Chemistry for Biology                                                          22
+    CHAPTER THREAD Helpful Radiation                                                           23
+    BIOLOGY AND SOCIETY Nuclear Medicine                                                       23
+    Some Basic Chemistry                                                                       24
+        Matter: Elements and Compounds                                                         24
+        Atoms                                                                                  25
+    THE PROCESS OF SCIENCE How Effective Is Radiation in Treating Prostate Cancer?             26
+        Chemical Bonding and Molecules                                                         27
+        Chemical Reactions                                                                     28
+    Water and Life                                                                             29
+        Water                                                                                  29
+        Acids, Bases, and pH                                                                   31
+    EVOLUTION CONNECTION Radioactivity as an Evolutionary Clock                                33
+
+    3 The Molecules of Life                                                                    36
+    CHAPTER THREAD Lactose Intolerance                                                         37
+    BIOLOGY AND SOCIETY Got Lactose?                                                           37
+    Organic Compounds                                                                          38
+        Carbon Chemistry                                                                       38
+        Giant Molecules from Smaller Building Blocks                                           39
+    Large Biological Molecules                                                                 40
+        Carbohydrates                                                                          40
+        Lipids                                                                                 43
+        Proteins                                                                               46
+        Nucleic Acids                                                                          49
+    THE PROCESS OF SCIENCE Does Lactose Intolerance Have a Genetic Basis?                      51
+    EVOLUTION CONNECTION The Evolution of Lactose Intolerance I in Humans                      51
+
+    4 A Tour of the Cell                                                                       54
+    CHAPTER THREAD Humans Versus Bacteria                                                      55
+    BIOLOGY AND SOCIETY Antibiotics: Drugs That Target Bacterial Cells                         55
+    The Microscopic World of Cells                                                             56
+        The Two Major Categories of Cells                                                      57
+        An Overview of Eukaryotic Cells                                                        58
+    Membrane Structure                                                                         60
+        The Plasma Membrane                                                                    60
+        Cell Surfaces                                                                          61
+    THE PROCESS OF SCIENCE How Was the First 21st-Century Antibiotic Discovered?               61
+    The Nucleus and Ribosomes: Genetic Control of the Cell                                     62
+        The Nucleus                                                                            62
+        Ribosomes                                                                              63
+        How DNA Directs Protein Production                                                     63
+    The Endomembrane System: Manufacturing and Distributing Cellular Products                  64
+        The Endoplasmic Reticulum                                                              64
+        The Golgi Apparatus                                                                    65
+        Lysosomes                                                                              66
+        Vacuoles                                                                               67
+    Chloroplasts and Mitochondria: Providing Cellular Energy                                   68
+        Chloroplasts                                                                           68
+        Mitochondria                                                                           68
+    The Cytoskeleton: Cell Shape and Movement                                                  69
+        Maintaining Cell Shape                                                                 69
+        Flagella and Cilia                                                                     70
+    [EVOLUTION CONNECTION The Evolution of Bacterial Resistance in Humane                      71
+
+    5 The Working Cell                                                                         74
+    CHAPTER THREAD Nanotechnology                                                              75
+    BIOLOGY AND SOCIETY Harnessing Cellular Structures                                         75
+        Some Basic Energy Concepts                                                             76
+        Conservation of Energy                                                                 76
+        Heat                                                                                   77
+        Chemical Energy                                                                        77
+        Food Calories                                                                          78
+    ATP and Cellular Work                                                                      79
+        The Structure of ATP                                                                   79
+        Phosphate Transfer                                                                     79
+        The ATP Cycle                                                                          80
+    Enzymes                                                                                    80
+        Activation Energy                                                                      80
+    THE PROCESS OF SCIENCE Can Enzymes Be Engineered?                                          81
+        Enzyme Activity                                                                        82
+        Enzyme Inhibitors                                                                      82
+    Membrane Function                                                                          83
+        Passive Transport: Diffusion across Membranes                                          83
+        Osmosis and Water Balance                                                              84
+        Active Transport: The Pumping of Molecules across Membranes                            86
+        Exocytosis and Endocytosis: Traffic of Large Molecules                                 86
+    EVOLUTION CONNECTION The Origin of Membranes                                               87
+
+    6 Cellular Respiration: Obtaining Energy from Food                                         90
+    CHAPTER THREAD Exercise Science                                                            91
+    BIOLOGY AND SOCIETY Getting the Most Out of Your Muscles                                   91
+    Energy Flow and Chemical Cycling in the Biosphere                                          92
+        Producers and Consumers                                                                92
+        Chemical Cycling between Photosynthesis and Cellular Respiration                       92
+    Cellular Respiration: Aerobic Harvest of Food Energy                                       94
+        An Overview of Cellular Respiration                                                    94
+        The Three Stages of Cellular Respiration                                               96
+        The Results of Cellular Respiration                                                    100
+    Fermentation: Anaerobic Harvest of Food Energy                                             101
+        Fermentation in Human Muscle Cells                                                     101
+    THE PROCESS OF SCIENCE What Causes Muscle Burn?                                            102
+        Fermentation in Microorganisms                                                         102
+    EVOLUTION CONNECTION The Importance of Oxygen                                              103
+
+    7 Photosynthesis: Using Light to Make Food                                                 106
+    CHAPTER THREAD Solar Energy                                                                107
+    BIOLOGY AND SOCIETY A Solar Revolution                                                     107
+    The Basics of Photosynthesis                                                               108
+        Chloroplasts: Sites of Photosynthesis                                                  108
+        An Overview of Photosynthesis                                                          109
+    The Light Reactions: Converting Solar Energy to Chemical Energy                            110
+        The Nature of Sunlight                                                                 110
+    THE PROCESS OF SCIENCE What Colors of Light Drive Photosynthesis?                          111
+        Chloroplast Pigments                                                                   111
+        How Photosystems Harvest Light Energy                                                  112
+        How the Light Reactions Generate ATP and NADPH                                         113
+    The Calvin Cycle: Making Sugar from Carbon Dioxide                                         115
+    EVOLUTION CONNECTION Creating a Better Biofuel Factory                                     115
+
+Unit 2 Genetics                                                                                119
+    8 Cellular Reproduction: Cells from Cells                                                  120
+    CHAPTER THREAD Life with and without Sex                                                   121
+    BIOLOGY AND SOCIETY Virgin Birth of a Shark                                                121
+    What Cell Reproduction Accomplishes                                                        122
+    The Cell Cycle and Mitosis                                                                 123
+        Eukaryotic Chromosomes                                                                 123
+        Duplicating Chromosomes                                                                125
+        The Cell Cycle                                                                         125
+        Mitosis and Cytokinesis                                                                126
+        Cancer Cells: Dividing Out of Control                                                  128
+    Meiosis, the Basis of Sexual Reproduction                                                  130
+        Homologous Chromosomes                                                                 130
+        Gametes and the Life Cycle of a Sexual Organism                                        131
+        The Process of Meiosis                                                                 132
+        Review: Comparing Mitosis and Meiosis                                                  134
+        The Origins of Genetic Variation                                                       135
+    THE PROCESS OF SCIENCE Do All Animals Have Sex?                                            137
+        When Meiosis Goes Wrong                                                                138
+    EVOLUTION CONNECTION The Advantages of Sex                                                 140
+
+
+    9 Patterns of Inheritance                                                                  144
+    CHAPTER THREAD Dog Breeding                                                                145
+    BIOLOGY AND SOCIETY Darwin's Dogs                                                          145
+    Genetics and Heredity                                                                      146
+        In an Abbey Garden                                                                     146
+        Mendel's Law of Segregation                                                            147
+        Mendel's Law of Independent Assortment                                                 150
+        Using a Testcross to Determine an Unknown Genotype                                     152
+        The Rules of Probability                                                               152
+        Family Pedigrees                                                                       153
+        Human Traits Controlled by a Single Gene                                               154
+    THE PROCESS OF SCIENCE What Is the Genetic Basis of Short Legs in Dogs!                    156
+    Variations on Mendel's Laws                                                                158
+        Incomplete Dominance in Plants and People                                              158
+        ABO Blood Groups: An Example of Multiple Alleles and Codominance                       159
+        Pleiotropy and Sickle-Cell Disease                                                     160
+        Polygenic Inheritance                                                                  160
+        Epigenetics and the Role of Environment                                                161
+    The Chromosomal Basis of Inheritance                                                       162
+        Linked Genes                                                                           162
+        Sex Determination in Humans                                                            163
+        Sex-Linked Genes                                                                       163
+    EVOLUTION CONNECTION Barking Up the Evolutionary Tree                                      165
+
+    10 The Structure and Function of DNA                                                       170
+    CHAPTER THREAD Deadly Viruses                                                              171
+    BIOLOGY AND SOCIETY The Global Threat of Zika Virus                                        171
+    DNA: Structure and Replication                                                             172
+        DNA and RNA Structure                                                                  172
+        Watson and Crick's Discovery of the Double Helix                                       173
+        DNA Replication                                                                        175
+    From DNA to RNA to Protein                                                                 176
+        How an Organism's Genotype Determines Its Phenotype                                    176
+        From Nucleotides to Amino Acids: An Overview                                           177
+        The Genetic Code                                                                       178
+        Transcription: From DNA to RNA                                                         179
+        The Processing of Eukaryotic RNA                                                       180
+        Translation: The Players                                                               180
+        Translation: The Process                                                               182
+        Review: DNA -> RNA -> Protein                                                          183
+        Mutations                                                                              184
+    Viruses and Other Noncellular Infectious Agents                                            186
+        Bacteriophages                                                                         186
+        Plant Viruses                                                                          188
+        Animal Viruses                                                                         188
+    THE PROCESS OF SCIENCE Can DNA and RNA Vaccines Protect Against Viruses?                   190
+        HIV, the AIDS Virus                                                                    190
+        Prions                                                                                 192
+    EVOLUTION CONNECTION Emerging Viruses                                                      192
+
+    11 How Genes Are Controlled                                                                196
+    CHAPTER THREAD Cancer                                                                      197
+    BIOLOGY AND SOCIETY Breast Cancer and Chemotherapy                                         197
+    How and Why Genes Are Regulated                                                            198
+        Gene Regulation in Bacteria                                                            198
+        Gene Regulation in Eukaryotic Cells                                                    200
+        Cell Signaling                                                                         203
+        Homeotic Genes                                                                         204
+        Visualizing Gene Expression                                                            204
+    Cloning Plants and Animals                                                                 205
+        The Genetic Potential of Cells                                                         205
+        Reproductive Cloning of Animals                                                        206
+        Therapeutic Cloning and Stem Cells                                                     208
+    The Genetic Basis of Cancer                                                                209
+        Genes That Cause Cancer                                                                209
+    THE PROCESS OF SCIENCE Can Avatars Improve Cancer Treatment!                               210
+        Cancer Risk and Prevention                                                             212
+    EVOLUTION CONNECTION The Evolution of Cancer in the Body                                   213
+
+    12 DNA Technology                                                                          216
+    CHAPTER THREAD DNA Profiling                                                               217
+    BIOLOGY AND SOCIETY Using DNA to Establish Guilt and Innocence                             217
+    Genetic Engineering                                                                        218
+        Recombinant DNA Techniques                                                             218
+        Gene Editing                                                                           220
+        Medical Applications                                                                   221
+        Genetically Modified Organisms in Agriculture                                          222
+        Human Gene Therapy                                                                     224
+    DNA Profiling and Forensic Science                                                         225
+        DNA Profiling Techniques                                                               225
+        Investigating Murder, Paternity, and Ancient DNA                                       228
+    Bioinformatics                                                                             229
+        DNA Sequencing                                                                         229
+        Genomics                                                                               230
+        Genome-Mapping Techniques                                                              231
+        The Human Genome                                                                       231
+    THE PROCESS OF SCIENCE Did Nic Have a Deadly Gene?                                         233
+        Applied Genomics                                                                       233
+        Systems Biology                                                                        234
+    Safety and Ethical Issues                                                                  235
+        The Controversy over Genetically Modified Foods                                        235
+        Ethical Questions Raised by Human DNA Technologies                                     236
+    EVOLUTION CONNECTION The Y Chromosome as a Window on History                               237
+
+Unit 3 Evolution and Diversity                                                                 241
+    13 How Populations Evolve                                                                  242
+    CHAPTER THREAD Evolution in Action                                                         243
+    BIOLOGY AND SOCIETY Mosquitoes and Evolution                                               243
+    The Diversity of Life                                                                      244
+        Naming and Classifying the Diversity of Life                                           244
+        Explaining the Diversity of Life                                                       245
+    Charles Darwin and The Origin of Species                                                   246
+        Darwin's Journey                                                                       246
+        Darwin's Theory                                                                        248
+    Evidence of Evolution                                                                      248
+        Evidence from Fossils                                                                  248
+        Evidence from Homologies                                                               250
+        Evolutionary Trees                                                                     251
+    Natural Selection as the Mechanism for Evolution                                           252
+        Natural Selection in Action                                                            253
+        Key Points about Natural Selection                                                     254
+    The Evolution of Populations                                                               254
+        Sources of Genetic Variation                                                           254
+        Populations as the Units of Evolution                                                  255
+        Analyzing Gene Pools                                                                   256
+        Population Genetics and Health Science                                                 257
+        Microevolution as Change in a Gene Pool                                                257
+    Mechanisms of Evolution                                                                    258
+        Natural Selection                                                                      258
+        Genetic Drift                                                                          258
+        Gene Flow                                                                              260
+        Natural Selection: A Closer Look                                                       261
+    THE PROCESS OF SCIENCE Did Natural Selection Shape the Beaks of Darwin's Finches?          262
+    EVOLUTION CONNECTION The Rising Threat of Antibiotic Resistance                            265
+
+    14 How Biological Diversity Evolves                                                        268
+    CHAPTER THREAD Evolution in the Human-Dominated World                                      269
+    BIOLOGY AND SOCIETY Humanity's Footprint                                                   269
+    The Origin of Species                                                                      270
+        What Is a Species?                                                                     271
+        Reproductive Barriers between Species                                                  272
+        Mechanisms of Speciation                                                               274
+    THE PROCESS OF SCIENCE Do Human Activities Facilitate Speciation?                          276
+    Earth History and Macroevolution                                                           279
+        The Fossil Record                                                                      279
+        Plate Tectonics and Biogeography                                                       281
+        Mass Extinctions and Explosive Diversifications of Life                                283
+    Mechanisms of Macroevolution                                                               283
+        Large Effects from Small Genetic Changes                                               283
+        The Evolution of Biological Novelty                                                    284
+    Classifying the Diversity of Life                                                          286
+        Classification and Phylogeny                                                           286
+        Classification: A Work in Progress                                                     288
+    EVOLUTION CONNECTION Evolution in the Anthropocene                                         289
+
+
+    15 The Evolution of Microbial Life                                                         292
+    CHAPTER THREAD Human Microbiota                                                            293
+    BIOLOGY AND SOCIETY Our Invisible Inhabitants                                              293
+    Major Episodes in the History of Life                                                      294
+    The Origin of Life                                                                         296
+        A Four-Stage Hypothesis for the Origin of Life                                         296
+        From Chemical Evolution to Darwinian Evolution                                         298
+    Prokaryotes                                                                                299
+        They're Everywhere!                                                                    299
+        The Structure and Function of Prokaryotes                                              300
+        The Ecological Impact of Prokaryotes                                                   303
+        The Two Main Branches of Prokaryotic Evolution: Bacteria and Archaea                   304
+    [THE PROCESS OF SCIENCE Are Intestinal Microbiota to Blame for Obesity?                    306
+    Protists                                                                                   307
+        Protozoans                                                                             308
+        Slime Molds                                                                            309
+        Unicellular and Colonial Algae                                                         310
+        Seaweeds                                                                               310
+    EVOLUTION CONNECTION The Sweet Life of Streptococcus mutans                                311
+
+
+
+    16 The Evolution of Plants and Fungi                                                       314
+    CHAPTER THREAD Plant-Fungus Interactions                                                   315
+    BIOLOGY AND SOCIETY The Diamond of the Kitchen                                             315
+    Colonizing Land                                                                            316
+        Terrestrial Adaptations of Plants                                                      316
+        The Origin of Plants from Green Algae                                                  318
+    Plant Diversity                                                                            318
+        Highlights of Plant Evolution                                                          318
+        Bryophytes                                                                             319
+        Ferns                                                                                  321
+        Gymnosperms                                                                            322
+        Angiosperms                                                                            324
+        Plant Diversity as a Nonrenewable Resource                                             327
+    Fungi                                                                                      328
+        Characteristics of Fungi                                                               329
+    THE PROCESS OF SCIENCE What Killed the Pines?                                              330
+        The Ecological Impact of Fungi                                                         331
+        Commercial Uses of Fungi                                                               331
+    EVOLUTION CONNECTION A Pioneering Partnership                                              332
+
+    17 The Evolution of Animals                                                                   336
+    CHAPTER THREAD Human Evolution                                                             337
+    BIOLOGY AND SOCIETY Evolving Adaptability                                                  337
+    The Origins of Animal Diversity                                                            338
+        What Is an Animal?                                                                     338
+        Early Animals and the Cambrian Explosion                                               339
+        Animal Phylogeny                                                                       340
+    Major Invertebrate Phyla                                                                   341
+        Sponges                                                                                341
+        Cnidarians                                                                             342
+        Molluscs                                                                               343
+        Flatworms                                                                              344
+        Annelids                                                                               345
+        Roundworms                                                                             346
+        Arthropods                                                                             347
+        Echinoderms                                                                            353
+    Vertebrate Evolution and Diversity                                                         354
+        Characteristics of Chordates                                                           354
+        Fishes                                                                                 356
+        Amphibians                                                                             357
+        Reptiles                                                                               358
+        Mammals                                                                                360
+    The Human Ancestry                                                                         361
+        The Evolution of Primates                                                              361
+        The Emergence of Humankind                                                             363
+    THE PROCESS OF SCIENCE What Can Lice Tell Us About Ancient Humans?                         366
+    EVOLUTION CONNECTION Are We Still Evolving?                                                367
+
+Unit 4 Ecology                                                                                 371
+    18 An Introduction to Ecology and the Biosphere                                            372
+    CHAPTER THREAD Climate Change                                                              373
+    BIOLOGY AND SOCIETY Penguins, Polar Bears, and People in Peril                             373
+    An Overview of Ecology                                                                     374
+        Ecology and Environmentalism                                                           374
+        A Hierarchy of Interactions                                                            375
+    Living in Earth's Diverse Environments                                                     376
+        Abiotic Factors of the Biosphere                                                       376
+        The Evolutionary Adaptations of Organisms                                              378
+        Adjusting to Environmental Variability                                                 378
+    Biomes                                                                                     380
+        Freshwater Biomes                                                                      380
+        Marine Biomes                                                                          382
+        How Climate Affects Terrestrial Biome Distribution                                     384
+        Terrestrial Biomes                                                                     385
+        The Water Cycle                                                                        391
+        Human Impact on Biomes                                                                 392
+    Climate Change                                                                             394
+        The Greenhouse Effect and Global Warming                                               394
+        The Accumulation of Greenhouse Gases                                                   395
+        Effects of Climate Change on Ecosystems                                                396
+    THE PROCESS OF SCIENCE How Does Climate Change Affect Species Distribution?                397
+        Looking to Our Future                                                                  398
+    EVOLUTION CONNECTION Climate Change as an Agent of Natural Selection                       399
+
+    19 Population Ecology                                                                      402
+    CHAPTER THREAD Biological Invasions                                                        403
+    BIOLOGY AND SOCIETY Invasion of the Lionfish                                               403
+    An Overview of Population Ecology                                                          404
+        Population Density                                                                     405
+        Population Age Structure                                                               405
+        Life Tables and Survivorship Curves                                                    406
+        Life History Traits as Adaptations                                                     406
+    Population Growth Models                                                                   408
+        The Exponential Population Growth Model: The Ideal of an Unlimited Environment         409
+        The Logistic Population Growth Model: The Reality of a Limited Environment             409
+        Regulation of Population Growth                                                        410
+    Applications of Population Ecology                                                         412
+        Conservation of Endangered Species                                                     412
+        Sustainable Resource Management                                                        412
+        Invasive Species                                                                       413
+        Biological Control of Pests                                                            414
+    THE PROCESS OF SCIENCE Can Fences Stop Cane Toads?                                         415
+        Integrated Pest Management                                                             416
+    Human Population Growth                                                                    417
+        The History of Human Population Growth                                                 417
+        Age Structures                                                                         418
+        Our Ecological Footprint                                                               419
+    EVOLUTION CONNECTION Humans as an Invasive Species                                         421
+
+    20 Communities and Ecosystems                                                              424
+    CHAPTER THREAD Importance of Biodiversity                                                  425
+    BIOLOGY AND SOCIETY Why Biodiversity Matters                                               425
+    Biodiversity                                                                               426
+        Genetic Diversity                                                                      426
+        Species Diversity                                                                      426
+        Ecosystem Diversity                                                                    427
+        Causes of Declining Biodiversity                                                       427
+    Community Ecology                                                                          428
+        Interspecific Interactions                                                             428
+        Trophic Structure                                                                      432
+        Species Diversity in Communities                                                       435
+        Disturbances and Succession in Communities                                             436
+        Ecological Succession                                                                  436
+    Ecosystem Ecology                                                                          437
+        Energy Flow in Ecosystems                                                              438
+        Chemical Cycling in Ecosystems                                                         440
+    Conservation and Restoration Biology                                                       444
+        Biodiversity "Hot Spots"                                                               444
+        Conservation at the Ecosystem Level                                                    445
+    THE PROCESS OF SCIENCE Does Biodiversity Protect Human Health?                             446
+        Restoring Ecosystems                                                                   447
+        The Goal of Sustainable Development                                                    448
+    EVOLUTION CONNECTION Saving the Hot Spots                                                  449
+
+Unit 5 Animal Structure and Function                                                           453
+    21 Unifying Concepts of Animal Structure and Function                                      454
+    CHAPTER THREAD Controlling Body Temperature                                                455
+    BIOLOGY AND SOCIETY An Avoidable Tragedy                                                   455
+    The Structural Organization of Animals                                                     456
+        Anatomy and Physiology                                                                 457
+        Tissues                                                                                457
+        Organs and Organ Systems                                                               461
+    Exchanges with the External Environment                                                    464
+    Regulating the Internal Environment                                                        465
+        Homeostasis                                                                            465
+        Negative and Positive Feedback                                                         466
+        Thermoregulation                                                                       467
+    THE PROCESS OF SCIENCE How Does a Python Warm Her Eggs?                                    468
+        Osmoregulation                                                                         468
+        Homeostasis in the Urinary System                                                      469
+    EVOLUTION CONNECTION Adaptations for Thermoregulation                                      471
+
+    22 Nutrition and Digestion                                                                 474
+    CHAPTER THREAD Controlling Your Weight                                                     475
+    BIOLOGY AND SOCIETY The "Secret" to Shedding Pounds                                        475
+    An Overview of Animal Nutrition                                                            476
+        Animal Diets                                                                           476
+        The Four Stages of Food Processing                                                     476
+        Digestive Compartments                                                                 478
+    A Tour of the Human Digestive System                                                       479
+        System Map                                                                             479
+        The Mouth                                                                              479
+        The Pharynx                                                                            480
+        The Esophagus                                                                          480
+        The Stomach                                                                            480
+        The Small Intestine                                                                    482
+        The Human Microbiome                                                                   483
+        The Large Intestine                                                                    494
+    Human Nutritional Requirements                                                             485
+        Food as Fuel                                                                           485
+        Food as Building Material                                                              485
+        Decoding Food Labels                                                                   488
+    Nutritional Disorders                                                                      489
+        Malnutrition                                                                           489
+        Eating Disorders                                                                       489
+        Obesity                                                                                490
+    THE PROCESS OF SCIENCE Can a Gene Make You Fat?                                            490
+    EVOLUTION CONNECTION Fat and Sugar Cravings                                                491
+
+    23 Circulation and Respiration                                                             494
+    CHAPTER THREAD Athletic Endurance                                                          495
+    BIOLOGY AND SOCIETY Avoiding "The Wall"                                                    495
+    Unifying Concepts of Animal Circulation                                                    496
+    The Human Cardiovascular System                                                            498
+        The Path of Blood                                                                      498
+        How the Heart Works                                                                    499
+        Blood Vessels                                                                          500
+        Blood                                                                                  503
+    THE PROCESS OF SCIENCE Live High, Train Low?                                               504
+        Cardiovascular Disease                                                                 506
+    Unifying Concepts of Animal Respiration                                                    507
+    The Human Respiratory System                                                               509
+        The Path of Air                                                                        510
+        The Brain's Control over Breathing                                                     511
+        The Role of Hemoglobin in Gas Transport                                                512
+        The Toll of Smoking on the Lungs                                                       513
+    EVOLUTION CONNECTION Evolving Endurance                                                    513
+
+    24 The Body's Defenses                                                                     516
+    CHAPTER THREAD Vaccines                                                                    517
+    BIOLOGY AND SOCIETY Herd Immunity                                                          517
+    An Overview of the Immune System                                                           518
+    Innate Immunity                                                                            519
+        External Innate Defenses                                                               519
+        Internal Innate Defenses                                                               519
+    The Lymphatic System                                                                       520
+        Circulatory Function                                                                   521
+        Immune Function                                                                        521
+    Adaptive Immunity                                                                          522
+        Step 1: Recognizing the Invaders                                                       522
+        Step 2: Cloning the Responders                                                         523
+        Step 3: Responding to Invaders                                                         524
+        Step 4: Remembering Invaders                                                           526
+    THE PROCESS OF SCIENCE How Do We Know Vaccines Work?                                       527
+    Immune Disorders                                                                           527
+        Allergies                                                                              527
+        Autoimmune Diseases                                                                    529
+        Immunodeficiency Diseases                                                              529
+        AIDS                                                                                   529
+    EVOLUTION CONNECTION Viral Evolution versus the Flu Vaccine                                530
+
+    25 Hormones                                                                                534
+    CHAPTER THREAD Steroid Abuse                                                               535
+    BIOLOGY AND SOCIETY Baseball's Ongoing Steroid Problem                                     535
+    Hormones: An Overview                                                                      536
+    The Human Endocrine System                                                                 538
+        The Hypothalamus and Pituitary Gland                                                   539
+        The Thyroid and Metabolism                                                             540
+        The Pancreas and Blood Glucose                                                         541
+        The Adrenal Glands and Stress                                                          543
+        The Gonads and Sex Hormones                                                            545
+        Mimicking Sex Hormones                                                                 545
+    THE PROCESS OF SCIENCE Do 'Roids Cause Rage?                                               546
+    EVOLUTION CONNECTION Steroids and Male Aggression                                          547
+
+    26 Reproduction and Development                                                                                       550
+    CHAPTER THREAD High-Tech Babies                                                                                       551
+    BIOLOGY AND SOCIETY New Ways of Making Babies                                                                         551
+    Unifying Concepts of Animal Reproduction                                                                              552
+        Asexual Reproduction                                                                                              552
+        Sexual Reproduction                                                                                               553
+    Human Reproduction                                                                                                    554
+        Male Reproductive Anatomy                                                                                         554
+        Female Reproductive Anatomy                                                                                       555
+        Gametogenesis                                                                                                     556
+        The Female Reproductive Cycle                                                                                     558
+    Reproductive Health                                                                                                   559
+        Contraception                                                                                                     559
+        Sexually Transmitted Infections                                                                                   560
+    Human Development                                                                                                     562
+        Fertilization by Sperm                                                                                            562
+        Basic Concepts of Embryonic Development                                                                           563
+        Pregnancy and Early Development                                                                                   564
+        The Stages of Pregnancy                                                                                           566
+        Childbirth                                                                                                        568
+    Reproductive Technologies                                                                                             568
+        Infertility                                                                                                       568
+        In Vitro Fertilization                                                                                            569
+    THE PROCESS OF SCIENCE Are Babies Conceived through In Vitro Fertilization as Healthy as Babies Conceived Naturally?  569
+        The Ethics of IVF                                                                                                 570
+    EVOLUTION CONNECTION The "Grandmother Hypothesis"                                                                     570
+
+    27 Nervous, Sensory, and Locomotor Systems                                                 574
+    CHAPTER THREAD Neurotoxins                                                                 575
+    BIOLOGY AND SOCIETY Medicinal Poisons                                                      575
+    An Overview of Animal Nervous Systems                                                      576
+        Neurons                                                                                576
+        Organization of Nervous Systems                                                        576
+        Sending a Signal through a Neuron                                                      577
+        Passing a Signal from a Neuron to a Receiving Cell                                     579
+    The Human Nervous System: A Closer Look                                                    581
+        The Central Nervous System                                                             581
+        The Peripheral Nervous System                                                          582
+        The Human Brain                                                                        583
+    The Senses                                                                                 587
+        Sensory Input                                                                          587
+        Vision                                                                                 588
+        Hearing                                                                                592
+    Locomotor Systems                                                                          593
+        The Skeletal System                                                                    593
+        The Muscular System                                                                    595
+    THE PROCESS OF SCIENCE Can Botulism Toxin Prevent Headaches?                               598
+        Stimulus and Response: Putting It All Together                                         599
+    EVOLUTION CONNECTION A Neurotoxin Arms Race                                                599
+
+
+Unit 6 Plant Structure and Function                                                            603
+    28 The Life of a Flowering Plant                                                           604
+    CHAPTER THREAD Agriculture                                                                 605
+    BIOLOGY AND SOCIETY The Buzz on Coffee Plants                                              605
+    The Structure and Function of a Flowering Plant                                            606
+        Monocots and Eudicots                                                                  606
+        Roots, Stems, and Leaves                                                               607
+        Plant Tissues and Tissue Systems                                                       610
+        Plant Cells                                                                            611
+    Plant Growth                                                                               613
+        Primary Growth: Lengthening                                                            613
+        Secondary Growth: Thickening                                                           614
+    THE PROCESS OF SCIENCE What Happened to the Lost Colony of Roanoke?                        616
+    The Life Cycle of a Flowering Plant                                                        617
+        The Flower                                                                             617
+        Overview of the Flowering Plant Life Cycle                                             618
+        Pollination and Fertilization                                                          618
+        Seed Formation                                                                         619
+        Fruit Formation                                                                        620
+        Seed Germination                                                                       620
+    EVOLUTION CONNECTION The Problem of the Disappearing Bees                                  621
+
+    29 The Working Plant                                                                       624
+    CHAPTER THREAD The Interdependence of Organisms                                            625
+    BIOLOGY AND SOCIETY Planting Hope in the Wake of Disaster                                  625
+    How Plants Acquire and Transport Nutrients                                                 626
+        Plant Nutrition                                                                        626
+        From the Soil into the Roots                                                           628
+        The Role of Bacteria in Nitrogen Nutrition                                             628
+        The Transport of Water                                                                 629
+        The Transport of Sugars                                                                630
+    THE PROCESS OF SCIENCE Can the Pressure Flow Mechanism Be Directly Measured?               632
+        Economic Uses of Plant Transport Products                                              633
+    Plant Hormones                                                                             633
+        Auxins                                                                                 634
+        Cytokinins                                                                             634
+        Ethylene                                                                               635
+        Gibberellins                                                                           635
+        Abscisic Acid                                                                          635
+    Response to Stimuli                                                                        636
+        Tropisms                                                                               636
+        Photoperiodism                                                                         637
+    EVOLUTION CONNECTION Plants, Bugs, and People                                              638
+
+Appendices                                                                                     A-1  679*
+    A Metric Conversion Table                                                                  A-1  679*
+    B The Periodic Table                                                                       A-3  681*
+    C Credits                                                                                  A-5  683*
+    D Selected Answers                                                                         A-13 691*
+Glossary                                                                                       G-1  699*
+Index                                                                                          1-1  723*
+
