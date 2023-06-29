@@ -47,7 +47,12 @@ resource "aws_instance" "gaia" {
                 nohup busybox httpd -f -p 8080 &
                 EOF
     tags = {
-        Name = "gaia1"
+        Name = "gaia"
     }
+
 }
 
+output "pubdns" {
+    value = aws_instance.gaia.public_dns
+    description = "Public DNS name of instance"
+}
