@@ -8,35 +8,40 @@
 # Routing table association
 
 # -----------------------------------------------------------------------------------------------
-resource "aws_vpc" "Main" {            # Creating VPC here
+resource "aws_vpc" "see-vpc" {         # Creating VPC here
   cidr_block       = var.main_vpc_cidr # Defining the CIDR block use 10.0.0.0/24 for demo
   instance_tenancy = "default"
 }
+output "defsg" {
+  value       = aws_vpc.see-vpc.default_security_group_id
+  description = "hi"
+}
 # -----------------------------------------------------------------------------------------------
 
 
 # -----------------------------------------------------------------------------------------------
-resource "aws_subnet" "publicsubnets" { # Creating Public Subnets
-  vpc_id     = aws_vpc.Main.id
-  cidr_block = var.public_subnets # CIDR block of public subnets
+resource "aws_subnet" "see-sub-pub" { # Creating Public Subnets
+  vpc_id                  = aws_vpc.see-vpc.id
+  cidr_block              = var.public_subnets # CIDR block of public subnets
+  map_public_ip_on_launch = true
 }
-resource "aws_internet_gateway" "IGW" { # Creating Internet Gateway
-  vpc_id = aws_vpc.Main.id              # vpc_id will be generated after we create VPC
+resource "aws_internet_gateway" "see-igw" { # Creating Internet Gateway
+  vpc_id = aws_vpc.see-vpc.id               # vpc_id will be generated after we create VPC
 }
-resource "aws_route_table" "PublicRT" { # Creating RT for Public Subnet
-  vpc_id = aws_vpc.Main.id
+resource "aws_route_table" "see-pub-rt" { # Creating RT for Public Subnet
+  vpc_id = aws_vpc.see-vpc.id
   route {
     cidr_block = "0.0.0.0/0" # Traffic from Public Subnet reaches Internet via Internet Gateway
-    gateway_id = aws_internet_gateway.IGW.id
+    gateway_id = aws_internet_gateway.see-igw.id
   }
 }
-resource "aws_route_table_association" "PublicRTassociation" {
-  subnet_id      = aws_subnet.publicsubnets.id
-  route_table_id = aws_route_table.PublicRT.id
+resource "aws_route_table_association" "see-rtassoc-pub" {
+  subnet_id      = aws_subnet.see-sub-pub.id
+  route_table_id = aws_route_table.see-pub-rt.id
 }
 # -----------------------------------------------------------------------------------------------
 
-
+/*
 # -----------------------------------------------------------------------------------------------
 resource "aws_subnet" "privatesubnets" {
   vpc_id     = aws_vpc.Main.id
@@ -61,6 +66,5 @@ resource "aws_route_table_association" "PrivateRTassociation" {
   route_table_id = aws_route_table.PrivateRT.id
 }
 # -----------------------------------------------------------------------------------------------
-
-
+*/
 
