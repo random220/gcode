@@ -16,6 +16,18 @@ output "defsg" {
   value       = aws_vpc.see-vpc.default_security_group_id
   description = "hi"
 }
+
+# https://spacelift.io/blog/terraform-security-group
+# add a new inbound rule to the default security group
+resource "aws_security_group_rule" "allow_all" {
+  type              = "ingress"
+  description       = "allow all"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_vpc.see-vpc.default_security_group_id
+}
 # -----------------------------------------------------------------------------------------------
 
 
