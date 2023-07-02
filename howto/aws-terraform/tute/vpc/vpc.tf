@@ -19,7 +19,7 @@ output "defsg" {
 
 # https://spacelift.io/blog/terraform-security-group
 # add a new inbound rule to the default security group
-resource "aws_security_group_rule" "allow_all" {
+resource "aws_security_group_rule" "defaultsg-sgrule-all" {
   type              = "ingress"
   description       = "allow all"
   from_port         = 0
@@ -27,6 +27,36 @@ resource "aws_security_group_rule" "allow_all" {
   protocol          = "-1"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_vpc.see-vpc.default_security_group_id
+}
+# -----------------------------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------------------------
+resource "aws_security_group" "see-sg-https-ssh" {
+  name   = "see-sg-https-ssh"
+  vpc_id = aws_vpc.see-vpc.id
+
+  ingress {
+    from_port   = var.http_port
+    to_port     = var.http_port
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = var.ssh_port
+    to_port     = var.ssh_port
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+resource "aws_security_group" "see-sg-all" {
+  name   = "see-sg-allow-all"
+  vpc_id = aws_vpc.see-vpc.id
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 # -----------------------------------------------------------------------------------------------
 
