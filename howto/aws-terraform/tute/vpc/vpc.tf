@@ -11,6 +11,7 @@
 resource "aws_vpc" "see-vpc" {         # Creating VPC here
   cidr_block       = var.main_vpc_cidr # Defining the CIDR block use 10.0.0.0/24 for demo
   instance_tenancy = "default"
+  enable_dns_hostnames = true
 }
 output "defsg" {
   value       = aws_vpc.see-vpc.default_security_group_id
@@ -48,7 +49,7 @@ resource "aws_security_group" "see-sg-https-ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-resource "aws_security_group" "see-sg-all" {
+resource "aws_security_group" "see-sg-allow-all" {
   name   = "see-sg-allow-all"
   vpc_id = aws_vpc.see-vpc.id
   ingress {
