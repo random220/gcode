@@ -8,9 +8,9 @@
 # Routing table association
 
 # -----------------------------------------------------------------------------------------------
-resource "aws_vpc" "see-vpc" {         # Creating VPC here
-  cidr_block       = var.main_vpc_cidr # Defining the CIDR block use 10.0.0.0/24 for demo
-  instance_tenancy = "default"
+resource "aws_vpc" "see-vpc" {             # Creating VPC here
+  cidr_block           = var.main_vpc_cidr # Defining the CIDR block use 10.0.0.0/24 for demo
+  instance_tenancy     = "default"
   enable_dns_hostnames = true
 }
 output "defsg" {
