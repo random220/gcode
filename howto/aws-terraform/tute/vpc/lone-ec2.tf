@@ -1,9 +1,4 @@
 
-resource "aws_key_pair" "see-key" {
-  key_name   = "see-key"
-  public_key = file("~/.ssh/id_rsa-sesame.pub")
-}
-
 resource "aws_instance" "gaia" {
   ami                         = "ami-024e6efaf93d85776"
   instance_type               = "t2.micro"
