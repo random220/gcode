@@ -1,7 +1,7 @@
 resource "aws_launch_configuration" "see-launch-config" {
   image_id      = "ami-024e6efaf93d85776"
   instance_type = "t2.micro"
-  #security_groups = [aws_vpc.see-vpc.default_security_group_id]
+  key_name = "see-sshkey"
   security_groups = ["sg-0851fa3df0ef1335e"]
   user_data       = <<-EOF
                 #!/bin/bash
