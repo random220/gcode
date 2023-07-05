@@ -105,10 +105,10 @@ mkdir -p /usr/local/bin
 
 d=$(mktemp -d)
 cd "$d"
-curl -sL -O  https://go.dev/dl/go1.19.4.linux-amd64.tar.gz
+curl -sL -o go.tgz https://go.dev/dl/go1.20.5.linux-amd64.tar.gz
 cd /opt
 rm -rf go
-tar xfz "$d/go1.19.4.linux-amd64.tar.gz"
+tar xfz "$d/go.tgz"
 rm -rf "$d"
 cd /usr/local/bin
 ln -s /opt/go/bin/* .
