@@ -8,17 +8,28 @@ resource "aws_key_pair" "omkey_sesame" {
   public_key = file("~/.ssh/id_rsa-sesame.pub")
 }
 
-resource "aws_security_group" "port_8080" {
-    name = "name_portia_8080"
+variable "http_port" {
+    description = "HTTP port"
+    type = number
+    default = 8080
+}
+variable "ssh_port" {
+    description = "SSH port"
+    type = number
+    default = 22
+}
+
+resource "aws_security_group" "ports_http_ssh" {
+    name = "sg_ports_http_ssh"
     ingress {
-        from_port = 8080
-        to_port = 8080
+        from_port = var.http_port
+        to_port = var.http_port
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
     ingress {
-        from_port = 22
-        to_port = 22
+        from_port = var.ssh_port
+        to_port = var.ssh_port
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
@@ -27,7 +38,7 @@ resource "aws_security_group" "port_8080" {
 resource "aws_instance" "gaia" {
     ami = "ami-024e6efaf93d85776"
     instance_type = "t2.micro"
-    vpc_security_group_ids = [aws_security_group.port_8080.id]
+    vpc_security_group_ids = [aws_security_group.ports_http_ssh.id]
     key_name = aws_key_pair.omkey_sesame.key_name
 
     user_data = <<-EOF
@@ -36,7 +47,12 @@ resource "aws_instance" "gaia" {
                 nohup busybox httpd -f -p 8080 &
                 EOF
     tags = {
-        Name = "gaia1"
+        Name = "gaia"
     }
+
 }
 
+output "pubdns" {
+    value = aws_instance.gaia.public_dns
+    description = "Public DNS name of instance"
+}
