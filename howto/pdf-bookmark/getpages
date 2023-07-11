@@ -1,11 +1,13 @@
 #!/bin/bash
 
+set -x
 read -p 'filename: ' fname
 read -p 'first page: ' p1
 read -p 'last page: ' p2
 
 docker cp "$fname" ub:/tmp/a.pdf
 cat <<EOF | docker exec -i -u om ub bash -
+set -x
 sudo chown -R om:om /tmp
 cd /tmp
 rm -rf a
