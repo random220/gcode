@@ -1,7 +1,7 @@
-Cover
-Contents
-_offset 0
-Mentor's Message: Why Master the Art and Science of Persuasion? ix
+Cover 1*
+Contents 7*
+Mentor's Message: Why Master the Art and Science of Persuasion? ix 11*
+_offset 12
 Persuading People: The Basics 1
     Understanding Persuasion 3
         Helpful information on the nature and value of persuasion. 3
@@ -52,7 +52,7 @@ Persuading People: The Basics 1
 
 Tips and Tools 65
     Tools for Persuading People 67
-        Worksheets to help you assess your persuasion abilities, establish your credibility, and understand your audience. 67
+        Worksheets to help you assess your persuasion abilities, establish your credibility, and understand your audience. 68
 
 Test Yourself 77
     A helpful review of concepts presented in this guide. To see how much you've learned, take it before and after you've read the guide.  77
