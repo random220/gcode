@@ -1,5 +1,8 @@
-Preface xx
-PART ONE Introduction and General Principles
+Cover 1*
+Preface xx 22*
+Contents 9*
+_offset 24
+PART ONE Introduction and General Principles 25*
     1 Basic Ideas and Examples 3
         1 WHAT IS A GAME OF STRATEGY?  4
         2 SOME EXAMPLES AND STORIES OF STRATEGIC GAMES 6
@@ -34,7 +37,7 @@ PART ONE Introduction and General Principles
         KEY TERMS 41
         EXERCISES 42
 
-PART TWO Fundamental Concepts and Techniques
+PART TWO Fundamental Concepts and Techniques 69*
     3 Games with Sequential Moves 47
         1 GAME TREES 48
             A. Nodes, Branches, and Paths of Plav 48
@@ -160,7 +163,7 @@ PART TWO Fundamental Concepts and Techniques
         KEY TERMS 263
 
 
-PART THREE Some Broad Classes of Strategies and Games
+PART THREE Some Broad Classes of Strategies and Games 289*
     8 Strategic Moves 267
         1 A CLASSIFICATION OF STRATEGIC MOVES 268
             A. Unconditional Strategic Moves 269
@@ -290,9 +293,9 @@ PART THREE Some Broad Classes of Strategies and Games
         KEY TERMS 500
         EXERCISES 501
 
-PART FOUR Applications to Specific Strategic Situations
+PART FOUR Applications to Specific Strategic Situations 539*
     13 Brinkmanship: The Cuban Missile Crisis 517
-        1 ABRIEF NARRATIVE OF EVENTS 518
+        1 A BRIEF NARRATIVE OF EVENTS 518
         2 A SIMPLE GAME-THEORETIC EXPLANATION 525
         3 BRINKMANSHIP WITH WELL-CONTROLLED RISK 529
             A. When Is a Simple Threat Too Large? 529
@@ -394,5 +397,5 @@ PART FOUR Applications to Specific Strategic Situations
         KEY TERMS 700
         EXERCISES 700
 
-        Glossary 705
-        Index 723
+Glossary 705
+Index 723
