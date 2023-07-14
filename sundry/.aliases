@@ -7,6 +7,14 @@ fi
 export VISUAL=vi
 export EDITOR=vi
 
+path_add() {
+  local p="$1"
+  tr ':' $'\n' <<<"$PATH" | grep -E -q "^$p\$"
+  if [[ $? != 0 ]]; then
+    PATH="$PATH:$p"
+  fi
+}
+
 set_path() {
   #set -x
   local pcomps=(
@@ -30,10 +38,7 @@ set_path() {
   local p
   for p in ${pcomps[@]}; do
     if [[ -d $p ]]; then
-      tr ':' $'\n' <<<"$PATH" | grep -E -q "^$p\$"
-      if [[ $? != 0 ]]; then
-        PATH="$PATH:$p"
-      fi
+      path_add "$p"
     fi
   done
   export PATH
@@ -82,7 +87,7 @@ export PS1="\e[1m\e[38;5;23m\u@\h \w >\e[0m\e[0m\n% "    # darker green
 export PS1="\e[1m\e[38;5;56m\u@\h \w >\e[0m\e[0m\n% "    # nice blueish magenta
 export PS1="\e[1m\e[38;5;199m\u@\h \w >\e[0m\e[0m\n% "   # magenta
 export PS1="\e[1m\e[38;5;20m\u@\h \w >\e[0m\e[0m\n% "    # sulekha blue
-if [[ "$LOGNAME" == "sm" ]]; then
+if [[ $LOGNAME == sm || $HOSTNAME == work ]]; then
     export PS1="\e[1m\e[38;5;199m\u@\h \w >\e[0m\e[0m\n% "   # magenta
 fi
 alias ps1="echo export PS1=\''$PS1'\'"
