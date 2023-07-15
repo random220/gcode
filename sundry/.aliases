@@ -7,12 +7,18 @@ fi
 export VISUAL=vi
 export EDITOR=vi
 
+path_add_after() {
+  local new="$1"
+  local p=$( tr ':' $'\n' <<<"$PATH" | grep -v '^'$new'$' | tr $'\n' ':'| sed 's/:$//; s/^://')
+  PATH="$p:$new"
+}
+path_add_before() {
+  local new="$1"
+  local p=$( tr ':' $'\n' <<<"$PATH" | grep -v '^'$new'$' | tr $'\n' ':'| sed 's/:$//; s/^://')
+  PATH="$new:$p"
+}
 path_add() {
-  local p="$1"
-  tr ':' $'\n' <<<"$PATH" | grep -E -q "^$p\$"
-  if [[ $? != 0 ]]; then
-    PATH="$PATH:$p"
-  fi
+  path_add_after "$1"
 }
 
 set_path() {
