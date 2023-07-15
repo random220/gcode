@@ -1,6 +1,7 @@
 Cover 1*
 Contents 9*
 Preface                                                               v 13*
+_offset 18
 Chapter 1: Initiating Kafka                                           1
     Introduction                                                      1
     Setting up multiple Kafka brokers                                 2
