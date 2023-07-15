@@ -1,16 +1,17 @@
 Cover 1*
-Contents 9*
-Preface                                                               v 13*
-Chapter 1: Initiating Kafka                                           1
-    Introduction                                                      1
-    Setting up multiple Kafka brokers                                 2
-    Creating topics                                                   4
-    Sending some messages from the console                            6
-    Consuming from the console                                        7
-Chapter 2: Configuring Brokers                                        9
-    Introduction                                                      9
-    Configuring the basic settings                                    9
-    Configuring threads and performance                               11
+Contents 4*
+Preface 31*
+_offset 0
+Chapter 1: Initiating Kafka                                           55
+    Introduction                                                      56
+    Setting up multiple Kafka brokers                                 58
+    Creating topics                                                   65
+    Sending some messages from the console                            71
+    Consuming from the console                                        77
+Chapter 2: Configuring Brokers                                        83
+    Introduction                                                      84
+    Configuring the basic settings                                    86
+    Configuring threads and performance                               92
     Configuring the log settings                                      13
     Configuring the replica settings                                  15
     Configuring the ZooKeeper settings                                17
