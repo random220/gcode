@@ -1,0 +1,20 @@
+Cover 1*
+Contents 4*
+Foreword                                                  iii 5*
+Acknowledgements                                          v 7*
+_offset 8
+Chapter 1 Proximity Service                               1
+Chapter 2 Nearby Friends                                  35
+Chapter 3 Google Maps                                     59
+Chapter 4 Distributed Message Queue                       91
+Chapter 5 Metrics Monitoring and Alerting System          131
+Chapter 6 Ad Click Event Aggregation                      159
+Chapter 7 Hotel Reservation System                        195
+Chapter 8 Distributed Email Service                       225
+Chapter 9 S3-like Object Storage                          253
+Chapter 10 Real-time Gaming Leaderboard                   289
+Chapter 11 Payment System                                 315
+Chapter 12 Digital Wallet                                 341
+Chapter 13 Stock Exchange                                 379
+Afterword                                                 415
+Index                                                     417
