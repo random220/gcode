@@ -97,26 +97,30 @@ if [[ $LOGNAME == sm || $HOSTNAME == work ]]; then
     export PS1="\e[1m\e[38;5;199m\u@\h \w >\e[0m\e[0m\n% "   # magenta
 fi
 alias ps1="echo export PS1=\''$PS1'\'"
-fancy_prompt() {
-    local white_on_sulekha_blue='\[\e[0;97;44;1m\]'
-    local sulekha_blue_on_purple='\[\e[0;34;104m\]'
-    local white_on_purple='\[\e[0;97;104;1m\]'
-    local purple_on_white='\[\e[0;94;107m\]'
-    local gray_on_white='\[\e[0;90;107;1m\]'
-    local white_on_gray='\[\e[0;97;100m\]'
-    local bold_white_on_gray='\[\e[0;37;100;1m\]'
-    local gray_on_transparent='\[\e[0;90;49m\]'
 
-    local reset='\[\e[0;0m\]'
-    local sulekha_blue_back='\[\e[44m\]'
-    local white_bold_fore='\[\e[1;37m\]'
-    local purple_back='\[\e[104m\]'
-    local purple_fore='\[\e[34m\]'
-    local sulekha_blue_fore='\[\e[34m\]'
-    local white_back='\[\e[107m\]'
-    local purple_fore='\[\e[94m\]'
-    local gray_bold_fore='\[\e[1;90m\]'
+fancy_prompt () 
+{ 
+    local white_on_sulekha_blue='\[\e[0;97;44;1m\]';
+    local sulekha_blue_on_purple='\[\e[0;34;104m\]';
+    local white_on_purple='\[\e[0;97;104;1m\]';
+    local purple_on_white='\[\e[0;94;107m\]';
+    local gray_on_white='\[\e[0;90;107;1m\]';
+    local white_on_gray='\[\e[0;97;100m\]';
+    local bold_white_on_gray='\[\e[0;37;100;1m\]';
+    local gray_on_transparent='\[\e[0;90;49m\]';
 
+    local reset='\[\e[0;0m\]';
+    local sulekha_blue_back='\[\e[44m\]';
+    local white_bold_fore='\[\e[1;37m\]';
+    local purple_back='\[\e[104m\]';
+    local purple_fore='\[\e[34m\]';
+    local sulekha_blue_fore='\[\e[34m\]';
+    local white_back='\[\e[107m\]';
+    local purple_fore='\[\e[94m\]';
+    local gray_bold_fore='\[\e[1;90m\]';
+    local black_fore='[102m[30m'
+    local green_back='[30m[102m'
+    local green_fore='[92m'
     export PS1=\
 $sulekha_blue_back\
 $white_bold_fore' \u '\
@@ -127,13 +131,13 @@ $reset\
 $purple_back\
 $white_bold_fore' \h '\
 $reset\
-$white_back\
+$green_back\
 $purple_fore''\
 $reset\
-$white_back\
-$gray_bold_fore' \w '\
+$green_back\
+$black_fore' \w '\
 $reset\
-$white_bold_fore' '\
+$green_fore' '\
 $reset
 }
 
