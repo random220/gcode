@@ -121,6 +121,7 @@ fancy_prompt ()
     local black_fore='[102m[30m'
     local green_back='[30m[102m'
     local green_fore='[92m'
+    local newline='\n'
     export PS1=\
 $sulekha_blue_back\
 $white_bold_fore' \u '\
@@ -138,7 +139,8 @@ $green_back\
 $black_fore' \w '\
 $reset\
 $green_fore' '\
-$reset
+$reset\
+$newline'% '
 }
 
 export HISTTIMEFORMAT="%F %T "
