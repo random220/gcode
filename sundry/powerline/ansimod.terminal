@@ -494,7 +494,11 @@
 	<true/>
 	<key>name</key>
 	<string>ansimod</string>
+	<key>shellExitAction</key>
+	<integer>0</integer>
 	<key>type</key>
 	<string>Window Settings</string>
+	<key>warnOnShellCloseAction</key>
+	<integer>0</integer>
 </dict>
 </plist>
