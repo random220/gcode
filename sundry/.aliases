@@ -134,7 +134,7 @@ $white_back\
 $gray_bold_fore' \w '\
 $reset\
 $white_bold_fore' '\
-$reset\
+$reset
 }
 
 export HISTTIMEFORMAT="%F %T "
