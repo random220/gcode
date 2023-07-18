@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -x
+read -p 'filename: ' fname
+read -p 'first page: ' p1
+read -p 'last page: ' p2
+
+docker cp "$fname" ub:/tmp/a.pdf
+cat <<EOF | docker exec -i -u om ub bash -
+set -x
+sudo chown -R om:om /tmp
+cd /tmp
+rm -rf a
+mkdir a
+pdftk a.pdf cat $p1-$p2 output a/b.pdf
+cd a
+pdftoppm -png -r 300 b.pdf aa
+cd ..
+tar cfz a.tgz a
+EOF
+
+rm -rf ~/Desktop/_x
+mkdir ~/Desktop/_x
+docker cp ub:/tmp/a.tgz ~/Desktop/_x/a.tgz
+cd ~/Desktop/_x
+tar xfz a.tgz

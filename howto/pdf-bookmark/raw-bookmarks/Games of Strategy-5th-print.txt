@@ -1,0 +1,401 @@
+Cover 1*
+Preface xx 22*
+Contents 9*
+_offset 24
+PART ONE Introduction and General Principles 25*
+    1 Basic Ideas and Examples 3
+        1 WHAT IS A GAME OF STRATEGY?  4
+        2 SOME EXAMPLES AND STORIES OF STRATEGIC GAMES 6
+            A. Which Passing Shot? 6
+            B. The GPA Rat Race 7
+            C. "We Can't Take the Exam Because We Had a Flat Tire" 9
+            D. Why Are Professors So Mean? 10
+            E. Roommates and Families on the Brink 11
+            F. The Dating Game 13
+        3 OUR STRATEGY FOR STUDYING GAMES OF STRATEGY 14
+
+    2 How to Think about Strategic Games 17
+        1 STRATEGIC GAMES 18
+        2 CLASSIFYING GAMES 20
+            A. Are Players' Interests in Total Alignment, Total Conflict, or a Mix of Both? 20
+            B. Are the Moves in the Game Sequential or Simultaneous? 21
+            C. Are the Rules of the Game Fixed or Manipulable? 22
+            D. Do the Players Have Full or Equal Information? 23
+            E. Is the Game Played Once or Repeatedly, and with the Same or Changing Opponents? 25
+            F. Are Agreements to Cooperate Enforceable? 26
+        3 SOME TERMINOLOGY AND BACKGROUND ASSUMPTIONS 27
+            A. Strategies 27
+            B. Payoffs 28
+            C. Rationality 30
+            D. Common Knowledge of Rules 32
+            E. Equilibrium 33
+            F. Dynamics and Evolutionary Games 34
+            G. Observation and Experiment 36
+        4 THE USES OF GAME THEORY 36
+        5 THE STRUCTURE OF THE CHAPTERS TO FOLLOW 38
+        SUMMARY 41
+        KEY TERMS 41
+        EXERCISES 42
+
+PART TWO Fundamental Concepts and Techniques 69*
+    3 Games with Sequential Moves 47
+        1 GAME TREES 48
+            A. Nodes, Branches, and Paths of Plav 48
+            B. Uncertainty and "Nature's Moves" 48
+            C. Outcomes and Payoffs 50
+            D. Strategies 50
+            E. Tree Construction 51
+
+        2 SOLVING GAMES BY USING TREES 52
+        3 ADDING MORE PLAYERS 56
+        4 ORDER ADVANTAGES 61
+        5 ADDING MORE MOVES 62
+            A. Tic-Tac-Toe 62
+            B. Checkers 64
+            C. Chess 66
+            D. Go 69
+        6 EVIDENCE CONCERNING ROLLBACK 71
+        SUMMARY 76
+        KEY TERMS 77
+        EXERCISES 77
+
+
+    4 Simultaneous-Move Games: Discrete Strategies 85
+        1 DEPICTING SIMULTANEOUS-MOVE GAMES WITH DISCRETE STRATEGIES 86
+        2 NASH EQUILIBRIUM 88
+            A. Some Further Explanation of the Concept of Nash Equilibrium 89
+            B. Nash Equilibrium as a System of Beliefs and Choices 90
+        3 DOMINANCE 92
+            A. Both Players Have Dominant Strategies 92
+            B. One Player Has a Dominant Strategy 95
+            C. Successive Elimination of Dominated Strategies 97
+        4 STRONGER AND WEAKER FORMS OF DOMINANCE 98
+            A. Superdominance 98
+            B. Weak Dominance 100
+        5 BEST -RESPONSE ANALYSIS 101
+            A. Identifying Best Responses 101
+            B. Ordinal Payoffs 103
+        6 THREE PLAYERS 104
+
+        7 MULTIPLE EOUILIBRIA IN PURE STRATEGIES 107
+            A. Pure Coordination: Will Holmes Meet Watson? 108
+            B. Assurance: Will Holmes Meet Watson? And Where? 109
+            C. Battle of the Sexes: Will Holmes Meet Watson? And Where? 111
+            D. Chicken: Will James Meet Dean? 112
+        8 NO EOUILIBRIUM IN PURE STRATEGIES 114
+        SUMMARY 116
+        KEY TERMS 116
+        EXERCISES 117
+
+
+    5 Simultaneous-Move Games: Continuous Strategies, Discussion, and Evidence 130
+        1 PURE STRATEGIES THAT ARE CONTINUOUS VARIABLES 131
+            A. Price Competition 131
+            B. Some Economics of Oligopoly 134
+            C. Political Campaign Advertising 136
+            D. General Method for Finding Nash Equilibria 138
+        2 CRITICAL DISCUSSION OF THE NASH EOUILIBRIUM CONCEPT 139
+            A. The Treatment of Risk in Nash Equilibrium 140
+            B. Multiplicity of Nash Equilibria 142
+            C. Requirements of Rationality for Nash Equilibrium 144
+        3 RATIONALIZABILITY 145
+            A. Applying the Concept of Rationalizability 146
+            B. Rationalizability Can Take Us All the Way to Nash Equilibrium 148
+        4 EMPIRICAL EVIDENCE CONCERNING NASH EQUILIBRIUM 151
+            A. Laboratory Experiments 152
+            B. Real-World Evidence 156
+        SUMMARY 160
+        KEY TERMS 161
+        EXERCISES 161
+        APPENDIX: Finding a Value to Maximize a Function 171
+
+
+    6 Combining Sequential and Simultaneous Moves 175
+        1 GAMES WITH BOTH SIMULTANEOUS AND SEQUENTIAL MOVES 176
+            A. Two-Stage Games and Subgames 176
+            B. Configurations of Multistage Games 180
+        2 CHANGING THE ORDER OF MOVES IN A GAME 182
+            A. What Determines the Order of Moves? 182
+            B. Moving First versus Moving Second 184
+            C. How One Player Can Change the Order of Moves 189
+        3 ALTERNATIVE METHOD OF ANALYSIS 191
+            A. Illustrating Simultaneous-Move Games Using Game Trees 191
+            B. Showing and Analyzing Sequential-Move Games Using Game Tables 194
+        4 THREE-PLAYER GAMES 197
+        SUMMARY 200
+        KEY TERMS 201
+        EXERCISES 202
+
+
+    7 Simultaneous-Move Games: Mixed Strategies 212
+        1 WHAT IS A MIXED STRATEGY?  213
+        2 MIXING MOVES 214
+            A. The Benefit of Mixing 215
+            B. Best Responses and Equilibrium 216
+        3 NASH EQUILIBRIUM AS A SYSTEM OF BELIEFS AND RESPONSES 219
+        4 MIXING IN NON-ZERO-SUM GAMES 220
+            A. Will Holmes Meet Watson? Assurance, Pure Coordination, and Battle of the Sexes 221
+            B. Will James Meet Dean? Chicken 224
+        5 GENERAL DISCUSSION OF MIXED- STRATEGY EQUILIBRIA 225
+            A. Weak Sense of Equilibrium 225
+            B. Counterintuitive Changes in Mixture Probabilities with Changes in Payoffs 226
+            C. Risky and Safe Choices in Zero-Sum Games 228
+
+        6 MIXING WHEN ONE PLAYER HAS THREE OR MORE PURE STRATEGIES 231
+            A. A General Case 231
+            B. Exceptional Cases 234
+        7 MIXING WHEN BOTH PLAYERS HAVE THREE STRATEGIES 235
+            A. Full Mixtures of All Strategies 235
+            B. Equilibrium Mixtures with Some Strategies Unused 237
+        8 HOW TO USE MIXED STRATEGIES IN PRACTICE 239
+        9 EVIDENCE ON MIXING 242
+            A. Zero-Sum Games 242
+            B. Non-Zero-Sum Games 245
+        SUMMARY 246
+        KEY TERMS 247
+        EXERCISES 247
+        APPENDIX: Working with Probabilities 259
+        THE BASIC ALGEBRA OF PROBABILITIES 259
+            A. The Addition Rule 260
+            B. The Multiplication Rule 261
+            C. Expected Values 262
+        SUMMARY 262
+        KEY TERMS 263
+
+
+PART THREE Some Broad Classes of Strategies and Games 289*
+    8 Strategic Moves 267
+        1 A CLASSIFICATION OF STRATEGIC MOVES 268
+            A. Unconditional Strategic Moves 269
+            B. Conditional Strategic Moves 269
+            C. The Role of Feasibility, Framing, and Credibility 272
+        2 COMMITMENTS 273
+        3 THREATS AND PROMISES 277
+            A. Making of a Threat: U.S.-Japan Trade Relations 277
+            B. Making of a Promise: The Restaurant Pricing Game 281
+            C. Making a Combined Threat and Promise: Joint U.S.-China Political Action 283
+        4 SOME ADDITIONAL TOPICS 284
+            A. When Do Strategic Moves Help? 284
+            B. Deterrence versus Compellence 285
+        5 MAKING YOUR STRATEGIC MOVES CREDIBLE 287
+            A. Reduce Your Freedom of Action 287
+            B. Change Your Payoffs 289
+        6 COUNTERING YOUR OPPONENT's STRATEGIC MOVES 293
+            A. Appear Irrational 293
+            B. Cut Off Communication 293
+            C. Leave Escape Routes Open 293
+            D. Undermine Your Opponent's Motive to Uphold His Reputation 294
+            E. Use Salami Tactics 294
+        SUMMARY 295
+        KEY TERMS 295
+        EXERCISES 296
+
+    9 Uncertainty and Information 308
+        1 STRATEGIES FOR DEALING WITH RISK 310
+            A. Sharing of Risk 310
+            B. Paying to Reduce Risk 311
+            C. Manipulating Risk in Contests 313
+        2 ASYMMETRIC INFORMATION: BASIC IDEAS 315
+        3 DIRECT COMMUNICATION, OR "CHEAP TALK" 317
+            A. Perfectly Aligned Interests 317
+            B. Totally Conflicting Interests 319
+            C. Partially Aligned Interests 320
+        4 ADVERSE SELECTION, SIGNALING, AND SCREENING 325
+            A. Adverse Selection and Market Failure 325
+            B. The Market for "Lemons" 326
+            C. Signaling and Screening: Sample Situations 328
+            D. Experimental Evidence 335
+        5 SIGNALING IN THE LABOR MARKET 335
+            A. Screening to Separate Types 336
+            B. Pooling of Types 339
+            C. Many Types 340
+        6 EQUILIBRIA IN TWO-PLAYER SIGNALING GAMES 341
+            A. Basic Model and Payoff Structure 342
+            B. Separating Equilibrium 343
+            C. Pooling Equilibrium 346
+            D. Semiseparating Equilibrium 347
+        7 TWO-WAY ASYMMETRIC INFORMATION AND DYNAMIC CHICKEN 350
+            A. Two-way Asymmetric Information in Chicken 351
+            B. Two-Way Asymmetric Information in a Large Population 353
+            C. Dynamic Chicken: Wars of Attrition and Brinkmanship 354
+        SUMMARY 358
+        KEY TERMS 359
+        EXERCISES 360
+        APPENDIX: Inferring Probabilities from Observing Consequences 372
+
+
+    10 The Prisoners' Dilemma and Repeated Games 375
+        1 THE BASIC GAME (REVIEW) 376
+        2 CHANGING THE WAY MOVES ARE MADE: REPETITION 377
+            A. Finite Repetition 378
+            B. Infinite Repetition 379
+            C. Games of Unknown Length 383
+            D. General Theory 384
+        3 CHANGING THE ORDER OF MOVES: PROMISES 387
+        4 CHANGING PAYOFFS: PENALTIES AND REWARDS 389
+        5 CHANGING PAYOFFS: LEADERSHIP 392
+        6 EXPERIMENTAL EVIDENCE 395
+        7 REAL-WORLD DILEMMAS 399
+            A. Evolutionary Biology 399
+            B. Price Matching 400
+            C. International Environmental Policy 402
+        SUMMARY 405
+        KEY TERMS 406
+        EXERCISES 406
+        APPENDIX: Infinite Sums 417
+
+    11 Collective-Action Games 420
+        1 COLLECTIVE-ACTION GAMES WITH TWO PLAYERS 421
+            A. Collective Action as a Prisoners' Dilemma 422
+            B. Collective Action as Chicken 424
+            C. Collective Action as Assurance 425
+            D. Collective Inaction 425
+        2 COLLECTIVE-ACTION PROBLEMS IN LARGE GROUPS 426
+            A. Multiplayer Prisoners' Dilemma 427
+            B. Multiplaver Chicken 430
+            C. Multiplaver Assurance 432
+        3 SPILLOVER EFFECTS, OR EXTERNALITIES 434
+            A. Commuting and Spillover Effects 435
+            B. Spillover Effects: The General Case 436
+            C. Commuting Revisited: Negative Externalities 438
+            D. Positive Spillover Effects 442
+        4 A BRIEF HISTORY OF IDEAS 445
+            A. The Classics 445
+            B. Modern Approaches and Solutions 446
+            C. Applications 452
+        5 "HELP!": A GAME OF CHICKEN WITH MIXED STRATEGIES 456
+        SUMMARY 460
+        KEY TERMS 461
+        EXERCISES 461
+
+    12 Evolutionary Games 469
+        1 THE FRAMEWORK 470
+        2 SOME CLASSIC GAMES IN AN EVOLUTIONARY SETTING 474
+            A. Prisoners' Dilemma 474
+            B. Comparing the Evolutionary and Rational-Player Models 475
+            C. Chicken 476
+            D. Assurance 479
+            E. Soccer Penalty Kicks 481
+            F. Multiplayer Evolutionary Games 483
+        3 THE REPEATED PRISONERS' DILEMMA 484
+            A. Twice-Repeated Play 485
+            B. Threefold Repetition 486
+            C. Multiple Repetitions 488
+        4 THE HAWK-DOVE GAME 490
+            A. Rational Strategic Choice and Equilibrium 490
+            B. Evolutionary Stability for V> C 490
+            C. Evolutionary Stability for V< C 491
+            D. V<C: Stable Polymorphic Population 492
+            E. V<C: Each Player Mixes Strategies 493
+            F. Some General Theory 494
+        5 EVOLUTION OF COOPERATION AND ALTRUISM 496
+        SUMMARY 499
+        KEY TERMS 500
+        EXERCISES 501
+
+PART FOUR Applications to Specific Strategic Situations 539*
+    13 Brinkmanship: The Cuban Missile Crisis 517
+        1 A BRIEF NARRATIVE OF EVENTS 518
+        2 A SIMPLE GAME-THEORETIC EXPLANATION 525
+        3 BRINKMANSHIP WITH WELL-CONTROLLED RISK 529
+            A. When Is a Simple Threat Too Large? 529
+            B. The Probabilistic Threat 531
+        4 BRINKMANSHIP WITH UNCONTROLLED RISK: A GAME OF DYNAMIC CHICKEN 535
+        5 PRACTICING BRINKMANSHIP 540
+        SUMMARY 542
+        KEY TERMS 543
+        EXERCISES 543
+
+    14 Design of Incentives 550
+        1 PRICE DISCRIMINaTION 551
+        2 SOME TERMINOLOGY 556
+        3 INFORMATION-REVEALING CONTRACTS 557
+            A. Highway Construction: Full Information 557
+            B. Highwav Construction: Asvmmetric Information 559
+        4 EVIDENCE CONCERNING INFORMATION-REVELATION MECHANISMS 562
+        5 INCENTIVES FOR EFFORT: THE SIMPLEST CASE 564
+            A. Managerial Supervision 564
+            B. Insurance Provision 567
+        6 INCENTIVES FOR EFFORT: EVIDENCE AND FYTENSIONS 568
+            A. Nonlinear Incentive Schemes 569
+            B. Incentives in Teams 570
+            C. Multiple Tasks and Outcomes 571
+            D. Incentives over Time 572
+        SUMMARY 574
+        KEY TERMS 574
+        EXERCISES 575
+
+    15 Auctions, Bidding Strategy, and Auction Design 586
+        1 WHAT ARE AUCTIONS?  587
+            A. More Than Just Buying and Selling 588
+            B. Auction Formats 589
+            C. Information in Auctions 590
+        2 THE WINNER'S CURSE 592
+        3 BIDDING IN AUCTIONS 594
+            A. Ascending-Price ("English") Auction 595
+            B. Descending-Price ("Dutch") Auction 596
+            C. First-Price Auction 598
+            D. Second-Price Auction
+            E. All-Pay Auction 601
+            F. War of Attrition 603
+        4 AUCTION DESIGN 604
+            A. Reserve Prices 606
+            B. Bidder Attitudes Toward Risk 607
+            C. Common Values and Correlated Estimates 608
+            D. Incorrect Beliefs about the Game 609
+            E. Collusion 610
+        5 FURTHER READING 611
+        SUMMARY 614
+        KEY TERMS 614
+        EXERCISES 615
+        APPENDIX: Computing Bidding Equilibria 622
+            A. Math Facts 622
+            B. Second-Price Auction Revenue with Any Reserve 623
+            C. Optimal Reserve Price 624
+            D. Equilibrium Bidding Strategies in the First-Price Auction 625
+            E. Equilibrium Bidding Strategies in the All-Pay Auction 626
+
+    16 Strategy and Voting 627
+        1 VOTING RULES AND PROCEDURES 628
+            A. Binary Methods 628
+            B. Plurative Methods 629
+            C. Mixed Methods 631
+        2 VOTING PARADOXES 633
+            A. The Condorcet Paradox 633
+            B. The Agenda Paradox 635
+            C. The Reversal Paradox 636
+            D. Change the Voting Method, Change the Outcome 637
+        3 EVALUATING VOTING SYSTEMS 638
+            A. Black's Condition 639
+            B. Robustness 640
+            C. Intensity Ranking 640
+        4 STRATEGIC VOTING 642
+            A. Plurality Rule 642
+            B. Pairwise Voting 644
+            C. Strategic Voting with Incomplete Information 648
+            D. Scope for Strategic Voting 650
+        5 THE MEDIAN VOTER THEOBEM 652
+            A. Discrete Political Spectrum 652
+            B. Continuous Political Spectrum 655
+        SUMMARY 658
+        KEY TERMS 658
+        EXERCISES 659
+
+    17 Bargaining 672
+        1 THE NASH COOPERATIVE SOLUTION 674
+            A. Numerical Example 674
+            B. General Theory 675
+        2 VARIABLE-THREAT BARGAINING 681
+        3 ALTERNATING-OFFERS MODEL I: TOTAL VALUE DECAYS 684
+        4 ALTERNATING-OFFERS MODEL II: IMPATIENCE 687
+        5 EXPERIMENTAL EVIDENCE 692
+        6 MANIPULATING INFORMATION IN BARGAINING 694
+        7 BARGAINING WITH MANY PARTIES AND ISSUES 697
+            A. Multi-Issue Bargaining 697
+            B. Multiparty Bargaining 699
+        SUMMARY 699
+        KEY TERMS 700
+        EXERCISES 700
+
+Glossary 705
+Index 723

@@ -1,0 +1,89 @@
+#!/bin/bash
+
+#set -x
+
+THREADS=100
+timeout=20
+hosts='b.txt'
+
+main() {
+    if [[ $1 == '' ]]; then
+        rm -rf .x; mkdir .x
+        cat "$hosts" | xargs -L $THREADS | xargs -L 1 $0
+    elif [[ $1 =~ ^[0-9]+$ && $2 == '' ]]; then
+        rm -rf .x; mkdir .x
+        THREADS="$1"
+        cat "$hosts" | xargs -L $THREADS | xargs -L 1 $0
+    else
+        for node in "$@"; do
+            echo "==> $node"
+            #(ping -c 1 $node  >.x/$node 2>/dev/null) &
+            #dothis_remote_script $timeout $node ../reartifact.sh
+            dothis_remote_cmd     $timeout $node 'cat /etc/lsb-release; df -kh /'
+        done
+        wait
+    fi
+}
+
+print_scipt__vmcore_info() {
+cat <<'__EOF__'
+# https://www.networkworld.com/article/2715970/counting-processors-on-your-linux-box.html#:~:text=The%20way%20to%20tell%20how,your%20system%20is%20multi%2Dthreading.
+
+echo '-----------------------------------------------------------------'
+cat /proc/cpuinfo
+echo '-----------------------------------------------------------------'
+count=$(grep "physical id" /proc/cpuinfo | sort | uniq | wc -l)
+echo "PHYSICAL_PROCESSORS = $count"
+
+count=$(grep "^processor" /proc/cpuinfo | wc -l)
+echo "VIRTUAL_PROCESSORS = $count"
+
+count=$(grep "cpu cores" /proc/cpuinfo | uniq)
+echo "CPU_CORES = $count"
+echo '-----------------------------------------------------------------'
+free
+echo '-----------------------------------------------------------------'
+k=$(free |grep Mem|awk '{print $2}')
+g=$(perl -e '$n = '$k' / 1024 / 1024; $n =~ s/\.(...).*/.$1/; print "$n\n"')
+echo "MEM = $g Gib"
+echo '-----------------------------------------------------------------'
+df -lkh
+echo '-----------------------------------------------------------------'
+d=$(df -lkh | grep '/$' | awk '{print $2}')
+echo "DISK = $d"
+echo '-----------------------------------------------------------------'
+
+__EOF__
+}
+
+
+print_scipt_apt_rename() {
+cat <<'__EOF__'
+for f in $(find /etc/apt -type f|grep list|egrep -v '.list$|~$'); do
+    sudo mv "$f" "$f"'~'
+done
+__EOF__
+}
+
+
+dothis_remote_cmd() {
+    local timeout="$1"
+    local node="$2"
+    local cmd="$3"
+    #(echo "$cmd" | timeout $timeout sshpass -p secretpass ssh -t om@$node bash - >.x/${node}.host 2>&1) &
+    (echo "$cmd" | timeout $timeout ssh -oBatchMode=yes -o PasswordAuthentication=no -o ConnectTimeout=10 -i ~/.ssh/id_rsa -t om@$node bash - >.x/${node}.host 2>&1) &
+}
+
+dothis_remote_script() {
+    local timeout="$1"
+    local node="$2"
+    local script="$3"
+    if [[ ! -f "$script" ]]; then
+        exit 1
+    fi
+    (cat "$script" | timeout $timeout sshpass -p secretpass ssh -t om@$node bash - >.x/${node}.host 2>&1) &
+    #(cat "$script" | timeout $timeout ssh -oBatchMode=yes -o PasswordAuthentication=no -o ConnectTimeout=10 -i ~/.ssh/id_rsa -t om@$node bash - >.x/${node}.host 2>&1) &
+}
+
+main "$@"
+

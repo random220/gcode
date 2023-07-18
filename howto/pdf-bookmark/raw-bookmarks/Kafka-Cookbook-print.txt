@@ -1,0 +1,78 @@
+Cover 1*
+Contents 9*
+Preface                                                               v 13*
+_offset 18
+Chapter 1: Initiating Kafka                                           1
+    Introduction                                                      1
+    Setting up multiple Kafka brokers                                 2
+    Creating topics                                                   4
+    Sending some messages from the console                            6
+    Consuming from the console                                        7
+Chapter 2: Configuring Brokers                                        9
+    Introduction                                                      9
+    Configuring the basic settings                                    9
+    Configuring threads and performance                               11
+    Configuring the log settings                                      13
+    Configuring the replica settings                                  15
+    Configuring the ZooKeeper settings                                17
+    Configuring other miscellaneous parameters                        18
+Chapter 3: Configuring a Producer and Consumer                        23
+    Introduction                                                      23
+    Configuring the basic settings for producer                       24
+    Configuring the thread and performance for producer               25
+    Configuring the basic settings for consumer                       28
+    Configuring the thread and performance for consumer               29
+    Configuring the log settings for consumer                         30
+    Configuring the ZooKeeper settings for consumer                   32
+    Other configurations for consumer                                 33
+Chapter 4: Managing Kafka                                             35
+    Introduction                                                      35
+    Consumer offset checker                                           36
+    Understanding dump log segments                                   37
+    Exporting the ZooKeeper offsets                                   38
+    Importing the ZooKeeper offsets                                   39
+    Using GetOffsetShell                                              40
+    Using the JMX tool                                                41
+    Using the Kafka migration tool                                    42
+    The MirrorMaker tool                                              43
+    Replay Log Producer                                               44
+    Simple Consumer Shell                                             45
+    State Change Log Merger                                           46
+    Updating offsets in Zookeeper                                     47
+    Verifying consumer rebalance                                      48
+Chapter 5: Integrating Kafka with Java                                49
+    Introduction                                                      49
+    Writing a simple producer                                         49
+    Writing a simple consumer                                         51
+    Writing a high-level consumer                                     55
+    Writing a producer with message partitioning                      56
+    Multithreaded consumers in Kafka                                  58
+Chapter 6: Operating Kafka                                            61
+    Introduction                                                      61
+    Adding and removing topics                                        61
+    Modifying topics                                                  63
+    Implementing a graceful shutdown                                  64
+    Balancing leadership                                              65
+    Mirroring data between Kafka clusters                             66
+    Expanding clusters                                                67
+    Increasing the replication factor                                 70
+    Checking the consumer position                                    71
+    Decommissioning brokers                                           72
+Chapter 7: Integrating Kafka with Third-Party Platforms               73
+    Introduction                                                      73
+    Using Flume                                                       74
+    Using Gobblin                                                     76
+    Using Logstash                                                    79
+    Configuring Kafka for real-time                                   81
+    Integrating Spark with Kafka                                      83
+    Integrating Storm with Kafka                                      84
+    Integrating Elasticsearch with Kafka                              86
+    Integrating SolrCloud with Kafka                                  89
+Chapter 8: Monitoring Kafka                                           91
+    Introduction                                                      91
+    Monitoring server stats                                           91
+    Monitoring producer stats                                         95
+    Monitoring consumer stats                                         97
+    Connecting to Graphite                                            99
+    Monitoring with Ganglia                                           101
+Index                                                                 103
