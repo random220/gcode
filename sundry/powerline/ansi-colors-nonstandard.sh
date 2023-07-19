@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://en.wikipedia.org/wiki/ANSI_escape_code
+
 # echo -e '\x1b[48;5;COLORm  #background
 # echo -e '\x1b[38;5;COLORm  #foreground
 # echo -e '\x1b[0m           #reset
