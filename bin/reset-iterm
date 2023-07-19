@@ -1,0 +1,4 @@
+#!/bin/bash
+rm -rf \
+~/Library/Preferences/com.googlecode.iterm2* \
+~/'Library/Application Support/iTerm2'
