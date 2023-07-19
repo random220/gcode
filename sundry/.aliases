@@ -172,7 +172,7 @@ colorit() {
 fancy2 () 
 { 
     #colorit(back fore nextback text)
-    local x=$(colorit  4 253 21 ' \u ')
+    local x=$(colorit 33 253 21 ' \u ')
     local y=$(colorit 21 253 42 ' \h ')
     local z=$(colorit 42 232  _ ' \w ')
     export PS1="$x$y$z\n% "
