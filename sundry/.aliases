@@ -115,6 +115,7 @@ fancy_on ()
 
     local reset='\[\e[0;0m\]';
     local sulekha_blue_back='\[\e[44m\]';
+    local white_fore='\[\e[37m\]';
     local white_bold_fore='\[\e[1;37m\]';
     local purple_back='\[\e[104m\]';
     local purple_fore='\[\e[34m\]';
@@ -128,13 +129,13 @@ fancy_on ()
     local newline='\n'
     export PS1=\
 $sulekha_blue_back\
-$white_bold_fore' \u '\
+$white_fore' \u '\
 $reset\
 $purple_back\
 $sulekha_blue_fore''\
 $reset\
 $purple_back\
-$white_bold_fore' \h '\
+$white_fore' \h '\
 $reset\
 $green_back\
 $purple_fore''\
