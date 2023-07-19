@@ -99,10 +99,11 @@ fancy_off () {
     fi
     alias ps1="echo export PS1=\''$PS1'\'"
 
-    rm -f ~/.config/.fancy
+    rm -f ~/.config/.fancy1
+    rm -f ~/.config/.fancy2
 }
 
-fancy_on () 
+fancy1 () 
 { 
     local white_on_sulekha_blue='\[\e[0;97;44;1m\]';
     local sulekha_blue_on_purple='\[\e[0;34;104m\]';
@@ -148,23 +149,58 @@ $reset\
 $newline'% '
 
 mkdir -p ~/.config
-touch ~/.config/.fancy
+rm -f ~/.config/.fancy2
+touch ~/.config/.fancy1
 }
+
+colorit() {
+    local back=$1
+    local fore=$2
+    local nextback=$3
+    local text=$4
+    local X
+
+    if [[ $nextback == '_' ]]; then
+        X='\[\e[48;5;'$back'm\]\[\e[38;5;'$fore'm\]'$text'\[\e[0;0m\]\[\e[38;5;'$back'm\]\[\e[0;0m\]'
+    else
+        X='\[\e[48;5;'$back'm\]\[\e[38;5;'$fore'm\]'$text'\[\e[0;0m\]\[\e[48;5;'$nextback'm\]\[\e[38;5;'$back'm\]\[\e[0;0m\]'
+    fi
+    echo "$X"
+}
+
+
+fancy2 () 
+{ 
+    #colorit(back fore nextback text)
+    local x=$(colorit  4 253 21 ' \u ')
+    local y=$(colorit 21 253 42 ' \h ')
+    local z=$(colorit 42 232  _ ' \w ')
+    export PS1="$x$y$z\n% "
+
+    mkdir -p ~/.config
+    rm -f ~/.config/.fancy1
+    touch ~/.config/.fancy2
+}
+
 
 fancy() {
     if [[ "$1" == '' ]]; then
-        fancy_on
-    elif [[ "$1" == 'on' ]]; then
-        fancy_on
+        fancy1
+    elif [[ "$1" == '1' ]]; then
+        fancy1
+    elif [[ "$1" == '2' ]]; then
+        fancy2
     elif [[ "$1" == 'off' ]]; then
         fancy_off
     fi
 }
 
-if [[ -f ~/.config/.fancy ]]; then
-    fancy_on
+if [[ -f ~/.config/.fancy1 ]]; then
+    fancy1
+elif [[ -f ~/.config/.fancy2 ]]; then
+    fancy2
 else
-    fancy off
+    fancy_off
 fi
 
 export HISTTIMEFORMAT="%F %T "
