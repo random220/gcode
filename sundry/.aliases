@@ -136,9 +136,9 @@ fancy1 ()
 { 
 
     #colorit(back fore nextback text)
-    local x=$(colorit  21 253  33 ' \u ')
-    local y=$(colorit  33 253  09 ' \h ')
-    local z=$(colorit  09 232   _ ' \w ')
+    local x=$(colorit  09 232  38 ' \u ')
+    local y=$(colorit  38 232 252 ' \h ')
+    local z=$(colorit 252 232   _ ' \w ')
     export PS1="$x$y$z\n% "
 
     mkdir -p ~/.config
