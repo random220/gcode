@@ -102,54 +102,17 @@ fancy_off () {
     rm -f ~/.config/.fancy*
 }
 
-fancy1 () 
-{ 
-    local white_on_sulekha_blue='\[\e[0;97;44;1m\]';
-    local sulekha_blue_on_purple='\[\e[0;34;104m\]';
-    local white_on_purple='\[\e[0;97;104;1m\]';
-    local purple_on_white='\[\e[0;94;107m\]';
-    local gray_on_white='\[\e[0;90;107;1m\]';
-    local white_on_gray='\[\e[0;97;100m\]';
-    local bold_white_on_gray='\[\e[0;37;100;1m\]';
-    local gray_on_transparent='\[\e[0;90;49m\]';
 
-    local reset='\[\e[0;0m\]';
-    local sulekha_blue_back='\[\e[44m\]';
-    local white_fore='\[\e[37m\]';
-    local white_bold_fore='\[\e[1;37m\]';
-    local purple_back='\[\e[104m\]';
-    local purple_fore='\[\e[34m\]';
-    local sulekha_blue_fore='\[\e[34m\]';
-    local white_back='\[\e[107m\]';
-    local purple_fore='\[\e[94m\]';
-    local gray_bold_fore='\[\e[1;90m\]';
-    local black_fore='[102m[30m'
-    local green_back='[30m[102m'
-    local green_fore='[92m'
-    local newline='\n'
-    export PS1=\
-$sulekha_blue_back\
-$white_fore' \u '\
-$reset\
-$purple_back\
-$sulekha_blue_fore''\
-$reset\
-$purple_back\
-$white_fore' \h '\
-$reset\
-$green_back\
-$purple_fore''\
-$reset\
-$green_back\
-$black_fore' \w '\
-$reset\
-$green_fore' '\
-$reset\
-$newline'% '
-
-mkdir -p ~/.config
-rm -f ~/.config/.fancy*
-touch ~/.config/.fancy1
+color_back() {
+    local color=$1
+    echo '\[\e[48;5;'$color'm\]'
+}
+color_fore() {
+    local color=$1
+    echo '\[\e[38;5;'$color'm\]'
+}
+color_reset() {
+    echo '\[\e[0m\]'
 }
 
 colorit() {
@@ -160,13 +123,28 @@ colorit() {
     local X
 
     if [[ $nextback == '_' ]]; then
-        X='\[\e[48;5;'$back'm\]\[\e[38;5;'$fore'm\]'$text'\[\e[0;0m\]\[\e[38;5;'$back'm\]\[\e[0;0m\]'
+        X=$(color_back $back)$(color_fore $fore)$text$(color_reset)$(color_fore $back)''$(color_reset)
     else
-        X='\[\e[48;5;'$back'm\]\[\e[38;5;'$fore'm\]'$text'\[\e[0;0m\]\[\e[48;5;'$nextback'm\]\[\e[38;5;'$back'm\]\[\e[0;0m\]'
+        X=$(color_back $back)$(color_fore $fore)$text$(color_reset)$(color_back $nextback)$(color_fore $back)''$(color_reset)
     fi
+
     echo "$X"
 }
 
+
+fancy1 () 
+{ 
+
+    #colorit(back fore nextback text)
+    local x=$(colorit  21 253  33 ' \u ')
+    local y=$(colorit  33 253  09 ' \h ')
+    local z=$(colorit  09 232   _ ' \w ')
+    export PS1="$x$y$z\n% "
+
+    mkdir -p ~/.config
+    rm -f ~/.config/.fancy*
+    touch ~/.config/.fancy1
+}
 
 fancy2 () 
 { 
