@@ -66,6 +66,8 @@ else
         z=$(( z+1 ))
     done
 fi
+echo
+echo
 
 
 
