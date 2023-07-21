@@ -150,6 +150,7 @@ fancy() {
         '9:232 38:232 252:232'
         '33:253 21:253 42:232'
         '111:232 63:253 111:232'
+        '25:0 110:0 239:15'
     )
 
     # https://www.cyberciti.biz/faq/finding-bash-shell-array-length-elements/
