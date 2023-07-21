@@ -32,11 +32,11 @@ else
     c3z=$c3
 fi
 
-color_back() {
+color_bg() {
     local color=$1
     echo '\x1b[48;5;'$color'm'
 }
-color_fore() {
+color_fg() {
     local color=$1
     echo '\x1b[38;5;'$color'm'
 }
@@ -49,8 +49,11 @@ if [[ $c2 == '' ]]; then
     while [[ $x -le $c1z ]]; do
         y=$c2a
         while [[ $y -le $c2z ]]; do
-            echo -e $(color_back $x)' '$x' '$(color_fore $x)$(color_back $y)'  '$y' '$(color_reset)$(color_fore $y)''$(color_reset)
-            echo
+            m=$(expr $y % 8)
+            if [[ $m == 0 ]]; then
+                echo; echo
+            fi
+            echo -n -e $(color_bg $x)$(color_fg 0)' '$x' '$(color_fg $x)$(color_bg $y)'  '$(color_fg 0)$y' '$(color_reset)$(color_fg $y)''$(color_reset)'    '
             y=$(( y+1 ))
         done
         x=$(( x+1 ))
@@ -60,8 +63,11 @@ else
     y=$c2
     z=0
     while [[ $z -lt 255 ]]; do
-        echo -e $(color_back $x)' '$x' '$(color_fore $x)$(color_back $y)'  '$y' '$(color_reset)$(color_fore $y)$(color_back $z)''$(color_reset)$(color_back $z)' '$z'   '$(color_reset)$(color_fore $z)''$(color_reset)
-        echo
+        m=$(expr $z % 8)
+        if [[ $m == 0 ]]; then
+            echo; echo
+        fi
+        echo -n -e $(color_bg $x)$(color_fg 0)' '$x' '$(color_fg $x)$(color_bg $y)'  '$(color_fg 0)$y' '$(color_reset)$(color_fg $y)$(color_bg $z)''$(color_reset)$(color_bg $z)$(color_fg 0)' '$z'   '$(color_reset)$(color_fg $z)''$(color_reset)'    '
         z=$(( z+1 ))
     done
 fi

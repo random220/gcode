@@ -97,6 +97,28 @@ mkprompt() {
     echo "$x$y$z"
 }
 
+colors=(
+    '9:232 38:232 252:232'
+    '33:253 21:253 42:232'
+    '111:232 63:253 111:232'
+    '25:0 110:0 239:15'
+    '6:0 29:0 63:0'
+    '6:0 29:0 165:0'
+)
+
+fancies() {
+    len=${#colors[@]}
+    local i
+    for (( i=0; i<$len; i++ )); do
+        prompt=$(mkprompt "${colors[$i]}")
+        prompt=$(perl -pe 's{\\\[}{}g; s{\\\]}{}g; s{\\e}{\\x1b}g; s{\\n}{}; s{\%}{}' 2>/dev/null <<<"$prompt")
+        echo -n "$i : "
+        echo -e "$prompt"
+        echo
+    done
+}
+
+
 fancy() {
     if [[ $1 == 'off' ]]; then
         fancy_off
@@ -111,12 +133,6 @@ fancy() {
         n=$RANDOM
     fi
 
-    local colors=(
-        '9:232 38:232 252:232'
-        '33:253 21:253 42:232'
-        '111:232 63:253 111:232'
-        '25:0 110:0 239:15'
-    )
 
     # https://www.cyberciti.biz/faq/finding-bash-shell-array-length-elements/
     # len=${#colors[@]}
@@ -135,6 +151,7 @@ fancy() {
     mkdir -p ~/.config
     echo $n >~/.config/fancy
 }
+
 
 fancy_off () {
     local blue=20
