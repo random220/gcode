@@ -14,8 +14,13 @@ fi
 # export LANG=C.UTF-8
 # export LC_ALL=en.UTF-8
 # export LANG=en.UTF-8
-export LANG=en_US.UTF-8
-export LC_ALL=$LANG
+if [[ $(uname) == 'Darwin' ]]; then
+    export LANG=en_US.UTF-8
+    export LC_ALL=$LANG
+else
+    export LANG=en.UTF-8
+    export LC_ALL=$LANG
+fi
 
 ##-----------------------------------------------------
 ## synth-shell-greeter.sh
