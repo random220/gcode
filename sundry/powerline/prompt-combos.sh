@@ -9,28 +9,23 @@
 c1="$1"
 c2="$2"
 c3="$3"
+x=0
+y=255
+splitarg() {
+    arg=$1
+    x=$(sed 's/-.*//' <<<"$arg")
+    y=$(sed 's/^.*-//' <<<"$arg")
+    if [[ $x == '' ]]; then
+        x=0
+    fi
+    if [[ $y == '' ]]; then
+        y=255
+    fi
+}
 
-if [[ $c1 == '' ]]; then
-    c1a=0
-    c1z=255
-else
-    c1a=$c1
-    c1z=$c1
-fi
-if [[ $c2 == '' ]]; then
-    c2a=0
-    c2z=255
-else
-    c2a=$c2
-    c2z=$c2
-fi
-if [[ $c3 == '' ]]; then
-    c3a=0
-    c3z=255
-else
-    c3a=$c3
-    c3z=$c3
-fi
+splitarg $1; c1a=$x; c1z=$y
+splitarg $2; c2a=$x; c2z=$y
+splitarg $3; c3a=$x; c3z=$y
 
 color_bg() {
     local color=$1
