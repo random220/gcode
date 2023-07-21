@@ -99,15 +99,15 @@ fancy_off () {
     fi
     alias ps1="echo export PS1=\''$PS1'\'"
 
-    rm -f ~/.config/.fancy*
+    rm -f ~/.config/.fancy* ~/.config/fancy
 }
 
 
-color_back() {
+color_bg() {
     local color=$1
     echo '\[\e[48;5;'$color'm\]'
 }
-color_fore() {
+color_fg() {
     local color=$1
     echo '\[\e[38;5;'$color'm\]'
 }
@@ -115,84 +115,64 @@ color_reset() {
     echo '\[\e[0m\]'
 }
 
-colorit() {
-    local back=$1
-    local fore=$2
-    local nextback=$3
-    local text=$4
-    local X
+mkprompt() {
+    local color="$1"                   # 33:253 21:253 42:232
+    color=$(sed 's/:/ /g' <<<"$color") # 33 253 21 253 42 232
+    IFS=' ' read -r -a colors <<< "$color"
+    local bg1=${colors[0]}
+    local fg1=${colors[1]}
+    local bg2=${colors[2]}
+    local fg2=${colors[3]}
+    local bg3=${colors[4]}
+    local fg3=${colors[5]}
 
-    if [[ $nextback == '_' ]]; then
-        X=$(color_back $back)$(color_fore $fore)$text$(color_reset)$(color_fore $back)''$(color_reset)
-    else
-        X=$(color_back $back)$(color_fore $fore)$text$(color_reset)$(color_back $nextback)$(color_fore $back)''$(color_reset)
-    fi
-
-    echo "$X"
+    local x=$(color_bg $bg1)$(color_fg $fg1)' \u '$(color_bg $bg2)$(color_fg $bg1)''
+    local y=$(color_bg $bg2)$(color_fg $fg2)' \h '$(color_bg $bg3)$(color_fg $bg2)''
+    local z=$(color_bg $bg3)$(color_fg $fg3)' \w '$(color_reset)$(color_fg $bg3)''$(color_reset)'\n% '
+    echo "$x$y$z"
 }
-
-
-fancy1 () 
-{ 
-
-    #colorit(back fore nextback text)
-    local x=$(colorit  09 232  38 ' \u ')
-    local y=$(colorit  38 232 252 ' \h ')
-    local z=$(colorit 252 232   _ ' \w ')
-    export PS1="$x$y$z\n% "
-
-    mkdir -p ~/.config
-    rm -f ~/.config/.fancy*
-    touch ~/.config/.fancy1
-}
-
-fancy2 () 
-{ 
-    #colorit(back fore nextback text)
-    local x=$(colorit 33 253 21 ' \u ')
-    local y=$(colorit 21 253 42 ' \h ')
-    local z=$(colorit 42 232  _ ' \w ')
-    export PS1="$x$y$z\n% "
-
-    mkdir -p ~/.config
-    rm -f ~/.config/.fancy*
-    touch ~/.config/.fancy2
-}
-
-fancy3 () 
-{ 
-    #colorit(back fore nextback text)
-    local x=$(colorit 111 232 63 ' \u ')
-    local y=$(colorit 63 253 111 ' \h ')
-    local z=$(colorit 111 232  _ ' \w ')
-    export PS1="$x$y$z\n% "
-
-    mkdir -p ~/.config
-    rm -f ~/.config/.fancy*
-    touch ~/.config/.fancy3
-}
-
 
 fancy() {
-    if [[ "$1" == '' ]]; then
-        fancy1
-    elif [[ "$1" == '1' ]]; then
-        fancy1
-    elif [[ "$1" == '2' ]]; then
-        fancy2
-    elif [[ "$1" == '3' ]]; then
-        fancy3
-    elif [[ "$1" == 'off' ]]; then
+    if [[ $1 == 'off' ]]; then
         fancy_off
+        return
     fi
+
+    local n
+
+    if [[ $1 =~ ^[0-9]+$ ]]; then
+        n=$1
+    else
+        n=$RANDOM
+    fi
+
+    local colors=(
+        '9:232 38:232 252:232'
+        '33:253 21:253 42:232'
+        '111:232 63:253 111:232'
+    )
+
+    # https://www.cyberciti.biz/faq/finding-bash-shell-array-length-elements/
+    # len=${#colors[@]}
+    # echo $len
+    # for (( i=0; i<$len; i++)); do
+    #     echo "${colors[$i]}"
+    # done
+
+    local len=${#colors[@]}
+    n=$(expr $n % $len)
+    local color="${colors[$n]}"
+
+    prompt=$(mkprompt "$color")
+    export PS1="$prompt"
+
+    mkdir -p ~/.config
+    echo $n >~/.config/fancy
 }
 
-if [[ -f ~/.config/.fancy1 ]]; then
-    fancy1
-elif [[ -f ~/.config/.fancy2 ]]; then
-    fancy2
-elif [[ -f ~/.config/.fancy3 ]]; then
-    fancy3
+
+if [[ -f ~/.config/fancy ]]; then
+    fancy $(cat ~/.config/fancy)
 else
     fancy_off
 fi
