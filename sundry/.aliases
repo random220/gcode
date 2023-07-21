@@ -82,6 +82,7 @@ color_reset() {
 
 colors=(
     '9:0 93:0 32:0'
+    '44:0 27:0 251:0'
     '33:253 21:253 42:232'
     '111:232 63:253 111:232'
     '25:0 110:0 239:15'
@@ -121,6 +122,10 @@ fancies() {
     done
 }
 
+
+fancylist() {
+    ~/gcode/sundry/powerline/prompt-combos.sh "$@"
+}
 
 fancy() {
     if [[ $1 == 'off' ]]; then
