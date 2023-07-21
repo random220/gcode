@@ -96,19 +96,30 @@ colors=(
     '6:0 29:0 165:0'
     '6:0 29:0 63:0'
     '83:0 139:0 226:0'
+    '9:0 93:232 226:0'
     '9:0 93:0 32:0'
 )
 
 mkprompt() {
-    local color="$1"                   # 33:253 21:253 42:232
-    color=$(sed 's/:/ /g' <<<"$color") # 33 253 21 253 42 232
+    local color="$1"                   # '33:253 21:253 42:232'
+                                       # or '33 21 42'
+
     IFS=' ' read -r -a mycolors <<< "$color"
-    local bg1=${mycolors[0]}
-    local fg1=${mycolors[1]}
-    local bg2=${mycolors[2]}
-    local fg2=${mycolors[3]}
-    local bg3=${mycolors[4]}
-    local fg3=${mycolors[5]}
+    local bg1=$(sed 's/:.*//' <<<"${mycolors[0]}")
+    local fg1=$(sed 's/^.*://' <<<"${mycolors[0]}")
+    if [[ $fg1 -eq $bg1 ]]; then
+        fg1=0
+    fi
+    local bg2=$(sed 's/:.*//' <<<"${mycolors[1]}")
+    local fg2=$(sed 's/^.*://' <<<"${mycolors[1]}")
+    if [[ $fg2 -eq $bg2 ]]; then
+        fg2=0
+    fi
+    local bg3=$(sed 's/:.*//' <<<"${mycolors[2]}")
+    local fg3=$(sed 's/^.*://' <<<"${mycolors[2]}")
+    if [[ $fg3 -eq $bg3 ]]; then
+        fg3=0
+    fi
 
     local x=$(color_bg $bg1)$(color_fg $fg1)' \u '$(color_bg $bg2)$(color_fg $bg1)''
     local y=$(color_bg $bg2)$(color_fg $fg2)' \h '$(color_bg $bg3)$(color_fg $bg2)''
@@ -176,13 +187,14 @@ getcolor() {
 }
 
 fancy() {
-    if [[ $1 == 'off' ]]; then
+    local args="$*" # join args with spaces
+    if [[ $args == 'off' ]]; then
         fancy_off
         return
     fi
 
-    color=$(getcolor "$1")
-    prompt=$(mkprompt "$color")
+    local color=$(getcolor "$args")
+    local prompt=$(mkprompt "$color")
     export PS1="$prompt"
 
     mkdir -p ~/.config
