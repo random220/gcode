@@ -67,41 +67,6 @@ fi
 # fi
 unset on_mint
 
-fancy_off () {
-    # export PS1="\[\e[31m\]\u@\h \w >\[\e[m\]\n% "
-    # Green prompt
-    # export PS1="\[\e[32m\]\u@\h \w >\n%\[\e[m\] "
-    # Bright Green
-    # export PS1="\[\e[01;32m\]\u@\h \w >\n%\[\e[m\] "
-    # Blue prompt
-    # export PS1="\[\e[34m\]\u@\h \w >\n%\[\e[m\] "
-    # Bright Blue prompt
-    # export PS1="\[\e[01;34m\]\u@\h \w >\n%\[\e[m\] "
-    # Magenta prompt
-    # export PS1="\[\e[01;35m\]\u@\h \w >\n%\[\e[m\] "
-    # Red prompt
-    # export PS1="\[\e[31m\]\u@\h \w >\[\e[m\]\n% "
-
-    # echo -e "\e[1m  BOLD   \e[0m"
-    # echo -e "\e[38;5;20m  BLUE   \e[0m"
-    # echo -e "\e[38;5;22m  GREEN   \e[0m"
-    # "\u@\h \w >\n% "   : The actual prompt 'om@om-Latitude-E7450 ~ '
-
-    export PS1="\e[1m\e[38;5;20m\u@\h \w >\e[0m\e[0m\n% "    # blue
-    export PS1="\e[1m\e[38;5;199m\u@\h \w >\e[0m\e[0m\n% "   # magenta
-    export PS1="\e[1m\e[38;5;23m\u@\h \w >\e[0m\e[0m\n% "    # darker green
-    export PS1="\e[1m\e[38;5;56m\u@\h \w >\e[0m\e[0m\n% "    # nice blueish magenta
-    export PS1="\e[1m\e[38;5;199m\u@\h \w >\e[0m\e[0m\n% "   # magenta
-    export PS1="\e[1m\e[38;5;40m\u@\h \w >\e[0m\e[0m\n% "    # green
-    export PS1="\e[1m\e[38;5;20m\u@\h \w >\e[0m\e[0m\n% "    # sulekha blue
-    if [[ $LOGNAME == sm || $HOSTNAME == work ]]; then
-        export PS1="\e[1m\e[38;5;199m\u@\h \w >\e[0m\e[0m\n% "   # magenta
-    fi
-    alias ps1="echo export PS1=\''$PS1'\'"
-
-    rm -f ~/.config/.fancy* ~/.config/fancy
-}
-
 
 color_bg() {
     local color=$1
@@ -170,6 +135,25 @@ fancy() {
     mkdir -p ~/.config
     echo $n >~/.config/fancy
 }
+
+fancy_off () {
+    local blue=20
+    local magenta=199
+    local bluemagenta=56
+    local green=40
+    local darkgreen=23
+
+    # "\u@\h \w >\n% "   : The actual prompt 'om@om-Latitude-E7450 ~ '
+
+    local color=$blue
+    if [[ $LOGNAME == sm || $HOSTNAME == work ]]; then
+        color=magenta
+    fi
+    export PS1=$(color_fg $color)'\u@\h \w >'$(color_reset)'\n% '
+    alias ps1="echo export PS1=\''$PS1'\'"
+    rm -f ~/.config/.fancy* ~/.config/fancy
+}
+
 
 
 if [[ -f ~/.config/fancy ]]; then
