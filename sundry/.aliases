@@ -174,7 +174,7 @@ getcolor() {
     # done
 
     if [[ "$1" == '' ]]; then
-        len=$(${#colors[@]})
+        len=${#colors[@]}
         n=$( expr $RANDOM % $len)
         color="${colors[$n]}"
     elif [[ "$1" =~ ^[0-9]+$ ]]; then
