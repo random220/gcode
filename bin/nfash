@@ -3,7 +3,14 @@ umask 077
 rm -rf ~/.ssh/nfash
 mkdir ~/.ssh/nfash
 ssh-keygen -t ed25519 -N '' -f ~/.ssh/nfash/id_nuc
-cat <<'EOF' >~/.ssh/nfash/config
+
+nuchost='192.168.10.180'
+ping -t 1 -c 1 $nuchost >/dev/null 2>&1
+if [[ $? != 0 ]]; then
+    nuchost='crondite.duckdns.org'
+fi
+
+cat <<EOF >~/.ssh/nfash/config
 StrictHostKeyChecking=no
 CheckHostIP=no
 EscapeChar=~
@@ -12,11 +19,13 @@ LogLevel ERROR
 
 Host nuc
     User om
-    Hostname 192.168.10.180
+    Hostname $nuchost
     IdentityFile ~/.ssh/nfash/id_nuc
 
 EOF
-scp ~/.ssh/nfash/id_nuc.pub nuc:.ssh/authorized_keys
+
+
+scp -F $HOME/.ssh/nfash/config ~/.ssh/nfash/id_nuc.pub nuc:.ssh/authorized_keys
 rsync -e "ssh -F $HOME/.ssh/nfash/config" -a nuc:.ssh/fash/ ~/.ssh/nfash/
 out=$(ssh -F ~/.ssh/nfash/config nuc multipass ls)
 # %  ssh -F ~/.ssh/nfash/config nuc multipass ls
