@@ -66,7 +66,7 @@ conda activate ~/x/env
 tmux new-session -d -s jupe jupyter lab --no-browser --ip=0.0.0.0 --port=8888
 sleep 1
 echo
-jupyter lab list
+jupyter lab list | perl -pe 's{[^/]+\:8888}{localhost:8888}'
 echo '****  Settings -> Advanced Settings Editor -> Terminal -> fontFamily  ****'
 
 _EOF
