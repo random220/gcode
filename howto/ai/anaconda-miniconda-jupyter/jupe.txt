@@ -23,6 +23,16 @@ docker exec -i $host su - om -c '/opt/miniconda3/bin/conda init'
 
 cat <<'EOF' | docker exec -i $host su - om -c bash -
 
+set -x
+mkdir -p ~/.local
+echo "alias ac='conda activate ~/x/env'" >~/.local/.bashrc
+
+cat <<'_EOF' >>~/.bashrc
+if [[ -f ~/.local/.bashrc ]]; then
+  . ~/.local/.bashrc
+fi
+_EOF
+
 mkdir -p ~/bin
 cat <<'_EOF' >~/bin/jupe
 #!/bin/bash
@@ -31,9 +41,9 @@ eval "$(/opt/miniconda3/bin/conda shell.bash hook)"
 
 mkenv() {
     mkdir -p ~/x
-    conda create -yqm --prefix ~/x/env jupyter
+    conda create -yqm --prefix ~/x/env
     conda activate ~/x/env
-    conda install -yqm pandas numpy matplotlib scikit-learn
+    conda install -yqm jupyter pandas numpy matplotlib scikit-learn
     conda deactivate
 }
 
