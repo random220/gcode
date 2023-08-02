@@ -1,9 +1,9 @@
-if [[ -e $HOME/.aliases ]]; then
-  . $HOME/.aliases
+if [[ -e $HOME/.gcode/.aliases ]]; then
+  . $HOME/.gcode/.aliases
 fi
 
-if [[ -f $HOME/.bashrc-perforce ]]; then
-  . $HOME/.bashrc-perforce
+if [[ -f $HOME/.gcode/.bashrc-perforce ]]; then
+  . $HOME/.gcode/.bashrc-perforce
 fi
 
 if [[ -e $HOME/.local/.bashrc ]]; then
@@ -20,35 +20,5 @@ if [[ $(uname) == 'Darwin' ]]; then
 else
     export LANG=C.UTF-8
     export LC_ALL=$LANG
-fi
-
-##-----------------------------------------------------
-## synth-shell-greeter.sh
-#if [ -f $HOME/.config/synth-shell/synth-shell-greeter.sh ] && [ -n "$( echo $- | grep i )" ]; then
-#	source $HOME/.config/synth-shell/synth-shell-greeter.sh
-#fi
-
-##-----------------------------------------------------
-## synth-shell-prompt.sh
-if [ -f $HOME/.config/synth-shell/synth-shell-prompt.sh ] && [ -n "$( echo $- | grep i )" ]; then
-	source $HOME/.config/synth-shell/synth-shell-prompt.sh
-fi
-
-##-----------------------------------------------------
-## better-ls
-if [ -f $HOME/.config/synth-shell/better-ls.sh ] && [ -n "$( echo $- | grep i )" ]; then
-	source $HOME/.config/synth-shell/better-ls.sh
-fi
-
-##-----------------------------------------------------
-## alias
-if [ -f $HOME/.config/synth-shell/alias.sh ] && [ -n "$( echo $- | grep i )" ]; then
-	source $HOME/.config/synth-shell/alias.sh
-fi
-
-##-----------------------------------------------------
-## better-history
-if [ -f $HOME/.config/synth-shell/better-history.sh ] && [ -n "$( echo $- | grep i )" ]; then
-	source $HOME/.config/synth-shell/better-history.sh
 fi
 
