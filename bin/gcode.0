@@ -1,18 +1,33 @@
 #!/bin/bash
-if [[ ! -d ~/gcode ]]; then
-  cd
-  git clone https://github.com/random220/gcode
-  rm -f .profile .bashrc .aliases .vimrc .tmux.conf
-  cat <<'EOF' >.profile
+
+if [[ ! -f ~/.profile ]]; then
+    cat <<'EOF'  >~/.profile
 if [[ -f ~/.bashrc ]]; then
   . ~/.bashrc
 fi
 EOF
-  ln -s gcode/sundry/.bashrc
-  ln -s gcode/sundry/.aliases
-  ln -s gcode/sundry/.vimrc
-  ln -s gcode/sundry/.tmux.conf 
-  . ~/.bashrc
+
+if [[ ! -d ~/gcode ]]; then
+    cd
+    git clone https://github.com/random220/gcode
 fi
+
+if [[ ! -d ~/.gcode ]]; then
+    mkdir ~/.gcode
+    cd ~/.gcode
+    ln -s ~/gcode/sundry/.bashrc
+    ln -s ~/gcode/sundry/.aliases
+
+    cd
+    rm -f .vimrc .tmux.conf
+    ln -s ~/gcode/sundry/.vimrc
+    ln -s ~/gcode/sundry/.tmux.conf 
+fi
+
+echo <<'EOF' >>~/.bashrc
+if [[ -f ~/.gcode/.bashrc ]]; then
+    . ~/.gcode/.bashrc
+fi
+EOF
 
 
