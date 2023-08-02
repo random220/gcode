@@ -27,7 +27,7 @@ if [[ ! -d ~/.gcode ]]; then
     ln -s ~/gcode/sundry/.tmux.conf 
 fi
 
-echo <<'EOF' >>~/.bashrc
+cat <<'EOF' >>~/.bashrc
 if [[ -f ~/.gcode/.bashrc ]]; then
     . ~/.gcode/.bashrc
 fi
