@@ -29,6 +29,7 @@ set_path() {
     $HOME/bin
     $HOME/gcode/bin
     $HOME/go/bin
+    /opt/conda/condabin
     $HOME/Library/Python/3.9/bin
     /snap/bin
     /usr/local/sbin
