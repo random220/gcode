@@ -17,30 +17,41 @@ curl -sL -o a.sh https://repo.anaconda.com/miniconda/Miniconda3-py311_23.5.2-0-L
 chmod a+x a.sh
 ./a.sh -b -p /opt/miniconda3    # -b : batch,  -p : prefix
 rm -f a.sh
-/opt/miniconda3/bin/conda install -y -m -q jupyter
 EOF
 
-cat <<'EOF' | docker exec -u om -i $host bash -
-cd
-mkdir -p ~/.local
-echo 'export PATH=/opt/miniconda3/bin:/opt/miniconda3/condabin:$PATH' >>~/.local/.bashrc
-echo '. ~/.local/.bashrc' >>~/.bashrc
+docker exec -i $host su - om -c '/opt/miniconda3/bin/conda init'
+
+cat <<'EOF' | docker exec -i $host su - om -c bash -
 
 mkdir -p ~/bin
 cat <<'_EOF' >~/bin/jupe
 #!/bin/bash
-mkdir -p ~/x
-cd ~/x
-tmux new-session -d -s jupe jupyter notebook --no-browser --ip=0.0.0.0 --port=8888
-_EOF
 
-chmod a+x ~/bin/jupe
-. ~/.local/.bashrc
-echo $PATH
-~/bin/jupe
+eval "$(/opt/miniconda3/bin/conda shell.bash hook)"
+
+mkenv() {
+    mkdir -p ~/x
+    conda create -yqm --prefix ~/x/env jupyter
+    conda activate ~/x/env
+    conda install -yqm pandas numpy matplotlib scikit-learn
+    conda deactivate
+}
+
+if [[ ! -d ~/x/env ]]; then
+    mkenv
+fi
+conda activate ~/x/env
+tmux new-session -d -s jupe jupyter notebook --no-browser --ip=0.0.0.0 --port=8888
 sleep 1
 jupyter notebook list
 
+_EOF
+
+chmod a+x ~/bin/jupe
+
+mkdir -p ~/x
+cd ~/x
+~/bin/jupe
 EOF
 
 
