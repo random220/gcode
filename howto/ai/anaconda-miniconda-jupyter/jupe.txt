@@ -24,8 +24,19 @@ docker exec -i $host su - om -c '/opt/miniconda3/bin/conda init'
 cat <<'EOF' | docker exec -i $host su - om -c bash -
 
 set -x
+
 mkdir -p ~/.local
-echo "alias ac='conda activate ~/x/env'" >~/.local/.bashrc
+cat <<'_EOF' >~/.local/.bashrc
+alias de='conda deactivate'
+alias ac='conda activate ~/x/env'
+ac() {
+    local e=$HOME/x/env
+    if [[ "$1" != '' ]]; then
+        e="$1"
+    fi
+    conda activate "$e"
+}
+_EOF
 
 cat <<'_EOF' >>~/.bashrc
 if [[ -f ~/.local/.bashrc ]]; then
