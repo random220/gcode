@@ -1,0 +1,46 @@
+#!/bin/bash
+
+host=con
+docker rm -f $host
+docker run -itd --name $host -h $host -p 8888:8888 ubuntu:22.04 bash
+
+cat <<'EOF' | docker exec -i $host bash -
+apt-get -y update
+apt-get -y dist-upgrade
+apt-get -y install git vim curl sudo tmux
+useradd -s /bin/bash -m om
+echo 'om ALL=(ALL:ALL) NOPASSWD: ALL' >/etc/sudoers.d/om
+
+# https://docs.conda.io/en/latest/miniconda.html
+cd /tmp
+curl -sL -o a.sh https://repo.anaconda.com/miniconda/Miniconda3-py311_23.5.2-0-Linux-x86_64.sh
+chmod a+x a.sh
+./a.sh -b -p /opt/miniconda3    # -b : batch,  -p : prefix
+rm -f a.sh
+/opt/miniconda3/bin/conda install -y -m -q jupyter
+EOF
+
+cat <<'EOF' | docker exec -u om -i $host bash -
+cd
+mkdir -p ~/.local
+echo 'export PATH=/opt/miniconda3/bin:/opt/miniconda3/condabin:$PATH' >>~/.local/.bashrc
+echo '. ~/.local/.bashrc' >>~/.bashrc
+
+mkdir -p ~/bin
+cat <<'_EOF' >~/bin/jupe
+#!/bin/bash
+mkdir -p ~/x
+cd ~/x
+tmux new-session -d -s jupe jupyter notebook --no-browser --ip=0.0.0.0 --port=8888
+_EOF
+
+chmod a+x ~/bin/jupe
+. ~/.local/.bashrc
+echo $PATH
+~/bin/jupe
+sleep 1
+jupyter notebook list
+
+EOF
+
+
