@@ -28,7 +28,7 @@ set -x
 mkdir -p ~/.local
 cat <<'_EOF' >~/.local/.bashrc
 alias de='conda deactivate'
-alias ac='conda activate ~/x/env'
+#alias ac='conda activate ~/x/env'
 ac() {
     local e=$HOME/x/env
     if [[ "$1" != '' ]]; then
