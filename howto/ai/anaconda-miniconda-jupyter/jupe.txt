@@ -1,10 +1,26 @@
 #!/bin/bash
 
+set -x
 host=con
-docker rm -f $host
-docker run -itd --name $host -h $host -p 8888:8888 ubuntu:22.04 bash
 
-cat <<'EOF' | docker exec -i $host bash -
+main() {
+    mkcont
+    install_stuff
+    push_gcode
+    activate_gcode
+    config_conda
+}
+
+
+mkcont() {
+    docker rm -f $host
+    docker run -itd --name $host -h $host -p 8888:8888 ubuntu:22.04 bash
+}
+
+
+install_stuff() {
+    cat <<'EOF' | docker exec -i $host bash -
+set -x
 apt-get -y update
 apt-get -y dist-upgrade
 apt-get -y install git vim curl sudo tmux
@@ -18,12 +34,32 @@ chmod a+x a.sh
 ./a.sh -b -p /opt/miniconda3    # -b : batch,  -p : prefix
 rm -f a.sh
 EOF
+}
 
-docker exec -i $host su - om -c '/opt/miniconda3/bin/conda init'
+push_gcode() {
+    if [[ -d ~/gcode/.git ]]; then
+        docker cp ~/gcode/.git $host:/home/om/gcode.git
+    fi
+    cat <<'EOF' | docker exec -i $host su - om -c bash -
+cd
+if [[ -d gcode.git ]]; then
+    mkdir gcode
+    sudo chown -R om:om gcode.git
+    mv gcode.git gcode/.git
+    cd gcode
+    git reset --hard
+    git checkout .
+    git pull
+else
+    git clone https://github.com/random220/gcode.git
+fi
+EOF
+}
 
-cat <<'EOF' | docker exec -i $host su - om -c bash -
-
-set -x
+config_conda() {
+    cat <<'EOF' | docker exec -i $host su - om -c bash -
+cd
+/opt/miniconda3/bin/conda init
 
 mkdir -p ~/.local
 cat <<'_EOF' >~/.local/.bashrc
@@ -36,12 +72,6 @@ ac() {
     fi
     conda activate "$e"
 }
-_EOF
-
-cat <<'_EOF' >>~/.bashrc
-if [[ -f ~/.local/.bashrc ]]; then
-  . ~/.local/.bashrc
-fi
 _EOF
 
 mkdir -p ~/bin
@@ -72,10 +102,20 @@ echo '****  Settings -> Advanced Settings Editor -> Terminal -> fontFamily  ****
 _EOF
 
 chmod a+x ~/bin/jupe
-
 mkdir -p ~/x
 cd ~/x
 ~/bin/jupe
+
 EOF
 
 
+}
+
+activate_gcode() {
+    cat <<'EOF' | docker exec -i $host su - om -c bash -
+cd
+bash gcode/bin/gcode.0
+EOF
+}
+
+main
