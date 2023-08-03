@@ -1,9 +1,45 @@
 #!/bin/bash
-flacfile="$1"
-mp3file=$(echo "$flacfile"|sed 's/flac$/mp3/')
 
-if [[ "$flacfile" == '' ]]; then
-  exit 1
+#set -x
+
+arg1="$1"
+arg2="$2"
+
+to_mp3() {
+    local bit="$1"
+    local infile="$2"
+    local outfile=$(perl -pe 's{\.[^\.]+$}{.mp3}; s{^.*/}{}; s{^}{mp3/}' <<<"$infile")
+    echo "ffmpeg -i \"$infile\" -ab ${bit}k -map_metadata 0 -id3v2_version 3 \"$outfile\""
+}
+
+num=320
+text=''
+if [[ "$arg1" == '' ]]; then
+    :
+elif [[ "$arg1" =~ ^[0-9]+$ ]]; then
+    num="$1"
+    text="$2"
+elif [[ "$arg2" =~ ^[0-9]+$ ]]; then
+    num="$2"
+    text="$1"
+else
+    text="$arg1"
 fi
 
-ffmpeg -i "$flacfile" -ab 320k -map_metadata 0 -id3v2_version 3 "$mp3file"
+listfile=$(mktemp)
+if [[ -f "$text" ]]; then
+    echo "$text" >"$listfile"
+elif [[ "$text" != '' ]]; then
+    ls -1 *"$text" >"$listfile"
+else
+    ls -1 >"$listfile"
+fi
+
+
+echo 'mkdir -p mp3'
+while IFS= read -r infile; do
+    to_mp3 $num "$infile"
+done <"$listfile"
+
+rm -f "$listfile"
+
