@@ -1,6 +1,10 @@
 Cover 1*
-Preface xvii
-How to Use This Book xxi
+Brief Contents 9*
+AP Exam Map 10*
+Contents 11*
+Preface xvii 21*
+How to Use This Book xxi 25*
+_offset 26
 Chapter 1 An Introduction to Hardware, Software, and the Internet 1
 Chapter 2 An Introduction to Software Development 11
 Chapter 3 Objects and Classes 43
