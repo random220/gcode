@@ -1,113 +1,110 @@
+_offset 0
 Preface xvii 17*
 How to Use This Book xxi 21*
 Chapter 1 An Introduction to Hardware, Software, and the Internet 23
-_offset 22
-    1.1 Prologue 2
-    1.2 Hardware Overview 5
-        1.2.1 The CPU 5
-        1.2.2 Memory 6
-        1.2.3 Secondary Storage Devices 7
-        1.2.4 Input and Output Devices 7
-    1.3 Software Overview 8
-    1.4 What Do Programmers Do?  10
-    1.5 Representation of Information in Computer Memory 14
-        1.4.1 Numbers 15
-        1.4.2 Characters 19
-    1.6 The Internet 21
-    1.7 Summary 23
-    Exercises 26 47*
-_offset 20
-Chapter 2 An Introduction to Software Development 33
-Chapter 3 Obiects and Classes 65
-Chapter 4 Algorithms 97
-Chapter 5 Java Syntax and Style 125
-Chapter 6 Data Types, Variables, and Arithmetic 143
-Chapter 7 Boolean Expressions and if-else Statements 175
-Chapter 8 Iterative Statements: while, for, do-while 215
-Chapter 9 Implementing Classes and Using Objects 233
-Chapter 10 Strings 281
-Chapter 11 Class Hierarchies and Interfaces 309
-Chapter 12 Arrays and ArrayLists 344
-Chapter 13 Searching and Sorting 386
-Chapter 14 Streams and Files 416
-Chapter 15 Graphics 432
-Chapter 16 GUI Components and Events 456
-_offset 475
-    16.1 Prologue 2
-    16.2 Pluggable Look and Feel 3
+    1.1 Prologue 24
+    1.2 Hardware Overview 27
+        1.2.1 The CPU 27
+        1.2.2 Memory 28
+        1.2.3 Secondary Storage Devices 29
+        1.2.4 Input and Output Devices 29
+    1.3 Software Overview 30
+    1.4 What Do Programmers Do? 32
+    1.5 Representation of Information in Computer Memory 36
+        1.4.1 Numbers 37
+        1.4.2 Characters 41
+    1.6 The Internet 43
+    1.7 Summary 45
+    Exercises 47
+Chapter 2 An Introduction to Software Development 53
+    2.1 Prologue 54
+    2.2 Compilers and Interpreters 56
+    2.3 Software Components and Packages 62
+    2.4 Lab: Three Ways to Say Hello 64
+    2.5 Object-Oriented Programming 70
+    2.6 Lab: More Ways to Say Hello 73
+    2.7 Summary 80
+    Exercises 81
+Chapter 3 Obiects and Classes 85
+Chapter 4 Algorithms 117
+Chapter 5 Java Syntax and Style 145
+Chapter 6 Data Types, Variables, and Arithmetic 163
+Chapter 7 Boolean Expressions and if-else Statements 195
+Chapter 8 Iterative Statements: while, for, do-while 235
+Chapter 9 Implementing Classes and Using Objects 253
+Chapter 10 Strings 301
+Chapter 11 Class Hierarchies and Interfaces 329
+Chapter 12 Arrays and ArrayLists 364
+Chapter 13 Searching and Sorting 406
+Chapter 14 Streams and Files 436
+Chapter 15 Graphics 452
+Chapter 16 GUI Components and Events 476
+    16.1 Prologue 477
+    16.2 Pluggable Look and Feel 478
     16.3 Basic Swing Components and Their Events
-    16.4 Layouts 10
-    16.5 Menus 13
-    16.6 Case Study and Lab: the Rambles Game 14
-    16.7 Summary 17
-    Exercises 18
-_offset 35
-Chapter 17 Mouse, Keyboard, Sounds, and Images 464
-_offset 498
-    17.1 Prologue 2
-    17.2 Mouse Events Handling 2
-    17.3 Keyboard Events Handling 4
-    17.4 Lab: Rambles Concluded 7
-    17.5 Sounds and Images 8
-    17.6 Case Study and Lab: Drawing Editor 12
-    17.7 Summary 17
-    Exercises 19
-_offset 52
-Chapter 18 Big-O Analysis of Algorithms 468
-Chapter 19 The Java Collections Framework 490
-Chapter 20 Linked Lists 532
-Chapter 21 Stacks and Queues 552
-Chapter 22 Recursion Revisited 572
-Chapter 23 Binary Trees 600
-Chapter 24 Lookup Tables and Hashing 628
-Chapter 25 Heaps and Priority Queues 648
-Chapter 26 Design Patterns 662
-_offset 713
-    26.1 Prologue 2
-    26.2 Facade 3
-    26.3 Strategy 5
+    16.4 Layouts 485
+    16.5 Menus 488
+    16.6 Case Study and Lab: the Rambles Game 489
+    16.7 Summary 492
+    Exercises 493
+Chapter 17 Mouse, Keyboard, Sounds, and Images 499
+    17.1 Prologue 500
+    17.2 Mouse Events Handling 500
+    17.3 Keyboard Events Handling 502
+    17.4 Lab: Rambles Concluded 505
+    17.5 Sounds and Images 506
+    17.6 Case Study and Lab: Drawing Editor 510
+    17.7 Summary 515
+    Exercises 517
+Chapter 18 Big-O Analysis of Algorithms 520
+Chapter 19 The Java Collections Framework 542
+Chapter 20 Linked Lists 584
+Chapter 21 Stacks and Queues 604
+Chapter 22 Recursion Revisited 624
+Chapter 23 Binary Trees 652
+Chapter 24 Lookup Tables and Hashing 680
+Chapter 25 Heaps and Priority Queues 700
+Chapter 26 Design Patterns 714
+    26.1 Prologue 715
+    26.2 Facade 716
+    26.3 Strategy 718
     26.4 Singleton
-    26.5 Decorator 9
-    26.6 Composite 15
-    26.7 MVC (Model-View-Controller) 17
-    26.8 Summary 23
-    Exercises 24
-_offset 0
+    26.5 Decorator 722
+    26.6 Composite 728
+    26.7 MVC (Model-View-Controller) 730
+    26.8 Summary 736
+    Exercises 737
 Appendix A: The 17 Bits of Style 742
 Appendix B: Common Syntax Error Messages 749
 Appendix C: HTML Tutorial 757
-_offset 756
-    C.1 Prologue 2
-    C.2 Example 5
-    C.3 Document Structure Tags 8
-    C.4 Text Layout and Formatting Tags 10
-    C.5 Anchors and Links 14
-    C.6 Lists 17
-    C.7 Images 18
-    C.8 Tables 20
-    C.9 Applets 24
-    Exercises 26
-_offset 0
+    C.1 Prologue 758
+    C.2 Example 761
+    C.3 Document Structure Tags 764
+    C.4 Text Layout and Formatting Tags 766
+    C.5 Anchors and Links 770
+    C.6 Lists 773
+    C.7 Images 774
+    C.8 Tables 776
+    C.9 Applets 780
+    Exercises 782
 Appendix D: GUI Examples Index 785
 Appendix E: EasyReader, EasyWriter, EasySound, EasyDate, and EasyFormat 800
 Appendix F: Computing in Context: Responsible and Ethical Computer Use 804
-_offset 803
-    F.1 Prologue 2
-    F.2 Responsible Use of Computer Systems 3
-        F.2.1 Formulating Ethical Guidelines 3
-        F.2.2 Maintaining Professional Standards 5
-        F.2.3 Regulating Users 6
-    F.3 System Reliability and Security 6
-        F.3.1 Avoiding System Failure 7
-        F.3.2 Maintaining Data Integrity 8
-        F 3.3 Protecting Secure Systems 8
+    F.1 Prologue 805
+    F.2 Responsible Use of Computer Systems 806
+        F.2.1 Formulating Ethical Guidelines 806
+        F.2.2 Maintaining Professional Standards 808
+        F.2.3 Regulating Users 809
+    F.3 System Reliability and Security 809
+        F.3.1 Avoiding System Failure 810
+        F.3.2 Maintaining Data Integrity 811
+        F 3.3 Protecting Secure Systems 811
     F.4 Legal Issues 9 F.4.1
-        F.4.1 Privacy 9
-        F.4.2 Censorship vs. Free Speech 10
-        F.4.3 Intellectual Property and Copyright Issues 11
-    F.5 Searching the Internet 12
-        F.5.1 How to Tell Good Information From Bad 12
-        F 5.2 Effective Searches 14
-    F.6 Conclusion 16
-_offset 0
+        F.4.1 Privacy 812
+        F.4.2 Censorship vs. Free Speech 813
+        F.4.3 Intellectual Property and Copyright Issues 814
+    F.5 Searching the Internet 815
+        F.5.1 How to Tell Good Information From Bad 815
+        F 5.2 Effective Searches 817
+    F.6 Conclusion 819
 Errata 820
