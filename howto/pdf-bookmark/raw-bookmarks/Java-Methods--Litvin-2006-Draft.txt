@@ -43,6 +43,16 @@ _offset 475
     Exercises 18
 _offset 35
 Chapter 17 Mouse, Keyboard, Sounds, and Images 464
+_offset 498
+    17.1 Prologue 2
+    17.2 Mouse Events Handling 2
+    17.3 Keyboard Events Handling 4
+    17.4 Lab: Rambles Concluded 7
+    17.5 Sounds and Images 8
+    17.6 Case Study and Lab: Drawing Editor 12
+    17.7 Summary 17
+    Exercises 19
+_offset 52
 Chapter 18 Big-O Analysis of Algorithms 468
 Chapter 19 The Java Collections Framework 490
 Chapter 20 Linked Lists 532
