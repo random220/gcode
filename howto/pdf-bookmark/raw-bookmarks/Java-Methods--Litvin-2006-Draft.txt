@@ -62,3 +62,13 @@ Chapter 23 Binary Trees 600
 Chapter 24 Lookup Tables and Hashing 628
 Chapter 25 Heaps and Priority Queues 648
 Chapter 26 Design Patterns 662
+_offset 713
+    26.1 Prologue 2
+    26.2 Facade 3
+    26.3 Strategy 5
+    26.4 Singleton
+    26.5 Decorator 9
+    26.6 Composite 15
+    26.7 MVC (Model-View-Controller) 17
+    26.8 Summary 23
+    Exercises 24
