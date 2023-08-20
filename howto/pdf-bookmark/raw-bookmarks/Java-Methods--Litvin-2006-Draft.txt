@@ -26,10 +26,61 @@ Chapter 2 An Introduction to Software Development 53
     2.7 Summary 80
     Exercises 81
 Chapter 3 Obiects and Classes 85
+    3.1 Prologue 86
+    3.2 Case Study: First Steps 87
+    3.3 Classes 90
+    3.4 Fields, Constructors, and Methods 95
+    3.5 First Steps Continued 100
+    3.6 Inheritance 103
+    3.7 Summary 109
+    Exercises 111
 Chapter 4 Algorithms 117
+    4.1 Prologue 118
+    4.2 Properties of Algorithms 119
+    4 3 Iterations 123
+    4.4 Recursion 125
+    4.5 Case Study: Euclid's GCF Algorithm 127
+    4.6 Working with Lists 130
+    4.7 Case Study: File Manager 133
+    4.8 Summary 136
+    Exercises 137
 Chapter 5 Java Syntax and Style 145
+    5.1 Prologue 146
+    5.2 Using Comments 147
+    5.3 Reserved Words and Programmer-Defined Names 149
+    5.4 Syntax vs. Style 152
+    5.5 Statements, Blocks, Indentation 156
+    5.6 Lab: Correcting Syntax Errors 157
+    5.7 Summary 159
+    Exercises 160
 Chapter 6 Data Types, Variables, and Arithmetic 163
+    6.1 Prologue 164
+    6.2 Declaring Fields and Local Variables 165
+    6.3 Primitive Data Types 170
+    6.4 Strings 171
+    6.5 Constants 172
+    6.6 Scope of Variables 175
+    6.7 Arithmetic Expressions 177
+    6.8 Compound Assignment and Increment Operators 181
+    6.9 Converting Numbers and Objects into Strings 182
+    6.10 Lab: Pie Chart 186
+    6.11 Summary 187
+    Exercises 189
 Chapter 7 Boolean Expressions and if-else Statements 195
+    7.1 Prologue 196
+    7.2 if-else Statements 198
+    7.3 boolean Data Type 199
+    7.4 Relational Operators 200
+    7.5 Logical Operators 202
+    7.6 Order of Operators 204
+    7.7 Short-Circuit Evaluation 205
+    7.8 if-else-if and Nested if-else
+    7.9 Case Study and Lab: Rolling Dice 211
+    7.10 The switch statement 220
+    7.11 Enumerated Data Types 222
+    7.12 Case Study and Lab: Rolling Dice Continued 225
+    7.13 Summary 228
+    Exercises 230
 Chapter 8 Iterative Statements: while, for, do-while 235
 Chapter 9 Implementing Classes and Using Objects 253
 Chapter 10 Strings 301
@@ -68,7 +119,7 @@ Chapter 26 Design Patterns 714
     26.1 Prologue 715
     26.2 Facade 716
     26.3 Strategy 718
-    26.4 Singleton
+    26.4 Singleton 719
     26.5 Decorator 722
     26.6 Composite 728
     26.7 MVC (Model-View-Controller) 730
