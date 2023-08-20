@@ -1,309 +1,309 @@
-_offset 0
-Preface xvii 17*
-How to Use This Book xxi 21*
-Chapter 1 An Introduction to Hardware, Software, and the Internet 23
-    1.1 Prologue 24
-    1.2 Hardware Overview 27
-        1.2.1 The CPU 27
-        1.2.2 Memory 28
-        1.2.3 Secondary Storage Devices 29
-        1.2.4 Input and Output Devices 29
-    1.3 Software Overview 30
-    1.4 What Do Programmers Do? 32
-    1.5 Representation of Information in Computer Memory 36
-        1.4.1 Numbers 37
-        1.4.2 Characters 41
-    1.6 The Internet 43
-    1.7 Summary 45
-    Exercises 47
-Chapter 2 An Introduction to Software Development 53
-    2.1 Prologue 54
-    2.2 Compilers and Interpreters 56
-    2.3 Software Components and Packages 62
-    2.4 Lab: Three Ways to Say Hello 64
-    2.5 Object-Oriented Programming 70
-    2.6 Lab: More Ways to Say Hello 73
-    2.7 Summary 80
-    Exercises 81
-Chapter 3 Obiects and Classes 85
-    3.1 Prologue 86
-    3.2 Case Study: First Steps 87
-    3.3 Classes 90
-    3.4 Fields, Constructors, and Methods 95
-    3.5 First Steps Continued 100
-    3.6 Inheritance 103
-    3.7 Summary 109
-    Exercises 111
-Chapter 4 Algorithms 117
-    4.1 Prologue 118
-    4.2 Properties of Algorithms 119
-    4 3 Iterations 123
-    4.4 Recursion 125
-    4.5 Case Study: Euclid's GCF Algorithm 127
-    4.6 Working with Lists 130
-    4.7 Case Study: File Manager 133
-    4.8 Summary 136
-    Exercises 137
-Chapter 5 Java Syntax and Style 145
-    5.1 Prologue 146
-    5.2 Using Comments 147
-    5.3 Reserved Words and Programmer-Defined Names 149
-    5.4 Syntax vs. Style 152
-    5.5 Statements, Blocks, Indentation 156
-    5.6 Lab: Correcting Syntax Errors 157
-    5.7 Summary 159
-    Exercises 160
-Chapter 6 Data Types, Variables, and Arithmetic 163
-    6.1 Prologue 164
-    6.2 Declaring Fields and Local Variables 165
-    6.3 Primitive Data Types 170
-    6.4 Strings 171
-    6.5 Constants 172
-    6.6 Scope of Variables 175
-    6.7 Arithmetic Expressions 177
-    6.8 Compound Assignment and Increment Operators 181
-    6.9 Converting Numbers and Objects into Strings 182
-    6.10 Lab: Pie Chart 186
-    6.11 Summary 187
-    Exercises 189
-Chapter 7 Boolean Expressions and if-else Statements 195
-    7.1 Prologue 196
-    7.2 if-else Statements 198
-    7.3 boolean Data Type 199
-    7.4 Relational Operators 200
-    7.5 Logical Operators 202
-    7.6 Order of Operators 204
-    7.7 Short-Circuit Evaluation 205
+Cover 1*
+Preface xvii 18*
+How to Use This Book xxi 22*
+Chapter 1 An Introduction to Hardware, Software, and the Internet 24
+    1.1 Prologue 25
+    1.2 Hardware Overview 28
+        1.2.1 The CPU 28
+        1.2.2 Memory 29
+        1.2.3 Secondary Storage Devices 30
+        1.2.4 Input and Output Devices 30
+    1.3 Software Overview 31
+    1.4 What Do Programmers Do? 33
+    1.5 Representation of Information in Computer Memory 37
+        1.4.1 Numbers 38
+        1.4.2 Characters 42
+    1.6 The Internet 44
+    1.7 Summary 46
+    Exercises 48
+Chapter 2 An Introduction to Software Development 54
+    2.1 Prologue 55
+    2.2 Compilers and Interpreters 57
+    2.3 Software Components and Packages 63
+    2.4 Lab: Three Ways to Say Hello 65
+    2.5 Object-Oriented Programming 71
+    2.6 Lab: More Ways to Say Hello 74
+    2.7 Summary 81
+    Exercises 82
+Chapter 3 Obiects and Classes 86
+    3.1 Prologue 87
+    3.2 Case Study: First Steps 88
+    3.3 Classes 91
+    3.4 Fields, Constructors, and Methods 96
+    3.5 First Steps Continued 101
+    3.6 Inheritance 104
+    3.7 Summary 110
+    Exercises 112
+Chapter 4 Algorithms 118
+    4.1 Prologue 119
+    4.2 Properties of Algorithms 120
+    4 3 Iterations 124
+    4.4 Recursion 126
+    4.5 Case Study: Euclid's GCF Algorithm 128
+    4.6 Working with Lists 131
+    4.7 Case Study: File Manager 134
+    4.8 Summary 137
+    Exercises 138
+Chapter 5 Java Syntax and Style 146
+    5.1 Prologue 147
+    5.2 Using Comments 148
+    5.3 Reserved Words and Programmer-Defined Names 150
+    5.4 Syntax vs. Style 153
+    5.5 Statements, Blocks, Indentation 157
+    5.6 Lab: Correcting Syntax Errors 158
+    5.7 Summary 160
+    Exercises 161
+Chapter 6 Data Types, Variables, and Arithmetic 164
+    6.1 Prologue 165
+    6.2 Declaring Fields and Local Variables 166
+    6.3 Primitive Data Types 171
+    6.4 Strings 172
+    6.5 Constants 173
+    6.6 Scope of Variables 176
+    6.7 Arithmetic Expressions 178
+    6.8 Compound Assignment and Increment Operators 182
+    6.9 Converting Numbers and Objects into Strings 183
+    6.10 Lab: Pie Chart 187
+    6.11 Summary 188
+    Exercises 190
+Chapter 7 Boolean Expressions and if-else Statements 196
+    7.1 Prologue 197
+    7.2 if-else Statements 199
+    7.3 boolean Data Type 200
+    7.4 Relational Operators 201
+    7.5 Logical Operators 203
+    7.6 Order of Operators 205
+    7.7 Short-Circuit Evaluation 206
     7.8 if-else-if and Nested if-else
-    7.9 Case Study and Lab: Rolling Dice 211
-    7.10 The switch statement 220
-    7.11 Enumerated Data Types 222
-    7.12 Case Study and Lab: Rolling Dice Continued 225
-    7.13 Summary 228
-    Exercises 230
-Chapter 8 Iterative Statements: while, for, do-while 235
-    8.1 Prologue 236
-    8.2 The while and for Loops 236
-    8.3 The do-while Loop 240
-    8.4 return and break in Loops 241
-    8.5 Nested Loops 243
-    8.6 Lab: Perfect Numbers 246
-    8.7 Summary 247
-    Exercises 248
-Chapter 9 Implementing Classes and Using Objects 253
-    9.1 Prologue 254
-    9.2 Public and Private Features of a Class 258
-    9.3 Constructors 260
-    9.4 References to Objects 264
-    9.5 Defining Methods 265
-    9.6 Calling Methods and Accessing Fields 268
-    9.7 Passing Parameters to Constructors and Methods 271
-    9.8 return Statement 274
-    9.9 Case Study and Lab: Snack Bar 277
-    9.10 Overloaded Methods 282
-    9.11 Static Fields and Methods 285
-    9.12 Case Study Snack Bar Continued 290
-    9.13 Summary 291
-    Exercises 293
-Chapter 10 Strings 301
-    9.1 Prologue 302
-    9.2 Literal Strings 302
-    9 3 String Constructors and Immutability 303
-    9.4 String Methods 306
-    9.5 Converting Numbers into Strings and Strings into Numbers 313
-    9.6 Character Methods 317
-    9.7 Lab: Lipogrammer 318
-    9.8 The StringBuffer class 320
-    9.9 Summary 322
-    Exercises 323
-Chapter 11 Class Hierarchies and Interfaces 329
-    11.1 Prologue 330
-    11.2 Class Hierarchies and Polymorphism 331
-    11.3 Abstract Classes 336
-    11.4 Invoking Superclass's Constructors 340
-    11.5 Calling Superclass's Methods 342
-    11.6 Case Study: Dance Studio 344
-    11.7 Interfaces 348
-    11.8 Case Study: Dance Studio Concluded 352
-    11.9 Summary 356
-    Exercises 359
-Chapter 12 Arrays and ArrayLists 364
-    12.1 Prologue 365
-    12.2 One-Dimensional Arrays 366
-    12.3 Lab: Fortune Teller 370
-    12.4 The ArrayList Class 370
-    12.5 ArrayList's Constructors and Methods 374
-    12.6 ArrayList's Pitfalls 376
-    12.7 Iterations and the "For Each" Loop 379
-    12.8 Inserting and Removing Elements 382
-    12.9 Lab: Creating an Index for a Document 383
-    12.10 Two-Dimensional Arrays 387
-    12.11 Case Study and Lab: Chomp 389
-    12.12 Summary 395
-    Exercises 397
-Chapter 13 Searching and Sorting 406
-    13.1 Prologue 407
-    13.2 equals, compareTo, and compare 408
-    13.3 Sequential and Binary Search 414
-    13.4 Lab: Keeping Things in Order 418
-    13.5 Selection Sort 419
-    13.6 Insertion Sort 420
-    13.7 Mergesort 422
-    13.8 Quicksort 425
-    13.9 Lab: Benchmarks 427
-    13.10 The Arrays and Collections Classes 428
-    13.11 Summary 430
-    Exercises 432
-Chapter 14 Streams and Files 436
-    14.1 Prologue 437
-    14 2 Pathnames and the java.io. File Class 439
-    14.3 Reading from a Text File 441
-    14.4 Writing to a Text File 444
-    14.5 Lab: Dictionary Maker 446
-    14.6 Summary 447
-    Exercises 448
-Chapter 15 Graphics 452
-    15.1 Prologue 453
-    15.2 paint, paintComponent, and repaint 454
-    15.3 Coordinates 457
-    15.4 Colors 460
-    15.5 Drawing Shapes 461
-    15.6 Fonts and Text 463
-    15.7 Case Study and Lab: Pieces of the Puzzle 465
-    15.8 Summary 471
-    Exercises 472
-Chapter 16 GUI Components and Events 476
-    16.1 Prologue 477
-    16.2 Pluggable Look and Feel 478
+    7.9 Case Study and Lab: Rolling Dice 212
+    7.10 The switch statement 221
+    7.11 Enumerated Data Types 223
+    7.12 Case Study and Lab: Rolling Dice Continued 226
+    7.13 Summary 229
+    Exercises 231
+Chapter 8 Iterative Statements: while, for, do-while 236
+    8.1 Prologue 237
+    8.2 The while and for Loops 237
+    8.3 The do-while Loop 241
+    8.4 return and break in Loops 242
+    8.5 Nested Loops 244
+    8.6 Lab: Perfect Numbers 247
+    8.7 Summary 248
+    Exercises 249
+Chapter 9 Implementing Classes and Using Objects 254
+    9.1 Prologue 255
+    9.2 Public and Private Features of a Class 259
+    9.3 Constructors 261
+    9.4 References to Objects 265
+    9.5 Defining Methods 266
+    9.6 Calling Methods and Accessing Fields 269
+    9.7 Passing Parameters to Constructors and Methods 272
+    9.8 return Statement 275
+    9.9 Case Study and Lab: Snack Bar 278
+    9.10 Overloaded Methods 283
+    9.11 Static Fields and Methods 286
+    9.12 Case Study Snack Bar Continued 291
+    9.13 Summary 292
+    Exercises 294
+Chapter 10 Strings 302
+    9.1 Prologue 303
+    9.2 Literal Strings 303
+    9 3 String Constructors and Immutability 304
+    9.4 String Methods 307
+    9.5 Converting Numbers into Strings and Strings into Numbers 314
+    9.6 Character Methods 318
+    9.7 Lab: Lipogrammer 319
+    9.8 The StringBuffer class 321
+    9.9 Summary 323
+    Exercises 324
+Chapter 11 Class Hierarchies and Interfaces 330
+    11.1 Prologue 331
+    11.2 Class Hierarchies and Polymorphism 332
+    11.3 Abstract Classes 337
+    11.4 Invoking Superclass's Constructors 341
+    11.5 Calling Superclass's Methods 343
+    11.6 Case Study: Dance Studio 345
+    11.7 Interfaces 349
+    11.8 Case Study: Dance Studio Concluded 353
+    11.9 Summary 357
+    Exercises 360
+Chapter 12 Arrays and ArrayLists 365
+    12.1 Prologue 366
+    12.2 One-Dimensional Arrays 367
+    12.3 Lab: Fortune Teller 371
+    12.4 The ArrayList Class 371
+    12.5 ArrayList's Constructors and Methods 375
+    12.6 ArrayList's Pitfalls 377
+    12.7 Iterations and the "For Each" Loop 380
+    12.8 Inserting and Removing Elements 383
+    12.9 Lab: Creating an Index for a Document 384
+    12.10 Two-Dimensional Arrays 388
+    12.11 Case Study and Lab: Chomp 390
+    12.12 Summary 396
+    Exercises 398
+Chapter 13 Searching and Sorting 407
+    13.1 Prologue 408
+    13.2 equals, compareTo, and compare 409
+    13.3 Sequential and Binary Search 415
+    13.4 Lab: Keeping Things in Order 419
+    13.5 Selection Sort 420
+    13.6 Insertion Sort 421
+    13.7 Mergesort 423
+    13.8 Quicksort 426
+    13.9 Lab: Benchmarks 428
+    13.10 The Arrays and Collections Classes 429
+    13.11 Summary 431
+    Exercises 433
+Chapter 14 Streams and Files 437
+    14.1 Prologue 438
+    14 2 Pathnames and the java.io. File Class 440
+    14.3 Reading from a Text File 442
+    14.4 Writing to a Text File 445
+    14.5 Lab: Dictionary Maker 447
+    14.6 Summary 448
+    Exercises 449
+Chapter 15 Graphics 453
+    15.1 Prologue 454
+    15.2 paint, paintComponent, and repaint 455
+    15.3 Coordinates 458
+    15.4 Colors 461
+    15.5 Drawing Shapes 462
+    15.6 Fonts and Text 464
+    15.7 Case Study and Lab: Pieces of the Puzzle 466
+    15.8 Summary 472
+    Exercises 473
+Chapter 16 GUI Components and Events 477
+    16.1 Prologue 478
+    16.2 Pluggable Look and Feel 479
     16.3 Basic Swing Components and Their Events
-    16.4 Layouts 485
-    16.5 Menus 488
-    16.6 Case Study and Lab: the Rambles Game 489
-    16.7 Summary 492
-    Exercises 493
-Chapter 17 Mouse, Keyboard, Sounds, and Images 499
-    17.1 Prologue 500
-    17.2 Mouse Events Handling 500
-    17.3 Keyboard Events Handling 502
-    17.4 Lab: Rambles Concluded 505
-    17.5 Sounds and Images 506
-    17.6 Case Study and Lab: Drawing Editor 510
-    17.7 Summary 515
-    Exercises 517
-Chapter 18 Big-O Analysis of Algorithms 520
-    8.1 Prologue 521
-    8.2 Big-O Notation 522
-    8.3 Sorting: a Big-O Review 530
-    8.4 Summary 535
-    Exercises 537
-Chapter 19 The Java Collections Framework 542
-    19.1 Prologue 543
-    19.2 Collection<E> and Iterator<E> 545
-    19.3 Lists and ListIterator<E> 549
-    19.4 Stacks 555
-    19.5 Oueues 557
-    19.6 Priority Queues 559
-    19.7 Sets 561
-    19.8 Maps 564
-    19.9 Case Study and Lab: Stock Exchange 569
-    19.10 Summary 576
-    Exercises 576
-Chapter 20 Linked Lists 584
-    20.1 Prologue 585
-    20.2 Singly-Linked List 585
-    20.3 Traversals 591
-    20.4 Lab: Implementing a Singly-Linked List 593
-    20.5 Linked List with a Tail 594
-    20.6 Doubly-Linked List and Circular List 595
-    20.7 Lab: Teletext 598
-    20.8 Summary 599
-    Exercises 600
-Chapter 21 Stacks and Queues 604
-    21.1 Prologue 605
-    21.2 Implementations of Stack 605
-    21.3 Lab: Browsing 608
-    21.4 The Hardware Stack 610
-    21.5 Implementations of Queues 612
-    21.6 Case Study and Lab: Actors World 613
-    21.7 Summary 618
-    Exercises 619
-Chapter 22 Recursion Revisited 624
-    22.1 Prologue 625
-    22.2 Three Examples 625
-    22.3 When Not to Use Recursion 633
-    22.4 Understanding and Debugging Recursive Methods 636
-    22.5 Lab: The Tower of Hanoi 639
-    22.6 Case Study and Lab: The Game of Hex 640
-    22.7 Summary 645
-    Exercises 645
-Chapter 23 Binary Trees 652
-    23.1 Prologue 653
-    23.2 Implementation of Binary Trees 657
-    23.3 Traversals 660
-    23.4 Binary Search Trees 661
-    23.5 A Do-It-YourselfBST 663
-    23.6 Lab: Morse Code 668
-    23.7 Case Study and Lab: Messenger 669
-    23.8 Summary 671
-    Exercises 672
-Chapter 24 Lookup Tables and Hashing 680
-    24.1 Prologue 681
-    24.2 Lookup Tables 681
+    16.4 Layouts 486
+    16.5 Menus 489
+    16.6 Case Study and Lab: the Rambles Game 490
+    16.7 Summary 493
+    Exercises 494
+Chapter 17 Mouse, Keyboard, Sounds, and Images 500
+    17.1 Prologue 501
+    17.2 Mouse Events Handling 501
+    17.3 Keyboard Events Handling 503
+    17.4 Lab: Rambles Concluded 506
+    17.5 Sounds and Images 507
+    17.6 Case Study and Lab: Drawing Editor 511
+    17.7 Summary 516
+    Exercises 518
+Chapter 18 Big-O Analysis of Algorithms 521
+    8.1 Prologue 522
+    8.2 Big-O Notation 523
+    8.3 Sorting: a Big-O Review 531
+    8.4 Summary 536
+    Exercises 538
+Chapter 19 The Java Collections Framework 543
+    19.1 Prologue 544
+    19.2 Collection<E> and Iterator<E> 546
+    19.3 Lists and ListIterator<E> 550
+    19.4 Stacks 556
+    19.5 Oueues 558
+    19.6 Priority Queues 560
+    19.7 Sets 562
+    19.8 Maps 565
+    19.9 Case Study and Lab: Stock Exchange 570
+    19.10 Summary 577
+    Exercises 577
+Chapter 20 Linked Lists 585
+    20.1 Prologue 586
+    20.2 Singly-Linked List 586
+    20.3 Traversals 592
+    20.4 Lab: Implementing a Singly-Linked List 594
+    20.5 Linked List with a Tail 595
+    20.6 Doubly-Linked List and Circular List 596
+    20.7 Lab: Teletext 599
+    20.8 Summary 600
+    Exercises 601
+Chapter 21 Stacks and Queues 605
+    21.1 Prologue 606
+    21.2 Implementations of Stack 606
+    21.3 Lab: Browsing 609
+    21.4 The Hardware Stack 611
+    21.5 Implementations of Queues 613
+    21.6 Case Study and Lab: Actors World 614
+    21.7 Summary 619
+    Exercises 620
+Chapter 22 Recursion Revisited 625
+    22.1 Prologue 626
+    22.2 Three Examples 626
+    22.3 When Not to Use Recursion 634
+    22.4 Understanding and Debugging Recursive Methods 637
+    22.5 Lab: The Tower of Hanoi 640
+    22.6 Case Study and Lab: The Game of Hex 641
+    22.7 Summary 646
+    Exercises 646
+Chapter 23 Binary Trees 653
+    23.1 Prologue 654
+    23.2 Implementation of Binary Trees 658
+    23.3 Traversals 661
+    23.4 Binary Search Trees 662
+    23.5 A Do-It-YourselfBST 664
+    23.6 Lab: Morse Code 669
+    23.7 Case Study and Lab: Messenger 670
+    23.8 Summary 672
+    Exercises 673
+Chapter 24 Lookup Tables and Hashing 681
+    24.1 Prologue 682
+    24.2 Lookup Tables 682
     24.3 Lab: Cryptogram Solver
-    24.4 Hash Tables 687
+    24.4 Hash Tables 688
     24.5 java .util's HashSet and HashMap
-    24.6 Lab: Search Engine 692
-    24.7 Summary 694
-    Exercises 16 690
-Chapter 25 Heaps and Priority Queues 700
-    25.1 Prologue 701
-    25.2 Implementations of Priority Queues 701
-    25.3 Binary Trees: Non-Linked Representation 703
-    25.4 Heaps and Priority Queues 705
-    25.5 Lab: Heapsort 709
-    25.6 Summary 710
-    Exercises 711
-Chapter 26 Design Patterns 714
-    26.1 Prologue 715
-    26.2 Facade 716
-    26.3 Strategy 718
-    26.4 Singleton 719
-    26.5 Decorator 722
-    26.6 Composite 728
-    26.7 MVC (Model-View-Controller) 730
-    26.8 Summary 736
-    Exercises 737
-Appendix A: The 17 Bits of Style 742
-Appendix B: Common Syntax Error Messages 749
-Appendix C: HTML Tutorial 757
-    C.1 Prologue 758
-    C.2 Example 761
-    C.3 Document Structure Tags 764
-    C.4 Text Layout and Formatting Tags 766
-    C.5 Anchors and Links 770
-    C.6 Lists 773
-    C.7 Images 774
-    C.8 Tables 776
-    C.9 Applets 780
-    Exercises 782
-Appendix D: GUI Examples Index 785
-Appendix E: EasyReader, EasyWriter, EasySound, EasyDate, and EasyFormat 800
-Appendix F: Computing in Context: Responsible and Ethical Computer Use 804
-    F.1 Prologue 805
-    F.2 Responsible Use of Computer Systems 806
-        F.2.1 Formulating Ethical Guidelines 806
-        F.2.2 Maintaining Professional Standards 808
-        F.2.3 Regulating Users 809
-    F.3 System Reliability and Security 809
-        F.3.1 Avoiding System Failure 810
-        F.3.2 Maintaining Data Integrity 811
-        F 3.3 Protecting Secure Systems 811
+    24.6 Lab: Search Engine 693
+    24.7 Summary 695
+    Exercises 16 691
+Chapter 25 Heaps and Priority Queues 701
+    25.1 Prologue 702
+    25.2 Implementations of Priority Queues 702
+    25.3 Binary Trees: Non-Linked Representation 704
+    25.4 Heaps and Priority Queues 706
+    25.5 Lab: Heapsort 710
+    25.6 Summary 711
+    Exercises 712
+Chapter 26 Design Patterns 715
+    26.1 Prologue 716
+    26.2 Facade 717
+    26.3 Strategy 719
+    26.4 Singleton 720
+    26.5 Decorator 723
+    26.6 Composite 729
+    26.7 MVC (Model-View-Controller) 731
+    26.8 Summary 737
+    Exercises 738
+Appendix A: The 17 Bits of Style 743
+Appendix B: Common Syntax Error Messages 750
+Appendix C: HTML Tutorial 758
+    C.1 Prologue 759
+    C.2 Example 762
+    C.3 Document Structure Tags 765
+    C.4 Text Layout and Formatting Tags 767
+    C.5 Anchors and Links 771
+    C.6 Lists 774
+    C.7 Images 775
+    C.8 Tables 777
+    C.9 Applets 781
+    Exercises 783
+Appendix D: GUI Examples Index 786
+Appendix E: EasyReader, EasyWriter, EasySound, EasyDate, and EasyFormat 801
+Appendix F: Computing in Context: Responsible and Ethical Computer Use 805
+    F.1 Prologue 806
+    F.2 Responsible Use of Computer Systems 807
+        F.2.1 Formulating Ethical Guidelines 807
+        F.2.2 Maintaining Professional Standards 809
+        F.2.3 Regulating Users 810
+    F.3 System Reliability and Security 810
+        F.3.1 Avoiding System Failure 811
+        F.3.2 Maintaining Data Integrity 812
+        F 3.3 Protecting Secure Systems 812
     F.4 Legal Issues 9 F.4.1
-        F.4.1 Privacy 812
-        F.4.2 Censorship vs. Free Speech 813
-        F.4.3 Intellectual Property and Copyright Issues 814
-    F.5 Searching the Internet 815
-        F.5.1 How to Tell Good Information From Bad 815
-        F 5.2 Effective Searches 817
-    F.6 Conclusion 819
-Errata 820
+        F.4.1 Privacy 813
+        F.4.2 Censorship vs. Free Speech 814
+        F.4.3 Intellectual Property and Copyright Issues 815
+    F.5 Searching the Internet 816
+        F.5.1 How to Tell Good Information From Bad 816
+        F 5.2 Effective Searches 818
+    F.6 Conclusion 820
+Errata 821
