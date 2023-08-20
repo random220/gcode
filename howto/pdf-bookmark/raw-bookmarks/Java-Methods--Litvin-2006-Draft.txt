@@ -109,3 +109,5 @@ _offset 803
         F.5.1 How to Tell Good Information From Bad 12
         F 5.2 Effective Searches 14
     F.6 Conclusion 16
+_offset 0
+Errata 820
