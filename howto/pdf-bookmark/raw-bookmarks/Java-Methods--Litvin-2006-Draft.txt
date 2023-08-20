@@ -82,13 +82,96 @@ Chapter 7 Boolean Expressions and if-else Statements 195
     7.13 Summary 228
     Exercises 230
 Chapter 8 Iterative Statements: while, for, do-while 235
+    8.1 Prologue 236
+    8.2 The while and for Loops 236
+    8.3 The do-while Loop 240
+    8.4 return and break in Loops 241
+    8.5 Nested Loops 243
+    8.6 Lab: Perfect Numbers 246
+    8.7 Summary 247
+    Exercises 248
 Chapter 9 Implementing Classes and Using Objects 253
+    9.1 Prologue 254
+    9.2 Public and Private Features of a Class 258
+    9.3 Constructors 260
+    9.4 References to Objects 264
+    9.5 Defining Methods 265
+    9.6 Calling Methods and Accessing Fields 268
+    9.7 Passing Parameters to Constructors and Methods 271
+    9.8 return Statement 274
+    9.9 Case Study and Lab: Snack Bar 277
+    9.10 Overloaded Methods 282
+    9.11 Static Fields and Methods 285
+    9.12 Case Study Snack Bar Continued 290
+    9.13 Summary 291
+    Exercises 293
 Chapter 10 Strings 301
+    9.1 Prologue 302
+    9.2 Literal Strings 302
+    9 3 String Constructors and Immutability 303
+    9.4 String Methods 306
+    9.5 Converting Numbers into Strings and Strings into Numbers 313
+    9.6 Character Methods 317
+    9.7 Lab: Lipogrammer 318
+    9.8 The StringBuffer class 320
+    9.9 Summary 322
+    Exercises 323
 Chapter 11 Class Hierarchies and Interfaces 329
+    11.1 Prologue 330
+    11.2 Class Hierarchies and Polymorphism 331
+    11.3 Abstract Classes 336
+    11.4 Invoking Superclass's Constructors 340
+    11.5 Calling Superclass's Methods 342
+    11.6 Case Study: Dance Studio 344
+    11.7 Interfaces 348
+    11.8 Case Study: Dance Studio Concluded 352
+    11.9 Summary 356
+    Exercises 359
 Chapter 12 Arrays and ArrayLists 364
+    12.1 Prologue 365
+    12.2 One-Dimensional Arrays 366
+    12.3 Lab: Fortune Teller 370
+    12.4 The ArrayList Class 370
+    12.5 ArrayList's Constructors and Methods 374
+    12.6 ArrayList's Pitfalls 376
+    12.7 Iterations and the "For Each" Loop 379
+    12.8 Inserting and Removing Elements 382
+    12.9 Lab: Creating an Index for a Document 383
+    12.10 Two-Dimensional Arrays 387
+    12.11 Case Study and Lab: Chomp 389
+    12.12 Summary 395
+    Exercises 397
 Chapter 13 Searching and Sorting 406
+    13.1 Prologue 407
+    13.2 equals, compareTo, and compare 408
+    13.3 Sequential and Binary Search 414
+    13.4 Lab: Keeping Things in Order 418
+    13.5 Selection Sort 419
+    13.6 Insertion Sort 420
+    13.7 Mergesort 422
+    13.8 Quicksort 425
+    13.9 Lab: Benchmarks 427
+    13.10 The Arrays and Collections Classes 428
+    13.11 Summary 430
+    Exercises 432
 Chapter 14 Streams and Files 436
+    14.1 Prologue 437
+    14 2 Pathnames and the java.io. File Class 439
+    14.3 Reading from a Text File 441
+    14.4 Writing to a Text File 444
+    14.5 Lab: Dictionary Maker 446
+    14.6 Summary 447
+    Exercises 448
 Chapter 15 Graphics 452
+    15.1 Prologue 453
+    15.2 paint, paintComponent, and repaint 454
+    15.3 Coordinates 457
+    15.4 Colors 460
+    15.5 Drawing Shapes 461
+    15.6 Fonts and Text 463
+    15.7 Case Study and Lab: Pieces of the Puzzle 465
+    15.8 Summary 471
+    Exercises 472
 Chapter 16 GUI Components and Events 476
     16.1 Prologue 477
     16.2 Pluggable Look and Feel 478
@@ -108,13 +191,78 @@ Chapter 17 Mouse, Keyboard, Sounds, and Images 499
     17.7 Summary 515
     Exercises 517
 Chapter 18 Big-O Analysis of Algorithms 520
+    8.1 Prologue 521
+    8.2 Big-O Notation 522
+    8.3 Sorting: a Big-O Review 530
+    8.4 Summary 535
+    Exercises 537
 Chapter 19 The Java Collections Framework 542
+    19.1 Prologue 543
+    19.2 Collection<E> and Iterator<E> 545
+    19.3 Lists and ListIterator<E> 549
+    19.4 Stacks 555
+    19.5 Oueues 557
+    19.6 Priority Queues 559
+    19.7 Sets 561
+    19.8 Maps 564
+    19.9 Case Study and Lab: Stock Exchange 569
+    19.10 Summary 576
+    Exercises 576
 Chapter 20 Linked Lists 584
+    20.1 Prologue 585
+    20.2 Singly-Linked List 585
+    20.3 Traversals 591
+    20.4 Lab: Implementing a Singly-Linked List 593
+    20.5 Linked List with a Tail 594
+    20.6 Doubly-Linked List and Circular List 595
+    20.7 Lab: Teletext 598
+    20.8 Summary 599
+    Exercises 600
 Chapter 21 Stacks and Queues 604
+    21.1 Prologue 605
+    21.2 Implementations of Stack 605
+    21.3 Lab: Browsing 608
+    21.4 The Hardware Stack 610
+    21.5 Implementations of Queues 612
+    21.6 Case Study and Lab: Actors World 613
+    21.7 Summary 618
+    Exercises 619
 Chapter 22 Recursion Revisited 624
+    22.1 Prologue 625
+    22.2 Three Examples 625
+    22.3 When Not to Use Recursion 633
+    22.4 Understanding and Debugging Recursive Methods 636
+    22.5 Lab: The Tower of Hanoi 639
+    22.6 Case Study and Lab: The Game of Hex 640
+    22.7 Summary 645
+    Exercises 645
 Chapter 23 Binary Trees 652
+    23.1 Prologue 653
+    23.2 Implementation of Binary Trees 657
+    23.3 Traversals 660
+    23.4 Binary Search Trees 661
+    23.5 A Do-It-YourselfBST 663
+    23.6 Lab: Morse Code 668
+    23.7 Case Study and Lab: Messenger 669
+    23.8 Summary 671
+    Exercises 672
 Chapter 24 Lookup Tables and Hashing 680
+    24.1 Prologue 681
+    24.2 Lookup Tables 681
+    24.3 Lab: Cryptogram Solver
+    24.4 Hash Tables 687
+    24.5 java .util's HashSet and HashMap
+    24.6 Lab: Search Engine 692
+    24.7 Summary 694
+    Exercises 16 690
 Chapter 25 Heaps and Priority Queues 700
+    25.1 Prologue 701
+    25.2 Implementations of Priority Queues 701
+    25.3 Binary Trees: Non-Linked Representation 703
+    25.4 Heaps and Priority Queues 705
+    25.5 Lab: Heapsort 709
+    25.6 Summary 710
+    Exercises 711
 Chapter 26 Design Patterns 714
     26.1 Prologue 715
     26.2 Facade 716
