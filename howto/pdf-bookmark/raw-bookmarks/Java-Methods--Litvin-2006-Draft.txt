@@ -1,7 +1,7 @@
 Preface xvii 17*
 How to Use This Book xxi 21*
 Chapter 1 An Introduction to Hardware, Software, and the Internet 23
-_offset 23
+_offset 22
     1.1 Prologue 2
     1.2 Hardware Overview 5
         1.2.1 The CPU 5
@@ -15,7 +15,7 @@ _offset 23
         1.4.2 Characters 19
     1.6 The Internet 21
     1.7 Summary 23
-    Exercises 26
+    Exercises 26 47*
 _offset 20
 Chapter 2 An Introduction to Software Development 33
 Chapter 3 Obiects and Classes 65
@@ -32,6 +32,16 @@ Chapter 13 Searching and Sorting 386
 Chapter 14 Streams and Files 416
 Chapter 15 Graphics 432
 Chapter 16 GUI Components and Events 456
+_offset 475
+    16.1 Prologue 2
+    16.2 Pluggable Look and Feel 3
+    16.3 Basic Swing Components and Their Events
+    16.4 Layouts 10
+    16.5 Menus 13
+    16.6 Case Study and Lab: the Rambles Game 14
+    16.7 Summary 17
+    Exercises 18
+_offset 35
 Chapter 17 Mouse, Keyboard, Sounds, and Images 464
 Chapter 18 Big-O Analysis of Algorithms 468
 Chapter 19 The Java Collections Framework 490
