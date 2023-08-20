@@ -23,6 +23,10 @@ Chapter 2 An Introduction to Software Development 54
     2.4 Lab: Three Ways to Say Hello 65
     2.5 Object-Oriented Programming 71
     2.6 Lab: More Ways to Say Hello 74
+        2.6.1 GUI Application 74
+        2.6.2 Additional graphics in GUI 76
+        2.6.3 Applet 77
+        2.6.4 Additional action in Applet 79
     2.7 Summary 81
     Exercises 82
 Chapter 3 Obiects and Classes 86
