@@ -72,3 +72,40 @@ _offset 713
     26.7 MVC (Model-View-Controller) 17
     26.8 Summary 23
     Exercises 24
+_offset 0
+Appendix A: The 17 Bits of Style 742
+Appendix B: Common Syntax Error Messages 749
+Appendix C: HTML Tutorial 757
+_offset 756
+    C.1 Prologue 2
+    C.2 Example 5
+    C.3 Document Structure Tags 8
+    C.4 Text Layout and Formatting Tags 10
+    C.5 Anchors and Links 14
+    C.6 Lists 17
+    C.7 Images 18
+    C.8 Tables 20
+    C.9 Applets 24
+    Exercises 26
+_offset 0
+Appendix D: GUI Examples Index 785
+Appendix E: EasyReader, EasyWriter, EasySound, EasyDate, and EasyFormat 800
+Appendix F: Computing in Context: Responsible and Ethical Computer Use 804
+_offset 803
+    F.1 Prologue 2
+    F.2 Responsible Use of Computer Systems 3
+        F.2.1 Formulating Ethical Guidelines 3
+        F.2.2 Maintaining Professional Standards 5
+        F.2.3 Regulating Users 6
+    F.3 System Reliability and Security 6
+        F.3.1 Avoiding System Failure 7
+        F.3.2 Maintaining Data Integrity 8
+        F 3.3 Protecting Secure Systems 8
+    F.4 Legal Issues 9 F.4.1
+        F.4.1 Privacy 9
+        F.4.2 Censorship vs. Free Speech 10
+        F.4.3 Intellectual Property and Copyright Issues 11
+    F.5 Searching the Internet 12
+        F.5.1 How to Tell Good Information From Bad 12
+        F 5.2 Effective Searches 14
+    F.6 Conclusion 16
