@@ -1,0 +1,85 @@
+Cover 1*
+Contents 5*
+
+Abbreviations vi
+
+10 Parametric Equations and Polar Coordinates 1
+    10.1 Curves Defined by Parametric Equations 1
+    10.2 Calculus with Parametric Curves 9
+    10.3 Polar Coordinates 17
+    10.4 Calculus in Polar Coordinates 23
+    10.5 Conic Sections 32
+    10.6 Conic Sections in Polar Coordinates 38
+    Review 41
+    Problems Plus 49
+
+11 Sequences, Series, and Power Series 51
+    11.1 Sequences 51
+    11.2 Series 58
+    11.3 The Integral Test and Estimates of Sums 69
+    11.4 The Comparison Tests 65
+    11.5 Alternating Series and Absolute Convergence 73
+    11.6 The Ratio and Root Tests 77
+    11.7 Strategy for Testing Series 81
+    11.8 Power Series 84
+    11.9 Representations of Functions as Power Series 88
+    11.10 Taylor and Maclaurin Series 94
+    11.11 Applications of Taylor Polynomials 104
+    Review 111
+    Problems Plus 117
+
+12 Vectors and the Geometry of Space 123
+    12.1 Three-Dimensional Coordinate Systems 123
+    12.2 Vectors 126
+    12.3 The Dot Product 130
+    12.4 The Cross Product 135
+    12.5 Equations of Lines and Planes 140
+    12.6 Cylinders and Quadric Surfaces 147
+    Review 153
+    Problems Plus 157
+
+13 Vector Functions 161
+    13.1 Vector Functions and Space Curves 161
+    13.2 Derivatives and Integrals of Vector Functions 167
+    13.3 Arc Length and Curvature 172
+    13.4 Motion in Space: Velocity and Acceleration 182
+    Review 188
+    Problems Plus 193
+
+14 Partial Derivatives 197
+    14.1 Functions of Several Variables 197
+    14.2 Limits and Continuity 206
+    14.3 Partial Derivatives 210
+    14.4 Tangent Planes and Linear Approximations 220
+    14.5 The Chain Rule 224
+    14.6 Directional Derivatives and the Gradient Vector 231
+    14.7 Maximum and Minimum Values 238
+    14.8 Lagrange Multipliers 248
+    Review 255
+    Problems Plus 265
+
+15 Multiple Integrals 269
+    15.1 Double Integrals over Rectangles 269
+    15.2 Double Integrals over General Regions 273
+    15.3 Double Integrals in Polar Coordinates 281
+    15.4 Applications of Double Integrals 285
+    15.5 Surface Area 291
+    15.6 Triple Integrals 294
+    15.7 Triple Integrals in Cylindrical Coordinates 302
+    15.8 Triple Integrals in Spherical Coordinates 306
+    15.9 Change of Variables in Multiple Integrals 312
+    Review 316
+    Problems Plus 323
+
+16 Vector Calculus 329
+    16.1 Vector Fields 329
+    16.2 Line Integrals 332
+    16.3 The Fundamental Theorem for Line Integrals 337
+    16.4 Green's Theorem 341
+    16.5 Curl and Divergence 346
+    16.6 Parametric Surfaces and Their Areas 351
+    16.7 Surface Integrals 358
+    16.8 Stokes' Theorem 364
+    16.9 The Divergence Theorem 367
+    Review 370
+    Problems Plus 375
