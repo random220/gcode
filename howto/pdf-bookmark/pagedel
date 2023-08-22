@@ -6,10 +6,22 @@ page="$2"
 lastpage=$(pdftk "$file" cat 1-10000 cat /tmp/.a.pdf 2>&1 |grep 'input PDF has'|awk '{print $4}')
 #    input PDF has: 766 pages.
 
-p2=$(( page + 2 ))
+p1=$(( page - 1 ))
+p2=$(( page + 1 ))
+rm -f /tmp/.a.pdf /tmp/.b.pdf
 echo '('
-echo pdftk "$file" cat 1-"$page" output /tmp/.a.pdf
-echo pdftk "$file" cat ${p2}-${lastpage} output /tmp/.b.pdf
-echo pdftk /tmp/.a.pdf /tmp/.b.pdf output "$file"
+if [[ "$p1" -ge 1 ]]; then
+    echo pdftk "$file" cat 1-"$p1" output /tmp/.a.pdf
+fi
+if [[ "$p2" -le $lastpage ]]; then
+    echo pdftk "$file" cat ${p2}-${lastpage} output /tmp/.b.pdf
+fi
+if [[ -f /tmp/.a.pdf && -f /tmp/.b.pdf ]]; then
+    echo pdftk /tmp/.a.pdf /tmp/.b.pdf output "$file"
+elif [[ -f /tmp/.a.pdf ]]; then
+    echo pdftk /tmp/.a.pdf output "$file"
+elif [[ -f /tmp/.b.pdf ]]; then
+    echo pdftk /tmp/.b.pdf output "$file"
+fi
 echo ')'
 echo 'make tk'
