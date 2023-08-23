@@ -1,8 +1,9 @@
 Cover 1*
 Contents 5*
 
-Abbreviations vi
+Abbreviations vi 8*
 
+_offset 8
 10 Parametric Equations and Polar Coordinates 1
     10.1 Curves Defined by Parametric Equations 1
     10.2 Calculus with Parametric Curves 9
@@ -16,8 +17,8 @@ Abbreviations vi
 11 Sequences, Series, and Power Series 51
     11.1 Sequences 51
     11.2 Series 58
-    11.3 The Integral Test and Estimates of Sums 69
-    11.4 The Comparison Tests 65
+    11.3 The Integral Test and Estimates of Sums 65
+    11.4 The Comparison Tests 69
     11.5 Alternating Series and Absolute Convergence 73
     11.6 The Ratio and Root Tests 77
     11.7 Strategy for Testing Series 81

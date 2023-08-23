@@ -3,8 +3,26 @@
 file="$1"
 page="$2"
 
+if [[ ! -f "$file" ]]; then
+    echo "Error: File \"$file\" not found"
+    exit 1
+fi
+if [[ $page =~ ^[0-9]+$ ]]; then
+    :
+else
+    echo "Error: Page \"$page\" is not a number"
+    exit 1
+fi
+
 lastpage=$(pdftk "$file" cat 1-10000 cat /tmp/.a.pdf 2>&1 |grep 'input PDF has'|awk '{print $4}')
 #    input PDF has: 766 pages.
+
+if [[ $lastpage -ge $page ]]; then
+    :
+else
+    echo "Error: Lastpage \"$lastpage\" is smaller than page to delete \"$page\""
+    exit 1
+fi
 
 p1=$(( page - 1 ))
 p2=$(( page + 1 ))
@@ -12,6 +30,7 @@ rm -f /tmp/.a.pdf /tmp/.b.pdf
 unset aa
 unset bb
 echo '('
+echo "pdftk \"$file\" cat $page output ~/.p__.pdf"
 if [[ "$p1" -ge 1 ]]; then
     echo pdftk "$file" cat 1-"$p1" output /tmp/.a.pdf
     aa=1
