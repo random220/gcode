@@ -5,7 +5,7 @@ if [[ ! -f "$pdf" ]]; then
     echo "Need pdf file"
     exit
 fi
-pdftk $1 dump_data output .__bm.txt
+pdftk "$pdf" dump_data output .__bm.txt
 grep '^Bookmark' <.__bm.txt >.__bm2.txt
 ./pdftkindx2raw .__bm2.txt >.__idxfile.txt
 
