@@ -1,40 +1,24 @@
-Cover 1
-Contents 8
-Preface 15
-A Tribute to James Stewart 27
-About the Authors 28
-Technology in the Ninth Edition 29
-To the Student 30
-Diagnostic Tests 31
-    A: Diagnostic Test: Algebra 31
-    B: Diagnostic Test: Analytic Geometry 33
-    C: Diagnostic Test: Functions 34
-    D: Diagnostic Test: Trigonometry 35
-A Preview of Calculus 36
-    What Is Calculus? 37
-    The Area Problem 37
-    The Tangent Problem 38
-    A Relationship between the Area and Tangent Problems 39
-    Summary 39
-Chapter 1: Functions and Models 42
-    1.1 Four Ways to Represent a Function 43
-    1.2 Mathematical Models: A Catalog of Essential Functions 56
-    1.3 New Functions from Old Functions 71
-    1.4 Exponential Functions 80
-    1.5 Inverse Functions and Logarithms 89
-    1 Review 102
-    Principles of Problem Solving 105
-Chapter 2: Limits and Derivatives 112
-    2.1 The Tangent and Velocity Problems 113
-    2.2 The Limit of a Function 118
-    2.3 Calculating Limits Using the Limit Laws 129
-    2.4 The Precise Definition of a Limit 140
-    2.5 Continuity 150
-    2.6 Limits at Infinity; Horizontal Asymptotes 162
-    2.7 Derivatives and Rates of Change 175
-    2.8 The Derivative as a Function 188
-    2 Review 201
-    Problems Plus 206
+_offset 8
+Chapter 1: Functions and Models 9
+    1.1 Four Ways to Represent a Function 9
+    1.2 Mathematical Models: A Catalog of Essential Functions 22
+    1.3 New Functions from Old Functions 30
+    1.4 Exponential Functions 43
+    1.5 Inverse Functions and Logarithms 49
+    1 Review 59
+    Principles of Problem Solving 67
+Chapter 2: Limits and Derivatives 75
+    2.1 The Tangent and Velocity Problems 75
+    2.2 The Limit of a Function 78
+    2.3 Calculating Limits Using the Limit Laws 87
+    2.4 The Precise Definition of a Limit 98
+    2.5 Continuity 106
+    2.6 Limits at Infinity; Horizontal Asymptotes 118
+    2.7 Derivatives and Rates of Change 133
+    2.8 The Derivative as a Function 146
+    2 Review 161
+    Problems Plus 173
+=====HERE==== 1
 Chapter 3: Differentiation Rules 208
     3.1 Derivatives of Polynomials and Exponential Functions 209
     3.2 The Product and Quotient Rules 220
