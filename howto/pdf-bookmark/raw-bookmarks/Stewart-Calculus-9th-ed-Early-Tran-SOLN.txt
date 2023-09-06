@@ -77,106 +77,55 @@ Chapter 7: Techniques of Integration 673
     7.8 Improper Integrals 770
     7 Review 785
     Problems Plus 801
-=====HERE==== 1
-Chapter 8: Further Applications of Integration 594
-    8.1 Arc Length 595
-    8.2 Area of a Surface of Revolution 602
-    8.3 Applications to Physics and Engineering 611
-    8.4 Applications to Economics and Biology 622
-    8.5 Probability 627
-    8 Review 635
-    Problems Plus 637
-Chapter 9: Differential Equations 640
-    9.1 Modeling with Differential Equations 641
-    9.2 Direction Fields and Euler&apos;s Method 647
-    9.3 Separable Equations 656
-    9.4 Models for Population Growth 666
-    9.5 Linear Equations 676
-    9.6 Predator-Prey Systems 684
-    9 Review 691
-    Problems Plus 694
-Chapter 10: Parametric Equations and Polar Coordinates 696
-    10.1 Curves Defined by Parametric Equations 697
-    10.2 Calculus with Parametric Curves 708
-    10.3 Polar Coordinates 719
-    10.4 Calculus in Polar Coordinates 729
-    10.5 Conic Sections 737
-    10.6 Conic Sections in Polar Coordinates 746
-    10 Review 754
-    Problems Plus 757
-Chapter 11: Sequences, Series, and Power Series 758
-    11.1 Sequences 759
-    11.2 Series 773
-    11.3 The Integral Test and Estimates of Sums 786
-    11.4 The Comparison Tests 795
-    11.5 Alternating Series and Absolute Convergence 800
-    11.6 The Ratio and Root Tests 809
-    11.7 Strategy for Testing Series 814
-    11.8 Power Series 816
-    11.9 Representations of Functions as Power Series 822
-    11.10 Taylor and Maclaurin Series 830
-    11.11 Applications of Taylor Polynomials 846
-    11 Review 856
-    Problems Plus 860
-Chapter 12: Vectors and the Geometry of Space 864
-    12.1 Three-Dimensional Coordinate Systems 865
-    12.2 Vectors 871
-    12.3 The Dot Product 882
-    12.4 The Cross Product 890
-    12.5 Equations of Lines and Planes 899
-    12.6 Cylinders and Quadric Surfaces 910
-    12 Review 918
-    Problems Plus 922
-Chapter 13: Vector Functions 924
-    13.1 Vector Functions and Space Curves 925
-    13.2 Derivatives and Integrals of Vector Functions 933
-    13.3 Arc Length and Curvature 939
-    13.4 Motion in Space: Velocity and Acceleration 951
-    13 Review 962
-    Problems Plus 965
-Chapter 14: Partial Derivatives 968
-    14.1 Functions of Several Variables 969
-    14.2 Limits and Continuity 986
-    14.3 Partial Derivatives 996
-    14.4 Tangent Planes and Linear Approximations 1009
-    14.5 The Chain Rule 1020
-    14.6 Directional Derivatives and the Gradient Vector 1029
-    14.7 Maximum and Minimum Values 1043
-    14.8 Lagrange Multipliers 1055
-    14 Review 1066
-    Problems Plus 1070
-Chapter 15: Multiple Integrals 1072
-    15.1 Double Integrals over Rectangles 1073
-    15.2 Double Integrals over General Regions 1086
-    15.3 Double Integrals in Polar Coordinates 1097
-    15.4 Applications of Double Integrals 1104
-    15.5 Surface Area 1114
-    15.6 Triple Integrals 1117
-    15.7 Triple Integrals in Cylindrical Coordinates 1130
-    15.8 Triple Integrals in Spherical Coordinates 1137
-    15.9 Change of Variables in Multiple Integrals 1144
-    15 Review 1152
-    Problems Plus 1156
-Chapter 16: Vector Calculus 1158
-    16.1 Vector Fields 1159
-    16.2 Line Integrals 1166
-    16.3 The Fundamental Theorem for Line Integrals 1179
-    16.4 Green&apos;s Theorem 1189
-    16.5 Curl and Divergence 1196
-    16.6 Parametric Surfaces and Their Areas 1205
-    16.7 Surface Integrals 1217
-    16.8 Stokes&apos; Theorem 1230
-    16.9 The Divergence Theorem 1236
-    16.10 Summary 1243
-    16 Review  1244
-    Problems Plus 1248
-Appendixes 1250
-    Appendix A: Numbers, Inequalities, and Absolute Values 1251
-    Appendix B: Coordinate Geometry and Lines 1259
-    Appendix C: Graphs of Second-Degree Equations 1265
-    Appendix D: Trigonometry 1273
-    Appendix E: Sigma Notation 1285
-    Appendix F: Proofs of Theorems 1290
-    Appendix G: The Logarithm Defined as an Integral 1302
-    Appendix H: Answers to Odd-Numbered Exercises 1310
-Index 1392
+Chapter 8: Further Applications of Integration 809
+    8.1 Arc Length 809
+    8.2 Area of a Surface of Revolution 819
+    DISCOVERY PROJECT Rotating on a Slant 829
+    8.3 Applications to Physics and Engineering 830
+    DISCOVERY PROJECT Complementary Coffee Cups 845
+    8.4 Applications to Economics and Biology 846
+    8.5 Probability 849
+    8 Review 855
+    Problems Plus 861
+Chapter 9: Differential Equations 871
+    9.1 Modeling with Differential Equations 871
+    9.2 Direction Fields and Euler&apos;s Method 876
+    9.3 Separable Equations 883
+    9.4 Models for Population Growth 897
+    9.5 Linear Equations 907
+    APPLIED PROJECT Which Is Faster, Going Up or Coming Down? 915
+    9.6 Predator-Prey Systems 916
+    9 Review 921
+    Problems Plus 929
+Chapter 10: Parametric Equations and Polar Coordinates 935
+    10.1 Curves Defined by Parametric Equations 935
+    DISCOVERY PROJECT Running Circles Around Circles 952
+    10.2 Calculus with Parametric Curves 955
+    DISCOVERY PROJECT Bézier Curves 970
+    10.3 Polar Coordinates 972
+    DISCOVERY PROJECT Families of Polar Curves 985
+    10.4 Calculus in Polar Coordinates 988
+    10.5 Conic Sections 1004
+    10.6 Conic Sections in Polar Coordinates 1016
+    10 Review 1022
+    Problems Plus 1035
+
+_offset -160
+Chapter 12: Vectors and the Geometry of Space 1191
+    12.1 Three-Dimensional Coordinate Systems 1191
+    12.2 Vectors 1198
+    12.3 The Dot Product 1209
+    12.4 The Cross Product 1219
+    DISCOVERY PROJECT The Geometry of a Tetrahedron 1230
+    12.5 Equations of Lines and Planes 1232
+    DISCOVERY PROJECT Putting 3D in Perspective 1245
+    12.6 Cylinders and Quadric Surfaces 1246
+    12 Review 1257
+    Problems Plus 1265
+Chapter 13: Vector Functions 1271
+    13.1 Vector Functions and Space Curves 1271
+    13.2 Derivatives and Integrals of Vector Functions 1284
+    13.3 Arc Length and Curvature 1295
+    13.4 Motion in Space: Velocity and Acceleration 1315
+    13 Review 1327
+    Problems Plus 1335
