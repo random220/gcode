@@ -1,4 +1,8 @@
-_offset -8
+DIAGNOSTIC TESTS 1
+    Test A Algebra 1
+    Test B Analytic Geometry 3
+    Test C Functions 5
+    Test D Trigonometry 7
 Chapter 1: Functions and Models 9
     1.1 Four Ways to Represent a Function 9
     1.2 Mathematical Models: A Catalog of Essential Functions 22
@@ -110,7 +114,7 @@ Chapter 10: Parametric Equations and Polar Coordinates 935
     10 Review 1022
     Problems Plus 1035
 
-_offset -160
+_offset -152
 Chapter 12: Vectors and the Geometry of Space 1191
     12.1 Three-Dimensional Coordinate Systems 1191
     12.2 Vectors 1198
