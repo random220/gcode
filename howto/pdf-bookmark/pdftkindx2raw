@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 import re
-with open ('a.txt', 'rt') as f:
+import sys
+
+if len(sys.argv) == 2:
+    idxfile = sys.argv[1]
+else:
+    print("Need pdftk bookmark file")
+    sys.exit(1)
+
+with open (idxfile, 'rt') as f:
     for l in f:
         m = re.search(r'^BookmarkTitle: (.+)\n', l)
         if m:
