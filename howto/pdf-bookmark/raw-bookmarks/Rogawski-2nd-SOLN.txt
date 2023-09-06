@@ -1,0 +1,92 @@
+Cover Page 1
+_offset 2
+Chapter 1: PRECALCULUS REVIEW 1
+    1.1: Real Numbers, Functions, and Graphs 1
+    1.2: Linear and Quadratic Functions 17
+    1.3: The Basic Classes of Functions 26
+    1.4: Trigonometric Functions 31
+    1.5: Technology: Calculators and Computers 44
+    1.6: Exponential and Logarithmic Functions 54
+    1.7: Technology: Calculators and Computers 60
+    CHAPTER REVIEW EXERCISES 67
+Chapter 2: LIMITS 81
+    2.1: Limits, Rates of Change, and Tangent Lines 81
+    2.2: Limits: A Numerical and Graphical Approach 89
+    2.3: Basic Limit Laws 107
+    2.4: Limits and Continuity 113
+    2.5: Evaluating Limits Algebraically 127
+    2.6: Trigonometric Limits 135
+    2.7: Limits at Infinity 146
+    2.8: Intermediate Value Theorem 159
+    2.9: The Formal Definition of a Limit 164
+    Further Insights and Challenges 173
+    CHAPTER REVIEW EXERCISES 174
+Chapter 3: DIFFERENTIATION 193
+    3.1: Definition of the Derivative 193
+    3.2: The Derivative as a Function 210
+    3.3: Product and Quotient Rules 230
+    3.4: Rates of Change 243
+    3.5: Higher Derivatives 257
+    3.6: Trigonometric Functions 267
+    3.7: The Chain Rule 278
+    3.8: Implicit Differentiation 296
+    3.9: Related Rates 302
+    Further Insights and Challenges 313
+    3.10: Implicit Differentiation 313
+    3.11: Related Rates 332
+    Further Insights and Challenges 344
+    CHAPTER REVIEW EXERCISES 348
+Chapter 4: APPLICATIONS OF THE DERIVATIVE 373
+    4.1: Linear Approximation and Applications 373
+    4.2: Extreme Values 384
+    Further Insights and Challenges 403
+    4.3: The Mean Value Theorem and Monotonicity 405
+    Further Insights and Challenges 417
+    4.4: The Shape of a Graph 419
+    Further Insights and Challenges 433
+    4.5: L’Hoˆpital’s Rule 435
+    4.6: Graph Sketching and Asymptotes 451
+    4.7: Applied Optimization 480
+    4.8: Newton&#8217;s Method 511
+    4.9: Antiderivatives 524
+    CHAPTER REVIEW EXERCISES 538
+Chapter 5: THE INTEGRAL 565
+    5.1: Approximating and Computing Area 565
+    5.2: The Definite Integral 592
+    5.3: The Fundamental Theorem of Calculus, Part I 611
+    5.4: The Fundamental Theorem of Calculus, Part II 623
+    5.5: Net Change as the Integral of a Rate 634
+    5.6: Substitution Method 642
+    5.7: Further Transcendental Functions 659
+    5.8: Exponential Growth and Decay 674
+    CHAPTER REVIEW EXERCISES 686
+Chapter 6: APPLICATIONS OF THE INTEGRAL 713
+    6.1: Area Between Two Curves 713
+    6.2: Setting Up Integrals: Volume, Density, Average Value 731
+    6.3: Volumes of Revolution 746
+    6.4: The Method of Cylindrical Shells 764
+    6.5: Work and Energy 780
+    CHAPTER REVIEW EXERCISES 792
+Chapter 7: TECHNIOUES OF INTEGRATION 807
+    7.1 Integration by Parts 807
+    7.2 Trigonometric Integrals 829
+    7.3 Trigonometric Substitution 849
+    7.4 Integrals Involving Hyperbolic and Inverse Hyperbolic Functions 876
+    7.5 The Method of Partial Fractions 885
+    7.6 Improper Integrals 919
+    7.7 Probability and Integration 950
+    7.8 Numerical Integration 960
+    CHAPTER REVIEW EXERCISES 982
+Chapter 8: FURTHER APPLICATIONS OF THE INTEGRAL AND TAYLOR POLYNOMIALS 1019
+    8.1 Arc Length and Surface Area 1019
+    8.2 Fluid Pressure and Force 1033
+    8.3 Center of Mass 1043
+    8.4 Taylor Polynomials 1058
+    CHAPTER REVIEW EXERCISES 1089
+Chapter 9: INTRODUCTION TO DIFFERENTIAL EQUATIONS 1107
+    9.1 Solving Differential Equations 1107
+    9.2 Models Involving y′ = k( y − b) 1129
+    9.3 Graphical and Numerical Methods 1139
+    9.4 The Logistic Equation 1150
+    9.5 First-Order Linear Equations 1160
+    CHAPTER REVIEW EXERCISES 1181
