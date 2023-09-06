@@ -18,60 +18,66 @@ Chapter 2: Limits and Derivatives 75
     2.8 The Derivative as a Function 146
     2 Review 161
     Problems Plus 173
+Chapter 3: Differentiation Rules 179
+    3.1 Derivatives of Polynomials and Exponential Functions 179
+    APPLIED PROJECT Building a Better Roller Coaster 191
+    3.2 The Product and Quotient Rules 193
+    3.3 Derivatives of Trigonometric Functions 204
+    3.4 The Chain Rule 212
+    APPLIED PROJECT Where Should a Pilot Start Descent? 224
+    3.5 Implicit Differentiation 224
+    DISCOVERY PROJECT Families of Implicit Curves 238
+    3.6 Derivatives of Logarithmic and Inverse Trigonometric Functions 239
+    3.7 Rates of Change in the Natural and Social Sciences 248
+    3.8 Exponential Growth and Decay 260
+    APPLIED PROJECT Controlling Red Blood Cell Loss During Surgery 265
+    3.9 Related Rates 266
+    3.10 Linear Approximations and Differentials 276
+    DISCOVERY PROJECT Polynomial Approximations 284
+    3.11 Hyperbolic Functions 286
+    3 Review 295
+    Problems Plus 311
+Chapter 4: Applications of Differentiation 325
+    4.1 Maximum and Minimum Values 325
+    APPLIED PROJECT The Calculus of Rainbows 337
+    4.2 The Mean Value Theorem 338
+    4.3 What Derivatives Tell Us about the Shape of a Graph 345
+    4.4 Indeterminate Forms and l&apos;Hospital&apos;s Rule 372
+    4.5 Summary of Curve Sketching 385
+    4.6 Graphing with Calculus and Technology 412
+    4.7 Optimization Problems 432
+    4.8 Newton&apos;s Method 458
+    4.9 Antiderivatives 469
+    4 Review 480
+    Problems Plus 503
+    5.1 The Area and Distance Problems 515
+    5.2 The Definite Integral 526
+    DISCOVERY PROJECT Area Functions 543
+    5.3 The Fundamental Theorem of Calculus 544
+    5.4 Indefinite Integrals and the Net Change Theorem 557
+    5.5 The Substitution Rule 564
+    5 Review 575
+    Problems Plus 587
+Chapter 6: Applications of Integration 593
+    6.1 Areas between Curves 593
+    6.2 Volumes 609
+    6.3 Volumes by Cylindrical Shells 628
+    6.4 Work 642
+    6.5 Average Value of a Function 649
+    6 Review 655
+    Problems Plus 664
+Chapter 7: Techniques of Integration 673
+    7.1 Integration by Parts 673
+    7.2 Trigonometric Integrals 687
+    7.3 Trigonometric Substitution 698
+    7.4 Integration of Rational Functions by Partial Fractions 710
+    7.5 Strategy for Integration 729
+    7.6 Integration Using Tables and Technology 745
+    7.7 Approximate Integration 755
+    7.8 Improper Integrals 770
+    7 Review 785
+    Problems Plus 801
 =====HERE==== 1
-Chapter 3: Differentiation Rules 208
-    3.1 Derivatives of Polynomials and Exponential Functions 209
-    3.2 The Product and Quotient Rules 220
-    3.3 Derivatives of Trigonometric Functions 226
-    3.4 The Chain Rule 234
-    3.5 Implicit Differentiation 244
-    3.6 Derivatives of Logarithmic and Inverse Trigonometric Functions 252
-    3.7 Rates of Change in the Natural and Social Sciences 260
-    3.8 Exponential Growth and Decay 274
-    3.9 Related Rates 282
-    3.10 Linear Approximations and Differentials 289
-    3.11 Hyperbolic Functions 296
-    3 Review 304
-    Problems Plus 309
-Chapter 4: Applications of Differentiation 314
-    4.1 Maximum and Minimum Values 315
-    4.2 The Mean Value Theorem 325
-    4.3 What Derivatives Tell Us about the Shape of a Graph 331
-    4.4 Indeterminate Forms and l&apos;Hospital&apos;s Rule 344
-    4.5 Summary of Curve Sketching 355
-    4.6 Graphing with Calculus and Technology 364
-    4.7 Optimization Problems 371
-    4.8 Newton&apos;s Method 386
-    4.9 Antiderivatives 391
-    4 Review 399
-    Problems Plus 404
-Chapter 5: Integrals 406
-    5.1 The Area and Distance Problems 407
-    5.2 The Definite Integral 419
-    5.3 The Fundamental Theorem of Calculus 434
-    5.4 Indefinite Integrals and the Net Change Theorem 444
-    5.5 The Substitution Rule 454
-    5 Review 463
-    Problems Plus 467
-Chapter 6: Applications of Integration 470
-    6.1 Areas between Curves 471
-    6.2 Volumes 481
-    6.3 Volumes by Cylindrical Shells 495
-    6.4 Work 502
-    6.5 Average Value of a Function 508
-    6 Review 513
-    Problems Plus 516
-Chapter 7: Techniques of Integration 520
-    7.1 Integration by Parts 521
-    7.2 Trigonometric Integrals 528
-    7.3 Trigonometric Substitution 535
-    7.4 Integration of Rational Functions by Partial Fractions 542
-    7.5 Strategy for Integration 552
-    7.6 Integration Using Tables and Technology 558
-    7.7 Approximate Integration 564
-    7.8 Improper Integrals 577
-    7 Review 587
-    Problems Plus 591
 Chapter 8: Further Applications of Integration 594
     8.1 Arc Length 595
     8.2 Area of a Surface of Revolution 602
