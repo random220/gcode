@@ -1,4 +1,4 @@
-_offset 8
+_offset -8
 Chapter 1: Functions and Models 9
     1.1 Four Ways to Represent a Function 9
     1.2 Mathematical Models: A Catalog of Essential Functions 22
