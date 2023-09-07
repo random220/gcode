@@ -1,3 +1,5 @@
+Cover 1*
+_offset 1
 Chapter 1: PRECALCULUS REVIEW 1
     1.1: Real Numbers, Functions, and Graphs 1
     1.2: Linear and Quadratic Functions 17
