@@ -100,50 +100,51 @@ Chapter 11: PARAMETRIC EQUATIONS, POLAR COORDINATES, AND CONIC SECTIONS 1382
     11.4 Area and Arc Length in Polar Coordinates 1454
     11.5 Conic Sections 1472
     Chapter Review Exercises 1494
-Chapter 12: VECTOR GEOMETRY 1512
-    12.1 Vectors in the Plane 1512
-    12.2 Vectors in Three Dimensions 1531
-    12.3 Dot Product and the Angle Between Two Vectors 1546
-    12.4 The Cross Product 1571
-    12.5 Planes in 3-Space 1596
-    12.6 A Survey of Quadric Surfaces 1615
-    12.7 Cylindrical and Spherical Coordinates 1627
-    Chapter Review Exercises 1646
-Chapter 13: CALCULUS OF VECTOR-VALUED FUNCTIONS 1668
-    13.1 Vector-Valued Functions 1668
-    13.2 Calculus of Vector-Valued Functions 1685
-    13.3 Arc Length and Speed 1708
-    13.4 Curvature 1723
-    13.5 Motion in 3-Space 1766
-    13.6 Planetary Motion According to Kepler and Newton 1797
-    Chapter Review Exercises 1809
-Chapter 14: DIFFERENTIATION IN SEVERAL VARIABLES 1827
-    14.1 Functions of Two or More Variables 1827
-    14.2 Limits and Continuity in Several Variables 1845
-    14.3 Partial Derivatives 1857
-    14.4 Differentiability and Tangent Planes 1880
-    14.5 The Gradient and Directional Derivatives 1900
-    14.6 The Chain Rule 1925
-    14.7 Optimization in Several Variables 1949
-    14.8 Lagrange Multipliers: Optimizing with a Constraint 1989
-    Chapter Review Exercises 2033
-Chapter 15: MULTIPLE INTEGRATION 2065
-    15.1 Integration in Two Variables 2065
-    15.2 Double Integrals over More General Regions 2085
-    15.3 Triple Integrals 2123
-    15.4 Integration in Polar, Cylindrical, and Spherical Coordinates 2149
-    15.5 Applications of Multiple Integrals 2190
-    15.6 Change of Variables 2221
-    Chapter Review Exercises 2256
-Chapter 16: LINE AND SURFACE INTEGRALS 2296
-    16.1 Vector Fields 2296
-    16.2 Line Integrals 2306
-    16.3 Conservative Vector Fields 2340
-    16.4 Parametrized Surfaces and Surface Integrals 2354
-    16.5 Surface Integrals of Vector Fields 2386
-    Chapter Review Exercises 2412
-Chapter 17: FUNDAMENTAL THEOREMS OF VECTOR ANALYSIS 2438
-    17.1 Green&apos;s Theorem 2438
-    17.2 Stokes&apos; Theorem 2466
-    17.3 Divergence Theorem 2491
-    Chapter Review Exercises 2520
+_offset 1201
+Chapter 12: VECTOR GEOMETRY 312
+    12.1 Vectors in the Plane 312
+    12.2 Vectors in Three Dimensions 331
+    12.3 Dot Product and the Angle Between Two Vectors 346
+    12.4 The Cross Product 371
+    12.5 Planes in 3-Space 396
+    12.6 A Survey of Quadric Surfaces 415
+    12.7 Cylindrical and Spherical Coordinates 427
+    Chapter Review Exercises 446
+Chapter 13: CALCULUS OF VECTOR-VALUED FUNCTIONS 468
+    13.1 Vector-Valued Functions 468
+    13.2 Calculus of Vector-Valued Functions 485
+    13.3 Arc Length and Speed 508
+    13.4 Curvature 523
+    13.5 Motion in 3-Space 566
+    13.6 Planetary Motion According to Kepler and Newton 597
+    Chapter Review Exercises 609
+Chapter 14: DIFFERENTIATION IN SEVERAL VARIABLES 627
+    14.1 Functions of Two or More Variables 627
+    14.2 Limits and Continuity in Several Variables 645
+    14.3 Partial Derivatives 657
+    14.4 Differentiability and Tangent Planes 680
+    14.5 The Gradient and Directional Derivatives 700
+    14.6 The Chain Rule 725
+    14.7 Optimization in Several Variables 749
+    14.8 Lagrange Multipliers: Optimizing with a Constraint 789
+    Chapter Review Exercises 833
+Chapter 15: MULTIPLE INTEGRATION 865
+    15.1 Integration in Two Variables 865
+    15.2 Double Integrals over More General Regions 885
+    15.3 Triple Integrals 923
+    15.4 Integration in Polar, Cylindrical, and Spherical Coordinates 949
+    15.5 Applications of Multiple Integrals 990
+    15.6 Change of Variables 1021
+    Chapter Review Exercises 1056
+Chapter 16: LINE AND SURFACE INTEGRALS 1096
+    16.1 Vector Fields 1096
+    16.2 Line Integrals 1106
+    16.3 Conservative Vector Fields 1140
+    16.4 Parametrized Surfaces and Surface Integrals 1154
+    16.5 Surface Integrals of Vector Fields 1186
+    Chapter Review Exercises 1212
+Chapter 17: FUNDAMENTAL THEOREMS OF VECTOR ANALYSIS 1238
+    17.1 Green&apos;s Theorem 1238
+    17.2 Stokes&apos; Theorem 1266
+    17.3 Divergence Theorem 1291
+    Chapter Review Exercises 1320
