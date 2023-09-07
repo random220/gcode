@@ -1,460 +1,147 @@
-Cover Page 1
-Half-Title Page 3
-Copyright Page 4
-Title-Page 5
-Dedication Page 6
-Table of Contents  8
-ABOUT JON ROGAWSKI 10
-PREFACE 10
-CHAPTERS 27
-    Chapter 1: PRECALCULUS REVIEW   27
-        1.1: Real Numbers, Functions, and Graphs 27
-        1.2: Linear and Quadratic Functions 39
-        1.3: The Basic Classes of Functions 47
-        1.4: Trigonometric Functions 51
-        1.5: Technology: Calculators and Computers 59
-    Chapter 2: LIMITS 66
-        2.1: Limits, Rates of Change, and Tangent Lines 66
-        2.2: Limits: A Numerical and Graphical Approach 74
-        2.3: Basic Limit Laws 84
-        2.4: Limits and Continuity 88
-        2.5: Evaluating Limits Algebraically 97
-        2.6: Trigonometric Limits 102
-        2.7: Limits at Infinity 107
-        2.8: Intermediate Value Theorem 113
-        2.9: The Formal Definition of a Limit 117
-    Chapter 3: DIFFERENTIATION 127
-        3.1: Definition of the Derivative 127
-        3.2: The Derivative as a Function 136
-        3.3: Product and Quotient Rules 148
-        3.4: Rates of Change 154
-        3.5: Higher Derivatives 164
-        3.6: Trigonometric Functions 170
-        3.7: The Chain Rule 174
-        3.8: Implicit Differentiation 183
-        3.9: Related Rates 189
-    Chapter 4: APPLICATIONS OF THE DERIVATIVE 201
-        4.1: Linear Approximation and Applications 201
-        4.2: Extreme Values 209
-        4.3: The Mean Value Theorem and Monotonicity 220
-        4.4: The Shape of a Graph 227
-        4.5: Graph Sketching and Asymptotes 234
-        4.6: Applied Optimization 242
-        4.7: Newton&#8217;s Method 254
-        4.8: Antiderivatives 260
-    Chapter 5: THE INTEGRAL 270
-        5.1: Approximating and Computing Area 270
-        5.2: The Definite Integral 283
-        5.3: The Fundamental Theorem of Calculus, Part I 293
-        5.4: The Fundamental Theorem of Calculus, Part II 299
-        5.5: Net Change as the Integral of a Rate 305
-        5.6: Substitution Method 311
-    Chapter 6: APPLICATIONS OF THE INTEGRAL 322
-        6.1: Area Between Two Curves 322
-        6.2: Setting Up Integrals: Volume, Density, Average Value 330
-        6.3: Volumes of Revolution 340
-        6.4: The Method of Cylindrical Shells 349
-        6.5: Work and Energy 356
-    Chapter 7: EXPONENTIAL FUNCTIONS 365
-        7.1: Derivative of f (x) = bx and the Number e 365
-        7.2: Inverse Functions 373
-        7.3: Logarithms and Their Derivatives 381
-        7.4: Exponential Growth and Decay 390
-        7.5: Compound Interest and Present Value 397
-        7.6: Models Involving y&apos; = k( y &#8722; b) 403
-        7.7: L&#8217;H&#244;pital&#8217;s Rule 408
-        7.8: Inverse Trigonometric Functions 416
-        7.9: Hyperbolic Functions 425
-    Chapter 8: TECHNIQUES OF INTEGRATION 439
-        8.1: Integration by Parts 439
-        8.2: Trigonometric Integrals 444
-        8.3: Trigonometric Substitution 452
-        8.4: Integrals Involving Hyperbolic and Inverse Hyperbolic Functions 459
-        8.5: The Method of Partial Fractions 464
-        8.6: Improper Integrals 473
-        8.7: Probability and Integration 485
-        8.8: Numerical Integration 491
-    Chapter 9: FURTHER APPLICATIONS OF THEINTEGRAL AND TAYLOR POLYNOMIALS 504
-        9.1: Arc Length and Surface Area 504
-        9.2: Fluid Pressure and Force 511
-        9.3: Center of Mass 517
-        9.4: Taylor Polynomials 525
-    Chapter 10: INTRODUCTION TO DIFFERENTIAL EQUATIONS 539
-        10.1: Solving Differential Equations 539
-        10.2: Graphical and Numerical Methods 548
-        10.3: The Logistic Equation 555
-        10.4: First-Order Linear Equations 560
-    Chapter 11: INFINITE SERIES 569
-        11.1: Sequences 569
-        11.2: Summing an Infinite Series 580
-        11.3: Convergence of Series with Positive Terms 591
-        11.4: Absolute and Conditional Convergence 601
-        11.5: The Ratio and Root Tests 607
-        11.6: Power Series 611
-        11.7: Taylor Series 623
-    Chapter 12: PARAMETRIC EQUATIONS, POLAR COORDINATES, AND CONIC SECTIONS 639
-        12.1: Parametric Equations 639
-        12.2: Arc Length and Speed 652
-        12.3: Polar Coordinates 658
-        12.4: Area and Arc Length in Polar Coordinates 666
-        12.5: Conic Sections 673
-    Chapter 13: VECTOR GEOMETRY 689
-        13.1: Vectors in the Plane 689
-        13.2: Vectors in Three Dimensions 700
-        13.3: Dot Product and the Angle between Two Vectors 710
-        13.4: The Cross Product 720
-        13.5: Planes in Three-Space 731
-        13.6: A Survey of Quadric Surfaces 737
-        13.7: Cylindrical and Spherical Coordinates 745
-    Chapter 14: CALCULUS OF VECTOR-VALUED FUNCTIONS 755
-        14.1: Vector-Valued Functions 755
-        14.2: Calculus of Vector-Valued Functions 763
-        14.3: Arc Length and Speed 773
-        14.4 Curvature 778
-        14.5: Motion in Three-Space 788
-        14.6: Planetary Motion According to Kepler and Newton 797
-    Chapter 15: DIFFERENTIATION IN SEVERAL VARIABLES 806
-        15.1: Functions of Two or More Variables 806
-        15.2: Limits and Continuity in Several Variables 818
-        15.3: Partial Derivatives 826
-        15.4: Differentiability and Tangent Planes 837
-        15.5: The Gradient and Directional Derivatives 845
-        15.6: The Chain Rule 857
-        15.7: Optimization in Several Variables 865
-        15.8: Lagrange Multipliers: Optimizing with a Constraint 879
-    Chapter 16: MULTIPLE INTEGRATION 892
-        16.1: Integration in Two Variables 892
-        16.2: Double Integrals over More General Regions 904
-        16.3: Triple Integrals 917
-        16.4: Integration in Polar, Cylindrical, and Spherical Coordinates 928
-        16.5: Applications of Multiple Integrals 939
-        16.6: Change of Variables 952
-    Chapter 17: LINE AND SURFACE INTEGRALS 971
-        17.1: Vector Fields 971
-        17.2: Line Integrals 978
-        17.3: Conservative Vector Fields 995
-        17.4: Parametrized Surfaces and Surface Integrals 1006
-        17.5: Surface Integrals of Vector Fields 1021
-    Chapter 18: FUNDAMENTAL THEOREMS OF VECTOR ANALYSIS 1035
-        18.1: Green&#8217;s Theorem 1035
-        18.2: Stokes&#8217; Theorem 1047
-        18.3: Divergence Theorem 1060
-    APPENDICES 1077
-        A: 1077
-        B: Properties of Real Numbers 1084
-        C: Induction and the Binomial Theorem 1089
-        D: Additional Proofs 1094
-    ANSWERS TO ODD-NUMBERED EXERCISES 1103
-        Chapter 1 1103
-            Section 1.1 Preliminary Questions 1103
-            Section 1.1 Exercises 1103
-            Section 1.2 Preliminary Questions 1104
-            Section 1.2 Exercises 1104
-            Section 1.3 Preliminary Questions 1104
-            Section 1.3 Exercises 1104
-            Section 1.4 Preliminary Questions 1105
-            Section 1.4 Exercises 1105
-            Section 1.5 Preliminary Questions 1106
-            Section 1.5 Exercises 1106
-            Chapter 1 Review 1107
-        Chapter 2 1108
-            Section 2.1 Preliminary Questions 1108
-            Section 2.1 Exercises 1108
-            Section 2.2 Preliminary Questions 1108
-            Section 2.2 Exercises 1108
-            Section 2.3 Preliminary Questions 1109
-            Section 2.3 Exercises 1110
-            Section 2.4 Preliminary Questions 1110
-            Section 2.4 Exercises 1110
-            Section 2.5 Preliminary Questions 1111
-            Section 2.5 Exercises 1111
-            Section 2.6 Preliminary Questions 1111
-            Section 2.6 Exercises 1111
-            Section 2.7 Preliminary Questions 1112
-            Section 2.7 Exercises 1112
-            Section 2.8 Preliminary Questions 1113
-            Section 2.8 Exercises 1113
-            Section 2.9 Preliminary Questions 1113
-            Section 2.9 Exercises 1113
-            Chapter 2 Review 1115
-        Chapter 3 1115
-            Section 3.1 Preliminary Questions 1115
-            Section 3.1 Exercises 1116
-            Section 3.2 Preliminary Questions 1116
-            Section 3.2 Exercises 1117
-            Section 3.3 Preliminary Questions 1118
-            Section 3.3 Exercises 1118
-            Section 3.4 Preliminary Questions 1119
-            Section 3.4 Exercises 1119
-            Section 3.5 Preliminary Questions 1119
-            Section 3.5 Exercises 1120
-            Section 3.6 Preliminary Questions 1121
-            Section 3.6 Exercises 1121
-            Section 3.7 Preliminary Questions 1121
-            Section 3.7 Exercises 1121
-            Section 3.8 Preliminary Questions 1122
-            Section 3.8 Exercises 1123
-            Section 3.9 Preliminary Questions 1124
-            Section 3.9 Exercises 1124
-            Chapter 3 Review 1124
-        Chapter 4 1125
-            Section 4.1 Preliminary Questions 1125
-            Section 4.1 Exercises 1125
-            Section 4.2 Preliminary Questions 1126
-            Section 4.2 Exercises 1126
-            Section 4.3 Preliminary Questions 1127
-            Section 4.3 Exercises 1127
-            Section 4.4 Preliminary Questions 1129
-            Section 4.4 Exercises 1129
-            Section 4.5 Preliminary Questions 1131
-            Section 4.5 Exercises 1131
-            Section 4.6 Preliminary Questions 1134
-            Section 4.6 Exercises 1134
-            Section 4.7 Preliminary Questions 1136
-            Section 4.7 Exercises 1136
-            Section 4.8 Preliminary Questions 1136
-            Section 4.8 Exercises 1137
-            Chapter 4 Review 1137
-        Chapter 5 1138
-            Section 5.1 Preliminary Questions 1138
-            Section 5.1 Exercises 1138
-            Section 5.2 Preliminary Questions 1139
-            Section 5.2 Exercises 1139
-            Section 5.3 Preliminary Questions 1141
-            Section 5.3 Exercises 1141
-            Section 5.4 Preliminary Questions 1142
-            Section 5.4 Exercises 1142
-            Section 5.5 Preliminary Questions 1143
-            Section 5.5 Exercises 1143
-            Section 5.6 Preliminary Questions 1143
-            Section 5.6 Exercises 1143
-            Chapter 5 Review 1144
-        Chapter 6 1145
-            Section 6.1 Preliminary Questions 1145
-            Section 6.1 Exercises 1145
-            Section 6.2 Preliminary Questions 1146
-            Section 6.2 Exercises 1146
-            Section 6.3 Preliminary Questions 1147
-            Section 6.3 Exercises 1147
-            Section 6.4 Preliminary Questions 1147
-            Section 6.4 Exercises 1147
-            Section 6.5 Preliminary Questions 1149
-            Section 6.5 Exercises 1149
-            Chapter 6 Review 1149
-        Chapter 7 1149
-            Section 7.1 Preliminary Questions 1149
-            Section 7.1 Exercises 1149
-            Section 7.2 Preliminary Questions 1150
-            Section 7.2 Exercises 1150
-            Section 7.3 Preliminary Questions 1151
-            Section 7.3 Exercises 1151
-            Section 7.4 Preliminary Questions 1151
-            Section 7.4 Exercises 1151
-            Section 7.5 Preliminary Questions 1152
-            Section 7.5 Exercises 1152
-            Section 7.6 Preliminary Questions 1152
-            Section 7.6 Exercises 1152
-            Section 7.7 Preliminary Questions 1153
-            Section 7.7 Exercises 1153
-            Section 7.8 Preliminary Questions 1154
-            Section 7.8 Exercises 1154
-            Section 7.9 Preliminary Questions 1154
-            Section 7.9 Exercises 1155
-            Chapter 7 Review 1155
-        Chapter 8 1156
-            Section 8.1 Preliminary Questions 1156
-            Section 8.1 Exercises 1157
-            Section 8.2 Preliminary Questions 1157
-            Section 8.2 Exercises 1157
-            Section 8.3 Preliminary Questions 1158
-            Section 8.3 Exercises 1158
-            Section 8.4 Preliminary Questions 1158
-            Section 8.4 Exercises 1158
-            Section 8.5 Preliminary Questions 1159
-            Section 8.5 Exercises 1159
-            Section 8.6 Preliminary Questions 1159
-            Section 8.6 Exercises 1159
-            Section 8.7 Preliminary Questions 1160
-            Section 8.7 Exercises 1160
-            Section 8.8 Preliminary Questions 1161
-            Section 8.8 Exercises 1161
-            Chapter 8 Review 1161
-        Chapter 9 1162
-            Section 9.1 Preliminary Questions 1162
-            Section 9.1 Exercises 1162
-            Section 9.2 Preliminary Questions 1162
-            Section 9.2 Exercises 1162
-            Section 9.3 Preliminary Questions 1163
-            Section 9.3 Exercises 1163
-            Section 9.4 Preliminary Questions 1163
-            Section 9.4 Exercises 1163
-            Chapter 9 Review 1164
-        Chapter 10 1164
-            Section 10.1 Preliminary Questions 1164
-            Section 10.1 Exercises 1164
-            Section 10.2 Preliminary Questions 1165
-            Section 10.2 Exercises 1165
-            Section 10.3 Preliminary Questions 1165
-            Section 10.3 Exercises 1165
-            Section 10.4 Preliminary Questions 1166
-            Section 10.4 Exercises 1166
-            Chapter 10 Review 1166
-        Chapter 11 1166
-            Section 11.1 Preliminary Questions 1166
-            Section 11.1 Exercises 1166
-            Section 11.2 Preliminary Questions 1167
-            Section 11.2 Exercises 1167
-            Section 11.3 Preliminary Questions 1167
-            Section 11.3 Exercises 1167
-            Section 11.4 Preliminary Questions 1168
-            Section 11.4 Exercises 1168
-            Section 11.5 Preliminary Questions 1168
-            Section 11.5 Exercises 1168
-            Section 11.6 Preliminary Questions 1168
-            Section 11.6 Exercises 1168
-            Section 11.7 Preliminary Questions 1169
-            Section 11.7 Exercises 1169
-            Chapter 11 Review 1169
-        Chapter 12 1170
-            Section 12.1 Preliminary Questions 1170
-            Section 12.1 Exercises 1170
-            Section 12.2 Preliminary Questions 1171
-            Section 12.2 Exercises 1171
-            Section 12.3 Preliminary Questions 1172
-            Section 12.3 Exercises 1172
-            Section 12.4 Preliminary Questions 1173
-            Section 12.4 Exercises 1173
-            Section 12.5 Preliminary Questions 1173
-            Section 12.5 Exercises Questions 1173
-            Chapter 12 Review 1174
-        CHAPTER 13 1174
-            Section 13.1 Preliminary Questions 1174
-            Section 13.1 Exercises 1174
-            Section 13.2 Preliminary Questions 1175
-            Section 13.2 Exercises 1175
-            Section 13.3 Preliminary Questions 1176
-            Section 13.3 Exercises 1176
-            Section 13.4 Preliminary Questions 1176
-            Section 13.4 Exercises 1176
-            Section 13.5 Preliminary Questions 1176
-            Section 13.5 Exercises 1176
-            Section 13.6 Preliminary Questions 1177
-            Section 13.6 Exercises 1177
-            Section 13.7 Preliminary Questions 1177
-            Section 13.7 Exercises 1177
-            Chapter 13 Review 1178
-        CHAPTER 14 1178
-            Section 14.1 Preliminary Questions 1178
-            Section 14.1 Exercises 1178
-            Section 14.2 Preliminary 1179
-            Section 14.2 Exercises 1179
-            Section 14.3 Preliminary Questions 1180
-            Section 14.3 Exercises 1180
-            Section 14.4 Preliminary Questions 1180
-            Section 14.4 Exercises 1180
-            Section 14.5 Preliminary Questions 1180
-            Section 14.5 Exercises 1180
-            Section 14.6 Preliminary Questions 1181
-            Section 14.6 Exercises 1181
-            Chapter 14 Review 1181
-        Chapter 15 1181
-            Section 15.1 Preliminary Questions 1181
-            Section 15.1 Exercises 1181
-            Section 15.2 Preliminary Questions 1183
-            Section 15.2 Exercises 1183
-            Section 15.3 Preliminary Questions 1183
-            Section 15.3 Exercises 1183
-            Section 15.4 Preliminary Questions 1183
-            Section 15.4 Exercises 1184
-            Section 15.5 Preliminary Questions 1184
-            Section 15.5 Exercises 1184
-            Section 15.6 Preliminary Questions 1184
-            Section 15.6 Exercises 1184
-            Section 15.7 Preliminary Questions 1185
-            Section 15.7 Exercises 1185
-            Section 15.8 Preliminary Questions 1185
-            Section 15.8 Exercises 1185
-            Chapter 15 Review 1186
-        Chapter 16 1186
-            Section 16.1 Preliminary Questions 1186
-            Section 16.1 Exercises 1186
-            Section 16.2 Preliminary Questions 1187
-            Section 16.2 Exercises 1187
-            Section 16.3 Preliminary Questions 1188
-            Section 16.3 Exercises 1188
-            Section 16.4 Preliminary Questions 1188
-            Section 16.4 Exercises Questions 1188
-            Section 16.5 Preliminary Questions 1189
-            Section 16.5 Exercises 1189
-            Section 16.6 Preliminary Questions 1189
-            Section 16.6 Exercises 1189
-            Chapter 16 Review 1190
-        Chapter 17 1190
-            Section 17.1 Preliminary Questions 1190
-            Section 17.1 Exercises 1191
-            Section 17.2 Preliminary Questions 1191
-            Section 17.2 Exercises 1191
-            Section 17.3 Preliminary Questions 1191
-            Section 17.3 Exercises 1192
-            Section 17.4 Preliminary Questions 1192
-            Section 17.4 Exercises 1192
-            Section 17.5 Preliminary Questions 1192
-            Section 17.5 Exercises 1192
-            Chapter 17 Review 1192
-        Chapter 18 1193
-            Section 18.1 Preliminary Questions 1193
-            Section 18.1 Exercises 1193
-            Section 18.2 Preliminary Questions 1193
-            Section 18.2 Exercises 1193
-            Section 18.3 Preliminary Questions 1193
-            Section 18.3 Exercises 1193
-            Chapter 18 Review 1193
-    REFERENCES 1195
-        Section 1.1 1195
-        Section 1.2 1195
-        Section 1.5 1195
-        Section 2.2 1195
-        Section 2.3 1195
-        Chapter 2 Review 1195
-        Section 3.1 1195
-        Section 3.2 1195
-        Section 3.4 1195
-        Section 3.5 1195
-        Section 3.9 1195
-        Chapter 3 Review 1196
-        Section 4.2 1196
-        Section 4.5 1196
-        Section 4.6 1196
-        Section 4.7 1196
-        Chapter 4 Review 1196
-        Section 5.1 1196
-        Section 5.2 1196
-        Section 5.4 1196
-        Section 5.5 1196
-        Section 5.6 1196
-        Section 6.1 1196
-        Section 6.3 1196
-        Section 7.7 1196
-        Section 8.1 1196
-        Section 8.3 1197
-        Section 8.6 1197
-        Section 8.8 1197
-        Section 9.1 1197
-        Section 10.1 1197
-        Section 11.1 1197
-        Section 11.2 1197
-        Section 11.4 1197
-        Section 12.2 1197
-        Section 12.3 1197
-        Section 13.4 1197
-        Section 14.3 1197
-        Section 14.4 1197
-        Section 14.5 1197
-        Section 15.8 1198
-        Section 16.3 1198
-        Section 16.6 1198
-        Section 17.2 1198
-        Section 17.3 1198
-        Appendix D 1198
-    PHOTO CREDITS 1199
-    INDEX 1201
+Chapter 1: PRECALCULUS REVIEW 1
+    1.1: Real Numbers, Functions, and Graphs 1
+    1.2: Linear and Quadratic Functions 17
+    1.3: The Basic Classes of Functions 26
+    1.4: Trigonometric Functions 31
+    1.5: Inverse Functions 44
+    1.6: Exponential and Logarithmic Functions 54
+    1.7: Technology: Calculators and Computers 60
+    CHAPTER REVIEW EXERCISES 67
+Chapter 2: LIMITS 78
+    2.1: Limits, Rates of Change, and Tangent Lines 78
+    2.2 Limits: A Numerical and Graphical Approach 89
+    2.3 Basic Limit Laws 107
+    2.4 Limits and Continuity 113
+    2.5 Evaluating Limits Algebraically 127
+    2.6 Trigonometric Limits 135
+    2.7 Limits at Infinity 146
+    2.8 Intermediate Value Theorem 159
+    2.9 The Formal Definition of a Limit 164
+    Chapter Review Exercises 174
+3 DIFFERENTIATION 190
+    3.1 Definition of the Derivative 190
+    3.2 The Derivative as a Function 210
+    3.3 Product and Quotient Rules 230
+    3.4 Rates of Change 243
+    3.5 Higher Derivatives 257
+    3.6 Trigonometric Functions 267
+    3.7 The Chain Rule 278
+    3.8 Implicit Differentiation 296
+    3.9 Derivatives of General Exponential and Logarithmic Functions 302
+    3.10 Related Rates 313
+    3.11 Related Rates 332
+    Chapter Review Exercises 348
+4 APPLICATIONS OF THE DERIVATIVE 370
+    4.1 Linear Approximation and Applications 370
+    4.2 Extreme Values 384
+    4.3 The Mean Value Theorem and Monotonicity 405
+    4.4 The Shape of a Graph 419
+    4.5 L&apos;H&#244;pital&apos;s Rule 435
+    4.6 Graph Sketching and Asymptotes 451
+    4.7 Applied Optimization 480
+    4.8 Newton&apos;s Method 511
+    4.9 Antiderivatives 524
+    Chapter Review Exercises 538
+5 THE INTEGRAL 565
+    5.1 Approximation and Computing Area 565
+    5.2 The Definite Integral 592
+    5.3 The Fundamental Theorem of Calculus, Part I 611
+    5.4 The Fundamental Theorem of Calculus, Part II 623
+    5.5 Net Change as the Integral of a Rate 634
+    5.6 Substitution Method 642
+    5.7 Further Transcendental Functions 659
+    5.8 Exponential Growth and Decay 674
+    Chapter Review Exercises 686
+6 APPLICATIONS OF THE INTEGRAL 710
+    6.1 Area Between Two Curves 710
+    6.2 Setting Up Integrals: Volume, Density, Average Value 731
+    6.3 Volumes of Revolution 746
+    6.4 The Method of Cylindrical Shells 764
+    6.5 Work and Energy 780
+    Chapter Review Exercises 792
+7 TECHNIQUES OF INTEGRATION 807
+    7.1 Integration by Parts 807
+    7.2 Trigonometric Integrals 829
+    7.3 Trigonometric Substitution 849
+    7.4 Integrals Involving Hyperbolic and Inverse Hyperbolic Functions 876
+    7.5 The Method of Partial Fractions 885
+    7.6 Improper Integrals 919
+    7.7 Probability and Integration 950
+    7.8 Numerical Integration 960
+    Chapter Review Exercises 982
+8 FURTHER APPLICATIONS OF THE INTEGRAL AND TAYLOR POLYNOMIALS 1016
+    8.1 Arc Length and Surface Area 1016
+    8.2 Fluid Pressure and Force 1033
+    8.3 Center of Mass 1043
+    8.4 Taylor Polynomials 1058
+    Chapter Review Exercises 1089
+9 INTRODUCTION TO DIFFERENTIAL EQUATIONS 1104
+    9.1 Solving Differential Equations 1104
+    9.2 Models Involving y&apos;=k(y-b) 1129
+    9.3 Graphical and Numerical Methods 1139
+    9.4 The Logistic Equation 1150
+    9.5 First-Order Linear Equations 1160
+    Chapter Review Exercises 1181
+10 INFINITE SERIES 1201
+    10.1 Sequences 1201
+    10.2 Summing and Infinite Series 1224
+    10.3 Convergence of Series with Positive Terms 1243
+    10.4 Absolute and Conditional Convergence 1272
+    10.5 The Ratio and Root Tests and Strategies for Choosing Tests 1284
+    10.6 Power Series 1298
+    10.7 Taylor Series 1322
+    Chapter Review Exercises 1352
+11 PARAMETRIC EQUATIONS, POLAR COORDINATES, AND CONIC SECTIONS 1382
+    11.1 Parametric Equations 1382
+    11.2 Arc Length and Speed 1414
+    11.3 Polar Coordinates 1428
+    11.4 Area and Arc Length in Polar Coordinates 1454
+    11.5 Conic Sections 1472
+    Chapter Review Exercises 1494
+12 VECTOR GEOMETRY 1512
+    12.1 Vectors in the Plane 1512
+    12.2 Vectors in Three Dimensions 1531
+    12.3 Dot Product and the Angle Between Two Vectors 1546
+    12.4 The Cross Product 1571
+    12.5 Planes in 3-Space 1596
+    12.6 A Survey of Quadric Surfaces 1615
+    12.7 Cylindrical and Spherical Coordinates 1627
+    Chapter Review Exercises 1646
+13 CALCULUS OF VECTOR-VALUED FUNCTIONS 1668
+    13.1 Vector-Valued Functions 1668
+    13.2 Calculus of Vector-Valued Functions 1685
+    13.3 Arc Length and Speed 1708
+    13.4 Curvature 1723
+    13.5 Motion in 3-Space 1766
+    13.6 Planetary Motion According to Kepler and Newton 1797
+    Chapter Review Exercises 1809
+14 DIFFERENTIATION IN SEVERAL VARIABLES 1827
+    14.1 Functions of Two or More Variables 1827
+    14.2 Limits and Continuity in Several Variables 1845
+    14.3 Partial Derivatives 1857
+    14.4 Differentiability and Tangent Planes 1880
+    14.5 The Gradient and Directional Derivatives 1900
+    14.6 The Chain Rule 1925
+    14.7 Optimization in Several Variables 1949
+    14.8 Lagrange Multipliers: Optimizing with a Constraint 1989
+    Chapter Review Exercises 2033
+15 MULTIPLE INTEGRATION 2065
+    15.1 Integration in Two Variables 2065
+    15.2 Double Integrals over More General Regions 2085
+    15.3 Triple Integrals 2123
+    15.4 Integration in Polar, Cylindrical, and Spherical Coordinates 2149
+    15.5 Applications of Multiple Integrals 2190
+    15.6 Change of Variables 2221
+    Chapter Review Exercises 2256
+16 LINE AND SURFACE INTEGRALS 2296
+    16.1 Vector Fields 2296
+    16.2 Line Integrals 2306
+    16.3 Conservative Vector Fields 2340
+    16.4 Parametrized Surfaces and Surface Integrals 2354
+    16.5 Surface Integrals of Vector Fields 2386
+    Chapter Review Exercises 2412
+17 FUNDAMENTAL THEOREMS OF VECTOR ANALYSIS 2438
+    17.1 Green&apos;s Theorem 2438
+    17.2 Stokes&apos; Theorem 2466
+    17.3 Divergence Theorem 2491
+    Chapter Review Exercises 2520
