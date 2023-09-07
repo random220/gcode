@@ -5,11 +5,11 @@ Chapter 1: PRECALCULUS REVIEW 1
     1.2: Linear and Quadratic Functions 17
     1.3: The Basic Classes of Functions 26
     1.4: Trigonometric Functions 31
-    1.5: Technology: Calculators and Computers 44
+    1.5: Inverse Functions 44
     1.6: Exponential and Logarithmic Functions 54
     1.7: Technology: Calculators and Computers 60
     CHAPTER REVIEW EXERCISES 67
-Chapter 2: LIMITS 81
+Chapter 2: LIMITS 78
     2.1: Limits, Rates of Change, and Tangent Lines 81
     2.2: Limits: A Numerical and Graphical Approach 89
     2.3: Basic Limit Laws 107
@@ -21,8 +21,8 @@ Chapter 2: LIMITS 81
     2.9: The Formal Definition of a Limit 164
     Further Insights and Challenges 173
     CHAPTER REVIEW EXERCISES 174
-Chapter 3: DIFFERENTIATION 193
-    3.1: Definition of the Derivative 193
+Chapter 3: DIFFERENTIATION 190
+    3.1: Definition of the Derivative 190
     3.2: The Derivative as a Function 210
     3.3: Product and Quotient Rules 230
     3.4: Rates of Change 243
@@ -36,8 +36,8 @@ Chapter 3: DIFFERENTIATION 193
     3.11: Related Rates 332
     Further Insights and Challenges 344
     CHAPTER REVIEW EXERCISES 348
-Chapter 4: APPLICATIONS OF THE DERIVATIVE 373
-    4.1: Linear Approximation and Applications 373
+Chapter 4: APPLICATIONS OF THE DERIVATIVE 370
+    4.1: Linear Approximation and Applications 370
     4.2: Extreme Values 384
     Further Insights and Challenges 403
     4.3: The Mean Value Theorem and Monotonicity 405
