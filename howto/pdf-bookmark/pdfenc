@@ -1,0 +1,2 @@
+#!/bin/bash
+echo pdftk a.pdf output b.pdf user_pw PROMPT
