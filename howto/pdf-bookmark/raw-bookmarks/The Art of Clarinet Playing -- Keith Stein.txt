@@ -1,5 +1,7 @@
 Cover 1*
-Introduction 4*
+Contents 3*
+Introduction 5*
+_offset 2
 1. The Mouthpiece and Ligature                                            5
 2. The Reed                                                               6
 3. The Clarinet                                                           10
