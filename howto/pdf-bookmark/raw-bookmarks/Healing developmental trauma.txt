@@ -1,18 +1,18 @@
 Cover 1*
 Acknowledgments 7*
 Contents 9*
-LIST OF FIGURES 10*
-List of Figures viii
-List of Tables ix
+List of Figures viii 10*
+List of Tables ix 11*
+_offset 12
 Introduction to the Neuro Affective Relational Model™ 1
-PART A. THE FIVE ADAPTIVE SURVIVAL STYLES 31
+PART A. THE FIVE ADAPTIVE SURVIVAL STYLES 29
     1. Overview 31
     2. Connection • The First Organizing Principle 37
     3. Attunement • The Second Organizing Principle 47
     4. Trust • The Third Organizing Principle 57
     5. Autonomy • The Fourth Organizing Principle 69
     6. Love and Sexuality • The Fifth Organizing Principle 79
-PART B. THE CONNECTION SURVIVAL STYLE 93
+PART B. THE CONNECTION SURVIVAL STYLE 91
     7 Physiology and Trauma • Understanding the Impact of Trauma on Development 93
     8. The Beginning of Our Identity • Understanding the Connection Survival Style 125
     9. Transcript of a NARM™ Therapy Session with Commentary 161
@@ -23,7 +23,7 @@ Further Reading 289
 Index 291
 About the Authors 305
 
-LIST OF FIGURES 10
+LIST OF FIGURES 10*
     1.1: Exercise to Help Identify Experiences of Expansion and Aliveness 8
     1.2: Distortions of the Life Force 10
     1.3: Top-Down and Bottom-Up Information Flow 16
@@ -36,7 +36,7 @@ LIST OF FIGURES 10
     12.1: Distortions of the Life Force (Same As Figure 1.2 ) 276
     12.2: Exercise to Support the Exploration of One's Relationship to Anger 279
 
-LIST OF TABLES 11
+LIST OF TABLES 11*
     1.1: NARM's Five Core Needs and Their Associated Core Capacities 3
     1.2: The Five Adaptive Survival Styles and Their Core Difficulties 5
     1.3: Development of Core Capacities and the Formation of Adaptive Survival Styles 5
