@@ -17,18 +17,12 @@ if len(sys.argv) == 2:  # ./extracti a.pdf : whole fil
         sys.exit(1)
     os.system('rm -rf .out; mkdir .out')
     os.system('pdfimages -all {f} .out/page'.format(f=pdf))
-'''
-if [[ $1 == '' ]]; then
-  echo "$0 page pdf-file"
-  echo "$0 pdf-file"
-  exit 0
-fi
-if [[ $2 == '' ]]; then
-  echo "$0 page pdf-file"
-  exit 0
-fi
-page=$1
-file=$2
-pdftk $file cat $page-$page output _a.pdf
-pdfimages -all _a.pdf _aa
-'''
+if len(sys.argv) == 3:  # ./extracti 31 /tmp/a.pdf
+    pagenum = sys.argv[1]
+    pdf = sys.argv[2]
+    if not os.path.isfile(pdf):
+        print_help();
+        sys.exit(1)
+    os.system('rm -rf .out; mkdir .out')
+    os.system(f'pdftk {pdf} cat {pagenum} output .out/b.pdf')
+    os.system(f'cd .out && pdftoppm -png -r 300 b.pdf b')
