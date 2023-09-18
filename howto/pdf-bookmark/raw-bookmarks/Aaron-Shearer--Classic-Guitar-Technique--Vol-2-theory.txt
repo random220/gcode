@@ -1,7 +1,7 @@
 Cover 1*
-Contents 3*
-Preface v 5*
-_offset 5
+Contents 5*
+Preface v 7*
+_offset 8
 HALF-STEPS AND WHOLE STEPS 1
     Natural Half-Steps and Whole Steps 1
     Accidentals 1
