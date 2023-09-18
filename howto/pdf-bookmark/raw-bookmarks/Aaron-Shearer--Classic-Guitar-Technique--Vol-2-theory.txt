@@ -1,0 +1,36 @@
+Cover 1*
+Contents 3*
+Preface v 5*
+_offset 5
+HALF-STEPS AND WHOLE STEPS 1
+    Natural Half-Steps and Whole Steps 1
+    Accidentals 1
+    Enharmonic Notes 2
+SCALES 5
+    The Diatonic Scales 5
+    The Key 6
+    The Key Signature 6
+    Related Major Keys 7
+    Minor Scales 9
+        The Natural Minor Scale 9
+        The Harmonic Minor Scale 10
+        The Melodic Minor Scale 12
+    The Chromatic Scale 14
+INTERVALS 15
+    Interval Names by Number 15
+    Interval Names According to Kind 16
+    Perfect and Major Intervals 16
+    Minor, Diminished and Augmented Intervals 19
+CHORDS 26
+    Triads 26
+    Major and Minor Triads 26
+    Augmented and Diminished Triads 27
+        The Major Scale in Triads 29
+        The Minor Scale in Triads 34
+    Inversions of Triads 34
+        Roman Numeral Notation of Position 34
+        Figured Bass or Thorough Bass Notation of Position 35
+        Triads in Open Voicing or Open Position 37
+    Four Voice Chords 38
+    Incomplete Chords of Three or Four Voices 39
+    Seventh Chords 39
