@@ -26,3 +26,13 @@ if len(sys.argv) == 3:  # ./extracti 31 /tmp/a.pdf
     os.system('rm -rf .out; mkdir .out')
     os.system(f'pdftk {pdf} cat {pagenum} output .out/b.pdf')
     os.system(f'cd .out && pdftoppm -png -r 300 b.pdf b')
+if len(sys.argv) == 4:  # ./extracti 31 /tmp/a.pdf
+    pagenum1 = sys.argv[1]
+    pagenum2 = sys.argv[2]
+    pdf = sys.argv[3]
+    if not os.path.isfile(pdf):
+        print_help();
+        sys.exit(1)
+    os.system('rm -rf .out; mkdir .out')
+    os.system(f'pdftk {pdf} cat {pagenum1}-{pagenum2} output .out/b.pdf')
+    os.system(f'cd .out && pdftoppm -png -r 300 b.pdf b')
