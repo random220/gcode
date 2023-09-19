@@ -1,7 +1,7 @@
 Cover 1*
-Introduction 5*
-Contents 7*
-_offset 6
+Introduction 3*
+Contents 4*
+_offset 2
 Section I 3
     Preliminary Information                                                                     3
     First Position C Major Scale - One Octave (and Duet)                                        4
