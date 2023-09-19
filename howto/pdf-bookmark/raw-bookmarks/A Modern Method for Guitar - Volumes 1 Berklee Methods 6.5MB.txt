@@ -1,0 +1,136 @@
+Cover 1*
+Introduction 3*
+Contents 4*
+Section I 5*
+_offset 2
+    Tuning, The Staff, Clef Sign, Common Note Values                  3
+    Notes in the 1st Position                                         4
+    Sea to Sea (Duet)                                                 6
+    Notes in the First Position (Upper Register and Review)           8
+    One, Two, Three, Four (Duet)                                      10
+    Rhythm Accompaniment                                              11
+    Notes in the 1st Position (Lower Register and Review)             12
+    Imitation Duet                                                    14
+    Sharps and Flats                                                  15
+    Here We Go Again (Duet)                                           16
+    Rhythm Accompaniment (Bass Notes and Chords)                      17
+    Eight Notes (Counting and Picking)                                18
+    Etude No. 1 (Duet)                                                20
+    Rests, Tied Notes, Dotted Notes                                   21
+    Etude No. 2 (Duet)                                                22
+    First Solo                                                        22
+_offset 1
+    Rhythm Accompaniment (Chord Diagrams Explained)                   24
+    Second Solo                                                       25
+    Etude No. 3 (Duet)                                                25
+    Picking Etude No. 1 (Right Hand Development)                      27
+    Etude                                                             27
+    Two, Two (Duet)                                                   28
+    Key of G Major (I st Position)                                    30
+    Rhythm Accompaniment (Chord Diagrams)                             30
+    Sixteenth Notes                                                   31
+    Duet in G                                                         32
+    Picking Etude No. 2                                               33
+    Another Duet in G                                                 34
+_offset 0
+    Key of F (Ist Position)                                           35
+    Rhythm Accompaniment (Chord Diagrams and Grand Barre)             35
+    Duet in F                                                         36
+    The Triplet                                                       37
+    Waltz in F (Solo)                                                 38
+    Key of A Minor (Ist Position)                                     39
+    Rhythm Accompaniment (Chord Diagrams)                             39
+    Pretty Pickin' (Duet)                                             40
+    Dotted Eighth and Sixteenth Notes                                 42
+    Key of E Minor (Scales in Ist Position)                           43
+    Rhythm Accompaniment (Chord Diagrams)                             43
+    Take Your Pick (Duet)                                             44
+    Rhythm Accompaniment (Movable Chord Forms)                        45
+    Chromatic Scale                                                   46
+    Speed Studies                                                     46
+    Key of D Minor (Scales in Ist Position)                           47
+    Rhythm Accompaniment                                              47
+    Endurance Etude - Picking Etude No. 3                             48
+    Key of B (Scales in Ist Position)                                 50
+    Rhythm Accompaniment                                              50
+    Duet in Bo                                                        51
+    Reverse Alternate Picking Study                                   52
+    Key of D Major (Scale in 1st Position)                            53
+    Duet in D                                                         53
+    Dynamic Etude - Etude No. 4 (Duet)                                54
+    Key of A (1st Position)                                           56
+    Duet in A                                                         56
+    Rhythm Accompaniment                                              56
+    Key of Eb (Scale in Ist Position)                                 57
+    Duet in Eb                                                        57
+    Movable Chord Forms                                               58
+    Chord Simplification and Substitution Chart                       58
+    Picking - A Different Technique                                   59
+
+
+Section II
+    Position Playing                                                  60
+    Major Scales (C Major, Fingering Type 1, 2nd Position)            60
+    Eighth Note Study                                                 61
+    Arpeggio Study (Broken Chords)                                    61
+    Chord Etude No. 1                                                 62
+    Etude No. 5 (Duet)                                                63
+    Reading Studies (C Major, Fingering Type 1, 2nd Position)         64
+    Ballad (Duet)                                                     66
+    Movable Chord Forms                                               67
+    Chord Forms (Derivative Fingerings)                               68
+    Rhythm Accompaniment - Right Hand Technique                       69
+    Picking Etude No. 4                                               69
+    F Major Scale (Fingering Type 1A, 2nd Position)                   70
+    Eighth Note Study                                                 71
+    Chord Forms                                                       71
+    Chord Etude No. 2                                                 72
+    Another Duet in F                                                 73
+    Reading Studies (F Major, Fingering Type 1A, 2nd Position         74
+    Play It Pretty (Duet)                                             76
+    Chord Forms                                                       77
+    Triplet Study                                                     77
+    Speed Study (Fingering Type 1)                                    78
+    Speed Study (Fingering Type 1A)                                   79
+    G Major Scale (Fingering Type 2, 2nd Position)                    80
+    Dotted Eighth and Sixteenth Study                                 81
+    Waltz for Two (Duet)                                              82
+    Presenting Natural Harmonics                                      82
+    Chord Forms                                                       83
+    Reading Studies (G Major, Fingering Type 2, 2nd Position)         84
+    Blues in G (Duet - Muffled Effect)                                86
+    Chord Etude No. 3                                                 87
+    Rhythm Accompaniment - Right Hand Technique (Basic Latin Beat)    88
+    Picking Etude No. 5                                               88
+    Short and Sweet (Duet)                                            88
+    D Major Scale (Fingering Type 3, 2nd Position)                    90
+    Chord Forms                                                       91
+    Melodic Rhythm Study No. 1 (Syncopation)                          92
+    Chord Etude No. 4                                                 93
+    Staccato - Legato                                                 93
+    Reading Studies (D Major, Fingering Type 3)                       94
+    Dee - Oo - Ett (Duet)                                             96
+    Chord Forms                                                       97
+    Speed Study (Fingering Type 2)                                    98
+    Speed Study (Fingering Type 3)                                    99
+    A Major Scale (Fingering Type 4, 2nd Position)                    100
+    Chord Etude No. 5                                                 101
+    Reading Studies (A Major, Fingering Type 4, 2nd Position)         102
+    Tres Sharp (Duet)                                                 104
+    Sixteenth Note Study, Chord Forms                                 105
+    Speed Study (Fingering Type 4, 2nd Position)                      106
+    Chord Forms                                                       107
+    2nd Position Review                                               108
+    Chord Forms                                                       110
+    Quarter Note Triplets                                             111
+    Major Scales in 3rd Position (Bb, Eh, Al, Db)                     112
+    3rd Position Review                                               114
+    Chord Forms                                                       116
+    Major Scales in 1st Position (As, Db)                             117
+    1st Position Review                                               118
+    Major Scales in 4th Position (G, D, A, E)                         119
+    Chord Forms                                                       121
+    4th Position Review                                               122
+    Chord Forms                                                       124
+    Author's Notes                                                    124
+    Index                                                             126
