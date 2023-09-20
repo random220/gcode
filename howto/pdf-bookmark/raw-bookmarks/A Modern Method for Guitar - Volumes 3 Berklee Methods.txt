@@ -164,5 +164,6 @@ About Improvization                                                             
     "IT'S LATE" (Duet)                                                                          152
 Chords - Preparation Of 4 Part Open Voicings - Adding The 3rd Degree                            154
     Preparation Of 4 Part Open Voicings - Adding The 7th Degree                                 155
-Scale-Chord Relationships - Major, Harmonic Minor, Real Melodic Minor,                          156
-    Whole Tone and Diminished Scales as related to chords                                       156
+Scale-Chord Relationships                                                                       156
+    Major, Harmonic Minor, Real Melodic Minor                                                   156
+    Whole Tone and Diminished Scales as related to chords                                       157
