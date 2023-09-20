@@ -1,12 +1,12 @@
 Cover 1*
 Contents 5*
-Preface viii
+Preface viii 7*
+_offset 8
 Chapter One: The Principle of Functional Tension 1
-    Dysfunctional Tension
-    Functional Tension
-    Leverage from the Fingers
-    Seating
-    Conclusions
+    Dysfunctional Tension 2
+    Functional Tension: Leverage from the Fingers 4
+    Seating 8
+    Conclusions 20
 Chapter Two: The Left Hand 13
     Mechanics of Left-Hand Position
     The Bar (Barré, Capotasto, Cejilla)
