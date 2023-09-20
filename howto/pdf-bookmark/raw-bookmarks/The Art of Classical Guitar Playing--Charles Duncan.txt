@@ -1,5 +1,5 @@
 Cover 1*
-Contents 5*
+Contents v 5*
 Preface viii 7*
 _offset 8
 Chapter One: The Principle of Functional Tension 1
@@ -26,22 +26,22 @@ Chapter Four: Nail Filing 50
     Nail Care 59
 Chapter Five: Articulation 60
 Chapter Six: Coordination and Velocity 70
-    Scales
-    Velocity in Scales
-    Chords
-    Homophonic and Contrapuntal Textures
+    Scales 71
+    Velocity in Scales 74
+    Chords 77
+    Homophonic and Contrapuntal Textures 82
 Chapter Seven: Expressive Devices 87
-    Slurs As Accent
-    Vibrato
-    Right-Hand Flourishes
-    Grace, Emphasis, Closure
-    Rasgueado
+    Slurs As Accent 95
+    Vibrato 90
+    Right-Hand Flourishes 94
+    Grace, Emphasis, Closure 98
+    Rasgueado 101
 Chapter Eight: The Art of Classical Guitar Playing 105
-    Refinement of Tone
-    Contrast of Tone Color
-    Control of Rhythm
-    Developing the Line: Thinking Upbeats
-    Expressive Nuances: Segovia's Example
+    Refinement of Tone 107
+    Contrast of Tone Color 108
+    Control of Rhythm 110
+    Developing the Line: Thinking Upbeats 112
+    Expressive Nuances: Segovia's Example 114
 Appendix: A Practice Checklist 119
 Selected Bibliography 125
 Notes 129
