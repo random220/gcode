@@ -1,4 +1,7 @@
 Cover 1*
+Introduction 2*
+Contents 3*
+_offset 6
 Evolution of (12) Major Scale Fingering Patterns                                                1
 Definition Of Position                                                                          4
 Speed Study                                                                                     4
