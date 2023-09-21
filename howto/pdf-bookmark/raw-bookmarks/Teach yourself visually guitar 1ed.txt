@@ -8,7 +8,7 @@ Chapter 1: Guitar Basics                                     2
     Parts of an Electric Guitar                              10
     Basic Guitar Concepts                                    12
     Famous Guitarists                                        14
-Chapter 2: Getting Ready to Play                             
+Chapter 2: Getting Ready to Play                             21
     How to Hold a Guitar                                     22
     Fretting Hand Position                                   24
     Picking Hand Position                                    26
@@ -16,7 +16,7 @@ Chapter 2: Getting Ready to Play
     Reading Tablature                                        30
     Tune a Guitar                                            32
     How to Practice                                          36
-Chapter 3: Reading Music                                     
+Chapter 3: Reading Music                                     39
     The Staff                                                40
     Notes on the Staff                                       41
     Sharps and Flats                                         42
@@ -26,7 +26,7 @@ Chapter 3: Reading Music
     Common Musical Symbols                                   50
     Reading Rhythm Slashes                                   54
     Reading Lead Sheets                                      55
-Chapter 5: Playing Basic Chords
+Chapter 5: Playing Basic Chords                              57
     How to Play a Chord                                      58
     Playing Major Chords                                     62
     Playing Minor Chords                                     66
@@ -35,104 +35,104 @@ Chapter 5: Playing Basic Chords
     Playing Minor 7th Chords                                 74
     Strumming Patterns                                       76
     Songs for Practice                                       78
-Chapter 6:                                                   
-    Playing Barre Chords and Power Chords                    82
-    Introduction to Barre Chords                             86
-    The E-based Major Barre Chord                            88
-    Other E-based Barre Chords                                   90
-    The A-based Major Barre Chord                                92
-    Other A-based Barre Chords                                   96
-    Open-Position Power Chords                                   98
-    Movable Power Chords                                         100
-    Songs for Practice
-Chapter 7: Playing Single Notes
-    Playing Notes on the 1st String                              104
-    Playing Notes on the 2nd String                              106
-    Playing Notes on the 3rd String                              108
-    Playing Notes on the 4th String                              110
-    Playing Notes on the 5th String                              112
-    Playing Notes on the 6th String                              114
-    Finding Notes on Your Guitar                                 116
-    Position Playing                                             118
-    Playing Scales                                               122
-    Playing Double-Stops                                         126
-    Songs for Practice                                           128
-Chapter 8: Articulation Techniques
-    Playing Hammer-Ons                                           134
-    Playing Pull-Offs                                            135
-    Playing Slides                                               136
-    Muting Strings                                               137
-    Playing Bends                                                138
-    Applying Vibrato                                             140
-Chapter 9: Playing Rock Guitar
-    Introduction to Rock Guitar                                  144
-    Playing Rock Lead Guitar                                     146
-    Playing Rock Rhythm Guitar                                   150
-    Playing Suspended Chords                                     152
-    Playing Add Chords                                           154
-    Playing Slash Chords                                         156
-    Using Open Tunings                                           158
-    Using Alternate Tunings                                      160
-    Songs for Practice                                           162
-Chapter 10: Playing Folk and Country Music
-    Introduction to Folk and Country Music                       178
-    Playing the Bass Note Strum Style                            180
-    Playing in Carter Style                                      182
-    Playing with Travis Picking                                  183
-    Songs for Practice                                           184
-Chapter 11: Playing Classical Guitar
-    Introduction to Classical Guitar                             188
-    Playing Free Strokes                                         192
-    Playing Rest Strokes                                         193
-    Playing Arpeggio Style                                       194
-    Playing Counterpoint                                         195
-    Songs for Practice                                           196
-Chapter 12: Buying a Guitar                                      
-    Introduction to Buying a Guitar                              200
-    Types of Guitars                                             202
-    Test a Guitar                                                203
-    Guitar Construction                                          204
-    Electric Guitar Considerations                               206
-Chapter 13: Guitar Accessories
-    Amplifiers and Speakers                                      210
-    Capos                                                        214
-    Cases                                                        216
-    Picks                                                        218
-    Electronic Tuners                                            220
-    Stands                                                       221
-    Straps                                                       222
-    Strings                                                      224
-    Introduction to Effects                                      228
-    Types of Effects                                             232
-    Connecting Effects                                           237
-
-Chapter 14: Guitar Care and Maintenance
-    Clean Your Guitar                                            240
-    Protect Your Guitar                                          242
-    Common Guitar Problems                                       243
-    Tools for Maintaining a Guitar                               244
-    Remove Old Strings                                           246
-    Restring an Acoustic Guitar Restring a Classical Guitar      248
-    Restring an Electric Guitar                                  250
-    Adjust the Action                                            252
-    Adjust the Height of Pickups                                 256
-    Adjust the Intonation                                        257
-    Tighten Loose Connections                                    258
-    Fix Crackling Controls                                       260
-    Fix Strap Pins                                               262
-    Items to Keep Handy                                          264
-    Repairs that Require a Professional                          265
-Chapter 15: Home Recording                                       
-    Introduction to Home Recording                               266
-    Recording with Mixers                                        272
-    Recording Devices                                            273
-    Recording with a Microphone                                  274
-                                                                 276
-Chapter 16: Quick Reference
-    Guitar Information on the Internet                           280
-    Chord Diagrams                                               282
-    Scale Diagrams                                               284
-    Glossary                                                     286
+Chapter 6:                                                   80
+    Playing Barre Chords and Power Chords                    81
+    Introduction to Barre Chords                             82
+    The E-based Major Barre Chord                            86
+    Other E-based Barre Chords                               88
+    The A-based Major Barre Chord                            90
+    Other A-based Barre Chords                               92
+    Open-Position Power Chords                               96
+    Movable Power Chords                                     98
+    Songs for Practice                                       100
+Chapter 7: Playing Single Notes                              103
+    Playing Notes on the 1st String                          104
+    Playing Notes on the 2nd String                          106
+    Playing Notes on the 3rd String                          108
+    Playing Notes on the 4th String                          110
+    Playing Notes on the 5th String                          112
+    Playing Notes on the 6th String                          114
+    Finding Notes on Your Guitar                             116
+    Position Playing                                         118
+    Playing Scales                                           122
+    Playing Double-Stops                                     126
+    Songs for Practice                                       128
+Chapter 8: Articulation Techniques                           133
+    Playing Hammer-Ons                                       134
+    Playing Pull-Offs                                        135
+    Playing Slides                                           136
+    Muting Strings                                           137
+    Playing Bends                                            138
+    Applying Vibrato                                         140
+Chapter 9: Playing Rock Guitar                               143
+    Introduction to Rock Guitar                              144
+    Playing Rock Lead Guitar                                 146
+    Playing Rock Rhythm Guitar                               150
+    Playing Suspended Chords                                 152
+    Playing Add Chords                                       154
+    Playing Slash Chords                                     156
+    Using Open Tunings                                       158
+    Using Alternate Tunings                                  160
+    Songs for Practice                                       162
+Chapter 10: Playing Folk and Country Music                   177
+    Introduction to Folk and Country Music                   178
+    Playing the Bass Note Strum Style                        180
+    Playing in Carter Style                                  182
+    Playing with Travis Picking                              183
+    Songs for Practice                                       184
+Chapter 11: Playing Classical Guitar                         187
+    Introduction to Classical Guitar                         188
+    Playing Free Strokes                                     192
+    Playing Rest Strokes                                     193
+    Playing Arpeggio Style                                   194
+    Playing Counterpoint                                     195
+    Songs for Practice                                       196
+Chapter 12: Buying a Guitar                                  199
+    Introduction to Buying a Guitar                          200
+    Types of Guitars                                         202
+    Test a Guitar                                            203
+    Guitar Construction                                      204
+    Electric Guitar Considerations                           206
+Chapter 13: Guitar Accessories                               209
+    Amplifiers and Speakers                                  210
+    Capos                                                    214
+    Cases                                                    216
+    Picks                                                    218
+    Electronic Tuners                                        220
+    Stands                                                   221
+    Straps                                                   222
+    Strings                                                  224
+    Introduction to Effects                                  228
+    Types of Effects                                         232
+    Connecting Effects                                       237
+Chapter 14: Guitar Care and Maintenance                      239
+    Clean Your Guitar                                        240
+    Protect Your Guitar                                      242
+    Common Guitar Problems                                   243
+    Tools for Maintaining a Guitar                           244
+    Remove Old Strings                                       246
+    Restring an Acoustic Guitar                              248
+    Restring a Classical Guitar                              250
+    Restring an Electric Guitar                              252
+    Adjust the Action                                        256
+    Adjust the Height of Pickups                             257
+    Adjust the Intonation                                    258
+    Tighten Loose Connections                                260
+    Fix Crackling Controls                                   262
+    Fix Strap Pins                                           264
+    Items to Keep Handy                                      265
+    Repairs that Require a Professional                      266
+    Repairs that Require a Professional                      268
+Chapter 15: Home Recording                                   270
+    Introduction to Home Recording                           272
+    Recording with Mixers                                    273
+    Recording Devices                                        274
+    Recording with a Microphone                              276
+Chapter 16: Quick Reference                                  278
+    Guitar Information on the Internet                       280
+    Chord Diagrams                                           282
+    Scale Diagrams                                           284
+    Glossary                                                 286
 
 
 
