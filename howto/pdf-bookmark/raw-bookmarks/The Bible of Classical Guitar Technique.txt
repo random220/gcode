@@ -1,5 +1,5 @@
 Cover 1*
-_offset 1
+_offset -1
 Preface                                                                                                 3
 Introductory Words by Aniello Desiderio                                                                 4
 Suggestions for Using this Technique Handbook                                                           4
@@ -62,7 +62,7 @@ PART ONE: PREREQUISITES AND BASICS                                              
         Arpeggios: Sequence of Motions                                                                  46
 
 
-PART TWO: TECHNICAL EXERCISES                                                                           48
+PART TWO: TECHNICAL EXERCISES                                                                           47
 
     I. Arpeggios                                                                                        48
         The Practicing Units                                                                            48
@@ -240,7 +240,7 @@ PART TWO: TECHNICAL EXERCISES                                                   
         The Arpeggiated Chord (Rolled) in a Polyphonic Chord                                            216
         The Elastic Wrist Attack in Dolce Cantabile Playing                                             216
 
-PART THREE: IMPORTANT TOPICS                                                                            218
+PART THREE: IMPORTANT TOPICS                                                                            217
 
     I. Fingering Technique                                                                              218
         Fingering and Interpretation                                                                    218
