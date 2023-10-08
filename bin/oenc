@@ -1,0 +1,36 @@
+#!/bin/bash
+infile="$1"
+
+op=enc
+if [[ "$1" == '-e' ]]; then
+    op=enc
+    infile="$2"
+elif [[ "$1" == '-d' ]]; then
+    op=dec
+    infile="$2"
+fi
+
+if [[ "$infile" == '' ]]; then
+    echo "Need infile"
+    exit 1
+fi
+
+
+if [[ ! -f "$infile" ]]; then
+    echo "File \"$infile\" not found"
+    exit 1
+fi
+
+echo -n Password:
+read -s password
+export mypass="$password"
+
+outfile='/tmp/outfile-'$$
+if [[ "$op" == 'enc' ]]; then
+    openssl enc -e -in "$infile" -out "$outfile" -base64 -aes256 -iter 12 -pass env:mypass
+else
+    openssl enc -d -in "$infile" -out "$outfile" -base64 -aes256 -iter 12 -pass env:mypass
+fi
+
+echo
+echo "See $outfile"
