@@ -1,2 +1,0 @@
-#  0-59 0-23 1-31 1-12 0-7(0/7Sun)
-13 */6 * * * bash -c 'cd /home/om/sb/jencomps/cron/ldap && ./collect'
