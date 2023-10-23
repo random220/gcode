@@ -2,12 +2,18 @@
 
 if [[ ! -f ~/.profile ]]; then
 
-    cat <<'EOF'  >~/.profile
+    if [[ "$SHELL" == '/bin/ksh' ]]; then
+        cat <<'EOF' >~/.profile
+alias bb='export SHELL=/bin/bash; exec /bin/bash'
+alias tt='tmux a'
+EOF
+    else
+        cat <<'EOF'  >~/.profile
 if [[ -f ~/.bashrc ]]; then
   . ~/.bashrc
 fi
 EOF
-
+    fi
 fi
 
 if [[ ! -d ~/gcode ]]; then
