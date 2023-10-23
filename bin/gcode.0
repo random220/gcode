@@ -33,4 +33,11 @@ if [[ -f ~/.gcode/.bashrc ]]; then
 fi
 EOF
 
+cd
+rm -f .bash_profile
+cat <<'EOF' >.bash_profile
+    if [[ -f ~/.bashrc ]]; then
+        . ~/.bashrc
+    fi
+EOF
 
