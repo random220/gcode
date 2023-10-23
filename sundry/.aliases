@@ -394,7 +394,7 @@ function t0
   fi
   local ls=$(tmux ls | grep "^${name}:" 2>/dev/null)
   if [[ $ls == '' ]]; then
-    tmux new -s $name
+    tmux new -s $name -2
   else
     # T0: 2 windows (created Sat Oct 21 18:35:33 2017) [139x51] (attached)
     tmux a -d -t $name
