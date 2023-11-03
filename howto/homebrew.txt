@@ -1,0 +1,16 @@
+# Somehow fetch homebrew gits repos
+mkdir -p ~/b/om/sb/brew
+cd ~/b/om/sb/brew
+git clone --mirror https://github.com/Homebrew/brew
+git clone --mirror https://github.com/Homebrew/homebrew-core
+
+rm -rf ~/x
+mkdir ~/x
+cd ~/x
+git clone ~/b/om/sb/brew/brew.git
+cd brew
+
+export HOMEBREW_BREW_GIT_REMOTE=~//b/om/sb/brew/brew.git            #"https://github.com/Homebrew/brew"
+export HOMEBREW_CORE_GIT_REMOTE=~//b/om/sb/brew/homebrew-core.git   #"https://github.com/Homebrew/homebrew-core"
+
+bash -x install.sh
