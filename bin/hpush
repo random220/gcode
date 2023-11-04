@@ -74,11 +74,11 @@ p=$(cd $p && pwd -P)
 
 tmpdir=$(mktemp -d)
 
-cmd="(ssh om@$target_machine 'rsync -a --delete /b/om/p/CRUZER/') >'$tmpdir/list_remote.txt'"
+cmd="(ssh om@$target_machine 'TZ=UTC rsync -a --delete /b/om/p/CRUZER/') >'$tmpdir/list_remote.txt'"
 echo "doing: $cmd"
 eval $cmd
 
-cmd="(rsync -a --delete $p/) >'$tmpdir/list_local.txt'"
+cmd="(TZ=UTC rsync -a --delete $p/) >'$tmpdir/list_local.txt'"
 echo "doing: $cmd"
 eval $cmd
 

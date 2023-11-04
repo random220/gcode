@@ -49,7 +49,7 @@ fi
 
 echo
 echo "Syncing ..."
-cmd="rsync -a --delete $l/ $p/"
+cmd="TZ=UTC rsync -a --delete $l/ $p/"
 echo "doing: $cmd"
 $cmd
 
