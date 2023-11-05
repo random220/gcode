@@ -1,0 +1,11 @@
+#!/bin/bash
+from=$1
+if [[ $from == '' ]]; then
+  echo need revision
+  exit 1
+fi
+git branch ___xxx
+git bundle create ~/bb.bun ${from}..___xxx
+git branch -D ___xxx
+echo
+echo see ~/bb.bun
