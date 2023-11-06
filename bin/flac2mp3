@@ -36,10 +36,37 @@ else
 fi
 
 
-echo 'mkdir -p mp3'
-while IFS= read -r infile; do
-    to_mp3 $num "$infile"
-done <"$listfile"
+shellscript=$(mktemp)
+cat <<EOF >"$shellscript"
+#!/bin/bash
 
+# $shellscript
+mkdir -p mp3
+
+EOF
+
+
+while IFS= read -r infile; do
+    to_mp3 $num "$infile" >>"$shellscript"
+done <"$listfile"
 rm -f "$listfile"
+
+cat <<EOF >>"$shellscript"
+
+echo
+echo '# ------------------------------------------------------'
+echo 'rm -f "'$shellscript'"'
+echo '# ------------------------------------------------------'
+echo
+
+EOF
+
+chmod a+x "$shellscript"
+echo
+cat <<EOF
+cat "$shellscript"
+rm -f "$shellscript"
+"$shellscript"
+EOF
+
 
