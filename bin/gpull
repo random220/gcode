@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [[ -d ~/gcode ]]; then
+  cd ~/gcode
+else
+  exit
+fi
+
+echo 'Github password for random220'
+echo
+
+cat <<'EOF' | openssl enc -d -in - -out - -base64 -aes256 -iter 12 | bash -
+U2FsdGVkX1+PyYy3sLCQvirxaeSAkeFPYW9HaF51v01P1JxPUJWSTju1Gm1z8arO
+Xy8KAg9Ji4tf27p7EXwiG4jxohWNCXYb05JPJvXaXRTdAWbECP9zn+xoFmkSedeS
+bh4j+gf8XThGajMw2pd1Vk2RhAyHf8jPYPY91BxRzeQQA0RdQS0cQftxX+c6PNNX
+jGDGQiFYlpEnnvaD5UqxT2mW9oCGnbYzygseaBcGfr05b3tWs3qewWtO1TZueWSA
+f4b8o7BJmBcqiBguTTqcddR1Vr1fAMh9O8rBuvj0PC7WPZC+c2fdY4Qw6H1ZFwhd
+G4YdR8BFhnQ0VOCVwxuH//UH67e4SMG23TdW4y+QdyRSzwa/mKxwr9I0umzUrqXc
+lKt00OqFWjC0ND0BzcJ/GbzNwwzJ6o5Xq/8NBwngGII=
+EOF
+
+bash
+
+git remote rm origin >/dev/null 2>&1
