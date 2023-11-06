@@ -1,0 +1,69 @@
+#!/bin/bash
+infile="$1"
+
+main() {
+  op=enc
+  if [[ "$1" == '-e' ]]; then
+    op=enc
+    infile="$2"
+  elif [[ "$1" == '-d' ]]; then
+    op=dec
+    infile="$2"
+  fi
+  
+  if [[ "$infile" == '' ]]; then
+    echo "Need infile"
+    exit 1
+  fi
+  
+  if [[ ! -f "$infile" ]]; then
+    echo "File \"$infile\" not found"
+    exit 1
+  fi
+  
+  echo -n Password:
+  read -s password
+  export mypass="$password"
+  
+  outfile='/tmp/outfile-'$$
+  if [[ "$op" == 'enc' ]]; then
+    do_enc_gpg "$infile" "$outfile"
+  else
+    do_dec_gpg "$infile" "$outfile"
+  fi
+  
+  echo
+  echo "See $outfile"
+}
+
+do_dec_openssl() {
+  local cryptfile="$1"
+  local plainfile="$2"
+  openssl enc -d -in "$cryptfile" -out "$plainfile" -base64 -aes256 -iter 12 -pass env:mypass
+  return $?
+}
+do_enc_openssl() {
+  local plainfile="$1"
+  local cryptfile="$2"
+  openssl enc -e -in "$plainfile" -out "$cryptfile" -base64 -aes256 -iter 12 -pass env:mypass
+  return $?
+}
+do_enc_gpg() {
+  local plainfile="$1"
+  local cryptfile="$2"
+  rm -f crypt.gpg
+  gpg --passphrase-fd 0 --batch -c -o crypt.gpg "$plainfile" <<<"$mypass"
+  local status=$?
+  if [[ $status == 0 ]]; then
+    mv crypt.gpg "$cryptfile"
+  fi
+  return $status
+}
+do_dec_gpg() {
+  local cryptfile="$1"
+  local plainfile="$2"
+  gpg --passphrase-fd 0 --batch -d -o "$plainfile" "$cryptfile" 2>/dev/null <<<"$mypass"
+  return $?
+}
+
+main "$@"
