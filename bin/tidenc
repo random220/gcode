@@ -1,11 +1,4 @@
 #!/bin/bash
 
 tiddlyfile=$HOME/b/om/p/CRUZER/gitted/sandbox/tiddly.html
-umask 077
-d=$(mktemp -d)
-cd "$d"
-cat "$tiddlyfile" | gzip - >tiddly.html.gz
-rm -f /tmp/outfile*
-oenc tiddly.html.gz
-mv /tmp/outfile* .
-pwd
+genc "$tiddlyfile"

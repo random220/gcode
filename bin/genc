@@ -25,10 +25,11 @@ main() {
   read -s password
   export mypass="$password"
   
-  outfile='/tmp/outfile-'$$
   if [[ "$op" == 'enc' ]]; then
+    outfile=/tmp/$(basename "$infile").gpg
     do_enc_gpg "$infile" "$outfile"
   else
+    outfile=/tmp/$(basename "$infile").plain
     do_dec_gpg "$infile" "$outfile"
   fi
   
