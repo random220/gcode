@@ -1,0 +1,68 @@
+#!/bin/bash
+
+#set -x
+
+cryptfile=~/.ssh/passwords.txt.enc
+umask 077
+mkdir -p ~/.ssh
+d=$(mktemp -d)
+cd "$d"
+
+echo -n Password:
+read -s password
+export mypass="$password"
+
+do_dec_openssl() {
+  local cryptfile="$1"
+  local plainfile="$2"
+  openssl enc -d -in "$cryptfile" -out "$plainfile" -base64 -aes256 -iter 12 -pass env:mypass
+  return $?
+}
+do_enc_openssl() {
+  local plainfile="$1"
+  local cryptfile="$2"
+  openssl enc -e -in "$plainfile" -out "$cryptfile" -base64 -aes256 -iter 12 -pass env:mypass
+  return $?
+}
+do_enc_gpg() {
+  local plainfile="$1"
+  local cryptfile="$2"
+  rm -f crypt.gpg
+  gpg --passphrase-fd 0 --batch -c -o crypt.gpg "$plainfile" <<<"$mypass"
+  local status=$?
+  if [[ $status == 0 ]]; then
+    mv crypt.gpg "$cryptfile"
+  fi
+  return $status
+}
+do_dec_gpg() {
+  local cryptfile="$1"
+  local plainfile="$2"
+  gpg --passphrase-fd 0 --batch -d -o "$plainfile" "$cryptfile" 2>/dev/null <<<"$mypass"
+  return $?
+}
+
+if [[ -f "$cryptfile" ]]; then
+  #do_dec_openssl "$cryptfile" passwords.txt0
+  do_dec_gpg "$cryptfile" passwords.txt0
+  if [[ $? != 0 ]]; then
+    echo Bad decrypt
+    cd /
+    rm -rf "$d"
+    exit 1
+  fi
+  cp passwords.txt0 passwords.txt
+else
+  touch passwords.txt0
+  touch passwords.txt
+fi
+
+vi passwords.txt
+cmp -s passwords.txt0 passwords.txt
+if [[ $? != 0 ]]; then
+  #do_enc_openssl passwords.txt "$cryptfile"
+  do_enc_gpg passwords.txt "$cryptfile"
+fi
+
+cd /
+rm -rf "$d"
