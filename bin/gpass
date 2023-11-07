@@ -2,7 +2,23 @@
 
 #set -x
 
-cryptfile=~/.ssh/passwords.txt.enc
+algo=gpg
+cryptfile=~/.ssh/gpass-secrets.gpg
+
+type gpg >/dev/null 2>&1
+if [[ $? != 0 ]]; then
+  algo=openssl
+  cryptfile=~/.ssh/gpass-secrets.openssl
+fi
+
+if [[ "$1" == '-g' ]]; then
+  algo=gpg
+  cryptfile=~/.ssh/gpass-secrets.gpg
+elif [[ "$1" == '-o' ]]; then
+  algo=openssl
+  cryptfile=~/.ssh/gpass-secrets.openssl
+fi
+
 umask 077
 mkdir -p ~/.ssh
 d=$(mktemp -d)
@@ -43,8 +59,11 @@ do_dec_gpg() {
 }
 
 if [[ -f "$cryptfile" ]]; then
-  #do_dec_openssl "$cryptfile" passwords.txt0
-  do_dec_gpg "$cryptfile" passwords.txt0
+  if [[ $algo == 'gpg' ]]; then
+    do_dec_gpg "$cryptfile" passwords.txt0
+  else
+    do_dec_openssl "$cryptfile" passwords.txt0
+  fi
   if [[ $? != 0 ]]; then
     echo Bad decrypt
     cd /
@@ -60,8 +79,11 @@ fi
 vi passwords.txt
 cmp -s passwords.txt0 passwords.txt
 if [[ $? != 0 ]]; then
-  #do_enc_openssl passwords.txt "$cryptfile"
-  do_enc_gpg passwords.txt "$cryptfile"
+  if [[ $algo == 'gpg' ]]; then
+    do_enc_gpg passwords.txt "$cryptfile"
+  else
+    do_enc_openssl passwords.txt "$cryptfile"
+  fi
 fi
 
 cd /
