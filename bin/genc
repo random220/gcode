@@ -16,7 +16,7 @@ main() {
     exit 1
   fi
   
-  if [[ ! -f "$infile" ]]; then
+  if [[ ! -f "$infile" ]] && [[ ! -d "$infile" ]] ; then
     echo "File \"$infile\" not found"
     exit 1
   fi
@@ -53,8 +53,19 @@ do_enc_gpg() {
   local plainfile="$1"
   local cryptfile="$2"
   rm -f crypt.gpg
-  gpg --passphrase-fd 0 --batch -c -o crypt.gpg "$plainfile" <<<"$mypass"
-  local status=$?
+  local status
+  if [[ -d "$plainfile" ]]; then
+    local tmpd=$(mktemp -d)
+    local ind=$(cd "$(dirname "$plainfile")" && pwd -P)
+    local bn=$(basename "$plainfile")
+    (cd "$ind" && tar cf "$tmpd/${bn}.tar" "$bn")
+    gpg --passphrase-fd 0 --batch -c -o crypt.gpg "$tmpd/${bn}.tar" <<<"$mypass"
+    status=$?
+    rm -rf "$tmpd"
+  else
+    gpg --passphrase-fd 0 --batch -c -o crypt.gpg "$plainfile" <<<"$mypass"
+  fi
+  status=$?
   if [[ $status == 0 ]]; then
     mv crypt.gpg "$cryptfile"
   fi
