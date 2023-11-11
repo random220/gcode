@@ -10,29 +10,41 @@ main() {
     op=dec
     infile="$2"
   fi
-  
+
   if [[ "$infile" == '' ]]; then
     echo "Need infile"
     exit 1
   fi
-  
-  if [[ ! -f "$infile" ]] && [[ ! -d "$infile" ]] ; then
-    echo "File \"$infile\" not found"
-    exit 1
+
+  if [[ "$op" == 'enc' ]]; then
+    if [[ -f "$infile" ]]; then
+      outfile=/tmp/$(basename "$infile").gpg
+    elif [[ -d "$infile" ]]; then
+      outfile=/tmp/$(basename "$infile").tar.gpg
+    else
+      echo "File \"$infile\" not found"
+      exit 1
+    fi
+  else
+    if [[ -f "$infile" ]]; then
+      outfile=/tmp/$(basename "$infile").plain
+    else
+      echo "File \"$infile\" not found"
+      exit 1
+    fi
   fi
-  
+
   echo -n Password:
   read -s password
   export mypass="$password"
-  
+
   if [[ "$op" == 'enc' ]]; then
-    outfile=/tmp/$(basename "$infile").gpg
     do_enc_gpg "$infile" "$outfile"
   else
-    outfile=/tmp/$(basename "$infile").plain
     do_dec_gpg "$infile" "$outfile"
   fi
-  
+
+
   echo
   echo "See $outfile"
 }
