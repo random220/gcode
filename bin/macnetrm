@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cat <<'EOF'
+/usr/sbin/networksetup -listallnetworkservices
+networksetup -removenetworkservice 'Wi-Fi 2'
+EOF
+
