@@ -1,0 +1,16 @@
+#!/bin/bash
+from_hash=$1
+if [[ $from_hash == '' ]]; then
+  echo 'Need a hash to start from'
+  exit 1
+fi
+
+git log -1 $from_hash >/dev/null 2>&1
+if [[ $? != 0 ]]; then
+  echo "Git hash $from_hash not found"
+  exit 1
+fi
+
+bundle=/tmp/aaa_$$
+git bundle create $bundle ${from_hash}..HEAD
+echo "See $bundle"

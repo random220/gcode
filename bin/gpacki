@@ -1,0 +1,10 @@
+#!/bin/bash
+
+bundle_file="$1"
+if [[ ! -f "$bundle_file" ]]; then
+  echo Need a git bundle file
+  exit 1
+fi
+
+git fetch "$bundle_file" HEAD:_xxx
+
