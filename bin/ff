@@ -3,6 +3,7 @@
 found=0
 ff=''
 for ff_ in \
+    ~/'Applications/Firefox.app/Contents/MacOS/firefox' \
     '/Applications/Firefox.app/Contents/MacOS/firefox' \
     '/usr/bin/firefox' \
     '/opt/homebrew/bin/firefox'; do
