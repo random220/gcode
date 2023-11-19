@@ -1,13 +1,19 @@
 #!/bin/bash
 
-ff=/Applications/Firefox.app/Contents/MacOS/firefox
-if [[ ! -f $ff ]]; then
-  ff=/usr/bin/firefox
-fi
+found=0
+ff=''
+for ff_ in \
+    '/Applications/Firefox.app/Contents/MacOS/firefox' \
+    '/usr/bin/firefox' \
+    '/opt/homebrew/bin/firefox'; do
+  if [[ -f "$ff_" ]]; then
+    ff="$ff_"
+    break
+  fi
+done
 
-if [[ -f $ff ]]; then
-  :
-else
+if [[ "$ff" == '' ]]; then
+  echo Firefox not found
   exit 1
 fi
 
@@ -16,17 +22,25 @@ ddir=~/.firefox/$bn
 
 if [[ $bn == 'ff' ]]; then
   rm -rf "$ddir"
-  mkdir -p $ddir
-  cat <<EOF|openssl enc -d -base64 >"$ddir/user.js"
-dXNlcl9wcmVmKCJuZXR3b3JrLnByb3h5LnNvY2tzIiwgImxvY2FsaG9zdCIpOwp1
-c2VyX3ByZWYoIm5ldHdvcmsucHJveHkuc29ja3NfcG9ydCIsIDk5OTkpOwp1c2Vy
-X3ByZWYoIm5ldHdvcmsucHJveHkuc29ja3NfcmVtb3RlX2RucyIsIHRydWUpOwp1
-c2VyX3ByZWYoIm5ldHdvcmsucHJveHkudHlwZSIsIDEpOwp1c2VyX3ByZWYoIm5l
-dHdvcmsudHJyLm1vZGUiLCAyKTsK
+fi
+
+mkdir -p $ddir
+
+if [[ ! -f "$ddir/prefs.js" ]]; then
+  cat <<'EOF' >"$ddir/prefs.js"
+user_pref("layout.css.prefers-color-scheme.content-override", 0);
+user_pref("network.proxy.socks", "localhost");
+user_pref("network.proxy.socks_port", 9999);
+user_pref("network.proxy.socks_remote_dns", true);
+user_pref("network.proxy.type", 1);
+user_pref("browser.shell.checkDefaultBrowser", false);
+user_pref("browser.warnOnQuitShortcut", false);
 EOF
+fi
+
+if [[ $bn == 'ff' ]]; then
   nohup bash -c "'$ff' --profile $ddir; rm -rf $ddir" >/dev/null 2>&1 &
 else
-  mkdir -p $ddir
   nohup bash -c "'$ff' --profile $ddir" >/dev/null 2>&1 &
 fi
 

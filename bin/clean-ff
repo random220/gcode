@@ -1,0 +1,8 @@
+#!/bin/bash
+rm -rf \
+~/'Library/Application Support/Firefox' \
+~/'Library/Saved Application State/org.mozilla.firefox.savedState' \
+~/'Library/Preferences/org.mozilla.firefox.plist' \
+~/'Library/Caches/Firefox' \
+~/'Library/Caches/Mozilla/updates/Users/omandal/Applications/Firefox' \
+~/'Library/Caches/Mozilla/updates/Applications/Firefox' \
