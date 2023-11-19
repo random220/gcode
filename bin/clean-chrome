@@ -1,0 +1,6 @@
+#!/bin/bash
+rm -rf \
+~/'Library/Application Support/Google/Chrome' \
+~/'Library/Caches/Google/Chrome' \
+~/'Library/Google/GoogleSoftwareUpdate/Actives/com.google.Chrome' \
+~/'Library/Preferences/com.google.Chrome.plist' \
