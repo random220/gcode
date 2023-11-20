@@ -1,6 +1,8 @@
 #!/bin/bash
 infile="$1"
 
+umask 077
+
 main() {
   op=enc
   if [[ "$1" == '-e' ]]; then
@@ -16,20 +18,26 @@ main() {
     exit 1
   fi
 
+  local tmpdir=$(mktemp -d -t genc)
   if [[ "$op" == 'enc' ]]; then
     if [[ -f "$infile" ]]; then
-      outfile=/tmp/$(basename "$infile").gpg
+      outfile="${tmpdir}/"$(basename "$infile").gpg
+      outfilea="${tmpdir}/"$(basename "$infile").gpg.b64
     elif [[ -d "$infile" ]]; then
-      outfile=/tmp/$(basename "$infile").tar.gpg
+      local bname=$(basename "$(readlink -f "$infile")")
+      outfile="${tmpdir}/$bname".tar.gpg
+      outfilea="${tmpdir}/$bname".tar.gpg.b64
     else
       echo "File \"$infile\" not found"
+      rm -rf "$tmpdir"
       exit 1
     fi
   else
     if [[ -f "$infile" ]]; then
-      outfile=/tmp/$(basename "$infile").plain
+      outfile="${tmpdir}/"$(basename "$infile").plain
     else
       echo "File \"$infile\" not found"
+      rm -rf "$tmpdir"
       exit 1
     fi
   fi
@@ -39,14 +47,15 @@ main() {
   export mypass="$password"
 
   if [[ "$op" == 'enc' ]]; then
-    do_enc_gpg "$infile" "$outfile"
+    do_enc_gpg "$infile" "$outfile" "$outfilea"
   else
-    do_dec_gpg "$infile" "$outfile"
+    do_dec_gpg "$infile" "$outfile" "$outfilea"
   fi
 
-
   echo
-  echo "See $outfile"
+  echo
+  echo "See"
+  find "$tmpdir"
 }
 
 do_dec_openssl() {
@@ -64,10 +73,11 @@ do_enc_openssl() {
 do_enc_gpg() {
   local plainfile="$1"
   local cryptfile="$2"
+  local cryptfilea="$3"
   rm -f crypt.gpg
   local status
   if [[ -d "$plainfile" ]]; then
-    local tmpd=$(mktemp -d)
+    local tmpd=$(mktemp -d -t genc)
     local ind=$(cd "$(dirname "$plainfile")" && pwd -P)
     local bn=$(basename "$plainfile")
     (cd "$ind" && tar cf "$tmpd/${bn}.tar" "$bn")
@@ -81,13 +91,26 @@ do_enc_gpg() {
   if [[ $status == 0 ]]; then
     mv crypt.gpg "$cryptfile"
   fi
+  if [[ -f "$cryptfile" ]]; then
+    openssl enc -base64 <"$cryptfile" >"$cryptfilea"
+  fi
   return $status
 }
 do_dec_gpg() {
   local cryptfile="$1"
   local plainfile="$2"
-  gpg --passphrase-fd 0 --batch -d -o "$plainfile" "$cryptfile" 2>/dev/null <<<"$mypass"
-  return $?
+  local status=0
+  if [[ "$cryptfile" =~ \.b64$ ]]; then
+    local tmpdir=$(mktemp -d -t genc)
+    base64 -d <"$cryptfile" >"$tmpdir/a.gpg"
+    gpg --passphrase-fd 0 --batch -d -o "$plainfile" "$tmpdir/a.gpg" 2>/dev/null <<<"$mypass"
+    status=$?
+    rm -rf "$tmpdir"
+  else
+    gpg --passphrase-fd 0 --batch -d -o "$plainfile" "$cryptfile" 2>/dev/null <<<"$mypass"
+    status=$?
+  fi
+  return $status
 }
 
 main "$@"
