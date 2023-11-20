@@ -4,8 +4,10 @@ import os, sys
 import json
 import re
 
-conf_dir = os.environ['HOME']+'/.jira'
+conf_dir  = os.environ['HOME']+'/.jira'
 conf_file = conf_dir + '/conf'
+qdir      = conf_dir + '/queries'
+os.makedirs(qdir, exist_ok = True)
 
 JIRA = {
     'url' : None,
@@ -26,8 +28,14 @@ def main():
         print_help()
         sys.exit(0)
 
-    qdir = f'{conf_dir}/queries'
-    os.makedirs(qdir, exist_ok = True)
+    if sys.argv[1] == 'q':
+        do_query()
+        sys.exit(0)
+    elif sys.argv[1] == 'set':
+        do_setup()
+        sys.exit(0)
+
+def do_query():
     if sys.argv[1] == 'q' and len(sys.argv) == 2:
         os.system(f'find "{qdir}"/*')
         sys.exit(0)
@@ -61,6 +69,7 @@ def normalize_query(q):
 
 def print_help():
     print("""
+# j set               # get url and token
 # j q                 # list saved queries
 # j q <'QUERY TEXT'>  #
 # j q n:<query name>  # Execute named query
@@ -89,6 +98,14 @@ def readenv():
 
         for key in j:
             JIRA[key] = j[key]
+
+def do_setup():
+    JIRA['token_file'] = None
+    print('URL: something like https://production.jira.site.com')
+    JIRA['url'] = input().strip()
+    print('Jira token:')
+    JIRA['token'] = input().strip()
+    writeenv()
 
 def set_jira(env):
 
@@ -148,10 +165,16 @@ def run_jql(jql_query):
             # print(f"Status: {issue['fields']['status']['name']}")
             # print(f"Assignee: {issue['fields']['assignee']['displayName'] if issue['fields']['assignee'] else 'Unassigned'}")
             # print("------")
+
+            issuetype = 'XXXX'
             if 'issuetype' in issue['fields']:
-                print(f"{issue['key']}   {issue['fields']['issuetype']['name']}   {issue['fields']['status']['name']}   {issue['fields']['summary']}")
-            else:
-                print(f"{issue['key']}   XXXX   {issue['fields']['status']['name']}   {issue['fields']['summary']}")
+                issuetype = issue['fields']['issuetype']['name']
+
+            print('{key: <18}{itype: <14}{status: <12}{summary}'
+                                      .format(key=issue['key'],
+                                              itype=issuetype,
+                                              status=issue['fields']['status']['name'],
+                                              summary=issue['fields']['summary']))
 
         total = results_dict['total']
         startAt = startAt + maxResults
