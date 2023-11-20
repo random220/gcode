@@ -100,11 +100,16 @@ def readenv():
             JIRA[key] = j[key]
 
 def do_setup():
-    JIRA['token_file'] = None
-    print('URL: something like https://production.jira.site.com')
-    JIRA['url'] = input().strip()
-    print('Jira token:')
-    JIRA['token'] = input().strip()
+    if len(sys.argv) == 3:
+        # j set test
+        set_jira(sys.argv[2])
+    else:
+        JIRA['token_file'] = None
+        print('URL: something like https://production.jira.site.com')
+        JIRA['url'] = input().strip()
+        print('Jira token:')
+        JIRA['token'] = input().strip()
+
     writeenv()
 
 def set_jira(env):
