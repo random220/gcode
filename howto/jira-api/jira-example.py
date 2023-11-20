@@ -60,11 +60,11 @@ def do_query():
         # people = '"'+people.replace(',', '","')+'"'
         # jql = f'assignee in ({people}) and status not in (Resolved,Closed,Blocked,Done,Released)'
         # jql = f'assignee in ({people}) and status not in (Resolved,Closed,Done)'
-        print(jql)
+        # print(jql)
         run_jql(jql)
 
 def normalize_query(q):
-    q = re.sub(r'\s+', ' ', q, re.S)
+    q = re.sub(r'\s+', ' ', q, count=0, flags=re.S)
     return q
 
 def print_help():
@@ -160,6 +160,8 @@ def run_jql(jql_query):
     startAt = 0
     maxResults = 1000
     total = 0
+    out_data = []
+    lengths = {}
     while True:
         results_dict = fetch_query_results(startAt, maxResults, jql_query)
         
@@ -171,20 +173,34 @@ def run_jql(jql_query):
             # print(f"Assignee: {issue['fields']['assignee']['displayName'] if issue['fields']['assignee'] else 'Unassigned'}")
             # print("------")
 
-            issuetype = 'XXXX'
+            issue_key = issue['key']
+            issue_type = 'XXXX'
             if 'issuetype' in issue['fields']:
-                issuetype = issue['fields']['issuetype']['name']
+                issue_type = issue['fields']['issuetype']['name']
+            issue_status = issue['fields']['status']['name']
+            issue_summary = issue['fields']['summary']
 
-            print('{key: <18}{itype: <14}{status: <12}{summary}'
-                                      .format(key=issue['key'],
-                                              itype=issuetype,
-                                              status=issue['fields']['status']['name'],
-                                              summary=issue['fields']['summary']))
+            newdata = [issue_key, issue_type, issue_status, issue_summary]
+            out_data.append(newdata)
+            i = -1
+            for data in newdata:
+                i += 1
+                if i not in lengths:
+                    lengths[i] = 0
+                if len(data) > lengths[i]:
+                    lengths[i] = len(data)
 
         total = results_dict['total']
         startAt = startAt + maxResults
         if startAt >= total:
             break
+
+    for i in lengths:
+        lengths[i] += 2
+
+    formatline = f'{{zero: <{lengths[0]}}} {{one: <{lengths[1]}}} {{two: <{lengths[2]}}} {{three}}'
+    for data in out_data:
+        print(formatline.format(zero=data[0], one=data[1], two=data[2], three=data[3]))
 
 
 def fetch_query_results(startAt, maxResults, jql_query):
