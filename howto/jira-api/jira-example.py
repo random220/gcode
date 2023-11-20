@@ -2,6 +2,10 @@
 import requests
 import os, sys
 import json
+import re
+
+conf_dir = os.environ['HOME']+'/.jira'
+conf_file = conf_dir + '/conf'
 
 JIRA = {
     'url' : None,
@@ -10,28 +14,90 @@ JIRA = {
 }
 
 def main():
-    #set_jira('test')
-    #issue_key = 'TESTPROJ-11'
-    #print_issue(issue_key)
-
-    set_jira('prod')
+    os.umask(0o077)
+    readenv()
+    if JIRA['url'] is None:
+        set_jira('test')
+        writeenv()
     #issue_key = 'SPARTA-18102'
     #print_issue(issue_key)
-    #print("\n\n\n\n\n\n")
 
-    people = 'omm,omandal'
-    people = '"'+people.replace(',', '","')+'"'
-    jql = f'assignee in ({people}) and status not in (Resolved,Closed,Blocked,Done,Released)'
-    print_jql(jql)
+    if len(sys.argv) == 1:
+        print_help()
+        sys.exit(0)
 
+    qdir = f'{conf_dir}/queries'
+    os.makedirs(qdir, exist_ok = True)
+    if sys.argv[1] == 'q' and len(sys.argv) == 2:
+        os.system(f'find "{qdir}"/*')
+        sys.exit(0)
+    elif sys.argv[1] == 'q' and len(sys.argv) == 3:
+        m = re.search(r'^n:(.+)', sys.argv[2])
+        if m:
+            qname = m.group(1)
+            qfile = qname
+            if not os.path.isfile(qfile):
+                qfile = f'{qdir}/{qname}'
+            if not os.path.isfile(qfile):
+                print(f'File not found {qfile}')
+                sys.exit(1)
+            f = open(qfile, 'r')
+            jql = normalize_query(f.read())
+            f.close()
+        else:
+            jql = normalize_query(sys.argv[2])
+        
+        # people = 'omm,omandal'
+        # people = 'omm,omandal,xxx'
+        # people = '"'+people.replace(',', '","')+'"'
+        # jql = f'assignee in ({people}) and status not in (Resolved,Closed,Blocked,Done,Released)'
+        # jql = f'assignee in ({people}) and status not in (Resolved,Closed,Done)'
+        print(jql)
+        run_jql(jql)
+
+def normalize_query(q):
+    q = re.sub(r'\s+', ' ', q, re.S)
+    return q
+
+def print_help():
+    print("""
+# j q                 # list saved queries
+# j q <'QUERY TEXT'>  #
+# j q n:<query name>  # Execute named query
+# ---
+# j c irp2323        # create issue with label "manual-rehab"
+# j l                # list open issues with label "manual-rehab"
+# j a issue who      # assign
+# j cl issue         # close
+# j cm|com issue     # add comment
+# j lb issue label   # add label
+"""
+    )
+
+def writeenv():
+    os.makedirs(conf_dir, exist_ok = True)
+    f = open(conf_file, 'w')
+    f.write(json.dumps(JIRA, indent=4, sort_keys=True))
+    f.write('\n')
+    
+def readenv():
+    os.makedirs(os.path.dirname(conf_file), exist_ok = True)
+    if os.path.isfile(conf_file):
+        f = open(conf_file, 'r')
+        j = json.load(f)
+        f.close()
+
+        for key in j:
+            JIRA[key] = j[key]
 
 def set_jira(env):
+
     if env == 'prod':
         JIRA['url'] = 'https://production.jira.site.com'
         JIRA['token_file'] = os.environ['HOME']+'/.ssh/token-jira-prod'
     elif env == 'test':
         JIRA['url'] = 'http://0.0.0.0:8080'
-        JIRA['token_file'] = os.environ['HOME']+'/.ssh/token-jira-test'
+        JIRA['token_file'] = os.environ['HOME']+'/.ssh/token-jira-8080'
     elif env == 'test9':
         JIRA['url'] = 'http://0.0.0.0:9090'
         JIRA['token_file'] = os.environ['HOME']+'/.ssh/token-jira-9090'
@@ -68,7 +134,7 @@ def print_issue(issue_key):
         print(f"Failed to retrieve issue. Status code: {response.status_code}")
         print(response.text)
 
-def print_jql(jql_query):
+def run_jql(jql_query):
     startAt = 0
     maxResults = 1000
     total = 0
