@@ -34,6 +34,57 @@ def main():
     elif sys.argv[1] == 'set':
         do_setup()
         sys.exit(0)
+    elif sys.argv[1] == 'cm':
+        do_comment()
+        sys.exit(0)
+
+def do_comment():
+    comment = ''
+    if sys.argv[1] == 'cm' and len(sys.argv) == 2:
+        print("Need issue")
+        sys.exit(1)
+    elif sys.argv[1] == 'cm' and len(sys.argv) == 3:
+        issue_key = sys.argv[2]
+        lines = []
+        while True:
+            try:
+                line = input()
+                lines.append(line)
+            except EOFError:
+                break
+        comment = '\n'.join(lines)
+    elif sys.argv[1] == 'cm' and len(sys.argv) == 4:
+        issue_key = sys.argv[2]
+        comment = sys.argv[3]
+    add_comment(issue_key, comment)
+
+def add_comment(issue_key, comment_text):
+    # Define the Jira search API endpoint
+    jira_url = JIRA['url']
+    access_token = JIRA['token']
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'Content-Type': 'application/json'
+    }
+
+    # Set the Jira API endpoint for adding comments to an issue
+    comment_url = f'{jira_url}/rest/api/2/issue/{issue_key}/comment'
+
+    # Create a payload with the comment text
+    payload = {
+        'body': comment_text
+    }
+
+    # Make a POST request to add a comment to the issue
+    response = requests.post(comment_url, headers=headers, json=payload)
+
+    # Check if the request was successful (HTTP status code 201 for created)
+    if response.status_code == 201:
+        print("Comment added successfully.")
+    else:
+        print(f"Failed to add comment. Status code: {response.status_code}")
+        print(response.text)
+
 
 def do_query():
     if sys.argv[1] == 'q' and len(sys.argv) == 2:
