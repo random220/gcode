@@ -22,11 +22,9 @@ main() {
   if [[ "$op" == 'enc' ]]; then
     if [[ -f "$infile" ]]; then
       outfile="${tmpdir}/"$(basename "$infile").gpg
-      outfilea="${tmpdir}/"$(basename "$infile").gpg.b64
     elif [[ -d "$infile" ]]; then
       local bname=$(basename "$(readlink -f "$infile")")
       outfile="${tmpdir}/$bname".tar.gpg
-      outfilea="${tmpdir}/$bname".tar.gpg.b64
     else
       echo "File \"$infile\" not found"
       rm -rf "$tmpdir"
@@ -47,9 +45,9 @@ main() {
   export mypass="$password"
 
   if [[ "$op" == 'enc' ]]; then
-    do_enc_gpg "$infile" "$outfile" "$outfilea"
+    do_enc_gpg "$infile" "$outfile"
   else
-    do_dec_gpg "$infile" "$outfile" "$outfilea"
+    do_dec_gpg "$infile" "$outfile"
   fi
 
   echo
@@ -73,7 +71,6 @@ do_enc_openssl() {
 do_enc_gpg() {
   local plainfile="$1"
   local cryptfile="$2"
-  local cryptfilea="$3"
   rm -f crypt.gpg
   local status
   if [[ -d "$plainfile" ]]; then
@@ -83,16 +80,20 @@ do_enc_gpg() {
     (cd "$ind" && tar cf "$tmpd/${bn}.tar" "$bn")
     gpg --passphrase-fd 0 --batch -c -o crypt.gpg "$tmpd/${bn}.tar" <<<"$mypass"
     status=$?
+    gpg --passphrase-fd 0 --batch -c -o crypt.gpg.txt -a "$tmpd/${bn}.tar" <<<"$mypass"
     rm -rf "$tmpd"
   else
     gpg --passphrase-fd 0 --batch -c -o crypt.gpg "$plainfile" <<<"$mypass"
+    status=$?
+    gpg --passphrase-fd 0 --batch -c -o crypt.gpg.txt -a "$plainfile" <<<"$mypass"
   fi
   status=$?
   if [[ $status == 0 ]]; then
     mv crypt.gpg "$cryptfile"
+    mv crypt.gpg.txt "$cryptfile".txt
   fi
   if [[ -f "$cryptfile" ]]; then
-    openssl enc -base64 <"$cryptfile" >"$cryptfilea"
+    openssl enc -base64 <"$cryptfile" >"$cryptfile".b64
   fi
   return $status
 }
