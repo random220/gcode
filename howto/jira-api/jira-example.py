@@ -124,13 +124,13 @@ def print_help():
 # j q                 # list saved queries
 # j q <'QUERY TEXT'>  #
 # j q n:<query name>  # Execute named query
+# j cm|com issue      # add comment
 # ---
-# j c irp2323        # create issue with label "manual-rehab"
-# j l                # list open issues with label "manual-rehab"
-# j a issue who      # assign
-# j cl issue         # close
-# j cm|com issue     # add comment
-# j lb issue label   # add label
+# j c irp2323         # create issue with label "manual-rehab"
+# j l                 # list open issues with label "manual-rehab"
+# j a issue who       # assign
+# j cl issue          # close
+# j lb issue label    # add label
 """
     )
 
