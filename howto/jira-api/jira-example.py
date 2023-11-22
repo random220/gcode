@@ -42,6 +42,31 @@ def main():
         do_comment()
         sys.exit(0)
 
+
+def print_help():
+    print("""
+# j env                   # List known envs
+# j env .                 # Show current default env
+# j env +                 # Create a new env. Ask for name
+# j env +apple            # Create a new named env
+# j env + pear            # Create a new named env
+# j env mango             # Use a named env
+# j env /some/path/mango  # Use a named env from path
+# j q                     # list saved queries
+# j q <query name>        # Execute named query
+# j q last                # Execute last query
+# j q q:<'QUERY TEXT'>    #
+# j cm|com issue          # add comment
+# ---
+# j c irp2323             # create issue with label "manual-rehab"
+# j l                     # list open issues with label "manual-rehab"
+# j a issue who           # assign
+# j cl issue              # close
+# j lb issue label        # add label
+"""
+    )
+
+
 def do_comment():
     comment = ''
     if sys.argv[1] == 'cm' and len(sys.argv) == 2:
@@ -61,6 +86,7 @@ def do_comment():
         issue_key = sys.argv[2]
         comment = sys.argv[3]
     add_comment(issue_key, comment)
+
 
 def add_comment(issue_key, comment_text):
     # Define the Jira search API endpoint
@@ -91,13 +117,20 @@ def add_comment(issue_key, comment_text):
 
 
 def do_query():
+    # j q                     # list saved queries
     if sys.argv[1] == 'q' and len(sys.argv) == 2:
         os.system(f'find "{qdir}"/*')
         sys.exit(0)
+
+    # j q <query name>        # Execute named query
+    # j q last                # Execute last query
+    # j q q:<'QUERY TEXT'>    #
     elif sys.argv[1] == 'q' and len(sys.argv) == 3:
-        m = re.search(r'^n:(.+)', sys.argv[2])
+        m = re.search(r'^q:(.+)', sys.argv[2])
         if m:
-            qname = m.group(1)
+            jql = normalize_query(m.group(1))
+        else:
+            qname = sys.argv[2]
             qfile = qname
             if not os.path.isfile(qfile):
                 qfile = f'{qdir}/{qname}'
@@ -107,9 +140,12 @@ def do_query():
             f = open(qfile, 'r')
             jql = normalize_query(f.read())
             f.close()
-        else:
-            jql = normalize_query(sys.argv[2])
         
+        last_query_file = f'{qdir}/last'
+        f = open(last_query_file, 'w')
+        f.write(jql)
+        f.write('\n')
+        f.close()
         # people = 'omm,omandal'
         # people = 'omm,omandal,xxx'
         # people = '"'+people.replace(',', '","')+'"'
@@ -121,28 +157,6 @@ def do_query():
 def normalize_query(q):
     q = re.sub(r'\s+', ' ', q, count=0, flags=re.S)
     return q
-
-def print_help():
-    print("""
-# j env                   # List known envs
-# j env .                 # Show current default env
-# j env +                 # Create a new env. Ask for name
-# j env +apple            # Create a new named env
-# j env + pear            # Create a new named env
-# j env mango             # Use a named env
-# j env /some/path/mango  # Use a named env from path
-# j q                     # list saved queries
-# j q <'QUERY TEXT'>      #
-# j q n:<query name>      # Execute named query
-# j cm|com issue          # add comment
-# ---
-# j c irp2323             # create issue with label "manual-rehab"
-# j l                     # list open issues with label "manual-rehab"
-# j a issue who           # assign
-# j cl issue              # close
-# j lb issue label        # add label
-"""
-    )
 
 def make_new_env(envname):
     JIRA['token_file'] = None
