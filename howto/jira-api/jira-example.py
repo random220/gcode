@@ -246,6 +246,8 @@ def run_jql(jql_query):
     maxResults = 1000
     total = 0
     out_data = []
+    newdata = ['Updated', 'Created', 'Issue', 'Type', 'Status', 'Summary']
+    out_data.append(newdata)
     lengths = {}
     while True:
         results_dict = fetch_query_results(startAt, maxResults, jql_query)
@@ -258,14 +260,18 @@ def run_jql(jql_query):
             # print(f"Assignee: {issue['fields']['assignee']['displayName'] if issue['fields']['assignee'] else 'Unassigned'}")
             # print("------")
 
-            issue_key = issue['key']
-            issue_type = 'XXXX'
+            _key = issue['key']
+            _type = 'XXXX'
             if 'issuetype' in issue['fields']:
-                issue_type = issue['fields']['issuetype']['name']
-            issue_status = issue['fields']['status']['name']
-            issue_summary = issue['fields']['summary']
+                _type = issue['fields']['issuetype']['name']
+            _status = issue['fields']['status']['name']
+            _summary = issue['fields']['summary']
+            _created = issue['fields']['created']
+            _created = re.sub(r'T.*', '', _created)
+            _updated = issue['fields']['updated']
+            _updated = re.sub(r'T.*', '', _updated)
 
-            newdata = [issue_key, issue_type, issue_status, issue_summary]
+            newdata = [_updated, _created, _key, _type, _status, _summary]
             out_data.append(newdata)
             i = -1
             for data in newdata:
@@ -283,9 +289,9 @@ def run_jql(jql_query):
     for i in lengths:
         lengths[i] += 2
 
-    formatline = f'{{zero: <{lengths[0]}}} {{one: <{lengths[1]}}} {{two: <{lengths[2]}}} {{three}}'
+    formatline = f'{{zero: <{lengths[0]}}} {{one: <{lengths[1]}}} {{two: <{lengths[2]}}} {{three: <{lengths[3]}}} {{four: <{lengths[4]}}} {{five}}'
     for data in out_data:
-        print(formatline.format(zero=data[0], one=data[1], two=data[2], three=data[3]))
+        print(formatline.format(zero=data[0], one=data[1], two=data[2], three=data[3], four=data[4], five=data[5]))
 
 
 def fetch_query_results(startAt, maxResults, jql_query):
@@ -307,7 +313,7 @@ def fetch_query_results(startAt, maxResults, jql_query):
         'jql': jql_query,
         'startAt': startAt,
         'maxResults': maxResults,  # You can adjust this based on your needs
-        'fields': ['summary', 'status', 'assignee', 'issuetype']  # Specify the fields you want to retrieve
+        'fields': ['summary', 'status', 'assignee', 'issuetype', 'created', 'updated']  # Specify the fields you want to retrieve
     }
 
     # Make a request to search for issues using the specified JQL query
