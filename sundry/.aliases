@@ -269,6 +269,18 @@ alias glogn='echo|gh auth login; gh auth setup-git'
 alias glog='git log --all --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit --date=relative'
 alias glog1='git log --graph --decorate --oneline'
 alias glog2='git log --all --graph --decorate --oneline'
+nah () {
+  local root=$(git rev-parse --show-toplevel 2>/dev/null)
+  if [[ "$root" == '' ]]; then
+    return
+  fi
+  git reset --hard
+  git clean -df
+  if [ -d "$root/.git/rebase-apply" ] || [ -d "$root/.git/rebase-merge" ]; then
+    git rebase --abort
+  fi
+}
+
 
 heads () 
 { 
