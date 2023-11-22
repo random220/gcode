@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 import requests
 import os, sys
+import shutil
 import json
 import re
 
-conf_dir  = os.environ['HOME']+'/.jira'
-conf_file = conf_dir + '/conf'
-qdir      = conf_dir + '/queries'
+confroot   = os.environ['HOME']+'/.jira'
+conf_file  = confroot + '/conf'
+savedconfs = confroot + '/confs'
+qdir       = confroot + '/queries'
+os.makedirs(savedconfs, exist_ok = True)
 os.makedirs(qdir, exist_ok = True)
 
 JIRA = {
@@ -135,7 +138,7 @@ def print_help():
     )
 
 def writeenv():
-    os.makedirs(conf_dir, exist_ok = True)
+    os.makedirs(confroot, exist_ok = True)
     f = open(conf_file, 'w')
     f.write(json.dumps(JIRA, indent=4, sort_keys=True))
     f.write('\n')
@@ -151,9 +154,20 @@ def readenv():
             JIRA[key] = j[key]
 
 def do_setup():
-    if len(sys.argv) == 3:
+    # j set
+    if len(sys.argv) == 2:
+        os.system(f'find "{savedconfs}"/*')
+        sys.exit(0)
+    elif len(sys.argv) == 3:
         # j set test
-        set_jira(sys.argv[2])
+        saved_conf_file = f'{savedconfs}/{sys.argv[2]}'
+        if os.path.isfile(saved_conf_file):
+            shutil.copy2(saved_conf_file, conf_file)
+            readenv()
+            sys.exit(0)
+        else:
+            print(f"File not found {saved_conf_file}")
+            sys.exit(1)
     else:
         JIRA['token_file'] = None
         print('URL: something like https://production.jira.site.com')
