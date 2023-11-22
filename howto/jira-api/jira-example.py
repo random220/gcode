@@ -5,11 +5,11 @@ import shutil
 import json
 import re
 
-confroot   = os.environ['HOME']+'/.jira'
-conf_file  = confroot + '/conf'
-savedconfs = confroot + '/confs'
-qdir       = confroot + '/queries'
-os.makedirs(savedconfs, exist_ok = True)
+confroot          = os.environ['HOME']+'/.jira'
+default_conf_file = confroot + '/conf'
+saved_env_confs   = confroot + '/confs'
+qdir              = confroot + '/queries'
+os.makedirs(saved_env_confs, exist_ok = True)
 os.makedirs(qdir, exist_ok = True)
 
 JIRA = {
@@ -20,10 +20,6 @@ JIRA = {
 
 def main():
     os.umask(0o077)
-    readenv()
-    if JIRA['url'] is None:
-        set_jira('test')
-        writeenv()
     #issue_key = 'SPARTA-18102'
     #print_issue(issue_key)
 
@@ -31,11 +27,16 @@ def main():
         print_help()
         sys.exit(0)
 
+    if sys.argv[1] == 'env':
+        do_env_setup()
+        sys.exit(0)
+
+    readenv()
+    if JIRA['url'] is None:
+        make_new_env(None)
+
     if sys.argv[1] == 'q':
         do_query()
-        sys.exit(0)
-    elif sys.argv[1] == 'set':
-        do_setup()
         sys.exit(0)
     elif sys.argv[1] == 'cm':
         do_comment()
@@ -123,81 +124,95 @@ def normalize_query(q):
 
 def print_help():
     print("""
-# j set               # get url and token
-# j q                 # list saved queries
-# j q <'QUERY TEXT'>  #
-# j q n:<query name>  # Execute named query
-# j cm|com issue      # add comment
+# j env                   # List known envs
+# j env +                 # Create a new env. Ask for name
+# j env +apple            # Create a new named env
+# j env + pear            # Create a new named env
+# j env mango             # Use a named env
+# j env /some/path/mango  # Use a named env from path
+# j q                     # list saved queries
+# j q <'QUERY TEXT'>      #
+# j q n:<query name>      # Execute named query
+# j cm|com issue          # add comment
 # ---
-# j c irp2323         # create issue with label "manual-rehab"
-# j l                 # list open issues with label "manual-rehab"
-# j a issue who       # assign
-# j cl issue          # close
-# j lb issue label    # add label
+# j c irp2323             # create issue with label "manual-rehab"
+# j l                     # list open issues with label "manual-rehab"
+# j a issue who           # assign
+# j cl issue              # close
+# j lb issue label        # add label
 """
     )
 
-def writeenv():
+def make_new_env(envname):
+    JIRA['token_file'] = None
+    print('URL: something like https://production.jira.site.com')
+    JIRA['url'] = input().strip()
+    print('Jira token:')
+    JIRA['token'] = input().strip()
+    writeenv(envname)
+
+def writeenv(envname):
     os.makedirs(confroot, exist_ok = True)
+    if envname is None:
+        conf_file = default_conf_file
+    else:
+        conf_file = f'{saved_env_confs}/{envname}'
     f = open(conf_file, 'w')
     f.write(json.dumps(JIRA, indent=4, sort_keys=True))
     f.write('\n')
     
 def readenv():
-    os.makedirs(os.path.dirname(conf_file), exist_ok = True)
-    if os.path.isfile(conf_file):
-        f = open(conf_file, 'r')
+    os.makedirs(os.path.dirname(default_conf_file), exist_ok = True)
+    if os.path.isfile(default_conf_file):
+        f = open(default_conf_file, 'r')
         j = json.load(f)
         f.close()
 
         for key in j:
             JIRA[key] = j[key]
 
-def do_setup():
-    # j set
+def do_env_setup():
+    # j env  # List saved envs
     if len(sys.argv) == 2:
-        os.system(f'find "{savedconfs}"/*')
+        os.system(f'find "{saved_env_confs}"/*')
         sys.exit(0)
-    elif len(sys.argv) == 3:
-        # j set test
-        saved_conf_file = f'{savedconfs}/{sys.argv[2]}'
-        if os.path.isfile(saved_conf_file):
-            shutil.copy2(saved_conf_file, conf_file)
-            readenv()
-            sys.exit(0)
-        else:
-            print(f"File not found {saved_conf_file}")
+    elif len(sys.argv) >= 3:
+        # j env +
+        # j env +apple
+        # j env + pear
+        envname = ''
+        if sys.argv[2] == '+':
+            if len(sys.argv) == 4:
+                envname = sys.argv[3]           # j env + pear
+            else:                               # j env +
+                print("New env name?")
+                envname = input().strip()
+            make_new_env(envname)
+            return
+
+        m = re.search(r'^\+(.*)', sys.argv[2])  # j env +apple
+        if m:
+            envname = m.group(1)
+            if envname == '':
+                print('This should not happen !!!')
+                print(sys.argv)
+                sys.exit(1)
+            make_new_env(envname)
+            return
+
+        # j env mango
+        # j env /some/path/mango
+        saved_conf_file = sys.argv[2]
+        if not os.path.isfile(saved_conf_file):
+            saved_conf_file = f'{saved_env_confs}/{sys.argv[2]}'
+        if not os.path.isfile(saved_conf_file):
+            print('Conf file not found')
             sys.exit(1)
-    else:
-        JIRA['token_file'] = None
-        print('URL: something like https://production.jira.site.com')
-        JIRA['url'] = input().strip()
-        print('Jira token:')
-        JIRA['token'] = input().strip()
 
-    writeenv()
+        shutil.copy2(saved_conf_file, default_conf_file)
+        readenv()
+        sys.exit(0)
 
-def set_jira(env):
-
-    if env == 'prod':
-        JIRA['url'] = 'https://production.jira.site.com'
-        JIRA['token_file'] = os.environ['HOME']+'/.ssh/token-jira-prod'
-    elif env == 'test':
-        JIRA['url'] = 'http://0.0.0.0:8080'
-        JIRA['token_file'] = os.environ['HOME']+'/.ssh/token-jira-8080'
-    elif env == 'test9':
-        JIRA['url'] = 'http://0.0.0.0:9090'
-        JIRA['token_file'] = os.environ['HOME']+'/.ssh/token-jira-9090'
-    else:
-        print('Unknown env: '+env)
-        sys.exit(1)
-    if os.path.isfile(JIRA['token_file']):
-        f = open(JIRA['token_file'], 'rt')
-        JIRA['token'] = f.readline().strip()
-        f.close()
-    else:
-        print('File not found '+JIRA['token_file'])
-        sys.exit(1)
 
 def print_issue(issue_key):
     # Set the headers with the access token for authentication
