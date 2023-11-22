@@ -125,6 +125,7 @@ def normalize_query(q):
 def print_help():
     print("""
 # j env                   # List known envs
+# j env .                 # Show current default env
 # j env +                 # Create a new env. Ask for name
 # j env +apple            # Create a new named env
 # j env + pear            # Create a new named env
@@ -181,6 +182,10 @@ def do_env_setup():
         # j env +apple
         # j env + pear
         envname = ''
+        if sys.argv[2] == '.':
+            os.system(f'cat {default_conf_file}')
+            sys.exit(0)
+
         if sys.argv[2] == '+':
             if len(sys.argv) == 4:
                 envname = sys.argv[3]           # j env + pear
