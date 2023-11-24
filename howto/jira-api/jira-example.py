@@ -38,7 +38,7 @@ def main():
     if sys.argv[1] == 'q':
         do_query()
         sys.exit(0)
-    elif sys.argv[1] == 'cm':
+    elif sys.argv[1] == 'cm' or sys.argv[1] == 'com':
         do_comment()
         sys.exit(0)
 
@@ -69,10 +69,10 @@ def print_help():
 
 def do_comment():
     comment = ''
-    if sys.argv[1] == 'cm' and len(sys.argv) == 2:
+    if len(sys.argv) == 2:
         print("Need issue")
         sys.exit(1)
-    elif sys.argv[1] == 'cm' and len(sys.argv) == 3:
+    elif len(sys.argv) == 3:
         issue_key = sys.argv[2]
         lines = []
         while True:
@@ -82,7 +82,7 @@ def do_comment():
             except EOFError:
                 break
         comment = '\n'.join(lines)
-    elif sys.argv[1] == 'cm' and len(sys.argv) == 4:
+    elif len(sys.argv) == 4:
         issue_key = sys.argv[2]
         comment = sys.argv[3]
     add_comment(issue_key, comment)
