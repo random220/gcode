@@ -41,8 +41,7 @@ def main():
     elif sys.argv[1] == 'cm' or sys.argv[1] == 'com':
         do_comment()
         sys.exit(0)
-    elif sys.argv[1] == 'c' \
-    or   sys.argv[1] == 'create' \
+    elif sys.argv[1] == 'n' \
     or   sys.argv[1] == 'new':
         issue_create()
         sys.exit(0)
@@ -62,7 +61,7 @@ def print_help():
 # j q last                # Execute last query
 # j q q:<'QUERY TEXT'>    #
 # j cm|com issue          # add comment
-# j c|create|new [p:project] [s:summary] [b:body]   # Create a new issue
+# j n|new [p:project] [s:summary] [b:body]   # Create a new issue
 # ---
 # j l                     # list open issues with label "manual-rehab"
 # j a issue who           # assign
