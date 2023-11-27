@@ -255,6 +255,7 @@ def print_issue(issue_key):
         print(f"Failed to retrieve issue. Status code: {response.status_code}")
         print(response.text)
 
+
 def run_jql(jql_query):
     startAt = 0
     maxResults = 1000
@@ -300,6 +301,10 @@ def run_jql(jql_query):
         if startAt >= total:
             break
 
+    if len(lengths) == 0:
+        return
+
+    # Add two more spaces to the right over the max width of fields
     for i in lengths:
         lengths[i] += 2
 
