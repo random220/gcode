@@ -339,6 +339,7 @@ def run_jql(jql_query):
     lengths = {}
     while True:
         results_dict = fetch_query_results(startAt, maxResults, jql_query)
+        maxResults = results_dict['maxResults']
         
         # Print issue details from the search results
         for issue in results_dict['issues']:
@@ -354,7 +355,8 @@ def run_jql(jql_query):
                 _type = issue['fields']['issuetype']['name']
             _assignee = 'Unassigned'
             if 'assignee' in issue['fields']:
-                _assignee = issue['fields']['assignee']['displayName']
+                if issue['fields']['assignee'] is not None:
+                    _assignee = issue['fields']['assignee']['name']
             _status = issue['fields']['status']['name']
             _summary = issue['fields']['summary']
             _created = issue['fields']['created']
