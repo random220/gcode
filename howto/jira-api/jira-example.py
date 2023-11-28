@@ -38,8 +38,12 @@ def main():
     if sys.argv[1] == 'q':
         do_query()
         sys.exit(0)
-    elif sys.argv[1] == 'cm':
+    elif sys.argv[1] == 'cm' or sys.argv[1] == 'com':
         do_comment()
+        sys.exit(0)
+    elif sys.argv[1] == 'n' \
+    or   sys.argv[1] == 'new':
+        issue_create()
         sys.exit(0)
 
 
@@ -57,8 +61,8 @@ def print_help():
 # j q last                # Execute last query
 # j q q:<'QUERY TEXT'>    #
 # j cm|com issue          # add comment
+# j n|new [p:project] [s:summary] [b:body]   # Create a new issue
 # ---
-# j c irp2323             # create issue with label "manual-rehab"
 # j l                     # list open issues with label "manual-rehab"
 # j a issue who           # assign
 # j cl issue              # close
@@ -67,25 +71,94 @@ def print_help():
     )
 
 
+def issue_create():
+    # j c|create|new [p:project] [s:summary] [b:body]   # Create a new issue
+    fields = {}
+    m = re_search()
+    for arg in sys.argv[2:]:
+        if m.search(r'(.+)\:(.+)', arg):
+            fields[m.group(1)] = m.group(2)
+
+    if 'p' not in fields:
+        print('Project:')
+        fields['p'] = input().strip()
+    if 's' not in fields:
+        print('Summary:')
+        fields['s'] = input().strip()
+    if 'b' not in fields:
+        print('Body:')
+        fields['b'] = input_multiline()
+
+    # Define the Jira search API endpoint
+    jira_url = JIRA['url']
+    access_token = JIRA['token']
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'Content-Type': 'application/json'
+    }
+
+    # Set the Jira API endpoint for creating an issue
+    create_issue_url = f'{jira_url}/rest/api/2/issue'
+
+    # Set the project key and issue type (replace 'YOUR_PROJECT' and 'Bug' with your actual values)
+    project_key = fields['p']
+    issue_type = 'Bug'
+
+    # Set the summary and description for the new issue
+    summary = fields['s']
+    description = fields['b']
+
+    # Create a payload with the issue details
+    payload = {
+        'fields': {
+            'project': {
+                'key': project_key
+            },
+            'summary': summary,
+            'description': description,
+            'issuetype': {
+                'name': issue_type
+            }
+        }
+    }
+
+    # Make a POST request to create a new issue
+    response = requests.post(create_issue_url, headers=headers, json=payload)
+
+    # Check if the request was successful (HTTP status code 201 for created)
+    if response.status_code == 201:
+        created_issue_data = response.json()
+        created_issue_key = created_issue_data['key']
+        print(f"Issue created successfully. Key: {created_issue_key}")
+    else:
+        print(f"Failed to create issue. Status code: {response.status_code}")
+        print(response.text)
+
+
 def do_comment():
     comment = ''
-    if sys.argv[1] == 'cm' and len(sys.argv) == 2:
+    if len(sys.argv) == 2:
         print("Need issue")
         sys.exit(1)
-    elif sys.argv[1] == 'cm' and len(sys.argv) == 3:
+    elif len(sys.argv) == 3:
         issue_key = sys.argv[2]
-        lines = []
-        while True:
-            try:
-                line = input()
-                lines.append(line)
-            except EOFError:
-                break
-        comment = '\n'.join(lines)
-    elif sys.argv[1] == 'cm' and len(sys.argv) == 4:
+        comment = input_multiline()
+    elif len(sys.argv) == 4:
         issue_key = sys.argv[2]
         comment = sys.argv[3]
     add_comment(issue_key, comment)
+
+
+def input_multiline():
+    lines = []
+    while True:
+        try:
+            line = input()
+            lines.append(line)
+        except EOFError:
+            break
+    text = '\n'.join(lines)
+    return text
 
 
 def add_comment(issue_key, comment_text):
@@ -346,6 +419,23 @@ def fetch_query_results(startAt, maxResults, jql_query):
         print(f"Failed to execute JQL query. Status code: {response.status_code}")
         print(response.text)
         sys.exit(1)
+
+
+class re_search:
+    def __init__(self):
+        self.pattern_compiled = None
+        self.match = None
+
+    def search(self, pattern_raw, text):
+        self.match = re.search(pattern_raw, text) 
+        if self.match:
+            return True
+        return False
+
+    def group(self, group_num):
+        if self.match:
+            return self.match.group(group_num)
+        return None
 
 main()
 print("    # ./example.py |sort|sed 's/-.*//'|uniq -c|sort -nr >projects.txt")
