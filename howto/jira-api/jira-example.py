@@ -334,7 +334,7 @@ def run_jql(jql_query):
     maxResults = 1000
     total = 0
     out_data = []
-    newdata = ['Updated', 'Created', 'Issue', 'Type', 'Status', 'Summary']
+    newdata = ['Updated', 'Created', 'Issue', 'Assignee', 'Type', 'Status', 'Summary']
     out_data.append(newdata)
     lengths = {}
     while True:
@@ -352,6 +352,9 @@ def run_jql(jql_query):
             _type = 'XXXX'
             if 'issuetype' in issue['fields']:
                 _type = issue['fields']['issuetype']['name']
+            _assignee = 'Unassigned'
+            if 'assignee' in issue['fields']:
+                _assignee = issue['fields']['assignee']['displayName']
             _status = issue['fields']['status']['name']
             _summary = issue['fields']['summary']
             _created = issue['fields']['created']
@@ -359,7 +362,7 @@ def run_jql(jql_query):
             _updated = issue['fields']['updated']
             _updated = re.sub(r'T.*', '', _updated)
 
-            newdata = [_updated, _created, _key, _type, _status, _summary]
+            newdata = [_updated, _created, _key, _assignee, _type, _status, _summary]
             out_data.append(newdata)
             i = -1
             for data in newdata:
@@ -381,9 +384,9 @@ def run_jql(jql_query):
     for i in lengths:
         lengths[i] += 2
 
-    formatline = f'{{zero: <{lengths[0]}}} {{one: <{lengths[1]}}} {{two: <{lengths[2]}}} {{three: <{lengths[3]}}} {{four: <{lengths[4]}}} {{five}}'
+    formatline = f'{{zero: <{lengths[0]}}} {{one: <{lengths[1]}}} {{two: <{lengths[2]}}} {{three: <{lengths[3]}}} {{four: <{lengths[4]}}} {{five: <{lengths[5]}}} {{six}}'
     for data in out_data:
-        print(formatline.format(zero=data[0], one=data[1], two=data[2], three=data[3], four=data[4], five=data[5]))
+        print(formatline.format(zero=data[0], one=data[1], two=data[2], three=data[3], four=data[4], five=data[5], six=data[6]))
 
 
 def fetch_query_results(startAt, maxResults, jql_query):
