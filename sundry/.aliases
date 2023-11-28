@@ -272,7 +272,7 @@ alias glog2='git log --all --graph --decorate --oneline'
 nah () {
   local root=$(git rev-parse --show-toplevel 2>/dev/null)
   if [[ "$root" == '' ]]; then
-    return
+    return 1
   fi
   git reset --hard
   if [ -d "$root/.git/rebase-apply" ] || [ -d "$root/.git/rebase-merge" ]; then
@@ -280,6 +280,10 @@ nah () {
   fi
   git reset --hard
   #git clean -df
+  return 0
+}
+nahh () {
+  nah && git clean -df
 }
 
 
