@@ -61,7 +61,7 @@ echo
 echo "Syncing ..."
 cmd="TZ=UTC rsync -a --delete $p/ $l/"
 echo "doing: $cmd"
-$cmd
+bash -c "$cmd"
 
 lastsync=$(date "+lastsync--%Y-%m-%d--%H-%M-%S")
 (cd $l/.. && (rm -f lastsync*; touch $lastsync))
