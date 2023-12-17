@@ -1,0 +1,29 @@
+#!/bin/bash
+
+d=$(mktemp -d)
+cd "$d"
+
+cat <<EOF >cr
+-----BEGIN PGP MESSAGE-----
+
+jA0ECQMIwyc/2nHiFKnz0sCHAYFVQDDJD6z995hlVwDDIg9O2kk16Aq8bkYmW23G
+pONn0vkyxMY6WUMtrTzckSndUj8U6mvSUADnlTHLbjW+WDrnApZYc02S1KaJyqFo
+SECSi5BirlC4ux6hyaBUoDD3jQanC7dX/6O9sMTTd3I9Ah3s0ggwijbcGPBimx0e
+FUENwPp1O/5BfqsP9yzsK6fe+UAmnBpxuOfc9bIkiEaj/04uE0jVN1Om6VJG1MUF
+2jkjGYSZPSgZrVDJ6MqJNbtsm1aO2y8/3CyweTtx0WjahzqtXdmzkA8WNvJ9CqBk
+wHKDsjHQ858rb1KvGagbSwEtBP0iPa2XepdRgJUjqFYvIIDHIfAcSUQ5pyivc2yO
+4xEaG2RLPItW81ZwstWaMxtFbu9MQhQ7VkYyxewdalaDQUDWd5m/OewWB+oyTpVa
+xHSp/dhoQ3xn
+=NOpL
+-----END PGP MESSAGE-----
+EOF
+
+echo 'Hint: Hosta!'
+read -s pass
+gpg --passphrase-fd 0 --batch -d -o a.sh cr 2>/dev/null <<<"$pass"
+bash a.sh "$@"
+
+cd /
+rm -rf "$d"
+
+
