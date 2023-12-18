@@ -139,8 +139,13 @@ mkprompt() {
         fg3=0
     fi
 
+    local hostname='\h'
+    if [[ -f ~/.hostname ]]; then
+        hostname=$(cat ~/.hostname)
+    fi
+
     local x=$(color_bg $bg1)$(color_fg $fg1)' \u '$(color_bg $bg2)$(color_fg $bg1)''
-    local y=$(color_bg $bg2)$(color_fg $fg2)' \h '$(color_bg $bg3)$(color_fg $bg2)''
+    local y=$(color_bg $bg2)$(color_fg $fg2)" $hostname "$(color_bg $bg3)$(color_fg $bg2)''
     local z=$(color_bg $bg3)$(color_fg $fg3)' \w '$(color_reset)$(color_fg $bg3)''$(color_reset)'\n% '
     echo "$x$y$z"
 }
@@ -234,7 +239,13 @@ fancy_off () {
     if [[ $LOGNAME == sm || $HOSTNAME == work ]]; then
         color=magenta
     fi
-    export PS1=$(color_fg $color)'\u@\h \w >'$(color_reset)'\n% '
+
+    local hostname='\h'
+    if [[ -f ~/.hostname ]]; then
+        hostname=$(cat ~/.hostname)
+    fi
+
+    export PS1=$(color_fg $color)'\u@'$hostname' \w >'$(color_reset)'\n% '
     alias ps1="echo export PS1=\''$PS1'\'"
     rm -f ~/.config/.fancy* ~/.config/fancy
 }
