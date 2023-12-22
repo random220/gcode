@@ -100,8 +100,8 @@ colors=(
     '26:255 49:0 147:0'
     '26:255 220:0 247:0'
     '33:253 21:253 42:232'
-    '39:0 92:0 27:0'
-    '44:0 27:0 226:0'
+    '39:255 92:255 27:255'
+    '44:0 27:255 226:0'
     '44:0 27:0 251:0'
     '83:0 34:0 207:0'
     '83:0 139:0 226:0'
@@ -170,11 +170,11 @@ fancies() {
     local color
     local modelprompt
 
+    local THIS=''
     if [[ -f ~/.config/fancy ]]; then
         color=$(cat ~/.config/fancy)
         modelprompt=$(mkmodelprompt "$color")
-        echo -e "THIS:\t${modelprompt}   -- '$color'"
-        echo
+        THIS="THIS:\t${modelprompt}   -- '$color'"
     fi
     for (( i=0; i<$len; i++ )); do
         color=${colors[$i]}
@@ -182,6 +182,10 @@ fancies() {
         echo -e "${i}:\t${modelprompt}   -- '$color'"
         echo
     done
+    if [[ $THIS != '' ]]; then
+        echo -e "$THIS"
+        echo
+    fi
 }
 alias prompts=fancies
 
