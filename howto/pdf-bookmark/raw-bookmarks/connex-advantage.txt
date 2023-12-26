@@ -31,3 +31,37 @@ Advantage system processes                                            23
     External interfaces                                               25
     Optional Advantage subsystems                                     26
 Advantage system process relationships                                27
+Let's review                                                          89
+    EXERCISE #1                                                       90
+    EXERCISE #2                                                       93
+    EXERCISE #3                                                       94
+Appendix A: System-attached environment transaction flow              96
+    Step-by-step transaction flow - request                           96
+    Step-by-step transaction flow - reply                             97
+    Step-by-step transaction flow - acknowledgment                    98
+    Step-by-step transaction flow - completion                        99
+Appendix B: Intercept environment transaction flow                    100
+    Step-by-step transaction flow - request                           100
+    Step-by-step transaction flow - reply and acknowledgment          101
+    Step-by-step transaction flow - reversal                          102
+Appendix C: Advantage milestones                                      103
+    System-attached milestones                                        104
+    Intercept milestones                                              104
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
