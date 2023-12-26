@@ -71,7 +71,7 @@ _offset 116
     CED Workshop Answer Sheet                                             14
 
 _offset 0
-Connex Environmental - Data Base (CED-71)                                 149
+Connex Environmental Data Base (CED-71)                                   149
     Table of Contents                                                     151
 _offset 152
     Introduction                                                          1
