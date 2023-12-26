@@ -1,5 +1,5 @@
 Advantage PRODUCT OVERVIEW: (CPO-71)                                      1
-    Contents                                                              3
+    Table of Contents                                                     3
 _offset 6
     Introduction                                                          1
         What will I learn?                                                2
@@ -52,8 +52,8 @@ _offset 6
 
 _offset 0
 CED Features Workshop (CED-73)                                            113
-    Contents                                                              115
-    _offset 116
+    Table of Contents                                                     115
+_offset 116
     Introduction                                                          1
         What will I learn?                                                2
     Team member tasks                                                     3
@@ -103,4 +103,33 @@ _offset 152
         Relational data base checks                                       27
             Online verification-referential integrity                     28
             Batch verification-Link Check (LINKCHK)                       28
-
+        Other user-friendly features                                      29
+            Alternate key retrieval                                       29
+            CED user notes                                                29
+            Physical component transfer capabilities                      30
+            Configurable coaching and menu screens                        30
+            Error message displays                                        30
+            CED listings                                                  31
+    Data Base Security                                                    34
+        User access security                                              34
+        Data and file security                                            35
+        Common fields in CED records                                      37
+        Sample CED screens                                                38
+    Change Management System (CMS)                                        39
+        What features does CMS offer?                                     39
+        Data base levels                                                  40
+        CED Rollin Techniques for Normal Changes                          42
+        Change numbers                                                    43
+            Normal change numbers                                         44
+            Change number states                                          45
+        Emergency change numbers                                          46
+            Emergency change number states                                47
+        CMS screens                                                       48
+    Other CMS functions                                                   49
+        Copy test data base to production                                 49
+        Copy client data between networks                                 50
+        Manage deleted and changed records                                51
+            Logical deletions                                             51
+            Physical deletions                                            52
+        Continuous operations                                             53
+    Let's review                                                          54
