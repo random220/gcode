@@ -1,0 +1,33 @@
+_offset 6
+Introduction                                                          1
+    What will I learn?                                                2
+Basic business requirements                                           2
+    How does Deluxe meet your business needs?                         3
+    How does the Advantage system meet your business needs?           3
+        Full EFT functionality                                        4
+        Flexibility                                                   5
+        High performance                                              5
+        Availability                                                  5
+        Modularity                                                    6
+        Linear Expandability                                          6
+        Cost effectiveness                                            6
+    How does Tandem meet your business needs?                         7
+        Key benefits of Tandem-based Advantage systems                8
+        Tandem fault-tolerant configurations                          9
+        Tandem product interfaces used by Deluxe                      10
+        How does Advantage work with Guardian?                        11
+Definitions                                                           13
+    EFT scenario                                                      13
+    Basic EFT terminology                                             15
+        What is an acquirer?                                          18
+        What is an issuer?                                            18
+    Advantage terminology                                             19
+        Advantage internal messages                                   19
+        Other commonly ISO used terms                                 20
+        Format 8 equivalents                                          22
+        Process classes                                               23
+Advantage system processes                                            23
+    Foundation product                                                24
+    External interfaces                                               25
+    Optional Advantage subsystems                                     26
+Advantage system process relationships                                27
