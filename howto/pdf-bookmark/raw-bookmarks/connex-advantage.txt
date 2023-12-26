@@ -1,67 +1,106 @@
+Advantage PRODUCT OVERVIEW: (CPO-71)                                      1
+    Contents                                                              3
 _offset 6
-Introduction                                                          1
-    What will I learn?                                                2
-Basic business requirements                                           2
-    How does Deluxe meet your business needs?                         3
-    How does the Advantage system meet your business needs?           3
-        Full EFT functionality                                        4
-        Flexibility                                                   5
-        High performance                                              5
-        Availability                                                  5
-        Modularity                                                    6
-        Linear Expandability                                          6
-        Cost effectiveness                                            6
-    How does Tandem meet your business needs?                         7
-        Key benefits of Tandem-based Advantage systems                8
-        Tandem fault-tolerant configurations                          9
-        Tandem product interfaces used by Deluxe                      10
-        How does Advantage work with Guardian?                        11
-Definitions                                                           13
-    EFT scenario                                                      13
-    Basic EFT terminology                                             15
-        What is an acquirer?                                          18
-        What is an issuer?                                            18
-    Advantage terminology                                             19
-        Advantage internal messages                                   19
-        Other commonly ISO used terms                                 20
-        Format 8 equivalents                                          22
-        Process classes                                               23
-Advantage system processes                                            23
-    Foundation product                                                24
-    External interfaces                                               25
-    Optional Advantage subsystems                                     26
-Advantage system process relationships                                27
-Let's review                                                          89
-    EXERCISE #1                                                       90
-    EXERCISE #2                                                       93
-    EXERCISE #3                                                       94
-Appendix A: System-attached environment transaction flow              96
-    Step-by-step transaction flow - request                           96
-    Step-by-step transaction flow - reply                             97
-    Step-by-step transaction flow - acknowledgment                    98
-    Step-by-step transaction flow - completion                        99
-Appendix B: Intercept environment transaction flow                    100
-    Step-by-step transaction flow - request                           100
-    Step-by-step transaction flow - reply and acknowledgment          101
-    Step-by-step transaction flow - reversal                          102
-Appendix C: Advantage milestones                                      103
-    System-attached milestones                                        104
-    Intercept milestones                                              104
+    Introduction                                                          1
+        What will I learn?                                                2
+    Basic business requirements                                           2
+        How does Deluxe meet your business needs?                         3
+        How does the Advantage system meet your business needs?           3
+            Full EFT functionality                                        4
+            Flexibility                                                   5
+            High performance                                              5
+            Availability                                                  5
+            Modularity                                                    6
+            Linear Expandability                                          6
+            Cost effectiveness                                            6
+        How does Tandem meet your business needs?                         7
+            Key benefits of Tandem-based Advantage systems                8
+            Tandem fault-tolerant configurations                          9
+            Tandem product interfaces used by Deluxe                      10
+            How does Advantage work with Guardian?                        11
+    Definitions                                                           13
+        EFT scenario                                                      13
+        Basic EFT terminology                                             15
+            What is an acquirer?                                          18
+            What is an issuer?                                            18
+        Advantage terminology                                             19
+            Advantage internal messages                                   19
+            Other commonly ISO used terms                                 20
+            Format 8 equivalents                                          22
+            Process classes                                               23
+    Advantage system processes                                            23
+        Foundation product                                                24
+        External interfaces                                               25
+        Optional Advantage subsystems                                     26
+    Advantage system process relationships                                27
+    Let's review                                                          89
+        EXERCISE #1                                                       90
+        EXERCISE #2                                                       93
+        EXERCISE #3                                                       94
+    Appendix A: System-attached environment transaction flow              96
+        Step-by-step transaction flow - request                           96
+        Step-by-step transaction flow - reply                             97
+        Step-by-step transaction flow - acknowledgment                    98
+        Step-by-step transaction flow - completion                        99
+    Appendix B: Intercept environment transaction flow                    100
+        Step-by-step transaction flow - request                           100
+        Step-by-step transaction flow - reply and acknowledgment          101
+        Step-by-step transaction flow - reversal                          102
+    Appendix C: Advantage milestones                                      103
+        System-attached milestones                                        104
+        Intercept milestones                                              104
 
+_offset 0
+CED Features Workshop (CED-73)                                            113
+    Contents                                                              115
+    _offset 116
+    Introduction                                                          1
+        What will I learn?                                                2
+    Team member tasks                                                     3
+    Mystery word competition guidelines                                   3
+    Function keys                                                         4
+    Getting started                                                       5
+    Screen navigation                                                     5
+        Direct transfer - by file name                                    6
+        Direct transfer - by screen number                                7
+        Zoom function                                                     8
+    Data coaching function                                                9
+    Help functions                                                        10
+    Review                                                                11
+    Steps to access the CED system                                        12
+    CED Workshop Answer Sheet                                             14
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+_offset 0
+Connex Environmental - Data Base (CED-71)                                 149
+    Table of Contents                                                     151
+_offset 152
+    Introduction                                                          1
+        What will I learn?                                                2
+        Advantage system data bases                                       3
+        Connex Environmental Data Base Files                              4
+            CED files                                                     5
+            Configuration files                                           6
+            CMS control files                                             6
+        How CED files are used                                            7
+        Data Elements                                                     8
+    Data base relationships                                               9
+        Pyramid of data base relationships                                9
+    What is CED?                                                          11
+        What features does CED offer?                                     12
+    CED Architecture                                                      14
+        General configuration                                             14
+        Logical view                                                      15
+    User-friendly features                                                16
+        Main Menu                                                         17
+        Screen navigation                                                 18
+            Direct Transfer                                               19
+            Mark and Return                                               19
+            GoTo                                                          20
+            Zoom                                                          21
+        Summary screens                                                   23
+        Help facilities                                                   24
+        Data Coaching                                                     25
+        Relational data base checks                                       27
+            Online verification-referential integrity                     28
+            Batch verification-Link Check (LINKCHK)                       28
 
