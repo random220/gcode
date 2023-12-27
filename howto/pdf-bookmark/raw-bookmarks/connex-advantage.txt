@@ -133,3 +133,166 @@ _offset 152
             Physical deletions                                            52
         Continuous operations                                             53
     Let's review                                                          54
+
+_offset 0
+Change Management System                                                  211
+    Table of Contents                                                     213
+_offset 214
+    Introduction                                                          1
+    Appendix B: Change Rollin and Rollout Summary                         32
+
+_offset 0
+Add a Terminal Workshop                                                   247
+    Contents                                                              249
+    _offset 250
+    end 18
+
+_offset 0
+Change Management Sydstem Workshop                                      269
+    Contents 271
+_offset 272
+    end 25
+
+_offset 0
+Terminal Handler (TH-71) 299
+    Contents 301
+_offset 306
+    Introduction                                                        1
+        What will I learn?                                              2
+    Terminal Handler functions                                          2
+    Transaction processing                                              3
+        Transaction flow                                                3
+            Communications Handler                                      5
+            Terminal Handler                                            6
+            Pend Process                                                9
+            Totals Services                                             10
+        Completion message                                              11
+        Reversal generating                                             12
+            No completion message                                       13
+            Status message                                              13
+    Downline load processing                                            14
+        Load files                                                      14
+    ATM supervisory processing                                          15
+        ATM privileged functions                                        15
+            ATM settlement                                              17
+        Totals options                                                  20
+    Status processing                                                   21
+        States                                                          23
+        Statuses                                                        26
+        State and status messages                                       28
+    Command processing                                                  29
+        SHOw TERM <terminal id>                                         30
+        Broadcast commands                                              32
+    Terminal supporting features                                        33
+        Receipt printing                                                33
+        Fast cash processing                                            34
+        Open Account Relationship (OAR)                                 35
+        Multiple Account Support                                        36
+        Terminal maintained business date                               37
+        Self-service transaction                                        38
+            Check inquiry                                               38
+            Statement printing (full and mini)                          38
+            Stop payment                                                38
+            Statement mailing                                           39
+            Check reorder                                               39
+            PIN change                                                  39
+            Noncash media                                               39
+            Nonsettled media                                            39
+        PIN security                                                    40
+        Dynamic screen updates                                          41
+        Miscellaneous features                                          42
+            Surcharge notification support                              42
+            Amount and PIN re-entry support                             42
+            Down printer continue support                               42
+            Multiple language support                                   43
+            Color, touch screen, graphics support                       43
+    CED relationships                                                   44
+        Terminal Handler Configuration Record (CNFG050)                 45
+        Referential integrity and data dependent chaining               46
+        Adding terminals                                                47
+            CED Terminals Menu Screen                                   48
+            Physical Device Record (CEDPHYD)                            48
+            Terminal Record (CEDTERM)                                   50
+            Terminal Component Configuration Record (CEDTRMC)           57
+            Terminal Canister Information Record (CEDCNST)              58
+            Fast Cash Denominations Record (CEDFCSH)                    59
+        Defining transactions                                           59
+            Request Key Sequence List Record (CEDREQK)                  60
+        Building a transaction reply                                    61
+            Terminal Reply Group Record (CEDRGRP)                       62
+            PAN Print Masks Record (CEDPRNT)                            63
+            Terminal Authorization Action Record (CEDAUTH).             64
+            Terminal Denial Action Record (CEDDACT)                     65
+            Terminal Recovery Action Record (CEDRCVR)                   66
+            Terminal Edit Reject Action Record (CEDEREJ)                67
+            Terminal OAR Response Action Record (CEDOARR).              68
+            Terminal Print Control Record (CEDPRTR)                     69
+            Terminal Screen List Record (CEDSCRN)                       70
+            Print Output Text Formatting Record (CEDPTXT)               71
+            Screen Text Formatting Record (CEDSTXT)                     73
+            Priority Balance Print Record (CEDPBAL)                     74
+            Account Qualifier Desc Text Record (CEDTAQX)                75
+            Transaction Description Replacement Text Record (CEDTTRN)   76
+            Marketing Text Record (CEDTMKT)                             77
+            Fee Type Description Text Record (CEDTFEE)                  78
+            Tran User Mapping Text Record (CEDTUMP)                     79
+            Miscellaneous Text Record (CEDTMSC)                         80
+        ATM supervisory processing                                      81
+            Settlement Card Group Record (CEDSTLC)                      82
+        Terminal attachment                                             83
+        Direct-attached terminals                                       84
+            Direct-Attached Device Record (CEDDADV)                     85
+        TH Swap File (SWPxxxxx)                                         86
+        Point-of-sale                                                   87
+            POS Features                                                88
+            POS Functions                                               88
+            Financial transactions.                                     89
+            Merchant transactions                                       90
+            Miscellaneous transactions                                  91
+            POS device support                                          92
+        Let's review                                                    93
+        Appendix A: CED relationships for an approved transaction...    96
+                Terminal Record (CEDTERM)                               97
+                Terminal Reply Group Record (CEDRGRP)                   97
+                Terminal Authorization Action Record (CEDAUTH)          98
+                Terminal Screen List Record (CEDSCRN)                   98
+                Screen Formatting Text Record (CEDSTXT)                 99
+                Screen Formatting Text Record (CEDSTXT)                     99
+                Transaction Description Replacement Text Record (CEDTTRN)   100
+                Screen Formatting Text Record (CEDSTXT)                     100
+                Screen Formatting Text Record (CEDSTXT)                     101
+                Terminal Print Control Record (CEDPRTR)                     101
+                Print Output Text Format (CEDPTXT)                          102
+                Print Output Text Format (CEDPTXT)                          102
+                Print Output Text Format (CEDPTXT)                          103
+                Print Output Text Format (CEDPTXT)                          103
+                Terminal Print Control Record (CEDPRTR                      104
+                Print Output Text Format (CEDPTXT)                          104
+                Transaction Description Replacement Text Record (CEDTTRN)   105
+                Terminal Print Control Record (CEDPRTR).                    105
+                Print Output Text Format (CEDPTXT)                          106
+                Print Output Text Format (CEDPTXT)                          106
+                Terminal Print Control Record (CEDPRTR).                    107
+                Print Output Text Format (CEDPTXT)                          108
+                Priority Balance Print Record (CEDPBAL)                     108
+                Print Output Text Format (CEDPTXT)                          109
+                Priority Balance Print Record (CEDPBAL)                     109
+        Appendix B: Other CED relationships                                                 110
+            CED relationships for switch-attached terminals                                 110
+                Switched-Attached Device Record (CEDSWDV)                                   111
+            Controller-attached/concentrator-attached configurations                        112
+            CED relationships for controllers and concentrators                             113
+                Controller Record (CEDCNTR)                                                 114
+                Concentrator Record (CEDCCNT)                                               115
+            CED relationships for controller-attached/concentrator-attached terminals       116
+                Controller-Attached Device Record (CEDCNDV)                                 117
+                Concentrator-Attached Device Record (CEDCCDV)                               118
+            CED relationships for downline load processing                                  119
+                Load Image Information Record (CEDLOAD)                                     120
+                Composite Overlay Image Record (CEDCOVL)                                    121
+                Overlay Image List Record (CEDOLST)                                         122
+                Dynamic Screen Update Record (CEDDSU)                                       123
+                Update Text Formatting Record (CEDUTXT)                                     124
+            CED relationships for network operations command processing                     125
+                Subject Grouping Record (CEDSGRP)                                           126
+                Terminal Command List Record (CEDTCMD)                                      127
