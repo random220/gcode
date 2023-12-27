@@ -363,3 +363,62 @@ _offset 420
             Course completion and credit                                                    81
         Course Completion                                                                   82
 
+_offset 0
+Primary Message Control (PMC-71) 547
+    Table of Content 548
+_offset 550
+        VII. Default routing                                                                41
+            CED relationships for default routing                                           42
+            Default Routing Record (CEDDEFR)                                                43
+    Transaction type validations                                                            44
+        Card logo options processing                                                        44
+            CED relationships for card logo options                                         45
+            Card Logo Options Record (CEDLOPT)                                              46
+        Transaction validation                                                              47
+            CED relationships for transaction validation                                    48
+            Transaction Set Record (CEDTSET)                                                49
+        Transaction interchange processing                                                  50
+            Transaction Interchange Record (CEDICHG)                                        51
+            Country, Region, County Record (CEDCRCL)                                        52
+    Card track extraction/validations                                                       53
+            CED relationships for card track validations                                    54
+            Card Track Information Record (CEDTRCK)                                         54
+        Sequence number extraction                                                          57
+            Card Sequence Number Record (CEDSEQN)                                           58
+        Expiration date validation                                                          59
+            Expiration date parameters                                                      60
+        Card validation                                                                     61
+            Card Verify Parameters Record (CEDCVVP)                                         61
+        Types of PIN validation                                                             63
+            PIN Verify DES Record (CEDDES)                                                  64
+            Quick Kill                                                                      65
+    Additional PMC functions                                                                66
+        Processor Interface stand-in rules                                                  67
+            CED relationships for PI Stand-In limit processing                              68
+            PI Stand-In Limits Record (CEDSTDL)                                             69
+            PI Stand-In relationships on the Routing Information Record (CEDROUT)           70
+            PI Stand-In Override Record (CEDSTDO)                                           71
+        Deposit-only check                                                                  72
+        PAN check digit validation                                                          72
+            CED relationships for check digit validation                                    73
+            Check Digit Parameters Record (CEDCKDG)                                         74
+        PAN print masks                                                                     75
+            PAN Print Masks Record (CEDPRNT)                                                75
+        Currency code validation                                                            77
+    Primary Message Control Configuration Record (CNFG030)                                  79
+        PMC Driver (PMCDRVR) tool                                                           80
+    Review                                                                                  81
+    Appendix A - Action Codes                                                               84
+    Appendix B - Routing examples and business applications                                 85
+    Routing methods - acquirer determined                                                   85
+        Destination routing - business application                                          85
+        Direct routing - business application                                               86
+    Routing methods - card determined                                                       89
+        On-us routing - business application                                                89
+        Card logo routing - business application                                            90
+        Example 1 - local cardholder                                                        91
+        Example 2 - Foreign cardholder                                                      92
+        Default routing - business application                                              95
+    Routing methods summary                                                                 96
+    Appendix C - Card Maintenance Routing                                                   97
+        CED relationships for card maintenance routing                                      98
