@@ -71,9 +71,9 @@ _offset 116
     CED Workshop Answer Sheet                                             14
 
 _offset 0
-Connex Environmental Data Base (CED-71)                                   149
-    Table of Contents                                                     151
-_offset 152
+Connex Environmental Data Base (CED-71)                                   131
+    Table of Contents                                                     133
+_offset 134
     Introduction                                                          1
         What will I learn?                                                2
         Advantage system data bases                                       3
@@ -135,28 +135,28 @@ _offset 152
     Let's review                                                          54
 
 _offset 0
-Change Management System                                                  211
-    Table of Contents                                                     213
-_offset 214
+Change Management System                                                  192
+    Table of Contents                                                     195
+_offset 196
     Introduction                                                          1
     Appendix B: Change Rollin and Rollout Summary                         32
 
 _offset 0
-Add a Terminal Workshop                                                   247
-    Contents                                                              249
-    _offset 250
+Add a Terminal Workshop                                                   229
+    Contents                                                              231
+    _offset 232
     end 18
 
 _offset 0
-Change Management Sydstem Workshop                                      269
-    Contents 271
-_offset 272
+Change Management Sydstem Workshop                                      251
+    Contents 253
+_offset 254
     end 25
 
 _offset 0
-Terminal Handler (TH-71) 299
-    Contents 301
-_offset 306
+Terminal Handler (TH-71) 281
+    Contents 283
+_offset 288
     Introduction                                                        1
         What will I learn?                                              2
     Terminal Handler functions                                          2
@@ -298,9 +298,9 @@ _offset 306
                 Terminal Command List Record (CEDTCMD)                                      127
 
 _offset 0
-Troubleshooting with Advantage Tools (Tools-73) 435
-    Table of Contents 437
-_offset 438
+Troubleshooting with Advantage Tools (Tools-73) 417
+    Table of Contents 419
+_offset 420
     Introduction                                                                            1
         Prerequisites                                                                       1
         What will I learn?                                                                  2
@@ -324,9 +324,9 @@ _offset 438
         Using Log Scan                                                                      24
             Procedures                                                                      24
             Screens                                                                         27
-        Log Scan Interpretation.                                                            33
+        Log Scan Interpretation                                                             33
             Log Scan Exercise 1                                                             34
-        Log Scan Exercise 2                                                                 35
+            Log Scan Exercise 2                                                             35
             Log Scan Exercise 3                                                             36
             Log Scan Exercise 4                                                             38
             Log Scan Exercise 5                                                             39
