@@ -296,3 +296,70 @@ _offset 306
             CED relationships for network operations command processing                     125
                 Subject Grouping Record (CEDSGRP)                                           126
                 Terminal Command List Record (CEDTCMD)                                      127
+
+_offset 0
+Troubleshooting with Advantage Tools (Tools-73) 435
+    Table of Contents 437
+_offset 438
+    Introduction                                                                            1
+        Prerequisites                                                                       1
+        What will I learn?                                                                  2
+    Section 1 - Transaction flows                                                           2
+        Exercise 1                                                                          2
+            Transaction reversed after hardware failure at device                           3
+        Exercise 2                                                                          4
+            Transaction timeout and late reply                                              5
+        Exercise 3                                                                          6
+            AP stand-alone transaction request from direct-attached device                  7
+        Exercise 4                                                                          8
+            Transaction request denied for invalid                                          9
+        Exercise 5                                                                          10
+            Transaction request denied by processor for non-sufficient funds                11
+        Exercise 6                                                                          12
+            Transaction request denied by AP for lost card                                  13
+    Section 2 - Log Scan                                                                    14
+        Sample Log Scan                                                                     15
+        Accessing Log Scan                                                                  16
+        Commands                                                                            17
+        Using Log Scan                                                                      24
+            Procedures                                                                      24
+            Screens                                                                         27
+        Log Scan Interpretation.                                                            33
+            Log Scan Exercise 1                                                             34
+        Log Scan Exercise 2                                                                 35
+            Log Scan Exercise 3                                                             36
+            Log Scan Exercise 4                                                             38
+            Log Scan Exercise 5                                                             39
+            Log Scan Exercise 6                                                             40
+            Log Scan Exercise 7                                                             42
+            Log Scan Exercise 8                                                             43
+        Section 3 - Audit Scan                                                              44
+            Sample Audit Scan                                                               46
+        Accessing Audit Scan                                                                47
+        Command                                                                             48
+        Display Modes                                                                       54
+            Unformatted audits                                                              54
+            Formatted audits                                                                55
+        Using Audit Scan                                                                    56
+            Procedures                                                                      56
+            Screens                                                                         58
+        Audit Interpretation                                                                60
+            Audit Exercise 1 - Format 8 Intercept Processor                                 62
+            Audit Exercise 2 - Format 8 Intercept Processor                                 63
+            Audit Exercise 3 - Format 8 Intercept Processor                                 64
+            Audit Exercise 4 - Deluxe ISO 8583 Processor                                    65
+            Audit Exercise 5 - Deluxe ISO 8583 Intercept Processor                          66
+            Audit Exercise 6 - Deluxe ISO 8583 Intercept Processor                          67
+            Audit Exercise 7 - Deluxe ISO 8583 Processor - Edit Error                       69
+            Audit Exercise 8 - Deluxe ISO 8583 Processor - Reject                           70
+            Audit Exercise 9 - Deluxe ISO 8583 Processor                                    72
+        Review                                                                              73
+        Appendix A: LogScan Example with All Segments                                       75
+        Appendix - Log Scan and Audit Scan Answers                                          76
+            Log Scan                                                                        76
+                Answers for procedures                                                      76
+                Log Scan Exercise 1                                                         77
+                Log Scan Exercise 2                                                         80
+            Course completion and credit                                                    81
+        Course Completion                                                                   82
+
