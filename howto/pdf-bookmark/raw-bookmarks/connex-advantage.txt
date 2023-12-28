@@ -790,3 +790,197 @@ _offset 1051
     Appendix B                                                          113
         Message Text Maintenance                                        113
         Status Control Maintenance                                      120
+
+_offset 0
+Connex Advantage Statistics Monitor (STATMON-71) 1184
+    Table of Contents 1186
+_offset 1187
+    Introduction                                                             1
+        What will I learn?                                                   2
+    Functions and features                                                   2
+        Functions                                                            3
+        Features                                                             4
+    Operations examples                                                      5
+        Scenario 1: Substandard authorization rate                           6
+        Scenario 2: Consecutive denials for a card base                     10
+        Scenario 3: Consecutive denials at a terminal                       12
+    How statistics are maintained                                           14
+        Subject types                                                       14
+        Types of statistics                                                 15
+    Threshold triggers                                                      16
+        Consecutive count triggers                                          17
+        Percentage triggers                                                 19
+        Minimum transaction threshold triggers                              21
+    Network Monitor messages                                                22
+    Interaction with the Network Monitor                                    23
+        Statistics Monitor Distributor (SMONDIST)                           23
+        Statistics Monitor Transaction Collector (SMONTRCT)                 25
+            History File                                                    26
+        Statistics Monitor Trigger Manager (SMONTMGR)                       27
+        Statistics Monitor Transaction Watch (SMONWTCH)                     28
+    Processing Environment                                                  30
+        Message Alerts                                                      31
+        Problem determination                                               32
+    Statistics Monitor Inquiry (SMONINQY)                                   34
+        Commands                                                            35
+        Display format                                                      36
+            When would I use the display format?                            38
+        Plot format                                                         39
+            When would I use the plot format?                               40
+        Compare format                                                      41
+            When would I use the compare format?                            43
+    CED relationships                                                       44
+        Statmon Selection Record (CEDSSLT)                                  45
+        Statmon Trigger Record (CEDTRGS)                                    46
+        Statmon Schedule Record (CEDSSCH)                                   47
+        Statmon Watch Criteria Record (CEDWTCH)                             48
+    Review                                                                  50
+    Appendix A: Statistic IDs                                               54
+        Terminal Handlers                                                   54
+        ATM and POS Devices                                                 55
+        Processors                                                          56
+        Card bases                                                          58
+        Card groups                                                         59
+        Routing ID (card tables)                                            60
+        Intercept terminals                                                 61
+        Controllers                                                         62
+        Data communication lines                                            63
+        Hunt groups                                                         64
+        Authorization Processor                                             65
+        System as a whole                                                   66
+    Appendix B: Statmon Summary                                             68
+        Statmon summary commands                                            68
+        Statmon summary report samples                                      69
+
+_offset 0
+Add a Terminal Workshop (CED-73T) 1278
+    Contents 1280
+_offset 1281
+    Introduction                                                             1
+        What will I learn?                                                   3
+    Team member tasks                                                        3
+    Terminal files                                                           4
+        CED relationships                                                    5
+    Add a terminal exercise                                                  6
+        Required CED record entries                                          7
+            Physical Device Record (CEDPHYD)                                 7
+            Terminal Record (CEDTERM)                                        8
+            Direct-attached Device Record (CEDDADV)                          8
+        Optional CED record entries                                          8
+            Contact ID List Record (CEDCNTL)                                 8
+            Contact Record (CEDCNTC)                                         9
+            Terminal Cannister Info Record (CEDCNST)                         9
+    Review                                                                  10
+    Add a terminal exercise - answers                                       11
+        Completed required entry - Physical Device Record                   11
+        Completed required entry - Terminal Record                          12
+        Completed required entry - Direct-Attached Device Record            15
+        Completed optional entry - Terminal Cannister Info Records          16
+        Completed optional entry - Contact ID List and Contact Record       18
+
+_offset 0
+Change Management System Workshop (CMS-73) 1314
+    Contents 1316
+_offset 1317
+    Introduction                                     1
+        What will I learn?                           2
+    Team member tasks                                3
+    Create a change number                           4
+        Access Main Menu Screen                      4
+        Change Number Detail Screen                  5
+    Roll in a new change                             6
+        CMS Utility (CMSUtil) commands               7
+            Close a change                           7
+            Select a change                          8
+            Roll in a change                         9
+        Link Check (LinkChk) commands               10
+        Swap Build (SWAPBLD) utility commands       11
+            AutoBld command                         12
+            Build command                           13
+        Swap Roll utility commands                  14
+            Install command                         15
+            Master console activation               16
+        Display change number status                17
+            Change number summary screen            18
+            Change number detail screen             19
+    Roll out a change                               20
+        Select and roll out a change                20
+        Swap Build utility command                  21
+        SwapRoll utility command                    22
+        Master console activation                   23
+    Review                                          24
+    Steps to access the CED system                  25
+
+_offset 0
+Connex Advantage Authorization Processor (CNX/ADV AP-71: V1.2) 1382
+    Contents 1384
+_offset 1387
+
+    Introduction                                                     1
+        What will I learn?                                           2
+    Authorization Processor functions                                3
+    Authorization Processor features                                 4
+    Authorization levels                                             6
+        Negative/Exception                                           7
+            Authorization checks                                     8
+        Positive                                                     9
+            Authorization checks                                    10
+        Positive with balances                                      11
+            Authorization checks                                    12
+    Authorization methods                                           12
+        PI authorization                                            13
+        AP authorization                                            13
+            Stand-alone authorization (No advice to host)           14
+            Stand-alone authorization (advice to host)              16
+            Cooperative authorization                               18
+            Cooperative authorization (stand-in)                    20
+            Alternate Processor                                     22
+    Primary components                                              24
+        AP Parameter File                                           24
+            AP Parameter File Compiler                              26
+        AP data base files                                          26
+            Authorization level                                     27
+            Segments                                                28
+            Cardholder File                                         29
+            Account Detail File                                     33
+            AP file philosophy                                      36
+            Balance Update File                                     39
+            Customer Service List File                              40
+            Balance Status File                                     42
+    AP processes                                                    44
+        APEX and APO relationship                                   46
+    Related Advantage system functions                              49
+    CED relationships                                               50
+        AP Stand-Alone, Card Base Record (CEDCBAS)                  51
+            Screen 1 of 3                                           51
+            Screen 2 of 3                                           52
+        AP Stand-Alone, Card Options Record (CEDCOPT)               53
+        AP Stand-Alone, Routing Information Record (CEDROUT)        54
+        AP Stand-Alone, Processor File (CEDPROC)                    55
+        AP Cooperative, Card Base Record (CEDCBAS)                  56
+        AP Cooperative, Card Options Record (CEDCOPT)               57
+        AP Cooperative, Routing Information Record (CEDROUT)        58
+        AP Cooperative, Processor File (CEDPROC)                    58
+        AP Alternate, Card Base Record (CEDCBAS)                    59
+        AP Alternate, Card Options Record (CEDCOPT)                 60
+        AP Alternate, Routing Information Record (CEDROUT)          60
+        AP Alternate, Processor File (CEDPROC)                      61
+        AP Configuration File (CNFG045)                             62
+    Maintenance methods for AP files                                63
+        Administrative terminal / AP Maintenance                    64
+        Online maintenance transactions from the host               66
+        Balance in a financial reply                                68
+        End-of-day processing                                       71
+            Financial request during AP end-of-day processing       73
+        AP Balance File Update (APBFU)                              74
+            First daily transaction after AP end-of-day processing  77
+        AP Batch maintenance (APBATCH)                              79
+            AP Load (APLOAD)                                        81
+    Component summary                                               83
+    Let's review                                                    85
+        Exercise #1                                                 86
+        Exercise #2                                                 87
+        Exercise #3                                                 88
+    Appendix                                                        89
+        Answers to exercise #1                                      89
+        Answers to exercise #2                                      90
