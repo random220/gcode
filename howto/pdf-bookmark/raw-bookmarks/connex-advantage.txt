@@ -995,6 +995,12 @@ _offset 1317
     Steps to access the CED system                  25
 
 _offset 0
+CNX ADV CED-71 Various pages 1346
+Advantage FINIPC PMC Errors List 1372
+Statistics Monitor Inquiry Commands for Workshop 1378
+
+
+_offset 0
 Connex Advantage Authorization Processor (CNX/ADV AP-71: V1.2) 1382
     Contents 1384
 _offset 1387
