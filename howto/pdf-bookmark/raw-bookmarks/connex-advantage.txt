@@ -422,3 +422,195 @@ _offset 550
     Routing methods summary                                                                 96
     Appendix C - Card Maintenance Routing                                                   97
         CED relationships for card maintenance routing                                      98
+
+_offset 0
+PMC Workshop (PMC Driver) 651
+Advantage PMC Workshop 676
+PMC Routing Workshop 693
+
+Connex Advantage Deluxe ISO 8583 Processor Interface 711
+    Table of Contents 713
+_offset 716
+    Introduction                                                                                     1
+        What will I learn?                                                                           2
+        What terms do I need to know?                                                                3
+    Why are message standards used?                                                                  5
+        ISO                                                                                          6
+        ANSI                                                                                         7
+        Deluxe ISO 8583 PI                                                                           9
+            Benefits                                                                                10
+    Standard PI Functions                                                                           12
+        Transaction processing                                                                      12
+            Issuing PI timing                                                                       13
+            Acquiring PI timing                                                                     14
+            Queuing                                                                                 15
+        Stand-in/Delay processing                                                                   16
+            Queue File                                                                              16
+            Negative File                                                                           17
+            Usage File                                                                              18
+            Transaction flow                                                                        18
+    Deluxe ISO 8583 PI Concepts                                                                     20
+        Message types                                                                               20
+        Message flows                                                                               22
+            Pre-Authorization requests/responses (0100/0110)                                        24
+            Pre-Authorization advices/responses (0120/0130)                                         26
+            Financial transaction (0200/0210)                                                       28
+            Financial transaction advices/responses (0220/0230)                                     30
+            Acquirer reversal advices/responses (0420/0430)                                         32
+            Card issuer file update (Negative File) requests/responses (0302/0312)                  36
+            Card issuer file update (Authorization Processor) requests/responses (0382/0392)        38
+            Administrative requests/responses (0600/0610)                                           40
+            Administrative advice (0620)                                                            42
+            Network management requests/responses (0800/0810)                                       45
+    Optional features                                                                               56
+        Duplicate monitoring                                                                        56
+            Intercept Queue                                                                         58
+        Message text options                                                                        64
+            Characters                                                                              65
+            Bit maps                                                                                66
+            Numeric fields                                                                          67
+            Data lengths                                                                            68
+            Fixed data lengths                                                                      69
+            Variable data lengths                                                                   70
+            Data elements                                                                           72
+        Message structure                                                                           77
+            Fixed message structure                                                                 78
+            Variable message structure                                                              80
+        Pending                                                                                     84
+            No pending                                                                              85
+            Acquirer or Issuer pends response                                                       86
+            Issuer pends on timeout                                                                 87
+        Reversal selections                                                                         88
+            Reversals at timeouts                                                                   89
+            Partial reversals                                                                       90
+            Full reversals                                                                          91
+            Reversals for rejects/authorizations/inquiries                                          92
+        Totals                                                                                      93
+            Host sends totals                                                                       95
+            ISO PI sends totals                                                                     96
+    CED relationships                                                                               98
+        PI Configuration relationships                                                              99
+            Processor Interface Configuration Record (CNFG040)                                      100
+            Screen 3 of 6                                                                           101
+        ISO code mapping relationships                                                              102
+            Transaction Field Mapping Table Record (CEDMTBL)                                        103
+            Transaction Field Code Mapping Record (CEDCMAP)                                         104
+        Message structure relationships                                                             106
+            ISO 8583 PI Options Record (CEDIO)                                                      107
+            ISO Message Definition Record (CEDIMSG)                                                 108
+            ISO Bit Map Record (CEDIBIT)                                                            109
+            Byte mask                                                                               110
+    ISO User File Create Utility                                                                    112
+    Network Monitor                                                                                 114
+        Commands Messages                                                                           114
+        Audit Scan                                                                                  115
+    Audit Scan                                                                                      117
+        Usage                                                                                       118
+    Review                                                                                          120
+        Your turn                                                                                   121
+    APPENDIX A                                                                                      123
+    APPENDIX B                                                                                      125
+    APPENDIX C                                                                                      127
+
+
+_offset 0
+Connex Advantage Processor Interface 845
+    Table ofContents 847
+_offset 850
+    Introduction                                                             1
+        What will I learn?                                                   2
+        Network configurations                                               2
+    Processor Interface functions                                            3
+        PI Components                                                        3
+            Application Services (AS)                                        4
+            Session Services (SS)                                            5
+            Session Services Message Options Record (CEDSOPT)                6
+    Message formatting                                                       7
+        Data mapping                                                         8
+            ISO code mapping                                                 9
+    Pending                                                                 10
+        Acquirer PI pending                                                 10
+        Issuer PI pending                                                   11
+            Acquirer PI does not pend                                       12
+            Timeout /late response                                          13
+    Financial transaction timing                                            14
+        Issuing PI timeouts                                                 15
+        Acquiring PI timeouts                                               16
+    Queue managing                                                          17
+        Intercept Queue                                                     17
+        Terminology                                                         18
+        Processor Output Queue                                              19
+            Multiple disk items                                             21
+        Wait Queue                                                          22
+        Queue File (QXxxxxx)                                                23
+    Stand-In/Delay processing                                               25
+        Reasons for activation                                              26
+        Authorization options                                               28
+            Automatic decline                                               29
+            Alternative authorizations                                      30
+            Routing Information Record (CEDROUT) relationships              31
+        PI Stand-In limits                                                  32
+            PI Stand-In Limits Record (CEDSTDL)                             33
+        Pl Stand-In override rules                                          34
+            PI Stand-In Override Record (CEDSTDO)                           35
+        Customer and other related files                                    36
+            Negative File (NEGxxxxx)                                        36
+            Usage File (USGxxxxx)                                           38
+            Event Record (CEDEVNT)                                          39
+        Transaction flow for Delay processing                               40
+        Alternative authorization considerations                            41
+        Exit Delay options                                                  42
+            After first delivery (full interleaving)                        43
+            After all delivered                                             45
+            Factors in exiting Delay                                        47
+    Encrypted PIN handling                                                  48
+        Hardware encryption option                                          49
+        Software encryption option                                          49
+    Status processing                                                       50
+        PI Status/Warm File (PIWARM)                                        51
+        States and statuses                                                 51
+    Command processing                                                      53
+        Common PI commands                                                  53
+            PRCS versus PROC                                                54
+            SHOw PROC < processor id>                                       55
+    CED relationships                                                       56
+        PI configuration relationships                                      57
+            Processor Interface Configuration Record (CNFG040)              58
+            Screen 2 of 6                                                   59
+            Screen 3 of 6                                                   60
+            Screen 4 of 6                                                   61
+            Screen 5 of 6                                                   62
+            Screen 6 of 6                                                   63
+        Processor relationships                                             64
+            Intercept Terminal Record (CEDINTR)                             65
+            Screen 2 of 3                                                   66
+            Institution Record (CEDINST)                                    67
+            Processor Record (CEDPROC)                                      68
+            Screen 2 of 3                                                                69
+        Data mapping relationships                                                       70
+            Data Mapping Record (CEDDMAP)                                                70
+            CED relationships for general data mapping                                   72
+            CED relationships for institution ID or network ID data mapping              73
+            Acquirer/Issuer Processor Options Record (CEDPOPT)                           74
+            CED relationships for Action Code mapping                                    75
+            Transaction Field Mapping Table Record (CEDMTBL)                             75
+            Transaction Field Code Mapping Record (CEDCMAP)                              77
+        Message structure relationships                                                  79
+            Format 8 Processor Operations Record (CED80PT)                               80
+            ISO 8583 PI Options Record (CEDIOPT)                                         82
+            ISO Message Definition Record (CEDIMSG)                                      83
+            ISO Bit Map Record (CEDIBIT)                                                 85
+        PI Swap File (SWPPI)                                                             86
+    Testing and certification                                                            87
+        Simulators                                                                       88
+    Review                                                                               89
+    Appendix A                                                                           93
+        Intercept PI: Routines for 110x/ 120x/ 140x/ 142x/ 144x if pending               93
+        Cardholder PI: Routines for 110x or 120x                                         94
+        Cardholder PI: Routines for Fin Response                                         95
+        Intercept PI to Intercept Host: Routines for Fin Response                        96
+        Reversal With PEND to Issuer PI: Routines for Reversals                          97
+        Reversal Without PEND to Processor PI: (Issuer Side) Routines for Reversals      98
+        Reversal With PEND from Acquirer PI: (Acquirer Side) Routines for Reversals      99
+    Appendix B                                                                          100
+        Session Message Options Table (CEDSOPT) Defaults                                100
