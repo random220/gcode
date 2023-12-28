@@ -445,6 +445,8 @@ _offset 420
                 Log Scan Exercise 2                                                         80
             Course completion and credit                                                    81
         Course Completion                                                                   82
+        Logscan Workshop 525*
+
 
 _offset 0
 Primary Message Control (PMC-71) 547
