@@ -133,6 +133,7 @@ _offset 134
             Physical deletions                                            52
         Continuous operations                                             53
     Let's review                                                          54
+    Environmental Data Base Reference Card                                57
 
 _offset 0
 Change Management System                                                  193
@@ -997,7 +998,8 @@ _offset 1317
     Steps to access the CED system                  25
 
 _offset 0
-CNX ADV CED-71 Various pages 1346
+CED-71: CED Relationships Diagram 1346
+PMCDRVR screenshots 1348
 Advantage FINIPC PMC Errors List 1372
 Statistics Monitor Inquiry Commands for Workshop 1378
 
