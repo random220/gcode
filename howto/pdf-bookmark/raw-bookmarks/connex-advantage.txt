@@ -51,29 +51,9 @@ _offset 6
         Intercept milestones                                              104
 
 _offset 0
-CED Features Workshop (CED-73)                                            113
+Connex Environmental Data Base (CED-71)                                   113
     Table of Contents                                                     115
 _offset 116
-    Introduction                                                          1
-        What will I learn?                                                2
-    Team member tasks                                                     3
-    Mystery word competition guidelines                                   3
-    Function keys                                                         4
-    Getting started                                                       5
-    Screen navigation                                                     5
-        Direct transfer - by file name                                    6
-        Direct transfer - by screen number                                7
-        Zoom function                                                     8
-    Data coaching function                                                9
-    Help functions                                                        10
-    Review                                                                11
-    Steps to access the CED system                                        12
-    CED Workshop Answer Sheet                                             14
-
-_offset 0
-Connex Environmental Data Base (CED-71)                                   131
-    Table of Contents                                                     133
-_offset 134
     Introduction                                                          1
         What will I learn?                                                2
         Advantage system data bases                                       3
@@ -136,9 +116,32 @@ _offset 134
     Environmental Data Base Reference Card                                57
 
 _offset 0
-Change Management System                                                  193
-    Table of Contents                                                     195
-_offset 196
+CED Relationships                                                         175
+
+_offset 0
+CED Features Workshop (CED-73)                                            179
+    Table of Contents                                                     181
+_offset 182
+    Introduction                                                          1
+        What will I learn?                                                2
+    Team member tasks                                                     3
+    Mystery word competition guidelines                                   3
+    Function keys                                                         4
+    Getting started                                                       5
+    Screen navigation                                                     5
+        Direct transfer - by file name                                    6
+        Direct transfer - by screen number                                7
+        Zoom function                                                     8
+    Data coaching function                                                9
+    Help functions                                                        10
+    Review                                                                11
+    Steps to access the CED system                                        12
+    CED Workshop Answer Sheet                                             14
+
+_offset 0
+Change Management System                                                  197
+    Table of Contents                                                     199
+_offset 200
     Introduction                                                             1
         What will I learn?                                                   2
         Change Management System overview                                    2
@@ -179,9 +182,9 @@ _offset 196
     Appendix B: Change Rollin and Rollout Summary                           32
 
 _offset 0
-Add a Terminal Workshop                                                   229
-    Contents                                                              231
-_offset 232
+Add a Terminal Workshop                                                   233
+    Contents                                                              235
+_offset 236
     Introduction                                                             1
         What will I learn?                                                   3
     Team member tasks                                                        3
@@ -205,9 +208,9 @@ _offset 232
         Completed optional entry - Contact ID List and Contact Record       18
 
 _offset 0
-Change Management System Workshop 251
-    Contents 253
-_offset 254
+Change Management System Workshop 255
+    Contents 257
+_offset 258
     Introduction                                                     1
         What will I learn?                                           2
     Team member tasks                                                3
@@ -238,9 +241,9 @@ _offset 254
     Steps to access the CED system                                  25
 
 _offset 0
-Terminal Handler (TH-71) 281
-    Contents 283
-_offset 288
+Terminal Handler (TH-71) 285
+    Contents 287
+_offset 292
     Introduction                                                        1
         What will I learn?                                              2
     Terminal Handler functions                                          2
@@ -382,9 +385,9 @@ _offset 288
                 Terminal Command List Record (CEDTCMD)                                      127
 
 _offset 0
-Troubleshooting with Advantage Tools (Tools-73) 417
-    Table of Contents 419
-_offset 420
+Troubleshooting with Advantage Tools (Tools-73) 421
+    Table of Contents 423
+_offset 424
     Introduction                                                                            1
         Prerequisites                                                                       1
         What will I learn?                                                                  2
@@ -450,9 +453,9 @@ _offset 420
 
 
 _offset 0
-Primary Message Control (PMC-71) 547
-    Table of Content 548
-_offset 550
+Primary Message Control (PMC-71) 551
+    Table of Content 552
+_offset 554
         VII. Default routing                                                                41
             CED relationships for default routing                                           42
             Default Routing Record (CEDDEFR)                                                43
@@ -510,13 +513,13 @@ _offset 550
         CED relationships for card maintenance routing                                      98
 
 _offset 0
-PMC Workshop (PMC Driver) 651
-Advantage PMC Workshop 676
-PMC Routing Workshop 693
+PMC Workshop (PMC Driver) 655
+Advantage PMC Workshop 680
+PMC Routing Workshop 697
 
-Connex Advantage Deluxe ISO 8583 Processor Interface 711
-    Table of Contents 713
-_offset 716
+Connex Advantage Deluxe ISO 8583 Processor Interface 715
+    Table of Contents 717
+_offset 720
     Introduction                                                                                     1
         What will I learn?                                                                           2
         What terms do I need to know?                                                                3
@@ -600,9 +603,9 @@ _offset 716
 
 
 _offset 0
-Connex Advantage Processor Interface 845
-    Table ofContents 847
-_offset 850
+Connex Advantage Processor Interface 849
+    Table ofContents 851
+_offset 854
     Introduction                                                             1
         What will I learn?                                                   2
         Network configurations                                               2
@@ -703,9 +706,9 @@ _offset 850
 
 
 _offset 0
-Communications Handler (CH-71) 951
-    Table of Contents 953
-_offset 954
+Communications Handler (CH-71) 955
+    Table of Contents 957
+_offset 958
     Introduction                                                         1
         What will I learn?                                               2
         Acronyms                                                         3
@@ -769,9 +772,9 @@ _offset 954
 
 
 _offset 0
-Connex Advantage Network Monitoring 1046
-    Table of Contents 1048
-_offset 1051
+Connex Advantage Network Monitoring 1050
+    Table of Contents 1052
+_offset 1055
     Introduction                                                     1
         What will I learn?                                           2
         What terms should I know?                                    3
@@ -878,9 +881,9 @@ _offset 1051
         Status Control Maintenance                                      120
 
 _offset 0
-Connex Advantage Statistics Monitor (STATMON-71) 1184
-    Table of Contents 1186
-_offset 1187
+Connex Advantage Statistics Monitor (STATMON-71) 1188
+    Table of Contents 1190
+_offset 1191
     Introduction                                                             1
         What will I learn?                                                   2
     Functions and features                                                   2
@@ -939,9 +942,9 @@ _offset 1187
         Statmon summary report samples                                      69
 
 _offset 0
-Add a Terminal Workshop (CED-73T) 1278
-    Contents 1280
-_offset 1281
+Add a Terminal Workshop (CED-73T) 1282
+    Contents 1284
+_offset 1285
     Introduction                                                             1
         What will I learn?                                                   3
     Team member tasks                                                        3
@@ -965,9 +968,9 @@ _offset 1281
         Completed optional entry - Contact ID List and Contact Record       18
 
 _offset 0
-DUPLICATE Change Management System Workshop (CMS-73) 1314
-    Contents 1316
-_offset 1317
+DUPLICATE Change Management System Workshop (CMS-73) 1318
+    Contents 1320
+_offset 1321
     Introduction                                     1
         What will I learn?                           2
     Team member tasks                                3
@@ -998,17 +1001,13 @@ _offset 1317
     Steps to access the CED system                  25
 
 _offset 0
-CED-71: CED Relationships Diagram 1346
 PMCDRVR screenshots 1348
 Advantage FINIPC PMC Errors List 1372
 Statistics Monitor Inquiry Commands for Workshop 1378
-
-
 _offset 0
 Connex Advantage Authorization Processor (CNX/ADV AP-71: V1.2) 1382
     Contents 1384
 _offset 1387
-
     Introduction                                                     1
         What will I learn?                                           2
     Authorization Processor functions                                3
