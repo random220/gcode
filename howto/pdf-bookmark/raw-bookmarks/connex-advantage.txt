@@ -968,46 +968,13 @@ _offset 1285
         Completed optional entry - Contact ID List and Contact Record       18
 
 _offset 0
-DUPLICATE Change Management System Workshop (CMS-73) 1318
-    Contents 1320
-_offset 1321
-    Introduction                                     1
-        What will I learn?                           2
-    Team member tasks                                3
-    Create a change number                           4
-        Access Main Menu Screen                      4
-        Change Number Detail Screen                  5
-    Roll in a new change                             6
-        CMS Utility (CMSUtil) commands               7
-            Close a change                           7
-            Select a change                          8
-            Roll in a change                         9
-        Link Check (LinkChk) commands               10
-        Swap Build (SWAPBLD) utility commands       11
-            AutoBld command                         12
-            Build command                           13
-        Swap Roll utility commands                  14
-            Install command                         15
-            Master console activation               16
-        Display change number status                17
-            Change number summary screen            18
-            Change number detail screen             19
-    Roll out a change                               20
-        Select and roll out a change                20
-        Swap Build utility command                  21
-        SwapRoll utility command                    22
-        Master console activation                   23
-    Review                                          24
-    Steps to access the CED system                  25
-
+PMCDRVR screenshots 1319
+Advantage FINIPC PMC Errors List 1343
+Statistics Monitor Inquiry Commands for Workshop 1349
 _offset 0
-PMCDRVR screenshots 1348
-Advantage FINIPC PMC Errors List 1372
-Statistics Monitor Inquiry Commands for Workshop 1378
-_offset 0
-Connex Advantage Authorization Processor (CNX/ADV AP-71: V1.2) 1382
-    Contents 1384
-_offset 1387
+Connex Advantage Authorization Processor (CNX/ADV AP-71: V1.2) 1353
+    Contents 1355
+_offset 1358
     Introduction                                                     1
         What will I learn?                                           2
     Authorization Processor functions                                3
