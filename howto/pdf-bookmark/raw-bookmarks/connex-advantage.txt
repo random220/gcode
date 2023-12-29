@@ -942,17 +942,12 @@ _offset 1191
         Statmon summary report samples                                      69
 
 _offset 0
-List of Acronyms 1282
-ISO Glossary 1286
+Statistics Monitor Inquiry Commands for Workshop 1282
 
 _offset 0
-PMCDRVR screenshots 1297
-Advantage FINIPC PMC Errors List 1321
-Statistics Monitor Inquiry Commands for Workshop 1327
-_offset 0
-Authorization Processor (AP-71) 1331
-    Contents 1333
-_offset 1336
+Authorization Processor (AP-71) 1286
+    Contents 1288
+_offset 1291
     Introduction                                                     1
         What will I learn?                                           2
     Authorization Processor functions                                3
@@ -1021,3 +1016,16 @@ _offset 1336
     Appendix                                                        89
         Answers to exercise #1                                      89
         Answers to exercise #2                                      90
+
+_offset 0
+AP Reject Codes 1382
+Appendix A. Reference Tables 1394
+    ISO 8583 Processor Interface Supported Message Types 1404
+    V5.40 Action Code to V5.4 Response/Reject Reason mapping 1406
+    Advice/Reversal Reason Codes (bit 060) 1408
+    Response Codes (bit 039) 1410
+    Additional Amounts Codes (bit 054) 1411
+    List of Acronyms 1414
+    ISO Glossary 1418
+    PMCDRVR screenshots 1429
+    Advantage FINIPC PMC Errors List 1453
