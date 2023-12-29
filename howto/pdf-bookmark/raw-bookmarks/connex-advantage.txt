@@ -139,7 +139,7 @@ _offset 182
     CED Workshop Answer Sheet                                             14
 
 _offset 0
-Change Management System                                                  197
+Change Management System (CMS-71)                                         197
     Table of Contents                                                     199
 _offset 200
     Introduction                                                             1
@@ -182,8 +182,8 @@ _offset 200
     Appendix B: Change Rollin and Rollout Summary                           32
 
 _offset 0
-Add a Terminal Workshop                                                   233
-    Contents                                                              235
+Add a Terminal Workshop (CED-73T)                                           233
+    Contents                                                                235
 _offset 236
     Introduction                                                             1
         What will I learn?                                                   3
@@ -208,7 +208,7 @@ _offset 236
         Completed optional entry - Contact ID List and Contact Record       18
 
 _offset 0
-Change Management System Workshop 255
+Change Management System Workshop (CMS-73) 255
     Contents 257
 _offset 258
     Introduction                                                     1
@@ -517,7 +517,7 @@ PMC Workshop (PMC Driver) 655
 Advantage PMC Workshop 680
 PMC Routing Workshop 697
 
-Connex Advantage Deluxe ISO 8583 Processor Interface 715
+ISO 8583 Processor Interface (ISO PI-71) 715
     Table of Contents 717
 _offset 720
     Introduction                                                                                     1
@@ -603,7 +603,7 @@ _offset 720
 
 
 _offset 0
-Connex Advantage Processor Interface 849
+Processor Interface (PI-71) 849
     Table ofContents 851
 _offset 854
     Introduction                                                             1
@@ -772,7 +772,7 @@ _offset 958
 
 
 _offset 0
-Connex Advantage Network Monitoring 1050
+Network Monitoring (Netmon-71) 1050
     Table of Contents 1052
 _offset 1055
     Introduction                                                     1
@@ -881,7 +881,7 @@ _offset 1055
         Status Control Maintenance                                      120
 
 _offset 0
-Connex Advantage Statistics Monitor (STATMON-71) 1188
+Statistics Monitor (STATMON-71) 1188
     Table of Contents 1190
 _offset 1191
     Introduction                                                             1
@@ -942,39 +942,17 @@ _offset 1191
         Statmon summary report samples                                      69
 
 _offset 0
-Add a Terminal Workshop (CED-73T) 1282
-    Contents 1284
-_offset 1285
-    Introduction                                                             1
-        What will I learn?                                                   3
-    Team member tasks                                                        3
-    Terminal files                                                           4
-        CED relationships                                                    5
-    Add a terminal exercise                                                  6
-        Required CED record entries                                          7
-            Physical Device Record (CEDPHYD)                                 7
-            Terminal Record (CEDTERM)                                        8
-            Direct-attached Device Record (CEDDADV)                          8
-        Optional CED record entries                                          8
-            Contact ID List Record (CEDCNTL)                                 8
-            Contact Record (CEDCNTC)                                         9
-            Terminal Cannister Info Record (CEDCNST)                         9
-    Review                                                                  10
-    Add a terminal exercise - answers                                       11
-        Completed required entry - Physical Device Record                   11
-        Completed required entry - Terminal Record                          12
-        Completed required entry - Direct-Attached Device Record            15
-        Completed optional entry - Terminal Cannister Info Records          16
-        Completed optional entry - Contact ID List and Contact Record       18
+List of Acronyms 1282
+ISO Glossary 1286
 
 _offset 0
-PMCDRVR screenshots 1319
-Advantage FINIPC PMC Errors List 1343
-Statistics Monitor Inquiry Commands for Workshop 1349
+PMCDRVR screenshots 1297
+Advantage FINIPC PMC Errors List 1321
+Statistics Monitor Inquiry Commands for Workshop 1327
 _offset 0
-Connex Advantage Authorization Processor (CNX/ADV AP-71: V1.2) 1353
-    Contents 1355
-_offset 1358
+Authorization Processor (AP-71) 1331
+    Contents 1333
+_offset 1336
     Introduction                                                     1
         What will I learn?                                           2
     Authorization Processor functions                                3
