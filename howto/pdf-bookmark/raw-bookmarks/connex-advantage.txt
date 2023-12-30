@@ -139,9 +139,35 @@ _offset 182
     CED Workshop Answer Sheet                                             14
 
 _offset 0
-Change Management System (CMS-71)                                         197
-    Table of Contents                                                     199
-_offset 200
+Add a Terminal Workshop (CED-73T)                                           197
+    Contents                                                                199
+_offset 214
+    Introduction                                                             1
+        What will I learn?                                                   3
+    Team member tasks                                                        3
+    Terminal files                                                           4
+        CED relationships                                                    5
+    Add a terminal exercise                                                  6
+        Required CED record entries                                          7
+            Physical Device Record (CEDPHYD)                                 7
+            Terminal Record (CEDTERM)                                        8
+            Direct-attached Device Record (CEDDADV)                          8
+        Optional CED record entries                                          8
+            Contact ID List Record (CEDCNTL)                                 8
+            Contact Record (CEDCNTC)                                         9
+            Terminal Cannister Info Record (CEDCNST)                         9
+    Review                                                                  10
+    Add a terminal exercise - answers                                       11
+        Completed required entry - Physical Device Record                   11
+        Completed required entry - Terminal Record                          12
+        Completed required entry - Direct-Attached Device Record            15
+        Completed optional entry - Terminal Cannister Info Records          16
+        Completed optional entry - Contact ID List and Contact Record       18
+
+_offset 0
+Change Management System (CMS-71)                                         219
+    Table of Contents                                                     221
+_offset 222
     Introduction                                                             1
         What will I learn?                                                   2
         Change Management System overview                                    2
@@ -180,32 +206,6 @@ _offset 200
         Swap file types                                                     30
         Extract file types                                                  31
     Appendix B: Change Rollin and Rollout Summary                           32
-
-_offset 0
-Add a Terminal Workshop (CED-73T)                                           233
-    Contents                                                                235
-_offset 236
-    Introduction                                                             1
-        What will I learn?                                                   3
-    Team member tasks                                                        3
-    Terminal files                                                           4
-        CED relationships                                                    5
-    Add a terminal exercise                                                  6
-        Required CED record entries                                          7
-            Physical Device Record (CEDPHYD)                                 7
-            Terminal Record (CEDTERM)                                        8
-            Direct-attached Device Record (CEDDADV)                          8
-        Optional CED record entries                                          8
-            Contact ID List Record (CEDCNTL)                                 8
-            Contact Record (CEDCNTC)                                         9
-            Terminal Cannister Info Record (CEDCNST)                         9
-    Review                                                                  10
-    Add a terminal exercise - answers                                       11
-        Completed required entry - Physical Device Record                   11
-        Completed required entry - Terminal Record                          12
-        Completed required entry - Direct-Attached Device Record            15
-        Completed optional entry - Terminal Cannister Info Records          16
-        Completed optional entry - Contact ID List and Contact Record       18
 
 _offset 0
 Change Management System Workshop (CMS-73) 255
