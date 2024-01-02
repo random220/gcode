@@ -456,7 +456,24 @@ _offset 0
 Primary Message Control (PMC-71)                                                              551
     Table of Content                                                                          552
 _offset 554
-        VII. Default routing                                                                  41
+    Routing methods                                                                           6
+        I. Destination routing (Card-determined)                                              16
+            CED relationships for destination routing                                         17
+            Destination Routing Record (CEDDSTR)                                              19
+            Terminal Record link                                                              21
+            Check Authorization Vendor Record (CEDCHKV)                                       22
+        II. Direct routing (Card-determined)                                                  23
+            CED relationships for direct routing                                              25
+            Direct Routing Record (CEDDIRK)                                                   27
+            Intercept Terminal Record link                                                    29
+            Valid Direct Route List Record (CEDVDIR)                                          30
+        III. On-us routing (Acquirer-determined)                                              33
+            CED relationships for on-us routing                                               34
+        IV. Card logo routing (Acquirer-determined)                                           35
+            CED relationships for card logo routing                                           36
+            Card Logo Lists Acquirer Record (CEDLOGA)                                         38
+            Card Logo Lists Issuer Record (CEDLOGI)                                           40
+        V. Default routing (Acquirer-determined)                                              41
             CED relationships for default routing                                             42
             Default Routing Record (CEDDEFR)                                                  43
     Transaction type validations                                                              44
