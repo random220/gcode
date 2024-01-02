@@ -1,0 +1,17 @@
+#!/bin/bash
+echo Password 2>&1
+genc -d /Users/omandal/Library/CloudStorage/OneDrive-VisaInc/00docs/PERSONAL/tiddly.html.gpg.b64 >/tmp/genout.txt
+
+f=$(tail -1 /tmp/genout.txt)
+# /var/folders/sp/s4q0sfx96cn5tbc_9963gsx80000gq/T/genc-XXXX.anTtrNGZ7x/tiddly.html.gpg.b64.plain
+mv "$f" ~/tiddly.html
+
+d=$(dirname "$f")
+# /var/folders/sp/s4q0sfx96cn5tbc_9963gsx80000gq/T/genc-XXXX.anTtrNGZ7x
+
+rm -f /tmp/genout.txt
+rm -rf "$d"
+
+open ~/tiddly.html
+sleep 2
+rm -rf ~/tiddly.html
