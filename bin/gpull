@@ -1,10 +1,6 @@
 #!/bin/bash
 
-if [[ -d ~/gcode ]]; then
-  cd ~/gcode
-else
-  exit
-fi
+cd ~/gcode || exit
 
 echo 'Github password for random220'
 echo
