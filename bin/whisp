@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -x
+infile="$1"
+if [[ ! -f "$infile" ]]; then
+    echo "Need audio file"
+    exit 1
+fi
+
+infile=$(readlink -f "$infile")
+basename=$(basename "$infile")
+dirname=$(dirname "$(readlink -f "$infile")")
+outfile="$dirname/${basename}.txt"
+tmpdir=$(mktemp -d)
+
+ffmpeg -i "$infile" -ar 16000 -ac 1 -c:a pcm_s16le "$tmpdir/wav.wav"
+
+cd ~/sb/whisper.cpp
+./main -f "$tmpdir/wav.wav" | tee "$outfile"
+rm -rf "$tmpdir"
