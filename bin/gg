@@ -10,4 +10,4 @@ fi
 
 ddir=~/.google/$(basename "$0")
 mkdir -p $ddir
-bash -c "nohup '$g' --user-data-dir=$ddir >/dev/null 2>&1 &"
+bash -c "nohup '$g' --user-data-dir=$ddir "$@" >/dev/null 2>&1 &"

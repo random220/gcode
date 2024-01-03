@@ -12,6 +12,6 @@ d=$(dirname "$f")
 rm -f /tmp/genout.txt
 rm -rf "$d"
 
-open ~/tiddly.html
+gtid ~/tiddly.html
 sleep 2
 rm -rf ~/tiddly.html
