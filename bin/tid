@@ -1,6 +1,7 @@
 #!/bin/bash
 echo Password 2>&1
-genc -d /Users/omandal/Library/CloudStorage/OneDrive-VisaInc/00docs/PERSONAL/tiddly.html.gpg.b64 >/tmp/genout.txt
+f=$(ls -1tr /Users/omandal/Library/CloudStorage/OneDrive-VisaInc/00docs/PERSONAL/tiddly.html.gpg*|tail -1)
+genc -d "$f" >/tmp/genout.txt
 
 f=$(tail -1 /tmp/genout.txt)
 # /var/folders/sp/s4q0sfx96cn5tbc_9963gsx80000gq/T/genc-XXXX.anTtrNGZ7x/tiddly.html.gpg.b64.plain
