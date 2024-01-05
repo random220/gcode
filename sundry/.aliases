@@ -553,3 +553,4 @@ function p() {
 
 
 alias op=afplay
+alias wh='time whisp -m lv2'

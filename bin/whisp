@@ -1,7 +1,21 @@
 #!/bin/bash
 
 set -x
+
+# models/ggml-base.en.bin
+# models/ggml-large-v1.bin
+# models/ggml-large-v2.bin
+# models/ggml-large-v3.bin
+# models/ggml-medium.en.bin
+# models/ggml-small.en.bin
+
+model=base  # base, small, med, lv1, lv2, lv3
+
 infile="$1"
+if [[ "$infile" == '-m' ]]; then
+    model=$2
+    infile=$3
+fi
 if [[ ! -f "$infile" ]]; then
     echo "Need audio file"
     exit 1
@@ -16,5 +30,22 @@ tmpdir=$(mktemp -d)
 ffmpeg -i "$infile" -ar 16000 -ac 1 -c:a pcm_s16le "$tmpdir/wav.wav"
 
 cd ~/sb/whisper.cpp
-./main -f "$tmpdir/wav.wav" | tee "$outfile"
+
+if [[ "$model" == 'base' ]]; then
+    model_file=models/ggml-base.en.bin
+elif [[ "$model" == 'small' ]]; then
+    model_file=models/ggml-small.en.bin
+elif [[ "$model" == 'med' ]]; then
+    model_file=models/ggml-medium.en.bin
+elif [[ "$model" == 'lv1' ]]; then
+    model_file=models/ggml-large-v1.bin
+elif [[ "$model" == 'lv2' ]]; then
+    model_file=models/ggml-large-v2.bin
+elif [[ "$model" == 'lv3' ]]; then
+    model_file=models/ggml-large-v3.bin
+fi
+
+./main --model $model_file -f "$tmpdir/wav.wav" | tee "$outfile"
+
 rm -rf "$tmpdir"
+
