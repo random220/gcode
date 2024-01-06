@@ -4,7 +4,10 @@ myname=$(basename "$0")
 
 cat <<'EOF' >/dev/null
 
+# better auth
+# https://github.com/astrada/google-drive-ocamlfuse/wiki/Authorization
 
+# original doc
 # https://medium.com/@enthu.cutlet/how-to-mount-google-drive-on-linux-windows-systems-5ef4bff24288
 
 sudo add-apt-repository ppa:alessandro-strada/ppa
