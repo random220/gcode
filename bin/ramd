@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#  memory blocks correspond to 1MB. Thus, XXXXX = YYYY * 2048 where YYYY is the size in MB.
+
+basename=$(basename "$0")
+if [[ $basename == 'uramd' ]]; then
+    hdiutil detach /Volumes/om-RAMDISK
+    exit
+fi
+
+mb="$1"
+
+if [[ $mb == '' ]]; then
+    echo
+    echo 'Need size in megabyte'
+    echo
+    exit 1
+fi
+
+block=$(( $mb * 2048 ))
+
+disk=$(hdiutil attach -nobrowse -nomount ram://$block)
+echo $disk
+diskutil erasevolume APFS 'om-RAMDISK' $disk
+
+# hdiutil detach /Volumes/om-RAMDISK
+
