@@ -92,7 +92,24 @@ if [[ $? != 0 ]]; then
 fi
 
 mkdir -p ~/G
-if [[ "$myname" == 'gmount' ]]; then
+if [[ "$myname" == 'greg' ]]; then
+    if [[ ! -f ~/.ssh/cid ]]; then
+        echo Need app id in ~/.ssh/cid
+        echo "Download from https://console.cloud.google.com/apis/credentials?project=om-gd-410505"
+        echo
+        exit
+    fi
+    if [[ ! -f ~/.ssh/sec ]]; then
+        echo Need app secret in ~/.ssh/sec
+        echo "Download from https://console.cloud.google.com/apis/credentials?project=om-gd-410505"
+        echo
+        exit
+    fi
+    cid=$(cat ~/.ssh/cid)
+    sec=$(cat ~/.ssh/sec)
+    rm -rf ~/.gdfuse
+    google-drive-ocamlfuse -id "$cid" -secret "$sec"
+elif [[ "$myname" == 'gmount' ]]; then
     google-drive-ocamlfuse ~/G
 elif [[ "$myname" == 'gumount' ]]; then
     fusermount -u ~/G
