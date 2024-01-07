@@ -17,7 +17,9 @@ cat <<'EOF'
 # better auth
 # https://github.com/astrada/google-drive-ocamlfuse/wiki/Authorization
 
-## google-drive-ocamlfuse -id 12345678.apps.googleusercontent.com -secret abcde12345
+## cid='12345678.apps.googleusercontent.com'
+## sec='abcde12345'
+## google-drive-ocamlfuse -id "$cid" -secret "$sec"
 
 # original doc
 # https://medium.com/@enthu.cutlet/how-to-mount-google-drive-on-linux-windows-systems-5ef4bff24288
