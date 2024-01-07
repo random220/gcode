@@ -110,6 +110,9 @@ if [[ "$myname" == 'greg' ]]; then
     rm -rf ~/.gdfuse
     google-drive-ocamlfuse -id "$cid" -secret "$sec"
 elif [[ "$myname" == 'gmount' ]]; then
+    if [[ ! -d ~/.gdfuse ]]; then
+        greg
+    fi
     google-drive-ocamlfuse ~/G
 elif [[ "$myname" == 'gumount' ]]; then
     fusermount -u ~/G
