@@ -93,14 +93,8 @@ if [[ $? != 0 ]]; then
     sudo apt-get -y install google-drive-ocamlfuse
 fi
 
-if [[ ! -f ~/.ssh/cid ]]; then
-    echo Need app id in ~/.ssh/cid
-    echo "Download from https://console.cloud.google.com/apis/credentials?project=om-gd-410505"
-    echo
-    exit 1
-fi
-if [[ ! -f ~/.ssh/sec ]]; then
-    echo Need app secret in ~/.ssh/sec
+if [[ ! -f ~/.ssh/cid ]] || [[ ! -f ~/.ssh/sec ]] ; then
+    echo Need app id  and app secret in ~/.ssh/cid and ~/.ssh/sec
     echo "Download from https://console.cloud.google.com/apis/credentials?project=om-gd-410505"
     echo
     exit 1
