@@ -105,6 +105,7 @@ sec=$(cat ~/.ssh/sec)
 
 mkdir -p ~/G
 if [[ "$myname" == 'gmount' ]]; then
+    fusermount -u ~/G && sleep 3
     google-drive-ocamlfuse -headless -id "$cid" -secret "$sec" ~/G
     if [[ $? != 0 ]]; then
         echo
@@ -114,12 +115,13 @@ if [[ "$myname" == 'gmount' ]]; then
         echo
         echo
         exit 1
+    else
+        sleep 3
     fi
-    sleep 3
+
     (cd ~/G && ls -ld .)
     if [[ $? != 0 ]]; then
-        sleep 3
-        "$mydir"/gumount
+        fusermount -u ~/G && sleep 3
         rm -rf ~/.gdfuse
         echo
         echo
