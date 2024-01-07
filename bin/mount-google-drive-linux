@@ -2,10 +2,22 @@
 
 myname=$(basename "$0")
 
-cat <<'EOF' >/dev/null
+main() {
+    if [[ "$1" != '' ]]; then
+        help
+        exit
+    else
+        doit
+    fi
+}
+
+help() {
+cat <<'EOF'
 
 # better auth
 # https://github.com/astrada/google-drive-ocamlfuse/wiki/Authorization
+
+## google-drive-ocamlfuse -id 12345678.apps.googleusercontent.com -secret abcde12345
 
 # original doc
 # https://medium.com/@enthu.cutlet/how-to-mount-google-drive-on-linux-windows-systems-5ef4bff24288
@@ -20,8 +32,13 @@ google-drive-ocamlfuse ~/G
 fusermount -u ~/G
 
 
-EOF
 
+
+
+EOF
+}
+
+doit() {
 type google-drive-ocamlfuse >/dev/null 2>&1
 if [[ $? != 0 ]]; then
     echo
@@ -43,5 +60,8 @@ else
     echo
     exit 1
 fi
+}
+
+main "$@"
 
 
