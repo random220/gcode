@@ -3,6 +3,7 @@
 #set -x
 mydir="$(dirname "$(readlink -f "$0")")"
 myname=$(basename "$0")
+credurl='https://console.cloud.google.com/apis/credentials?project=om-gdfuse-ab'
 
 main() {
     if [[ "$1" != '' ]]; then
@@ -95,7 +96,7 @@ fi
 
 if [[ ! -f ~/.ssh/cid ]] || [[ ! -f ~/.ssh/sec ]] ; then
     echo Need app id  and app secret in ~/.ssh/cid and ~/.ssh/sec
-    echo "Download from https://console.cloud.google.com/apis/credentials?project=om-gd-410505"
+    echo "Download from $credurl"
     echo
     exit 1
 fi
@@ -109,7 +110,7 @@ if [[ "$myname" == 'gmount' ]]; then
         echo
         echo
         echo "Check whether ~/.ssh/cid and ~/.ssh/sec are good"
-        echo "Download from https://console.cloud.google.com/apis/credentials?project=om-gd-410505"
+        echo "Download from $credurl"
         echo
         echo
         exit 1
@@ -123,6 +124,8 @@ if [[ "$myname" == 'gmount' ]]; then
         echo
         echo
         echo Try gmount again
+        echo "(Also check values of ~/.ssh/cid and ~/.ssh/sec are good)"
+        echo "(Ref: $credurl)"
         echo
         echo
     fi
@@ -137,5 +140,8 @@ fi
 }
 
 main "$@"
+echo
+echo "https://myaccount.google.com/connections"
+echo
 
 
