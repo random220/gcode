@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -x
 myname=$(basename "$0")
 
 main() {
@@ -97,13 +98,13 @@ if [[ "$myname" == 'greg' ]]; then
         echo Need app id in ~/.ssh/cid
         echo "Download from https://console.cloud.google.com/apis/credentials?project=om-gd-410505"
         echo
-        exit
+        exit 1
     fi
     if [[ ! -f ~/.ssh/sec ]]; then
         echo Need app secret in ~/.ssh/sec
         echo "Download from https://console.cloud.google.com/apis/credentials?project=om-gd-410505"
         echo
-        exit
+        exit 1
     fi
     cid=$(cat ~/.ssh/cid)
     sec=$(cat ~/.ssh/sec)
@@ -111,7 +112,10 @@ if [[ "$myname" == 'greg' ]]; then
     google-drive-ocamlfuse -id "$cid" -secret "$sec"
 elif [[ "$myname" == 'gmount' ]]; then
     if [[ ! -d ~/.gdfuse ]]; then
-        greg
+        "$(dirname "$(readlink -f "$0")")"/greg
+        if [[ $? != 0 ]]; then
+            exit $?
+        fi
     fi
     google-drive-ocamlfuse ~/G
 elif [[ "$myname" == 'gumount' ]]; then
