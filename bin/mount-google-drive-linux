@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -x
+#set -x
+mydir="$(dirname "$(readlink -f "$0")")"
 myname=$(basename "$0")
 
 main() {
@@ -92,32 +93,45 @@ if [[ $? != 0 ]]; then
     sudo apt-get -y install google-drive-ocamlfuse
 fi
 
+if [[ ! -f ~/.ssh/cid ]]; then
+    echo Need app id in ~/.ssh/cid
+    echo "Download from https://console.cloud.google.com/apis/credentials?project=om-gd-410505"
+    echo
+    exit 1
+fi
+if [[ ! -f ~/.ssh/sec ]]; then
+    echo Need app secret in ~/.ssh/sec
+    echo "Download from https://console.cloud.google.com/apis/credentials?project=om-gd-410505"
+    echo
+    exit 1
+fi
+cid=$(cat ~/.ssh/cid)
+sec=$(cat ~/.ssh/sec)
+
 mkdir -p ~/G
-if [[ "$myname" == 'greg' ]]; then
-    if [[ ! -f ~/.ssh/cid ]]; then
-        echo Need app id in ~/.ssh/cid
+if [[ "$myname" == 'gmount' ]]; then
+    google-drive-ocamlfuse -headless -id "$cid" -secret "$sec" ~/G
+    if [[ $? != 0 ]]; then
+        echo
+        echo
+        echo "Check whether ~/.ssh/cid and ~/.ssh/sec are good"
         echo "Download from https://console.cloud.google.com/apis/credentials?project=om-gd-410505"
+        echo
         echo
         exit 1
     fi
-    if [[ ! -f ~/.ssh/sec ]]; then
-        echo Need app secret in ~/.ssh/sec
-        echo "Download from https://console.cloud.google.com/apis/credentials?project=om-gd-410505"
+    sleep 3
+    (cd ~/G && ls -ld .)
+    if [[ $? != 0 ]]; then
+        sleep 3
+        "$mydir"/gumount
+        rm -rf ~/.gdfuse
         echo
-        exit 1
+        echo
+        echo Try gmount again
+        echo
+        echo
     fi
-    cid=$(cat ~/.ssh/cid)
-    sec=$(cat ~/.ssh/sec)
-    rm -rf ~/.gdfuse
-    google-drive-ocamlfuse -id "$cid" -secret "$sec"
-elif [[ "$myname" == 'gmount' ]]; then
-    if [[ ! -d ~/.gdfuse ]]; then
-        "$(dirname "$(readlink -f "$0")")"/greg
-        if [[ $? != 0 ]]; then
-            exit $?
-        fi
-    fi
-    google-drive-ocamlfuse ~/G
 elif [[ "$myname" == 'gumount' ]]; then
     fusermount -u ~/G
 else
