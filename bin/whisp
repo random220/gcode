@@ -46,6 +46,7 @@ elif [[ "$model" == 'lv3' ]]; then
 fi
 
 ./main --model $model_file -f "$tmpdir/wav.wav" | tee "$outfile"
+#./main -l hi --model $model_file -f "$tmpdir/wav.wav" | tee "$outfile"
 
 rm -rf "$tmpdir"
 
