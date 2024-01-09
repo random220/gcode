@@ -12,8 +12,9 @@ if os.path.isfile('/tmp/.die.alive'):
 
 while True:
     if os.path.isfile('/tmp/.die.alive'):
+        os.unlink('/tmp/.die.alive')
         sys.exit(0)
     x = random.randint(0, X)
     y = random.randint(0, Y)
     os.system(f'cliclick -r -e 1000 m:{x},{y}')
-    time.sleep(2)
+    time.sleep(8)
