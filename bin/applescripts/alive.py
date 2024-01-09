@@ -15,5 +15,5 @@ while True:
         sys.exit(0)
     x = random.randint(0, X)
     y = random.randint(0, Y)
-    os.system(f'cliclick m:{x},{y}')
-    time.sleep(15)
+    os.system(f'cliclick -r -e 1000 m:{x},{y}')
+    time.sleep(2)
