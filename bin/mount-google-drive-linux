@@ -3,7 +3,7 @@
 #set -x
 mydir="$(dirname "$(readlink -f "$0")")"
 myname=$(basename "$0")
-credurl='https://console.cloud.google.com/apis/credentials?project=om-gdfuse-ac'
+credurl='https://console.cloud.google.com/apis/credentials?project=sh-fuse-01'
 
 main() {
     if [[ "$1" != '' ]]; then
