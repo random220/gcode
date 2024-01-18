@@ -1,18 +1,21 @@
 #!/bin/bash
 echo Password 2>&1
-f=$(ls -1tr /Users/omandal/Library/CloudStorage/OneDrive-VisaInc/00docs/PERSONAL/tiddly.html.gpg*|tail -1)
+f=$(ls -1tr /Users/omandal/Library/CloudStorage/OneDrive-VisaInc/00docs/PERSONAL/tiddly.git.tar.gpg.*|tail -1)
 genc -d "$f" >/tmp/genout.txt
 
 f=$(tail -1 /tmp/genout.txt)
-# /var/folders/sp/s4q0sfx96cn5tbc_9963gsx80000gq/T/genc-XXXX.anTtrNGZ7x/tiddly.html.gpg.b64.plain
-mv "$f" ~/tiddly.html
-
-d=$(dirname "$f")
-# /var/folders/sp/s4q0sfx96cn5tbc_9963gsx80000gq/T/genc-XXXX.anTtrNGZ7x
-
+# /var/folders/sp/s4q0sfx96cn5tbc_9963gsx80000gq/T/genc-XXXX.KaTt3mi32m/tiddly.git.tar.gpg.5791fef.plain
 rm -f /tmp/genout.txt
-rm -rf "$d"
 
-gtid ~/tiddly.html
+rm -rf ~/.tiddly
+mkdir ~/.tiddly
+cd ~/.tiddly
+tar xf "$f"
+git checkout .
+cd
+
+rm -rf "$(dirname "$f")"
+
+gtid ~/.tiddly/tiddly.html
 sleep 2
-rm -rf ~/tiddly.html
+rm -rf ~/.tiddly
