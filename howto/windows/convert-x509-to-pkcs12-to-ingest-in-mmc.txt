@@ -1,0 +1,15 @@
+openssl pkcs12 -export -out certs.pkcs12 -in ./a.crt -nokeys
+
+
+
+Import and Export Certificate - Microsoft Windows
+Open the MMC (Start > Run > MMC).
+Go to File > Add / Remove Snap In.
+Double Click Certificates.
+Select Computer Account.
+Select Local Computer > Finish.
+Click OK to exit the Snap-In window.
+Click [+] next to Certificates > Personal > Certificates.
+
+Make sure you import them not to personal by to auto categorize to different
+storage
