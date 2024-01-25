@@ -1,6 +1,7 @@
 #!/bin/bash
-echo Password 2>&1
-f=$(ls -1tr /Users/omandal/Library/CloudStorage/OneDrive-VisaInc/00docs/PERSONAL/tiddly.git.tar.gpg.*|tail -1)
+tid='/Users/omandal/Library/CloudStorage/OneDrive-VisaInc/00-PERSONAL/tiddly.git.tar.gpg'
+f=$(ls -1tr ${tid}* |tail -1)
+echo -n 'Password: '
 genc -d "$f" >/tmp/genout.txt
 
 f=$(tail -1 /tmp/genout.txt)
