@@ -13,10 +13,13 @@ mkdir ~/.tiddly
 cd ~/.tiddly
 tar xf "$f"
 git checkout .
+git checkout mac
 cd
 
 rm -rf "$(dirname "$f")"
 
+(
 gtid ~/.tiddly/tiddly.html
-sleep 2
+sleep 10
 rm -rf ~/.tiddly
+) >/dev/null 2>&1 &
