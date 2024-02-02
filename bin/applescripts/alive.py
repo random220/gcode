@@ -15,7 +15,7 @@ p0 = sp.getoutput('cliclick p:.')
 
 while True:
     if os.path.isfile('/tmp/.die.alive'):
-        os.unlink('/tmp/.die.alive')
+        #os.unlink('/tmp/.die.alive')
         sys.exit(0)
     p1 = sp.getoutput('cliclick p:.')
     if p1 == p0:
