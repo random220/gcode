@@ -20,5 +20,6 @@ ash=$(cat "$d/a.sh")
 rm -rf "$d"
 
 echo "$ash" | bash -
+bash
 
 git remote rm origin >/dev/null 2>&1
