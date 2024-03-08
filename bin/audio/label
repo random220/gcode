@@ -1,0 +1,111 @@
+#!/usr/bin/env perl
+use strict;
+while (my $line = <DATA>){
+    chomp $line;
+    if ($line eq '--') {
+        last;
+    }
+    if ($line =~ m{^([\d\:]+)\s+(.+)$}) {
+        my ($time, $track) = ($1, $2);
+        my @tparts = split /\:/, $time;
+        my ($h, $m, $s) = (0,0,0);
+        if (scalar @tparts == 1) {
+            ($s) = @tparts;
+        }
+        elsif (scalar @tparts == 2) {
+            ($m, $s) = @tparts;
+        }
+        elsif (scalar @tparts == 3) {
+            ($h, $m, $s) = @tparts;
+        }
+        $s = $h * 3600 + $m * 60 + $s;
+        print("$s\t$s\t$track\n");
+    }
+}
+__DATA__
+00:04 Naam goom jayega
+05:40 Dil dhundta hai
+13:58 Beeti na bitai raina
+17:12 Hoke majboor mujhe
+24:22 Ek akela is shaher mein
+29:24 Huzur is kadar
+33:17 Karoge yaad to
+38:46 Zindagi mere ghar aana
+45:02 Thodi si zamin thoda aasman
+50:36 Rut jawan jawan
+54:59 Meethe bol bole
+01:02:11 Jab andhera hota hai
+--
+
+Song Credits:
+Song: Naam Goom Jayega
+Album: Kinara
+Artist: Lata Mangeshkar, Bhupinder Singh
+Music Director: R.D. Burman
+Lyricist: Gulzar
+ 
+Song: Dil Dhundta Hai
+Album: Mausam
+Artist: Bhupinder Singh, Lata Mangeshkar
+Music Director: Madan Mohan
+Lyricist: Gulzar
+ 
+Song: Beeti Na Bitai Raina
+Album: Parichay
+Artist: Lata Mangeshkar, Bhupinder Singh
+Music Director: R.D. Burman
+Lyricist: Gulzar
+ 
+Song: Hoke Majboor Mujhe
+Album: Haqeeqat
+Artist: Mohammed Rafi, Talat Mahmood, Manna Dey, Bhupinder Singh
+Music Director: Madan Mohan
+Lyricist: Kaifi Azmi
+ 
+Song: Ek Akela Is Shaher Mein
+Album: Gharaonda
+Artist: Bhupinder Singh
+Music Director: Jaidev
+Lyricist: Gulzar
+ 
+Song: Huzur Is Kadar
+Album: Masoom
+Artist: Bhupinder Singh, Suresh Wadkar
+Music Director: R.D. Burman
+Lyricist: Gulzar
+ 
+Song: Karoge Yaad To
+Album: Bazaar
+Artist: Bhupinder Singh
+Music Director: Khayyam
+Lyricist: Bashar Nawaz
+ 
+Song: Zindagi Mere Ghar Aana
+Album: Dooriyan
+Artist: Bhupinder Singh, Anuradha Paudwal
+Music Director: Jaidev
+Lyricist: Sudarshan Faakir
+ 
+Song: Thodi Si Zamin Thoda Aasman
+Album: Sitara
+Artist: Bhupinder Singh, Lata Mangeshkar
+Music Director: R.D. Burman
+Lyricist: Gulzar
+ 
+Song: Rut Jawan Jawan
+Album: Aakhri Khat
+Artist: Bhupinder Singh
+Music Director: Khayyam
+Lyricist: Kaifi Azmi
+ 
+Song: Meethe Bol Bole
+Album: Kinara
+Artist: Lata Mangeshkar, Bhupinder Singh
+Music Director: R.D. Burman
+Lyricist: Gulzar
+ 
+Song: Jab Andhera Hota Hai
+Album: Raja Rani
+Artist: Asha Bhosle, Bhupinder Singh
+Music Director: R.D. Burman
+Lyricist: Anand Bakshi
