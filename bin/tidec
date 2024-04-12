@@ -1,13 +1,15 @@
 #!/bin/bash
 
 cd ~/b/om
-genc -d tiddly.html.gpg
-mv /tmp/tiddly.html.gpg.plain tiddly.html
+rm -rf __xxx
+rm -rf __chromecache
+
+genc -t __xxx -d tiddly.html.gpg
+mv __xxx/tiddly.html.gpg.plain __xxx/tiddly.html
+
 (
-rm -rf chromecache
-mkdir chromecache
-'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=./chromecache tiddly.html >/dev/null 2>&1
-rm -rf chromecache
+'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=./__chromecache __xxx/tiddly.html >/dev/null 2>&1
 ) >/dev/null 2>&1 &
 sleep 3
-rm -f tiddly.html
+
+rm -rf __xxx
