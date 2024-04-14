@@ -38,6 +38,7 @@ user_pref("network.proxy.socks_remote_dns", true);
 user_pref("network.proxy.type", 1);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.warnOnQuitShortcut", false);
+user_pref("browser.download.useDownloadDir", false);
 EOF
 fi
 
@@ -46,5 +47,7 @@ if [[ $bn == 'ff' ]]; then
 else
   nohup bash -c "'$ff' --profile $ddir" >/dev/null 2>&1 &
 fi
+
+echo $ddir
 
 
