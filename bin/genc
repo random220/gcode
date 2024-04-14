@@ -2,6 +2,7 @@
 umask 077
 
 tmpdir=''
+op=enc
 # Process options using getopt
 while getopts ":t:ed" opt; do
     case "$opt" in
@@ -9,7 +10,7 @@ while getopts ":t:ed" opt; do
             tmpdir="$OPTARG"
             ;;
         e)
-            op=en
+            op=enc
             ;;
         d)
             op=dec
@@ -103,24 +104,23 @@ do_enc_gpg() {
   if [[ -d "$plainfile" ]]; then
     local ind=$(cd "$(dirname "$plainfile")" && pwd -P)
     local bn=$(basename "$plainfile")
-    (cd "$ind" && tar cf "$tmpd/${bn}.tar" "$bn")
-    gpg --passphrase-fd 0 --batch -c -o "$tmpd"/crypt.gpg "$tmpd/${bn}.tar" <<<"$mypass"
+    (cd "$ind" && tar cf "$tmpdir/${bn}.tar" "$bn")
+    gpg --passphrase-fd 0 --batch -c -o "$tmpdir"/crypt.gpg "$tmpd/${bn}.tar" <<<"$mypass"
     status=$?
-    gpg --passphrase-fd 0 --batch -c -o "$tmpd"/crypt.gpg.txt -a "$tmpd/${bn}.tar" <<<"$mypass"
+    gpg --passphrase-fd 0 --batch -c -o "$tmpdir"/crypt.gpg.txt -a "$tmpd/${bn}.tar" <<<"$mypass"
   else
-    gpg --passphrase-fd 0 --batch -c -o "$tmpd"/crypt.gpg "$plainfile" <<<"$mypass"
+    gpg --passphrase-fd 0 --batch -c -o "$tmpdir"/crypt.gpg "$plainfile" <<<"$mypass"
     status=$?
-    gpg --passphrase-fd 0 --batch -c -o "$tmpd"/crypt.gpg.txt -a "$plainfile" <<<"$mypass"
+    gpg --passphrase-fd 0 --batch -c -o "$tmpdir"/crypt.gpg.txt -a "$plainfile" <<<"$mypass"
   fi
   status=$?
   if [[ $status == 0 ]]; then
-    mv "$tmpd"/crypt.gpg "$cryptfile"
-    mv "$tmpd"/crypt.gpg.txt "$cryptfile".txt
+    mv "$tmpdir"/crypt.gpg "$cryptfile"
+    mv "$tmpdir"/crypt.gpg.txt "$cryptfile".txt
   fi
   if [[ -f "$cryptfile" ]]; then
     openssl enc -base64 <"$cryptfile" >"$cryptfile".b64
   fi
-  rm -rf "$tmpd"
   return $status
 }
 do_dec_gpg() {
