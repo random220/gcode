@@ -1,4 +1,15 @@
 #!/bin/bash
 
+cat <<'EOF'
+ssh cron
+vmount
 tiddlyfile=$HOME/b/om/p/CRUZER/gitted/sandbox/tiddly.html
-genc "$tiddlyfile"
+rm -rf _x
+genc -t _x -e "$tiddlyfile"
+vumount
+
+----------------
+
+cd ~/b/om
+scp cron:_x/tiddly.html.gpg .
+EOF
