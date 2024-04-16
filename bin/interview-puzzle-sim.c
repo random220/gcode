@@ -4,6 +4,7 @@
 
 int LEFT_MAX  = -100;
 int RIGHT_MAX = 100;
+int T_MAX = 1000;
 
 int LEFT_MARK  = -2;
 int RIGHT_MARK = 3;
@@ -108,8 +109,12 @@ void move_right(void) {
     G_POS++;
     G_T++;
     print_position();
-    if (G_POS < LEFT_MAX || G_POS > RIGHT_MAX) {
-        printf("maxed out\n");
+    if (G_POS <= LEFT_MAX || G_POS >= RIGHT_MAX) {
+        printf("Space maxed out\n");
+        exit(0);
+    }
+    if (G_T >= T_MAX) {
+        printf("Time maxed out\n");
         exit(0);
     }
 }
@@ -118,8 +123,12 @@ void move_left(void) {
     G_POS--;
     G_T++;
     print_position();
-    if (G_POS < LEFT_MAX || G_POS > RIGHT_MAX) {
-        printf("maxed out\n");
+    if (G_POS <= LEFT_MAX || G_POS >= RIGHT_MAX) {
+        printf("Space maxed out\n");
+        exit(0);
+    }
+    if (G_T >= T_MAX) {
+        printf("Time maxed out\n");
         exit(0);
     }
 }

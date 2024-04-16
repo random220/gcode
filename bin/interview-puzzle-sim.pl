@@ -2,6 +2,7 @@
 
 $LEFT_MAX  = -100;
 $RIGHT_MAX = 100;
+$T_MAX = 1000;
 
 $LEFT_MARK  = -2;
 $RIGHT_MARK = 3;
@@ -85,18 +86,26 @@ sub move_right() {
     $G->{POS}++;
     $G->{T}++;
     print_position();
-    if ($G->{POS} < $LEFT_MAX or $G->{POS} > $RIGHT_MAX) {
-        print("maxed out\n");
-        exit;
+    if ($G->{POS} <= $LEFT_MAX || $G->{POS} >= $RIGHT_MAX) {
+        printf("Space maxed out\n");
+        exit(0);
+    }
+    if ($G->{T} >= $T_MAX) {
+        printf("Time maxed out\n");
+        exit(0);
     }
 }
 sub move_left() {
     $G->{POS}--;
     $G->{T}++;
     print_position();
-    if ($G->{POS} < $LEFT_MAX or $G->{POS} > $RIGHT_MAX) {
-        print("maxed out\n");
-        exit;
+    if ($G->{POS} <= $LEFT_MAX || $G->{POS} >= $RIGHT_MAX) {
+        printf("Space maxed out\n");
+        exit(0);
+    }
+    if ($G->{T} >= $T_MAX) {
+        printf("Time maxed out\n");
+        exit(0);
     }
 }
 
