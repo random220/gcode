@@ -10,6 +10,13 @@ mv __xxx/tiddly.html.gpg.plain __xxx/tiddly.html
 (
 '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=./__chromecache __xxx/tiddly.html >/dev/null 2>&1
 ) >/dev/null 2>&1 &
-sleep 3
 
+while true; do
+    if [[ -d ~/b/om/__chromecache/Default/Sessions ]]; then
+        break
+    fi
+    sleep 1
+done
+
+sleep 1
 rm -rf __xxx
