@@ -551,6 +551,13 @@ function p() {
     fi
 }
 
+function b64() {
+cat <<'EOF'
+# perl -MMIME::Base64 -ne 'print encode_base64($_)' allusers.txt > outputfile.txt
+# perl -MMIME::Base64 -ne 'print decode_base64($_)' outputfile.txt >a.txt
+EOF
+}
+
 
 alias op=afplay
 alias wh='time whisp -m lv2'
