@@ -141,7 +141,7 @@ _offset 182
 _offset 0
 Add a Terminal Workshop (CED-73T)                                                             197
     Contents                                                                                  199
-_offset 214
+_offset 200
     Introduction                                                                              1
         What will I learn?                                                                    3
     Team member tasks                                                                         3
