@@ -1,0 +1,1018 @@
+#!/usr/bin/env perl
+
+use strict;
+my $off = 0;
+while (my $l = <>) {
+    chomp $l;
+    if ($l =~ m{^(.*\s)(\d+)\s+(\d+)$}) {
+        my ($one, $two, $three) = ($1, $2, $3);
+        if ($two + $off == $three) {
+            print "${one}${two}\n";
+        }
+        else {
+            my $x = $three - $two;
+            if ($off != $x) {
+                $off = $x;
+                print "_offset $off\n";
+            }
+            print "${one}${two}\n";
+        }
+    }
+}
+__DATA__
+Advantage PRODUCT OVERVIEW: (CPO-71) 1 1
+    Table of Contents 3 3
+    Introduction 1 7
+        What will I learn? 2 8
+    Basic business requirements 2 8
+        How does Deluxe meet your business needs? 3 9
+        How does the Advantage system meet your business needs? 3 9
+            Full EFT functionality 4 10
+            Flexibility 5 11
+            High performance 5 11
+            Availability 5 11
+            Modularity 6 12
+            Linear Expandability 6 12
+            Cost effectiveness 6 12
+        How does Tandem meet your business needs? 7 13
+            Key benefits of Tandem-based Advantage systems 8 14
+            Tandem fault-tolerant configurations 9 15
+            Tandem product interfaces used by Deluxe 10 16
+            How does Advantage work with Guardian? 11 17
+    Definitions 13 19
+        EFT scenario 13 19
+        Basic EFT terminology 15 21
+            What is an acquirer? 18 24
+            What is an issuer? 18 24
+        Advantage terminology 19 25
+            Advantage internal messages 19 25
+            Other commonly ISO used terms 20 26
+            Format 8 equivalents 22 28
+            Process classes 23 29
+    Advantage system processes 23 29
+        Foundation product 24 30
+        External interfaces 25 31
+        Optional Advantage subsystems 26 32
+    Advantage system process relationships 27 33
+    Let&apos;s review 89 95
+        EXERCISE #1 90 96
+        EXERCISE #2 93 99
+        EXERCISE #3 94 100
+    Appendix A: System-attached environment transaction flow 96 102
+        Step-by-step transaction flow - request 96 102
+        Step-by-step transaction flow - reply 97 103
+        Step-by-step transaction flow - acknowledgment 98 104
+        Step-by-step transaction flow - completion 99 105
+    Appendix B: Intercept environment transaction flow 100 106
+        Step-by-step transaction flow - request 100 106
+        Step-by-step transaction flow - reply and acknowledgment 101 107
+        Step-by-step transaction flow - reversal 102 108
+    Appendix C: Advantage milestones 103 109
+        System-attached milestones 104 110
+        Intercept milestones 104 110
+Connex Environmental Data Base (CED-71) 113 113
+    Table of Contents 115 115
+    Introduction 1 117
+        What will I learn? 2 118
+        Advantage system data bases 3 119
+        Connex Environmental Data Base Files 4 120
+            CED files 5 121
+            Configuration files 6 122
+            CMS control files 6 122
+        How CED files are used 7 123
+        Data Elements 8 124
+    Data base relationships 9 125
+        Pyramid of data base relationships 9 125
+    What is CED? 11 127
+        What features does CED offer? 12 128
+    CED Architecture 14 130
+        General configuration 14 130
+        Logical view 15 131
+    User-friendly features 16 132
+        Main Menu 17 133
+        Screen navigation 18 134
+            Direct Transfer 19 135
+            Mark and Return 19 135
+            GoTo 20 136
+            Zoom 21 137
+        Summary screens 23 139
+        Help facilities 24 140
+        Data Coaching 25 141
+        Relational data base checks 27 143
+            Online verification-referential integrity 28 144
+            Batch verification-Link Check (LINKCHK) 28 144
+        Other user-friendly features 29 145
+            Alternate key retrieval 29 145
+            CED user notes 29 145
+            Physical component transfer capabilities 30 146
+            Configurable coaching and menu screens 30 146
+            Error message displays 30 146
+            CED listings 31 147
+    Data Base Security 34 150
+        User access security 34 150
+        Data and file security 35 151
+        Common fields in CED records 37 153
+        Sample CED screens 38 154
+    Change Management System (CMS) 39 155
+        What features does CMS offer? 39 155
+        Data base levels 40 156
+        CED Rollin Techniques for Normal Changes 42 158
+        Change numbers 43 159
+            Normal change numbers 44 160
+            Change number states 45 161
+        Emergency change numbers 46 162
+            Emergency change number states 47 163
+        CMS screens 48 164
+    Other CMS functions 49 165
+        Copy test data base to production 49 165
+        Copy client data between networks 50 166
+        Manage deleted and changed records 51 167
+            Logical deletions 51 167
+            Physical deletions 52 168
+        Continuous operations 53 169
+    Let&apos;s review 54 170
+    Environmental Data Base Reference Card 57 173
+CED Relationships 175 175
+CED Features Workshop (CED-73) 179 179
+    Table of Contents 181 181
+    Introduction 1 183
+        What will I learn? 2 184
+    Team member tasks 3 185
+    Mystery word competition guidelines 3 185
+    Function keys 4 186
+    Getting started 5 187
+    Screen navigation 5 187
+        Direct transfer - by file name 6 188
+        Direct transfer - by screen number 7 189
+        Zoom function 8 190
+    Data coaching function 9 191
+    Help functions 10 192
+    Review 11 193
+    Steps to access the CED system 12 194
+    CED Workshop Answer Sheet 14 196
+Add a Terminal Workshop (CED-73T) 197 197
+    Contents 199 199
+    Introduction 1 215
+        What will I learn? 3 217
+    Team member tasks 3 217
+    Terminal files 4 218
+        CED relationships 5 219
+    Add a terminal exercise 6 220
+        Required CED record entries 7 221
+            Physical Device Record (CEDPHYD) 7 221
+            Terminal Record (CEDTERM) 8 222
+            Direct-attached Device Record (CEDDADV) 8 222
+        Optional CED record entries 8 222
+            Contact ID List Record (CEDCNTL) 8 222
+            Contact Record (CEDCNTC) 9 223
+            Terminal Cannister Info Record (CEDCNST) 9 223
+    Review 10 224
+    Add a terminal exercise - answers 11 225
+        Completed required entry - Physical Device Record 11 225
+        Completed required entry - Terminal Record 12 226
+        Completed required entry - Direct-Attached Device Record 15 229
+        Completed optional entry - Terminal Cannister Info Records 16 230
+        Completed optional entry - Contact ID List and Contact Record 18 232
+Change Management System (CMS-71) 219 219
+    Table of Contents 221 221
+    Introduction 1 223
+        What will I learn? 2 224
+        Change Management System overview 2 224
+    Change Management System Control Files 3 225
+        CMS Change Cross Reference File (CMSCFLE) 3 225
+        Change Number Control File (CMSCNBR) 3 225
+        CMS Swap Cross Reference File (CMSCSWP) 3 225
+        CMS Build List File (CMSBLST) 4 226
+        CED Swap Location File (CEDSLOC) 4 226
+        CMS User File (CMSUSER) 4 226
+        CMS Data Base Status File (CMSDBST) 4 226
+        Swap Use File (SWAPUSE) 5 227
+        Swap Built File (SWAPBLT) 5 227
+        Swap Old File (SWAPOLD) 5 227
+        Refresh File (REFRESH) 5 227
+        Listing File (LISTING) 6 228
+    Change Management System Utilities 6 228
+        CMS Utility (CMSUTIL) 7 229
+            CMS Utility commands 9 231
+        Swap Build (SWAPBLD) 10 232
+            Swap Build commands 11 233
+            Swap file naming conventions 12 234
+        Swap Roll (SWAPROLL) 13 235
+            Swap Roll commands 14 236
+            Swap control files usage 15 237
+        CED Utility (CEDUTIL) 16 238
+            CED Utility commands 17 239
+        CMS utilities profile variables 18 240
+    Roll in of a change 18 240
+        A Collect data and manage change numbers and data base level 20 242
+        B Build the swap files 24 246
+        C Swap file install 25 247
+    Roll out of a change 28 250
+    Let&apos;s review 29 251
+    Appendix A: Advantage Swap and Extract File Data 30 252
+        Swap file types 30 252
+        Extract file types 31 253
+    Appendix B: Change Rollin and Rollout Summary 32 254
+Change Management System Workshop (CMS-73) 255 255
+    Contents 257 257
+    Introduction 1 259
+        What will I learn? 2 260
+    Team member tasks 3 261
+    Create a change number 4 262
+        Access Main Menu Screen 4 262
+        Change Number Detail Screen 5 263
+    Roll in a new change 6 264
+        CMS Utility (CMSUtil) commands 7 265
+            Close a change 7 265
+            Select a change 8 266
+            Roll in a change 9 267
+        Link Check (LinkChk) commands 10 268
+        Swap Build (SWAPBLD) utility commands 11 269
+            AutoBld command 12 270
+            Build command 13 271
+        Swap Roll utility commands 14 272
+            Install command 15 273
+            Master console activation 16 274
+        Display change number status 17 275
+            Change number summary screen 18 276
+            Change number detail screen 19 277
+    Roll out a change 20 278
+        Select and roll out a change 20 278
+        Swap Build utility command 21 279
+        SwapRoll utility command 22 280
+        Master console activation 23 281
+    Review 24 282
+    Steps to access the CED system 25 283
+Terminal Handler (TH-71) 285 285
+    Contents 287 287
+    Introduction 1 293
+        What will I learn? 2 294
+    Terminal Handler functions 2 294
+    Transaction processing 3 295
+        Transaction flow 3 295
+            Communications Handler 5 297
+            Terminal Handler 6 298
+            Pend Process 9 301
+            Totals Services 10 302
+        Completion message 11 303
+        Reversal generating 12 304
+            No completion message 13 305
+            Status message 13 305
+    Downline load processing 14 306
+        Load files 14 306
+    ATM supervisory processing 15 307
+        ATM privileged functions 15 307
+            ATM settlement 17 309
+        Totals options 20 312
+    Status processing 21 313
+        States 23 315
+        Statuses 26 318
+        State and status messages 28 320
+    Command processing 29 321
+        SHOw TERM &lt;terminal id&gt; 30 322
+        Broadcast commands 32 324
+    Terminal supporting features 33 325
+        Receipt printing 33 325
+        Fast cash processing 34 326
+        Open Account Relationship (OAR) 35 327
+        Multiple Account Support 36 328
+        Terminal maintained business date 37 329
+        Self-service transaction 38 330
+            Check inquiry 38 330
+            Statement printing (full and mini) 38 330
+            Stop payment 38 330
+            Statement mailing 39 331
+            Check reorder 39 331
+            PIN change 39 331
+            Noncash media 39 331
+            Nonsettled media 39 331
+        PIN security 40 332
+        Dynamic screen updates 41 333
+        Miscellaneous features 42 334
+            Surcharge notification support 42 334
+            Amount and PIN re-entry support 42 334
+            Down printer continue support 42 334
+            Multiple language support 43 335
+            Color, touch screen, graphics support 43 335
+    CED relationships 44 336
+        Terminal Handler Configuration Record (CNFG050) 45 337
+        Referential integrity and data dependent chaining 46 338
+        Adding terminals 47 339
+            CED Terminals Menu Screen 48 340
+            Physical Device Record (CEDPHYD) 48 340
+            Terminal Record (CEDTERM) 50 342
+            Terminal Component Configuration Record (CEDTRMC) 57 349
+            Terminal Canister Information Record (CEDCNST) 58 350
+            Fast Cash Denominations Record (CEDFCSH) 59 351
+        Defining transactions 59 351
+            Request Key Sequence List Record (CEDREQK) 60 352
+        Building a transaction reply 61 353
+            Terminal Reply Group Record (CEDRGRP) 62 354
+            PAN Print Masks Record (CEDPRNT) 63 355
+            Terminal Authorization Action Record (CEDAUTH). 64 356
+            Terminal Denial Action Record (CEDDACT) 65 357
+            Terminal Recovery Action Record (CEDRCVR) 66 358
+            Terminal Edit Reject Action Record (CEDEREJ) 67 359
+            Terminal OAR Response Action Record (CEDOARR). 68 360
+            Terminal Print Control Record (CEDPRTR) 69 361
+            Terminal Screen List Record (CEDSCRN) 70 362
+            Print Output Text Formatting Record (CEDPTXT) 71 363
+            Screen Text Formatting Record (CEDSTXT) 73 365
+            Priority Balance Print Record (CEDPBAL) 74 366
+            Account Qualifier Desc Text Record (CEDTAQX) 75 367
+            Transaction Description Replacement Text Record (CEDTTRN) 76 368
+            Marketing Text Record (CEDTMKT) 77 369
+            Fee Type Description Text Record (CEDTFEE) 78 370
+            Tran User Mapping Text Record (CEDTUMP) 79 371
+            Miscellaneous Text Record (CEDTMSC) 80 372
+        ATM supervisory processing 81 373
+            Settlement Card Group Record (CEDSTLC) 82 374
+        Terminal attachment 83 375
+        Direct-attached terminals 84 376
+            Direct-Attached Device Record (CEDDADV) 85 377
+        TH Swap File (SWPxxxxx) 86 378
+        Point-of-sale 87 379
+            POS Features 88 380
+            POS Functions 88 380
+            Financial transactions. 89 381
+            Merchant transactions 90 382
+            Miscellaneous transactions 91 383
+            POS device support 92 384
+        Let&apos;s review 93 385
+        Appendix A: CED relationships for an approved transaction... 96 388
+            Appendix A: CED relationships for an approved transaction... 96 0
+                Terminal Record (CEDTERM) 97 389
+                Terminal Reply Group Record (CEDRGRP) 97 389
+                Terminal Authorization Action Record (CEDAUTH) 98 390
+                Terminal Screen List Record (CEDSCRN) 98 390
+                Screen Formatting Text Record (CEDSTXT) 99 391
+                Screen Formatting Text Record (CEDSTXT) 99 391
+                Transaction Description Replacement Text Record (CEDTTRN) 100 392
+                Screen Formatting Text Record (CEDSTXT) 100 392
+                Screen Formatting Text Record (CEDSTXT) 101 393
+                Terminal Print Control Record (CEDPRTR) 101 393
+                Print Output Text Format (CEDPTXT) 102 394
+                Print Output Text Format (CEDPTXT) 102 394
+                Print Output Text Format (CEDPTXT) 103 395
+                Print Output Text Format (CEDPTXT) 103 395
+                Terminal Print Control Record (CEDPRTR 104 396
+                Print Output Text Format (CEDPTXT) 104 396
+                Transaction Description Replacement Text Record (CEDTTRN) 105 397
+                Terminal Print Control Record (CEDPRTR). 105 397
+                Print Output Text Format (CEDPTXT) 106 398
+                Print Output Text Format (CEDPTXT) 106 398
+                Terminal Print Control Record (CEDPRTR). 107 399
+                Print Output Text Format (CEDPTXT) 108 400
+                Priority Balance Print Record (CEDPBAL) 108 400
+                Print Output Text Format (CEDPTXT) 109 401
+                Priority Balance Print Record (CEDPBAL) 109 401
+        Appendix B: Other CED relationships 110 402
+            CED relationships for switch-attached terminals 110 402
+                Switched-Attached Device Record (CEDSWDV) 111 403
+            Controller-attached/concentrator-attached configurations 112 404
+            CED relationships for controllers and concentrators 113 405
+                Controller Record (CEDCNTR) 114 406
+                Concentrator Record (CEDCCNT) 115 407
+            CED relationships for controller-attached/concentrator-attached terminals 116 408
+                Controller-Attached Device Record (CEDCNDV) 117 409
+                Concentrator-Attached Device Record (CEDCCDV) 118 410
+            CED relationships for downline load processing 119 411
+                Load Image Information Record (CEDLOAD) 120 412
+                Composite Overlay Image Record (CEDCOVL) 121 413
+                Overlay Image List Record (CEDOLST) 122 414
+                Dynamic Screen Update Record (CEDDSU) 123 415
+                Update Text Formatting Record (CEDUTXT) 124 416
+            CED relationships for network operations command processing 125 417
+                Subject Grouping Record (CEDSGRP) 126 418
+                Terminal Command List Record (CEDTCMD) 127 419
+Troubleshooting with Advantage Tools (Tools-73) 421 421
+    Table of Contents 423 423
+    Introduction 1 425
+        Prerequisites 1 425
+        What will I learn? 2 426
+    Section 1 - Transaction flows 2 426
+        Exercise 1 2 426
+            Transaction reversed after hardware failure at device 3 427
+        Exercise 2 4 428
+            Transaction timeout and late reply 5 429
+        Exercise 3 6 430
+            AP stand-alone transaction request from direct-attached device 7 431
+        Exercise 4 8 432
+            Transaction request denied for invalid 9 433
+        Exercise 5 10 434
+            Transaction request denied by processor for non-sufficient funds 11 435
+        Exercise 6 12 436
+            Transaction request denied by AP for lost card 13 437
+    Section 2 - Log Scan 14 438
+        Sample Log Scan 15 439
+        Accessing Log Scan 16 440
+        Commands 17 441
+        Using Log Scan 24 448
+            Procedures 24 448
+            Screens 27 451
+        Log Scan Interpretation 33 457
+            Log Scan Exercise 1 34 458
+            Log Scan Exercise 2 35 459
+            Log Scan Exercise 3 36 460
+            Log Scan Exercise 4 38 462
+            Log Scan Exercise 5 39 463
+            Log Scan Exercise 6 40 464
+            Log Scan Exercise 7 42 466
+            Log Scan Exercise 8 43 467
+        Section 3 - Audit Scan 44 468
+            Sample Audit Scan 46 470
+        Accessing Audit Scan 47 471
+        Command 48 472
+        Display Modes 54 478
+            Unformatted audits 54 478
+            Formatted audits 55 479
+        Using Audit Scan 56 480
+            Procedures 56 480
+            Screens 58 482
+        Audit Interpretation 60 484
+            Audit Exercise 1 - Format 8 Intercept Processor 62 486
+            Audit Exercise 2 - Format 8 Intercept Processor 63 487
+            Audit Exercise 3 - Format 8 Intercept Processor 64 488
+            Audit Exercise 4 - Deluxe ISO 8583 Processor 65 489
+            Audit Exercise 5 - Deluxe ISO 8583 Intercept Processor 66 490
+            Audit Exercise 6 - Deluxe ISO 8583 Intercept Processor 67 491
+            Audit Exercise 7 - Deluxe ISO 8583 Processor - Edit Error 69 493
+            Audit Exercise 8 - Deluxe ISO 8583 Processor - Reject 70 494
+            Audit Exercise 9 - Deluxe ISO 8583 Processor 72 496
+        Review 73 497
+        Appendix A: LogScan Example with All Segments 75 499
+        Appendix - Log Scan and Audit Scan Answers 76 500
+            Log Scan 76 500
+                Answers for procedures 76 500
+                Log Scan Exercise 1 77 501
+                Log Scan Exercise 2 80 504
+            Course completion and credit 81 505
+        Course Completion 82 506
+        Logscan Workshop 525
+Primary Message Control (PMC-71) 551 551
+    Table of Content 552 552
+    Routing methods 6 560
+        I. Destination routing (Card-determined) 16 570
+            CED relationships for destination routing 17 571
+            Destination Routing Record (CEDDSTR) 19 573
+            Terminal Record link 21 575
+            Check Authorization Vendor Record (CEDCHKV) 22 576
+        II. Direct routing (Card-determined) 23 577
+            CED relationships for direct routing 25 579
+            Direct Routing Record (CEDDIRK) 27 581
+            Intercept Terminal Record link 29 583
+            Valid Direct Route List Record (CEDVDIR) 30 584
+        III. On-us routing (Acquirer-determined) 33 587
+            CED relationships for on-us routing 34 588
+        IV. Card logo routing (Acquirer-determined) 35 589
+            CED relationships for card logo routing 36 590
+            Card Logo Lists Acquirer Record (CEDLOGA) 38 592
+            Card Logo Lists Issuer Record (CEDLOGI) 40 594
+        V. Default routing (Acquirer-determined) 41 595
+            CED relationships for default routing 42 596
+            Default Routing Record (CEDDEFR) 43 597
+    Transaction type validations 44 598
+        Card logo options processing 44 598
+            CED relationships for card logo options 45 599
+            Card Logo Options Record (CEDLOPT) 46 600
+        Transaction validation 47 601
+            CED relationships for transaction validation 48 602
+            Transaction Set Record (CEDTSET) 49 603
+        Transaction interchange processing 50 604
+            Transaction Interchange Record (CEDICHG) 51 605
+            Country, Region, County Record (CEDCRCL) 52 606
+    Card track extraction/validations 53 607
+        Card track extraction/validations 53 0
+            CED relationships for card track validations 54 608
+            Card Track Information Record (CEDTRCK) 54 608
+        Sequence number extraction 57 611
+            Card Sequence Number Record (CEDSEQN) 58 612
+        Expiration date validation 59 613
+            Expiration date parameters 60 614
+        Card validation 61 615
+            Card Verify Parameters Record (CEDCVVP) 61 615
+        Types of PIN validation 63 617
+            PIN Verify DES Record (CEDDES) 64 618
+            Quick Kill 65 619
+    Additional PMC functions 66 620
+        Processor Interface stand-in rules 67 621
+            CED relationships for PI Stand-In limit processing 68 622
+            PI Stand-In Limits Record (CEDSTDL) 69 623
+            PI Stand-In relationships on the Routing Information Record (CEDROUT) 70 624
+            PI Stand-In Override Record (CEDSTDO) 71 625
+        Deposit-only check 72 626
+        PAN check digit validation 72 626
+            CED relationships for check digit validation 73 627
+            Check Digit Parameters Record (CEDCKDG) 74 628
+        PAN print masks 75 629
+            PAN Print Masks Record (CEDPRNT) 75 629
+        Currency code validation 77 631
+    Primary Message Control Configuration Record (CNFG030) 79 633
+        PMC Driver (PMCDRVR) tool 80 634
+    Review 81 635
+    Appendix A - Action Codes 84 638
+    Appendix B - Routing examples and business applications 85 639
+    Routing methods - acquirer determined 85 639
+        Destination routing - business application 85 639
+        Direct routing - business application 86 640
+    Routing methods - card determined 89 643
+        On-us routing - business application 89 643
+        Card logo routing - business application 90 644
+        Example 1 - local cardholder 91 645
+        Example 2 - Foreign cardholder 92 646
+        Default routing - business application 95 649
+    Routing methods summary 96 650
+    Appendix C - Card Maintenance Routing 97 651
+        CED relationships for card maintenance routing 98 652
+PMC Workshop (PMC Driver) 655 655
+Advantage PMC Workshop 680 680
+PMC Routing Workshop 697 697
+ISO 8583 Processor Interface (ISO PI-71) 715 715
+    Table of Contents 717 717
+    Introduction 1 721
+        What will I learn? 2 722
+        What terms do I need to know? 3 723
+    Why are message standards used? 5 725
+        ISO 6 726
+        ANSI 7 727
+        Deluxe ISO 8583 PI 9 729
+            Benefits 10 730
+    Standard PI Functions 12 732
+        Transaction processing 12 732
+            Issuing PI timing 13 733
+            Acquiring PI timing 14 734
+            Queuing 15 735
+        Stand-in/Delay processing 16 736
+            Queue File 16 736
+            Negative File 17 737
+            Usage File 18 738
+            Transaction flow 18 738
+    Deluxe ISO 8583 PI Concepts 20 740
+        Message types 20 740
+        Message flows 22 742
+            Pre-Authorization requests/responses (0100/0110) 24 744
+            Pre-Authorization advices/responses (0120/0130) 26 746
+            Financial transaction (0200/0210) 28 748
+            Financial transaction advices/responses (0220/0230) 30 750
+            Acquirer reversal advices/responses (0420/0430) 32 752
+            Card issuer file update (Negative File) requests/responses (0302/0312) 36 756
+            Card issuer file update (Authorization Processor) requests/responses (0382/0392) 38 758
+            Administrative requests/responses (0600/0610) 40 760
+            Administrative advice (0620) 42 762
+            Network management requests/responses (0800/0810) 45 765
+    Optional features 56 776
+        Duplicate monitoring 56 776
+            Intercept Queue 58 778
+        Message text options 64 784
+            Characters 65 785
+            Bit maps 66 786
+            Numeric fields 67 787
+            Data lengths 68 788
+            Fixed data lengths 69 789
+            Variable data lengths 70 790
+            Data elements 72 792
+        Message structure 77 797
+            Fixed message structure 78 798
+            Variable message structure 80 800
+        Pending 84 804
+            No pending 85 805
+            Acquirer or Issuer pends response 86 806
+            Issuer pends on timeout 87 807
+        Reversal selections 88 808
+            Reversals at timeouts 89 809
+            Partial reversals 90 810
+            Full reversals 91 811
+            Reversals for rejects/authorizations/inquiries 92 812
+        Totals 93 813
+            Host sends totals 95 815
+            ISO PI sends totals 96 816
+    CED relationships 98 818
+        PI Configuration relationships 99 819
+            Processor Interface Configuration Record (CNFG040) 100 820
+            Screen 3 of 6 101 821
+        ISO code mapping relationships 102 822
+            Transaction Field Mapping Table Record (CEDMTBL) 103 823
+            Transaction Field Code Mapping Record (CEDCMAP) 104 824
+        Message structure relationships 106 826
+            ISO 8583 PI Options Record (CEDIO) 107 827
+            ISO Message Definition Record (CEDIMSG) 108 828
+            ISO Bit Map Record (CEDIBIT) 109 829
+            Byte mask 110 830
+    ISO User File Create Utility 112 832
+    Network Monitor 114 834
+        Commands Messages 114 834
+        Audit Scan 115 835
+    Audit Scan 117 837
+        Usage 118 838
+    Review 120 840
+        Your turn 121 841
+    APPENDIX A 123 843
+    APPENDIX B 125 845
+    APPENDIX C 127 847
+Processor Interface (PI-71) 849 849
+    Table ofContents 851 851
+    Introduction 1 855
+        What will I learn? 2 856
+        Network configurations 2 856
+    Processor Interface functions 3 857
+        PI Components 3 857
+            Application Services (AS) 4 858
+            Session Services (SS) 5 859
+            Session Services Message Options Record (CEDSOPT) 6 860
+    Message formatting 7 861
+        Data mapping 8 862
+            ISO code mapping 9 863
+    Pending 10 864
+        Acquirer PI pending 10 864
+        Issuer PI pending 11 865
+            Acquirer PI does not pend 12 866
+            Timeout /late response 13 867
+    Financial transaction timing 14 868
+        Issuing PI timeouts 15 869
+        Acquiring PI timeouts 16 870
+    Queue managing 17 871
+        Intercept Queue 17 871
+        Terminology 18 872
+        Processor Output Queue 19 873
+            Multiple disk items 21 875
+        Wait Queue 22 876
+        Queue File (QXxxxxx) 23 877
+    Stand-In/Delay processing 25 879
+        Reasons for activation 26 880
+        Authorization options 28 882
+            Automatic decline 29 883
+            Alternative authorizations 30 884
+            Routing Information Record (CEDROUT) relationships 31 885
+        PI Stand-In limits 32 886
+            PI Stand-In Limits Record (CEDSTDL) 33 887
+        Pl Stand-In override rules 34 888
+            PI Stand-In Override Record (CEDSTDO) 35 889
+        Customer and other related files 36 890
+            Negative File (NEGxxxxx) 36 890
+            Usage File (USGxxxxx) 38 892
+            Event Record (CEDEVNT) 39 893
+        Transaction flow for Delay processing 40 894
+        Alternative authorization considerations 41 895
+        Exit Delay options 42 896
+            After first delivery (full interleaving) 43 897
+            After all delivered 45 899
+            Factors in exiting Delay 47 901
+    Encrypted PIN handling 48 902
+        Hardware encryption option 49 903
+        Software encryption option 49 903
+    Status processing 50 904
+        PI Status/Warm File (PIWARM) 51 905
+        States and statuses 51 905
+    Command processing 53 907
+        Common PI commands 53 907
+            PRCS versus PROC 54 908
+            SHOw PROC &lt; processor id&gt; 55 909
+    CED relationships 56 910
+        PI configuration relationships 57 911
+            Processor Interface Configuration Record (CNFG040) 58 912
+            Screen 2 of 6 59 913
+            Screen 3 of 6 60 914
+            Screen 4 of 6 61 915
+            Screen 5 of 6 62 916
+            Screen 6 of 6 63 917
+        Processor relationships 64 918
+            Intercept Terminal Record (CEDINTR) 65 919
+            Screen 2 of 3 66 920
+            Institution Record (CEDINST) 67 921
+            Processor Record (CEDPROC) 68 922
+            Screen 2 of 3 69 923
+        Data mapping relationships 70 924
+            Data Mapping Record (CEDDMAP) 70 924
+            CED relationships for general data mapping 72 926
+            CED relationships for institution ID or network ID data mapping 73 927
+            Acquirer/Issuer Processor Options Record (CEDPOPT) 74 928
+            CED relationships for Action Code mapping 75 929
+            Transaction Field Mapping Table Record (CEDMTBL) 75 929
+            Transaction Field Code Mapping Record (CEDCMAP) 77 931
+        Message structure relationships 79 933
+            Format 8 Processor Operations Record (CED80PT) 80 934
+            ISO 8583 PI Options Record (CEDIOPT) 82 936
+            ISO Message Definition Record (CEDIMSG) 83 937
+            ISO Bit Map Record (CEDIBIT) 85 939
+        PI Swap File (SWPPI) 86 940
+    Testing and certification 87 941
+        Simulators 88 942
+    Review 89 943
+    Appendix A 93 947
+        Intercept PI: Routines for 110x/ 120x/ 140x/ 142x/ 144x if pending 93 947
+        Cardholder PI: Routines for 110x or 120x 94 948
+        Cardholder PI: Routines for Fin Response 95 949
+        Intercept PI to Intercept Host: Routines for Fin Response 96 950
+        Reversal With PEND to Issuer PI: Routines for Reversals 97 951
+        Reversal Without PEND to Processor PI: (Issuer Side) Routines for Reversals 98 952
+        Reversal With PEND from Acquirer PI: (Acquirer Side) Routines for Reversals 99 953
+    Appendix B 100 954
+        Session Message Options Table (CEDSOPT) Defaults 100 954
+Communications Handler (CH-71) 955 955
+    Table of Contents 957 957
+    Introduction 1 959
+        What will I learn? 2 960
+        Acronyms 3 961
+        OSI Model 4 962
+    Controllers and access methods 6 964
+        Controller functions 6 964
+        Common controller models 7 965
+        Access methods 8 966
+        Data transmission flow 9 967
+    Advantage system communications components 12 970
+        PI and CH links 12 970
+        Transport Services Access Points (TSAPs) 14 972
+        Session Services Access Points (SSAPs) 15 973
+            Session Services Message Options Table 16 974
+        Legal TSAP/SSAP Configurations 17 975
+    Communications Handler concepts 18 976
+        Communications Handler features 19 977
+        Communications Handler functional overview 23 981
+        Other Transport Services functions 25 983
+        Session Services functions 28 986
+    Single versus multiple sessions 33 991
+        Single session PIs 33 991
+        Multiple session PIs 36 994
+        Benefits of a multiple session 42 1000
+    Other protocol specific enhancements 46 1004
+        SNA enhancements 46 1004
+        Point-to-point enhancements--reverse interrupts 47 1005
+    CED relationships for Communications Handlers 50 1008
+        Communications Handler Configuration Record (CNFG060) 51 1009
+        Circuit Record (CEDCIRC) 52 1010
+            Circuit Record (Screen 1 of 3) 53 1011
+            Circuit Record (Screen 2 of 3) 54 1012
+        Transport Services Access Point Record (CEDTSAP) 55 1013
+            TSAP Record (Screen 1 of 4) 56 1014
+            TSAP Record (Screen 2 of 4) 58 1016
+            TSAP Record (Screen 3 of 4) 59 1017
+        Processor Interface Configuration Record (CNFG040) 60 1018
+        Session Services Message Options Record (CEDSOPT) 61 1019
+        CH Swap File (SWPxxxxx) 63 1021
+    Network Monitor commands 64 1022
+        Line and Show commands 64 1022
+        Audit commands 65 1023
+    Let&apos;s review 66 1024
+    Appendix A - Basic data communications concepts 68 1026
+        Data communication protocol and concepts 68 1026
+        Why is communication protocol necessary? 70 1028
+        Message encoding standards 70 1028
+        What are some common protocols? 73 1031
+        Contention protocol 73 1031
+            Half duplex environments 74 1032
+            Contention protocol 75 1033
+            Bid contention 76 1034
+            Burst 77 1035
+        Multipoint (poll/select) protocol 78 1036
+        SNA 81 1039
+            Full duplex environments 81 1039
+        References 84 1042
+    Appendix B -- Controller types and software matrix 85 1043
+    Appendix C -- Session Services Message Options Table 87 1045
+    Appendix D -- Communications Handler naming conventions 88 1046
+Network Monitoring (Netmon-71) 1050 1050
+    Table of Contents 1052 1052
+    Introduction 1 1056
+        What will I learn? 2 1057
+        What terms should I know? 3 1058
+    Demonstration 5 1060
+        Network Monitoring Interface screen 5 1060
+            A window 6 1061
+            Network Status line 8 1063
+            B window 9 1064
+            Time line, Command line, and Line 25 12 1067
+            Background window 14 1069
+    Features 15 1070
+        NMI user security 16 1071
+            Logon security 17 1072
+            Command security 18 1073
+            Command Group List Record (CEDCMND) 19 1074
+        Message appearance and conditions for display 20 1075
+            Message level 21 1076
+            Color console support (PCT 6530) 22 1077
+            Linked messages 23 1078
+            Externalized message and status text and attributes 25 1080
+            Standardized status conditions 26 1081
+            Initial inhibit time 27 1082
+        Duplicate message analyzation 28 1083
+        Inquiry information 29 1084
+            Raw data from inquiries logged 29 1084
+            Hardcopy output for inquiries 30 1085
+        Pinpoint contact function 31 1086
+            CED relationships for contact information 33 1088
+            Contact ID List Record (CEDCNTL) 34 1089
+            Contact ID Record (CEDCNTC) 35 1090
+        Online help 36 1091
+        Online history 37 1092
+        Multiple NMIs 39 1094
+        Control groups 40 1095
+    Display screens and common commands 41 1096
+        Complete screen 42 1097
+            Reconfiguring the NMI window 44 1099
+        Help commands 45 1100
+            HElp COMmand DETail &lt;command-text&gt; 46 1101
+            HElp MEssage &lt;prefix&gt; &lt;message number&gt; 47 1102
+            HElp STATus &lt;subject-type&gt; &lt;status number&gt; 48 1103
+            HElp STATUs Number &lt;subject-type&gt; {STATE/FAULT} 49 1104
+        Show commands 50 1105
+            SHOw LAst DELETEd 51 1106
+            SHOw TERM &lt;terminal id&gt; 52 1107
+            SHOw PROC &lt;processor id&gt; 54 1109
+            SHOw LINE &lt;line id&gt; or &lt;port id&gt; 55 1110
+            SHOw PRCS (Processes) 56 1111
+            SHOw &lt;subject-type&gt; BY &lt;subject-type&gt; &lt;subject&gt; 58 1113
+            SHow NOTes &lt;file type &gt; &lt;subject-id&gt; (&lt;note-type&gt;) 59 1114
+        Contact and Call commands 60 1115
+            SHOw CONTact &lt;subject-type&gt; &lt;subject&gt; (&lt;contact-type&gt;) 61 1116
+            CALled &lt;subject-type&gt; &lt;subject&gt; &lt;contact-name&gt; 63 1118
+            INHibit &lt;subject-type&gt; &lt;subject&gt; UNTil &lt;hh:mm&gt; 65 1120
+            BEeper &lt;subject-type&gt; &lt;subject&gt; &lt;contact-name&gt; 66 1121
+            DPager &lt;subject-type &gt; &lt;subject&gt; &lt;contact-name&gt; 67 1122
+            VPager &lt;subject-type&gt; &lt;subject&gt; &lt;contact-name&gt; 68 1123
+            NOAnswer &lt;subject-type&gt; &lt;subject&gt; &lt;contact-name&gt; 69 1124
+            PIckup &lt;subject-type&gt; &lt;subject&gt; &lt;contact-name&gt; 70 1125
+        Other commands 70 1125
+    Overview of the Network Monitoring system 71 1126
+        Network Monitoring files 72 1127
+            Data files 73 1128
+            Swap files 74 1129
+            Warm files 75 1130
+            Status file 76 1131
+            Help file 76 1131
+        Process Control (PROCCTL) 77 1132
+        Event Manager (EVENTMGR) 79 1134
+        Network Monitor (NETMON) 80 1135
+        Network Monitor Interface (NMI) 81 1136
+        Message Alert (MSGALRT) 82 1137
+        Status Alert (STATALRT) 84 1139
+        Network Monitor Inquiry (NMQ) 85 1140
+        History Alert (HISTSLRT) 86 1141
+    Command and status message flows 87 1142
+        Flow of a command 87 1142
+            Netmon and NMQ commands 88 1143
+            Processor and terminal commands 89 1144
+            Status update commands 90 1145
+            System event command flow 91 1146
+        Flow of a status message 91 1146
+            System creation and process restarts 92 1147
+            System initialization to inactive state 93 1148
+            Status condition changes 94 1149
+    CED configuration records 95 1150
+        Process Control Configuration File (CNFG000) 96 1151
+            Common fields related to network monitoring 96 1151
+            Process unique fields related to network monitoring 97 1152
+        Network Monitor Configuration File (CNFG001) 98 1153
+        Network Monitor Inquiry Configuration File (CNFG002) 99 1154
+        Network Interface Configuration File (CNFG003) 100 1155
+            Network Interface Configuration, Page 2 of 2 101 1156
+        Status Alert Configuration File (CNFG004) 102 1157
+        Message Alert Configuration File (CNFG005) 103 1158
+        History Alert Configuration File (CNFG009) (optional) 104 1159
+    Other tools and documentation 105 1160
+        Documentation 105 1160
+    Review 106 1161
+    Appendix A 111 1166
+        Connex Profile (CNXPROF) Parameters 111 1166
+    Appendix B 113 1168
+        Message Text Maintenance 113 1168
+        Status Control Maintenance 120 1175
+Statistics Monitor (STATMON-71) 1188 1188
+    Table of Contents 1190 1190
+    Introduction 1 1192
+        What will I learn? 2 1193
+    Functions and features 2 1193
+        Functions 3 1194
+        Features 4 1195
+    Operations examples 5 1196
+        Scenario 1: Substandard authorization rate 6 1197
+        Scenario 2: Consecutive denials for a card base 10 1201
+        Scenario 3: Consecutive denials at a terminal 12 1203
+    How statistics are maintained 14 1205
+        Subject types 14 1205
+        Types of statistics 15 1206
+    Threshold triggers 16 1207
+        Consecutive count triggers 17 1208
+        Percentage triggers 19 1210
+        Minimum transaction threshold triggers 21 1212
+    Network Monitor messages 22 1213
+    Interaction with the Network Monitor 23 1214
+        Statistics Monitor Distributor (SMONDIST) 23 1214
+        Statistics Monitor Transaction Collector (SMONTRCT) 25 1216
+            History File 26 1217
+        Statistics Monitor Trigger Manager (SMONTMGR) 27 1218
+        Statistics Monitor Transaction Watch (SMONWTCH) 28 1219
+    Processing Environment 30 1221
+        Message Alerts 31 1222
+        Problem determination 32 1223
+    Statistics Monitor Inquiry (SMONINQY) 34 1225
+        Commands 35 1226
+        Display format 36 1227
+            When would I use the display format? 38 1229
+        Plot format 39 1230
+            When would I use the plot format? 40 1231
+        Compare format 41 1232
+            When would I use the compare format? 43 1234
+    CED relationships 44 1235
+        Statmon Selection Record (CEDSSLT) 45 1236
+        Statmon Trigger Record (CEDTRGS) 46 1237
+        Statmon Schedule Record (CEDSSCH) 47 1238
+        Statmon Watch Criteria Record (CEDWTCH) 48 1239
+    Review 50 1241
+    Appendix A: Statistic IDs 54 1245
+        Terminal Handlers 54 1245
+        ATM and POS Devices 55 1246
+        Processors 56 1247
+        Card bases 58 1249
+        Card groups 59 1250
+        Routing ID (card tables) 60 1251
+        Intercept terminals 61 1252
+        Controllers 62 1253
+        Data communication lines 63 1254
+        Hunt groups 64 1255
+        Authorization Processor 65 1256
+        System as a whole 66 1257
+    Appendix B: Statmon Summary 68 1259
+        Statmon summary commands 68 1259
+        Statmon summary report samples 69 1260
+Statistics Monitor Inquiry Commands for Workshop 1282 1282
+Authorization Processor (AP-71) 1286 1286
+    Contents 1288 1288
+    Introduction 1 1292
+        What will I learn? 2 1293
+    Authorization Processor functions 3 1294
+    Authorization Processor features 4 1295
+    Authorization levels 6 1297
+        Negative/Exception 7 1298
+            Authorization checks 8 1299
+        Positive 9 1300
+            Authorization checks 10 1301
+        Positive with balances 11 1302
+            Authorization checks 12 1303
+    Authorization methods 12 1303
+        PI authorization 13 1304
+        AP authorization 13 1304
+            Stand-alone authorization (No advice to host) 14 1305
+            Stand-alone authorization (advice to host) 16 1307
+            Cooperative authorization 18 1309
+            Cooperative authorization (stand-in) 20 1311
+            Alternate Processor 22 1313
+    Primary components 24 1315
+        AP Parameter File 24 1315
+            AP Parameter File Compiler 26 1317
+        AP data base files 26 1317
+            Authorization level 27 1318
+            Segments 28 1319
+            Cardholder File 29 1320
+            Account Detail File 33 1324
+            AP file philosophy 36 1327
+            Balance Update File 39 1330
+            Customer Service List File 40 1331
+            Balance Status File 42 1333
+    AP processes 44 1335
+        APEX and APO relationship 46 1337
+    Related Advantage system functions 49 1340
+    CED relationships 50 1341
+        AP Stand-Alone, Card Base Record (CEDCBAS) 51 1342
+            Screen 1 of 3 51 1342
+            Screen 2 of 3 52 1343
+        AP Stand-Alone, Card Options Record (CEDCOPT) 53 1344
+        AP Stand-Alone, Routing Information Record (CEDROUT) 54 1345
+        AP Stand-Alone, Processor File (CEDPROC) 55 1346
+        AP Cooperative, Card Base Record (CEDCBAS) 56 1347
+        AP Cooperative, Card Options Record (CEDCOPT) 57 1348
+        AP Cooperative, Routing Information Record (CEDROUT) 58 1349
+        AP Cooperative, Processor File (CEDPROC) 58 1349
+        AP Alternate, Card Base Record (CEDCBAS) 59 1350
+        AP Alternate, Card Options Record (CEDCOPT) 60 1351
+        AP Alternate, Routing Information Record (CEDROUT) 60 1351
+        AP Alternate, Processor File (CEDPROC) 61 1352
+        AP Configuration File (CNFG045) 62 1353
+    Maintenance methods for AP files 63 1354
+        Administrative terminal / AP Maintenance 64 1355
+        Online maintenance transactions from the host 66 1357
+        Balance in a financial reply 68 1359
+        End-of-day processing 71 1362
+            Financial request during AP end-of-day processing 73 1364
+        AP Balance File Update (APBFU) 74 1365
+            First daily transaction after AP end-of-day processing 77 1368
+        AP Batch maintenance (APBATCH) 79 1370
+            AP Load (APLOAD) 81 1372
+    Component summary 83 1374
+    Let&apos;s review 85 1376
+        Exercise #1 86 1377
+        Exercise #2 87 1378
+        Exercise #3 88 1379
+    Appendix 89 1380
+        Answers to exercise #1 89 1380
+        Answers to exercise #2 90 1381
+AP Reject Codes 1382 1382
+Appendix A. Reference Tables 1394 1394
+    ISO 8583 Processor Interface Supported Message Types 1404 1404
+    V5.40 Action Code to V5.4 Response/Reject Reason mapping 1406 1406
+    Advice/Reversal Reason Codes (bit 060) 1408 1408
+    Response Codes (bit 039) 1410 1410
+    Additional Amounts Codes (bit 054) 1411 1411
+    List of Acronyms 1414 1414
+    ISO Glossary 1418 1418
+    PMCDRVR screenshots 1429 1429
+    Advantage FINIPC PMC Errors List 1453 1453
