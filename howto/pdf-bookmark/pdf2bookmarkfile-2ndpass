@@ -2,10 +2,25 @@
 
 use strict;
 my $off = 0;
-while (my $l = <>) {
+#my @lines = <>;
+my @lines = <DATA>;
+
+my $maxlen = 0;
+for my $l (@lines) {
+    my $new = $l;
+    $new =~ s{\s+\d+\s+\d+\s*$}{}s;
+    my $newlen = length($new);
+    if ($newlen > $maxlen) {
+        $maxlen = $newlen;
+    }
+}
+$maxlen += 4;
+
+for my $l (@lines) {
     chomp $l;
     if ($l =~ m{^(.*\s)(\d+)\s+(\d+)$}) {
         my ($one, $two, $three) = ($1, $2, $3);
+        $one = lengthen($one, $maxlen);
         if ($two + $off == $three) {
             print "${one}${two}\n";
         }
@@ -18,6 +33,16 @@ while (my $l = <>) {
             print "${one}${two}\n";
         }
     }
+}
+
+sub lengthen() {
+    my ($line, $maxlen) = @_;
+    my $n = $maxlen - length($line);
+    while ($n > 0) {
+        $line .= ' ';
+        $n--;
+    }
+    return $line;
 }
 __DATA__
 Advantage PRODUCT OVERVIEW: (CPO-71) 1 1
