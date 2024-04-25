@@ -1,0 +1,5 @@
+cat <<EOF
+sudo networksetup -listallhardwareports
+sudo networksetup -listpreferredwirelessnetworks en0
+sudo networksetup -removepreferredwirelessnetwork en0 removed_wifi
+EOF
