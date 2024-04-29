@@ -62,6 +62,7 @@ do_tiddly() {
   $HOME/Downloads/tiddly*.html \
   $HOME/Documents/tiddly*.html \
   $HOME/Desktop/tiddly*.html \
+  $HOME/tiddly*.html \
   $p/tmp/chrome-downloads/tiddly*.html \
   >$tmpdir/tiddlies.txt 2>/dev/null
 
