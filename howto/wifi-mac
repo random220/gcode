@@ -2,4 +2,12 @@ cat <<EOF
 sudo networksetup -listallhardwareports
 sudo networksetup -listpreferredwirelessnetworks en0
 sudo networksetup -removepreferredwirelessnetwork en0 removed_wifi
+
+networksetup -setairportpower en0 off
+networksetup -setairportpower en0 on
+
+wdutil info
+
+networksetup -listnetworkserviceorder
+
 EOF
