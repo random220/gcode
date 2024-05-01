@@ -10,4 +10,6 @@ wdutil info
 
 networksetup -listnetworkserviceorder
 
+networksetup -setairportnetwork en0 $networkname [password]
+
 EOF
