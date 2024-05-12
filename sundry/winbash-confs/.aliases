@@ -1,0 +1,121 @@
+umask 022
+
+ap ()
+{
+    cat  <<'EOF'
+if [[ -f ~/sb/work/bin/ssh-askpass ]]; then
+    export SSH_ASKPASS=~/sb/work/bin/ssh-askpass
+    export SSH_ASKPASS_REQUIRE=force
+fi
+EOF
+
+}
+b64 ()
+{
+    cat  <<'EOF'
+# perl -MMIME::Base64 -ne 'print encode_base64($_)' allusers.txt > outputfile.txt
+# perl -MMIME::Base64 -ne 'print decode_base64($_)' outputfile.txt >a.txt
+EOF
+
+}
+gf ()
+{
+    local top;
+    local headref;
+    local current_branch;
+    top=$(git rev-parse --show-toplevel);
+    headref=$(git rev-list -1 HEAD);
+    current_branch=$(git rev-parse --abbrev-ref HEAD);
+    cd "$top";
+    git pack-refs --all;
+    echo "$headref refs/heads/ref_$headref" > .git/packed-refs;
+    echo "ref: refs/heads/ref_$headref" > .git/HEAD;
+    git fetch --all;
+    git checkout --track origin/"$current_branch" && git branch -D "ref_$headref"
+}
+
+gits ()
+{
+    git config --global credential.helper 'cache --timeout='$(( 5*60*60 ));
+    git config --global color.ui true;
+    git config --global push.default matching;
+    git config --global merge.conflictstyle diff3;
+    git config --global user.email omandal@visa.com;
+    git config --global user.name "Om Mandal";
+    git config --global pull.rebase false
+}
+glocal ()
+{
+    for branch in $(git branch -r|grep -v -- '->'|grep 'origin/'|sed 's/^  origin\///');
+    do
+        git branch $branch origin/$branch;
+    done;
+    git remote rm origin
+}
+heads ()
+{
+    git pack-refs --all;
+    packed_refs_file='./packed-refs';
+    if [[ ! -f "$packed_refs_file" ]]; then
+        packed_refs_file="$(git rev-parse --show-toplevel)"/.git/packed-refs;
+    fi;
+    if [[ ! -f "$packed_refs_file" ]]; then
+        echo "Error: Could not find packed-refs file";
+        return 1;
+    fi;
+    ( for ref in $(git rev-list --all --children|grep -v ' ');
+    do
+        refnames=$(grep $ref $packed_refs_file|sed 's/^.* //'|sort|xargs);
+        if [[ $refnames != '' ]]; then
+            refdate=$(git log -1 --pretty=format:'%cs' $ref);
+            echo "$refdate $ref $refnames";
+        fi;
+    done ) | sort -nr
+}
+p3 ()
+{
+    if [[ -f ~/p3/bin/activate ]]; then
+        source ~/p3/bin/activate;
+    fi
+}
+path_add ()
+{
+    path_add_after "$1"
+}
+path_add_after ()
+{
+    local new="$1";
+    local p=$( tr ':' '
+' <<<"$PATH" | grep -v '^'$new'$' | tr '
+' ':'| sed 's/:$//; s/^://');
+    PATH="$p:$new"
+}
+path_add_before ()
+{
+    local new="$1";
+    local p=$( tr ':' '
+' <<<"$PATH" | grep -v '^'$new'$' | tr '
+' ':'| sed 's/:$//; s/^://');
+    PATH="$new:$p"
+}
+t0 ()
+{
+    local name=T0;
+    if [[ $1 != '' ]]; then
+        name=$1;
+    fi;
+    local ls=$(tmux ls | grep "^${name}:" 2>/dev/null);
+    if [[ $ls == '' ]]; then
+        tmux -2 new -s $name;
+    else
+        tmux -2 a -d -t $name;
+    fi
+}
+
+alias glog='git log --all --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit --date=relative'
+alias glog1='git log --graph --decorate --oneline'
+alias glog2='git log --all --graph --decorate --oneline'
+alias glogin='echo|gh auth login; gh auth setup-git'
+alias grel='git branch -r|grep origin/RELEASE|xargs git log --graph --decorate --oneline'
+alias gs='git status -s'
+
