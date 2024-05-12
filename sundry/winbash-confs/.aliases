@@ -98,6 +98,11 @@ path_add_before ()
 }
 t0 ()
 {
+    type tmux >/dev/null 2>&1
+    if [[ $? != 0 ]]; then
+        echo tmux not installed
+        return
+    fi
     local name=T0;
     if [[ $1 != '' ]]; then
         name=$1;
