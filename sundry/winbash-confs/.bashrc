@@ -1,3 +1,5 @@
+umask 077
+
 if [[ $SHLVL == 1 ]]; then
     cd
 fi
