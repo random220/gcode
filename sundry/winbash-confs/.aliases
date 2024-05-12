@@ -118,4 +118,4 @@ alias glog2='git log --all --graph --decorate --oneline'
 alias glogin='echo|gh auth login; gh auth setup-git'
 alias grel='git branch -r|grep origin/RELEASE|xargs git log --graph --decorate --oneline'
 alias gs='git status -s'
-
+alias ll='ls -altr'
