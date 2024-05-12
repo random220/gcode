@@ -272,6 +272,12 @@ fancy_off () {
     rm -f ~/.config/.fancy* ~/.config/fancy
 }
 
+function winps1() {
+    cat <<"EOF"
+export PS1='\[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$ '
+EOF
+}
+
 
 
 if [[ -f ~/.config/fancy ]]; then
