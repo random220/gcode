@@ -25,6 +25,7 @@
     <script>
 
         let selectedUnit = "ml";
+        let editingTransaction = null;
         
         // Sample data
         const data = [
@@ -140,10 +141,59 @@
           const transactionsWindow = document.getElementById("transactionsWindow");
           transactionsWindow.innerHTML = "";
 
-          transactions.forEach((transaction) => {
-            const div = document.createElement("div");
-            div.textContent = `${transaction.item} - ${transaction.quantity} ${transaction.unit} (${transaction.timestamp.toLocaleString()})`;
-            transactionsWindow.appendChild(div);
+          transactions.forEach((transaction, index) => {
+            const form = document.createElement("form");
+
+            const itemInput = document.createElement("input");
+            itemInput.type = "text";
+            itemInput.value = transaction.item;
+            itemInput.disabled = true;
+            form.appendChild(itemInput);
+
+            const quantityInput = document.createElement("input");
+            quantityInput.type = "number";
+            quantityInput.step = "0.1";
+            quantityInput.value = transaction.quantity;
+            quantityInput.disabled = editingTransaction !== index;
+            form.appendChild(quantityInput);
+
+            const unitSelect = document.createElement("select");
+            unitSelect.disabled = editingTransaction !== index;
+            const mlOption = document.createElement("option");
+            mlOption.value = "ml";
+            mlOption.textContent = "ml";
+            const vialOption = document.createElement("option");
+            vialOption.value = "vial";
+            vialOption.textContent = "vial";
+            unitSelect.add(mlOption);
+            unitSelect.add(vialOption);
+            unitSelect.value = transaction.unit;
+            form.appendChild(unitSelect);
+
+            const timestampInput = document.createElement("input");
+            timestampInput.type = "text";
+            timestampInput.value = transaction.timestamp.toLocaleString();
+            timestampInput.disabled = true;
+            form.appendChild(timestampInput);
+
+            const editButton = document.createElement("button");
+            editButton.type = "button";
+            editButton.textContent = editingTransaction === index ? "Save" : "Edit";
+            editButton.onclick = () => {
+              if (editingTransaction === index) {
+                // Save changes
+                transaction.quantity = parseFloat(quantityInput.value);
+                transaction.unit = unitSelect.value;
+                editingTransaction = null;
+              } else {
+                // Enable editing
+                editingTransaction = index;
+              }
+              showTransactions();
+            };
+            form.appendChild(editButton);
+
+            transactionsWindow.appendChild(form);
           });
 
           transactionsWindow.style.display = "block";
