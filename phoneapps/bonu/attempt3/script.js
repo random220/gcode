@@ -167,6 +167,7 @@ function deleteUsage(index) {
     }
 }
 
+
 function exportToCSV() {
     const usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
     if (usageLog.length === 0) {
@@ -175,11 +176,11 @@ function exportToCSV() {
     }
 
     // Construct CSV content
-    const csvContent = "timestamp,drugid,drugname,quantity,unit\n" +
+    const csvContent = "timestamp,drugid,drugname,quantity\n" +
         usageLog.map(entry => {
             const drugName = entry.item ? `"${entry.item.replace(/"/g, '""')}"` : ''; // Handling undefined item
             const timestamp = `"${entry.timestamp.replace(/"/g, '""')}"`; // Handling commas in timestamp
-            return `${timestamp},${entry.id},${drugName},${entry.quantity},${entry.unit}`;
+            return `${timestamp},${entry.id},${drugName},${entry.quantity}`;
         }).join("\n");
 
     // Create and download CSV file
