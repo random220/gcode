@@ -45,10 +45,8 @@ function displayResults(results) {
             resultItem.classList.add('result-item');
             resultItem.innerHTML = `
                 <p class="highlight"><strong>Item:</strong> ${result.item}</p>
-                <p><strong>Category:</strong> ${result.category}</p>
-                <p><strong>Qty:</strong> ${result.qty} ${result.unit}</p>
-                <p><strong>Mfg Date:</strong> ${result.mfgDate}</p>
-                <p><strong>Exp Date:</strong> ${result.expDate}</p>
+                <p><strong>Quantity:</strong> ${result.qty}</p>
+                <p><strong>Unit:</strong> ${result.unit}</p>
             `;
             resultsContainer.appendChild(resultItem);
         });
