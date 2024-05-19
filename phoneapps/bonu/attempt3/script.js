@@ -193,5 +193,16 @@ function exportToCSV() {
     window.URL.revokeObjectURL(url);
 }
 
+function clearUsageData() {
+    const confirmation = prompt("Are you sure you want to clear the usage data? Type 'YES' in capital letters to confirm.");
+    if (confirmation === "YES") {
+        localStorage.removeItem('usageLog');
+        displayUsageLog();
+        alert('Usage data cleared successfully.');
+    } else {
+        alert('Clear operation canceled.');
+    }
+}
+
 // Initialize the usage log display
 document.addEventListener('DOMContentLoaded', displayUsageLog);
