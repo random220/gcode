@@ -121,6 +121,7 @@ function resetForm() {
 
 // Update the editUsage function
 function editUsage(index) {
+    console.log('Editing entry at index:', index);
     const usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
     const entry = usageLog[index];
     const newQuantity = prompt(`Edit quantity for ${entry.item}:`, entry.quantity);
