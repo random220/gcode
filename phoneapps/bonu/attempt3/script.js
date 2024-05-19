@@ -98,7 +98,6 @@ function saveUsageLog(logEntry) {
     localStorage.setItem('usageLog', JSON.stringify(usageLog));
 }
 
-// Update the displayUsageLog function
 function displayUsageLog() {
     const usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
     const usageLogTableBody = document.getElementById('usageLog').querySelector('tbody');
@@ -112,7 +111,6 @@ function displayUsageLog() {
         row.innerHTML = `
             <td>${entry.item}</td>
             <td>${entry.quantity}</td>
-            <td>${entry.unit}</td>
             <td>${entry.timestamp}</td>
             <td>
                 <button onclick="editUsage('${entry.timestamp}')">Edit</button>
@@ -122,7 +120,6 @@ function displayUsageLog() {
         usageLogTableBody.appendChild(row);
     });
 }
-
 
 function resetForm() {
     document.getElementById('selectedItem').classList.add('hidden');
