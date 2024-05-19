@@ -13,8 +13,13 @@
         <div id="selectedItem" class="hidden">
             <p id="selectedItemName" class="highlight"></p>
             <input type="number" id="usageInput" placeholder="Enter amount used">
-            <button onclick="recordUsage('vial')">vial</button>
-            <button onclick="recordUsage('ml')">ml.</button>
+            <select id="unitSelect">
+                <option value="" disabled selected>Select unit</option>
+                <option value="vial">vial</option>
+                <option value="ml">ml.</option>
+                <option value="tablet">tablet</option>
+                <option value="strip">strip</option>
+            </select>
             <button onclick="submitUsage()">Submit</button>
         </div>
         <h2>Usage Log</h2>

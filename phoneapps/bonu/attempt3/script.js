@@ -22,7 +22,6 @@ const data = [
 ];
 
 let selectedItem = null;
-let selectedUnit = '';
 
 function searchItems() {
     const query = document.getElementById('searchBar').value.toLowerCase().trim();
@@ -63,17 +62,14 @@ function selectItem(item) {
     document.getElementById('selectedItem').classList.remove('hidden');
 }
 
-function recordUsage(unit) {
-    selectedUnit = unit;
-}
-
 function submitUsage() {
     const usageInput = document.getElementById('usageInput').value;
-    if (selectedItem && usageInput && selectedUnit) {
+    const unitSelect = document.getElementById('unitSelect').value;
+    if (selectedItem && usageInput && unitSelect) {
         const logEntry = {
             item: selectedItem.item,
             quantity: usageInput,
-            unit: selectedUnit,
+            unit: unitSelect,
             timestamp: new Date().toLocaleString()
         };
 
@@ -114,8 +110,8 @@ function displayUsageLog() {
 function resetForm() {
     document.getElementById('selectedItem').classList.add('hidden');
     document.getElementById('usageInput').value = '';
+    document.getElementById('unitSelect').value = '';
     selectedItem = null;
-    selectedUnit = '';
 }
 
 // Initialize the usage log display
