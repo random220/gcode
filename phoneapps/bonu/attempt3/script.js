@@ -167,9 +167,15 @@ function exportToCSV() {
         return;
     }
 
+    // Construct CSV content
     const csvContent = "timestamp,drugid,drugname,quantity,unit\n" +
-        usageLog.map(entry => `${entry.timestamp},${entry.id},"${entry.item}",${entry.quantity},${entry.unit}`).join("\n");
+        usageLog.map(entry => {
+            const drugName = entry.item ? `"${entry.item.replace(/"/g, '""')}"` : ''; // Handling undefined item
+            const timestamp = `"${entry.timestamp.replace(/"/g, '""')}"`; // Handling commas in timestamp
+            return `${timestamp},${entry.id},${drugName},${entry.quantity},${entry.unit}`;
+        }).join("\n");
 
+    // Create and download CSV file
     const blob = new Blob([csvContent], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
