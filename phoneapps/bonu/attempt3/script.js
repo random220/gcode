@@ -22,10 +22,15 @@ const data = [
 ];
 
 function searchItems() {
-    const query = document.getElementById('searchBar').value.toLowerCase();
-    const results = data.filter(entry => 
-        entry.item.toLowerCase().includes(query)
-    );
+    const query = document.getElementById('searchBar').value.toLowerCase().trim();
+    const queryTerms = query.split(' ').filter(term => term.length > 0);
+
+    const results = data.filter(entry => {
+        return queryTerms.every(term =>
+            entry.item.toLowerCase().includes(term)
+        );
+    });
+
     displayResults(results);
 }
 
