@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drug Tracker</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>Drug Tracker</h1>
+    <input type="text" id="search-bar" placeholder="Search for a drug...">
+    <ul id="search-results"></ul>
+    <form id="usage-form">
+        <label for="drug-name">Drug Name:</label>
+        <input type="text" id="drug-name" readonly>
+        <br>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity">
+        <br>
+        <label for="unit">Unit:</label>
+        <select id="unit">
+            <!-- Units will be populated dynamically -->
+        </select>
+        <br>
+        <button type="submit">Record Usage</button>
+    </form>
+    <script src="app.js"></script>
+</body>
+</html>
