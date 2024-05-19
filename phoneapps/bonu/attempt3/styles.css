@@ -29,3 +29,18 @@ body {
     border-radius: 4px;
     padding: 10px;
 }
+
+.result-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.highlight {
+    background-color: #ffffcc; /* light yellow background */
+    font-weight: bold;
+    color: #333;
+}
