@@ -1,0 +1,12 @@
+// Update the editUsage function
+function editUsage(index) {
+    const usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
+    const entry = usageLog[index];
+    const newQuantity = prompt(`Edit quantity for ${entry.item}:`, entry.quantity);
+    if (newQuantity !== null) {
+        entry.quantity = newQuantity;
+        usageLog[index] = entry; // Update the entry in the array
+        localStorage.setItem('usageLog', JSON.stringify(usageLog));
+        displayUsageLog();
+    }
+}

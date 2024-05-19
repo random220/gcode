@@ -87,6 +87,7 @@ function saveUsageLog(logEntry) {
     localStorage.setItem('usageLog', JSON.stringify(usageLog));
 }
 
+// Update the displayUsageLog function
 function displayUsageLog() {
     const usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
     const usageLogTableBody = document.getElementById('usageLog').querySelector('tbody');
@@ -95,13 +96,17 @@ function displayUsageLog() {
     // Sort log entries in reverse chronological order
     usageLog.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
-    usageLog.forEach(entry => {
+    usageLog.forEach((entry, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${entry.item}</td>
             <td>${entry.quantity}</td>
             <td>${entry.unit}</td>
             <td>${entry.timestamp}</td>
+            <td>
+                <button onclick="editUsage(${index})">Edit</button>
+                <button onclick="deleteUsage(${index})">Delete</button>
+            </td>
         `;
         usageLogTableBody.appendChild(row);
     });
@@ -112,6 +117,30 @@ function resetForm() {
     document.getElementById('usageInput').value = '';
     document.getElementById('unitSelect').value = '';
     selectedItem = null;
+}
+
+// Update the editUsage function
+function editUsage(index) {
+    const usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
+    const entry = usageLog[index];
+    const newQuantity = prompt(`Edit quantity for ${entry.item}:`, entry.quantity);
+    if (newQuantity !== null) {
+        entry.quantity = newQuantity;
+        usageLog[index] = entry; // Update the entry in the array
+        localStorage.setItem('usageLog', JSON.stringify(usageLog));
+        displayUsageLog();
+    }
+}
+
+// Add this function to handle deleting a log entry
+function deleteUsage(index) {
+    const confirmDelete = confirm('Are you sure you want to delete this entry?');
+    if (confirmDelete) {
+        const usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
+        usageLog.splice(index, 1);
+        localStorage.setItem('usageLog', JSON.stringify(usageLog));
+        displayUsageLog();
+    }
 }
 
 // Initialize the usage log display
