@@ -63,23 +63,33 @@ function selectItem(item) {
 }
 
 function submitUsage() {
-    const usageInput = document.getElementById('usageInput').value;
-    const unitSelect = document.getElementById('unitSelect').value;
-    if (selectedItem && usageInput && unitSelect) {
-        const logEntry = {
-            id: selectedItem.id,
-            item: selectedItem.item,
-            quantity: usageInput,
-            unit: unitSelect,
-            timestamp: new Date().toLocaleString()
-        };
-
-        saveUsageLog(logEntry);
-        displayUsageLog();
-        resetForm();
-    } else {
-        alert('Please enter the amount used and select a unit.');
+    const usageInput = document.getElementById('usageInput').value.trim();
+    if (!usageInput) {
+        alert('Please enter the quantity used.');
+        return;
     }
+
+    const quantity = parseFloat(usageInput);
+    if (isNaN(quantity) || quantity <= 0) {
+        alert('Please enter a valid positive number for the quantity.');
+        return;
+    }
+
+    if (!selectedItem) {
+        alert('Please select an item first.');
+        return;
+    }
+
+    const logEntry = {
+        id: selectedItem.id,
+        item: selectedItem.item,
+        quantity: quantity,
+        timestamp: new Date().toLocaleString()
+    };
+
+    saveUsageLog(logEntry);
+    displayUsageLog();
+    resetForm();
 }
 
 function saveUsageLog(logEntry) {
