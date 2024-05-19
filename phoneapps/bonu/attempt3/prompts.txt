@@ -1,3 +1,20 @@
+I need to write a Javascript app to run on a browser. I know nothing of Javascript. So I am going to go step by step and ask one thing at a time. Please be as helpful as you can.
+
+First:
+    I need to show a search bar (text input field) on the screen at the top.
+    When I start typing it should match from a database and start should the match somehow on the screen.
+
+    The database to match from is really small at this time
+
+    ```csv
+    id,#,Category,Item,Qty,Unit,Mfg Date,Exp Date
+    13945,1,Drug,Injection Enrofloxacin 100 mg. /ml. I.P.,40,50 ml.Vial,01/04/2023,31/03/2025
+    13948,2,Drug,Tablet Enrofloxacin. 50 mg.,200,10 tablets Strip,01/07/2023,30/06/2025
+    ```
+
+Could you give me the html, CSS and javascritpt code for it please?
+---
+
 So, my sister is a vet. She needs to keep track of drugs used up during treatment throughout the day preferably on her phone. Like a log book, but without much fuss or typying.
 I am thinking of writing a phone app for that.
 
