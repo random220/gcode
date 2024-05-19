@@ -21,6 +21,9 @@ const data = [
     }
 ];
 
+let selectedItem = null;
+let selectedUnit = '';
+
 function searchItems() {
     const query = document.getElementById('searchBar').value.toLowerCase().trim();
     const queryTerms = query.split(' ').filter(term => term.length > 0);
@@ -48,7 +51,72 @@ function displayResults(results) {
                 <p><strong>Quantity:</strong> ${result.qty}</p>
                 <p><strong>Unit:</strong> ${result.unit}</p>
             `;
+            resultItem.onclick = () => selectItem(result);
             resultsContainer.appendChild(resultItem);
         });
     }
 }
+
+function selectItem(item) {
+    selectedItem = item;
+    document.getElementById('selectedItemName').textContent = item.item;
+    document.getElementById('selectedItem').classList.remove('hidden');
+}
+
+function recordUsage(unit) {
+    selectedUnit = unit;
+}
+
+function submitUsage() {
+    const usageInput = document.getElementById('usageInput').value;
+    if (selectedItem && usageInput && selectedUnit) {
+        const logEntry = {
+            item: selectedItem.item,
+            quantity: usageInput,
+            unit: selectedUnit,
+            timestamp: new Date().toLocaleString()
+        };
+
+        saveUsageLog(logEntry);
+        displayUsageLog();
+        resetForm();
+    } else {
+        alert('Please enter the amount used and select a unit.');
+    }
+}
+
+function saveUsageLog(logEntry) {
+    let usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
+    usageLog.push(logEntry);
+    localStorage.setItem('usageLog', JSON.stringify(usageLog));
+}
+
+function displayUsageLog() {
+    const usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
+    const usageLogTableBody = document.getElementById('usageLog').querySelector('tbody');
+    usageLogTableBody.innerHTML = '';
+
+    // Sort log entries in reverse chronological order
+    usageLog.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+    usageLog.forEach(entry => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${entry.item}</td>
+            <td>${entry.quantity}</td>
+            <td>${entry.unit}</td>
+            <td>${entry.timestamp}</td>
+        `;
+        usageLogTableBody.appendChild(row);
+    });
+}
+
+function resetForm() {
+    document.getElementById('selectedItem').classList.add('hidden');
+    document.getElementById('usageInput').value = '';
+    selectedItem = null;
+    selectedUnit = '';
+}
+
+// Initialize the usage log display
+document.addEventListener('DOMContentLoaded', displayUsageLog);

@@ -3,6 +3,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
     margin: 0;
     background-color: #f4f4f4;
@@ -11,7 +12,7 @@ body {
 .container {
     width: 80%;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 
 #searchBar {
@@ -33,10 +34,11 @@ body {
 .result-item {
     padding: 10px;
     border-bottom: 1px solid #ccc;
+    cursor: pointer;
 }
 
 .result-item p {
-    margin: 0; /* Remove margins between paragraphs */
+    margin: 2px 0;
 }
 
 .result-item:last-child {
@@ -47,4 +49,24 @@ body {
     background-color: #ffffcc; /* light yellow background */
     font-weight: bold;
     color: #333;
+}
+
+.hidden {
+    display: none;
+}
+
+#selectedItem {
+    margin-top: 20px;
+}
+
+#usageLog {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#usageLog th, #usageLog td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
 }
