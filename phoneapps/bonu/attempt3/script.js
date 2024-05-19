@@ -160,5 +160,24 @@ function deleteUsage(index) {
     }
 }
 
+function exportToCSV() {
+    const usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
+    if (usageLog.length === 0) {
+        alert('Usage log is empty.');
+        return;
+    }
+
+    const csvContent = "timestamp,drugid,drugname,quantity,unit\n" +
+        usageLog.map(entry => `${entry.timestamp},${entry.id},"${entry.item}",${entry.quantity},${entry.unit}`).join("\n");
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.setAttribute('href', url);
+    a.setAttribute('download', 'usage_log.csv');
+    a.click();
+    window.URL.revokeObjectURL(url);
+}
+
 // Initialize the usage log display
 document.addEventListener('DOMContentLoaded', displayUsageLog);
