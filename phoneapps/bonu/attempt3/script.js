@@ -96,7 +96,7 @@ function displayUsageLog() {
     // Sort log entries in reverse chronological order
     usageLog.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
-    usageLog.forEach((entry, index) => {
+    usageLog.forEach((entry) => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${entry.item}</td>
@@ -104,13 +104,14 @@ function displayUsageLog() {
             <td>${entry.unit}</td>
             <td>${entry.timestamp}</td>
             <td>
-                <button onclick="editUsage(${index})">Edit</button>
-                <button onclick="deleteUsage(${index})">Delete</button>
+                <button onclick="editUsage('${entry.timestamp}')">Edit</button>
+                <button onclick="deleteUsage('${entry.timestamp}')">Delete</button>
             </td>
         `;
         usageLogTableBody.appendChild(row);
     });
 }
+
 
 function resetForm() {
     document.getElementById('selectedItem').classList.add('hidden');
@@ -120,15 +121,29 @@ function resetForm() {
 }
 
 // Update the editUsage function
-function editUsage(index) {
-    console.log('Editing entry at index:', index);
+function editUsage(timestamp) {
     const usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
-    const entry = usageLog[index];
-    const newQuantity = prompt(`Edit quantity for ${entry.item}:`, entry.quantity);
-    if (newQuantity !== null) {
-        entry.quantity = newQuantity;
-        usageLog[index] = entry; // Update the entry in the array
-        localStorage.setItem('usageLog', JSON.stringify(usageLog));
+    const entryIndex = usageLog.findIndex(entry => entry.timestamp === timestamp);
+    if (entryIndex !== -1) {
+        const entry = usageLog[entryIndex];
+        const newQuantity = prompt(`Edit quantity for ${entry.item}:`, entry.quantity);
+        if (newQuantity !== null) {
+            entry.quantity = newQuantity;
+            localStorage.setItem('usageLog', JSON.stringify(usageLog));
+            displayUsageLog();
+        }
+    } else {
+        alert('Entry not found.');
+    }
+}
+
+// Update the deleteUsage function
+function deleteUsage(timestamp) {
+    const confirmDelete = confirm('Are you sure you want to delete this entry?');
+    if (confirmDelete) {
+        const usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
+        const updatedLog = usageLog.filter(entry => entry.timestamp !== timestamp);
+        localStorage.setItem('usageLog', JSON.stringify(updatedLog));
         displayUsageLog();
     }
 }
