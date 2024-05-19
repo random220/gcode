@@ -44,7 +44,7 @@ function displayResults(results) {
             const resultItem = document.createElement('div');
             resultItem.classList.add('result-item');
             resultItem.innerHTML = `
-                <p class="highlight"><strong>Item:</strong> ${result.item}</p>
+                <p class="highlight">${result.item}</p>
                 <p><strong>Quantity:</strong> ${result.qty}</p>
                 <p><strong>Unit:</strong> ${result.unit}</p>
             `;
