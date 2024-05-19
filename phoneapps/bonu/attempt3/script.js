@@ -67,6 +67,7 @@ function submitUsage() {
     const unitSelect = document.getElementById('unitSelect').value;
     if (selectedItem && usageInput && unitSelect) {
         const logEntry = {
+            id: selectedItem.id,
             item: selectedItem.item,
             quantity: usageInput,
             unit: unitSelect,
