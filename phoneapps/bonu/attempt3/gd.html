@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSV to JavaScript Array</title>
+</head>
+<body>
+    <script>
+        // Function to fetch and parse CSV data
+        async function fetchCSV(url) {
+            try {
+                const response = await fetch(url);
+                const data = await response.text();
+                return data;
+            } catch (error) {
+                console.error('Error fetching the CSV file:', error);
+            }
+        }
+
+        // Function to parse CSV data into a JavaScript array
+        function parseCSV(csv) {
+            const lines = csv.split('\n').filter(line => line.trim() !== '');
+            const headers = lines[0].split(',').map(header => header.trim());
+            const result = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                const obj = {};
+                const currentLine = lines[i].split(',').map(field => field.trim());
+                
+                headers.forEach((header, index) => {
+                    const key = convertHeader(header);
+                    obj[key] = convertValue(key, currentLine[index]);
+                });
+                
+                result.push(obj);
+            }
+
+            return result;
+        }
+
+        // Convert CSV header to JavaScript object key
+        function convertHeader(header) {
+            switch (header) {
+                case 'id': return 'id';
+                case '#': return 'number';
+                case 'Category': return 'category';
+                case 'Item': return 'item';
+                case 'Qty': return 'qty';
+                case 'Unit': return 'unit';
+                case 'Mfg Date': return 'mfgDate';
+                case 'Exp Date': return 'expDate';
+                default: return header;
+            }
+        }
+
+        // Convert value to the appropriate type
+        function convertValue(key, value) {
+            if (key === 'id' || key === 'number' || key === 'qty') {
+                return parseInt(value, 10);
+            }
+            return value;
+        }
+
+        // Main function to execute the process
+        async function main() {
+            const url = 'https://docs.google.com/spreadsheets/d/1C0oS1jIZdU6oD08OOuYaFqUYmjuXjjbUbMdYrtptXnI/edit?usp=sharing'; // Replace with your actual Google Drive file URL
+            const csvData = await fetchCSV(url);
+            console.log(csvData);
+            const jsArray = parseCSV(csvData);
+            console.log(jsArray);
+
+            // Do something with jsArray, e.g., display it on the webpage
+        }
+
+        // Execute main function
+        main();
+    </script>
+</body>
+</html>
