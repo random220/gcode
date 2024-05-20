@@ -81,8 +81,7 @@ function submitUsage() {
     }
 
     const logEntry = {
-        id: selectedItem.id,
-        item: selectedItem.item,
+        drugid: selectedItem.id, // Use the id property as the unique identifier
         quantity: quantity,
         timestamp: new Date().toLocaleString()
     };
@@ -107,6 +106,13 @@ function displayUsageLog() {
     usageLog.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
     usageLog.forEach((entry) => {
+        // Find the corresponding item in the data array based on the item name
+        const item = data.find(item => item.item === entry.item);
+        if (!item) {
+            console.error(`Item not found for usage log entry: ${entry.item}`);
+            return; // Skip this entry if corresponding item not found
+        }
+
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${entry.item}</td>
@@ -197,14 +203,20 @@ function downloadReconciledCSV() {
     const reconciledData = data.map(item => {
         const usedQuantity = usageLog.filter(entry => entry.drugid === item.id)
             .reduce((total, entry) => total + entry.quantity, 0);
+        console.log(`Item ID: ${item.id}, Used Quantity: ${usedQuantity}`);
         const remainingQuantity = item.qty - usedQuantity;
+        console.log(`Item ID: ${item.id}, Remaining Quantity: ${remainingQuantity}`);
         return { ...item, qty: remainingQuantity < 0 ? 0 : remainingQuantity };
     });
+
+    console.log('Reconciled Data:', reconciledData);
 
     const csvContent = "id,number,category,item,qty,unit,mfgDate,expDate\n" +
         reconciledData.map(item => {
             return `${item.id},${item.number},${item.category},"${item.item}",${item.qty},"${item.unit}","${item.mfgDate}","${item.expDate}"`;
         }).join("\n");
+
+    console.log('CSV Content:', csvContent);
 
     const blob = new Blob([csvContent], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
