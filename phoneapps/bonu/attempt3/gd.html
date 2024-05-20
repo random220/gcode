@@ -4,6 +4,9 @@
     <title>CSV to JavaScript Array</title>
 </head>
 <body>
+    <h2>CSV Content</h2>
+    <pre id="csv-output"></pre>
+
     <script>
         // Function to fetch and parse CSV data
         async function fetchCSV(url) {
@@ -60,15 +63,33 @@
             return value;
         }
 
+        // Convert JavaScript array back to CSV format
+        function arrayToCSV(data) {
+            const headers = Object.keys(data[0]);
+            const csvRows = [];
+            csvRows.push(headers.join(','));
+
+            for (const row of data) {
+                const values = headers.map(header => row[header]);
+                csvRows.push(values.join(','));
+            }
+
+            return csvRows.join('\n');
+        }
+
         // Main function to execute the process
         async function main() {
-            const url = 'https://docs.google.com/spreadsheets/d/1C0oS1jIZdU6oD08OOuYaFqUYmjuXjjbUbMdYrtptXnI/edit?usp=sharing'; // Replace with your actual Google Drive file URL
+            const url = 'https://docs.google.com/spreadsheets/d/1C0oS1jIZdU6oD08OOuYaFqUYmjuXjjbUbMdYrtptXnI/export?format=csv'; // Replace with your actual Google Drive file URL
             const csvData = await fetchCSV(url);
-            console.log(csvData);
             const jsArray = parseCSV(csvData);
+
             console.log(jsArray);
 
-            // Do something with jsArray, e.g., display it on the webpage
+            // Convert array back to CSV
+            const csvOutput = arrayToCSV(jsArray);
+            
+            // Display the CSV output on the webpage
+            document.getElementById('csv-output').textContent = csvOutput;
         }
 
         // Execute main function
