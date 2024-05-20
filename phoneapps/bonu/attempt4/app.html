@@ -744,9 +744,21 @@ function displayUsageLog() {
     usageLog.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
     usageLog.forEach((entry) => {
+        /*
+        // Find the corresponding item in the data array based on the drugid
+        const item = data.find(item => item.id === entry.drugid);
+        if (!item) {
+            console.error(`Item not found for usage log entry with drugid: ${entry.drugid}`);
+            return; // Skip this entry if corresponding item not found
+        }
+        */
+
+        //const truncatedItemName = item.item.length > 40 ? item.item.slice(0, 40) + '...' : item.item;
+        const truncatedItemName = entry.item.length > 40 ? entry.item.slice(0, 40) + '...' : entry.item;
+
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${entry.item}</td>
+            <td>${truncatedItemName}</td>
             <td>${entry.quantity}</td>
             <td>${entry.timestamp}</td>
             <td>
@@ -761,7 +773,6 @@ function displayUsageLog() {
 function resetForm() {
     document.getElementById('selectedItem').classList.add('hidden');
     document.getElementById('usageInput').value = '';
-    document.getElementById('unitSelect').value = '';
     selectedItem = null;
 }
 
