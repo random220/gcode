@@ -22,12 +22,43 @@ body {
     margin: 20px auto;
 }
 
+.search-container {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+    padding-bottom: 10px;
+}
+
 #searchBar {
     width: 100%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.results-container {
+    max-height: 150px; /* Adjust this value to control the height */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+.results-container p {
+    margin: 0;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.results-container p:hover {
+    background-color: #f0f0f0;
+}
+
+.hidden {
+    display: none;
 }
 
 #results {
@@ -81,8 +112,10 @@ body {
 </head>
 <body>
     <div class="container">
-        <input type="text" id="searchBar" placeholder="Search..." oninput="searchItems()">
-        <div id="results"></div>
+        <div class="search-container">
+            <input type="text" id="searchBar" placeholder="Search..." oninput="searchItems()">
+			<div id="results" class="results-container"></div>
+        </div>
         <div id="selectedItem" class="hidden">
             <p id="selectedItemName" class="highlight"></p>
             <input type="number" id="usageInput" placeholder="Enter amount used">
