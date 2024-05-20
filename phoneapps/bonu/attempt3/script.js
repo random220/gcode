@@ -124,7 +124,6 @@ function displayUsageLog() {
 function resetForm() {
     document.getElementById('selectedItem').classList.add('hidden');
     document.getElementById('usageInput').value = '';
-    document.getElementById('unitSelect').value = '';
     selectedItem = null;
 }
 
@@ -168,7 +167,7 @@ function deleteUsage(index) {
 }
 
 
-function exportToCSV() {
+function exportUsageToCSV() {
     const usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
     if (usageLog.length === 0) {
         alert('Usage log is empty.');
@@ -189,6 +188,29 @@ function exportToCSV() {
     const a = document.createElement('a');
     a.setAttribute('href', url);
     a.setAttribute('download', 'usage_log.csv');
+    a.click();
+    window.URL.revokeObjectURL(url);
+}
+
+function downloadReconciledCSV() {
+    const usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
+    const reconciledData = data.map(item => {
+        const usedQuantity = usageLog.filter(entry => entry.drugid === item.id)
+            .reduce((total, entry) => total + entry.quantity, 0);
+        const remainingQuantity = item.qty - usedQuantity;
+        return { ...item, qty: remainingQuantity < 0 ? 0 : remainingQuantity };
+    });
+
+    const csvContent = "id,number,category,item,qty,unit,mfgDate,expDate\n" +
+        reconciledData.map(item => {
+            return `${item.id},${item.number},${item.category},"${item.item}",${item.qty},"${item.unit}","${item.mfgDate}","${item.expDate}"`;
+        }).join("\n");
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.setAttribute('href', url);
+    a.setAttribute('download', 'reconciled_drug_data.csv');
     a.click();
     window.URL.revokeObjectURL(url);
 }
