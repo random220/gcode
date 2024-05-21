@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSV to Array</title>
+</head>
+
+<!--
+if localstorage has data:
+    read the data into memory
+else:
+    show a CVS file upload button
+    read data from CSV into memory
+    remove the file upload button
+    write the memory data into localstorage
+
+dump memory content onto the screen
+-->
+
+<body>
+    <input type="file" id="csvFile" accept=".csv" style="display: none;" />
+    <script>
+        // Check if the csvData key is present in localStorage
+        if (localStorage.getItem('csvData')) {
+            // Retrieve the JSON string from localStorage
+            var jsonString = localStorage.getItem('csvData');
+
+            // Convert the JSON string to an array of objects
+            var data = JSON.parse(jsonString);
+
+            console.log(data);
+            // Dump the memory content onto the screen
+            document.body.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        } else {
+            // Show the CSV file upload button
+            document.getElementById('csvFile').style.display = 'block';
+
+            document.getElementById('csvFile').addEventListener('change', function(e) {
+                var file = e.target.files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var text = e.target.result;
+                    var data = csvToArray(text);
+
+                    // Convert the array of objects to a JSON string
+                    var jsonString = JSON.stringify(data);
+
+                    // Set the localStorage item with a key and the JSON string as the value
+                    localStorage.setItem('csvData', jsonString);
+
+                    console.log(data);
+                    // Dump the memory content onto the screen
+                    document.body.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+
+                    // Remove the file upload button
+                    document.getElementById('csvFile').style.display = 'none';
+                };
+                reader.readAsText(file);
+            });
+        }
+
+        function csvToArray(csv) {
+            var lines = csv.split('\n');
+            var result = [];
+            var headers = lines[0].split(',').map(header => header.trim().replace(/^"|"$/g, ''));
+
+            for (var i = 1; i < lines.length; i++) {
+                var line = lines[i].trim();
+                if (line) { // Skip empty lines
+                    var obj = {};
+                    var currentline = line.split(',').map(cell => cell.trim().replace(/^"|"$/g, ''));
+
+                    for (var j = 0; j < headers.length; j++) {
+                        obj[headers[j]] = currentline[j] || ''; // Use an empty string for undefined values
+                    }
+                    result.push(obj);
+                }
+            }
+            return result;
+        }
+    </script>
+</body>
+</html>
