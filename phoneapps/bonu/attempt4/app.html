@@ -61,6 +61,10 @@ body {
     display: none;
 }
 
+#selectedItem {
+    margin-bottom: 20px;
+}
+
 #results {
     margin-top: 20px;
     background-color: #fff;
@@ -93,8 +97,25 @@ body {
     display: none;
 }
 
-#selectedItem {
-    margin-top: 20px;
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f0f0f0;
 }
 
 #usageLog {
@@ -695,15 +716,18 @@ let selectedItem = null;
 
 function searchItems() {
     const query = document.getElementById('searchBar').value.toLowerCase().trim();
-    const queryTerms = query.split(' ').filter(term => term.length > 0);
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = '';
 
-    const results = data.filter(entry => {
-        return queryTerms.every(term =>
-            entry.item.toLowerCase().includes(term)
-        );
-    });
-
-    displayResults(results);
+    if (query) {
+        const filteredData = data.filter(item => item.item.toLowerCase().includes(query));
+        filteredData.forEach(item => {
+            const resultItem = document.createElement('p');
+            resultItem.textContent = `${item.item.slice(0, 40)}${item.item.length > 40 ? '...' : ''} - Qty: ${item.qty}`;
+            resultItem.onclick = () => selectItem(item);
+            resultsContainer.appendChild(resultItem);
+        });
+    }
 }
 
 function displayResults(results) {
@@ -728,6 +752,8 @@ function displayResults(results) {
 
 function selectItem(item) {
     selectedItem = item;
+    document.getElementById('searchBar').value = item.item;
+    document.getElementById('results').innerHTML = '';
     document.getElementById('selectedItemName').textContent = item.item;
     document.getElementById('selectedItem').classList.remove('hidden');
 }
@@ -751,7 +777,7 @@ function submitUsage() {
     }
 
     const logEntry = {
-        id: selectedItem.id,
+        drugid: selectedItem.id, // Use the id property as the unique identifier
         item: selectedItem.item,
         quantity: quantity,
         timestamp: new Date().toLocaleString()
@@ -763,7 +789,7 @@ function submitUsage() {
 }
 
 function saveUsageLog(logEntry) {
-    let usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
+    const usageLog = JSON.parse(localStorage.getItem('usageLog')) || [];
     usageLog.push(logEntry);
     localStorage.setItem('usageLog', JSON.stringify(usageLog));
 }
@@ -777,16 +803,6 @@ function displayUsageLog() {
     usageLog.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
     usageLog.forEach((entry) => {
-        /*
-        // Find the corresponding item in the data array based on the drugid
-        const item = data.find(item => item.id === entry.drugid);
-        if (!item) {
-            console.error(`Item not found for usage log entry with drugid: ${entry.drugid}`);
-            return; // Skip this entry if corresponding item not found
-        }
-        */
-
-        //const truncatedItemName = item.item.length > 40 ? item.item.slice(0, 40) + '...' : item.item;
         const truncatedItemName = entry.item.length > 40 ? entry.item.slice(0, 40) + '...' : entry.item;
 
         const row = document.createElement('tr');
@@ -804,8 +820,10 @@ function displayUsageLog() {
 }
 
 function resetForm() {
-    document.getElementById('selectedItem').classList.add('hidden');
+    document.getElementById('searchBar').value = '';
     document.getElementById('usageInput').value = '';
+    document.getElementById('selectedItemName').textContent = '';
+    document.getElementById('selectedItem').classList.add('hidden');
     selectedItem = null;
 }
 
