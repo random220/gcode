@@ -1,0 +1,8 @@
+#!/bin/bash
+cd
+
+rm -rf \
+~/'./Library/Preferences/com.google.android.studio.plist' \
+~/'./Library/Application Support/Google/AndroidStudio'* \
+~/'./Library/Logs/Google/AndroidStudio'* \
+~/'./Library/Caches/Google/AndroidStudio'* \
