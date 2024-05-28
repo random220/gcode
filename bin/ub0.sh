@@ -7,6 +7,13 @@ apt-get -y install python3
 apt-get -y install python3-pip
 
 apt-get -y install podman-docker
+
+apt-get -y install squid
+mv /etc/squid/squid.conf /etc/squid/squid.conf.0
+egrep -v '^\#|^$' /etc/squid/squid.conf.0 >/etc/squid/squid.conf
+echo 'acl all src 0.0.0.0/0' >>/etc/squid/squid.conf
+echo 'http_access allow all' >>/etc/squid/squid.conf
+service squid restart
 EOF
 
 # https://www.redhat.com/sysadmin/rootless-podman-user-namespace-modes
