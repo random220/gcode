@@ -32,9 +32,14 @@ mkdir -p $ddir
 if [[ ! -f "$ddir/prefs.js" ]]; then
   cat <<'EOF' >"$ddir/prefs.js"
 user_pref("layout.css.prefers-color-scheme.content-override", 0);
-user_pref("network.proxy.socks", "localhost");
-user_pref("network.proxy.socks_port", 9999);
-user_pref("network.proxy.socks_remote_dns", true);
+# user_pref("network.proxy.socks", "localhost");
+# user_pref("network.proxy.socks_port", 9999);
+# user_pref("network.proxy.socks_remote_dns", true);
+user_pref("network.proxy.http", "localhost");
+user_pref("network.proxy.http_port", 3128);
+user_pref("network.proxy.share_proxy_settings", true);
+user_pref("network.proxy.ssl", "localhost");
+user_pref("network.proxy.ssl_port", 3128);
 user_pref("network.proxy.type", 1);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.warnOnQuitShortcut", false);
