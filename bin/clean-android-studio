@@ -6,3 +6,5 @@ rm -rf \
 ~/'./Library/Application Support/Google/AndroidStudio'* \
 ~/'./Library/Logs/Google/AndroidStudio'* \
 ~/'./Library/Caches/Google/AndroidStudio'* \
+
+#~/'./Library/Android/'
