@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 use strict;
+use Cwd 'abs_path';
 
 my $uname = `uname`;
 chomp $uname;
@@ -7,5 +8,19 @@ if ($uname ne 'Darwin') {
   exit(0);
 }
 my $arg = join ' ', @ARGV;
-$arg =~ s{^file://}{};
-system "open \"$arg\"";
+if ($arg eq '') {
+    $arg = '.';
+}
+if (-d $arg) {
+    $arg = abs_path($arg);
+    system("open '$arg'; osascript -e 'tell application \"System Events\" to tell process \"Finder\" to set frontmost to true'");
+}
+else {
+    system("open '$arg'; osascript -e 'tell application \"System Events\" to tell process \"TextEdit\" to set frontmost to true'");
+}
+
+# $arg =~ s{^file://}{};
+# if () 
+# system "open \"$arg\"";
+# 
+# osascript -e 'tell application "System Events" to tell process "Finder" to set frontmost to true'
