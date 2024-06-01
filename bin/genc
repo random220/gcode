@@ -105,9 +105,9 @@ do_enc_gpg() {
     local ind=$(cd "$(dirname "$plainfile")" && pwd -P)
     local bn=$(basename "$plainfile")
     (cd "$ind" && tar cf "$tmpdir/${bn}.tar" "$bn")
-    gpg --passphrase-fd 0 --batch -c -o "$tmpdir"/crypt.gpg "$tmpd/${bn}.tar" <<<"$mypass"
+    gpg --passphrase-fd 0 --batch -c -o "$tmpdir"/crypt.gpg "$tmpdir/${bn}.tar" <<<"$mypass"
     status=$?
-    gpg --passphrase-fd 0 --batch -c -o "$tmpdir"/crypt.gpg.txt -a "$tmpd/${bn}.tar" <<<"$mypass"
+    gpg --passphrase-fd 0 --batch -c -o "$tmpdir"/crypt.gpg.txt -a "$tmpdir/${bn}.tar" <<<"$mypass"
   else
     gpg --passphrase-fd 0 --batch -c -o "$tmpdir"/crypt.gpg "$plainfile" <<<"$mypass"
     status=$?
