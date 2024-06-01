@@ -21,8 +21,8 @@ Here's a simplified explanation of the flow:
 This flow is known as the "Authorization Code Grant" flow, which is commonly used for server-side applications. There are other flows for different types of clients, like single-page applications or mobile apps.
 
 
-Thanks for the lucid explanation. Really helpful.
-So, who gets to see the client-id and the client secret?
+**Question: Thanks for the lucid explanation. Really helpful.
+So, who gets to see the client-id and the client secret?**
 
 
 You're welcome! I'm glad I could help.
@@ -35,7 +35,7 @@ The client secret, on the other hand, is a secret known only to the authorizatio
 
 In some cases, where the client is a public client (like a client-side web application or a native application), a client secret is not used, because it can't be reliably kept confidential in these types of clients.
 
-My usecase is a public client. A javascript app to run in a browser. The service is google drive API. The user is whoever loads the html code in the browser. What are my options?
+**My usecase is a public client. A javascript app to run in a browser. The service is google drive API. The user is whoever loads the html code in the browser. What are my options?**
 
 If your use case involves a public client, such as a JavaScript application running in a browser, and you're using the Google Drive API, the recommended OAuth 2.0 flow is the "Implicit Grant" flow.
 
