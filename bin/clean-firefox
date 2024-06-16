@@ -1,0 +1,7 @@
+#!/bin/bash
+
+rm -rf \
+~/'Library/Application Support/Firefox' \
+~/'Library/Caches/Mozilla' 'Library//Caches/Firefox' \
+~/'Library/Preferences/org.mozilla.firefox.plist' \
+~/'Library/Saved Application State/org.mozilla.firefox.savedState'

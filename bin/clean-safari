@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# rm -rf \
+# 'Library/Caches/com.apple.helpd/Generated/com.apple.Safari.help*17.0/en_US.cshelpindex' \
+# ~/'Library/Caches/com.apple.helpd/Generated/com.apple.Safari.help*17.0/en_US.cshelpindex' \
+# ~/'Library/Application Scripts/com.apple.Safari'* \
+# ~/'Library/Application Scripts/com.apple.share.System.add-to-safari-reading-list' \
+# ~/'Library/Application Scripts/com.sentinelone.sentinel-helper.safari' \
+# ~/'Library/Application Scripts/com.websense.endpoint.helper.SafariExt' \
+# ~/'Library/Biome/streams/restricted/SafariPageView' \
+# ~/'Library/Caches/com.apple.helpd/Generated/com.apple.Safari'* \
+# ~/'Library/Caches/com.apple.parsecd/CustomFeedback/SafariAutoFill' \
+# ~/'Library/Caches/com.apple.parsecd/CustomFeedback/SafariAutoPlay' \
+# ~/'Library/Containers/com.apple.Safari'* \
+# ~/'Library/Containers/com.apple.Safari/' \
+# ~/'Library/Containers/com.apple.SafariPlatformSupport.Helper' \
+# ~/'Library/Containers/com.apple.share.System.add-to-safari-reading-list' \
+# ~/'Library/Containers/com.sentinelone.sentinel-helper.safari' \
+# ~/'Library/Containers/com.websense.endpoint.helper.SafariExt' \
+# ~/'Library/Group Containers/group.com.apple.PegasusConfiguration/feedback/com.apple.safari' \
+# ~/'Library/Preferences/com.apple.Safari'* \
+# ~/'Library/Safari' \
+# ~/'Library/SafariSafeBrowsing' \
+# ~/'Library/SafariSandboxBroker' \
+# ~/'Library/Saved Application State/com.apple.Safari.savedState' \
+find ~/Library/ 2>/dev/null|grep Safari|sort -r|perl -pe 's/\n/\0/s'|xargs -0 -L 200 rm -rf
+echo
+echo
+echo 'Now import ~/sb/work/conf/Safari Bookmarks.html'
