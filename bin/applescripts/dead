@@ -1,2 +1,2 @@
 #!/bin/bash
-touch /tmp/.die.alive
+pkill -f alive.py
