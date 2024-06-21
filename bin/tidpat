@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 
 import sys, os
+import glob
 
 home = os.environ['HOME']
 look = [
-  f'{home}/Downloads/tiddly.html',
-  f'{home}/tiddly.html',
-  f'./tiddly.html',
+  f'{home}/Downloads/tiddly*.html',
+  f'{home}/tiddly*.html',
+  f'./tiddly*.html',
 ]
 found = []
+
+
+
 
 def main():
   decide_on_file()
@@ -16,11 +20,28 @@ def main():
 def do_things(f):
   print(f'File used: {f}')
   os.system(f'rm -rf _xx; genc -t _xx -d {home}/b/om/tiddly.html.gpg')
-  os.system(f'diff -w _xx/tiddly.html.gpg.plain {f} >_xx/diff')
+  os.system(f'diff -w _xx/tiddly.html.gpg.plain "{f}" >_xx/diff')
+  os.system('gzip _xx/diff')
+  os.system(f'rm -f _xx/tiddly.html.gpg.plain')
+  print('')
+  print('# copy _xx/diff.gz to cron')
+  print('# vmount')
+  print('# cp ~/b/om/p/CRUZER/gitted/sandbox/tiddly.html .')
+  print('# gunzip diff.gz')
+  print('# patch tiddly.html <diff')
+  print('# tt or ttc')
+  print('# rm -f diff')
+  print('# vumount')
+  print('')
+  print(f'#Locally: rm -f "{f}"')
 
 def decide_on_file():
+  look2 = []
+  for pattern in look:
+    look2.extend(glob.glob(pattern))
+
   timestamp_last = 0
-  for f in look:
+  for f in look2:
     if os.path.exists(f):
       timestamp_now = os.path.getmtime(f)
       if timestamp_last > timestamp_now:
