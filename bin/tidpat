@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+
+import sys, os
+
+home = os.environ['HOME']
+look = [
+  f'{home}/Downloads/tiddly.html',
+  f'{home}/tiddly.html',
+  f'./tiddly.html',
+]
+found = []
+
+def main():
+  decide_on_file()
+
+def do_things(f):
+  print(f'File used: {f}')
+  os.system(f'rm -rf _xx; genc -t _xx -d {home}/b/om/tiddly.html.gpg')
+  os.system(f'diff -w _xx/tiddly.html.gpg.plain {f} >_xx/diff')
+
+def decide_on_file():
+  timestamp_last = 0
+  for f in look:
+    if os.path.exists(f):
+      timestamp_now = os.path.getmtime(f)
+      if timestamp_last > timestamp_now:
+        found.append(f)
+      else:
+        # add at the first position of the list found
+        found.insert(0, f)
+      timestamp_last = timestamp_now
+
+  if len(found) == 0:
+    pass
+  elif len(found) == 1:
+    latest_file = found[0]
+    do_things(latest_file)
+  else:
+    latest_file = found[0]
+    print('Multiple files found:')
+    print(f'Shall we use the latest one ({latest_file})')
+    print('and delete the rest?')
+    for f in found[1:]:
+      print(f'    {f}')
+    print('? [y/n]')
+    answer = input()
+    if answer == 'y':
+      for f in found[1:]:
+        os.unlink(f)
+      do_things(latest_file)
+    else:
+      print('No file was used.')
+  
+main()
