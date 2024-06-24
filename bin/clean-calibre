@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd
+rm -rf ~/'Calibre Library'
+rm -rf ~/'Library/Application Support/calibre-ebook.com'
+rm -rf ~/'Library/Preferences/calibre'
+rm -rf ~/'Library/Preferences/com.calibre-ebook.ebook-viewer.plist'
+rm -rf ~/'Library/Preferences/net.kovidgoyal.calibre.plist'
+rm -rf ~/'Library//Preferences/com.calibre-ebook.ebook-viewer.plist'
+rm -rf ~/'Library/Saved Application State/net.kovidgoyal.calibre.savedState'
+rm -rf ~/'Library/Caches/calibre'
+rm -rf ~/'Library/Caches/calibre-ebook.com'
