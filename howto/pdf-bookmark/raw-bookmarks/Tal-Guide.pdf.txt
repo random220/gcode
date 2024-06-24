@@ -1,0 +1,200 @@
+Contents
+About This Manual xxv
+Notation Conventions xxxiii
+
+Section 1 Introducing TAL
+    Using TAL 1-1
+    Major Features 1-1
+    System Services 1-3
+    System Procedures 1-3
+    TAL Run-Time Library 1-3
+    CRE Services 1-3
+
+Section 2 Getting Started
+    Sample Source File 2-1
+    Creating Source Files 2-2
+        Compiler Directives       2-3
+        System Procedures         2-4
+        Procedures                2-4
+        Data Declarations         2-2
+        Statements                2-3
+        Comments                  2-3
+    Compiling Source Files        2-4
+    Running Programs 2-5
+
+Section 3 Structuring Programs
+    Source Files 3-1
+    Compilation Units 3-1
+        Structuring Compilation Units 3-1
+        Order of Components 3-3
+    Naming Compilation Units 3-4
+    Declaring Data 3-4
+    Declaring Global Data 3-5
+        Declaring Unblocked Global Data 3-5
+        Declaring Blocked Global Data 3-5
+    Declaring Procedures 3-6
+        Procedure Heading 3-6
+        Procedure Body 3-6
+        FORWARD Procedures 3-6
+        EXTERNAL Procedures 3-7
+        Procedure Entry Points 3-7
+        Local Data 3-8
+        Local Labels 3-8
+        Local Statements 3-8
+    Declaring Subprocedures 3-10
+        Subprocedure Heading 3-10
+        Subprocedure Body 3-10
+        FORWARD Subprocedures 3-10
+        Subprocedure Entry Points 3-11
+        Sublocal Data 3-12
+        Sublocal Labels 3-12
+        Sublocal Statements 3-12
+    Formatting Programs 3-13
+        Formatting With Comments 3-14
+        Formatting With BEGIN-END Constructs 3-16
+        Using Semicolons 3-17
+    Using Compiler Directives 3-18
+
+Section 4 Introducing the Environment
+    Process Environment 4-1
+        Code Space 4-1
+        Data Space 4-2
+        System Code Space 4-5
+        System Library Space 4-5
+        Registers 4-5
+    Addressing Modes 4-5
+        Direct Addressing 4-6
+        Indirect Addressing 4-6
+        Indexing 4-7
+    Storage Allocation 4-8
+        Allocation in the User Data Segment 4-8
+        Allocation in the Automatic Extended Segment 4-10
+
+Section 5 Using Expressions
+    About Expressions 5-1
+        Complexity 5-1
+        Functionality 5-1
+    Operands 5-2
+        Identifiers 5-2
+        Data Types 5-4
+        Data Type Aliases 5-6
+        Storage Units 5-6
+        Data Types of Expressions 5-6
+        Variables 5-7
+        Constants 5-7
+        LITERALS 5-11
+        Standard Functions 5-12
+    Precedence of Operators 5-13
+    Arithmetic Expressions 5-15
+        Operands in Arithmetic Expressions 5-15
+        Signed Arithmetic Operators 5-16
+        Unsigned Arithmetic Operators 5-18
+        Bitwise Logical Operators 5-20
+    Conditional Expressions 5-21
+        Conditions 5-21
+        Boolean Operators 5-22
+        Relational Operators 5-23
+        Assigning Conditional Expressions 5-24
+    Testing Hardware Indicators 5-25
+        Condition Code Indicator 5-25
+        Carry Indicator 5-26
+        Overflow Indicator 5-26
+    Accessing Operands 5-27
+        Getting the Address of Variables 5-27
+        Dereferencing Simple Variables 5-27
+        Extracting Bit Fields 5-28
+        Shifting Bit Fields 5-29
+
+Section 6 Using Simple Variables
+    Declaring Simple Variables 6-1
+        Specifying Data Types 6-1
+        Initializing Simple Variables 6-2
+        Allocating Simple Variables 6-3
+    Assigning Data to Simple Variables 6-4
+        Assigning Variables 6-4
+        Matching Data Types 6-4
+        Converting Data Types 6-4
+        Assigning Character Strings 6-4
+        Multiple Variables 6-5
+    Simple Variables by Data Type 6-5
+        STRING Simple Variables 6-5
+        INT Simple Variables 6-6
+        INT(32) Simple Variables 6-8
+        REAL Simple Variables 6-9
+        REAL(64) Simple Variables 6-10
+        FIXED Simple Variables 6-11
+        UNSIGNED Simple Variables 6-13
+
+Section 7 Using Arrays
+    Declaring Arrays 7-1
+        Using Indirection 7-2
+        Specifying Data Types 7-2
+        Initializing Arrays 7-2
+        Arrays by Data Type 7-4
+        Allocating Arrays 7-8
+        Addressability of Arrays 7-11
+    Accessing Arrays 7-12
+        Indexing Arrays 7-12
+    Assigning Data to Array Elements 7-13
+    Assigning the Address of Arrays 7-13
+        Copying Data Into Arrays 7-14
+        Copying a Constant List Into an Array 7-14
+        Copying Data Between Arrays 7-15
+        Copying Data Within an Array 7-17
+        Using the Next Address 7-17
+        Concatenating Copy Operations 7-18
+    Scanning Arrays 7-19
+        Delimiting the Scan Area 7-19
+        Determining What Stopped the Scan 7-20
+        Scanning Bytes in Word-Aligned Arrays 7-20
+        Multipart Scan Example 7-20
+    Comparing Arrays 7-23
+    Using Standard Functions With Arrays 7-23
+    Using Read-Only Arrays 7-24
+        Declaring Read-Only Arrays 7-24
+        Accessing Read-Only Arrays 7-24
+
+Section 8 Using Structures
+    Kinds of Structures 8-1
+    Structure Layout 8-2
+    Declaring Definition Structures 8-3
+        Specifying Structure Occurrences 8-3
+        Using Indirection 8-3
+        Allocating Definition Structures 8-4
+        Addressability of Structures 8-6
+    Declaring Template Structures 8-7
+    Declaring Referral Structures 8-8
+        Specifying Structure Occurrences 8-8
+        Using Indirection 8-8
+        Allocating Referral Structures 8-9
+        Addressability of Structures 8-9
+    Declaring Simple Variables and Arrays in Structures 8-9
+        Declaring Arrays That Use No Memory 8-10
+        Allocating Simple Variables and Arrays in Structures 8-10
+        Alignment of Simple Variables and Arrays 8-10
+    Declaring Substructures 8-12
+        Declaring Definition Substructures 8-12
+        Declaring Referral Substructures 8-15
+    Declaring Fillers 8-16
+        Declaring Filler Bytes 8-16
+        Declaring Filler Bits 8-16
+    Declaring Simple Pointers in Structures 8-17
+        Addresses Simple Pointers Can Contain 8-18
+        Allocating Simple Pointers in Structures 8-18
+    Declaring Structure Pointers in Structures 8-19
+        Addresses Structure Pointers Can Contain 8-20
+        Allocating Structure Pointers in Structures 8-20
+    Declaring Redefinitions 8-21
+        Simple Variables or Arrays as Redefinitions 8-21
+        Definition Substructures as Redefinitions 8-23
+        Referral Substructures as Redefinitions 8-25
+        Simple Pointers as Redefinitions 8-26
+        Structure Pointers as Redefinitions 8-26
+    Accessing Structure Items 8-27
+        Qualifying Identifiers 8-27
+        Indexing Structures 8-28
+        Assigning Values to Structure Items 8-34
+        Assigning Addresses to Pointers in Structures 8-35
+        Accessing Data Through Pointers in Structures 8-36
+        Copying Data in Structures 8-39
+    Using Standard Functions With Structures 8-43
