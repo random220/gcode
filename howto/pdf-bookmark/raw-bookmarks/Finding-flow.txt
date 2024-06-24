@@ -1,3 +1,8 @@
+Cover 1*
+Contents 9*
+Preface 13*
+_offset 16
+
 1 HAPPINESS REVISITED 1
     Introduction 1
     Overview 5
