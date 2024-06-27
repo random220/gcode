@@ -1,54 +1,67 @@
+Cover 1
+Contents 3
 _offset 2
-Week  1: Exercises 1-7 (track-1)          6
-Week  2: Exercises 8-14 (track-2)         8
-Week  3: Exercises 15-21 (track-3)        10
-Week  4: Exercises 22-28 (track-4)        12
-Week  5: Exercises 29-35 (track-5)        14
-Week  6: Exercises 36-42 (track-6)        16
-Week  7: Exercises 43-49 (track-7)        18
-Week  8: Exercises 50-56 (track-8)        20
-Week  9: Exercises 57-63 (track-9)        22
-Week 10: Exercises 64-70 (track-10)       24
-Week 11: Exercises 71-77 (track-11)       26
-Week 12: Exercises 78-84 (track-12)       28
-Week 13: Exercises 85-91 (track-13)       30
-Week 14: Exercises 92-98 (track-14)       32
-Week 15: Exercises 99-105 (track-15)      34
-Week 16: Exercises 106-112 (track-16)     36
-Week 17: Exercises 113-119 (track-17)     38
-Week 18: Exercises 120-126 (track-18)     40
-Week 19: Exercises 127-133 (track-19)     42
-Week 20: Exercises 134-140 (track-20)     44
-Week 21: Exercises 141-147 (track-21)     46
-Week 22: Exercises 148-154 (track-22)     48
-Week 23: Exercises 155-161 (track-23)     50
-Week 24: Exercises 162-168 (track-24)     52
-Week 25: Exercises 169-175 (track-25)     54
-Week 26: Exercises 176-182 (track-26)     56
-Week 27: Exercises 183-189 (track-27)     58
-Week 28: Exercises 190-196 (track-28)     60
-Week 29: Exercises 197-203 (track-29)     62
-Week 30: Exercises 204-210 (track-30)     64
-Week 31: Exercises 211-217 (track-31)     66
-Week 32: Exercises 218-224 (track-32)     68
-Week 33: Exercises 225-231 (track-33)     70
-Week 34: Exercises 232-238 (track-34)     72
-Week 35: Exercises 239-245 (track-35)     74
-Week 36: Exercises 246-252 (track-36)     76
-Week 37: Exercises 253-259 (track-37)     78
-Week 38: Exercises 260-266 (track-38)     80
-Week 39: Exercises 267-273 (track-39)     82
-Week 40: Exercises 274-280 (track-40)     84
-Week 41: Exercises 281-287 (track-41)     86
-Week 42: Exercises 288-294 (track-42)     88
-Week 43: Exercises 295-301 (track-43)     90
-Week 44: Exercises 302-308 (track-44)     92
-Week 45: Exercises 309-315 (track-45)     94
-Week 46: Exercises 316-322 (track-46)     96
-Week 47: Exercises 323-329 (track-47)     98
-Week 48: Exercises 330-336 (track-48)     100
-Week 49: Exercises 337-343 (track-49)     102
-Week 50: Exercises 344-350 (track-50)     104
-Week 51: Exercises 351-357 (track-51)     106
-Week 52: Exercises 358-365 (track-52)     108
-Tuning Notes (track-53)                   109
+CD Track Listing                2
+Introduction                    4
+The Techniques                  5
+Weeks 1-52: Exercises 1-365     6
+    Weeks 1-10   6
+        Week-1       6
+        Week-2       8
+        Week-3       10
+        Week-4       12
+        Week-5       14
+        Week-6       16
+        Week-7       18
+        Week-8       20
+        Week-9       22
+        Week-10      24
+    Weeks 11-20   26
+        Week-11      26
+        Week-12      28
+        Week-13      30
+        Week-14      32
+        Week-15      34
+        Week-16      36
+        Week-17      38
+        Week-18      40
+        Week-19      42
+        Week-20      44
+    Weeks 21-30   46
+        Week-21      46
+        Week-22      48
+        Week-23      50
+        Week-24      52
+        Week-25      54
+        Week-26      56
+        Week-27      58
+        Week-28      50
+        Week-29      62
+        Week-30      64
+    Weeks 31-40   66
+        Week-31      66
+        Week-32      68
+        Week-33      70
+        Week-34      72
+        Week-35      74
+        Week-36      76
+        Week-37      78
+        Week-38      80
+        Week-39      82
+        Week-40      84
+    Weeks 41-52   86
+        Week-41      86
+        Week-42      88
+        Week-43      90
+        Week-44      92
+        Week-45      94
+        Week-46      96
+        Week-47      98
+        Week-48      100
+        Week-49      102
+        Week-50      104
+        Week-51      106
+        Week-52      108
+Acknowledgments                 110
+About the Author                110
+Guitar Notation Legend          111
