@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 The formula for calculating guitar fret spacing is to divide the scale length
 of the guitar by 17.817154 to find the location of the first fret. To find the
