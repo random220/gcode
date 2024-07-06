@@ -273,9 +273,19 @@ fancy_off () {
 }
 
 function winps1() {
+    type __git_ps1 >/dev/null 2>&1
+    if [[ $? != 0 ]]; then
+        if [[ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh ]]; then
+            . /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
+        fi
+    fi
+    local cmd=$(
     cat <<"EOF"
 export PS1='\[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$ '
 EOF
+    )
+    echo "$cmd"
+    eval "$cmd"
 }
 
 
