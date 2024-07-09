@@ -1,14 +1,34 @@
 #!/bin/bash
 
+echo -n "Password: "
+read -s SSHPASS
+export SSHPASS
+
 umask 077
 rm -rf ~/.ssh/nfash
 mkdir ~/.ssh/nfash
 
+set -x
+os=$(uname -o)
+
 nuchost='192.168.10.180'
-ping -t 2 -c 1 $nuchost >/dev/null 2>&1
+port=22
+if [[ "$os" == 'Darwin' ]]; then
+  # Mac
+  pingcmd="ping -t 2 -c 1 $nuchost >/dev/null 2>&1"
+elif [[ "$os" == 'Msys' ]]; then
+  # Windows bash
+  pingcmd="ping -n 1 $nuchost >/dev/null 2>&1"
+fi
+
+eval "$pingcmd"
+
 if [[ $? != 0 ]]; then
     nuchost='crondite.duckdns.org'
+    port=2222
 fi
+
+set +x
 
 cat <<EOF >~/.ssh/nfash/config
 StrictHostKeyChecking=no
@@ -20,18 +40,13 @@ LogLevel ERROR
 Host nuc
     User om
     Hostname $nuchost
-    Port 2222
-    ControlPath ~/.ssh/ctrl-%l-to-%h
-    ControlMaster auto
-    ControlPersist 10m
-    ServerAliveInterval 180
-
+    Port $port
 EOF
 
-# Establish connection
-ssh -F $HOME/.ssh/nfash/config -o ExitOnForwardFailure=yes -f -N nuc
+export SSH_ASKPASS=~/gcode/bin/ssh-askpass
+export SSH_ASKPASS_REQUIRE=force
 
-rsync -e "ssh -F $HOME/.ssh/nfash/config" -a nuc:.ssh/fash/ ~/.ssh/nfash/
+scp -F $HOME/.ssh/nfash/config nuc:.ssh/fash/id'*' ~/.ssh/nfash
 
 out=$(ssh -F ~/.ssh/nfash/config nuc multipass ls)
 
@@ -51,8 +66,7 @@ Host nfash
     IdentityFile ~/.ssh/nfash/id_ed25519
     ProxyJump nuc
     DynamicForward 9999
-    LocalForward 3128 localhost:3128      # squid
-
+    LocalForward 3129 localhost:3128      # squid
 EOF
 
 ssh -F ~/.ssh/nfash/config nfash

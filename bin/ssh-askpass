@@ -1,0 +1,7 @@
+#!/bin/bash
+if [[ $SSHPASS != '' ]]; then
+  echo "$SSHPASS"
+fi
+
+# export SSH_ASKPASS=~/gcode/bin/ssh-askpass
+# export SSH_ASKPASS_REQUIRE=force
