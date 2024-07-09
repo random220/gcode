@@ -8,7 +8,6 @@ umask 077
 rm -rf ~/.ssh/nfash
 mkdir ~/.ssh/nfash
 
-set -x
 os=$(uname -o)
 
 nuchost='192.168.10.180'
@@ -27,8 +26,6 @@ if [[ $? != 0 ]]; then
     nuchost='crondite.duckdns.org'
     port=2222
 fi
-
-set +x
 
 cat <<EOF >~/.ssh/nfash/config
 StrictHostKeyChecking=no
