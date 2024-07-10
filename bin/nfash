@@ -1,33 +1,38 @@
 #!/bin/bash
 
-echo -n "Password: "
-read -s SSHPASS
-export SSHPASS
-
+set -x
 umask 077
 rm -rf ~/.ssh/nfash
 mkdir ~/.ssh/nfash
 
-os=$(uname -o)
+echo -n "Password: "
+read -s SSHPASS
+export SSHPASS
+export SSH_ASKPASS=~/gcode/bin/ssh-askpass
+export SSH_ASKPASS_REQUIRE=force
 
-nuchost='192.168.10.180'
-port=22
-if [[ "$os" == 'Darwin' ]]; then
-  # Mac
-  pingcmd="ping -t 2 -c 1 $nuchost >/dev/null 2>&1"
-elif [[ "$os" == 'Msys' ]]; then
-  # Windows bash
-  pingcmd="ping -n 1 $nuchost >/dev/null 2>&1"
-fi
+function ssh_config() {
 
-eval "$pingcmd"
+    local muxlines=$(cat <<EOF
+    ControlMaster auto
+    ControlPath ~/.ssh/ssh_mux_%h_%p_%r
+    ControlPersist yes
+    ServerAliveInterval 180
+EOF
+    )
+    if [[ "$os" == 'Msys' ]]; then
+        muxlines=''
+    fi
 
-if [[ $? != 0 ]]; then
-    nuchost='crondite.duckdns.org'
-    port=2222
-fi
 
-cat <<EOF >~/.ssh/nfash/config
+    local host=$(echo "$1" | sed 's/:.*//')
+    local port=$(echo "$1" | sed 's/^.*://')
+    rm -rf ~/.ssh/nfash
+    mkdir ~/.ssh/nfash
+
+    local os=$(uname -o)
+
+    cat <<EOF >~/.ssh/nfash/config
 StrictHostKeyChecking=no
 CheckHostIP=no
 EscapeChar=~
@@ -36,17 +41,20 @@ LogLevel ERROR
 
 Host nuc
     User om
-    Hostname $nuchost
+    ConnectTimeout 10
+    Hostname $host
     Port $port
+$muxlines
+
 EOF
 
-export SSH_ASKPASS=~/gcode/bin/ssh-askpass
-export SSH_ASKPASS_REQUIRE=force
+    ssh -F ~/.ssh/nfash/config nuc 'echo _xxx'
+    return $?
+}
 
-scp -F $HOME/.ssh/nfash/config nuc:.ssh/fash/id'*' ~/.ssh/nfash
+ssh_config '76.236.30.161:2222' || ssh_config '192.168.10.180:22' || exit 1
 
-out=$(ssh -F ~/.ssh/nfash/config nuc multipass ls)
-
+out=$(ssh -F ~/.ssh/nfash/config nuc multipass ls) || exit 1
 
 # %  ssh -F ~/.ssh/nfash/config nuc multipass ls
 # Name                    State             IPv4             Image
@@ -66,5 +74,6 @@ Host nfash
     LocalForward 3129 localhost:3128      # squid
 EOF
 
+scp -F ~/.ssh/nfash/config nuc:.ssh/fash/id'*' ~/.ssh/nfash
 ssh -F ~/.ssh/nfash/config nfash
-
+ssh -F ~/.ssh/nfash/config -O exit nuc
