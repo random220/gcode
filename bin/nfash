@@ -11,7 +11,15 @@ export SSHPASS
 export SSH_ASKPASS=~/gcode/bin/ssh-askpass
 export SSH_ASKPASS_REQUIRE=force
 
-function ssh_config() {
+function main() {
+    ssh_config_nuc '76.236.30.161:2222' || ssh_config_nuc '192.168.10.180:22' || exit 1
+    ssh_config_nfash
+    scp -F ~/.ssh/nfash/config nuc:.ssh/fash/id'*' ~/.ssh/nfash
+    ssh -F ~/.ssh/nfash/config nfash
+    ssh -F ~/.ssh/nfash/config -O exit nuc
+}
+
+function ssh_config_nuc() {
 
     local muxlines=$(cat <<EOF
     ControlMaster auto
@@ -52,19 +60,19 @@ EOF
     return $?
 }
 
-ssh_config '76.236.30.161:2222' || ssh_config '192.168.10.180:22' || exit 1
 
-out=$(ssh -F ~/.ssh/nfash/config nuc multipass ls) || exit 1
+function ssh_config_nfash() {
+    out=$(ssh -F ~/.ssh/nfash/config nuc multipass ls) || exit 1
 
-# %  ssh -F ~/.ssh/nfash/config nuc multipass ls
-# Name                    State             IPv4             Image
-# favpn                   Running           10.88.161.250    Ubuntu 22.04 LTS
-#                                           10.15.0.4
+    # %  ssh -F ~/.ssh/nfash/config nuc multipass ls
+    # Name                    State             IPv4             Image
+    # favpn                   Running           10.88.161.250    Ubuntu 22.04 LTS
+    #                                           10.15.0.4
 
-ipaddr=$(grep 'favpn' <<<"$out" | grep Ubuntu|awk '{print $3}')
-# 10.88.161.250
+    ipaddr=$(grep 'favpn' <<<"$out" | grep Ubuntu|awk '{print $3}')
+    # 10.88.161.250
 
-cat <<EOF >>~/.ssh/nfash/config
+    cat <<EOF >>~/.ssh/nfash/config
 Host nfash
     User om
     Hostname $ipaddr
@@ -74,6 +82,6 @@ Host nfash
     LocalForward 3129 localhost:3128      # squid
 EOF
 
-scp -F ~/.ssh/nfash/config nuc:.ssh/fash/id'*' ~/.ssh/nfash
-ssh -F ~/.ssh/nfash/config nfash
-ssh -F ~/.ssh/nfash/config -O exit nuc
+}
+
+main
