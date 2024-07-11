@@ -3,7 +3,7 @@
 set -x
 umask 077
 rm -rf ~/.ssh/nfash
-mkdir ~/.ssh/nfash
+mkdir -p ~/.ssh/nfash
 
 echo -n "Password: "
 read -s SSHPASS

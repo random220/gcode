@@ -45,14 +45,17 @@ set_path() {
   local p
   for p in ${pcomps[@]}; do
     if [[ -d $p ]]; then
-      path_add "$p"
+      path_add_after "$p"
     fi
   done
   export PATH
 }
 
 set_path
-
+os=$(uname -o)
+if [[ "$os" == 'Msys' ]]; then
+  export PATH="$HOME/bin:$HOME/gcode/bin:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/local/bin:/usr/bin:/bin:/mingw64/bin:/clangarm64/bin:/mingw64/bin:/c/WINDOWS/system32:/c/WINDOWS:/c/WINDOWS/System32/Wbem:/c/WINDOWS/System32/WindowsPowerShell/v1.0:/c/WINDOWS/System32/OpenSSH:/c/Users/omandal/AppData/Local/Microsoft/WindowsApps"
+fi
 
 alias vera='(veracrypt&)'
 on_mint=0
