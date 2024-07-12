@@ -3,7 +3,7 @@
 set -x
 umask 077
 rm -rf ~/.ssh/nfash
-mkdir ~/.ssh/nfash
+mkdir -p ~/.ssh/nfash
 
 echo -n "Password: "
 read -s SSHPASS
@@ -28,6 +28,7 @@ function ssh_config_nuc() {
     ServerAliveInterval 180
 EOF
     )
+    local os=$(uname -o)
     if [[ "$os" == 'Msys' ]]; then
         muxlines=''
     fi
@@ -37,8 +38,6 @@ EOF
     local port=$(echo "$1" | sed 's/^.*://')
     rm -rf ~/.ssh/nfash
     mkdir ~/.ssh/nfash
-
-    local os=$(uname -o)
 
     cat <<EOF >~/.ssh/nfash/config
 StrictHostKeyChecking=no

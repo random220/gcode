@@ -45,14 +45,17 @@ set_path() {
   local p
   for p in ${pcomps[@]}; do
     if [[ -d $p ]]; then
-      path_add "$p"
+      path_add_after "$p"
     fi
   done
   export PATH
 }
 
 set_path
-
+os=$(uname -o)
+if [[ "$os" == 'Msys' ]]; then
+  export PATH="$HOME/bin:$HOME/gcode/bin:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/local/bin:/usr/bin:/bin:/mingw64/bin:/clangarm64/bin:/mingw64/bin:/c/WINDOWS/system32:/c/WINDOWS:/c/WINDOWS/System32/Wbem:/c/WINDOWS/System32/WindowsPowerShell/v1.0:/c/WINDOWS/System32/OpenSSH:/c/Users/omandal/AppData/Local/Microsoft/WindowsApps"
+fi
 
 alias vera='(veracrypt&)'
 on_mint=0
@@ -272,6 +275,13 @@ fancy_off () {
     rm -f ~/.config/.fancy* ~/.config/fancy
 }
 
+
+if [[ -f ~/.config/fancy ]]; then
+    fancy "$(cat ~/.config/fancy)"
+else
+    fancy_off
+fi
+
 function winps1() {
     type __git_ps1 >/dev/null 2>&1
     if [[ $? != 0 ]]; then
@@ -284,17 +294,20 @@ function winps1() {
 export PS1='\[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$ '
 EOF
     )
-    echo "$cmd"
+    if [[ "$1" == '-q' ]]; then
+        :
+    else
+        echo "$cmd"
+    fi
     eval "$cmd"
 }
 
-
-
-if [[ -f ~/.config/fancy ]]; then
-    fancy "$(cat ~/.config/fancy)"
-else
-    fancy_off
+os=$(uname -o)
+if [[ "$os" == 'Msys' ]]; then
+    winps1 -q
 fi
+
+
 
 export HISTTIMEFORMAT="%F %T "
 export P4CONFIG=.p4config
@@ -302,8 +315,10 @@ export P4CONFIG=.p4config
 
 if [[ $(uname) == Linux ]]; then
   alias ls='ls --color=auto'
-else
+elif [[ $(uname) == Darwin ]]; then
   alias ls='ls -G'
+elif [[ $(uname) == Msys ]]; then
+  alias ls='ls -F --color=auto --show-control-chars'
 fi
 #alias ll="ls -altr --quoting-style=shell-escape"
 alias ll="ls -altr"
