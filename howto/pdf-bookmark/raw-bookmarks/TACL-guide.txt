@@ -1,0 +1,106 @@
+Title 1
+Contents 5
+_offset 16
+Section 1 An Overview of TACL 1-1
+    Running the Examples in This Manual 1-1
+    Style Conventions 1-2
+        Exceptions to the Style Conventions 1-3
+        Conventions Specific to This Manual 1-3
+_offset 20
+Section 2 Developing TACL Programs 2-1
+    Choosing a Type of Variable 2-1
+    Defining Program Structure 2-2
+        Using Flow Control Functions 2-2
+        Nesting TACL Code 2-7
+        Saving Levels of Variables 2-8
+        Exiting From Programs 2-9
+    Processing Character Data 2-9
+        Line and Character 2-10
+        Global Editing Commands 2-13
+        Additional Data Manipulation Capabilities 2-16
+        Data Types 2-17
+    Accessing Time Data 2-17
+        Timestamp Formats 2-17
+        Retrieving a Timestamp 2-18
+        Converting a Timestamp 2-19
+    Accessing Terminals 2-24
+        Defining Function Keys 2-24
+        Sending Escape Sequences to a Terminal 2-25
+        Changing the TACL Prompt 2-29
+        Implementing Menus 2-30
+    Debugging TACL Programs 2-32
+        Enabling the TACL Debugger 2-32
+        Debugger Commands 2-32
+        A Sample Debugging Session 2-33
+_offset 56
+Section 3 Developing TACL Routines 3-1
+    Processing Arguments 3-1
+        How #ARGUMENT Works 3-3
+        Using #ARGUMENT 3-4
+        Examining the Contents of Arguments 3-9
+        Parsing Arguments for a Caller 3-11
+    Returning Results 3-15
+    Calling a Routine Recursively 3-16
+    Exiting From a Routine 3-17
+    Writing an Exception Handler 3-18
+        Types of Exception Handlers 3-19
+        Constructing an Exception Handler 3-19
+        Creating a Release Exception Handler 3-20
+        Creating a Keep Exception Handler 3-24
+        Combining Keep and Release Handlers 3-30
+_offset 88
+Section 4 Accessing Files 4-1
+    #REQUESTER Operation 4-1
+    Requesting Waited Reads 4-2
+    Requesting Nowaited Reads 4-4
+    Requesting Waited Writes 4-6
+    Requesting Nowaited Writes 4-8
+    Copying Records Between Files 4-10
+    Comparing Files 4-12
+    Listing a File 4-16
+_offset 108
+Section 5 Initiating and Communicating With Processes 5-1
+    Initiating a Process 5-2
+        Using RUN and #NEWPROCESS Options 5-2
+        Sending Information at Initiation Time 5-3
+    Communicating With a Process 5-4
+        Using the INLINE Facility 5-6
+        Using INV and OUTV 5-14
+        Using $RECEIVE 5-21
+        Using #SERVER 5-29
+        Using Define Process 5-31
+    Processing Completion Information 5-32
+        Processing NetBatch Jobs and Completion Codes 5-32
+        Monitoring Job Status
+            ENQUIRY 5-35
+_offset 146
+Section 6 Running TACL as a Server 6-1
+    Running a TACL Process as a Server 6-1
+        Starting TACL as a Server Process 6-1
+        Sending Requests to a TACL Server 6-2
+        Directing Output From TACL 6-4
+    Running TACL Code as a Server 6-5
+        Constructing a TACL Server 6-5
+    Using TACL as a Pathway Server 6-6
+_offset 158
+Section 7 Using Programmatic Interfaces 7-1
+    Overview of SPI and EMS 7-1
+    Using SPI 7-4
+        Defining an SPI Buffer 7-5
+        Using SPI Functions 7-9
+    Using EMS 7-12
+        Communicating With EMS 7-12
+        Generating an EMS Event 7-13
+_offset 174
+Section 8 Example of a System Management Program 8-1
+    Monitoring System Operation 8-1
+_offset 188
+Section 9 Syntax Summary 9-1
+    TACL Commands and Functions 9-1
+    Built-In Functions and Variables 9-6
+    STRUCT Declarations 9-14
+    #SET Summary 9-15
+    #DELTA Command Summary 9-16
+_offset 206
+Appendix A Supplemental Information for D-Series Systems 1
+    Glossary 7
