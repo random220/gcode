@@ -1,5 +1,7 @@
 Title 1
 Contents 3
+Preface 19
+_offset 25
 Section 1 Creating a Simple Document 1-1
     Overview 1-1
     Starting TEDIT 1-2
@@ -20,6 +22,7 @@ Section 1 Creating a Simple Document 1-1
     Exiting From the File 1-16
     Summary 1-17
 
+_offset 42
 Section 2 Revising a Simple Document 2-1
     Overview 2-1
     Reopening the File 2-3
@@ -42,6 +45,7 @@ Section 2 Revising a Simple Document 2-1
     Exiting 2-24
     Summary 2-24
 
+_offset 66
 Section 3 Customizing TEDIT for a Columned List
     Overview 3-1
     Creating a New File 3-1
@@ -64,6 +68,7 @@ Section 3 Customizing TEDIT for a Columned List
         Deleting the Profile 3-18
     Summary 3-19
 
+_offset 85
 Section 4 Advanced Editing Features
     Overview 4-1
     Transferring Text to the New File 4-1
@@ -89,6 +94,7 @@ Section 4 Advanced Editing Features
         Replacing Words 4-25
     Summary 4-27
 
+_offset 112
 Section 5 Creating an Oversized Table 5-1
     Overview 5-1
     Transferring Text to the New File 5-2
@@ -116,6 +122,7 @@ Section 5 Creating an Oversized Table 5-1
     Creating and Saving the Profile 5-35
     Summary 5-37
 
+_offset 149
 Section 6 Working With Larger Files 6-1
     Overview 6-1
     Combining Files 6-2
@@ -135,6 +142,7 @@ Section 6 Working With Larger Files 6-1
         Using Marked Positions 6-16
     Summary 6-20
 
+_offset 170
 Section 7 Introduction to TFORM 7-1
     Overview 7-1
     What is a Formatter? 7-2
@@ -148,6 +156,7 @@ Section 7 Introduction to TFORM 7-1
     Getting Help 7-9
     Summary 7-11
 
+_offset 181
 Section 8 Designing the Page Layout 8-1
     Overview 8-1
     Using Page Layout Commands 8-3
@@ -167,6 +176,7 @@ Section 8 Designing the Page Layout 8-1
     Summary 8-30
 
 
+_offset 211
 Section 9 Adjusting the Text 9-1
     Overview 9-1
     How TFORM Works with Your Edited Text 9-2
@@ -188,6 +198,7 @@ Section 9 Adjusting the Text 9-1
     Adding White Space to the Text 9-26
     Summary 9-29
 
+_offset 240
 Section 10 Adding Headers and Footers 10-1
     Overview 10-1
     Entering Titles 10-3
@@ -205,8 +216,9 @@ Section 10 Adding Headers and Footers 10-1
     Setting Margins for Headers and Footers 10-25
         Entering Side Margins 10-25
         Changing the Gap 10-27
-    Summary 10-29
+    Summary 10-28
 
+_offset 268
 Section 11 Using Special TFORM Features 11-1
     Overview 11-1
     Styling Text 11-3
@@ -231,6 +243,7 @@ Section 11 Using Special TFORM Features 11-1
     Summary 11-28
 
 
+_offset 296
 Section 12 Printing Your Document 12-1
     Overview 12-1
     Running TFORM 12-2
@@ -241,5 +254,5 @@ Section 12 Printing Your Document 12-1
     Shifting the Text on the Page 12-7
     Summary 12-11
 
-Appendix A Command and Function Key Equivalents A-1
-Command and Function Key Equivalents A-1
+Appendix A Command and Function Key Equivalents A-1 308*
+Glossary 312*
