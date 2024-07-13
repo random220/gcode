@@ -15,7 +15,7 @@ print "_offset 0\n";
 while (my $l = <F>) {
     # Strip trailing whitespace from the line
     $l =~ s{\s*$}{}s;
-    $l =~ s{\b(\d+\-(\d+))$}{$1 $2}s;
+    $l =~ s{\b(\S+\-(\d+))$}{$1 $2}s;
 
     # Replace one or more spaces followed by non-spaces at the end of the line
     # with a single space followed by the non-spaces

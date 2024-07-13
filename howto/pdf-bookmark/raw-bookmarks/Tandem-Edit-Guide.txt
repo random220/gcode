@@ -1,7 +1,10 @@
-Contents
-Welcome to EDIT XV
-Notation Conventions xvii
-Section 1 Introduction to EDIT
+Title 1*
+Contents 3*
+Welcome to EDIT XV 15*
+Notation Conventions xvii 17*
+
+_offset 20
+Section 1 Introduction to EDIT 1-1
     The EDIT Program 1-1
     Writing and Editing With EDIT 1-1
     Capabilities of the EDIT Program 1-2
@@ -17,11 +20,14 @@ Section 1 Introduction to EDIT
     Conversation With EDIT 1-12
     The EXIT Command: Leaving Your File 1-16
 
+_offset 36
 Section 2 Adding and Displaying Text
     The ADD Command: Adding Text to Your File 2-1
     The LIST Command: Listing Lines in Your File 2-5
     Specifying Ranges 2-7
 
+
+_offset 43
 Section 3 Revising Text in Your File
     Editing and Moving Your Text 3-1
     The DELETE Command: Deleting Lines 3-2
@@ -50,6 +56,7 @@ Section 3 Revising Text in Your File
         Copying Part of Your File 3-35
         Copying All of Your File 3-35
 
+_offset 79
 Section 4 EDIT Command Summary
     Running the EDIT Program 4-1
         Running the EDIT Program Interactively 4-1
@@ -149,6 +156,7 @@ Section 4 EDIT Command Summary
         What to Enter 4-123
         Example 4-123
 
+_offset 203
 Section 5 Range Summary
     Introduction to Ranges 5-1
     Line-Range Parameter 5-9
@@ -180,6 +188,7 @@ Section 5 Range Summary
         How to Use the Range-Specifier Parameter 5-42
         Examples 5-43
 
+_offset 250
 Section 6 Handling Your EDIT Files
     Creating a Backup Copy of Your EDIT File 6-2
     EDIT Files 6-3
@@ -189,13 +198,11 @@ Section 6 Handling Your EDIT Files
         Continuation Lines in the EDIT Program 6-7
     Compressing Space in an EDIT File 6-8
 
-Appendix A EDIT Error Messages
-    EDIT Error Messages A-1
-Appendix B EDIT Error Recovery Procedure
-    Error Recovery B-1
-        Recovery Procedure B-2
+Appendix A EDIT Error Messages 259*
+Appendix B EDIT Error Recovery Procedure 269*
 
-Appendix C Page Mode Editing
+_offset 270
+Appendix C Page Mode Editing C-1
     Introduction to EDIT VS C-1
         What Is Screen Editing?  C-1
         Relationship Between the Line Editor and the Screen Editor C-5
@@ -253,8 +260,10 @@ Appendix C Page Mode Editing
         What to Enter C-42
         How to Use XEQ C-42
 
-Appendix D EDIT VS Error Messages
-Appendix E EDIT VS Error Recovery Procedures
+Appendix D EDIT VS Error Messages 313*
+
+_offset 316
+Appendix E EDIT VS Error Recovery Procedures E-1
     EDIT VS Recovery File E-2
     Recovery Procedures E-4
         Recovery Procedure A E-4
@@ -263,4 +272,6 @@ Appendix E EDIT VS Error Recovery Procedures
         Recovery Procedure D E-10
         Recovery Procedure E E-10
         Recovery Procedure F E-12
-        Recovery Procedure G E-14
+        Recovery Procedure G E-13
+
+Index 330*
