@@ -1,0 +1,245 @@
+Title 1
+Contents 3
+Section 1 Creating a Simple Document 1-1
+    Overview 1-1
+    Starting TEDIT 1-2
+        If You Want to Create the File 1-3
+        If You Do Not Want to Create the File 1-3
+    Highlight: Where You Store Your Documents 1-4
+    Using the Status Line 1-6
+    Putting Text in the New File 1-7
+        Going to the HOME Location 1-8
+        Moving Forward and Backward 1-8
+        Moving Left, Right, Up, and Down 1-8
+        Returning to Start a New Line 1-8
+        Inserting Characters 1-9
+        Deleting Characters 1-10
+        Deleting and Inserting Lines 1-11
+    Highlight: .Using TEDIT Function Keys 1-13
+    Highlight: Asking for Help 1-15
+    Exiting From the File 1-16
+    Summary 1-17
+
+Section 2 Revising a Simple Document 2-1
+    Overview 2-1
+    Reopening the File 2-3
+    Inserting Lines and Characters 2-4
+    Moving a Line and a Sentence 2-6
+        Moving a Line 2-6
+        Highlight: How TEDIT Moves Text 2-8
+        Moving a Sentence 2-10
+        Locating the New Position for the Sentence 2-11
+        Retrieving the Sentence 2-12
+    Moving Words 2-13
+        Highlight: Giving Written Commands 2-15
+        Using Function Keys Along With a Written Command 2-15
+    Breaking a Line 2-18
+    Replacing Words and Inserting Text 2-19
+    Deleting a Sentence 2-20
+    Highlight: Using and Canceling Persistence 2-20
+    Adjusting the Line Width 2-21
+    Undoing Mistakes You Have Made 2-23
+    Exiting 2-24
+    Summary 2-24
+
+Section 3 Customizing TEDIT for a Columned List
+    Overview 3-1
+    Creating a New File 3-1
+    Typing in Columns 3-2
+        Using the Ruler to Determine Column Widths 3-2
+        Setting the Tab Stops 3-3
+        Highlight: The Options Part of the Profile 3-3
+        Tabbing to the Stops and Typing the Agenda 3-6
+    Moving and Copying Text 3-8
+        Moving Names Into Alphabetical Order 3-8
+        Emptying the Scratchpad 3-9
+        Copying 3-10
+    Highlight: Knowing All the Available Functions 3-11
+    Making Words Uppercase Without Retyping 3-14
+    Saving and Using the Profile 3-15
+        Identifying the Profile 3-15
+        Saving the Profile 3-16
+        Using the Profile 3-17
+        Highlight: Using the Default Profile 3-18
+        Deleting the Profile 3-18
+    Summary 3-19
+
+Section 4 Advanced Editing Features
+    Overview 4-1
+    Transferring Text to the New File 4-1
+        Creating the File 4-2
+        Opening a Second Window 4-2
+        Copying a Paragraph From One Window to Another 4-4
+        Closing the Second Window 4-5
+    Setting Up the Profile 4-6
+        Setting Line Width and Tabs 4-7
+        Adjusting Line Width as You Type 4-8
+        Highlight: The Function-Keys Part of the Profile 4-9
+        Saving the Profile 4-11
+    Editing the Document 4-12
+        Inserting Six Blank Lines With One Command 4-13
+        Highlight: Changing the Size of a Paragraph 4-14
+        Breaking Lines and Inserting Sentences 4-15
+        Making a List From a Series in a Sentence 4-17
+        Changing End Punctuation and Finishing Up 4-18
+    Personalizing a Form Letter 4-20
+        Searching for Words 4-21
+            Highlight: Using Ranges for Searching 4-23
+            Highlight: Using Patterns for Searching 4-24
+        Replacing Words 4-25
+    Summary 4-27
+
+Section 5 Creating an Oversized Table 5-1
+    Overview 5-1
+    Transferring Text to the New File 5-2
+        Creating the File 5-2
+        Three Ways to Open the Second Window 5-2
+        Copying a Region From One Window to Another 5-4
+        Closing the Second Window 5-7
+    Changing the Agenda Into a Table 5-9
+        Establishing Row Headings 5-10
+            Putting Two Columns Into One 5-10
+            Moving a Column 5-11
+            Highlight: Setting Up Function Keys to Move Columns 5-12
+            Reversing Lines and Realphabetizing 5-15
+            Giving a Series of Commands in One Step 5-17
+        Highlight: Three Ways to Repeat Commands 5-19
+        Highlight: Giving a Series of Commands With an OBEY File 5-21
+        Establishing Column Headings 5-22
+            Using RULER to Determine Placement 5-23
+            Horizontal Scrolling 5-24
+            Setting the Tab Stops in the Profile 5-26
+            Highlight: Using the SETPROFILE Command to Set Tab Stops 5-26
+            Using TAB and BACKTAB for Horizontal Scrolling 5-28
+            Putting in Horizontal and Vertical Rules 5-28
+            Highlight: Inserting Vertical Rules With a Function Key 5-32
+    Creating and Saving the Profile 5-35
+    Summary 5-37
+
+Section 6 Working With Larger Files 6-1
+    Overview 6-1
+    Combining Files 6-2
+    Highlight: Turning Off Auto Word Wrap When Using RETRIEVE 6-3
+    Finding and Moving Large Blocks of Text 6-5
+        Using Section Markers 6-5
+            Determining the Section Marker 6-5
+            Marking the Sections 6-6
+            Moving a Section 6-7
+        Using Line and Column Numbers 6-9
+            Displaying All the Line Numbers 6-9
+            Displaying Individual Lines by Number 6-11
+            Displaying Columns by Number 6-11
+            Renumbering Lines 6-12
+            Highlight: Renumbering and Compressing Files for Storage 6-13
+            Copying a Range of Lines to Another File 6-14
+        Using Marked Positions 6-16
+    Summary 6-20
+
+Section 7 Introduction to TFORM 7-1
+    Overview 7-1
+    What is a Formatter? 7-2
+    What TFORM Can Do for You 7-4
+    Entering TFORM Commands 7-5
+        The Backslash 7-5
+        The Command Name 7-5
+        Qualifiers and Options 7-6
+        Command Shortcuts 7-7
+        Default Settings 7-7
+    Getting Help 7-9
+    Summary 7-11
+
+Section 8 Designing the Page Layout 8-1
+    Overview 8-1
+    Using Page Layout Commands 8-3
+    Changing the Paper Size 8-4
+    Setting New Margins 8-7
+        Entering the Value for Margins 8-7
+        Using Relative Margin Settings 8-11
+    Determining Spacing in a Document 8-14
+        Setting Line Spacing 8-14
+        Setting the Spacing Between Sentences 8-16
+        Setting the Spacing Between Paragraphs 8-20
+    Handling Page Breaks 8-23
+        Starting a New Page 8-23
+        Starting on the Next Even or Odd Page 8-24
+        Keeping Lines Together 8-27
+        Splitting Paragraphs 8-29
+    Summary 8-30
+
+
+Section 9 Adjusting the Text 9-1
+    Overview 9-1
+    How TFORM Works with Your Edited Text 9-2
+    Joining Text 9-4
+        Turning Joining On and Off 9-6
+        Hints on Using Joining 9-8
+            When Joining Should Be On 9-8
+            When Joining Should Be Off 9-9
+    Justifying Text 9-10
+        Turning Justification On and Off 9-10
+        Using Joining and Justification Together 9-12
+    Indenting Text 9-13
+        Indenting the First Line of Paragraphs 9-13
+        Indenting a Single Line 9-16
+        Indenting Blocks of Text 9-16
+        Turning Indentation On and Off 9-19
+        Using Relative Values 9-21
+    Centering Text 9-24
+    Adding White Space to the Text 9-26
+    Summary 9-29
+
+Section 10 Adding Headers and Footers 10-1
+    Overview 10-1
+    Entering Titles 10-3
+    Changing Titles 10-8
+    Including Page Numbers, Date, and Time 10-10
+        Displaying Page Numbers 10-10
+        Displaying the Date 10-12
+        Displaying the Time 10-14
+    Using Multiple Headers and Footers 10-16
+    Putting Headers and Footers on Specific Pages 10-18
+        Printing on Even and Odd Pages 10-18
+        Printing on the First Page 10-24
+        Printing on the Current Page 10-24
+        Printing After a Specified Page Number 10-24
+    Setting Margins for Headers and Footers 10-25
+        Entering Side Margins 10-25
+        Changing the Gap 10-27
+    Summary 10-29
+
+Section 11 Using Special TFORM Features 11-1
+    Overview 11-1
+    Styling Text 11-3
+        Entering Styling Commands 11-3
+        Using Styling Commands 11-4
+    Making Lists 11-7
+        Starting the List 11-7
+        Entering Items in a List 11-8
+        Ending the List 11-8
+        Nesting Lists 11-8
+    Drawing Boxes 11-10
+    Defining Levels in Your Document 11-12
+        Entering Level Headings 11-12
+        Printing Level Headings 11-13
+    Generating a Table of Contents 11-17
+    Producing Form Letters 11-19
+        Creating the Body of the Letter 11-21
+        Creating the Variables File 11-22
+        Entering the Address 11-23
+        Printing Form Letters 11-24
+    Adding Comments to a File 11-27
+    Summary 11-28
+
+
+Section 12 Printing Your Document 12-1
+    Overview 12-1
+    Running TFORM 12-2
+    Sending the Document to a Printer 12-3
+    Previewing the Document on Your Screen 12-4
+    Sending the Document to Another File 12-5
+    Printing Selected Pages 12-6
+    Shifting the Text on the Page 12-7
+    Summary 12-11
+
+Appendix A Command and Function Key Equivalents A-1
+Command and Function Key Equivalents A-1
