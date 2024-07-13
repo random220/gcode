@@ -46,7 +46,7 @@ Section 2 Revising a Simple Document 2-1
     Summary 2-24
 
 _offset 66
-Section 3 Customizing TEDIT for a Columned List
+Section 3 Customizing TEDIT for a Columned List 3-1
     Overview 3-1
     Creating a New File 3-1
     Typing in Columns 3-2
@@ -69,7 +69,7 @@ Section 3 Customizing TEDIT for a Columned List
     Summary 3-19
 
 _offset 85
-Section 4 Advanced Editing Features
+Section 4 Advanced Editing Features 4-1
     Overview 4-1
     Transferring Text to the New File 4-1
         Creating the File 4-2
