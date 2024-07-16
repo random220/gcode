@@ -1,0 +1,502 @@
+Contents
+About This Manual xxv
+Notation Conventions xxxiii
+Section 1 Introducing TAL
+    Using TAL 1-1
+    Major Features 1-1
+    System Services 1-3
+    System Procedures 1-3
+    TAL Run-Time Library 1-3
+    CRE Services 1-3
+Section 2 Getting Started
+    Sample Source File 2-1
+    Creating Source Files 2-2
+        Compiler Directives 2-2
+        System Procedures Procedures 2-3
+        Data Declarations 2-3
+        Statements 2-4
+        Comments 2-4
+    Compiling Source Files 2-4
+    Running Programs 2-5
+
+Section 3 Structuring Programs
+    Source Files 3-1
+    Compilation Units 3-1
+        Structuring Compilation Units 3-1
+        Order of Components 3-3
+    Naming Compilation Units 3-4
+    Declaring Data 3-4
+    Declaring Global Data 3-5
+        Declaring Unblocked Global Data 3-5
+        Declaring Blocked Global Data 3-5
+    Declaring Procedures 3-6
+        Procedure Heading 3-6
+        Procedure Body 3-6
+        FORWARD Procedures 3-6
+        EXTERNAL Procedures 3-7
+        Procedure Entry Points 3-7
+        Local Data 3-8
+        Local Labels 3-8
+        Local Statements 3-8
+    Declaring Subprocedures 3-10
+        Subprocedure Heading 3-10
+        Subprocedure Body 3-10
+        FORWARD Subprocedures 3-10
+        Subprocedure Entry Points 3-11
+        Sublocal Data 3-12
+        Sublocal Labels 3-12
+        Sublocal Statements 3-12
+    Formatting Programs 3-13
+        Formatting With Comments 3-14
+        Formatting With BEGIN-END Constructs 3-16
+        Using Semicolons 3-17
+    Using Compiler Directives 3-18
+
+Section 4 Introducing the Environment
+    Process Environment 4-1
+        Code Space 4-1
+        Data Space 4-2
+        System Code Space 4-5
+        System Library Space Registers 4-5
+        Registers 4-5
+    Addressing Modes 4-5
+        Direct Addressing 4-6
+        Indirect Addressing 4-6
+        Indexing 4-7
+    Storage Allocation 4-8
+        Allocation in the User Data Segment 4-8
+        Allocation in the Automatic Extended Segment 4-10
+
+Section 5 Using Expressions
+    About Expressions 5-1
+        Complexity 5-1
+        Functionality 5-1
+    Operands 5-2
+        Identifiers 5-2
+        Data Types 5-4
+        Data Type Aliases 5-6
+        Storage Units 5-6
+        Data Types of Expressions 5-6
+        Variables 5-7
+        Constants 5-7
+        LITERALs 5-11
+        Standard Functions 5-12
+    Precedence of Operators 5-13
+    Arithmetic Expressions 5-15
+        Operands in Arithmetic Expressions 5-15
+        Signed Arithmetic Operators 5-16
+        Unsigned Arithmetic Operators 5-18
+        Bitwise Logical Operators 5-20
+    Conditional Expressions 5-21
+        Conditions 5-21
+        Boolean Operators 5-22
+        Relational Operators 5-23
+        Assigning Conditional Expressions 5-24
+    Testing Hardware Indicators 5-25
+        Condition Code Indicator 5-25
+        Carry Indicator 5-26
+        Overflow Indicator 5-26
+    Accessing Operands 5-27
+        Getting the Address of Variables 5-27
+        Dereferencing Simple Variables 5-27
+        Extracting Bit Fields 5-28
+        Shifting Bit Fields 5-29
+
+Section 6 Using Simple Variables
+    Declaring Simple Variables 6-1
+        Specifying Data Types 6-1
+        Initializing Simple Variables 6-2
+        Allocating Simple Variables 6-3
+    Assigning Data to Simple Variables 6-4
+        Assigning Variables 6-4
+        Matching Data Types Converting Data Types 6-4
+        Assigning Character Strings 6-4
+        Multiple Variables 6-5
+    Simple Variables by Data Type 6-5
+        STRING Simple Variables 6-5
+        INT Simple Variables 6-6
+        INT(32) Simple Variables
+        REAL Simple Variables 6-9
+        REAL(64) Simple Variables 6-10
+        FIXED Simple Variables 6-11
+        UNSIGNED Simple Variables 6-13
+
+Section 7 Using Arrays
+    Declaring Arrays 7-1
+        Using Indirection 7-2
+        Specifying Data Types 7-2
+        Initializing Arrays 7-2
+        Arrays by Data Type 7-4
+        Allocating Arrays 7-8
+        Addressability of Arrays 7-11
+    Accessing Arrays 7-12
+        Indexing Arrays 7-12
+    Assigning Data to Array Elements 7-13
+    Assigning the Address of Arrays 7-13
+    Copying Data Into Arrays 7-14
+        Copying a Constant List Into an Array 7-14
+        Copying Data Between Arrays 7-15
+        Copying Data Within an Array 7-17
+        Using the Next Address 7-17
+        Concatenating Copy Operations 7-18
+    Scanning Arrays 7-19
+        Delimiting the Scan Area 7-19
+        Determining What Stopped the Scan 7-20
+        Scanning Bytes in Word-Aligned Arrays 7-20
+        Multipart Scan Example 7-20
+    Comparing Arrays 7-23
+    Using Standard Functions With Arrays 7-23
+    Using Read-Only Arrays 7-24
+        Declaring Read-Only Arrays 7-24
+        Accessing Read-Only Arrays
+
+Section 8 Using Structures
+    Kinds of Structures 8-1
+    Structure Layout 8-2
+    Declaring Definition Structures 8-3
+        Specifying Structure Occurrences 8-3
+        Using Indirection 8-3
+        Allocating Definition Structures 8-4
+        Addressability of Structures 8-6
+    Declaring Template Structures 8-7
+    Declaring Referral Structures 8-8
+        Specifying Structure Occurrences 8-8
+        Using Indirection 8-8
+        Allocating Referral Structures 8-9
+        Addressability of Structures 8-9
+    Declaring Simple Variables and Arrays in Structures 8-9
+        Declaring Arrays That Use No Memory 8-10
+        Allocating Simple Variables and Arrays in Structures 8-10
+        Alignment of Simple Variables and Arrays 8-10
+    Declaring Substructures 8-12
+        Declaring Definition Substructures 8-12
+        Declaring Referral Substructures 8-15
+    Declaring Fillers 8-16
+        Declaring Filler Bytes 8-16
+        Declaring Filler Bits 8-16
+    Declaring Simple Pointers in Structures 8-17
+        Addresses Simple Pointers Can Contain 8-18
+        Allocating Simple Pointers in Structures 8-18
+    Declaring Structure Pointers in Structures 8-19
+        Addresses Structure Pointers Can Contain 8-20
+        Allocating Structure Pointers in Structures 8-20
+    Declaring Redefinitions 8-21
+        Simple Variables or Arrays as Redefinitions 8-21
+        Definition Substructures as Redefinitions 8-23
+        Referral Substructures as Redefinitions 8-25
+        Simple Pointers as Redefinitions 8-26
+        Structure Pointers as Redefinitions 8-26
+    Accessing Structure Items 8-27
+        Qualifying Identifiers 8-27
+        Indexing Structures 8-28
+        Assigning Values to Structure Items 8-34
+        Assigning Addresses to Pointers in Structures 8-35
+        Accessing Data Through Pointers in Structures 8-36
+        Copying Data in Structures 8-39
+    Using Standard Functions With Structures 8-43
+
+Section 9 Using Pointers
+    Using Simple Pointers 9-2
+        Declaring Simple Pointers 9-2
+        Specifying a Data Type 9-2
+        Initializing Simple Pointers 9-3
+        Initializing Global Simple Pointers 9-3
+        Initializing Local or Sublocal Simple Pointers 9-5
+        Allocating Simple Pointers 9-6
+        Assigning Addresses to Simple Pointers 9-7
+        Accessing Data With Simple Pointers 9-9
+        Indexing Simple Pointers 9-10
+    Using Structure Pointers 9-12
+        Declaring Structure Pointers 9-12
+        Initializing Structure Pointers 9-13
+        Initializing Global Structure Pointers 9-13
+        Initializing Local or Sublocal Structure Pointers 9-15
+        Allocating Structure Pointers 9-16
+        Assigning Addresses to Structure Pointers 9-16
+        Accessing Data With Structure Pointers 9-18
+        Indexing Structure Pointers 9-20
+
+Section 10 Using Equivalenced Variables
+    Example Diagrams 10-1
+    Variables You Can Equivalence 10-1
+    Equivalencing Simple Variables 10-2
+        Declaring Equivalenced Simple Variables 10-2
+        Accessing Equivalenced Simple Variables 10-5
+    Equivalencing Simple Pointers 10-6
+        Declaring Equivalenced Simple Pointers 10-6
+        Accessing Equivalenced Simple Pointers 10-8
+    Equivalencing Structures 10-9
+        Equivalencing Definition Structures 10-10
+        Equivalencing Referral Structures 10-14
+    Equivalencing Structure Pointers 10-15
+        Declaring Equivalenced Structure Pointers 10-16
+        Accessing Data Through Equivalenced Structure Pointers
+    Using Indexes or Offsets 10-19
+    Emulating Pascal Variant Parts 10-21
+
+Section 11 Using Procedures
+    Procedures and Code Segments 11-1
+    Declaring Procedures 11-2
+    Calling Procedures 11-2
+    Declaring Parameters in Procedures 11-3
+        Specifying a Formal Parameter List 11-3
+        Declaring Formal Parameters 11-3
+        Passing Actual Parameters 11-4
+    Declaring Data in Procedures 11-4
+        Allocating Local Variables 11-5
+        Allocating Parameters and Variables 11-5
+    Returning From a Procedure 11-7
+    Using Procedure Options 11-7
+        Declaring the MAIN Procedure 11-7
+        Declaring Functions 11-8
+        Declaring FORWARD Procedures 11-8
+        Declaring EXTERNAL Procedures 11-9
+        Declaring VARIABLE Procedures 11-9
+        Declaring EXTENSIBLE Procedures 11-10
+        Passing Parameters to VARIABLE or EXTENSIBLE Procedures 11-10
+        Converting VARIABLE Procedures to EXTENSIBLE 11-11
+    Comparing Procedures and Subprocedures 11-14
+    Declaring and Calling Subprocedures 11-15
+        Including Formal Parameters 11-15
+        Sublocal Variables 11-16
+        Visibility of Identifiers 11-16
+        Sublocal Storage Limitations 11-17
+        Sublocal Parameter Storage Limitations 11-18
+    Using Parameters 11-20
+        Declaring Formal Parameters 11-20
+        Using Value Parameters 11-21
+        Using Reference Parameters 11-29
+        Parameter Pairs 11-35
+        Procedure Parameter Area 11-36
+        Subprocedure Parameter Area 11-36
+        Scope of Formal Parameters 11-36
+    Parameter Masks 11-38
+        VARIABLE Parameter Masks 11-38
+        EXTENSIBLE Parameter Masks 11-42
+    Using Labels 11-48
+        Using Local Labels 11-48
+        Using Undeclared Labels 11-51
+    Getting Addresses of Procedures and Subprocedures 11-52
+
+Section 12 Controlling Program Flow
+    IF Statement 12-2
+        IF Statement Execution 12-3
+        IF-ELSE Pairing 12-4
+    CASE Statement, Labeled 12-5
+        Statement Forms Generated by the Compiler 12-6
+        Directives and CASE Statements 12-7
+        Labeled CASE Statement Execution 12-7
+    WHILE Statement 12-8
+    DO Statement 12-10
+    FOR Statement 12-12
+        Nesting FOR Loops 12-13
+        Standard FOR Loops 12-13
+        Optimized FOR Loops 12-15
+    ASSERT Statement 12-17
+        Using ASSERT with ASSERTION 12-17
+        Nullifying ASSERT Statements 12-18
+    CALL Statement 12-19
+        Calling Procedures and Subprocedures 12-19
+        Calling Functions 12-20
+        Calling Procedures Declared as Formal Parameters 12-20
+        Passing Parameter Pairs 12-20
+    RETURN Statement 12-21
+        Returning From Functions 12-21
+        Returning From Nonfunction Procedures 12-23
+    GOTO Statement 12-24
+        Local Scope 12-24
+        Sublocal Scope 12-24
+        Usage Guidelines 12-25
+
+Section 13 Using Special Expressions
+    Assignment Expression 13-2
+    CASE Expression 13-3
+    IF Expression 13-4
+    Group Comparison Expression 13-5
+        Comparing a Variable to a Constant List 13-5
+        Comparing a Variable to a Single Byte 13-5
+        Comparing a Variable to a Variable 13-6
+        Using the Next Address 13-7
+        Testing the Condition Code Setting 13-9
+
+Section 14 Compiling Programs
+    The Compiler 14-1
+        BINSERV 14-1
+        SYMSERV 14-1
+    Compiling Source Files 14-2
+        Running the Compiler 14-2
+        Completion Codes Returned by the Compiler 14-5
+    Binding Object Files 14-5
+        Binding During Compilation 14-6
+        Binding After Compilation 14-6
+        Binding at Run Time 14-6
+    Using Directives in the Source File 14-7
+    Using Directive Stacks 14-8
+        Pushing Directive Settings 14-8
+        Popping Directive Settings 14-8
+    File Names as Directive Arguments 14-9
+        Partial File Names 14-9
+        Logical File Names 14-9
+    Compiling With SOURCE Directives 14-10
+        Section Names 14-10
+        Nesting Levels 14-10
+        Effect of Other Directives 14-10
+        Including System Procedure Declarations 14-11
+    Compiling With Search Lists 14-12
+        Creating the Master Search List 14-12
+        Clearing the Master Search List 14-12
+        Searching the Master Search List 14-13
+        Binding the Master Search List 14-13
+    Compiling With Relocatable Data Blocks 14-14
+        Declaring Relocatable Global Data 14-14
+        Allocating Global Data Blocks 14-16
+        Sharing Global Data Blocks 14-20
+        Directives for Relocatable Data 14-21
+    Compiling With Saved Global Data 14-23
+        Saving Global Data 14-23
+        Retrieving Global Data 14-23
+        Saved Global Data Compilation Session
+        Effects of Other Directives 14-25
+    Compiling With Cross-References 14-26
+        Selecting Classes 14-26
+        Collecting Cross-References 14-27
+        Printing Cross-References 14-28
+
+Section 15 Compiler Listing
+    Page Header 15-1
+    Banner 15-2
+    Directives in Compilation Commands 15-2
+    Compiler Messages 15-2
+    Source Listing 15-3
+        Edit-File Line Number 15-3
+        Code-Address Field 15-3
+        Lexical-Level Counter 15-4
+        BEGIN-END Pair Counter 15-4
+        Conditional Compilation Listing 15-5
+    Local or Sublocal Map 15-6
+    INNERLIST Listing 15-7
+    CODE Listing 15-9
+    ICODE Listing 15-9
+    Global Map 15-9
+    File Name Map 15-10
+    Cross-Reference Listings 15-11
+        Source-File Cross-References 15-11
+        Identifier Cross-References 15-11
+    LMAP Listings 15-13
+        Entry-Point Load Map 15-14
+        Data-Block Load Maps 15-14
+    Compilation Statistics 15-16
+    Object-File Statistics 15-16
+
+Section 16 Running and Debugging Programs
+    Running Programs 16-1
+        Specifying Run Options 16-1
+        Passing Run-Time Parameters 16-3
+        Stopping Programs 16-3
+        Run-Time Errors 16-3
+    Debugging Programs 16-4
+        Using the Inspect Product 16-4
+        Requesting the Inspect Product 16-4
+        Compiling the Source File 16-4
+        Starting the Inspect Session
+        Setting Breakpoints 16-5
+        Stepping Through a Program 16-5
+        Displaying Values 16-5
+        Stopping the Inspect Session 16-5
+        Sample Inspect Session 16-6
+
+Section 17 Mixed-Language Programming
+    Mixed-Language Features of TAL 17-1
+        NAME and BLOCK Declarations 17-1
+        LANGUAGE Attribute 17-2
+        Public Name 17-3
+        PROC Parameter Type 17-4
+        PROC(32) Parameter Type 17-5
+        Parameter Pairs 17-6
+        ENV Directive 17-8
+        HEAP Directive 17-8
+    TAL and C Guidelines 17-9
+        Using Identifiers 17-9
+        Matching Data Types 17-10
+        Memory Models 17-11
+        Calling C Routines From TAL Modules 17-12
+        Calling TAL Routines From C Modules 17-13
+        Sharing Data 17-15
+        Parameters and Variables 17-18
+        Extended Data Segments 17-33
+    CRE Guidelines for TAL 17-37
+        General Coding Guidelines 17-37
+        Specifying a Run-Time Environment 17-39
+        The User Heap 17-41
+        Including Library Files 17-43
+        Initializing the CRE 17-44
+        Terminating Programs 17-45
+        Sharing the Standard Files 17-46
+        Accessing $RECEIVE 17-48
+        Handling Errors in CRE Math Routines 17-49
+        The Extended Stack 17-49
+        CRE Sample Program 17-50
+
+Appendix A Sample Programs
+    String-Display Programs A-1
+    String-Entry Program A-3
+    Binary-to-ASCI Conversion Program A-5
+    Modular Programming Example A-7
+    Modular Structure A-7
+        File-Naming Conventions A-8
+        Compiling and Binding the Modular Program A-9
+        Source Modules A-9
+        Compilation Maps and Statistics A-21
+
+Appendix B Managing Addressing
+    Extended Pointer Format B-1
+    Accessing the Upper 32K-Word Area B-2
+        Storing Addresses in Simple Pointers B-2
+        Storing Addresses in Structure Pointers B-4
+        Managing Data Allocation in Upper 32K-Word Area B-5
+        Managing Large Blocks of Memory B-7
+        Indexing the Upper 32K-Word Boundary B-8
+    Accessing the User Code Segment B-9
+        Initializing Simple Pointers B-9
+        Assigning Addresses to Simple Pointers B-9
+    Using Extended Data Segments B-10
+        Using the Automatic Extended Segment B-10
+        Using Explicit Extended Segments B-10
+        C-Series Extended Segment Examples B-19
+
+Appendix C Improving Performance
+    General Guidelines C-1
+    Addressing Guidelines C-1
+        Direct Addressing C-1
+        Indirect Addressing C-1
+        Extended Addressing C-1
+        STACK and STORE Statements C-2
+    Indexing Guidelines C-2
+    Arithmetic Guidelines C-3
+
+Appendix D ASCIl Character Set
+
+Appendix E File Names and TACL Commands
+    Disk File Names E-1
+        Parts of a Disk File Name E-2
+        Partial File Names E-3
+        Logical File Names E-3
+        Internal File Names E-4
+    TACL Commands E-4
+    TACL DEFINE Commands E-4
+        Substituting File Names E-4
+        TACL DEFINE Names E-5
+        Setting DEFINE CLASS Attributes E-5
+    TACL PARAM Commands E-6
+        PARAM BINSERV Command E-6
+        PARAM SAMECPU Command E-6
+        PARAM SWAPVOL Command E-7
+        PARAM SYMSERV Command E-7
+        Using PARAM Commands E-7
+    TACL ASSIGN Commands E-8
+        Ordinary ASSIGN Command E-8
+        ASSIGN SSV Command E-9
+
+Appendix F Type Correspondence
+Glossary Glossary-1
+Index Index-1
