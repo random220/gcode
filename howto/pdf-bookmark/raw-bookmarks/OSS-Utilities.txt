@@ -1,0 +1,279 @@
+Title 1*
+Contents 3*
+
+What is New in This Manual                                  ix
+    New Commands and Utilities                              x
+    Changed Commands                                        x
+
+About This Manual                                           xi
+    Audience                                                xi
+    Purpose                                                 xi
+    Document Usage                                          xi
+    Reference Page Format                                   xii
+    Related Documents                                       xiii
+    Reference Section Numbers                               xiv
+    Synopsis Format and Conventions                         xv
+    Obsolescent Flags                                       xv1
+    General Typographic and Keying Conventions              xvi
+    Standard Key Sequences                                  xvii
+    Unsupported OSS Utilities                               xvii
+
+Section 1. User Commands (a - b)                            1-1
+    add_define                                              1-2
+    alias                                                   1-5
+    apropos                                                 1-6
+    ar                                                      1-7
+    at                                                      1-14
+    atq                                                     1-18
+    atrm                                                    1-20
+    awk                                                     1-21
+    banner                                                  1-27
+    basename                                                1-28
+    batch                                                   1-29
+    bc                                                      1-31
+    bg                                                      1-36
+    break                                                   1-37
+
+Section 2. User Commands (c)                                2-1
+    с89                                                     2-2
+    c99                                                     2-36
+    cal                                                     2-64
+    cancel                                                  2-65
+    cat                                                     2-67
+    cd                                                      2-69
+    chgrp                                                   2-70
+    chmod                                                   2-72
+    chown                                                   2-78
+    cksum                                                   2-81
+    clear                                                   2-83
+    стр                                                     2-84
+    cobol                                                   2-85
+    comm                                                    2-94
+    command                                                 2-98
+    compress                                                2-99
+    continue                                                2-101
+    ср                                                      2-102
+    cpio                                                    2-108
+    crontab                                                 2-111
+    csplit                                                  2-114
+    cut                                                     2-116
+
+Section 3. User Commands (d - f)                            3-1
+    date                                                    3-2
+    dc                                                      3-5
+    del_define                                              3-9
+    df                                                      3-10
+    diff                                                    3-11
+    dircmp                                                  3-14
+    dirname                                                 3-16
+    dspcat                                                  3-17
+    dspmsg                                                  3-19
+    du                                                      3-21
+    echo                                                    3-23
+    ecobol                                                  3-25
+    ed                                                      3-43
+    egrep                                                   3-51
+    eld                                                     3-56
+    enoft                                                   3-81
+    env                                                     3-107
+    eval                                                    3-108
+    eX                                                      3-109
+    exec                                                    3-121
+    exit                                                    3-122
+    expand                                                  3-123
+    export                                                  3-124
+    expr                                                    3-125
+    false                                                   3-127
+    fc                                                      3-128
+    fg                                                      3-130
+    fgrep                                                   3-131
+    file                                                    3-137
+    find                                                    3-140
+    flex                                                    3-147
+    fold                                                    3-157
+    ftp                                                     3-159
+
+Section 4. User Commands (g - j)                            4-1
+    gencat                                                  4-2
+    genxlt                                                  4-7
+    getacl                                                  4-10
+    getconf                                                 4-13
+    getfilepriv                                             4-20
+    getopts                                                 4-22
+    gname                                                   4-24
+    grep                                                    4-26
+    gtacl                                                   4-32
+    hash                                                    4-48
+    head                                                    4-49
+    history                                                 4-50
+    iconv                                                   4-51
+    id                                                      4-54
+    info_define                                             4-55
+    initfilepriv                                            4-57
+    ipcrm                                                   4-58
+    ipcs                                                    4-60
+    jobs                                                    4-65
+    join                                                    4-66
+
+Section 5. User Commands (k - 1)                            5-1
+    kill                                                    5-2
+    ksh                                                     5-7
+    ld                                                      5-32
+    let                                                     5-48
+    lex                                                     5-49
+    line                                                    5-60
+    ln                                                      5-61
+    locale                                                  5-64
+    logger                                                  5-68
+    logname                                                 5-70
+    lp                                                      5-71
+    lpstat                                                  5-76
+    ls                                                      5-79
+
+Section 6. User Commands (m - o)                            6-1
+    make                                                    6-2
+    man                                                     6-11
+    mkcatdefs                                               6-14
+    mkdir                                                   6-17
+    mkfifo                                                  6-19
+    more                                                    6-20
+    mv                                                      6-26
+    nawk                                                    6-31
+    newgrp                                                  6-37
+    nice                                                    6-38
+    nl                                                      6-40
+    nld                                                     6-43
+    nm                                                      6-51
+    nmcobol                                                 6-55
+    noft                                                    6-73
+    nohup                                                   6-89
+    od                                                      6-91
+    osh                                                     6-95
+
+Section 7. User Commands (p - r)                            7-1
+    pack                                                    7-2
+    paste                                                   7-4
+    patch                                                   7-7
+    pathchk                                                 7-11
+    pax                                                     7-12
+    pinstall                                                7-23
+    pname                                                   7-27
+    pr                                                      7-29
+    print                                                   7-32
+    printf                                                  7-33
+    ps                                                      7-37
+    pwd                                                     7-46
+    read                                                    7-47
+    readonly                                                7-49
+    reset_define                                            7-50
+    return                                                  7-52
+    rm                                                      7-53
+    rmdir                                                   7-57
+    rsh                                                     7-58
+    run                                                     7-60
+    runcat                                                  7-64
+    runv                                                    7-65
+
+Section 8. User Commands (s)                                8-1
+    sed                                                     8-2
+    set                                                     8-8
+    setacl                                                  8-11
+    setfilepriv                                             8-15
+    set_define                                              8-18
+    sh                                                      8-21
+    shift                                                   8-46
+    show_define                                             8-47
+    sleep                                                   8-49
+    sort                                                    8-50
+    split                                                   8-58
+    strings                                                 8-60
+    strip                                                   8-62
+    stty                                                    8-64
+    su                                                      8-68
+    sum                                                     8-70
+
+Section 9. User Commands (t - u)                            9-1
+    tail                                                    9-2
+    tar                                                     9-5
+    tee                                                     9-8
+    telnet                                                  9-9
+    test                                                    9-10
+    time                                                    9-13
+    times                                                   9-14
+    touch                                                   9-15
+    tr                                                      9-18
+    trap                                                    9-21
+    true                                                    9-22
+    tty                                                     9-23
+    type                                                    9-24
+    typeset                                                 9-25
+    umask                                                   9-27
+    unalias                                                 9-29
+    uname                                                   9-30
+    uncompress                                              9-31
+    unexpand                                                9-33
+    uniq                                                    9-34
+    unpack                                                  9-36
+    unset                                                   9-38
+    uudecode                                                9-39
+    uuencode                                                9-40
+
+Section 10. User Commands (v - z)                           10-1
+    vi                                                      10-2
+    vproc                                                   10-17
+    wait                                                    10-23
+    wall                                                    10-24
+    wc                                                      10-25
+    whatis                                                  10-27
+    whence                                                  10-28
+    who                                                     10-29
+    whoami                                                  10-31
+    xargs                                                   10-32
+    уасс                                                    10-36
+    zcat                                                    10-45
+
+Section 11. File Format Reference Pages                     11-1
+    charmap                                                 11-2
+    hosts                                                   11-6
+    hosts.equiv                                             11-7
+    ipnodes                                                 11-8
+    locale                                                  11-10
+    netrc                                                   11-29
+    networks                                                11-30
+    proto                                                   11-31
+    protocols                                               11-33
+    queuedefs                                               11-34
+    resolv.conf                                             11-36
+    .rhosts                                                 11-37
+    services                                                11-39
+
+Section 12. Administrator Commands and Files                12-1
+    copyoss                                                 12-2
+    cron                                                    12-5
+    dig                                                     12-8
+    dnssec-keygen                                           12-14
+    dnssec-signzone                                         12-17
+    dnssec_lwresd                                           12-20
+    dnssec_named                                            12-22
+    dnssec_nsupdate                                         12-24
+    dnssec_rndc                                             12-27
+    ftpserver                                               12-29
+    inetd                                                   12-35
+    lwresd                                                  12-40
+    merge_whatis                                            12-42
+    named                                                   12-44
+    newusers                                                12-46
+    nsupdate                                                12-49
+    Pcleanup                                                12-52
+    pcleanup                                                12-54
+    portmap                                                 12-55
+    rexecd                                                  12-60
+    inde                                                    12-62
+    rpcinfo                                                 12-64
+    ishd                                                    12-71
+    useradd                                                 12-72
+    userdel                                                 12-76
+    usermod                                                 12-77
+
+Permuted Index                                              Pindex-1
+Index                                                       Index-1
