@@ -1,6 +1,7 @@
 Contents
 About This Manual xxv
 Notation Conventions xxxiii
+
 Section 1 Introducing TAL
     Using TAL 1-1
     Major Features 1-1
@@ -8,11 +9,13 @@ Section 1 Introducing TAL
     System Procedures 1-3
     TAL Run-Time Library 1-3
     CRE Services 1-3
+
 Section 2 Getting Started
     Sample Source File 2-1
     Creating Source Files 2-2
         Compiler Directives 2-2
-        System Procedures Procedures 2-3
+        System Procedures 2-3
+        Procedures 2-3
         Data Declarations 2-3
         Statements 2-4
         Comments 2-4
@@ -57,7 +60,7 @@ Section 4 Introducing the Environment
         Code Space 4-1
         Data Space 4-2
         System Code Space 4-5
-        System Library Space Registers 4-5
+        System Library Space 4-5
         Registers 4-5
     Addressing Modes 4-5
         Direct Addressing 4-6
@@ -79,7 +82,7 @@ Section 5 Using Expressions
         Data Types of Expressions 5-6
         Variables 5-7
         Constants 5-7
-        LITERALs 5-11
+        LITERALS 5-11
         Standard Functions 5-12
     Precedence of Operators 5-13
     Arithmetic Expressions 5-15
@@ -109,13 +112,14 @@ Section 6 Using Simple Variables
         Allocating Simple Variables 6-3
     Assigning Data to Simple Variables 6-4
         Assigning Variables 6-4
-        Matching Data Types Converting Data Types 6-4
+        Matching Data Types 6-4
+        Converting Data Types 6-4
         Assigning Character Strings 6-4
         Multiple Variables 6-5
     Simple Variables by Data Type 6-5
         STRING Simple Variables 6-5
         INT Simple Variables 6-6
-        INT(32) Simple Variables
+        INT(32) Simple Variables 6-8
         REAL Simple Variables 6-9
         REAL(64) Simple Variables 6-10
         FIXED Simple Variables 6-11
@@ -148,7 +152,7 @@ Section 7 Using Arrays
     Using Standard Functions With Arrays 7-23
     Using Read-Only Arrays 7-24
         Declaring Read-Only Arrays 7-24
-        Accessing Read-Only Arrays
+        Accessing Read-Only Arrays 7-24
 
 Section 8 Using Structures
     Kinds of Structures 8-1
