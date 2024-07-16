@@ -1,23 +1,24 @@
 Title 1*
 Contents 3*
 
-What is New in This Manual                                  ix
-    New Commands and Utilities                              x
-    Changed Commands                                        x
+What is New in This Manual                                  ix 10*
+    New Commands and Utilities                              x  11*
+    Changed Commands                                        x  11*
 
-About This Manual                                           xi
-    Audience                                                xi
-    Purpose                                                 xi
-    Document Usage                                          xi
-    Reference Page Format                                   xii
-    Related Documents                                       xiii
-    Reference Section Numbers                               xiv
-    Synopsis Format and Conventions                         xv
-    Obsolescent Flags                                       xv1
-    General Typographic and Keying Conventions              xvi
-    Standard Key Sequences                                  xvii
-    Unsupported OSS Utilities                               xvii
+About This Manual                                           xi 12*
+    Audience                                                xi 12*
+    Purpose                                                 xi 12*
+    Document Usage                                          xi 12*
+    Reference Page Format                                   xii 13*
+    Related Documents                                       xiii 14*
+    Reference Section Numbers                               xiv  15*
+    Synopsis Format and Conventions                         xv   16*
+    Obsolescent Flags                                       xvi  17*
+    General Typographic and Keying Conventions              xvi  17*
+    Standard Key Sequences                                  xvii 18*
+    Unsupported OSS Utilities                               xvii 18*
 
+_offset 18
 Section 1. User Commands (a - b)                            1-1
     add_define                                              1-2
     alias                                                   1-5
@@ -34,6 +35,7 @@ Section 1. User Commands (a - b)                            1-1
     bg                                                      1-36
     break                                                   1-37
 
+_offset 55
 Section 2. User Commands (c)                                2-1
     с89                                                     2-2
     c99                                                     2-36
@@ -58,6 +60,7 @@ Section 2. User Commands (c)                                2-1
     csplit                                                  2-114
     cut                                                     2-116
 
+_offset 173
 Section 3. User Commands (d - f)                            3-1
     date                                                    3-2
     dc                                                      3-5
@@ -93,6 +96,7 @@ Section 3. User Commands (d - f)                            3-1
     fold                                                    3-157
     ftp                                                     3-159
 
+_offset 342
 Section 4. User Commands (g - j)                            4-1
     gencat                                                  4-2
     genxlt                                                  4-7
@@ -115,6 +119,7 @@ Section 4. User Commands (g - j)                            4-1
     jobs                                                    4-65
     join                                                    4-66
 
+_offset 412
 Section 5. User Commands (k - 1)                            5-1
     kill                                                    5-2
     ksh                                                     5-7
@@ -130,6 +135,7 @@ Section 5. User Commands (k - 1)                            5-1
     lpstat                                                  5-76
     ls                                                      5-79
 
+_offset 497
 Section 6. User Commands (m - o)                            6-1
     make                                                    6-2
     man                                                     6-11
@@ -150,6 +156,7 @@ Section 6. User Commands (m - o)                            6-1
     od                                                      6-91
     osh                                                     6-95
 
+_offset 612
 Section 7. User Commands (p - r)                            7-1
     pack                                                    7-2
     paste                                                   7-4
@@ -174,6 +181,7 @@ Section 7. User Commands (p - r)                            7-1
     runcat                                                  7-64
     runv                                                    7-65
 
+_offset 678
 Section 8. User Commands (s)                                8-1
     sed                                                     8-2
     set                                                     8-8
@@ -192,6 +200,7 @@ Section 8. User Commands (s)                                8-1
     su                                                      8-68
     sum                                                     8-70
 
+_offset 749
 Section 9. User Commands (t - u)                            9-1
     tail                                                    9-2
     tar                                                     9-5
@@ -218,6 +227,7 @@ Section 9. User Commands (t - u)                            9-1
     uudecode                                                9-39
     uuencode                                                9-40
 
+_offset 789
 Section 10. User Commands (v - z)                           10-1
     vi                                                      10-2
     vproc                                                   10-17
@@ -232,6 +242,7 @@ Section 10. User Commands (v - z)                           10-1
     уасс                                                    10-36
     zcat                                                    10-45
 
+_offset 834
 Section 11. File Format Reference Pages                     11-1
     charmap                                                 11-2
     hosts                                                   11-6
@@ -247,6 +258,7 @@ Section 11. File Format Reference Pages                     11-1
     .rhosts                                                 11-37
     services                                                11-39
 
+_offset 873
 Section 12. Administrator Commands and Files                12-1
     copyoss                                                 12-2
     cron                                                    12-5
@@ -268,12 +280,14 @@ Section 12. Administrator Commands and Files                12-1
     pcleanup                                                12-54
     portmap                                                 12-55
     rexecd                                                  12-60
-    inde                                                    12-62
+    rndc                                                    12-62
     rpcinfo                                                 12-64
-    ishd                                                    12-71
+    rshd                                                    12-71
     useradd                                                 12-72
     userdel                                                 12-76
     usermod                                                 12-77
 
+_offset 951
 Permuted Index                                              Pindex-1
+_offset 972
 Index                                                       Index-1
