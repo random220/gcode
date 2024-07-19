@@ -2,6 +2,8 @@ Title 1*
 Contents 3*
 Welcome to EDIT xv 15*
 Notation Conventions xvii 17*
+
+_offset 20
 Section 1 Introduction to EDIT 1-1
     The EDIT Program 1-1
         Writing and Editing With EDIT 1-1
@@ -17,11 +19,13 @@ Section 1 Introduction to EDIT 1-1
         Conversation With EDIT 1-12
     The EXIT Command: Leaving Your File 1-16
 
+_offset 36
 Section 2 Adding and Displaying Text 2-1
     The ADD Command: Adding Text to Your File 2-1
     The LIST Command: Listing Lines in Your File 2-5
         Specifying Ranges 2-7
 
+_offset 43
 Section 3 Revising Text in Your File 3-1
     Editing and Moving Your Text 3-1
     The DELETE Command: Deleting Lines 3-2
@@ -50,6 +54,7 @@ Section 3 Revising Text in Your File 3-1
     Copying Part of Your File 3-35
     Copying All of Your File 3-35
 
+_offset 79
 Section 4 EDIT Command Summary 4-1
     Running the EDIT Program 4-1
         Running the EDIT Program Interactively 4-1
@@ -148,6 +153,7 @@ Section 4 EDIT Command Summary 4-1
         What to Enter 4-123
         Example 4-123
 
+_offset 203
 Section 5 Range Summary 5-1
     Introduction to Ranges 5-1
     Line-Range Parameter 5-9
@@ -179,6 +185,7 @@ Section 5 Range Summary 5-1
         How to Use the Range-Specifier Parameter 5-42
         Examples 5-43
 
+_offset 250
 Section 6 Handling Your EDIT Files 6-1
     Creating a Backup Copy of Your EDIT File 6-2
     EDIT Files 6-3
@@ -188,9 +195,8 @@ Section 6 Handling Your EDIT Files 6-1
         Continuation Lines in the EDIT Program 6-7
     Compressing Space in an EDIT File 6-8
 
-Appendix A EDIT Error Messages
-    EDIT Error Messages A-1
+Appendix A EDIT Error Messages 259*
+    EDIT Error Messages A-1 259*
 
-Appendix B EDIT Error Recovery Procedure
-    Error Recovery B-1
-        Recovery Procedure B-2
+Appendix B EDIT Error Recovery Procedure 269*
+    Error Recovery B-1 269*
