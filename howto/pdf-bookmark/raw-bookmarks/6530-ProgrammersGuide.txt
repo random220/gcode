@@ -1,4 +1,4 @@
-Over 1*
+Cover 1*
 Contents 9*
 _offset 18
 1 Overview
@@ -64,6 +64,7 @@ _offset 18
         TS530 switch refresh rate                                                  1-23
         window name                                                                1-24
 
+_offset 42
 2 Conversational Mode Operation
     Control Codes and Escape Sequences                                             2-2
         Cursor Location                                                            2-5
@@ -144,6 +145,7 @@ _offset 18
         Function Keys                                                              2-51
         Keyboard Operations                                                        2-53
 
+_offset 100
 3 Block Mode Operation
     Fields and Field Attributes (Protect Submode)                                  3-1
         Modified Data Tags                                                         3-3
@@ -267,11 +269,13 @@ _offset 18
             Shift In to G0 Character Set (S1)                                      3-93
         Function Keys                                                              3-93
         Keyboard Operations                                                        3-96
+
+_offset 202
 4 Tandem NonStop Kernel Application Interface
     File System Procedure Calls                                                    4-3
     Programming Example                                                            4-5
-A ASCII Character Set
-B International Characters
-C Control Codes and Escape Sequences
-D Data Type Table
-Index
+A ASCII Character Set 213*
+B International Characters 217*
+C Control Codes and Escape Sequences 219*
+D Data Type Table 225*
+Index 231*
