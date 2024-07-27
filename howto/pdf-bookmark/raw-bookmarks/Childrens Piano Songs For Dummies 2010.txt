@@ -1,123 +1,125 @@
 Cover 1*
 Contents 4*
-_offset 2
-Introduction                                            4
-About This Book                                         4
-How to Use This Book                                    4
-Glossary                                                5
-Icons Used in This Book                                 6
-Music                                                   6
-A-Tisket A-Tasket                                       10
-The Addams Family Theme                                 7
-Alley Cat Song                                          12
-Alouette                                                14
-Any Dream Will Do                                       24
-Bein' Green                                             21
-The Bible Tells Me So                                   28
-Bingo                                                   30
-The Brady Bunch                                         34
-"C" Is for Cookie                                       36
-The Candy Man                                           40
-Casper the Friendly Ghost                               42
-The Chicken Dance                                       45
-Chim Chim Cher-ee                                       50
-Chopsticks                                              54
-Dites-Moi (Tell Me Why)                                 56
-Do-Re-Mi                                                62
-For He's a Jolly Good Fellow                            53
-Frère Jacques (Are You Sleeping?)                       64
-Getting to Know You Happy Trails                        68
-Heart and Soul                                          74
-The Hokey Pokey Home on the Range                       78
-                                                        71
-How Much Is That Doggie in the Window                   80
-(I Scream-You Scream-We All Scream For) Ice Cream       90
-I Whistle a Happy Tune                                  85
-Perfomance Notes                                        94
-A-Tisket A-Tasket                                       94
-The Addams Family Theme                                 94
-Alley Cat Song                                          94
-Alouette                                                95
-Any Dream Will Do                                       95
-Bein' Green                                             95
-The Bible Tells Me So                                   95
-Bingo                                                   96
-The Brady Bunch                                         96
-"C" Is for Cookie                                       96
-The Candy Man                                           97
-Casper the Friendly Ghost                               97
-The Chicken Dance                                       97
-Chim Chim Cher-ee                                       97
-Chopsticks                                              98
-Dites-Moi (Tell Me Why)                                 98
-Do-Re-Mi                                                98
-For He's a Jolly Good Fellow                            99
-Frère Jacques (Are You Sleeping?)                       99
-Getting to Know You                                     99
-Happy Trails                                            99
-Heart and Soul                                          100
-The Hokey Pokey                                         100
-Home on the Range                                       100
-How Much Is That Doggie in the Window                   100
-                                                        
-                                                        
-(I Scream-You Scream-We All Scream For) Ice Cream                       101
-I Whistle a Happy Tune                                                  101
-I'm Popeye the Sailor Man                                               101
-If You're Happy and You Know It                                         102
-It's a Small World                                                      102
-Kum Ba Yah                                                              102
-Linus and Lucy                                                          103
-The Marvelous Toy                                                       103
-Michael Row the Boat Ashore                                             103
-Mickey Mouse March                                                      103
-Old MacDonald                                                           104
-On the Good Ship Lollipop                                               104
-Over the River and Through the Woods                                    104
-Peter Cottontail                                                        105
-Puff the Magic Dragon                                                   105
-The Rainbow Connection                                                  105
-Row, Row, Row Your Boat                                                 105
-Sesame Street Theme                                                     106
-Sing                                                                    106
-Splish Splash                                                           106
-SpongeBob SquarePants Theme Song                                        106
-Supercalifragilisticexpialidocious                                      107
-Take Me Out to the Ball Game                                            107
-This Land Is Your Land                                                  107
-Three Little Fishies (Itty Bitty Poo)                                   108
-Tomorrow                                                                108
-When I'm Sixty-Four                                                     108
-Won't You Be My Neighbor? (It's a Beautiful Day in This Neighborhood)   108
-Yellow Submarine                                                        109
-Zip-A-Dee-Doo-Dah                                                       109
 
-Music (continued)                                                           110
-I'm Popeye the Sailor Man                                                   110
-If You're Happy and You Know                                                118
-It It's a Small World                                                       115
-Kum Ba Yah                                                                  120
-Linus and Lucy                                                              124
-The Marvelous Toy                                                           121
-Michael Row the Boat Ashore                                                 130
-Mickey Mouse March                                                          132
-Old MacDonald                                                               134
-On the Good Ship Lollipop                                                   136
-Over the River and Through the Woods                                        139
-Peter Cottontail                                                            140
-Puff the Magic Dragon                                                       148
-The Rainbow Connection                                                      143
-Row, Row, Row Your Boat                                                     152
-Sesame Street Theme                                                         154
-Sing                                                                        160
-Splish Splash                                                               157
-SpongeBob SquarePants Theme Song                                            164
-Supercalifragilisticexpialidocious                                          166
-Take Me Out to the Ball Game                                                171
-This Land Is Your Land                                                      174
-Three Little Fishies (Itty Bitty Poo)                                       176
-Tomorrow                                                                    178
-When I'm Sixty-Four                                                         182
-Won't You Be My Neighbor? (It's a Beautiful Day in This Neighborhood)       188
-Yellow Submarine                                                            190
-Zip-A-Dee-Doo-Dah                                                           194
+_offset 2
+Introduction                                                4
+    About This Book                                         4
+    How to Use This Book                                    4
+    Glossary                                                4
+    Icons Used in This Book                                 5
+
+Music                                                       6
+    A-Tisket A-Tasket                                       6
+    Alley Cat Song                                          7
+    The Addams Family Theme                                 10
+    Alouette                                                12
+    Any Dream Will Do                                       14
+    The Bible Tells Me So                                   21
+    Bein' Green                                             24
+    Bingo                                                   28
+    The Brady Bunch                                         30
+    "C" Is for Cookie                                       34
+    The Candy Man                                           36
+    Casper the Friendly Ghost                               40
+    The Chicken Dance                                       42
+    Chim Chim Cher-ee                                       45
+    Chopsticks                                              50
+    Dites-Moi (Tell Me Why)                                 54
+    Do-Re-Mi                                                56
+    Frère Jacques (Are You Sleeping?)                       53
+    For He's a Jolly Good Fellow                            62
+    Getting to Know You                                     64
+    Happy Trails                                            68
+    Home on the Range                                       71
+    Heart and Soul                                          74
+    The Hokey Pokey                                         78
+    How Much Is That Doggie in the Window                   80
+    (I Scream-You Scream-We All Scream For) Ice Cream       90
+    I Whistle a Happy Tune                                  85
+
+Perfomance Notes                                            94
+    A-Tisket A-Tasket                                       94
+    The Addams Family Theme                                 94
+    Alley Cat Song                                          94
+    Alouette                                                95
+    Any Dream Will Do                                       95
+    Bein' Green                                             95
+    The Bible Tells Me So                                   95
+    Bingo                                                   96
+    The Brady Bunch                                         96
+    "C" Is for Cookie                                       96
+    The Candy Man                                           97
+    Casper the Friendly Ghost                               97
+    The Chicken Dance                                       97
+    Chim Chim Cher-ee                                       97
+    Chopsticks                                              98
+    Dites-Moi (Tell Me Why)                                 98
+    Do-Re-Mi                                                98
+    For He's a Jolly Good Fellow                            99
+    Frère Jacques (Are You Sleeping?)                       99
+    Getting to Know                                         99
+    You Happy Trails                                        99
+    Heart and Soul                                          100
+    The Hokey Pokey                                         100
+    Home on the Range                                       100
+    How Much Is That Doggie in the Window                   100
+    (I Scream-You Scream-We All Scream For) Ice Cream       101
+    I Whistle a Happy Tune                                  101
+    I'm Popeye the Sailor Man                               101
+    If You're Happy and You Know It                         102
+    It's a Small World                                      102
+    Kum Ba Yah                                              102
+    Linus and Lucy                                          103
+    The Marvelous Toy                                       103
+    Michael Row the Boat Ashore                             103
+    Mickey Mouse March                                      103
+    Old MacDonald                                           104
+    On the Good Ship Lollipop                               104
+    Over the River and Through the Woods                    104
+    Peter Cottontail                                        105
+    Puff the Magic Dragon                                   105
+    The Rainbow Connection                                  105
+    Row, Row, Row Your Boat                                 105
+    Sesame Street Theme                                     106
+    Sing                                                    106
+    Splish Splash                                           106
+    SpongeBob SquarePants Theme Song                        106
+    Supercalifragilisticexpialidocious                      107
+    Take Me Out to the Ball Game                            107
+    This Land Is Your Land                                  107
+    Three Little Fishies (Itty Bitty Poo)                   108
+    Tomorrow                                                108
+    When I'm Sixty-Four                                     108
+    Won't You Be My Neighbor? (It's a Beautiful Day in This Neighborhood)  108
+    Yellow Submarine                                        109
+    Zip-A-Dee-Doo-Dah                                       109
+
+Music (continued)                                           110
+    I'm Popeye the Sailor Man                               110
+    It's a Small World                                      115
+    If You're Happy and You Know It                         118
+    Kum Ba Yah                                              120
+    Linus and Lucy                                          124
+    The Marvelous Toy                                       121
+    Michael Row the Boat Ashore                             130
+    Mickey Mouse March                                      132
+    Old MacDonald                                           134
+    On the Good Ship Lollipop                               136
+    Over the River and Through the Woods                    139
+    Peter Cottontail                                        140
+    The Rainbow Connection                                  143
+    Puff the Magic Dragon                                   148
+    Row, Row, Row Your Boat                                 152
+    Sesame Street Theme                                     154
+    Splish Splash                                           157
+    Sing                                                    160
+    SpongeBob SquarePants Theme Song                        164
+    Supercalifragilisticexpialidocious                      166
+    Take Me Out to the Ball Game                            171
+    This Land Is Your Land                                  174
+    Three Little Fishies (Itty Bitty Poo)                   176
+    Tomorrow                                                178
+    When I'm Sixty-Four                                     182
+    Won't You Be My Neighbor? (It's a Beautiful Day in This Neighborhood)  188
+    Yellow Submarine                                        190
+    Zip-A-Dee-Doo-Dah                                       194
