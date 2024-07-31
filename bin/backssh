@@ -17,7 +17,7 @@ fi
 d="$(pwd)/_out"
 
 cd
-tar cf "$d"/dotssh.tar .ssh
+tar cf "$d"/dotssh.tar .ssh/.
 md5 "$d"/dotssh.tar|sed 's/^.* //' >"$d"/md5sum.txt
 
 echo -n Password:
