@@ -1,0 +1,55 @@
+#!/bin/bash
+docker rm -f ub
+docker run -itd --name ub -h ub -p 3128:3128 -p 3122:3122 -v ~/Downloads:/home/om/d myub bash
+#docker cp ~/.ssh/ ub:/tmp/.dotssh/
+docker cp ~/gcode/ ub:/tmp/.gcode/
+
+cat <<EOF | docker exec -u root -i ub bash -
+umask 077
+rm -rf ~om/.ssh
+rm -rf ~om/gcode
+#mv /tmp/.dotssh ~om/.ssh
+mv /tmp/.gcode ~om/gcode
+
+mkdir ~om/.ssh
+cat <<EOF_ >~om/.ssh/config
+StrictHostKeyChecking=no
+CheckHostIP=no
+EscapeChar=~
+UserKnownHostsFile=/dev/null
+LogLevel ERROR
+
+Host nuc
+    User om
+    HostName 192.168.10.180
+    Port 22
+    ControlPath ~/.ssh/ctrl-%l-to-%h
+    ControlMaster auto
+    ControlPersist 10m
+    ServerAliveInterval 180
+    DynamicForward 9999
+    # -g
+    GatewayPorts true
+    # squid
+    LocalForward 3128 localhost:3128
+    LocalForward 3122 192.168.10.182:22
+
+Host cron
+    User om
+    HostName 76.236.30.161
+    Port 22
+    ControlPath ~/.ssh/ctrl-%l-to-%h
+    ControlMaster auto
+    ControlPersist 10m
+    ServerAliveInterval 180
+    DynamicForward 9999
+    # -g
+    GatewayPorts true
+    # squid
+    LocalForward 3128 localhost:3128
+    LocalForward 3122 192.168.10.182:22
+
+EOF_
+chown -R om:om ~om/.ssh ~om/gcode
+EOF
+
