@@ -57,6 +57,15 @@ Host cron
     LocalForward 3128 localhost:3128
     LocalForward 3122 192.168.10.182:22
 
+Host data
+    User om
+    HostName localhost
+    Port 3122
+    ControlPath ~/.ssh/ctrl-%l-to-%h
+    ControlMaster auto
+    ControlPersist 10m
+    ServerAliveInterval 180
+
 EOF_
 chown -R om:om ~om/.ssh
 EOF
