@@ -533,21 +533,6 @@ alias sd='sd2'
 alias prx='ssh -g -N -f vmwgitlab'
 alias prk='kill $(ps uxw|grep '\''ssh -g -N -f vmwgitlab'\''|grep -v grep|awk '\''{print $2}'\'')'
 
-alias a6='docker exec -ti 67ga bash'
-alias a7='docker exec -ti 70ga bash'
-alias a3='docker exec -ti 70u3 bash'
-function dp() {
-  local f=$1
-  if [[ $f == '' ]]; then
-    echo 'Need a file to copy'
-    return 1
-  fi
-  local b=$(basename "$f")
-  docker exec ub bash -c 'mkdir -p /home/om/aaa'
-  docker cp "$f" ub:/home/om/aaa/"$b"
-  docker exec ub bash -c 'chown -R om:om /home/om/aaa'
-}
-
 #export P4USER=omandal
 alias plog='p4 -p perforce.crondite.com:1666 describe -s $1'
 function phead() {
@@ -573,15 +558,6 @@ function unix() {
   fi
 }
 
-function p() {
-    if [[ "$1" != '' ]]; then
-        docker cp "$1" ub:/home/om/_a
-        docker exec -u om ub bash -c 'cd ~om; tesseract _a _a'
-        docker cp ub:/home/om/_a.txt .
-        vi _a.txt
-    fi
-}
-
 function b64() {
 cat <<'EOF'
 # perl -MMIME::Base64 -ne 'print encode_base64($_)' allusers.txt > outputfile.txt
@@ -592,3 +568,22 @@ EOF
 
 alias op=afplay
 alias wh='time whisp -m lv2'
+
+dpull() {
+    local plat="$1"
+    local image="$2"
+    if [[ "$image" == '' ]]; then
+        echo '# dpullx | dpulla '
+        echo docker pull --platform='{linux/amd64 | linux/arm64}' whatever
+    else
+        docker pull --platform="$plat" "$image"
+    fi
+}
+dpullx() {
+    local plat=linux/amd64
+    dpull $plat "$1"
+}
+dpulla() {
+    local plat=linux/arm64
+    dpull $plat "$1"
+}
