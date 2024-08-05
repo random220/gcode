@@ -20,7 +20,7 @@ cd
 tar cf "$d"/dotssh.tar .ssh/.
 md5 "$d"/dotssh.tar|sed 's/^.* //' >"$d"/md5sum.txt
 
-echo -n Password:
+echo -n Password (host):
 read -s password
 echo
 export mypass="$password"
@@ -31,7 +31,7 @@ cat <<'EOF' >"$d"/dec.sh
 #!/bin/bash
 
 umask 077
-echo -n Password:
+echo -n Password (host):
 read -s password
 export mypass="$password"
 gpg --passphrase-fd 0 --batch -d -o dotssh.tar dotssh.tar.gpg.txt <<<"$mypass"
