@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+#set -x
 umask 077
 rm -rf ~/.ssh/nfash
 mkdir -p ~/.ssh/nfash
@@ -78,6 +78,7 @@ Host nfash
     IdentityFile ~/.ssh/nfash/id_ed25519
     ProxyJump nuc
     DynamicForward 9999
+    GatewayPorts true
     LocalForward 3129 localhost:3128      # squid
 EOF
 

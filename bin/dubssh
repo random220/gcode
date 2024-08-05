@@ -1,17 +1,25 @@
 #!/bin/bash
-docker rm -f ub
-docker run -itd --name ub -h ub -p 3128:3128 -p 3122:3122 -v ~/Downloads:/home/om/d myub bash
-#docker cp ~/.ssh/ ub:/tmp/.dotssh/
-docker cp ~/gcode/ ub:/tmp/.gcode/
 
-cat <<EOF | docker exec -u root -i ub bash -
+main() {
+    docker rm -f ub
+    docker run -itd --name ub -h ub \
+        -p 3128:3128 \
+        -p 3129:3129 \
+        -p 3122:3122 \
+        -v ~/Downloads:/home/om/d \
+        myub bash
+
+    adjust_sshconfig
+    copy_gcode
+}
+
+adjust_sshconfig() {
+    cat <<EOF | docker exec -u root -i ub bash -
 umask 077
-rm -rf ~om/.ssh
-rm -rf ~om/gcode
-#mv /tmp/.dotssh ~om/.ssh
-mv /tmp/.gcode ~om/gcode
 
+rm -rf ~om/.ssh
 mkdir ~om/.ssh
+
 cat <<EOF_ >~om/.ssh/config
 StrictHostKeyChecking=no
 CheckHostIP=no
@@ -50,6 +58,29 @@ Host cron
     LocalForward 3122 192.168.10.182:22
 
 EOF_
-chown -R om:om ~om/.ssh ~om/gcode
+chown -R om:om ~om/.ssh
 EOF
+
+}
+
+copy_gcode() {
+    docker cp ~/gcode/ ub:/tmp/.gcode/
+    cat <<EOF | docker exec -u root -i ub bash -
+umask 077
+rm -rf ~om/gcode
+mv /tmp/.gcode ~om/gcode
+chown -R om:om ~om/gcode
+
+cat <<EOF_ | su om -c bash -
+cd
+. gcode/bin/gcode.0
+EOF_
+
+EOF
+}
+
+
+main
+
+
 
