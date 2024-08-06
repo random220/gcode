@@ -1,6 +1,6 @@
 Cover 1*
-Preface 11*
-Contents 17*
+Preface vii 11*
+Contents xiii 17*
 
 _offset 22
 BACKGROUND AND PREVIEW 1
@@ -16,7 +16,7 @@ BACKGROUND AND PREVIEW 1
     10. Historical Notes 26
     Notes and References 29
 
-CHAPTER 1 Random Processes
+CHAPTER 1 Random Processes 31
     1.1   Introduction 31
     1.2   Mathematical Definition of a Random Process 32
     1.3   Stationary Processes 33
@@ -35,7 +35,7 @@ CHAPTER 1 Random Processes
     Notes and References 77
     Problems 78
 
-CHAPTER 2 Continuous-Wave Modulation
+CHAPTER 2 Continuous-Wave Modulation 88
     2.1   Introduction 88
     2.2   Amplitude Modulation 90
     2.3   Linear Modulation Schemes 93
@@ -54,7 +54,7 @@ CHAPTER 2 Continuous-Wave Modulation
     Notes and References 165
     Problems 166
 
-CHAPTER 3 Pulse Modulation
+CHAPTER 3 Pulse Modulation 183
     3.1   Introduction 183
     3.2   Sampling Process 184
     3.3   Pulse-Amplitude Modulation 188
@@ -76,7 +76,7 @@ CHAPTER 3 Pulse Modulation
     Notes and References 238
     Problems 239
 
-CHAPTER 4 Baseband Pulse Transmission
+CHAPTER 4 Baseband Pulse Transmission 247
     4.1   Introduction 247
     4.2   Matched Filter 248
     4.3   Error Rate Due to Noise 253
@@ -92,7 +92,7 @@ CHAPTER 4 Baseband Pulse Transmission
     Notes and References 297
     Problems 300
 
-CHAPTER 5 Signal-Space Analysis
+CHAPTER 5 Signal-Space Analysis 309
     5.1  Introduction 309
     5.2  Geometric Representation of Signals 311
     5.3  Conversion of the Continuous AWGN Channel into a Vector Channel 318
@@ -124,7 +124,7 @@ CHAPTER 6 Passband Digital Transmission
     Notes and References 465
     Problems 468
 
-CHAPTER 7 Spread-Spectrum Modulation
+CHAPTER 7 Spread-Spectrum Modulation 479
     7.1  Introduction 479
     7.2  Pseudo-Noise Sequences 480
     7.3  A Notion of Spread Spectrum 488
@@ -137,7 +137,7 @@ CHAPTER 7 Spread-Spectrum Modulation
     Notes and References 509
     Problems 509
 
-CHAPTER 8 Multiuser Radio Communications
+CHAPTER 8 Multiuser Radio Communications 512
     8.1  Introduction 512
     8.2  Multiple-Access Techniques 513
     8.3  Satellite Communications 514
@@ -152,7 +152,7 @@ CHAPTER 8 Multiuser Radio Communications
     Notes and References 560
     Problems 562
 
-CHAPTER 9 Fundamental Limits in Information Theory
+CHAPTER 9 Fundamental Limits in Information Theory 567
     9.1   Introduction 567
     9.2   Uncertainty, Information, and Entropy 568
     9.3   Source-Coding Theorem 574
@@ -171,7 +171,7 @@ CHAPTER 9 Fundamental Limits in Information Theory
     Notes and References 617
     Problems 618
 
-CHAPTER 10 Error-Control Coding
+CHAPTER 10 Error-Control Coding 626
     10.1 Introduction 626
     10.2 Discrete-Memoryless Channels 629
     10.3 Linear Block Codes 632
@@ -194,6 +194,6 @@ APPENDIX 4 Confluent Hypergeometric Functions 740
 APPENDIX 5 Cryptography 742
 APPENDIX 6 Tables 761
 
-GLOSSARY
-BIBLIOGRAPHY
-INDEX
+GLOSSARY 771
+BIBLIOGRAPHY 777
+INDEX 792
