@@ -51,6 +51,8 @@ Host nuc
     ConnectTimeout 10
     Hostname $host
     Port $port
+    GatewayPorts true
+    LocalForward 3128 localhost:3128      # squid
 $muxlines
 
 EOF
@@ -80,6 +82,7 @@ Host nfash
     DynamicForward 9999
     GatewayPorts true
     LocalForward 3129 localhost:3128      # squid
+$muxlines
 EOF
 
 }

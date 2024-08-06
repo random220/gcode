@@ -25,10 +25,10 @@ if [[ "$ff" == '' ]]; then
   exit 1
 fi
 
-bn=$(basename "$0")
+bn=$(basename "$0")-$proxyport
 ddir=~/.firefox/$bn
 
-if [[ $bn == 'ff' ]]; then
+if [[ $bn =~ ^ff-[0-9]+$ ]]; then
   rm -rf "$ddir"
 fi
 
@@ -49,6 +49,7 @@ user_pref("network.proxy.type", 1);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.warnOnQuitShortcut", false);
 user_pref("browser.download.useDownloadDir", false);
+user_pref("browser.startup.homepage", "https://www.showmyip.com/");
 EOF
 fi
 

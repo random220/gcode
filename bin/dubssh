@@ -6,13 +6,16 @@ main() {
         -p 3128:3128 \
         -p 3129:3129 \
         -p 3122:3122 \
+        -p 5522:5522 \
         -v ~/Downloads:/home/om/d \
         myub bash
 
     adjust_sshconfig
     copy_gcode
     pkill -f firefox
+    ff 3128
     ff 3129
+    docker exec -it ub bash
 }
 
 adjust_sshconfig() {
@@ -43,6 +46,7 @@ Host nuc
     # squid
     LocalForward 3128 localhost:3128
     LocalForward 3122 192.168.10.182:22
+    LocalForward 5522 192.168.10.180:22
 
 Host cron
     User om
@@ -58,6 +62,7 @@ Host cron
     # squid
     LocalForward 3128 localhost:3128
     LocalForward 3122 192.168.10.182:22
+    LocalForward 5522 192.168.10.180:22
 
 Host data
     User om
