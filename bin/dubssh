@@ -11,6 +11,8 @@ main() {
 
     adjust_sshconfig
     copy_gcode
+    pkill -f firefox
+    ff 3129
 }
 
 adjust_sshconfig() {
