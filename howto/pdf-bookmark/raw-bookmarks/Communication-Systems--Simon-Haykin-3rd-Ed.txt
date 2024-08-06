@@ -1,0 +1,220 @@
+Cover 1*
+Preface vii 11*
+Contents xi 15*
+
+_offset 20
+CHAPTER 1 INTRODUCTION 1
+    1.1 The Communication Process 1
+    1.2 Sources of Information 3
+    1.3 Communication Channels 6
+    1.4 Baseband and Passband Signals 9
+    1.5 Representation of Signals and Systems 10
+    1.6 Probabilistic Considerations 11
+    1.7 The Modulation Process 12
+    1.8 Primary Communication Resources 14
+    1.9 Information Theory and Coding 14
+    1.10 Analog Versus Digital Communications 17
+    1.11 Networks 19
+    1.12 Some Historical Notes 23
+    Notes and References 26
+
+CHAPTER 2 REPRESENTATION OF SIGNALS AND SYSTEMS 27
+    2.1 Introduction 27
+    2.2 The Fourier Transform 27
+    2.3 Properties of the Fourier Transform 33
+    2.4 Rayleigh's Energy Theorem 46
+    2.5 The Inverse Relationship Between Time and Frequency 48
+    2.6 Dirac Delta Function 51
+    2.7 Fourier Transforms of Periodic Signals 59
+    2.8 Transmission of Signals Through Linear Systems 62
+    2.9 Filters 69
+    2.10 Hilbert Transform 79
+    2.11 Pre-Envelope 83
+    2.12 Canonical Representations of Band-Pass Signals 85
+    2.13 Band-Pass Systems 91
+    2.14 Phase and Group Delay 98
+    2.15 Numerical Computation of the Fourier Transform 100
+    2.16 Summary 109
+    Notes and References 109
+    Problems 111
+
+CHAPTER 3 CONTINUOUS-WAVE MODULATION 121
+    3.1 Introduction 121
+    3.2 Amplitude Modulation 122
+    3.3 Virtues, Limitations, and Modifications of Amplitude Modulation 131
+    3.4 Double Sideband-Suppressed Carrier Modulation 132
+    3.5 Filtering of Sidebands 140
+    3.6 Vestigial Sideband Modulation 144
+    3.7 Single Sideband Modulation 147
+    3.8 Frequency Translation 151
+    3.9 Frequency-Division Multiplexing 152
+    3.10 Angle Modulation 154
+    3.11 Frequency Modulation 158
+    3.12 Phase-Locked Loop 181
+    3.13 Nonlinear Effects in FM Systems 191
+    3.14 The Superheterodyne Receiver 195
+    3.15 Summary and Discussion 197
+    Notes and References 200
+    Problems 201
+
+CHAPTER 4 RANDOM PROCESSES
+    4.1 Introduction 218
+    4.2 Probability Theory 219
+    4.3 Random Variables 226
+    4.4 Statistical Averages 230
+    4.5 Transformations of Random Variables 235
+    4.6 Random Processes 239
+    4.7 Stationarity 241
+    4.8 Mean, Correlation, and Covariance Functions 242
+    4.9 Ergodicity 249
+    4.10 Transmission of a Random Process Through a Linear Filter 250
+    4.11 Power Spectral Density 252
+    4.12 Gaussian Process 264
+    4.13 Noise 269
+    4.14 Narrow-Band Noise 282
+    4.15 Sine Wave Plus Narrow-Band Noise 295
+    4.16 Summary 299
+    Notes and References 299
+    Problems 301
+
+CHAPTER 5 NOISE IN CW MODULATION SYSTEMS 313
+    5.1 Introduction 313
+    5.2 Receiver Model 314
+    5.3 Noise in DSB-SC Receivers 317
+    5.4 Noise in SSB Receivers 319
+    5.5 Noise in AM Receivers 322
+    5.6 Noise in FM Receivers 326
+    5.7 Pre-emphasis and De-emphasis in FM 340
+    5.8 Summary and Discussion 344
+    Notes and References 346
+    Problems 346
+
+CHAPTER 6 PULSE MODULATION 351
+    6.1  Introduction 351
+    6.2  The Sampling Process 352
+    6.3  Pulse-Amplitude Modulation 357
+    6.4  Time-Division Multiplexing 362
+    6.5  Pulse-Position Modulation 364
+    6.6  Bandwidth-Noise Trade-off 373
+    6.7  The Quantization Process 374
+    6.8  Pulse-Code Modulation 378
+    6.9  Noise Considerations in PCM Systems 387
+    6.10 Virtues, Limitations, and Modifications of PCM 390
+    6.11 Delta Modulation 391
+    6.12 Differential Pulse-Code Modulation 396
+    6.13 Coding Speech at Low Bit Rates 399
+    6.14 Summary and Discussion 404
+    Notes and References 405
+    Problems 406
+
+CHAPTER 7 BASEBAND PULSE TRANSMISSION 412
+    7.1  Introduction 412
+    7.2  Matched Filter 413
+    7.3  Error Rate Due to Noise 418
+    7.4  Intersymbol Interference 424
+    7.5  Nyquist's Criterion for Distortionless Baseband Binary Transmission 427
+    7.6  Correlative-Level Coding 434
+    7.7  Baseband M-ary PAM Transmission 446
+    7.8  Tapped-Delay-Line Equalization 448
+    7.9  Adaptive Equalization 452
+    7.10 Eye Pattern 461
+    7.11 Summary and Discussion 464
+    Notes and References 465
+    Problems 466
+
+CHAPTER 8 DIGITAL PASSBAND TRANSMISSION 473
+    8.1 Introduction 473
+    8.2 Passband Transmission Model 474
+    8.3 Gram-Schmidt Orthogonalization Procedure 478
+    8.4 Geometric Interpretation of Signals 483
+    8.5 Response of Bank of Correlators to Noisy Input 486
+    8.6 Coherent Detection of Signals in Noise 491
+    8.7 Probability of Error 495
+    8.8 Correlation Receiver 501
+    8.9 Detection of Signals with Unknown Phase 503
+    8.10 Hierarchy of Digital Modulation Techniques 507
+    8.11 Coherent Binary PSK 508
+    8.12 Coherent Binary FSK 511
+    8.13 Coherent Quadriphase-Shift Keying 516
+    8.14 Coherent Minimum Shift Keying 523
+    8.15 Noncoherent Orthogonal Modulation 532
+    8.16 Noncoherent Binary Frequency-Shift Keying 539
+    8.17 Differential Phase-Shift Keying 540
+    8.18 Comparison of Binary and Quaternary Modulation Schemes 544
+    8.19 M-ary Modulation Techniques 546
+    8.20 Power Spectra 555
+    8.21 Bandwidth Efficiency 561
+    8.22 Synchronization 564
+    8.23 Summary and Discussion 568
+    Notes and References 569
+    Problems 570
+
+CHAPTER 9 SPREAD-SPECTRUM MODULATION 578
+    9.1 Introduction 578
+    9.2 Pseudo-Noise Sequences 579
+    9.3 A Notion of Spread Spectrum 586
+    9.4 Direct-Sequence Spread-Spectrum with Coherent Binary Phase-Shift Keying 589
+    9.5 Signal-Space Dimensionality and Processing Gain 592
+    9.6 Probability of Error 597
+    9.7 Frequency-Hop Spread Spectrum 599
+    9.8 Code-Division Multiplexing 605
+    9.9 Summary and Discussion 609
+    Notes and References 610
+    Problems 611
+
+CHAPTER 10 FUNDAMENTAL LIMITS IN INFORMATION THEORY 614
+    10.1 Introduction 614
+    10.2 Uncertainty, Information, and Entropy 615
+    10.3 Source Coding Theorem 621
+    10.4 Data Compaction 623
+    10.5 Discrete Memoryless Channels 631
+    10.6 Mutual Information 634
+    10.7 Channel Capacity 637
+    10.8 Channel Coding Theorem 640
+    10.9 Differential Entropy and Mutual Information for Continuous Ensembles 644
+    10.10 Information Capacity Theorem 648
+    10.11 Implications of the Information Capacity Theorem 652
+    10.12 Rate Distortion Theory 657
+    10.13 Compression of Information 659
+    10.14 Summary and Discussion 661
+    Notes and References 662
+    Problems 664
+
+CHAPTER 11 ERROR CONTROL CODING 670
+    11.1 Introduction 670
+    11.2 Discrete Memoryless Channels 672
+    11.3 Linear Block Codes 675
+    11.4 Cyclic Codes 686
+    11.5 Convolutional Codes 700
+    11.6 Maximum Likelihood Decoding of Convolutional Codes 707
+    11.7 Trellis-Coded Modulation 715
+    11.8 Coding for Compound-Error Channels 721
+    11.9 Summary and Discussion 723
+    Notes and References 723
+    Problems 724
+
+
+CHAPTER 12 ADVANCED COMMUNICATION SYSTEMS 730
+    12.1 Introduction 730
+    12.2 Satellite Communications 731
+    12.3 Mobile Radio 735
+    12.4 Optical Communications 753
+    12.5 Broadband Integrated Services Digital Network 759
+    12.6 An Emerging View of Telecommunications 762
+    Notes and References 763
+
+Appendix 1 Speech and Television as Sources of Information              765
+Appendix 2 Fourier Series                                               773
+Appendix 3 Time-Frequency Analysis                                      781
+Appendix 4 Bessel Functions                                             793
+Appendix 5 Schwarz's Inequality                                         799
+Appendix 6 Noise Figure                                                 801
+Appendix 7 Error Function                                               806
+Appendix 8 Statistical Characterization of Complex Random Processes     810
+Appendix 9 Binary Arithmetic                                            813
+Appendix 10 Cryptography                                                815
+Appendix 11 Mathematical Tables                                         837
+Glossary         845
+Abbreviations    848
+Bibliography     851
+Index            867

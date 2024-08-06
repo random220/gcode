@@ -1,8 +1,8 @@
 Cover 1*
-Preface vii 11*
-Contents xiii 17*
+Preface vii 6*
+Contents xiii 11*
 
-_offset 22
+_offset 16
 BACKGROUND AND PREVIEW 1
     1.  The Communication Process 1
     2.  Primary Communication Resources 3
