@@ -1,0 +1,148 @@
+Cover 1*
+Contents 11*
+PREFACE vii
+
+Chapter 1 INTRODUCTION 1
+    1.1 The Communication Process 1
+    1.2 The Layered Approach 2
+    1.3 Theme Example-Wireless
+    Communications 3
+    Notes and References 7
+
+Chapter 2 REPRESENTATION OF SIGNALS AND SYSTEMS 8
+    2.1 Introduction 8
+    2.2 The Fourier Transform 8
+    2.3 Properties of the Fourier Transform 14
+    2.4 The Inverse Relationship Between Time and Frequency 28
+    2.5 Dirac Delta Function 32
+    2.6 Fourier Transforms of Periodic Signals 39
+    2.7 Transmission of Signals Through Linear Systems 41
+    2.8 Filters 47
+    2.9 Low-Pass and Band-Pass Signals 52
+    2.10 Band-Pass Systems 57
+    2.11 Phase and Group Delay 60
+    2.12 Sources of Information 62
+    2.13 Numerical Computation of the Fourier Transform 64
+    2.14 Theme Example-Channel Estimation of a Wireless LAN Channel 66
+    2.15 Summary and Discussion 69
+    Notes and References 69
+    Problems 70
+
+Chapter 3 AMPLITUDE MODULATION 74
+    3.1 Introduction 74
+    3.2 Amplitude Modulation 75
+    3.3 Double Sideband-Suppressed Carrier Modulation 83
+    3.4 Quadrature-Carrier Multiplexing 87
+    3.5 Single-Sideband and Vestigial-Sideband Methods of Modulation 88
+    3.6 Theme Example-VSB Transmission of Analog and Digital Television 92
+    3.7 Frequency Translation 93
+    3.8 Frequency-Division Multiplexing 94
+    3.9 Summary and Discussion 95
+    Notes and References 96
+    Problems 96
+
+Chapter 4 ANGLE MODULATION 102
+    4.1 Introduction 102
+    4.2 Basic Definitions 102
+    4.3 Frequency Modulation 109
+    4.4 Phase-Locked Loop 127
+    4.5 Nonlinear Effects in FM Systems 133
+    4.6 The Superheterodyne Receiver 135
+    4.7 Theme Example-Analog and Digital FM Cellular Telephones 137
+    4.8 Summary and Discussion 139
+    Notes and References 140
+    Problems 140
+
+Chapter 5 PROBABILITY THEORY AND RANDOM PROCESSES 146
+    5.1 Introduction 146
+    5.2 Probability 147
+    5.3 Random Variables 151
+    5.4 Statistical Averages 156
+    5.5 Random Processes 161
+    5.6 Mean, Correlation, and Covariance Functions 162
+    5.7 Transmission of a Random Process Through a Linear Filter 168
+    5.8 Power Spectral Density 169
+    5.9 Gaussian Process 175
+    5.10 Noise 179
+    5.11 Narrowband Noise 186
+    5.12 Theme Example-Stochastic Model of a Mobile Radio Channel 193
+    5.13 Summary and Discussion 198
+    Notes and References 200
+    Problems 201
+
+Chapter 6 NOISE IN CW MODULATION SYSTEMS 207
+    6.1 Introduction 207
+    6.2 Receiver Model 207
+    6.3 Noise in DSB-SC Receivers 210
+    6.4 Noise in AM Receivers 212
+    6.5 Noise in FM Receivers 215
+    6.6 Pre-emphasis and De-emphasis in FM 226
+    6.7 Theme Example-Link Budget of FM Satellite Link 229
+    6.8 Summary and Discussion 233
+    Notes and References 235
+    Problems 235
+
+Chapter 7 THE TRANSITION FROM ANALOG TO DIGITAL 238
+    7.1 Introduction 238
+    7.2 Why Digitize Analog Sources? 239
+    7.3 The Sampling Process 240
+    7.4 Pulse-Amplitude Modulation 244
+    7.5 Time-Division Multiplexing 247
+    7.6 Pulse-Position Modulation 248
+    7.7 Theme Example-PPM in Impulse Radio 255
+    7.8 The Quantization Process 256
+    7.9 Pulse-Code Modulation 260
+    7.10 Delta Modulation 267
+    7.11 Theme Example-Digitization of Video and MPEG 271
+    7.12 Summary and Discussion 273
+    Notes and References 274
+    Problems 275
+
+Chapter 8 BASEBAND DIGITAL TRANSMISSION 279
+    8.1 Introduction 279
+    8.2 Baseband Pulses and Matched Filter Detection 280
+    8.3 Probability of Error Due to Noise 285
+    8.4 Intersymbol Interference 290
+    8.5 Eye Pattern 294
+    8.6 Nyquist's Criterion for Distortionless Transmission 296
+    8.7 Baseband M-ary PAM Transmission 301
+    8.8 Tapped-Delay-Line Equalization 302
+    8.9 Theme Example—100BASE-TX— Transmission of 100 Mbps Over Twisted Pair 305
+    8.10 Summary and Discussion 308
+    Notes and References 309
+    Problems 309
+
+Chapter 9 DIGITAL BAND-PASS TRANSMISSION TECHNIQUES 313
+    9.1 Introduction 313
+    9.2 Band-Pass Transmission Model 314
+    9.3 Transmission of Binary PSK and FSK 316
+    9.4 M-ary Data Transmission Systems 327
+    9.5 Comparison of Noise Performances of Various PSK and FSK Systems 331
+    9.6 Theme Example-Orthogonal Frequency Division Multiplexing (OFDM) 333
+    9.7 Summary and Discussion 337
+    Notes and References 338
+    Problems 338
+
+Chapter 10 INFORMATION THEORY AND CODING 342
+    10.1 Introduction 342
+    10.2 Uncertainty, Information, and Entropy 343
+    10.3 Source-Coding Theorem 347
+    10.4 Lossless Data Compression 348
+    10.5 Theme Example-The Lempel-Ziv Algorithm and File Compression 353
+    10.6 Discrete Memoryless Channels 355
+    10.7 Channel Capacity 357
+    10.8 Channel Coding Theorem 360
+    10.9 Capacity of a Gaussian Channel 363
+    10.10 Error Control Coding 366
+    10.11 Linear Block Codes 369
+    10.12 Convolutional Codes 379
+    10.13 Trellis-Coded Modulation 384
+    10.14 Turbo Codes 388
+    10.15 Summary and Discussion 393
+    Notes and References 394
+    Problems 395
+
+APPENDIX Mathematical Tables 398
+GLOSSARY 405
+BIBLIOGRAPHY 409
+INDEX 413
