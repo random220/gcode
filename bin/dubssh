@@ -3,6 +3,7 @@
 main() {
     docker rm -f ub
     docker run -itd --name ub -h ub \
+        -p 9999:9999 \
         -p 3128:3128 \
         -p 3129:3129 \
         -p 3122:3122 \
