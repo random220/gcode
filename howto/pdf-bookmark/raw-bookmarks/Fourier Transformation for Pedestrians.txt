@@ -1,0 +1,100 @@
+Cover 1*
+Preface 5*
+Preface of the Translator 7*
+Contents 8*
+
+_offset 10
+Introduction                                                                      1
+
+1  Fourier Series                                                                 3 
+    1.1  Fourier Series                                                           3 
+        1.1.1  Even and Odd Functions                                             3 
+        1.1.2  Definition of the Fourier Series                                   4 
+        1.1.3  Calculation of the Fourier Coefficients                            6 
+        1.1.4  Fourier Series in Complex Notation                                 11 
+    1.2  Theorems and Rules                                                       13 
+        1.2.1  Linearity Theorem                                                  13 
+        1.2.2  The First Shifting Rule                                            14 
+        1.2.3  The Second Shifting Rule                                           17 
+        1.2.4  Scaling Theorem                                                    21 
+    1.3  Partial Sums, Bessel’s Inequality, Parseval’s Equation                   21 
+    1.4  Gibbs’ Phenomenon                                                        24 
+        1.4.1  Dirichlet’s Integral Kernel                                        24 
+        1.4.2  Integral Notation of Partial Sums                                  26 
+        1.4.3  Gibbs’ Overshoot                                                   27 
+    Playground                                                                    30 
+
+2  Continuous Fourier Transformation                                              33 
+    2.1  Continuous Fourier Transformation                                        33 
+        2.1.1  Even and Odd Functions                                             33 
+        2.1.2  Theδ-Function                                                      34 
+        2.1.3  Forward and Inverse Transformation                                 35 
+        2.1.4  Polar Representation of the Fourier Transform                      40 
+    2.2  Theorems and Rules                                                       42 
+        2.2.1  Linearity Theorem                                                  42 
+        2.2.2  The First Shifting Rule                                            42 
+        2.2.3  The Second Shifting Rule                                           43 
+        2.2.4  Scaling Theorem                                                    44 
+    2.3  Convolution, Cross Correlation, Autocorrelation, Parseval’s Theorem      46
+        2.3.1 Convolution                                                         46 
+        2.3.2 Cross Correlation                                                   55
+        2.3.3 Autocorrelation                                                     56
+        2.3.4 Parseval’sTheorem                                                   57
+    2.4  Fourier Transformation of Derivatives                                    58 
+    2.5  Pitfalls                                                                 60 
+        2.5.1 “Turn 1 into 3”                                                     60
+        2.5.2 TruncationError                                                     63
+    Playground                                                                    66
+
+3 Window Functions                                                                69
+    3.1  The Rectangular Window                                                   69 
+        3.1.1  Zeros                                                              70 
+        3.1.2  Intensity at the Central Peak                                      70 
+        3.1.3  Sidelobe Suppression                                               71 
+        3.1.4  3 dB-Bandwidth                                                     72 
+        3.1.5  Asymptotic Behaviour of Sidelobes                                  73 
+    3.2  The Triangular Window (Fejer Window)                                     73 
+    3.3  The Cosine Window                                                        74 
+    3.4  The cos2-Window (Hanning)                                                75 
+    3.5  The Hamming Window                                                       77 
+    3.6  The Triplet Window                                                       78 
+    3.7  The Gauss Window                                                         79 
+    3.8  The Kaiser–Bessel Window                                                 80 
+    3.9  The Blackman–Harris Window                                               81 
+    3.10  Overview over Window Functions                                          84 
+    3.11  Windowing or Convolution?                                               87 
+    Playground                                                                    88
+
+4 Discrete Fourier Transformation                                                 89
+    4.1  DiscreteFourierTransformation                                            89 
+        4.1.1  Even and Odd Series and Wrap-around                                89 
+        4.1.2  The Kronecker Symbol or the “Discrete δ-Function”                  90 
+        4.1.3  Definition of the Discrete Fourier Transformation                  92 
+    4.2  Theorems and Rules                                                       96 
+        4.2.1  Linearity Theorem                                                  96 
+        4.2.2  The First Shifting Rule                                            96 
+        4.2.3  The Second Shifting Rule                                           97 
+        4.2.4  ScalingRule/NyquistFrequency                                       98 
+    4.3  Convolution, Cross Correlation, Autocorrelation, Parseval’s Theorem      99 
+        4.3.1  Convolution                                                        100 
+        4.3.2  Cross Correlation                                                  103 
+        4.3.3  Autocorrelation                                                    104 
+        4.3.4  Parseval’sTheorem                                                  104 
+    4.4  The Sampling Theorem                                                     105 
+    4.5  Data Mirroring                                                           109 
+    4.6 Zero-padding                                                              112
+    4.7 Fast Fourier Transformation (FFT)                                         118
+    Playground                                                                    126
+
+5 Filter Effect in Digital Data Processing                                        131
+    5.1  Transfer Function                                                        131 
+    5.2  Low-pass, High-pass, Band-pass, Notch Filter                             132 
+    5.3  Shifting Data                                                            139 
+    5.4  Data Compression                                                         141 
+    5.5  Differentiation of Discrete Data                                         141 
+    5.6  Integration of Discrete Data                                             143 
+    Playground                                                                    147
+
+Appendix: Solutions                                                               149
+References                                                                        197
+Index                                                                             199
