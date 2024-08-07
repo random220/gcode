@@ -583,3 +583,23 @@ dpulla() {
     local plat=linux/arm64
     dpull $plat "$1"
 }
+voice() {
+    set -x
+    echo; SwitchAudioSource -s 'MacBook Pro Microphone' -t input
+    echo; SwitchAudioSource -s 'Alpha X200' -t output
+    echo; SwitchAudioSource -f json -c -t input
+    echo; SwitchAudioSource -f json -c -t output
+    set +x
+}
+micm() {
+    set -x
+    echo; SwitchAudioSource -s 'MacBook Pro Microphone' -t input
+    echo; SwitchAudioSource -f json -c -t input
+    set +x
+}
+micx() {
+    set -x
+    echo; SwitchAudioSource -s 'Alpha X200' -t input
+    echo; SwitchAudioSource -f json -c -t input
+    set +x
+}
