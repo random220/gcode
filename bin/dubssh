@@ -14,8 +14,16 @@ main() {
     adjust_sshconfig
     copy_gcode
     pkill -f firefox
-    ff 3128
-    ff 3129
+
+    if [[ "$1" == '' ]]; then
+        ff 3128
+    elif [[ "$1" == 'n' ]]; then
+        ff 3129
+    else
+        ff 3128
+        ff 3129
+    fi
+
     docker exec -it ub bash
 }
 
@@ -96,8 +104,5 @@ EOF_
 EOF
 }
 
-
-main
-
-
+main "$@"
 
