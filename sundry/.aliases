@@ -603,3 +603,12 @@ micx() {
     echo; SwitchAudioSource -f json -c -t input
     set +x
 }
+p3() {
+    if [[ ! -d ~/p3 ]]; then
+        python3 -m venv ~/p3
+        . ~/p3/bin/activate
+        pip install --upgrade pip
+    else
+        . ~/p3/bin/activate
+    fi
+}
