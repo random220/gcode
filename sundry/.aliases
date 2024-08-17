@@ -612,7 +612,7 @@ p3() {
         . ~/p3/bin/activate
     fi
 }
-jtok() {
+token() {
 jupyter server list \
 |grep http \
 |sed 's/^.*=//; s/ .*//; s/^/\/?token=/'
