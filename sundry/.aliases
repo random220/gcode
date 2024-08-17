@@ -290,7 +290,7 @@ bps1() {
             . /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
         fi
     fi
-    export PS1="$blue"'\u@\h'$reset' '$yellow'\w'$reset$teal'`__git_ps1`'$reset'\n$ '
+    export PS1='\n'"$blue"'\u@\h'$reset' '$yellow'\w'$reset$teal'`__git_ps1`'$reset'\n$ '
 }
 function winps1() {
     type __git_ps1 >/dev/null 2>&1
