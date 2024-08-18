@@ -5,8 +5,15 @@ if (scalar @ARGV) {
 }
 $j = 0;
 for $i (0..255) {
-    $code = "$back\e[1m\e[38;5;${i}m ABCDE \e[0m\e[0m";
-    printf(' | %03d : %s', $i, $code);
+    $code_bold   = "$back\e[1m\e[38;5;${i}m ABCDE \e[0m";
+    printf(' | %03d : %s', $i, $code_bold);
+    $j++;
+    print "\n" if ($j % 4 == 0);
+}
+print("========================================\n");
+for $i (0..255) {
+    $code_normal = "$back\e[0m\e[38;5;${i}m ABCDE \e[0m";
+    printf(' | %03d : %s', $i, $code_normal);
     $j++;
     print "\n" if ($j % 4 == 0);
 }
