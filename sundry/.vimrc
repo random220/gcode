@@ -52,8 +52,7 @@ set ic              " Ignore case
 "let perl_fold_blocks=1
 set nowrapscan
 set viminfo=%,'50,\"100,n~/.viminfo
-" set mouse=a
-"
+
 "set diffopt+=iwhite     " don't igmore whitespace
 "set diffopt-=iwhite      " ignore whitespace
 
@@ -68,3 +67,7 @@ endif
 set noeb vb t_vb=      " works on both
 set nomodeline
 set encoding=utf-8
+
+"set mouse=a
+map <ScrollWheelDown> k
+map <ScrollWheelUp> j
