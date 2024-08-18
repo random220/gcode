@@ -311,46 +311,11 @@ fancy() {
 alias prompt=fancy
 
 
-# fancy_off () {
-#     local blue=20
-#     local magenta=199
-#     local bluemagenta=56
-#     local green=40
-#     local darkgreen=23
-#
-#     # "\u@\h \w >\n% "   : The actual prompt 'om@om-Latitude-E7450 ~ '
-#
-#     local color=$blue
-#     if [[ $LOGNAME == sm || $HOSTNAME == work ]]; then
-#         color=magenta
-#     fi
-#
-#     local hostname='\h'
-#     if [[ -f ~/.hostname ]]; then
-#         hostname=$(cat ~/.hostname)
-#     fi
-#
-#     export PS1=$(color_fg $color)'\u@'$hostname' \w >'$(color_reset)'\n% '
-#     alias ps1="echo export PS1=\''$PS1'\'"
-#     rm -f ~/.config/.fancy* ~/.config/prompt/fancy
-# }
-
-
 if [[ -f ~/.config/prompt/fancy ]]; then
     fancy "$(cat ~/.config/prompt/fancy)"
 else
     fancy_off
 fi
-
-dark() {
-    local blue='\e[1;34m'
-    local yellow='\e[1;33m'
-    local teal='\e[0;36m'
-    local reset='\e[0;0m'
-
-    ensure_git_ps1
-    export PS1='\n'"$blue"'\u@\h'$reset' '$yellow'\w'$reset$teal'`__git_ps1`'$reset'\n$ '
-}
 
 function winps1() {
     ensure_git_ps1
@@ -371,7 +336,6 @@ os=$(uname -o)
 if [[ "$os" == 'Msys' ]]; then
     winps1 -q
 fi
-
 
 
 export HISTTIMEFORMAT="%F %T "
