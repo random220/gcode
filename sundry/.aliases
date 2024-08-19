@@ -227,6 +227,17 @@ color_reset() {
     echo '\[\e[0m\]'
 }
 
+__gitbranch() {
+    local branch=$(git branch 2>/dev/null| grep '^\*' | sed 's/^..//')
+    if [[ "$branch" != '' ]]; then
+        local gitstatus=$(git status -s | egrep -v '^\?')
+        if [[ "$gitstatus" != '' ]]; then
+            branch=$branch'*'
+        fi
+        echo " ("$branch")"
+    fi
+}
+
 ensure_git_ps1() {
     type __git_ps1 >/dev/null 2>&1
     if [[ $? != 0 ]]; then
@@ -244,7 +255,7 @@ lightprompt() {
     local color3=$(color_fg_bold 124)  # Red
 
     ensure_git_ps1
-    export PS1="$color1"'\u@\h'$reset' '$color2'\w'$reset$color3'`__git_ps1`'$reset'\n$ '
+    export PS1="$color1"'\u@\h'$reset' '$color2'\w'$reset$color3'`__gitbranch`'$reset'\n$ '
 
     mkdir -p ~/.config/prompt
     rm -f ~/.config/prompt/dark
@@ -258,7 +269,7 @@ darkprompt() {
     local color3=$(color_fg_light 46)  # Green
 
     ensure_git_ps1
-    export PS1="$color1"'\u@\h'$reset' '$color2'\w'$reset$color3'`__git_ps1`'$reset'\n$ '
+    export PS1="$color1"'\u@\h'$reset' '$color2'\w'$reset$color3'`__gitbranch`'$reset'\n$ '
 
     mkdir -p ~/.config/prompt
     rm -f ~/.config/prompt/light
@@ -388,7 +399,7 @@ function winps1() {
     ensure_git_ps1
     local cmd=$(
     cat <<"EOF"
-export PS1='\[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$ '
+export PS1='\[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__gitbranch`\[\033[0m\]\n$ '
 EOF
     )
     if [[ "$1" == '-q' ]]; then
