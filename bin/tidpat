@@ -19,21 +19,29 @@ def main():
 
 def do_things(f):
   print(f'File used: {f}')
-  os.system(f'rm -rf _xx; genc -t _xx -d {home}/b/om/tiddly.html.gpg')
+  os.system(f'rm -rf _xx')
+  os.system(f'genc -t _xx -d {home}/b/om/tiddly.html.gpg')
   os.system(f'diff -w _xx/tiddly.html.gpg.plain "{f}" >_xx/diff')
   os.system('gzip _xx/diff')
   os.system(f'rm -f _xx/tiddly.html.gpg.plain')
+
+  os.system(f'genc -t _xx {f}')
+  os.system(f'rm -f {f}')
+
   print('')
-  print('# copy _xx/diff.gz to cron')
-  print('# vmount')
-  print('# cp ~/b/om/p/CRUZER/gitted/sandbox/tiddly.html .')
-  print('# gunzip diff.gz')
-  print('# patch tiddly.html <diff')
-  print('# tt or ttc')
-  print('# rm -f diff')
-  print('# vumount')
+  print('#TODO')
+  print('cp _xx/tiddly.html.gpg ~/b/om')
+  print('scp _xx/diff.gz cron:.')
+  print('rm -rf _xx/')
   print('')
-  print(f'#Locally: rm -f "{f}"')
+  print('ssh cron')
+  print('cp ~/b/om/p/CRUZER/gitted/sandbox/tiddly.html .')
+  print('gunzip diff.gz')
+  print('patch tiddly.html <diff')
+  print('#tt or ttc')
+  print('rm -f diff')
+  print('vumount')
+  print('')
 
 def decide_on_file():
   look2 = []
