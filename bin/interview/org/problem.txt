@@ -1,0 +1,27 @@
+
+"""
+Write a python program to receive data like this
+
+in_list = [
+"prashant:om",
+"gary:prashant",
+"om:srini",
+"aaron:peter",
+"om:felix",
+"prashant:devon",
+"devon:aaron",
+]
+
+
+and produce output like this
+
+out_list = [
+"/gary/prashant",
+"/gary/prashant/devon",
+"/gary/prashant/devon/aaron",
+"/gary/prashant/devon/aaron/peter",
+"/gary/prashant/om",
+"/gary/prashant/om/felix",
+"/gary/prashant/om/srini",
+]
+"""
