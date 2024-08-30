@@ -68,9 +68,11 @@ main() {
     fi
   fi
 
-  echo -n Password:
-  read -s password
-  export mypass="$password"
+  if [[ "$mypass" == '' ]]; then
+      echo -n Password:
+      read -s password
+      export mypass="$password"
+  fi
 
   if [[ "$op" == 'enc' ]]; then
     do_enc_gpg "$infile" "$outfile"

@@ -2,9 +2,11 @@
 
 import sys, os
 import glob
+import getpass
 
 home = os.environ['HOME']
 look = [
+  f'{home}/Desktop/tiddly*.html',
   f'{home}/Downloads/tiddly*.html',
   f'{home}/tiddly*.html',
   f'./tiddly*.html',
@@ -18,30 +20,45 @@ def main():
   decide_on_file()
 
 def do_things(f):
-  print(f'File used: {f}')
+  pw = getpass.getpass()
+  os.environ['mypass'] = pw
+
+  print(f'File used: "{f}"')
   os.system(f'rm -rf _xx')
   os.system(f'genc -t _xx -d {home}/b/om/tiddly.html.gpg')
-  os.system(f'diff -w _xx/tiddly.html.gpg.plain "{f}" >_xx/diff')
-  os.system('gzip _xx/diff')
-  os.system(f'rm -f _xx/tiddly.html.gpg.plain')
+  if os.path.isfile("_xx/tiddly.html.gpg.plain"):
+    os.system(f'diff -w _xx/tiddly.html.gpg.plain "{f}" >_xx/diff')
+    os.system('gzip _xx/diff')
+    os.system(f'rm -f _xx/tiddly.html.gpg.plain')
 
-  os.system(f'genc -t _xx {f}')
-  os.system(f'rm -f {f}')
+    os.system(f'genc -t _xx "{f}"')
 
-  print('')
-  print('#TODO')
-  print('cp _xx/tiddly.html.gpg ~/b/om')
-  print('scp _xx/diff.gz cron:.')
-  print('rm -rf _xx/')
-  print('')
-  print('ssh cron')
-  print('cp ~/b/om/p/CRUZER/gitted/sandbox/tiddly.html .')
-  print('gunzip diff.gz')
-  print('patch tiddly.html <diff')
-  print('#tt or ttc')
-  print('rm -f diff')
-  print('vumount')
-  print('')
+    if os.path.isfile('_xx/tiddly.html.gpg'):
+      os.system(f'rm -f "{f}"')
+    else:
+      print(f'Failed to encrypt "{f}"')
+      sys.exit(1)
+  else:
+    print(f'Failed to decrypt "{f}"')
+    sys.exit(1)
+
+  print('''
+
+#TODO
+cp _xx/tiddly.html.gpg ~/b/om
+scp _xx/diff.gz cron:.
+rm -rf _xx/
+
+ssh cron
+vmount
+cp ~/b/om/p/CRUZER/gitted/sandbox/tiddly.html .
+gunzip diff.gz
+patch tiddly.html <diff
+#tt or ttc
+rm -f diff
+vumount
+
+''')
 
 def decide_on_file():
   look2 = []
@@ -76,7 +93,8 @@ def decide_on_file():
     if answer == 'y':
       for f in found[1:]:
         os.unlink(f)
-      do_things(latest_file)
+      os.system(f'mv "{latest_file}" ~/Downloads/tiddly.html')
+      do_things(os.environ['HOME']+'/Downloads/tiddly.html')
     else:
       print('No file was used.')
   
