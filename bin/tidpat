@@ -1,101 +1,95 @@
-#!/usr/bin/env python3
+#!/bin/bash
 
-import sys, os
-import glob
-import getpass
+cd ~/b/om
+rm -rf __xxx
+rm -rf __chromecache
 
-home = os.environ['HOME']
-look = [
-  f'{home}/Desktop/tiddly*.html',
-  f'{home}/Downloads/tiddly*.html',
-  f'{home}/tiddly*.html',
-  f'./tiddly*.html',
-]
-found = []
+ls -1trd \
+`pwd`/tiddly*.html \
+~/tiddly*.html \
+~/Desktop/tiddly*.html \
+~/Downloads/tiddly*.html \
+>/tmp/tids.txt 2>/dev/null
 
+n=$(wc -l /tmp/tids.txt|awk '{print $1}')
 
+if [[ $n == '0' ]]; then
+    rm -f /tmp/tids.txt
+    exit 0
+elif [[ $n == '1' ]]; then
+    f=$(cat /tmp/tids.txt)
+    echo "Using \"$f\""
+    rm -f /tmp/tids.txt
+else
+    f=$(tail -1 /tmp/tids.txt)
+    m=$(( n - 1 ))
+    rest=$(head -$m /tmp/tids.txt)
+    rm -f /tmp/tids.txt
+    echo "About to delete these files"
+    echo
+    echo "$rest"
+    echo
+    echo "And use this"
+    echo "$f"
+    echo
+    echo "Is that ok? [y/n]: "
+    read ok
+    if [[ $ok != 'y' ]]; then
+        exit 0
+    fi
 
+    while IFS= read -r line; do
+        rm -f "$line"
+    done <<<"$rest"
+fi
 
-def main():
-  decide_on_file()
+cd ~/b/om
+rm -rf __yyy
 
-def do_things(f):
-  pw = getpass.getpass()
-  os.environ['mypass'] = pw
+echo -n 'Password: '
+read -s passwd
+export mypass="$passwd"
 
-  print(f'File used: "{f}"')
-  os.system(f'rm -rf _xx')
-  os.system(f'genc -t _xx -d {home}/b/om/tiddly.html.gpg')
-  if os.path.isfile("_xx/tiddly.html.gpg.plain"):
-    os.system(f'diff -w _xx/tiddly.html.gpg.plain "{f}" >_xx/diff')
-    os.system('gzip _xx/diff')
-    os.system(f'rm -f _xx/tiddly.html.gpg.plain')
+rm -rf __yyy
+genc -t __yyy -d tiddly.html.git.tar.gpg
+if [[ ! -f _yyy/tiddly.html.git.tar.gpg.plain ]]; then
+    echo "Failed to extract _yyy/tiddly.html.git.tar.gpg.plain"
+    exit 1
+fi
+cd __yyy
+tar xf tiddly.html.git.tar.gpg.plain
+rm -f tiddly.html.git.tar.gpg.plain
+git reset --hard
+mv "$f" tiddly.html
+git add tiddly.html
+git commit -m "$(date)"
+git gc --prune=now
+git show HEAD >diff
+gzip diff
+genc -t x .git
+mv x/.git.tar.gpg tiddly.html.git.tar.gpg
+rm -rf x
 
-    os.system(f'genc -t _xx "{f}"')
+cat <<EOF
 
-    if os.path.isfile('_xx/tiddly.html.gpg'):
-      os.system(f'rm -f "{f}"')
-    else:
-      print(f'Failed to encrypt "{f}"')
-      sys.exit(1)
-  else:
-    print(f'Failed to decrypt "{f}"')
-    sys.exit(1)
-
-  print('''
-
-#TODO
-cp _xx/tiddly.html.gpg ~/b/om
-scp _xx/diff.gz cron:.
-rm -rf _xx/
+======================================================
+cd ~/b/om/__yyy
+mv tiddly.html.git.tar.gpg ~/b/om
+scp diff.gz cron:.
 
 ssh cron
+gunzip diff.gz
 vmount
 cp ~/b/om/p/CRUZER/gitted/sandbox/tiddly.html .
-gunzip diff.gz
 patch tiddly.html <diff
-#tt or ttc
-rm -f diff
+tt
 vumount
+rm diff
+exit
 
-''')
+cd
+rm -rf ~/b/om/__yyy
+======================================================
 
-def decide_on_file():
-  look2 = []
-  for pattern in look:
-    look2.extend(glob.glob(pattern))
+EOF
 
-  timestamp_last = 0
-  for f in look2:
-    if os.path.exists(f):
-      timestamp_now = os.path.getmtime(f)
-      if timestamp_last > timestamp_now:
-        found.append(f)
-      else:
-        # add at the first position of the list found
-        found.insert(0, f)
-      timestamp_last = timestamp_now
-
-  if len(found) == 0:
-    pass
-  elif len(found) == 1:
-    latest_file = found[0]
-    do_things(latest_file)
-  else:
-    latest_file = found[0]
-    print('Multiple files found:')
-    print(f'Shall we use the latest one ({latest_file})')
-    print('and delete the rest?')
-    for f in found[1:]:
-      print(f'    {f}')
-    print('? [y/n]')
-    answer = input()
-    if answer == 'y':
-      for f in found[1:]:
-        os.unlink(f)
-      os.system(f'mv "{latest_file}" ~/Downloads/tiddly.html')
-      do_things(os.environ['HOME']+'/Downloads/tiddly.html')
-    else:
-      print('No file was used.')
-  
-main()
