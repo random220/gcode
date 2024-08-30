@@ -550,7 +550,7 @@ function t0
   if [[ $1 != '' ]]; then
     name=$1
   fi
-  local ls=$(tmux ls | grep "^${name}:" 2>/dev/null)
+  local ls=$(tmux ls 2>/dev/null | grep "^${name}:")
   if [[ $ls == '' ]]; then
     tmux -2 new -s $name
   else
