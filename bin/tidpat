@@ -52,8 +52,8 @@ export mypass="$passwd"
 
 rm -rf __yyy
 genc -t __yyy -d tiddly.html.git.tar.gpg
-if [[ ! -f _yyy/tiddly.html.git.tar.gpg.plain ]]; then
-    echo "Failed to extract _yyy/tiddly.html.git.tar.gpg.plain"
+if [[ ! -f __yyy/tiddly.html.git.tar.gpg.plain ]]; then
+    echo "Failed to extract __yyy/tiddly.html.git.tar.gpg.plain"
     exit 1
 fi
 cd __yyy
