@@ -53,8 +53,8 @@ set ic              " Ignore case
 set nowrapscan
 set viminfo=%,'50,\"100,n~/.viminfo
 
-"set diffopt+=iwhite     " don't igmore whitespace
-"set diffopt-=iwhite      " ignore whitespace
+"set diffopt-=iwhite      " don't ignore whitespace
+"set diffopt+=iwhite      " ignore whitespace
 
 highlight! link DiffText MatchParen
 if &diff                             " only for diff mode/vimdiff

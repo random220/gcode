@@ -4,8 +4,16 @@ cd ~/b/om
 rm -rf __xxx
 rm -rf __chromecache
 
-genc -t __xxx -d tiddly.html.gpg
-mv __xxx/tiddly.html.gpg.plain __xxx/tiddly.html
+genc -t __xxx -d tiddly.html.git.tar.gpg
+if [[ ! -f '__xxx/tiddly.html.git.tar.gpg.plain' ]]; then
+    exit 1
+fi
+(
+cd __xxx
+tar xf tiddly.html.git.tar.gpg.plain
+rm -f tiddly.html.git.tar.gpg.plain
+git reset --hard
+)
 
 (
 '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=./__chromecache __xxx/tiddly.html >/dev/null 2>&1

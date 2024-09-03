@@ -22,3 +22,7 @@ else
     export LC_ALL=$LANG
 fi
 
+function rst() {
+    # https://apple.stackexchange.com/questions/446859/when-pasting-in-terminal-app-00-is-pasted-at-the-start-and-01-at-the-end
+    printf '\e[?2004l'
+}
