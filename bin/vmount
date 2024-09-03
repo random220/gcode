@@ -83,8 +83,12 @@ get_next_slot()
   echo $next_slot
 }
 
+if [[ "$verapass" == '' ]]; then
+    echo -n 'Password: '
+    read -s verapass
+fi
 slot=$(get_next_slot)
-$veracrypt --text --slot=$slot --keyfiles='' --pim=0 --protect-hidden=no $vera_volume $mountpoint
+$veracrypt --text --slot=$slot --keyfiles='' --pim=0 --protect-hidden=no --non-interactive --stdin --mount $vera_volume $mountpoint <<<"$verapass"
 mounts=$($veracrypt --text --list 2>/dev/null)
 printf "$mounts\n"
 # 1: /b/om/CRUZER.vol /dev/disk4 /b/om/p
