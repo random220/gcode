@@ -1,0 +1,36 @@
+UBUNTU_STORE_ARCH=arm64 snap download <snap-name>
+
+amd64   - for 64-bit Intel/AMD architecture
+i386    - for 32-bit Intel/AMD architecture
+armhf   - for ARM hard-float architecture (32-bit)
+arm64   - for 64-bit ARM architecture
+s390x   - for IBM System z (s390x) architecture
+ppc64el - for IBM POWER (little-endian) architecture
+
+
+UBUNTU_STORE_ARCH=amd64 snap download lxd
+lxd_28460.assert
+lxd_28460.snap
+
+UBUNTU_STORE_ARCH=amd64 snap download core22
+core22_1380.assert
+core22_1380.snap
+
+UBUNTU_STORE_ARCH=amd64 snap download snapd
+snapd_21759.assert
+snapd_21759.snap
+
+
+sudo snap ack lxd_28460.assert
+sudo snap install lxd_28460.snap
+
+- Ensure prerequisites for "lxd" are available (cannot install snap base "core22": Post "https://api.snapcraft.io/v2/snaps/refresh": dial tcp: lookup api.snapcraft.io: no such host)
+
+sudo snap ack core22_1380.assert
+sudo snap install core22_1380.snap
+
+- Ensure prerequisites for "lxd" are available (cannot install system snap "snapd": Post "https://api.snapcraft.io/v2/snaps/refresh": dial tcp: lookup api.snapcraft.io: no such host)
+
+sudo snap ack snapd_21759.assert
+sudo snap install snapd_21759.snap
+
