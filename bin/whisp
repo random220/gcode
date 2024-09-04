@@ -27,7 +27,11 @@ dirname=$(dirname "$(readlink -f "$infile")")
 outfile="$dirname/${basename}.txt"
 tmpdir=$(mktemp -d)
 
-ffmpeg -i "$infile" -ar 16000 -ac 1 -c:a pcm_s16le "$tmpdir/wav.wav"
+if [[ "$infile" =~ wav$ ]]; then
+    cp -f "$infile" "$tmpdir/wav.wav"
+else
+    ffmpeg -i "$infile" -ar 16000 -ac 1 -c:a pcm_s16le "$tmpdir/wav.wav"
+fi
 
 cd ~/sb/whisper.cpp
 
