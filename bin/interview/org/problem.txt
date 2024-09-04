@@ -1,27 +1,38 @@
+def orgs(inlist):
+    """
+    Description:
 
-"""
-Write a python program to receive data like this
+    This function revceives a random list of boss:employee relationships 
+    and produces each person's full reporting chain in order
 
-in_list = [
-"prashant:om",
-"gary:prashant",
-"om:srini",
-"aaron:peter",
-"om:felix",
-"prashant:devon",
-"devon:aaron",
-]
+    Example input:
+    [
+    "prashant:om",
+    "gary:prashant",
+    "om:srini",
+    "aaron:peter",
+    "om:felix",
+    "prashant:devon",
+    "devon:aaron",
+    ]
 
 
-and produce output like this
+    Corresponding output
 
-out_list = [
-"/gary/prashant",
-"/gary/prashant/devon",
-"/gary/prashant/devon/aaron",
-"/gary/prashant/devon/aaron/peter",
-"/gary/prashant/om",
-"/gary/prashant/om/felix",
-"/gary/prashant/om/srini",
-]
-"""
+    [
+    "/gary",
+    "/gary/prashant",
+    "/gary/prashant/devon",
+    "/gary/prashant/devon/aaron",
+    "/gary/prashant/devon/aaron/peter",
+    "/gary/prashant/om",
+    "/gary/prashant/om/felix",
+    "/gary/prashant/om/srini",
+    ]
+    """
+
+    outlist = []
+    # code here
+
+    return outlist
+
