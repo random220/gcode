@@ -1,25 +1,54 @@
 #!/bin/bash
 
-cd ~/gcode || exit
+if [[ "$1" == '-h' ]]; then
+    echo "$0 -h"
+    echo "$0 -p"
+    echo "$0 [seconds]"
+    exit 0
+fi
 
-echo 'Github password for random220'
+umask 077
+
+>&2 echo 'Github password for random220' 
 echo
 
 d=$(mktemp -d)
 cat <<'EOF' >"$d/a.txt"
-U2FsdGVkX1+PyYy3sLCQvirxaeSAkeFPYW9HaF51v01P1JxPUJWSTju1Gm1z8arO
-Xy8KAg9Ji4tf27p7EXwiG4jxohWNCXYb05JPJvXaXRTdAWbECP9zn+xoFmkSedeS
-bh4j+gf8XThGajMw2pd1Vk2RhAyHf8jPYPY91BxRzeQQA0RdQS0cQftxX+c6PNNX
-jGDGQiFYlpEnnvaD5UqxT2mW9oCGnbYzygseaBcGfr05b3tWs3qewWtO1TZueWSA
-f4b8o7BJmBcqiBguTTqcddR1Vr1fAMh9O8rBuvj0PC7WPZC+c2fdY4Qw6H1ZFwhd
-G4YdR8BFhnQ0VOCVwxuH//UH67e4SMG23TdW4y+QdyRSzwa/mKxwr9I0umzUrqXc
-lKt00OqFWjC0ND0BzcJ/GbzNwwzJ6o5Xq/8NBwngGII=
+U2FsdGVkX1+13sVIWhzc2wXC0fUkyiIM3YTYYtVy3PvzltZQpP0Oc7/CuWUZ0QDf
+1aXR7YEzviM81HsGQIaixmeFsz6weXGePqarlKkD7h4ti0lms2CeiIB5rxdaF1aS
+7aHcb5ie3VQnxxu+jci63Xrkhc5lNNeqRInkIgWQ9ggzjlWSrsvvNzXrtEwIdqpk
+dJA7fpMMsYaUGU+E873oHflFCUsQ4vSL3RWffYSEzdKlBceEqa4KoXjSEW3UeiDc
+/UoOaxQMXViXhjw3N+h9nodRNCkp7j+OzjS999OVr3De8qGKBGIk99AaEJIkKyrt
+Ngzj3giyGzULeKksYAxfMi8NYSWfkBB7v8DKNiDNIiG+BC4m5SuJWO1nxgLACpgy
+WeHF4Xtlg629Lwr/DoqGfpbCNcJchRT6SxDI5Uurke1LMjrolacRUglnRxI6CijI
+TLVlxlTfADp+79knxE3qAyoNTaPA6AdUFQQ6StauIez3CL0fKN2HY6SvYh1IL9+7
+yampMhkNhTJwjEl7nuklapFXFnHwvGLYk70CgSaQGwKFh4K/7I9+PDKYYT/29MGV
+GwwEAKhNaWWf2U/7idbSrlCW4gztbfse4YDlxqPJ9xnomkzim2IzWrKTWgbnUu6C
+GkoPJj5GwlM+rDpKruDzOcSjo1ecmf7cC+3uOmAS4TGpaXKVNHB6TPiBEMgQCEWK
+2hlddOWPp1pQz9vC1JK4smYN9gfgvD5JF5lJRRCrGNUqXmD2x3oHUm8HrocdeIEQ
+HqQR8K8GkB6HpE7a/SKPEO7S+yHnchfTjX3P7+rTIma/4tSyPweLuZe8Z2upQ7KO
+1U3j/j927/v2XH/57TsKf9p+wo4sKSC2LmXEG0PDhZfO2VJYtJAsOWY/woWORAJ0
+84ZL5x/e+DGhWUvNmKZB/lPAN2Ia+DamDovcblFaSmf7SbcgxWrXyZF8kO5PKeXr
+7Iyqt3vizvoOOvTSXOcjBdwVxG55+gWm6e5EN10TLeRZZKzdjL+RLVkj8MqMnIZd
+l+uBBPmPj8fdi+T2LhAkzLKJWSycO0cizJPZwTVffIpU5+Vp2Lyhj9ePxAdTVF5s
+RdZV5cQBQSQYA3VsEsHU5WdkcU5Z0kaVZnA0BEw/azOZELzSGVqSlCBS0cVpCA7G
+Tf6aTaeDmNMCg24YhL6cJwcgz4mG0OuyiBLFYgK7H+IjKDGLxs0LCBLM8VsEWX2j
+KMcyzIXfm+2dE0aCBuK3wBpmX79WyjOYAWFPGuWBWzo=
 EOF
-openssl enc -d -in "$d/a.txt" -out "$d/a.sh" -base64 -aes256 -iter 12
-ash=$(cat "$d/a.sh")
+
+openssl enc -d -in "$d/a.txt" -out "$d/b.ash.gz" -base64 -aes256 -iter 12 >/dev/null 2>&1
+if [[ $? != 0 ]]; then
+    rm -rf "$d"
+    exit 1
+fi
+
+gunzip "$d/b.ash.gz"
+bash=$(cat "$d/b.ash")
 rm -rf "$d"
 
-echo "$ash" | bash -
-bash
+if [[ "$1" == '-p' ]]; then
+    echo "$bash"
+else
+    bash <(echo "$bash") "$@"
+fi
 
-git remote rm origin >/dev/null 2>&1
