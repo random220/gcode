@@ -1,0 +1,1 @@
+chmod go+rw /dev/null /dev/random /dev/urandom /dev/tty
