@@ -1,0 +1,2 @@
+Win+R secpol.msc
+Security Settings -> Local Policies -> Security Options -> "Interactive logon: Do not require CTRL +ALT + DEL" <-- Enabled
