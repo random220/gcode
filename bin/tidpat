@@ -70,7 +70,7 @@ genc -t x .git
 mv x/.git.tar.gpg tiddly.html.git.tar.gpg
 rm -rf x
 
-cat <<EOF
+cat <<"EOF"
 
 ======================================================
 cd ~/b/om/__yyy
@@ -78,13 +78,22 @@ mv tiddly.html.git.tar.gpg ~/b/om
 scp diff.gz cron:.
 
 ssh cron
+cat <<"_EOF" >a.sh
 gunzip diff.gz
 vmount
 cp ~/b/om/p/CRUZER/gitted/sandbox/tiddly.html .
 patch tiddly.html <diff
-tt
+echo 'tt/ttc ? [1/2] :'
+read x
+if [[ $x == 1 ]]; then
+    tt
+else
+    ttc
+fi
 vumount
 rm diff
+_EOF
+bash a.sh
 exit
 
 cd
