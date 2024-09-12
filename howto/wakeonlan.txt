@@ -1,0 +1,5 @@
+sudo apt-get -y install wakeonlan # is a perl solution
+sudo apt-get -y install etherwake # non-perl ?
+
+wakeonlan 00:d0:4b:94:c8:ab
+sudo -i eno1 00:d0:4b:94:c8:ab
