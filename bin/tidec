@@ -1,19 +1,29 @@
 #!/bin/bash
 
+set -x
+
+tid0=~/b/om/p/CRUZER/gitted/sandbox/tiddly.html
+
 cd ~/b/om
 rm -rf __xxx
-rm -rf __chromecache
+#rm -rf __chromecache
 
-genc -t __xxx -d tiddly.html.git.tar.gpg
-if [[ ! -f '__xxx/tiddly.html.git.tar.gpg.plain' ]]; then
-    exit 1
+if [[ -f "$tid0" ]]; then
+    mkdir __xxx
+    cp "$tid0" __xxx
+else
+    genc -t __xxx -d tiddly.html.git.tar.gpg
+    if [[ ! -f '__xxx/tiddly.html.git.tar.gpg.plain' ]]; then
+        exit 1
+    fi
+    (
+    cd __xxx
+    tar xf tiddly.html.git.tar.gpg.plain
+    rm -f tiddly.html.git.tar.gpg.plain
+    git reset --hard
+    )
 fi
-(
-cd __xxx
-tar xf tiddly.html.git.tar.gpg.plain
-rm -f tiddly.html.git.tar.gpg.plain
-git reset --hard
-)
+
 
 (
 '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=./__chromecache __xxx/tiddly.html >/dev/null 2>&1
