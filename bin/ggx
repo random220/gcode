@@ -1,0 +1,32 @@
+#!/bin/bash
+
+if [[ -f '/opt/google/chrome/chrome' ]]; then
+  g='/opt/google/chrome/chrome'
+elif [[ -f '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' ]]; then
+  g='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+else
+  exit 1
+fi
+
+port=3128
+if [[ "$1" =~ ^[0-9]+$ ]]; then
+    port=31$1
+fi
+ddir=~/.google/$(basename "$0")-$port
+mkdir -p $ddir
+set -x
+bash -c "nohup '$g' --user-data-dir=$ddir --proxy-server="http://localhost:$port" >/dev/null 2>&1 &"
+docker rm -f ub$port
+docker run -itd --name ub$port -h ub$port -p $port:3129 myub bash
+docker cp ~/gcode/bin/nfash ub$port:/tmp
+docker cp ~/gcode/bin/ssh-askpass ub$port:/tmp
+
+cat <<EOF | docker exec -u root -i ub$port bash -
+mkdir -p ~om/gcode/bin
+mv /tmp/nfash ~om/gcode/bin
+mv /tmp/ssh-askpass ~om/gcode/bin
+chmod a+x ~om/gcode/bin/*
+chown -R om:om ~om/
+EOF
+
+docker exec -u om -it ub$port /home/om/gcode/bin/nfash
