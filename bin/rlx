@@ -1,0 +1,106 @@
+#!/bin/bash
+
+basename=$(basename "$0")
+
+rmconts() {
+    local containers=$(docker ps -a | grep " ${basename}31" | awk '{print $1}')
+    local cont
+    if [[ "$containers" != '' ]]; then
+        for cont in $containers; do
+            docker rm -f $cont
+        done
+    fi
+}
+
+if [[ "$1" == 'd' ]]; then
+    rmconts
+    exit
+fi
+
+port=3128
+if [[ "$1" =~ ^[0-9]+$ ]]; then
+    port=31$1
+fi
+contname=$basename$port
+
+ff() {
+    local proxyport=3128
+    if [[ "$1" != '' ]]; then
+        proxyport="$1"
+    fi
+
+    local found=0
+    local ff=''
+    for ff_ in \
+        ~/'Applications/Firefox.app/Contents/MacOS/firefox' \
+        '/Applications/Firefox.app/Contents/MacOS/firefox' \
+        '/opt/homebrew/bin/firefox' \
+        '/snap/firefox/3357/usr/lib/firefox/firefox' \
+        ; do
+      if [[ -f "$ff_" ]]; then
+        ff="$ff_"
+        break
+      fi
+    done
+    echo "==>> $ff"
+
+    if [[ "$ff" == '' ]]; then
+      echo Firefox not found
+      exit 1
+    fi
+
+    local bn=$(basename "$0")$proxyport
+    local ddir=~/.firefox/$bn
+
+    if [[ $bn =~ ^ff-[0-9]+$ ]]; then
+      rm -rf "$ddir"
+    fi
+
+    mkdir -p $ddir
+
+    if [[ ! -f "$ddir/prefs.js" ]]; then
+      cat <<'EOF' | sed "s/_proxyport_/$proxyport/g"  >"$ddir/prefs.js"
+user_pref("layout.css.prefers-color-scheme.content-override", 0);
+# user_pref("network.proxy.socks", "localhost");
+# user_pref("network.proxy.socks_port", 9999);
+# user_pref("network.proxy.socks_remote_dns", true);
+user_pref("network.proxy.http", "localhost");
+user_pref("network.proxy.http_port", _proxyport_);
+user_pref("network.proxy.share_proxy_settings", true);
+user_pref("network.proxy.ssl", "localhost");
+user_pref("network.proxy.ssl_port", _proxyport_);
+user_pref("network.proxy.type", 1);
+user_pref("browser.shell.checkDefaultBrowser", false);
+user_pref("browser.warnOnQuitShortcut", false);
+user_pref("browser.download.useDownloadDir", false);
+user_pref("browser.startup.homepage", "https://www.showmyip.com/");
+EOF
+    fi
+
+    if [[ $bn == 'ff' ]]; then
+      nohup bash -c "'$ff' --profile $ddir; rm -rf $ddir" >/dev/null 2>&1 &
+    else
+      nohup bash -c "'$ff' --profile $ddir" >/dev/null 2>&1 &
+    fi
+
+    echo $ddir
+}
+
+ff $port
+
+bash -c "nohup '$g' --user-data-dir='$ddir' --proxy-server='http://localhost:$port' >/dev/null 2>&1 &"
+
+rmconts
+
+docker run -itd --name $contname -h $contname -p $port:3129 myrl bash
+docker cp ~/gcode/bin/nfash $contname:/tmp
+docker cp ~/gcode/bin/ssh-askpass $contname:/tmp
+
+cat <<EOF | docker exec -u root -i $contname bash -
+mkdir -p ~om/gcode/bin
+mv /tmp/nfash ~om/gcode/bin
+mv /tmp/ssh-askpass ~om/gcode/bin
+chown -R om:om ~om/
+EOF
+
+docker exec -u om -it $contname /home/om/gcode/bin/nfash

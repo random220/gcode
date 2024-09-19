@@ -1,0 +1,75 @@
+#!/bin/bash
+
+set -x
+
+main() {
+    mkimage "$@"
+    mkcont
+}
+
+mkcont() {
+    x=$(docker ps -q -a --no-trunc --filter name=^rl$)
+    if [[ "$x" != '' ]]; then
+        docker start rl
+    else
+        docker run -itd --name rl -h rl -v ~/:/home/om/h -p 3128:3128 -p 3129:3129 myrl bash
+    fi
+
+    docker exec -it -u om --workdir /home/om rl bash
+}
+
+mkimage() {
+    if [[ "$1" == '0' ]]; then
+        docker rmi -f myrl
+    fi
+    x=$(docker images -q myrl)
+    if [[ "$x" != '' ]]; then
+        return
+    fi
+
+    docker rm -f rl0
+    docker run -itd --name rl0 -h rl0 rockylinux:9 bash
+
+    if [[ -d ~/gcode ]]; then
+        docker cp ~/gcode/ rl0:/tmp/gcode/
+    fi
+
+    cat <<"EOF" | docker exec -i rl0 bash -
+dnf -y update
+dnf -y --allowerasing install \
+    procps-ng sudo tmux git openssh-clients curl wget rsync vim diffutils iproute \
+    iputils nmap-ncat
+useradd -s /bin/bash -m om
+echo 'om ALL=(ALL) NOPASSWD: ALL' >/etc/sudoers.d/om
+if [[ -d /tmp/gcode ]]; then
+    mv /tmp/gcode /home/om/gcode
+    chown -R om:om /home/om
+fi
+EOF
+
+
+    cat <<"EOF" | docker exec -u om -w /home/om -i rl0 bash -
+git config --global credential.helper 'cache --timeout='$(( 5*60*60 ));
+git config --global color.ui true;
+git config --global push.default matching;
+git config --global merge.conflictstyle diff3;
+u=$(id -n -u)
+git config --global user.email $u@localhost;
+git config --global user.name $u@localhost;
+git config --global pull.rebase false
+
+if [[ -d gcode ]]; then
+    . gcode/bin/gcode.0
+    umask 077
+    mkdir ~/.ssh
+    cp ~/gcode/sundry/.ssh/config ~/.ssh
+fi
+EOF
+
+    docker stop rl0
+    docker rmi -f myrl
+    docker export rl0 | docker import - myrl
+    docker rm -f rl0
+}
+
+main "$@"
