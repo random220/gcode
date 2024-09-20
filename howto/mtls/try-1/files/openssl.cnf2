@@ -1,0 +1,13 @@
+[ req ]
+distinguished_name = req_distinguished_name
+
+[ req_distinguished_name ]
+commonName = powerclient.visa.com
+commonName_max = 64
+
+[ v3_ca ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = powerclient1.visa.com
+DNS.2 = powerclient2.visa.com

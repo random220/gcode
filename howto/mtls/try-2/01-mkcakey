@@ -1,0 +1,2 @@
+openssl genpkey -algorithm RSA -out out/ca-key.pem
+

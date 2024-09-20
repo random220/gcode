@@ -1,0 +1,10 @@
+openssl x509 -req \
+-in out/client.csr \
+-CA out/ca-cert.pem \
+-CAkey out/ca-key.pem -CAcreateserial \
+-out out/client-cert.pem -days 365
+
+#openssl pkcs12 -export -out out/client.pfx -inkey out/client-key.pem -in out/client-cert.pem
+
+openssl pkcs12 -export -out out/client.pfx -inkey out/client-key.pem -in out/client-cert.pem -passout pass:
+

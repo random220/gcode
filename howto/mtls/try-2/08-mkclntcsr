@@ -1,0 +1,20 @@
+cat <<"EOF" >out/client.cnf
+[ req ]
+default_bits       = 2048
+default_keyfile    = client-key.pem
+distinguished_name = req_distinguished_name
+prompt             = no
+
+[ req_distinguished_name ]
+C  = US
+ST = California
+L  = San Jose
+O  = Bears R Us
+OU = Marketing
+CN = !@! Awesome App !@!
+emailAddress = admin@Bears.us
+EOF
+
+
+openssl req -new -key out/client-key.pem -out out/client.csr -config out/client.cnf
+

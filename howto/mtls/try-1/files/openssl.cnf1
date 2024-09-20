@@ -1,0 +1,10 @@
+[ req ]
+distinguished_name = req_distinguished_name
+[ req_distinguished_name ]
+commonName = Common Name (e.g. server FQDN)
+commonName_max = 64
+[ v3_ca ]
+subjectAltName = @alt_names
+[ alt_names ]
+DNS.1 = example.com
+DNS.2 = www.example.com

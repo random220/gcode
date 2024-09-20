@@ -1,0 +1,33 @@
+cat <<EOF
+# Country Name (2 letter code) [XX]:US
+# State or Province Name (full name) []:California
+# Locality Name (eg, city) [Default City]:San Jose
+# Organization Name (eg, company) [Default Company Ltd]:Om's CA Company
+# Organizational Unit Name (eg, section) []:The Factory
+# Common Name (eg, your name or your server's hostname) []:Om The Signer
+# Email Address []:om@heaven.org
+
+
+EOF
+
+cat <<"EOF" >out/ca.cnf
+[ req ]
+default_bits       = 2048
+default_keyfile    = ca-key.pem
+distinguished_name = req_distinguished_name
+prompt             = no
+
+[ req_distinguished_name ]
+C  = US
+ST = California
+L  = San Jose
+O  = Om's CA Company
+OU = The Factory
+CN = Om The Signer
+emailAddress = om@heaven.org
+EOF
+
+openssl req -new -x509 -key out/ca-key.pem -out out/ca-cert.pem -days 365 -config out/ca.cnf
+
+
+

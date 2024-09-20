@@ -1,0 +1,26 @@
+cat <<"EOF" >out/server.cnf
+[ req ]
+default_bits       = 2048
+default_keyfile    = server-key.pem
+distinguished_name = req_distinguished_name
+req_extensions     = req_ext
+prompt             = no
+
+[ req_distinguished_name ]
+C  = US
+ST = California
+L  = San Jose
+O  = Crondite Inc.
+OU = Pantry
+CN = gaia.crondite.com
+emailAddress = shubro@crondite.com
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = gaia.crondite.com
+EOF
+
+openssl req -new -key out/server-key.pem -out out/server.csr -config out/server.cnf
+

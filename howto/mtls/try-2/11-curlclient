@@ -1,0 +1,1 @@
+curl -v --cert out/client-cert.pem --key out/client-key.pem --cacert out/ca-cert.pem https://gaia.crondite.com:4343
