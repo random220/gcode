@@ -12,7 +12,7 @@ mkcont() {
     if [[ "$x" != '' ]]; then
         docker start rl
     else
-        docker run -itd --name rl -h rl -v ~/:/home/om/h -p 3128:3128 -p 3129:3129 myrl bash
+        docker run -itd --name rl -h rl -v ~/:/home/om/h -p 3128:3128 -p 3129:3129 -p 4343:4343 myrl bash
     fi
 
     docker exec -it -u om --workdir /home/om rl bash
