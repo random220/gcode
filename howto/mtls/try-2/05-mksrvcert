@@ -1,7 +1,51 @@
+dn=$(openssl req -text -in out/server.csr |egrep '^ *Subject:'|sed 's/^ *Subject: //; s/, /\n/g')
+# C=US
+# ST=California
+# L=San Jose
+# O=Crondite Inc.
+# OU=Pantry
+# CN=gaia.crondite.com
+# emailAddress=shubro@crondite.com
+
+altnames=$(
+n=0
+for i in $(openssl req -in out/server.csr -text|egrep '^ *DNS:'|sed 's/^ *//; s/, /\n/g'); do
+    n=$(( n + 1 ))
+    echo $i | sed "s/DNS:/DNS.$n = /"
+done
+)
+# DNS.1 = gaia1.crondite.com
+# DNS.2 = gaia2.crondite.com
+# DNS.3 = gaia3.crondite.com
+# DNS.4 = gaia4.crondite.com
+# DNS.5 = gaia5.crondite.com
+# DNS.6 = gaia6.crondite.com
+# DNS.7 = gaia7.crondite.com
+# DNS.8 = gaia8.crondite.com
+
+
+cat <<EOF >out/server.cnf.2
+[ req ]
+default_bits       = 2048
+distinguished_name = req_distinguished_name
+req_extensions     = req_ext
+prompt             = no
+
+[ req_distinguished_name ]
+$dn
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+$altnames
+EOF
+
+
 openssl x509 -req \
 -in out/server.csr \
 -CA out/ca-cert.pem \
 -CAkey out/ca-key.pem -CAcreateserial \
 -out out/server-cert.pem -days 365 \
--extfile out/server.cnf -extensions req_ext
+-extfile out/server.cnf.2 -extensions req_ext
 
