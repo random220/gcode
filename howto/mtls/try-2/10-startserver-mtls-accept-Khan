@@ -1,0 +1,54 @@
+
+cat <<"EOF" >server-mtls.py
+import http.server
+import ssl
+
+class SimpleHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        # Extract the client certificate's CN
+        client_cert = self.connection.getpeercert()
+        if client_cert:
+            subject = dict(x[0] for x in client_cert['subject'])
+            client_cn = subject.get('commonName')
+
+            # Check if the CN matches the expected value
+            expected_cn = 'My Name is Khan!'
+            if client_cn == expected_cn:
+                # Serve a simple HTML page
+                if self.path == '/':
+                    self.path = 'index.html'
+                return super().do_GET()
+            else:
+                # Respond with a 403 Forbidden status if the CN does not match
+                self.send_error(403, "Forbidden: Client certificate CN does not match")
+        else:
+            # Respond with a 403 Forbidden status if no client certificate is provided
+            self.send_error(403, "Forbidden: No client certificate provided")
+
+def run(server_class=http.server.HTTPServer, handler_class=SimpleHTTPRequestHandler, port=4343):
+    server_address = ('', port)
+    httpd = server_class(server_address, handler_class)
+    httpd.socket = ssl.wrap_socket(httpd.socket,
+                                    keyfile='out/server-key.pem',
+                                    certfile='out/server-cert.pem',
+                                    ca_certs='out/ca-cert.pem',  # CA certificate to verify client certs
+                                    cert_reqs=ssl.CERT_REQUIRED,  # Require client certificate
+                                    server_side=True)
+    print(f'Serving HTTPS on port {port} with mutual TLS...')
+    httpd.serve_forever()
+
+if __name__ == '__main__':
+    run()
+
+EOF
+
+cat <<"EOF" >index.html
+<html>
+<body>
+hi
+</body>
+</html>
+EOF
+
+
+python3 server-mtls.py
