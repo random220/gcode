@@ -4,7 +4,19 @@ set -x
 
 main() {
     mkimage "$@"
-    mkcont
+    mkcont "$@"
+}
+
+startcont() {
+    ports='3128 3129 4343'
+    ports="$ports"' '"$@"
+    portline=''
+    for i in $(echo "$ports" | sed 's/ /\n/g'|egrep -v '^0$|^$' | sort -un); do
+        portline="$portline -p $i:$i"
+    done
+    cmd="docker run -itd --name rl -h rl -v ~/:/home/om/h $portline myrl bash"
+    echo "$cmd"
+    eval "$cmd"
 }
 
 mkcont() {
@@ -12,7 +24,7 @@ mkcont() {
     if [[ "$x" != '' ]]; then
         docker start rl
     else
-        docker run -itd --name rl -h rl -v ~/:/home/om/h -p 3128:3128 -p 3129:3129 -p 4343:4343 myrl bash
+        startcont "$@"
     fi
 
     docker exec -it -u om --workdir /home/om rl bash
