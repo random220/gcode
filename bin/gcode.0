@@ -47,3 +47,8 @@ cat <<'EOF' >.bash_profile
     fi
 EOF
 
+if [[ ! -f ~/.ssh/config ]]; then
+    umask 077
+    mkdir -p ~/.ssh
+    cp ~/gcode/sundry/.ssh/config ~/.ssh
+fi
