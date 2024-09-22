@@ -14,5 +14,6 @@ if [[ -d ~/gcode ]]; then
     docker cp ~/gcode/ rl:/home/om/gcode/
     docker exec -i rl bash -c 'chown -R om:om /home/om/gcode'
     docker exec -i -u om -w /home/om rl bash -c '. gcode/bin/gcode.0'
+    docker exec -i -u om -w /home/om rl bash -c '. .bashrc; gits'
 fi
 docker exec -it -u om -w /home/om rl bash
