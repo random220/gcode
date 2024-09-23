@@ -7,6 +7,7 @@ docker run -d --name $h -h $h \
     -p 3022:22 \
     -p 3128:3128 \
     -p 3129:3129 \
+    -p 4343:4343 \
     -v ~/:/home/om/h \
     myrl
 
