@@ -15,6 +15,7 @@ cat <<"EOF" >out/ca.cnf
 default_bits       = 2048
 distinguished_name = req_distinguished_name
 prompt             = no
+x509_extensions    = v3_ca
 
 [ req_distinguished_name ]
 C  = US
@@ -24,9 +25,14 @@ O  = Om's CA Company
 OU = The Factory
 CN = Om The Signer
 emailAddress = om@heaven.org
+
+[ v3_ca ]
+basicConstraints = CA:TRUE
+keyUsage = keyCertSign, cRLSign
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always,issuer:always
 EOF
 
 openssl req -new -x509 -key out/ca-key.pem -out out/ca-cert.pem -days 365 -config out/ca.cnf
-
 
 
