@@ -1,7 +1,21 @@
 #!/bin/bash
-docker rm -f rl
-docker rmi -f myrl
-docker build -t myrl .
+
+if [[ "$1" == '0' ]]; then
+    docker rm -f rl
+    docker rmi -f myrl
+fi
+
+docker inspect rl > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    docker exec -it -u om -w /home/om rl bash
+    exit 0
+fi
+
+docker image inspect myrl > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+    docker build -t myrl .
+fi
+
 h=rl
 mkdir -p ~/ggg
 rsync -a --delete ~/gcode/ ~/ggg/gcode/
@@ -28,6 +42,5 @@ echo 'alias pp="rsync -a --delete ~/gcode/ ~/h/gcode/"' >>~/.bashrc
 EOF
 
 fi
-
 
 docker exec -it -u om -w /home/om rl bash
