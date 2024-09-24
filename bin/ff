@@ -1,8 +1,13 @@
 #!/bin/bash
 
+proxytype=static
 proxyport=3128
 if [[ "$1" != '' ]]; then
     proxyport="$1"
+fi
+if [[ "$proxyport" =~ ^d ]] || [[ "$proxyport" =~ ^D ]] ; then
+    proxyport=$(sed 's/^.//' <<<"$proxyport")
+    proxytype=dynamic
 fi
 
 found=0
@@ -37,20 +42,27 @@ mkdir -p $ddir
 if [[ ! -f "$ddir/prefs.js" ]]; then
   cat <<'EOF' | sed "s/_proxyport_/$proxyport/g"  >"$ddir/prefs.js"
 user_pref("layout.css.prefers-color-scheme.content-override", 0);
-# user_pref("network.proxy.socks", "localhost");
-# user_pref("network.proxy.socks_port", 9999);
-# user_pref("network.proxy.socks_remote_dns", true);
+user_pref("browser.shell.checkDefaultBrowser", false);
+user_pref("browser.warnOnQuitShortcut", false);
+user_pref("browser.download.useDownloadDir", false);
+user_pref("browser.startup.homepage", "https://www.showmyip.com/");
+EOF
+  if [[ $proxytype == 'static' ]]; then
+    cat <<'EOF' | sed "s/_proxyport_/$proxyport/g"  >>"$ddir/prefs.js"
 user_pref("network.proxy.http", "localhost");
 user_pref("network.proxy.http_port", _proxyport_);
 user_pref("network.proxy.share_proxy_settings", true);
 user_pref("network.proxy.ssl", "localhost");
 user_pref("network.proxy.ssl_port", _proxyport_);
 user_pref("network.proxy.type", 1);
-user_pref("browser.shell.checkDefaultBrowser", false);
-user_pref("browser.warnOnQuitShortcut", false);
-user_pref("browser.download.useDownloadDir", false);
-user_pref("browser.startup.homepage", "https://www.showmyip.com/");
 EOF
+  else
+    cat <<'EOF' | sed "s/_proxyport_/$proxyport/g"  >>"$ddir/prefs.js"
+user_pref("network.proxy.socks", "localhost");
+user_pref("network.proxy.socks_port", _proxyport_);
+user_pref("network.proxy.type", 1);
+EOF
+  fi
 fi
 
 if [[ $bn == 'ff' ]]; then
