@@ -11,3 +11,12 @@ mkdir out
 . 09-mkclntcert
 #10-startserver-mtls
 #11-curlclient
+
+echo
+echo
+echo 'Add these to /etc/hosts'
+echo '------------------------------------'
+grep DNS out/server.cnf.1 |sed 's/^.*= */127.0.0.1 /'
+echo '------------------------------------'
+
+

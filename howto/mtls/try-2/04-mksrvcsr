@@ -12,22 +12,15 @@ L  = San Jose
 O  = Crondite Inc.
 OU = Pantry
 CN = The Gaia Server
-emailAddress = shubro@crondite.com
+emailAddress = om@astrum.omnia
 
 [ req_ext ]
 subjectAltName = @alt_names
 
 [ alt_names ]
-DNS.a = gaia1.crondite.com
-DNS.b = gaia2.crondite.com
-DNS.c = gaia3.crondite.com
-DNS.d = gaia4.crondite.com
-DNS.e = gaia5.crondite.com
-DNS.f = gaia6.crondite.com
-DNS.g = gaia7.crondite.com
-DNS.h = gaia8.crondite.com
-DNS.0 = gaia.crondite.com
+DNS.h = terra.kotta.dolls
+DNS.whatever = gaia.astrum.omnia
+DNS.03 = gaia.crondite.com
 EOF
 
 openssl req -new -key out/server-key.pem -out out/server.csr -config out/server.cnf.1
-

@@ -3,6 +3,8 @@ docker rm -f rl
 docker rmi -f myrl
 docker build -t myrl .
 h=rl
+mkdir -p ~/ggg
+rsync -a --delete ~/gcode/ ~/ggg/gcode/
 docker run -d --name $h -h $h \
     -p 3022:22 \
     -p 3128:3128 \
@@ -12,9 +14,25 @@ docker run -d --name $h -h $h \
     myrl
 
 if [[ -d ~/gcode ]]; then
-    docker cp ~/gcode/ rl:/home/om/gcode/
-    docker exec -i rl bash -c 'chown -R om:om /home/om/gcode'
-    docker exec -i -u om -w /home/om rl bash -c '. gcode/bin/gcode.0'
-    docker exec -i -u om -w /home/om rl bash -c '. .bashrc; gits'
+
+    #docker cp -a ~/gcode/ rl:/tmp/gcode/
+    #docker exec -i rl bash -c 'chown -R om:om /tmp/gcode'
+    #docker exec -i rl bash -c 'mv /tmp/gcode /home/om/gcode'
+
+    cat <<"EOF" | docker exec -i -u root -w / rl bash -
+echo '127.0.0.1 gaia.crondite.com' >>/etc/hosts
+echo '127.0.0.1 gaia.astrum.omnia' >>/etc/hosts
+EOF
+
+    cat <<"EOF" | docker exec -i -u om -w /home/om rl bash -
+rsync -a --delete h/gcode/ gcode/
+. gcode/bin/gcode.0
+. .bashrc
+gits
+echo 'alias pp="rsync -a --delete ~/gcode/ ~/h/gcode/"' >>~/.bashrc
+EOF
+
 fi
+
+
 docker exec -it -u om -w /home/om rl bash
