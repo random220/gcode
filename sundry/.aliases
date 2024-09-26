@@ -468,6 +468,7 @@ git config --global merge.conflictstyle diff3
 git config --global user.email omandal@localhost
 git config --global user.name "Om Mandal"
 git config --global pull.rebase false
+git config --global init.defaultBranch main
 }
 
 function gf0() {
