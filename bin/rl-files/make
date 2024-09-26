@@ -38,7 +38,8 @@ rsync -a --delete h/gcode/ gcode/
 . gcode/bin/gcode.0
 . .bashrc
 gits
-echo 'alias pp="rsync -a --delete ~/gcode/ ~/h/gcode/"' >>~/.bashrc
+echo 'alias pp2m="rsync -a --delete ~/gcode/ ~/h/gcode/"' >>~/.bashrc
+echo 'alias pp2c="rsync -a --delete ~/h/gcode/ ~/gcode/"' >>~/.bashrc
 EOF
 
 fi
