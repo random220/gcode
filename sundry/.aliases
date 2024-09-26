@@ -395,6 +395,10 @@ fancy() {
     echo "$color" >~/.config/prompt/fancy
 }
 
+function ps1() {
+    echo $'export PS1=\'\\[\\e[38;5;20m\\]\\u@\\h \\w >\\[\\e[0m\\]\\n% \''
+}
+
 function winps1() {
     ensure_git_ps1
     local cmd=$(
