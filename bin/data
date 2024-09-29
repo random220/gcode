@@ -1,0 +1,36 @@
+#!/bin/bash
+
+cat <<"EOF"
+data() {
+    sudo chmod a+rw /dev/null /dev/random /dev/urandom /dev/tty
+    cd ~/
+    rm -rf .gcode
+    rm -f gcode .bashrc .profile
+    ln -s data/gcode
+    . gcode/bin/gcode.0
+    . .profile
+    unalias vi
+
+cat <<"_EOF" >~/.ssh/config
+StrictHostKeyChecking=no
+CheckHostIP=no
+EscapeChar=~
+UserKnownHostsFile=/dev/null
+LogLevel ERROR
+
+Host nuc
+    User om
+    HostName 192.168.10.180
+    ControlPath ~/.ssh/ctrl-%l-to-%h
+    ControlMaster auto
+    ControlPersist 10m
+    #ControlPersist yes
+    ServerAliveInterval 180
+    GatewayPorts true
+
+_EOF
+
+}
+data
+
+EOF
