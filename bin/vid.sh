@@ -50,7 +50,10 @@ mycomm -13 "$VID_DIR/g1" "$VID_DIR/g2" | cut -f1 > "$VID_DIR/ren"
         [[ "$d" != '.' ]] && printf "mkdir -p %q\n" "$d"
         [[ -z "$g" ]] && printf "rm -rf %q\n" "$f" || printf "mv %q %q\n" "$f" "$g"
     done < "$VID_DIR/ren"
-} | sort -u > "$VID_DIR/do"
+} > "$VID_DIR/do0"
+
+grep '^mkdir' <"$VID_DIR/do0" | sort -u >"$VID_DIR/do"
+grep -v '^mkdir' <"$VID_DIR/do0" >>"$VID_DIR/do"
 
 # Display and suggest executing the generated script
 echo '---------------------------------------------'
