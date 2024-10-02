@@ -1,2 +1,4 @@
 Win+R secpol.msc
 Security Settings -> Local Policies -> Security Options -> "Interactive logon: Do not require CTRL +ALT + DEL" <-- Enabled
+
+Server Manager -> Manage -> Server Manager Properties -> [x] Do not start Server Manager automatically at logon
