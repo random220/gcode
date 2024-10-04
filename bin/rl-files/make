@@ -26,51 +26,41 @@ docker run -d --name $h -h $h \
     -p 4343:4343 \
     myrl
 
+umask 077
+rm -rf ~/.ssh/rl
+mkdir -p ~/.ssh/rl
+ssh-keygen -t ed25519 -N '' -f ~/.ssh/rl/id_ed25519
+docker cp ~/.ssh/rl/id_ed25519.pub rl:/tmp/pubkey
+
+# cat <<"EOF" >>~/.ssh/config
+#
+# Host rl
+#     Hostname 0.0.0.0
+#     Port 3022
+#     User om
+#     IdentityFile ~/.ssh/rl/id_ed25519
+#
+# EOF
+
 #    -v ~/:/home/om/h \
 
 if [[ -d ~/gcode ]]; then
 
     docker cp -a ~/gcode/ rl:/tmp/gcode/
-    docker exec -i rl bash -c 'chown -R om:om /tmp/gcode'
-    docker exec -i rl bash -c 'rm -rf /home/om/gcode; mv /tmp/gcode /home/om/gcode'
+
+    cat <<"EOF" | docker exec -u root -i rl bash -
+umask 077
+mkdir -p /home/om/.ssh
+mv /tmp/pubkey /home/om/.ssh/authorized_keys
+mv /tmp/gcode /home/om/gcode
+chown -R om:om /home/om/gcode /home/om/.ssh
+EOF
 
     cat <<"EOF" | docker exec -i -u om -w /home/om rl bash -
-#rsync -a --delete h/gcode/ gcode/
 . gcode/bin/gcode.0
 . .bashrc
 gits
 
-cat <<"_EOF" >>~/.bashrc
-pp2m() {
-cat <<"__EOF" >/tmp/a.sh
-pp2m() {
-  cd
-  rm -rf /tmp/_gcode/
-  docker cp rl:/home/om/gcode/ /tmp/_gcode/
-  local new=$(du -sk /tmp/_gcode|awk '{print $1}') # 113084 (from 113084    /tmp/_gcode)
-  if [[ $new -gt 112000 ]]; then
-    :
-  else
-    echo
-    echo "/tmp/_gcode/ too small"
-    echo "Did 'docker cp rl:/home/om/gcode/ /tmp/_gcode/' work?"
-    echo
-    return 0
-  fi
-  rsync -a --delete /tmp/_gcode/ ~/gcode/
-  rm -rf /tmp/_gcode
-}
-pp2m
-__EOF
-
-cat <<"__EOF"
-docker cp rl:/tmp/a.sh /tmp/a.sh && . /tmp/a.sh
-__EOF
-
-}
-_EOF
-
-echo 'alias pp2c="rsync -a --delete ~/h/gcode/ ~/gcode/"' >>~/.bashrc
 EOF
 
 fi
