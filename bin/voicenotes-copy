@@ -2,19 +2,11 @@
 
 while FS= read -r fn; do
     info=$(exiftool "$fn")
-    title=$(echo "$info" | grep '^Title '|sed 's/^Title *: //')
-    echo "$title" | grep -i parul
+    title=$(echo "$info" | grep '^Title '|sed 's/^Title *: //; s/\//+/g')
+    echo "$title" | grep -i parul >/dev/null 2>&1
     if [[ $? == 0 ]]; then
         odate=$(echo "$info" | grep '^Date/Time Original' | sed 's/^Date\/Time Original *: //; s/[: ]/-/g;')
         fn2="$odate--$title".m4a
         rsync -a "$fn" "$fn2"
     fi
 done < <(find ~/'Library/Group Containers/group.com.apple.VoiceMemos.shared/Recordings' -name '*.m4a')
-
-# $ ls -ld /Users/omandal/Library/Containers/com.apple.VoiceMemos/Data/tmp/.com.apple.uikit.itemprovider.temporary.RRJNEb/2023-10-05\ Tamra\ Parul\ Josh.m4a 
-# -rw-rw-r--@ 1 omandal  staff  29225887 Jan  5  2024 /Users/omandal/Library/Containers/com.apple.VoiceMemos/Data/tmp/.com.apple.uikit.itemprovider.temporary.RRJNEb/2023-10-05 Tamra Parul Josh.m4a
-
-# (mine) omandal@WM-W4W3HMQH39 ~/Library/Group Containers/group.com.apple.VoiceMemos.shared/Recordings
-# $ ll|grep 29225887
-# -rw-rw-r--@    1 omandal  staff   29225887 Jan  5  2024 20240105 145020-6.m4a
-
