@@ -34,15 +34,18 @@ mkdir -p ~/.ssh/rl
 ssh-keygen -t ed25519 -N '' -f ~/.ssh/rl/id_ed25519
 docker cp ~/.ssh/rl/id_ed25519.pub rl:/tmp/pubkey
 
-# cat <<"EOF" >>~/.ssh/config
-#
-# Host rl
-#     Hostname 0.0.0.0
-#     Port 3022
-#     User om
-#     IdentityFile ~/.ssh/rl/id_ed25519
-#
-# EOF
+egrep '^Host[ \t]+rl$' ~/.ssh/config >/dev/null 2>&1
+if [[ $? != 0 ]]; then
+    cat <<"EOF" >>~/.ssh/config
+
+Host rl
+    Hostname 0.0.0.0
+    Port 3022
+    User om
+    IdentityFile ~/.ssh/rl/id_ed25519
+
+EOF
+fi
 
 #    -v ~/:/home/om/h \
 
