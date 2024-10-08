@@ -6,6 +6,8 @@ RUN dnf update -y && \
     dnf install -y openssh-clients && \
     dnf install -y openssh-server && \
     ssh-keygen -A && \
+    dnf install -y epel-release && \
+    dnf install -y pdftk && \
     useradd -s /bin/bash -m om && \
     (echo "om:welcome" | chpasswd) && \
     dnf -y install sudo && \
