@@ -1,0 +1,12 @@
+#!/bin/bash
+
+while FS= read -r fn; do
+    info=$(exiftool "$fn")
+    title=$(echo "$info" | grep '^Title '|sed 's/^Title *: //; s/\//+/g')
+    echo "$title" | grep -i parul >/dev/null 2>&1
+    if [[ $? == 0 ]]; then
+        odate=$(echo "$info" | grep '^Date/Time Original' | sed 's/^Date\/Time Original *: //; s/[: ]/-/g;')
+        fn2="$odate--$title".m4a
+        rsync -a "$fn" "$fn2"
+    fi
+done < <(find ~/'Library/Group Containers/group.com.apple.VoiceMemos.shared/Recordings' -name '*.m4a')
