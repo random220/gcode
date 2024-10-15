@@ -3,6 +3,10 @@
 export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 myname=$(basename $0)
 
+cd
+sudo umount /dev/mapper/PCRUZER   # Unmount filesystem
+sudo cryptsetup close PCRUZER     # Unmount block device
+
 veracrypt='veracrypt'
 uname=$(uname)
 if [[ $uname == 'Darwin' ]]; then

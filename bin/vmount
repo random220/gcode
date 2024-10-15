@@ -2,103 +2,129 @@
 
 export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
-volpaths=('/b/om/CRUZER.vol' "$HOME/b/om/CRUZER.vol")
-
-vera_volume=''
-for v in ${volpaths[@]};  do
-  if [[ -f $v ]]; then
-    vera_volume=$v
-  fi
-done
-
-if [[ $vera_volume == '' ]]; then
-  echo "ERROR: Did not find veracrypt volume
-  exit 1"
-fi
-
-
-mountpoints=('/b/om/p' "$HOME/b/om/p")
 mountpoint=''
-for m in ${mountpoints[@]}; do
-  if [[ -d $m ]]; then
-    mountpoint=$(cd "$m" && /bin/pwd -P)
-  fi
-done
+volpath=''
+algo=''  # 'vera' or 'luks'
+veracrypt=''
 
-if [[ $mountpoint == '' ]]; then
-  mountpoint="$HOME/b/om/l"
-  mkdir -p $mountpoint
-fi
+main() {
+    get_mountpoint || (echo 'Could not determine mountpoint'; exit 1)
+    get_volpath || (echo 'Could not determine volpath'; exit 1)
+    # echo "$mountpoint"
+    # echo "$volpath"
+    # echo "$algo"
+    mountvol
+}
 
-if [[ ! -d $mountpoint ]]; then
-  echo "Error: Could not create mountpoint dir $mountpoint"
-  exit 1
-fi
-mountpoint=$(cd "$mountpoint" && /bin/pwd -P)
+mountvol() {
+    if [[ "$algo" == 'vera' ]]; then
+        mount_vera
+    elif [[ "$algo" == 'luks' ]]; then
+        mount_luks
+    fi
+}
 
+get_mountpoint() {
+    mountpoints=("$HOME/b/om/p" '/b/om/p')
+    mountpoint=''
+    for m in ${mountpoints[@]}; do
+      if [[ -d $m ]]; then
+        mountpoint=$(cd "$m" && /bin/pwd -P)
+        break
+      fi
+    done
+    
+    if [[ $mountpoint == '' ]]; then
+      return 1
+    fi
+    return 0
+}
 
-veracrypt='veracrypt'
-uname=$(uname)
-if [[ $uname == 'Darwin' ]]; then
-  veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
-fi
+get_volpath() {
+    vera_volpaths=('/b/om/CRUZER.vol' "$HOME/b/om/CRUZER.vol")
+    luks_volpaths=('/b/om/CRUZER-LUKS.vol' "$HOME/b/om/CRUZER-LUKS.vol")
 
-if [[ ! -f $vera_volume ]]; then
-  echo "Error: File not found: $vera_volume"
-  exit 1
-fi
-if [[ ! -d $mountpoint ]]; then
-  mkdir -p $mountpoint
-fi
-if [[ ! -d $mountpoint ]]; then
-  echo "Error: Could not create mountpoint dir $mountpoint"
-  exit 1
-fi
+    volpath=''
+    for v in ${vera_volpaths[@]};  do
+      if [[ -f $v ]]; then
+        volpath=$v
+        algo='vera'
+        break
+      fi
+    done
 
-$veracrypt --text --version >/dev/null 2>&1
-if [[ $? != 0 ]]; then
-  echo "Error: veracrypt not found"
-  exit 1
-fi
+    for v in ${luks_volpaths[@]};  do
+      if [[ -f $v ]]; then
+        volpath=$v
+        algo='luks'
+        break
+      fi
+    done
 
-$veracrypt --text --list 2>/dev/null | grep -q " $mountpoint\$"
-if [[ $? == 0 ]]; then
-  # Already mounted. Say so.
-  echo "Something is already mounted on $mountpoint"
-  exit 0
-fi
-
-hostname=$(hostname | sed 's/\..*//')
-echo
-echo "Mounting V on $hostname ..."
+    if [[ "$volpath" == '' ]]; then
+        return 1
+    fi
+    return 0
+}
 
 get_next_slot()
 {
-  # mounts=$($veracrypt --text --list)
-  # 1: /b/om/CRUZER.vol /dev/disk4 /b/om/p
-  # 2: /Volumes/3TB/om/LCRUZER.vol /dev/disk5 /b/om/l
-  last_slot=$($veracrypt --text --list 2>/dev/null| sed 's/:.*//'|tail -1)
-  # 2
-  let 'next_slot=last_slot+1'
-  echo $next_slot
+    # mounts=$($veracrypt --text --list)
+    # 1: /b/om/CRUZER.vol /dev/disk4 /b/om/p
+    # 2: /Volumes/3TB/om/LCRUZER.vol /dev/disk5 /b/om/l
+    last_slot=$($veracrypt --text --list 2>/dev/null| sed 's/:.*//'|tail -1)
+    # 2
+    let 'next_slot=last_slot+1'
+    echo $next_slot
 }
 
-if [[ "$verapass" == '' ]]; then
-    echo -n 'Password: '
-    read -s verapass
-fi
-slot=$(get_next_slot)
-$veracrypt --text --slot=$slot --keyfiles='' --pim=0 --protect-hidden=no --non-interactive --stdin --mount $vera_volume $mountpoint <<<"$verapass"
-mounts=$($veracrypt --text --list 2>/dev/null)
-printf "$mounts\n"
-# 1: /b/om/CRUZER.vol /dev/disk4 /b/om/p
-# 2: /Volumes/3TB/om/LCRUZER.vol /dev/disk5 /b/om/l
+mount_vera() {
+    veracrypt='veracrypt'
+    uname=$(uname)
+    if [[ $uname == 'Darwin' ]]; then
+      veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
+    fi
 
-printf "$mounts\n" | egrep -q " $mountpoint"
-result=$?
+    $veracrypt --text --version >/dev/null 2>&1
+    if [[ $? != 0 ]]; then
+      echo "Error: veracrypt not found"
+      exit 1
+    fi
 
-exit $result
+    $veracrypt --text --list 2>/dev/null | grep -q " $mountpoint\$"
+    if [[ $? == 0 ]]; then
+      # Already mounted. Say so.
+      echo "Something is already mounted on $mountpoint"
+      exit 0
+    fi
+
+    hostname=$(hostname | sed 's/\..*//')
+    echo
+    echo "Mounting V on $hostname ..."
 
 
+    local verapass
+    if [[ "$verapass" == '' ]]; then
+        read -p 'Veracypt password: ' -s verapass
+    fi
+    slot=$(get_next_slot)
+    $veracrypt --text --slot=$slot --keyfiles='' --pim=0 --protect-hidden=no --non-interactive --stdin --mount $volpath $mountpoint <<<"$verapass"
+    mounts=$($veracrypt --text --list 2>/dev/null)
+    printf "$mounts\n"
+    # 1: /b/om/CRUZER.vol /dev/disk4 /b/om/p
+    # 2: /Volumes/3TB/om/LCRUZER.vol /dev/disk5 /b/om/l
 
+    printf "$mounts\n" | egrep -q " $mountpoint"
+    result=$?
 
+    exit $result
+}
+
+mount_luks() {
+    local passw
+    read -p 'LUKS password: ' -s passw
+    sudo cryptsetup open "$volpath" PCRUZER --key-file=- < <(echo -n "$passw")
+    sudo mount /dev/mapper/PCRUZER  "$mountpoint"
+}
+
+main
