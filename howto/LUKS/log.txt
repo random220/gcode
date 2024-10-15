@@ -1,0 +1,38 @@
+# Tue Oct 15 11:44:05 PDT 2024
+
+luks_init() {
+    sudo dnf -y install cryptsetup
+    sudo mkdir -p /b/om
+    sudo chown om:om /b/om
+    cd
+    ln -s /b
+
+    #dd if=/dev/zero of=~/b/om/CRUZER-LUKS.vol bs=1M count=$(( 30 * 1024 ))
+    truncate -s 30G ~/b/om/CRUZER-LUKS.vol  # sparse volume
+
+    cryptsetup luksFormat ~/b/om/CRUZER-LUKS.vol
+    sudo cryptsetup open ~/b/om/CRUZER-LUKS.vol PCRUZER    # That mounts block device /dev/mapper/PCRUZER
+    sudo mkfs.xfs /dev/mapper/PCRUZER                      # Format that drive
+
+    mkdir -p ~/b/om/p
+    sudo mount /dev/mapper/PCRUZER ~om/b/om/p  # mount filesystem
+    sudo chown om:om ~om/b/om/p/
+
+    # Unmount
+    cd
+    sudo umount /dev/mapper/PCRUZER   # Unmount filesystem
+    sudo cryptsetup close PCRUZER     # Unmount block device
+}
+
+
+luks_mount() {
+    read -p 'cruzer pass ' -s passw
+    sudo cryptsetup open ~/b/om/CRUZER-LUKS.vol PCRUZER --key-file=- < <(echo -n "$passw")
+    sudo mount /dev/mapper/PCRUZER ~om/b/om/p
+}
+
+luks_umount() {
+    cd
+    sudo umount /dev/mapper/PCRUZER   # Unmount filesystem
+    sudo cryptsetup close PCRUZER     # Unmount block device
+}
