@@ -56,6 +56,7 @@ fi
 
 ssh -F ~/.ssh/hpull/config $server 'echo CONNECTED' || (echo 'Connection failed; exit 1')
 ssh -F ~/.ssh/hpull/config -t $server 'vmount'
+vmount
 
 echo
 echo "Syncing ..."
