@@ -1,6 +1,11 @@
 #!/bin/bash
 
-read -p 'port: ' port
+if [[ "$1" =~ ^[0-9]+$ ]]; then
+    port="$1"
+else
+    read -p 'port: ' port
+fi
+
 if [[ $port == '' ]]; then
   port=7777
 fi
