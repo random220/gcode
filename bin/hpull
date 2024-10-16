@@ -12,69 +12,61 @@
 #     IdentityFile ~/.ssh/id_rsa
 # 
 
-ssh_config_backup=config._homesync
-if [[ -f ~/.ssh/$ssh_config_backup ]]; then
-    echo "ERROR: This file exists ~/.ssh/$ssh_config_backup"
-    exit 1
-fi
+bindir=$(cd "$(dirname "$(readlink -f "$0")")" && pwd -P)
 
-cmd="cp -p -f ~/.ssh/config ~/.ssh/$ssh_config_backup"
-echo "doing: $cmd"
-eval $cmd
-
-cat > ~/.ssh/config <<EOF
+umask 077
+mkdir -p ~/.ssh/hpull
+cat <<"EOF" >~/.ssh/hpull/config
 StrictHostKeyChecking=no
 CheckHostIP=no
 EscapeChar=~
 UserKnownHostsFile=/dev/null
+LogLevel ERROR
 
-Host home_dns
+Host cron
     User om
-    Hostname crondite.duckdns.org
-    IdentityFile ~/.ssh/id_rsa
+    HostName 76.236.30.161
+    Port 2222
+    ControlPath ~/.ssh/ctrl-%l-to-%h
+    ControlMaster auto
+    ControlPersist 10m
+    ServerAliveInterval 180
+    GatewayPorts yes
 
-Host home_localip
+Host nuc
     User om
-    Hostname 192.168.10.180
-    IdentityFile ~/.ssh/id_rsa
+    HostName 192.168.10.180
+    Port 22
+    ControlPath ~/.ssh/ctrl-%l-to-%h
+    ControlMaster auto
+    ControlPersist 10m
+    ServerAliveInterval 180
+    GatewayPorts yes
+
 EOF
 
-bindir=$(dirname $0)
-target_machine='home_dns'
-ifconfig -a|egrep 'inet .*192\.168\.10\.' >/dev/null 2>&1
-if [[ $? == 0 ]]; then
-  target_machine='home_localip'
-fi
-ifconfig -a|egrep 'inet .*192\.168\.86\.' >/dev/null 2>&1
-if [[ $? == 0 ]]; then
-  target_machine='home_localip'
-fi
+server='cron'
+ping -W 3 -c 2 192.168.10.180 >/dev/null 2>&1 && server='nuc'
 
-printf "Pull from $target_machine? (y/n): "
+printf "Pull from $server ? (y/n): "
 read yesno
 if [[ $yesno != 'y' ]]; then
   exit 1
 fi
 
-/usr/bin/ssh-copy-id -i ~/.ssh/id_rsa $target_machine
-$bindir/hmount
-$bindir/vmount
+ssh -F ~/.ssh/hpull/config $server 'echo CONNECTED' || (echo 'Connection failed; exit 1')
+ssh -F ~/.ssh/hpull/config -t $server 'vmount'
 
 echo
 echo "Syncing ..."
-p=/b/om/p/CRUZER
-if [[ ! -d $p ]]; then
-  p=$HOME/b/om/p/CRUZER
-fi
-if [[ ! -d $p ]]; then
-  echo 'ERROR: Not found /b/om/p/CRUZER or $HOME/b/om/p/CRUZER'
-  exit 1
-fi
+p=$HOME/b/om/p/CRUZER
+[[ -d $p ]] || ( echo "ERROR Not found: $HOME/b/om/p/CRUZER"; exit 1 )
+
 p=$(cd $p && pwd -P)
 
 tmpdir=$(mktemp -d)
 
-cmd="(ssh om@$target_machine 'TZ=UTC rsync -a --delete /b/om/p/CRUZER/') >'$tmpdir/list_remote.txt'"
+cmd="(ssh -F ~/.ssh/hpull/config om@$server 'TZ=UTC rsync -a --delete /b/om/p/CRUZER/') >'$tmpdir/list_remote.txt'"
 echo "doing: $cmd"
 eval $cmd
 
@@ -104,24 +96,19 @@ if [[ $exit_status != 0 ]]; then
     echo
     echo
     echo
-    printf "Again, PULL from $target_machine? (YES/n): "
+    printf "Again, PULL from $server? (YES/n): "
     read yesno
     if [[ $yesno != 'YES' ]]; then
       exit_status=1
     else
-        cmd="rsync -a --delete $target_machine:/b/om/p/CRUZER/ $p/"
+        cmd="rsync -a --delete $server:/b/om/p/CRUZER/ $p/"
         echo "doing: $cmd"
         eval $cmd
     fi
 fi
 
-$bindir/humount
-/usr/bin/ssh om@$target_machine 'rm -f .ssh/authorized_keys'
-if [[ -f ~/.ssh/$ssh_config_backup ]]; then
-    cmd="mv  ~/.ssh/$ssh_config_backup ~/.ssh/config"
-    echo "doing: $cmd"
-    eval $cmd
-fi
+ssh -F ~/.ssh/hpull/config $server 'vumount'
+ssh -O exit $server
 
 cmd="rm -rf $tmpdir"
 echo "doing: $cmd"
