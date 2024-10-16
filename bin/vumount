@@ -4,8 +4,12 @@ export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/
 myname=$(basename $0)
 
 cd
-sudo umount /dev/mapper/PCRUZER   # Unmount filesystem
-sudo cryptsetup close PCRUZER     # Unmount block device
+
+[[ -e /dev/mapper/PCRUZER ]] && (
+    sudo umount /dev/mapper/PCRUZER   # Unmount filesystem
+    sudo cryptsetup close PCRUZER     # Unmount block device
+    exit 0
+)
 
 veracrypt='veracrypt'
 uname=$(uname)
