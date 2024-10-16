@@ -1,0 +1,2 @@
+#!/bin/bash
+vmrun revertToSnapshot /Users/omandal/b/VMs/rk9.cruzer.vmwarevm/rk9.cruzer.vmx 00
