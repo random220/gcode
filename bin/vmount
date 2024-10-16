@@ -9,11 +9,14 @@ veracrypt=''
 
 main() {
     get_mountpoint || (echo 'Could not determine mountpoint'; exit 1)
+    mounted && exit 0
     get_volpath || (echo 'Could not determine volpath'; exit 1)
-    # echo "$mountpoint"
-    # echo "$volpath"
-    # echo "$algo"
     mountvol
+}
+
+mounted() {
+    (cd "$mountpoint" && df -k .) | grep '^/dev/mapper/' && return 0
+    return 1
 }
 
 mountvol() {
