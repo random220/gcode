@@ -102,14 +102,14 @@ if [[ $exit_status != 0 ]]; then
     if [[ $yesno != 'YES' ]]; then
       exit_status=1
     else
-        cmd="rsync -a --delete $server:/b/om/p/CRUZER/ $p/"
+        cmd="rsync -e 'ssh -F $HOME/.ssh/hpull/config' -a --delete $server:/b/om/p/CRUZER/ $p/"
         echo "doing: $cmd"
         eval $cmd
     fi
 fi
 
 ssh -F ~/.ssh/hpull/config $server 'vumount'
-ssh -O exit $server
+ssh -F ~/.ssh/hpull/config -O exit $server
 
 cmd="rm -rf $tmpdir"
 echo "doing: $cmd"
