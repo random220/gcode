@@ -6,7 +6,6 @@ tid0=~/b/om/p/CRUZER/gitted/sandbox/tiddly.html
 
 cd ~/b/om
 rm -rf __xxx
-#rm -rf __chromecache
 
 if [[ -f "$tid0" ]]; then
     mkdir __xxx
@@ -26,11 +25,13 @@ fi
 
 
 (
-'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=./__chromecache __xxx/tiddly.html >/dev/null 2>&1
+rm -rf __chromecache_tidec
+'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=./__chromecache_tidec __xxx/tiddly.html >/dev/null 2>&1
+rm -rf __chromecache_tidec
 ) >/dev/null 2>&1 &
 
 while true; do
-    if [[ -d ~/b/om/__chromecache/Default/Sessions ]]; then
+    if [[ -d ~/b/om/__chromecache_tidec/Default/Sessions ]]; then
         break
     fi
     sleep 1
