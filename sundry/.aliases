@@ -668,4 +668,8 @@ token() {
     |sed 's/^.*=//; s/ .*//; s/^/\/?token=/'
 }
 
+ai() {
+    docker exec -it -u om -w /home/om ai bash
+}
+
 mymain
