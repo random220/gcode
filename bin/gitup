@@ -10,5 +10,4 @@ docker exec -u om -w /home/om -it rl bash a.sh
 cd ~/gcode
 git fetch rl:gcode
 git merge FETCH_HEAD
-bash
 rl0
