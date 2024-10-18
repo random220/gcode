@@ -79,9 +79,14 @@ vmount
 [[ -d ~/b/om/p/CRUZER ]] || ( echo "ERROR Not found: $HOME/b/om/p/CRUZER"; exit 1 )
 
 
-ssh -F ~/.ssh/hpull/config $server 'echo CONNECTED' || (echo 'Connection failed'; exit 1)
+bailout() {
+    echo "$1"
+    exit 1
+}
+
+ssh -F ~/.ssh/hpull/config $server 'echo CONNECTED' || bailout "Error: $server Connection failed"
 ssh -F ~/.ssh/hpull/config -t $server 'vmount'
-ssh -F ~/.ssh/hpull/config -t $server '[[ -d ~/b/om/p/CRUZER ]]' >/dev/null 2>&1 || (echo 'Remote not found ~/b/om/p/CRUZER'; exit 1)
+ssh -F ~/.ssh/hpull/config -t $server '[[ -d ~/b/om/p/CRUZER ]]' >/dev/null 2>&1 || bailout "Error: Remote dir not found ~/b/om/p/CRUZER"
 
 echo
 echo "Syncing ..."
