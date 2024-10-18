@@ -1,15 +1,22 @@
 #!/bin/bash
 
-set -x
-
-tid0=~/b/om/p/CRUZER/gitted/sandbox/tiddly.html
-
 cd ~/b/om || exit 1
+
+tid_plain=~/b/om/p/CRUZER/gitted/sandbox/tiddly.html
+tid_enc=~/b/om/tiddly.html.git.tar.gpg
+
+if [[ ! -f "$tid_plain" && ! -f "$tid_enc" ]]; then
+    echo "Error: not found"
+    echo "$tid_plain"
+    echo "$tid_enc"
+    exit 1
+fi
+
 rm -rf __xxx
 
-if [[ -f "$tid0" ]]; then
+if [[ -f "$tid_plain" ]]; then
     mkdir __xxx
-    cp "$tid0" __xxx
+    cp "$tid_plain" __xxx
 else
     genc -t __xxx -d tiddly.html.git.tar.gpg
     if [[ ! -f '__xxx/tiddly.html.git.tar.gpg.plain' ]]; then
