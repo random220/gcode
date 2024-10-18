@@ -1,0 +1,145 @@
+#!/bin/bash
+
+# ~/.ssh/config
+# Host home_dns
+#     User om
+#     Hostname crondite.duckdns.org
+#     IdentityFile ~/.ssh/id_rsa
+# 
+# Host home_localip
+#     User om
+#     Hostname 192.168.10.180
+#     IdentityFile ~/.ssh/id_rsa
+# 
+
+bindir=$(cd "$(dirname "$(readlink -f "$0")")" && pwd -P)
+
+
+umask 077
+mkdir -p ~/.ssh/hpull
+cat <<"EOF" >~/.ssh/hpull/config
+StrictHostKeyChecking=no
+CheckHostIP=no
+EscapeChar=~
+UserKnownHostsFile=/dev/null
+LogLevel ERROR
+
+Host cron
+    User om
+    HostName 76.236.30.161
+    Port 2222
+    ControlPath ~/.ssh/ctrl-%l-to-%h
+    ControlMaster auto
+    ControlPersist 10m
+    ServerAliveInterval 180
+    GatewayPorts yes
+
+Host nuc
+    User om
+    HostName 192.168.10.180
+    Port 22
+    ControlPath ~/.ssh/ctrl-%l-to-%h
+    ControlMaster auto
+    ControlPersist 10m
+    ServerAliveInterval 180
+    GatewayPorts yes
+
+EOF
+
+server='cron'
+ping -W 3 -c 2 192.168.10.180 >/dev/null 2>&1 && server='nuc'
+
+verb=''
+case "$(basename "$0")" in
+    'hpull')
+      verb=PULL
+      SRC="$server:b/om/p/CRUZER"
+      DST="$HOME/b/om/p/CRUZER"
+      ;;
+    'hpush')
+      verb=PUSH
+      DST="$server:b/om/p/CRUZER"
+      SRC="$HOME/b/om/p/CRUZER"
+      ;;
+    *)
+      echo 'Error: Must be hpull or hpush'
+      exit 1
+      ;;
+esac
+
+printf "$verb from $server ? (y/n): "
+read yesno
+if [[ $yesno == 'y' ]]; then
+    :
+else
+    exit 1
+fi
+
+vmount
+[[ -d ~/b/om/p/CRUZER ]] || ( echo "ERROR Not found: $HOME/b/om/p/CRUZER"; exit 1 )
+
+
+ssh -F ~/.ssh/hpull/config $server 'echo CONNECTED' || (echo 'Connection failed'; exit 1)
+ssh -F ~/.ssh/hpull/config -t $server 'vmount'
+ssh -F ~/.ssh/hpull/config -t $server '[[ -d ~/b/om/p/CRUZER ]]' >/dev/null 2>&1 || (echo 'Remote not found ~/b/om/p/CRUZER'; exit 1)
+
+echo
+echo "Syncing ..."
+tmpdir=$(mktemp -d)
+
+TZ=UTC rsync -e "ssh -F $HOME/.ssh/hpull/config" -a --delete "$SRC"/ >"$tmpdir/list_SRC.txt"
+TZ=UTC rsync -e "ssh -F $HOME/.ssh/hpull/config" -a --delete "$DST"/ >"$tmpdir/list_DST.txt"
+
+
+cmd="$bindir/rsync_list_normalize < '$tmpdir/list_SRC.txt' >'$tmpdir/list_norm_SRC.txt'"
+echo "doing: $cmd"
+eval $cmd
+
+cmd="$bindir/rsync_list_normalize < '$tmpdir/list_DST.txt' >'$tmpdir/list_norm_DST.txt'"
+echo "doing: $cmd"
+eval $cmd
+
+cmd="diff -u '$tmpdir/list_norm_DST.txt' '$tmpdir/list_norm_SRC.txt' >'$tmpdir/diff.txt'"
+echo "doing: $cmd"
+eval $cmd
+exit_status=$?
+
+get_out() {
+    local status=$1
+    local cmd="rm -rf '$tmpdir'"
+    echo "doing: $cmd"
+    #eval $cmd
+
+    ssh -F ~/.ssh/hpull/config $server 'vumount'
+    ssh -F ~/.ssh/hpull/config -O exit $server
+
+    exit $status
+}
+
+if [[ $exit_status == 0 ]]; then
+    get_out 0
+fi
+
+cmd="egrep -v 'gitted/sandbox/\.git/' <'$tmpdir/diff.txt'"
+echo "doing: $cmd"
+eval $cmd
+
+if [[ $exit_status != 0 ]]; then
+    echo
+    echo
+    echo
+    echo
+    printf "Again, PUSH to $server? (YES/n): "
+    read yesno
+    if [[ $yesno == 'YES' ]]; then
+        cmd="rsync -e 'ssh -F $HOME/.ssh/hpull/config' -a --delete '$SRC'/ '$DST'/"
+        echo "doing: $cmd"
+        eval $cmd
+        exit_status=$?
+    else
+        get_out 0
+    fi
+fi
+
+get_out $exit_status
+
