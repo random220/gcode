@@ -1,50 +1,91 @@
 #!/bin/bash
 
-cd ~/b/om || exit 1
+openfile=''
 
-tid_plain=~/b/om/p/CRUZER/gitted/sandbox/tiddly.html
-tid_enc=~/b/om/tiddly.html.git.tar.gpg
+main() {
+    check_openfiles && show_plain "$openfile" && exit 0
 
-if [[ ! -f "$tid_plain" && ! -f "$tid_enc" ]]; then
-    echo "Error: not found"
-    echo "$tid_plain"
-    echo "$tid_enc"
-    exit 1
-fi
+    tid_plain=~/b/om/p/CRUZER/gitted/sandbox/tiddly.html
+    [[ -f "$tid_plain" ]] && show_plain "$tid_plain" && exit 0
 
-rm -rf __xxx
+    tid_enc=~/b/om/tiddly.html.git.tar.gpg
+    [[ -f "$tid_enc" ]] && show_enc "$tid_end" && exit 0
+}
 
-if [[ -f "$tid_plain" ]]; then
+check_openfiles() {
+    local all=$(
+    ls -1tr \
+        $HOME/tiddly.html \
+        $HOME/Desktop/tiddly.html \
+        $HOME/Downloads/tiddly.html \
+    2>/dev/null
+    )
+    [[ "$all" == '' ]] && return 1
+
+    local latest=$(echo "$all"|tail -1)
+    local n=$(echo "$all" | wc -l | awk '{print $1}')
+
+    if [[ $n == '1' ]]; then
+        echo "Found $latest"
+    else
+        echo "Found these:"
+        echo "$all" | cat -n
+        echo
+        echo "Taking this: $latest"
+    fi
+    openfile="$latest"
+    return 0
+}
+
+show_plain() {
+    local tid_plain="$1"
+
+    cd ~/b/om || exit 1
+
+    echo "Showing: $tid_plain"
+
+    rm -rf __xxx
     mkdir __xxx
     cp "$tid_plain" __xxx
-else
+    render_now
+}
+
+show_enc() {
+    local tid_enc="$1"
+
+    cd ~/b/om || exit 1
+
+    rm -rf __xxx
     genc -t __xxx -d tiddly.html.git.tar.gpg
-    if [[ ! -f '__xxx/tiddly.html.git.tar.gpg.plain' ]]; then
-        exit 1
-    fi
+    [[ -f '__xxx/tiddly.html.git.tar.gpg.plain' ]] || exit 1
+
     (
     cd __xxx
     tar xf tiddly.html.git.tar.gpg.plain
     rm -f tiddly.html.git.tar.gpg.plain
     git reset --hard
     )
-fi
+    render_now
+}
 
+render_now() {
+    (
+    rm -rf __chromecache_tidec
+    mkdir __chromecache_tidec
+    touch '__chromecache_tidec/First Run'
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=./__chromecache_tidec __xxx/tiddly.html >/dev/null 2>&1
+    rm -rf __chromecache_tidec
+    ) >/dev/null 2>&1 &
 
-(
-rm -rf __chromecache_tidec
-mkdir __chromecache_tidec
-touch '__chromecache_tidec/First Run'
-'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=./__chromecache_tidec __xxx/tiddly.html >/dev/null 2>&1
-rm -rf __chromecache_tidec
-) >/dev/null 2>&1 &
+    while true; do
+        if [[ -d __chromecache_tidec/Default/Sessions ]]; then
+            break
+        fi
+        sleep 1
+    done
 
-while true; do
-    if [[ -d ~/b/om/__chromecache_tidec/Default/Sessions ]]; then
-        break
-    fi
     sleep 1
-done
+    rm -rf __xxx
+}
 
-sleep 1
-rm -rf __xxx
+main
