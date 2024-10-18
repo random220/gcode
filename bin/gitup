@@ -2,8 +2,11 @@
 rl0
 rl echo
 cat <<"EOF" | docker exec -u om -w /home/om -i rl bash -c 'cat - >a.sh'
-echo hi
-echo hi
+. .profile
+gpull
 EOF
 
 docker exec -u om -w /home/om -it rl bash a.sh
+cd ~/gcode
+git fetch rl:gcode
+git merge FETCH_HEAD
