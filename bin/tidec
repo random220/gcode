@@ -4,7 +4,7 @@ set -x
 
 tid0=~/b/om/p/CRUZER/gitted/sandbox/tiddly.html
 
-cd ~/b/om
+cd ~/b/om || exit 1
 rm -rf __xxx
 
 if [[ -f "$tid0" ]]; then
@@ -26,6 +26,8 @@ fi
 
 (
 rm -rf __chromecache_tidec
+mkdir __chromecache_tidec
+touch '__chromecache_tidec/First Run'
 '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --user-data-dir=./__chromecache_tidec __xxx/tiddly.html >/dev/null 2>&1
 rm -rf __chromecache_tidec
 ) >/dev/null 2>&1 &
