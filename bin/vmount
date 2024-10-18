@@ -15,7 +15,7 @@ main() {
 }
 
 mounted() {
-    (cd "$mountpoint" && df -k .) | grep '^/dev/mapper/' && return 0
+    [[ -d "$mountpoint/CRUZER" ]] && return 0
     return 1
 }
 

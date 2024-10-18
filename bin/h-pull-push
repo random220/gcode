@@ -50,14 +50,17 @@ server='cron'
 ping -W 3 -c 2 192.168.10.180 >/dev/null 2>&1 && server='nuc'
 
 verb=''
+direction=''
 case "$(basename "$0")" in
     'hpull')
       verb=PULL
+      direction='from'
       SRC="$server:b/om/p/CRUZER"
       DST="$HOME/b/om/p/CRUZER"
       ;;
     'hpush')
       verb=PUSH
+      direction='to'
       DST="$server:b/om/p/CRUZER"
       SRC="$HOME/b/om/p/CRUZER"
       ;;
@@ -67,7 +70,7 @@ case "$(basename "$0")" in
       ;;
 esac
 
-printf "$verb from $server ? (y/n): "
+printf "$verb $direction $server ? (y/n): "
 read yesno
 if [[ $yesno == 'y' ]]; then
     :
@@ -134,7 +137,7 @@ if [[ $exit_status != 0 ]]; then
     echo
     echo
     echo
-    printf "Again, PUSH to $server? (YES/n): "
+    printf "Again, $verb $direction $server? (YES/n): "
     read yesno
     if [[ $yesno == 'YES' ]]; then
         cmd="rsync -e 'ssh -F $HOME/.ssh/hpull/config' -a --delete '$SRC'/ '$DST'/"
