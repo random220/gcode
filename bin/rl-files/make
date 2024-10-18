@@ -1,13 +1,24 @@
 #!/bin/bash
 
+runit() {
+    if [[ "$1" == '' ]] || [[ "$1" == '0'  ]] ; then
+        docker exec -it -u om -w /home/om rl bash
+    else
+        docker exec -it -u om -w /home/om rl "$@"
+    fi
+}
+
 if [[ "$1" == '0' ]]; then
     docker rm -f rl
     docker rmi -f myrl
 fi
 
+
+
 docker inspect rl > /dev/null 2>&1
+
 if [ $? -eq 0 ]; then
-    docker exec -it -u om -w /home/om rl bash
+    runit "$@"
     exit 0
 fi
 
@@ -19,7 +30,7 @@ fi
 h=rl
 mkdir -p ~/ggg
 rsync -a --delete ~/gcode/ ~/ggg/gcode/
-docker run -d --name $h -h $h \
+docker run -itd --name $h -h $h \
     -p 3022:22 \
     -p 4022:4022 \
     -p 5022:5022 \
@@ -70,4 +81,4 @@ EOF
 
 fi
 
-docker exec -it -u om -w /home/om rl bash
+runit "$@"

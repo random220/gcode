@@ -1,0 +1,9 @@
+#!/bin/bash
+rl0
+rl echo
+cat <<"EOF" | docker exec -u om -w /home/om -i rl bash -c 'cat - >a.sh'
+echo hi
+echo hi
+EOF
+
+docker exec -u om -w /home/om -it rl bash a.sh
