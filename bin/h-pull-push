@@ -116,7 +116,7 @@ get_out() {
     local status=$1
     local cmd="rm -rf '$tmpdir'"
     echo "doing: $cmd"
-    #eval $cmd
+    eval $cmd
 
     ssh -F ~/.ssh/hpull/config $server 'vumount'
     ssh -F ~/.ssh/hpull/config -O exit $server
