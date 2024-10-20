@@ -8,10 +8,20 @@ algo=''  # 'vera' or 'luks'
 veracrypt=''
 
 main() {
-    get_mountpoint || (echo 'Could not determine mountpoint'; exit 1)
-    mounted && exit 0
-    get_volpath || (echo 'Could not determine volpath'; exit 1)
+    get_mountpoint || get_out 1 'Could not determine mountpoint'
+    mounted && get_out 0
+    get_volpath || get_out 1 'Could not determine volpath'
     mountvol
+    echo "mountpoint"
+    [[ -d "$mountpoint"/CRUZER ]] && get_out 0
+    get_out 1
+}
+
+get_out() {
+    local status="$1"
+    local msg="$2"
+    echo "$msg"
+    exit $status
 }
 
 mounted() {
@@ -90,15 +100,14 @@ mount_vera() {
 
     $veracrypt --text --version >/dev/null 2>&1
     if [[ $? != 0 ]]; then
-      echo "Error: veracrypt not found"
-      exit 1
+      get_out 1 "Error: veracrypt not found"
     fi
 
     $veracrypt --text --list 2>/dev/null | grep -q " $mountpoint\$"
     if [[ $? == 0 ]]; then
       # Already mounted. Say so.
       echo "Something is already mounted on $mountpoint"
-      exit 0
+      get_out 0 "Something is already mounted on $mountpoint"
     fi
 
     hostname=$(hostname | sed 's/\..*//')
@@ -118,9 +127,6 @@ mount_vera() {
     # 2: /Volumes/3TB/om/LCRUZER.vol /dev/disk5 /b/om/l
 
     printf "$mounts\n" | egrep -q " $mountpoint"
-    result=$?
-
-    exit $result
 }
 
 mount_luks() {

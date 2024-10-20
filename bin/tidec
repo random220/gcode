@@ -8,6 +8,9 @@ main() {
     tid_plain=~/b/om/p/CRUZER/gitted/sandbox/tiddly.html
     [[ -f "$tid_plain" ]] && show_plain "$tid_plain" && exit 0
 
+    cruzer_vol=$HOME/b/om/CRUZER.vol
+    [[ -f "$cruzer_vol" ]] && vmount && show_plain "$tid_plain" && exit 0
+
     tid_enc=~/b/om/tiddly.html.git.tar.gpg
     [[ -f "$tid_enc" ]] && show_enc "$tid_end" && exit 0
 }
