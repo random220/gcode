@@ -2,13 +2,12 @@
 
 export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
-mountpoint=''
+mountpoint=$HOME'/b/om/p'
 volpath=''
-algo=''  # 'vera' or 'luks'
+algo=''  # 'vera' or 'luks' or 'dmg'
 veracrypt=''
 
 main() {
-    get_mountpoint || get_out 1 'Could not determine mountpoint'
     mounted && get_out 0
     get_volpath || get_out 1 'Could not determine volpath'
     mountvol
@@ -34,28 +33,15 @@ mountvol() {
         mount_vera
     elif [[ "$algo" == 'luks' ]]; then
         mount_luks
+    elif [[ "$algo" == 'dmg' ]]; then
+        mount_dmg
     fi
-}
-
-get_mountpoint() {
-    mountpoints=("$HOME/b/om/p" '/b/om/p')
-    mountpoint=''
-    for m in ${mountpoints[@]}; do
-      if [[ -d $m ]]; then
-        mountpoint=$(cd "$m" && /bin/pwd -P)
-        break
-      fi
-    done
-    
-    if [[ $mountpoint == '' ]]; then
-      return 1
-    fi
-    return 0
 }
 
 get_volpath() {
     vera_volpaths=('/b/om/CRUZER.vol' "$HOME/b/om/CRUZER.vol")
     luks_volpaths=('/b/om/CRUZER-LUKS.vol' "$HOME/b/om/CRUZER-LUKS.vol")
+    dmg_volpaths=("$HOME/b/om/CRUZER.dmg")
 
     volpath=''
     for v in ${vera_volpaths[@]};  do
@@ -70,6 +56,14 @@ get_volpath() {
       if [[ -f $v ]]; then
         volpath=$v
         algo='luks'
+        break
+      fi
+    done
+
+    for v in ${dmg_volpaths[@]};  do
+      if [[ -f $v ]]; then
+        volpath=$v
+        algo='dmg'
         break
       fi
     done
@@ -134,6 +128,15 @@ mount_luks() {
     read -p 'LUKS password: ' -s passw
     sudo cryptsetup open "$volpath" PCRUZER --key-file=- < <(echo -n "$passw")
     sudo mount /dev/mapper/PCRUZER  "$mountpoint"
+}
+
+mount_dmg() {
+    local passw
+    read -p 'DMG password: ' -s passw
+    echo -n "$passw" | hdiutil attach "$volpath" -stdinpass
+    [[ -L "$mountpoint" ]] && rm -f "$mountpoint"
+    [[ -d "$mountpoint" ]] && rmdir "$mountpoint"
+    ln -s /Volumes/PCRUZER "$mountpoint"
 }
 
 main

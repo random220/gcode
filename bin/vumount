@@ -5,11 +5,16 @@ myname=$(basename $0)
 
 cd
 
-[[ -e /dev/mapper/PCRUZER ]] && (
+if [[ -e /dev/mapper/PCRUZER ]]; then
     sudo umount /dev/mapper/PCRUZER   # Unmount filesystem
     sudo cryptsetup close PCRUZER     # Unmount block device
     exit 0
-)
+fi
+
+if [[ -e /Volumes/PCRUZER ]]; then
+    hdiutil detach /Volumes/PCRUZER
+    exit 0
+fi
 
 veracrypt='veracrypt'
 uname=$(uname)
