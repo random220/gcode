@@ -133,10 +133,24 @@ mount_luks() {
 mount_dmg() {
     local passw
     read -p 'DMG password: ' -s passw
-    echo -n "$passw" | hdiutil attach "$volpath" -stdinpass
-    [[ -L "$mountpoint" ]] && rm -f "$mountpoint"
-    [[ -d "$mountpoint" ]] && rmdir "$mountpoint"
-    ln -s /Volumes/PCRUZER "$mountpoint"
+
+    if [[ -L "$mountpoint" ]]; then
+        rm -f "$mountpoint"
+        if [[ $? != 0 ]]; then
+            hdiutil detach /Volumes/PCRUZER
+            get_out 1 "Error: Could rm softlink $mountpoint"
+        fi
+    fi
+
+    if [[ -d "$mountpoint" ]]; then
+        rmdir "$mountpoint"
+        if [[ $? != 0 ]]; then
+            hdiutil detach /Volumes/PCRUZER
+            get_out 1 "Error: Could not rmdir $mountpoint"
+        fi
+    fi
+
+    echo -n "$passw" | hdiutil attach "$volpath" -stdinpass -mountpoint "$mountpoint" || get_out 1 "Error: Could not hdiutil attach $volpath"
 }
 
 main

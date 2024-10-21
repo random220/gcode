@@ -16,6 +16,13 @@ if [[ -e /Volumes/PCRUZER ]]; then
     exit 0
 fi
 
+mount | grep "$HOME/b/om/p" | grep apfs
+# /dev/disk5s1 on /Users/omandal/b/om/p (apfs, local, nodev, nosuid, journaled, noowners, mounted by omandal)
+if [[ $? == 0 ]]; then
+    hdiutil detach "$HOME/b/om/p"
+    exit 0
+fi
+
 veracrypt='veracrypt'
 uname=$(uname)
 if [[ $uname == 'Darwin' ]]; then
