@@ -8,6 +8,7 @@ RUN dnf update -y && \
     ssh-keygen -A && \
     dnf install -y epel-release && \
     dnf install -y pdftk && \
+    dnf install -y python3-img2pdf && \
     useradd -s /bin/bash -m om && \
     (echo "om:welcome" | chpasswd) && \
     dnf -y install sudo && \
