@@ -3,60 +3,81 @@
 export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 myname=$(basename $0)
 
-cd
+main() {
+    cd
+    vera_umount && exit 0
+    luks_umount && exit 0
+    dmg_umount && exit 0
+}
 
-if [[ -e /dev/mapper/PCRUZER ]]; then
+
+vera_umount() {
+    mount|grep veracrypt >/dev/null 2>&1
+    # fuse-t:/.veracrypt_aux_mnt1 on /private/var/folders/fv/72qgy6dd0wd_rvyjxxdc18w80000gp/T/.veracrypt_aux_mnt1 (nfs, nodev, nosuid, nobrowse, mounted by om)
+    if [[ $? != 0 ]]; then
+        return 1
+    fi
+
+    veracrypt='veracrypt'
+    uname=$(uname)
+    if [[ $uname == 'Darwin' ]]; then
+      veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
+    fi
+
+    # $veracrypt --text --list
+    # % /Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text --list
+    # 1: /Volumes/3TB/om/LCRUZER.vol /dev/disk4 /b/om/l
+    # 2: /b/om/CRUZER.vol /dev/disk5 /b/om/p
+
+
+    hostname=$(hostname | sed 's/\..*//')
+    echo
+    echo "Your mounted volumes on $hostname ..."
+    list=$($veracrypt --text --list 2>/dev/null)
+    printf "$list\n"
+
+    if [[ $list == "" ]]; then
+      return 0
+    fi
+
+    if [[ $myname == 'vumountn' ]]; then
+      echo
+      echo "Commands to unmount:"
+      printf "$list\n" | awk '{print $4}' | sed 's,^,/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text --dismount ,'
+      return 0
+    fi
+
+    echo
+    echo "Unmounting ALL on $hostname ..."
+    cmd="$veracrypt --text --dismount # dismount all"
+    printf "$cmd\n"
+    eval "$cmd"
+    return $?
+}
+
+
+luks_umount() {
+    if [[ ! -e /dev/mapper/PCRUZER ]]; then
+        return 1
+    fi
     sudo umount /dev/mapper/PCRUZER   # Unmount filesystem
     sudo cryptsetup close PCRUZER     # Unmount block device
-    exit 0
-fi
+    return 0
+}
 
-if [[ -e /Volumes/PCRUZER ]]; then
-    hdiutil detach /Volumes/PCRUZER
-    exit 0
-fi
+dmg_umount() {
+    if [[ -e /Volumes/PCRUZER ]]; then
+        hdiutil detach /Volumes/PCRUZER
+        return 0
+    fi
 
-mount | grep "$HOME/b/om/p" | grep apfs
-# /dev/disk5s1 on /Users/omandal/b/om/p (apfs, local, nodev, nosuid, journaled, noowners, mounted by omandal)
-if [[ $? == 0 ]]; then
-    hdiutil detach "$HOME/b/om/p"
-    exit 0
-fi
+    mount | grep "$HOME/b/om/p" | grep apfs
+    # /dev/disk5s1 on /Users/omandal/b/om/p (apfs, local, nodev, nosuid, journaled, noowners, mounted by omandal)
+    if [[ $? == 0 ]]; then
+        hdiutil detach "$HOME/b/om/p"
+        return 0
+    fi
+    return 1
+}
 
-veracrypt='veracrypt'
-uname=$(uname)
-if [[ $uname == 'Darwin' ]]; then
-  veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
-fi
-
-# $veracrypt --text --list
-# % /Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text --list
-# 1: /Volumes/3TB/om/LCRUZER.vol /dev/disk4 /b/om/l
-# 2: /b/om/CRUZER.vol /dev/disk5 /b/om/p
-
-
-hostname=$(hostname | sed 's/\..*//')
-echo
-echo "Your mounted volumes on $hostname ..."
-list=$($veracrypt --text --list 2>/dev/null)
-printf "$list\n"
-
-if [[ $list == "" ]]; then
-  exit 0
-fi
-
-if [[ $myname == 'vumountn' ]]; then
-  echo
-  echo "Commands to unmount:"
-  printf "$list\n" | awk '{print $4}' | sed 's,^,/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text --dismount ,'
-  exit 0
-fi
-
-echo
-echo "Unmounting ALL on $hostname ..."
-cmd="$veracrypt --text --dismount # dismount all"
-printf "$cmd\n"
-eval "$cmd"
-exit $?
-
-
+main
