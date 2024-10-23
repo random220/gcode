@@ -12,12 +12,38 @@
 #     IdentityFile ~/.ssh/id_rsa
 # 
 
-bindir=$(cd "$(dirname "$(readlink -f "$0")")" && pwd -P)
-
-
 umask 077
-mkdir -p ~/.ssh/hpull
-cat <<"EOF" >~/.ssh/hpull/config
+bindir=$(cd "$(dirname "$(readlink -f "$0")")" && pwd -P)
+tmpdir=$(mktemp -d)
+server=''
+verb=''
+direction=''
+SRC=''
+DST=''
+
+main() {
+    mk_sshconfig
+    determine_server
+    determine_direction
+    mount_local
+    mount_remote
+    do_sync
+    get_out 0 '!!! Should never come here !!!'
+}
+
+mount_local() {
+    vmount
+    [[ -d ~/b/om/p/CRUZER ]] || get_out 1 "ERROR Not found: $HOME/b/om/p/CRUZER"
+}
+
+determine_server() {
+    server='cron'
+    ping -W 3 -c 2 192.168.10.180 >/dev/null 2>&1 && server='nuc'
+}
+
+mk_sshconfig () {
+    mkdir -p ~/.ssh/hpull
+    cat <<"EOF" >~/.ssh/hpull/config
 StrictHostKeyChecking=no
 CheckHostIP=no
 EscapeChar=~
@@ -46,40 +72,37 @@ Host nuc
 
 EOF
 
-server='cron'
-ping -W 3 -c 2 192.168.10.180 >/dev/null 2>&1 && server='nuc'
+}
 
-verb=''
-direction=''
-case "$(basename "$0")" in
-    'hpull')
-      verb=PULL
-      direction='from'
-      SRC="$server:b/om/p/CRUZER"
-      DST="$HOME/b/om/p/CRUZER"
-      ;;
-    'hpush')
-      verb=PUSH
-      direction='to'
-      DST="$server:b/om/p/CRUZER"
-      SRC="$HOME/b/om/p/CRUZER"
-      ;;
-    *)
-      echo 'Error: Must be hpull or hpush'
-      exit 1
-      ;;
-esac
+determine_direction () {
+    case "$(basename "$0")" in
+        'hpull')
+          verb=PULL
+          direction='from'
+          SRC="$server:b/om/p/CRUZER"
+          DST="$HOME/b/om/p/CRUZER"
+          ;;
+        'hpush')
+          verb=PUSH
+          direction='to'
+          DST="$server:b/om/p/CRUZER"
+          SRC="$HOME/b/om/p/CRUZER"
+          ;;
+        *)
+          echo 'Error: Must be hpull or hpush'
+          exit 1
+          ;;
+    esac
 
-printf "$verb $direction $server ? (y/n): "
-read yesno
-if [[ $yesno == 'y' ]]; then
-    :
-else
-    exit 1
-fi
-
-vmount
-[[ -d ~/b/om/p/CRUZER ]] || ( echo "ERROR Not found: $HOME/b/om/p/CRUZER"; exit 1 )
+    printf "$verb $direction $server ? (y/n): "
+    local yesno
+    read yesno
+    if [[ $yesno == 'y' ]]; then
+        :
+    else
+        exit 1
+    fi
+}
 
 
 bailout() {
@@ -87,30 +110,62 @@ bailout() {
     exit 1
 }
 
-ssh -F ~/.ssh/hpull/config $server 'echo CONNECTED' || bailout "Error: $server Connection failed"
-ssh -F ~/.ssh/hpull/config -t $server 'vmount'
-ssh -F ~/.ssh/hpull/config -t $server '[[ -d ~/b/om/p/CRUZER ]]' >/dev/null 2>&1 || bailout "Error: Remote dir not found ~/b/om/p/CRUZER"
+mount_remote() {
+    ssh -F ~/.ssh/hpull/config $server 'echo CONNECTED' || bailout "Error: $server Connection failed"
+    ssh -F ~/.ssh/hpull/config -t $server 'vmount'
+    ssh -F ~/.ssh/hpull/config -t $server '[[ -d ~/b/om/p/CRUZER ]]' >/dev/null 2>&1 || get_out 1 "Error: Remote dir not found ~/b/om/p/CRUZER"
+}
 
-echo
-echo "Syncing ..."
-tmpdir=$(mktemp -d)
+do_sync() {
+    echo
+    echo "Syncing ..."
 
-TZ=UTC rsync -e "ssh -F $HOME/.ssh/hpull/config" -a --delete "$SRC"/ >"$tmpdir/list_SRC.txt"
-TZ=UTC rsync -e "ssh -F $HOME/.ssh/hpull/config" -a --delete "$DST"/ >"$tmpdir/list_DST.txt"
+    TZ=UTC rsync -e "ssh -F $HOME/.ssh/hpull/config" -a --delete "$SRC"/ >"$tmpdir/list_SRC.txt"
+    TZ=UTC rsync -e "ssh -F $HOME/.ssh/hpull/config" -a --delete "$DST"/ >"$tmpdir/list_DST.txt"
 
+    local cmd
 
-cmd="$bindir/rsync_list_normalize < '$tmpdir/list_SRC.txt' >'$tmpdir/list_norm_SRC.txt'"
-echo "doing: $cmd"
-eval $cmd
+    cmd="$bindir/rsync_list_normalize < '$tmpdir/list_SRC.txt' >'$tmpdir/list_norm_SRC.txt'"
+    echo "doing: $cmd"
+    eval $cmd
 
-cmd="$bindir/rsync_list_normalize < '$tmpdir/list_DST.txt' >'$tmpdir/list_norm_DST.txt'"
-echo "doing: $cmd"
-eval $cmd
+    cmd="$bindir/rsync_list_normalize < '$tmpdir/list_DST.txt' >'$tmpdir/list_norm_DST.txt'"
+    echo "doing: $cmd"
+    eval $cmd
 
-cmd="diff -u '$tmpdir/list_norm_DST.txt' '$tmpdir/list_norm_SRC.txt' >'$tmpdir/diff.txt'"
-echo "doing: $cmd"
-eval $cmd
-exit_status=$?
+    cmd="diff -u '$tmpdir/list_norm_DST.txt' '$tmpdir/list_norm_SRC.txt' >'$tmpdir/diff.txt'"
+    echo "doing: $cmd"
+    eval $cmd
+    exit_status=$?
+
+    if [[ $exit_status == 0 ]]; then
+        get_out 0
+    fi
+
+    cmd="egrep -v 'gitted/sandbox/\.git/' <'$tmpdir/diff.txt'"
+    echo "doing: $cmd"
+    eval $cmd
+
+    if [[ $exit_status != 0 ]]; then
+        echo
+        echo
+        echo
+        echo
+        printf "Again, $verb $direction $server? (YES/n): "
+        read yesno
+        if [[ $yesno == 'YES' ]]; then
+            cmd="rsync -e 'ssh -F $HOME/.ssh/hpull/config' -a --delete '$SRC'/ '$DST'/"
+            echo "doing: $cmd"
+            eval $cmd
+            exit_status=$?
+        else
+            get_out 0
+        fi
+    fi
+
+    get_out $exit_status
+
+}
 
 get_out() {
     local status=$1
@@ -118,36 +173,14 @@ get_out() {
     echo "doing: $cmd"
     eval $cmd
 
-    ssh -F ~/.ssh/hpull/config $server 'vumount'
-    ssh -F ~/.ssh/hpull/config -O exit $server
+    ssh -F ~/.ssh/hpull/config -O check $server
+    if [[ $? == 0 ]]; then
+        ssh -F ~/.ssh/hpull/config $server 'vumount'
+        ssh -F ~/.ssh/hpull/config -O exit $server
+    fi
 
     exit $status
 }
 
-if [[ $exit_status == 0 ]]; then
-    get_out 0
-fi
 
-cmd="egrep -v 'gitted/sandbox/\.git/' <'$tmpdir/diff.txt'"
-echo "doing: $cmd"
-eval $cmd
-
-if [[ $exit_status != 0 ]]; then
-    echo
-    echo
-    echo
-    echo
-    printf "Again, $verb $direction $server? (YES/n): "
-    read yesno
-    if [[ $yesno == 'YES' ]]; then
-        cmd="rsync -e 'ssh -F $HOME/.ssh/hpull/config' -a --delete '$SRC'/ '$DST'/"
-        echo "doing: $cmd"
-        eval $cmd
-        exit_status=$?
-    else
-        get_out 0
-    fi
-fi
-
-get_out $exit_status
-
+main
