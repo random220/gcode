@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# sudo systemctl disable squid
+# sudo systemctl start squid
+# sudo systemctl stop squid
+# sudo systemctl status squid
+
+
+sudo systemctl start squid
