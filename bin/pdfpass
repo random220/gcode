@@ -1,0 +1,21 @@
+#!/bin/bash
+
+read -p 'decrypt? ' y
+if [[ $y != y ]]; then
+    exit
+fi
+read -p 'input file? ' f
+if [[ ! -f "$f" ]]; then
+    echo "No file: $f"
+    exit
+fi
+read -p 'input pw? ' -s p
+echo "$p" | pdftk "$f" input_pw PROMPT cat output "$f".dec.pdf >/dev/null 2>&1
+
+echo
+if [[ -f "$f".dec.pdf ]]; then
+    echo "See $f.dec.pdf"
+else
+    echo "!!! FAILED !!!"
+fi
+
