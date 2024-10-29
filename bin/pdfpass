@@ -4,15 +4,17 @@ read -p 'decrypt? ' y
 if [[ $y != y ]]; then
     exit
 fi
-read -p 'input file? ' f
-if [[ ! -f "$f" ]]; then
+read -p 'input file? ' -r f
+g=$(eval ls -1 "$f")
+if [[ ! -f "$g" ]]; then
     echo "No file: $f"
     exit
 fi
+f="$g"
 
 type pdftk >/dev/null 2>&1
 if [[ $? != 0 ]]; then
-    echo "pdftk '$f' input_pw PROMPT cat output '$f.dec.pdf'"
+    printf "pdftk %q input_pw PROMPT cat output %q.dec.pdf\n" "$f" "$f"
     exit
 fi
 
