@@ -9,6 +9,13 @@ if [[ ! -f "$f" ]]; then
     echo "No file: $f"
     exit
 fi
+
+type pdftk >/dev/null 2>&1
+if [[ $? != 0 ]]; then
+    echo "pdftk '$f' input_pw PROMPT cat output '$f.dec.pdf'"
+    exit
+fi
+
 read -p 'input pw? ' -s p
 echo "$p" | pdftk "$f" input_pw PROMPT cat output "$f".dec.pdf >/dev/null 2>&1
 
