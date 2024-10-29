@@ -7,4 +7,5 @@ if [[ ! -f "$bundle_file" ]]; then
 fi
 
 git fetch "$bundle_file" HEAD:_xxx
-
+git merge _xxx
+git branch -D _xxx
