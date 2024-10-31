@@ -60,7 +60,7 @@ fi
 
 if [[ -d ~/gcode ]]; then
 
-    docker cp -a ~/gcode/ rl:/tmp/gcode/
+    docker cp -a ~/gcode/ rl:/tmp/
 
     cat <<"EOF" | docker exec -u root -i rl bash -
 umask 077
