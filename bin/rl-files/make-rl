@@ -28,8 +28,6 @@ if [ $? -ne 0 ]; then
 fi
 
 h=rl
-mkdir -p ~/ggg
-rsync -a --delete ~/gcode/ ~/ggg/gcode/
 docker run -itd --name $h -h $h \
     -p 3022:22 \
     -p 4022:4022 \
