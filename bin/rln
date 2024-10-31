@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ $1 == '0' ]]; then
+    docker rm -f rl1 rl2 rl3
+    exit
+fi
 mydir=$(dirname "$(readlink -f "$0")")
 cd "$mydir/rl-files"
 ./make-rln "$@"
