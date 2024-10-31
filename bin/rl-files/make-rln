@@ -1,0 +1,67 @@
+#!/bin/bash
+
+user=om
+
+main() {
+    docker image inspect myrl > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        docker build -t myrl .
+    fi
+
+    mkdir -p ~/ggg
+    rsync -a --delete ~/gcode/ ~/ggg/gcode/
+
+    rm -rf ~/.ssh/rln
+    mkdir -p ~/.ssh/rln
+    ssh-keygen -t ed25519 -N '' -f ~/.ssh/rln/id_ed25519
+
+    mkcont 1
+    mkcont 2
+    mkcont 3
+}
+
+mkcont() {
+
+    local n=$1
+    local h=rl$n
+    docker rm -f $h
+    docker run -itd --name $h -h $h -p 309$n:22 myrl
+
+    docker cp ~/.ssh/rln/id_ed25519.pub rl$n:/tmp/pubkey
+
+    egrep '^Host[ \t]+'rl$n ~/.ssh/config >/dev/null 2>&1
+    if [[ $? != 0 ]]; then
+        cat <<EOF >>~/.ssh/config
+
+Host rl$n
+    Hostname 0.0.0.0
+    Port 309$n
+    User $user
+    IdentityFile ~/.ssh/rln/id_ed25519
+
+EOF
+    fi
+
+    if [[ -d ~/ggg/gcode ]]; then
+
+        docker cp -a ~/ggg/gcode/ rl$n:/tmp/gcode/
+
+        cat <<EOF | docker exec -u root -i rl$n bash -
+umask 077
+mkdir -p /home/$user/.ssh
+mv /tmp/pubkey /home/om/.ssh/authorized_keys
+mv /tmp/gcode /home/om/gcode
+chown -R om:om /home/om/gcode /home/om/.ssh
+EOF
+
+        cat <<"EOF" | docker exec -i -u $user -w /home/$user rl$n bash -
+. gcode/bin/gcode.0
+. .bashrc
+gits
+
+EOF
+
+    fi
+}
+
+main

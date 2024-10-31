@@ -1,0 +1,4 @@
+#!/bin/bash
+#bindir=$(cd $(dirname $0) && pwd -P)
+bindir=$(dirname "$(readlink -f "$0")")
+. $bindir/gg "$@"

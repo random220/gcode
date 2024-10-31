@@ -2,4 +2,4 @@
 
 mydir=$(dirname "$(readlink -f "$0")")
 cd "$mydir/rl-files"
-./make-rl "$@"
+./make-rln "$@"
