@@ -25,6 +25,9 @@ fi
 docker image inspect myrl > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     docker build -t myrl .
+    docker save -o ~/myrl.tar myrl
+    gzip ~/myrl.tar
+    mv ~/myrl.tar.gz ~/myrl.tgz
 fi
 
 h=rl
