@@ -12,8 +12,10 @@ if len(sys.argv) == 1:
 
 rootdir = sys.argv[1]
 cmd = ['rsync', '-a', '--delete', rootdir+'/']
-result = subprocess.run(cmd, shell=False, stdout = subprocess.PIPE, universal_newlines = True)
-lines = result.stdout.split('\n')
+
+# Python3
+#result = subprocess.run(cmd, shell=False, stdout = subprocess.PIPE, universal_newlines = True)
+#lines = result.stdout.split('\n')
 # print(type(lines))
 # -rwxr-xr-x          1,192 2024/10/31 00:47:34 rl-files/make-rln
 # drwxr-xr-x          4,096 2024/10/30 18:03:10 sample
@@ -22,6 +24,11 @@ lines = result.stdout.split('\n')
 # -rw-r--r--              8 2024/10/30 18:03:10 smtp-gmail-postfix/.gitignore
 # -rwxr-xr-x          1,219 2024/10/30 18:03:10 smtp-gmail-postfix/doit-enc.sh
 # drwxr-xr-x          4,096 2024/10/30 18:03:10 ssh-enc
+
+# Python2
+p = subprocess.Popen(cmd, stdout=subprocess.PIPE, text=True)
+output, error = p.communicate()
+lines = output.split('\n')
 
 things = {}
 for line in lines:
