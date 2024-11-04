@@ -26,9 +26,9 @@ cmd = ['rsync', '-a', '--delete', rootdir+'/']
 # drwxr-xr-x          4,096 2024/10/30 18:03:10 ssh-enc
 
 # Python2
-p = subprocess.Popen(cmd, stdout=subprocess.PIPE, text=True)
+p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
 output, error = p.communicate()
-lines = output.split('\n')
+lines = output.decode().split('\n')
 
 things = {}
 for line in lines:
