@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+
+import os, sys
+import re
+import hashlib
+import subprocess
+import json
+
+if len(sys.argv) == 1:
+    print('Need root dir')
+    sys.exit(1)
+
+rootdir = sys.argv[1]
+cmd = ['rsync', '-a', '--delete', rootdir+'/']
+result = subprocess.run(cmd, shell=False, stdout = subprocess.PIPE, universal_newlines = True)
+lines = result.stdout.split('\n')
+# print(type(lines))
+# -rwxr-xr-x          1,192 2024/10/31 00:47:34 rl-files/make-rln
+# drwxr-xr-x          4,096 2024/10/30 18:03:10 sample
+# -rw-r--r--            659 2024/10/30 18:03:10 sample/forked-secure-system-call.pl
+# drwxr-xr-x          4,096 2024/10/30 18:03:10 smtp-gmail-postfix
+# -rw-r--r--              8 2024/10/30 18:03:10 smtp-gmail-postfix/.gitignore
+# -rwxr-xr-x          1,219 2024/10/30 18:03:10 smtp-gmail-postfix/doit-enc.sh
+# drwxr-xr-x          4,096 2024/10/30 18:03:10 ssh-enc
+
+things = {}
+for line in lines:
+    m = re.search(r'^\-\S+\s+([,\d]+)\s+\S+\s+\S+\s+(.+)', line)
+    if m:
+        fsize = m.group(1)
+        fsize.replace(',', '')
+        fname = m.group(2)
+        if fsize not in things:
+            things[fsize] = []
+        things[fsize].append(fname)
+
+for fsize in list(things.keys()):
+    if len(things[fsize]) == 1:
+        del things[fsize]
+
+def my_md5sum(fn):
+    f = rootdir + '/' + fn
+    with open(f, 'rb') as fd:
+        data = fd.read(1024)
+    return hashlib.md5(data).hexdigest()
+
+things2 = {}
+for fsize in things:
+    for fname in things[fsize]:
+        m = my_md5sum(fname)
+        if m not in things2:
+            things2[m] = []
+        things2[m].append(fname)
+
+for cksum in list(things2.keys()):
+    if len(things2[cksum]) == 1:
+        del things2[cksum]
+
+print(json.dumps(things2, indent=4))
+
+
+
