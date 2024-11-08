@@ -70,11 +70,19 @@ genc -t x .git
 mv x/.git.tar.gpg tiddly.html.git.tar.gpg
 rm -rf x
 
+
 cat <<"EOF"
 
 ======================================================
-cd ~/b/om/__yyy
-mv tiddly.html.git.tar.gpg ~/b/om
+rl0
+rl hostname
+
+rsync -a --delete ~/b/om/__yyy/ rl:__yyy/
+mv ~/b/om/__yyy/tiddly.html.git.tar.gpg ~/b/om
+
+rl
+
+cd ~/__yyy
 scp diff.gz cron:.
 
 ssh cron
@@ -95,6 +103,8 @@ rm diff
 _EOF
 bash a.sh
 exit
+
+rl0
 
 cd
 rm -rf ~/b/om/__yyy
