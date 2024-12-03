@@ -3,8 +3,17 @@
 #  memory blocks correspond to 1MB. Thus, XXXXX = YYYY * 2048 where YYYY is the size in MB.
 
 basename=$(basename "$0")
+n=1
+while True; do
+    volname=om-RAMDISK$n
+    if [[ ! -d /Volumes/$volname ]]; then
+        break
+    fi
+    volname0=$volname
+    n=$(( n + 1 ))
+done
 if [[ $basename == 'uramd' ]]; then
-    hdiutil detach /Volumes/om-RAMDISK
+    hdiutil detach /Volumes/$volname0
     exit
 fi
 
@@ -21,7 +30,7 @@ block=$(( $mb * 2048 ))
 
 disk=$(hdiutil attach -nobrowse -nomount ram://$block)
 echo $disk
-diskutil erasevolume APFS 'om-RAMDISK' $disk
+diskutil erasevolume APFS $volname $disk
 
 # hdiutil detach /Volumes/om-RAMDISK
 
