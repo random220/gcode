@@ -1,0 +1,9 @@
+#!/bin/bash
+
+bn=$(basename "$0")
+profile_dir=$HOME/.google/$bn
+mkdir -p "$profile_dir"
+cmd="open -a 'Google Chrome' --args --user-data-dir='$profile_dir' --proxy-server='http=0.0.0.0:3128;https=0.0.0.0:3128'"
+echo "$cmd"
+eval "$cmd"
+
