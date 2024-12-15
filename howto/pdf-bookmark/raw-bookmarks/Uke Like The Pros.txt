@@ -1,0 +1,29 @@
+Title 1*
+Contents 4*
+THE ESSENTIALS                                      A 5*
+HOW TO READ TAB                                     B 6*
+UKULELE PARTS                                       C 7*
+NOTES ON THE UKULELE NECK                           D 8*
+MUSIC SYMBOLS TO KNOW                               E 9*
+CHORD CHART                                         G 11*
+_offset 12
+01 - CASCADES - IN A MINOR                          01
+02 - SOARING RAIN - IN C MAJOR                      03
+03 - RISING TIDE - IN C MAJOR                       05
+04 - RED CROWN - IN A MINOR                         07
+05 - BETTER DAYS - IN C MAJOR                       09
+06 - JASMINE NIGHTS - IN C MINOR                    11
+07 - MYSTIC FOREST - IN C MAJOR                     15
+08 - KAT'S BOUREE - IN G MAJOR                      19
+09 - LOVER'S LAMENT - IN D MINOR                    22
+10 - MAUI BREEZE - IN C MAJOR                       25
+11 - GENTLE STROLL - IN A MAJOR                     29
+12 - FORBIDDEN ROAD - IN D MINOR                    31
+13 - TRANGO TOWERS - IN A MINOR                     35
+14 - COAL'S BOOGIE - IN A MAJOR                     39
+15 - HAVANA TANGO - IN G MINOR                      41
+16 - PHARAOH'S STONE - IN A MINOR                   45
+17 - MIDNIGHT RENDEZVOUS - IN A MINOR               49
+ABOUT THE AUTHOR                                    I 67*
+ABOUT UKE LIKE THE PROS                             J 68*
+ABOUT ULTP STORE                                    K 69*
