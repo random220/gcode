@@ -13,39 +13,41 @@ print "_offset 0\n";
 
 # Loop over each line in the file
 while (my $l = <F>) {
+    # Save initial whitespaces
+    my ($initwhite, $therest) = $l =~ m{^([ \t]*)(.*)}s;
+
     # Strip trailing whitespace from the line
-    $l =~ s{\s*$}{}s;
-    $l =~ s{\s+(\S+\-(\d+))$}{ $1 $2}s;
+    $therest =~ s{\s*$}{}s;
+    $therest =~ s{\s+(\S+\-(\d+))$}{ $1 $2}s;
 
     # Replace one or more spaces followed by non-spaces at the end of the line
     # with a single space followed by the non-spaces
-    $l =~ s{\s+(\S+)$}{ $1};
+    $therest =~ s{\s+(\S+)$}{ $1};
 
     # Replace one or more spaces followed by non-spaces, space, and digits
     # followed by an asterisk at the end of the line with a single space, the
     # non-spaces, a space, and the digits followed by the asterisk
-    $l =~ s{\s+(\S+)\s+(\d+\*)$}{ $1 $2};
+    $therest =~ s{\s+(\S+)\s+(\d+\*)$}{ $1 $2};
 
-    # If the line starts with optional spaces, underscore, "offset", optional
-    # spaces, and optional negative sign followed by digits, capture the
-    # digits/negative sign
-    if ($l =~ m{^\s*_offset\s*(\-?\d+)$}s) {
+    # If the line starts with "_offset", spaces, and optional negative sign
+    # followed by digits, capture the digits/negative sign
+    if ($therest =~ m{^_offset\s*(\-?\d+)$}s) {
         # Set the offset to the captured value
-        $offset = $1; 
+        $offset = $1;
         next;
     }   
 
     # If the line matches anything followed by space, optional digits with an
     # optional hyphen, and digits at the end of the line, capture the anything,
     # the optional digits with an optional hyphen, and the final digits
-    if ($l =~ m{^(.+)\s+(\d+)$}) {
+    if ($therest =~ m{^(.+)\s+(\d+)$}) {
         my ($pre, $page) = ($1, $2);
         # Add the offset to the page
         my $page2 = $page+$offset;
 
         # Print the prefix, the page, and the offset page followed by an
         # asterisk
-        print "$pre $page $page2*\n";
+        print "$initwhite$pre $page $page2*\n";
     }   
     else {
         # If the line doesn't match any of the above, just print it

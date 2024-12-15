@@ -1,0 +1,128 @@
+TITLE 1*
+_offset 10
+BOOK-1 BEGINNER 3*
+    Contents 7*
+    INTRODUCTION                                                                                                                                            1
+    HOW TO USE THIS BOOK - preparation - the naming of parts                                                                                                2
+    LESSON 1: The Chord Box - Chords of C and F - Basic thumb strum - left hand finger exercise - Tab explained - the rule of minimum movement              9
+    LESSON 2: Chords: G and G7 to complete the "three chord trick"- 3/4 strum - Lavenders Blue                                                              14
+    LESSON 3: Learning to Read Music - The notes on the ukulele - Note values - melody for Lavenders Blue - the dotted note                                 16
+    LESSON 4: Reading music: notes on all strings - Au Clair de la Lune                                                                                     21
+    LESSON 5: Right Hand alternating finger technique: imim - triplets - syncopation - 2/4 and 6/8 time: Row, Row, Row Your Boat                            26
+    LESSON 6: REVIEW & CONSOLIDATION - Daily Practice Routine - FINGER DEXTERITY: left & right hand exercises - "Layover" - Hall of the Mountain King       30
+    LESSON 7: This Train is Bound for Glory - Advanced strumming (palm muting; "Boom Chicka"; chord embellishment) - "Three Chords and the Truth"           32
+    LESSON 8: Pay me my money Down - more Boom Chicka                                                                                                       34
+    LESSON 9: An Introduction to Chord Melody - On Top of Old Smokey - 3/4 time - C major scale                                                             35
+    LESSON 10: Ear Training (Twinkle twinkle; Oh Susanna) - Camptown Races chord melody                                                                     38
+    LESSON 11: Bunessan/Morning has Broken (chord melody)                                                                                                   44
+    LESSON 12: Music Theory (Chords and Keys) - Steps & half steps/Tones and semitones - what is a chord? - major and minor chords                          46
+    LESSON 13: The Two Chord to the Three Chord to the Four Chord Trick - ear training - Am, D and Em                                                       50
+    AFTERWORD: review - suggestions for practice                                                                                                            52
+    APPENDIX: I IV V7 CHORDS IN MOST POPULAR KEYS                                                                                                           53
+
+BOOK-2 INTERMEDIATE 67*
+    Contents 73*
+_offset 76
+    INTRODUCTION: Video links                                                                                                                                           1
+        The Cycle of Fifths                                                                                                                                             3
+        The Ukulele Fretboard notes                                                                                                                                     4
+    PART ONE: KEY of F MAJOR
+        LESSON 1: Fand C7 - Clementine chord melody                                                                                                                     6
+        LESSON 2: Ode to Joy chord melody                                                                                                                               9
+        LESSON 3: F Bb C7 - Travis picking - You are my Sunshine                                                                                                        11
+        LESSON 4: Chord melody using Travis picking - You are my Sunshine                                                                                               12
+        LESSON 5: Ear Training - F major scale                                                                                                                          13
+    PART TWO: MAKING CHORD MELODIES (i.e. combining melody and chords)
+        LESSON 6: Happy Birthday                                                                                                                                        16
+        LESSON 7: Making Chord melodies - Auld Lang Syne                                                                                                                17
+        LESSON 8: The Drone - Key of G: chords of G and C and D7 - drone version of Auld Lang Syne                                                                      20
+        LESSON 9: Key of C - Whisky in the Jar drone & fingerpicking                                                                                                    22
+    PART THREE: THE MINOR KEYS (Dm Cm Am); FOLK MUSIC, SPIRITUALS & SEA SHANTIES; IMPROVISING
+        LESSON 10: Music Theory: C major scale and triads - Majors and Relative Minors - The Nashville and Classical Number system - THE CYCLE OF FIFTHS                28
+        LESSON 11: Dm and C - D Dorian mode - Ear Training: improvising using D Dorian mode - Drunken Sailor lead sheet and chord melody                                35
+        LESSON 12: Oh Sinner Man lead sheet & chord melody - Improvising                                                                                                40
+        LESSON 13: Am C F G Dm - Scarborough Fair lead sheet and chord melody - improvising                                                                             42
+        LESSON 14: A7-House of the Rising Sun lead sheet and chord melody - Improvising                                                                                 45
+        LESSON 15: Dm Gm Am (or A7) - Poor Wayfaring Stranger lead sheet and chord melody - improvising D Aeolian scale (aka: D natural minor scale)                    49
+        LESSON 16: Key of Cm: I IV V chords: Cm, Fm and Gm - Haul Away Joe - lead sheet and chord melody - improvising, using C natural minor scale                     53
+        LESSON 17: Key of Am: I IV V chords: Am, Dm, E7: - Playing further up - Joshua fought the battle of Jericho - lead sheet and chord melody - improvising         56
+    PART FOUR: EAR TRAINING
+_offset 74
+        LESSON 18: The Improvising Ear Tool - D major chord and scale at 2"* fret - D mixolydian mode - the ear - finger connection                                     62
+        LESSON 19: Using the D major & D mixolydian for Irish music - 2 Irish tunes: The Star of the County Down and Drowsy Maggie                                      65
+        LESSON 20: The Skye Boat Song - lead sheet and chord melody                                                                                                     69
+    PART FIVE: GEORGE FORMBY, ISRAEL KAMAKAWIWO'OLE & ADVANCED STRUMMING
+        LESSON 21: George Formby The Window Cleaner - The Split Stroke - The Fan Stroke - The Triple                                                                    74
+        LESSON 22: CALYPSO - Israel Kamakawiwo'ole Over the Rainbow/ What a Wonderful World                                                                             76
+        AFTERWORD                                                                                                                                                       77
+
+BOOK-3 THE BLUES 155*
+    Contents 159*
+_offset 160
+    Introduction - what is the blues? Video links                                                                                                                       1
+    Exercises                                                                                                                                                           3
+    Notes on the fretboard                                                                                                                                              5
+    PART ONE: BLUES IN THE KEY OF C                                                                                                                                     7
+        LESSON 1: The 12 Bar Blues Structure - The C Blues Scale - Improvising                                                                                          8
+        LESSON 2: F7 and G7 - The C Blues Scale at the 3"' fret - Improvising                                                                                           10
+        LESSON 3: 2 finger blues in C - mixing chords and melody                                                                                                        12
+        LESSON 4: C7 blues - mixing chords and melody                                                                                                                   13
+        LESSON 5: Major, minor and 7* Blues progressions - Improvising - bends and vibrato                                                                              14
+        LESSON 6: Turnarounds - Improvising                                                                                                                             15
+        LESSON 7: The Blues Shuffle                                                                                                                                     16
+    PART TWO: SIX CLASSIC BLUES SONGS (in Keys C F and A)                                                                                                               19
+        LESSON 8: Sitting on Top of the World (Key C) - the Vamp - the Flamenco strum                                                                                   20
+        LESSON 9: When the Saints Go Marching In (Key C) - improvising - chord melody                                                                                   22
+        LESSON 10: Goin' Down the Road Feelin' Bad (Key F)                                                                                                              26
+        LESSON 11: A Method for Transposing songs to another Key - The Nashville and Classical Number Systems Revisited                                                 27
+        LESSON 12: Goin' Down the Road Feelin' Bad (Key A) chord melody - A Blues Scale - A Major Pentatonic Scale - Improvising in A                                   30
+        LESSON 13: Key to the Highway (Key A) - "licks" mixing major and minor                                                                                          32
+        LESSON 14: Key to the Highway (Key A) two solo arrangements (fingerpicking and chord melody)                                                                    35
+        LESSON 15: Sweet Home Chicago (Key A) - chords, melody and turnarounds in A                                                                                     36
+        LESSON 16: Trouble in Mind (Key A) - chord melody                                                                                                               38
+    PART THREE: CALL AND RESPONSE - Blues in Keys of Gm, C, A                                                                                                           41
+        LESSON 17: Call and Response - Writing a Blues Song - Baby Please Don't Go (Key Gm) - chord melody - G Blues Scale - Improvising                                42
+        LESSON 18: Fingerpicking patterns - syncopation - call and response - The Blues Had a Baby (Key C)                                                              46
+        LESSON 19: You Got to Move (Key Gm) - fingerpicking and "groove" arrangements                                                                                   50
+        LESSON 20: The riff - Little Red Rooster (Key C)                                                                                                                54
+        LESSON 21: I'm So Glad (Key A)                                                                                                                                  57
+    PART FOUR: TWO MORE CLASSIC BLUES IN C and Dm - THE FIVE BLUES SCALE PATTERNS                                                                                       59
+        LESSON 22: Tin Roof Blues (Key C) fingerpicking arrangement, using the "layover"                                                                                60
+        LESSON 23: Saint James Infirmary (Key Dm) - A7#9 chord - chord melody arrangement - D Blues scales                                                              61
+        LESSON 24: Putting it all Together - The Blues Scale (the Five Patterns)                                                                                        64
+    AFTERWORD                                                                                                                                                           66
+    APPENDIX: The Cycle of Fifths Explained                                                                                                                             
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                                                                                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
