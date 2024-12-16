@@ -1,0 +1,5 @@
+#!/bin/bash
+thing="$1"
+if [[ "$thing" != '' ]]; then
+    echo "find . -name '$thing' -print0 | xargs -0 rm -f"
+fi
