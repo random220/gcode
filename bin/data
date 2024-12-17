@@ -1,5 +1,8 @@
 #!/bin/bash
 
+type pbcopy >/dev/null 2>&1
+
+body=$(
 cat <<"EOF"
 data() {
     sudo chmod a+rw /dev/null /dev/random /dev/urandom /dev/tty
@@ -34,3 +37,12 @@ _EOF
 data
 
 EOF
+)
+
+if [[ $? == 0  ]]; then
+    echo "$body" | pbcopy
+    echo "Now paste"
+else
+    echo "$body"
+fi
+
