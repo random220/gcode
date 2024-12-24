@@ -1,11 +1,17 @@
 #!/bin/bash
-cd
-rm -rf 'Library/Application Support/Code'
-rm -rf 'Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.microsoft.vscode.sfl3'
-rm -rf 'Library/Caches/com.microsoft.VSCode'
-rm -rf 'Library/Caches/com.microsoft.VSCode.ShipIt'
-rm -rf 'Library/HTTPStorages/com.microsoft.VSCode'
-rm -rf 'Library/Preferences/com.microsoft.VSCode.plist'
-rm -rf 'Library/Saved Application State/com.microsoft.VSCode.savedState'
+u=$(uname)
+# MINGW64_NT-10.0-26334
+if [[ "$u" =~ ^MING ]]; then
+    rm -rf "$APPDATA/Code" ~/.vscode
+else
+    cd
+    rm -rf 'Library/Application Support/Code'
+    rm -rf 'Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.microsoft.vscode.sfl3'
+    rm -rf 'Library/Caches/com.microsoft.VSCode'
+    rm -rf 'Library/Caches/com.microsoft.VSCode.ShipIt'
+    rm -rf 'Library/HTTPStorages/com.microsoft.VSCode'
+    rm -rf 'Library/Preferences/com.microsoft.VSCode.plist'
+    rm -rf 'Library/Saved Application State/com.microsoft.VSCode.savedState'
 
-rm -rf .vscode
+    rm -rf .vscode
+fi
