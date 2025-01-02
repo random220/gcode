@@ -47,8 +47,45 @@ cat <<'EOF' >.bash_profile
     fi
 EOF
 
-if [[ ! -f ~/.ssh/config ]]; then
-    umask 077
+
+umask 077
+
+if [[ ! -d ~/.ssh ]]; then
     mkdir -p ~/.ssh
-    cp ~/gcode/sundry/.ssh/config ~/.ssh
+fi
+
+if [[ ! -f ~/.ssh/config ]]; then
+    u=$(uname)
+    # MINGW64_NT-10.0-26334
+    # CYGWIN_NT-10.0-26334
+    # Darwin
+    if [[ "$u" =~ ^MINGW64 ]] || [[ "$u" =~ ^CYGWIN ]] ; then
+        cat <<EOF >~/.ssh/config
+StrictHostKeyChecking=no
+CheckHostIP=no
+EscapeChar=~
+UserKnownHostsFile=/dev/null
+LogLevel ERROR
+
+Host me
+    Hostname localhost
+    LocalForward 2222 localhost:22
+    GatewayPorts yes
+
+Host nuc
+    User om
+    HostName 192.168.10.180
+
+Host cron
+    User om
+    HostName 76.236.30.161
+
+Host nas2
+    User om
+    HostName 192.168.10.182
+
+EOF
+    else
+        cp ~/gcode/sundry/.ssh/config ~/.ssh
+    fi
 fi
