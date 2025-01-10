@@ -1,8 +1,13 @@
+Can you fill out the "code here" section below based on the rest of the context ?
+
+---
+
+
 def orgs(inlist):
     """
     Description:
 
-    This function revceives a random list of boss:employee relationships 
+    This function receives a random list of boss:employee relationships 
     and produces each person's full reporting chain in order
 
     Example input:
