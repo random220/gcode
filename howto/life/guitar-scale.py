@@ -16,6 +16,11 @@ s_fender = 25.5
 s = s_lespaul
 n = 17.817154
 
+import sys
+
+if len(sys.argv) == 2:
+    s = float(sys.argv[1])
+
 x = 0
 for i in range(1,25):
     y = (s - x) / n
