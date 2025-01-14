@@ -1,7 +1,7 @@
 #!/bin/bash
 
-remote=cron
 remote=nuc
+remote=cron
 cd ~/.ssh
 rm -f id_ed25519*
 ssh-keygen -t ed25519 -N '' -f id_ed25519
@@ -9,7 +9,8 @@ scp id_ed25519.pub $remote:.ssh/authorized_keys
 scp $remote:.ssh/fash/id_ed25519 id_ed25519.fash
 ip=$(ssh $remote 'cat .ssh/config.d/fash' | grep Hostname|awk '{print $2}')
 echo
-echo 'ssh -i ~/.ssh/id_ed25519.fash -p 2222 -L 3128:localhost:3128 om@localhost'
+echo 'ssh -i ~/.ssh/id_ed25519.fash -p 2222 -L 3129:localhost:3128 om@localhost'
 echo
-ssh -L 3129:$ip:3128 -L 3128:localhost:3128 $remote
+#ssh -L 3129:$ip:3128 -L 3128:localhost:3128 $remote
+ssh -L 3128:localhost:3128 -L 2222:$ip:22 $remote
 
