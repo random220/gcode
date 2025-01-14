@@ -1,0 +1,42 @@
+#!/bin/bash
+
+umask 077
+mkdir -p ~/.ssh/x
+sshconfig_file=~/.ssh/x/config
+sshconfig_text=$(
+cat <<EOF
+StrictHostKeyChecking=no
+CheckHostIP=no
+EscapeChar=~
+UserKnownHostsFile=/dev/null
+LogLevel ERROR
+
+Host x
+    Hostname 172.16.106.132
+    ConnectTimeout=3
+    User om
+    ControlMaster auto
+    ControlPath ~/.ssh/x/ssh_mux_%h_%p_%r
+    ControlPersist yes
+    ServerAliveInterval 180
+
+EOF
+)
+
+f=$(ls -1 ~/.ssh/x/ssh_mux* 2>/dev/null)
+
+if [[ "$f" == '' ]]; then
+    echo "$sshconfig_text" > $sshconfig_file
+fi
+
+ssh="ssh -F $sshconfig_file"
+scp="scp -F $sshconfig_file"
+h=$($ssh x hostname)
+if [[ "$h" != 'rk9' ]]; then
+    echo 'could not log in'
+    exit 1
+fi
+
+$ssh -t x vmount
+$scp x:b/om/p/CRUZER/gitted/sandbox/tiddly.html .
+
