@@ -8,6 +8,15 @@ can:
 Subtract the distance from the nut to the first fret from the scale length
 Divide that number by 17.817
 Add the result to the distance from the nut to the first fret
+
+
+Logic:
+    In 12 equal steps the frequency doubles
+    Each step multiplies the frequecyc by 2^(1/12) = 1.059...
+    That means each step reduces the vibrating length by that factor 1/(2^(1/12))
+    So, leftover is 1 - 1/(2^(1/12))
+    Which means division by 1 / ( 1 - 1/(2^(1/12)) ) = 17.817153745105742
+
 """
 
 s_lespaul = 24.75
