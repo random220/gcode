@@ -42,6 +42,8 @@ Host nucback
     GatewayPorts true
     LocalForward 3128 localhost:3128
     LocalForward 2222 $faship:22
+    LocalForward 2282 192.168.10.182:22
+    LocalForward 2280 192.168.10.180:22
     RequestTTY no
     RemoteCommand cat
 
