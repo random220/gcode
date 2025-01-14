@@ -1,16 +1,61 @@
 #!/bin/bash
 
-remote=nuc
-remote=cron
-cd ~/.ssh
-rm -f id_ed25519*
-ssh-keygen -t ed25519 -N '' -f id_ed25519
-scp id_ed25519.pub $remote:.ssh/authorized_keys
-scp $remote:.ssh/fash/id_ed25519 id_ed25519.fash
-ip=$(ssh $remote 'cat .ssh/config.d/fash' | grep Hostname|awk '{print $2}')
-echo
-echo 'ssh -i ~/.ssh/id_ed25519.fash -p 2222 -L 3129:localhost:3128 om@localhost'
-echo
-#ssh -L 3129:$ip:3128 -L 3128:localhost:3128 $remote
-ssh -L 3128:localhost:3128 -L 2222:$ip:22 $remote
+nucip='76.236.30.161'
+if [[ "$1" == 'nuc' ]]; then
+    nucip='192.168.10.180'
+fi
+
+
+umask 077
+rm -rf ~/.ssh/x
+mkdir -p ~/.ssh/x
+ssh-keygen -t ed25519 -N '' -f ~/.ssh/x/id_ed25519
+
+cat <<EOF >~/.ssh/x/config
+StrictHostKeyChecking=no
+CheckHostIP=no
+EscapeChar=~
+UserKnownHostsFile=/dev/null
+LogLevel ERROR
+
+Host nuc
+    User om
+    HostName $nucip
+    IdentityFile ~/.ssh/x/id_ed25519
+    GatewayPorts true
+    LocalForward 3128 localhost:3128
+
+EOF
+
+ssh='ssh -F ~/.ssh/x/config'
+scp='scp -F ~/.ssh/x/config'
+$scp id_ed25519.pub nuc:.ssh/authorized_keys
+$scp nuc:.ssh/fash/id_ed25519 ~/.ssh/x/id_ed25519.fash
+faship=$($ssh $remote 'cat .ssh/config.d/fash' | grep Hostname|awk '{print $2}')
+
+cat <<EOF >>~/.ssh/x/config
+
+Host nucback
+    User om
+    HostName $nucip
+    IdentityFile ~/.ssh/x/id_ed25519
+    GatewayPorts true
+    LocalForward 3128 localhost:3128
+    LocalForward 2222 $faship:22
+    RequestTTY no
+    RemoteCommand cat
+
+Host fashback
+    User om
+    HostName localhost
+    IdentityFile ~/.ssh/x/id_ed25519.fash
+    Port 2222
+    GatewayPorts true
+    LocalForward 3129 localhost:3128
+    RequestTTY no
+    RemoteCommand cat
+EOF
+
+$ssh nucback
+$ssh fashback
 
