@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 nucip='76.236.30.161'
 if [[ "$1" == 'nuc' ]]; then
     nucip='192.168.10.180'
@@ -27,11 +29,11 @@ Host nuc
 
 EOF
 
-ssh='ssh -F ~/.ssh/x/config'
-scp='scp -F ~/.ssh/x/config'
-$scp id_ed25519.pub nuc:.ssh/authorized_keys
+ssh='ssh -F '$HOME/.ssh/x/config
+scp='scp -F '$HOME/.ssh/x/config
+$scp $HOME/.ssh/x/id_ed25519.pub nuc:.ssh/authorized_keys
 $scp nuc:.ssh/fash/id_ed25519 ~/.ssh/x/id_ed25519.fash
-faship=$($ssh $remote 'cat .ssh/config.d/fash' | grep Hostname|awk '{print $2}')
+faship=$($ssh nuc 'cat .ssh/config.d/fash' | grep Hostname|awk '{print $2}')
 
 cat <<EOF >>~/.ssh/x/config
 
@@ -56,6 +58,6 @@ Host fashback
     RemoteCommand cat
 EOF
 
-$ssh nucback
-$ssh fashback
+$ssh nucback >/dev/null 2>&1 &
+$ssh fashback >/dev/null 2>&1 &
 
