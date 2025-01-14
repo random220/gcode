@@ -11,5 +11,5 @@ ip=$(ssh $remote 'cat .ssh/config.d/fash' | grep Hostname|awk '{print $2}')
 echo
 echo 'ssh -i ~/.ssh/id_ed25519.fash -p 2222 -L 3128:localhost:3128 om@localhost'
 echo
-ssh -L 2222:$ip:22 $remote
+ssh -L 3129:$ip:3128 -L 3128:localhost:3128 $remote
 
