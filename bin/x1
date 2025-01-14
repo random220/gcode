@@ -2,10 +2,8 @@
 
 set -x
 
-nucip='76.236.30.161'
-if [[ "$1" == 'nuc' ]]; then
-    nucip='192.168.10.180'
-fi
+nucip='192.168.10.180'
+ping -n 1 $nucip >/dev/null 2>&1 || nucip='76.236.30.161'
 
 
 umask 077
