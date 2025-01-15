@@ -2,34 +2,41 @@
 
 set -x
 
-nucip='192.168.10.180'
-ping -n 1 $nucip >/dev/null 2>&1 || nucip='76.236.30.161'
 
 
 umask 077
 rm -rf ~/.ssh/x
 mkdir -p ~/.ssh/x
 ssh-keygen -t ed25519 -N '' -f ~/.ssh/x/id_ed25519
+ssh='ssh -F '$HOME/.ssh/x/config
+scp='scp -F '$HOME/.ssh/x/config
 
-cat <<EOF >~/.ssh/x/config
+establish_ssh() {
+    nucip="$1"
+    nucport="$2"
+    cat <<EOF >~/.ssh/x/config
 StrictHostKeyChecking=no
 CheckHostIP=no
 EscapeChar=~
 UserKnownHostsFile=/dev/null
 LogLevel ERROR
+ConnectTimeout 3
 
 Host nuc
     User om
     HostName $nucip
+    Port $nucport
     IdentityFile ~/.ssh/x/id_ed25519
     GatewayPorts true
     LocalForward 3128 localhost:3128
 
 EOF
 
-ssh='ssh -F '$HOME/.ssh/x/config
-scp='scp -F '$HOME/.ssh/x/config
-$scp $HOME/.ssh/x/id_ed25519.pub nuc:.ssh/authorized_keys
+    $scp $HOME/.ssh/x/id_ed25519.pub nuc:.ssh/authorized_keys || return 1
+    return 0
+}
+
+establish_ssh '192.168.10.180' 22 || establish_ssh '76.236.30.161' 2222 || exit 1
 $scp nuc:.ssh/fash/id_ed25519 ~/.ssh/x/id_ed25519.fash
 faship=$($ssh nuc 'cat .ssh/config.d/fash' | grep Hostname|awk '{print $2}')
 
@@ -38,6 +45,7 @@ cat <<EOF >>~/.ssh/x/config
 Host nucback
     User om
     HostName $nucip
+    Port $nucport
     IdentityFile ~/.ssh/x/id_ed25519
     GatewayPorts true
     LocalForward 3128 localhost:3128
