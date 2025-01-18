@@ -5,6 +5,7 @@ RUN dnf update -y && \
         procps-ng tmux git curl wget rsync vim diffutils iproute iputils nmap-ncat && \
     dnf install -y openssh-clients && \
     dnf install -y openssh-server && \
+    dnf install -y ansible-core && \
     ssh-keygen -A && \
     dnf install -y epel-release && \
     dnf install -y zip unzip && \
