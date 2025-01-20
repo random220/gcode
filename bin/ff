@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://browserleaks.com/
+
 proxytype=static
 proxyport=3128
 if [[ "$1" != '' ]]; then
@@ -46,6 +48,7 @@ user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.warnOnQuitShortcut", false);
 user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.startup.homepage", "https://www.showmyip.com/");
+user_pref("media.peerconnection.ice.proxy_only", true);
 EOF
   if [[ $proxytype == 'static' ]]; then
     cat <<'EOF' | sed "s/_proxyport_/$proxyport/g"  >>"$ddir/prefs.js"
