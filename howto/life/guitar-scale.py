@@ -22,8 +22,9 @@ Logic:
 s_lespaul = 24.75
 s_fender = 25.5
 
-s = s_lespaul
-n = 17.817154
+s = s_fender
+print(f'Scale : {s}')
+n = 17.817153745105742
 
 import sys
 
