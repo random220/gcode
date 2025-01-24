@@ -1,6 +1,20 @@
 #!/bin/bash
+set -x
+docker desktop status >/dev/null 2>&1 || docker desktop start
+docker desktop status >/dev/null 2>&1 || exit 1
+s=$(docker ps -a --format json | jq -r 'select(.Names == "logseq") | .State')
+if [[ "$s" == 'running' ]]; then
+    :
+elif [[ "$s" == 'exited' ]]; then
+    docker rm -f logseq
+    docker run --name logseq -h logseq -d -p 127.0.0.1:3001:80 -p 127.0.0.1:3003:80 ghcr.io/logseq/logseq-webapp:latest
+elif [[ "$s" == '' ]]; then
+    docker run --name logseq -h logseq -d -p 127.0.0.1:3001:80 -p 127.0.0.1:3003:80 ghcr.io/logseq/logseq-webapp:latest
+fi
 
-echo docker pull ghcr.io/logseq/logseq-webapp:latest
-docker stop logseq
-docker run --name logseq -h logseq -d --rm -p 127.0.0.1:3001:80 ghcr.io/logseq/logseq-webapp:latest
-open -na "Microsoft Edge" --args --user-data-dir=$HOME/b/om/LOGSEQG-browser http://localhost:3001
+s=$(docker ps -a --format json | jq -r 'select(.Names == "logseq") | .State')
+if [[ "$s" != 'running' ]]; then
+    echo 'Error: Could not start logseq'
+else
+    open -na "Microsoft Edge" --args --user-data-dir=$HOME/b/om/LOGSEQ-gbrowser http://localhost:3003
+fi
