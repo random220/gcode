@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $(uname) == 'Darwin' ]]; then
+    docker desktop status >/dev/null 2>&1 || docker desktop start
+    docker desktop status >/dev/null 2>&1 || exit 1
+fi
+
 runit() {
     if [[ "$1" == '' ]] || [[ "$1" == '0'  ]] ; then
         docker exec -it -u om -w /home/om rl bash
@@ -18,6 +23,7 @@ fi
 docker inspect rl > /dev/null 2>&1
 
 if [ $? -eq 0 ]; then
+    docker start rl
     runit "$@"
     exit 0
 fi
