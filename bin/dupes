@@ -6,7 +6,7 @@ import json
 import re
 
 if len(sys.argv) == 1:
-    print(sys.argv[0]+'nas2:data/a/b/c')
+    print(sys.argv[0]+' nas2:data/a/b/c')
     sys.exit(1)
 
 cmd = ['rsync', '-a', '--delete', sys.argv[1]]
