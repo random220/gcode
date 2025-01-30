@@ -1,0 +1,5 @@
+Control Panel -> Programs -> Programs and Features
+    -> Turn Windows features on or off -> Windows Subsystem for Linux
+
+wsl --set-default-version 1
+wsl --install
