@@ -1,15 +1,31 @@
 #!/bin/bash
 
-cat <<'EOF'
-ssh cron
-vmount
-tiddlyfile=$HOME/b/om/p/CRUZER/gitted/sandbox/tiddly.html
+if [[ ! -f tiddly.html ]]; then
+    echo 'tiddly.html not found here'
+    exit 1
+fi
+
+if [[ ! -f ~/b/om/tiddly.html.git.tar.gpg ]]; then
+    echo '~/b/om/tiddly.html.git.tar.gpg not found'
+    exit 1
+fi
+
 rm -rf _x
-genc -t _x -e "$tiddlyfile"
-vumount
+genc -t _x -d ~/b/om/tiddly.html.git.tar.gpg
+cd _x
+tar xf ti*
+rm ti*
+git reset --hard
+cp -f ../tiddly.html .
+git add .
+git commit -m "$(date)"
+git gc --prune=now
+genc -t _x .git
+mv _x/.git.tar.gpg _x/tiddly.html.git.tar.gpg
+cd ..
+echo '=================================================='
+find ./tiddly.html _x/_x
+echo '=================================================='
+echo 'rm -f ./tiddly.html'
+echo 'mv _x/_x/tiddly.html.git.tar.gpg ~/b/om/tiddly.html.git.tar.gpg'
 
-----------------
-
-cd ~/b/om
-scp cron:_x/tiddly.html.gpg .
-EOF
