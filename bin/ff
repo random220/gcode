@@ -43,11 +43,14 @@ mkdir -p $ddir
 
 if [[ ! -f "$ddir/prefs.js" ]]; then
   cat <<'EOF' | sed "s/_proxyport_/$proxyport/g"  >"$ddir/prefs.js"
+user_pref("datareporting.policy.dataSubmissionPolicyAcceptedVersion", 2);
+user_pref("datareporting.policy.dataSubmissionPolicyNotifiedTime", "1738258034678");
+user_pref("browser.startup.homepage_override.mstone", "134.0.2");
 user_pref("layout.css.prefers-color-scheme.content-override", 0);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.warnOnQuitShortcut", false);
 user_pref("browser.download.useDownloadDir", false);
-user_pref("browser.startup.homepage", "https://www.showmyip.com/");
+user_pref("browser.startup.homepage", "https://browserleaks.com/dns");
 user_pref("media.peerconnection.ice.proxy_only", true);
 EOF
   if [[ $proxytype == 'static' ]]; then
