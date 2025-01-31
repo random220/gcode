@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ssh -t -t nuc vmount
+ssh nuc "bash -c 'cat b/om/p/CRUZER/gitted/sandbox/tiddly.html | gzip -9 >tiddly.html.gz'"
+ssh -t -t nuc vumount
+
+scp nuc:tiddly.html.gz .
+ssh nuc "bash -c 'rm -f tiddly.html.gz'"
+
+gunzip tiddly.html.gz
