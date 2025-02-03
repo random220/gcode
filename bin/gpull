@@ -50,9 +50,7 @@ gunzip "$d/gp.sh.gz"
 if [[ "$1" == '-p' ]]; then
     cat "$d/gp.sh"
 else
-    ls -ld "$d/gp.sh"
-    cd "$d"
-    bash gp.sh
+    /bin/bash "$d/gp.sh"
 fi
 cd
 rm -rf "$d"
