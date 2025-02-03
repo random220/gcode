@@ -49,6 +49,6 @@ rm -rf "$d"
 if [[ "$1" == '-p' ]]; then
     echo "$bash"
 else
-    bash <(echo "$bash") "$@"
+    /bin/bash <(echo "$bash") "$@"
 fi
 
