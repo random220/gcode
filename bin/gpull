@@ -17,26 +17,26 @@ d=$(mktemp -d)
 #openssl enc -in gp.sh.gz -out gp.sh.gz.enc.b64 -base64 -aes256 -iter 12 >/dev/null 2>&1
 
 cat <<'EOF' >"$d/gp.sh.gz.enc.b64"
-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
+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
 EOF
 
 openssl enc -d -in "$d/gp.sh.gz.enc.b64" -out "$d/gp.sh.gz" -base64 -aes256 -iter 12 >/dev/null 2>&1
@@ -46,12 +46,13 @@ if [[ $? != 0 ]]; then
 fi
 
 gunzip "$d/gp.sh.gz"
-bash=$(cat "$d/gp.sh")
-rm -rf "$d"
 
 if [[ "$1" == '-p' ]]; then
-    echo "$bash"
+    cat "$d/gp.sh"
 else
-    bash <(echo "$bash") "$@"
+    ls -ld "$d/gp.sh"
+    cd "$d"
+    bash gp.sh
 fi
-
+cd
+rm -rf "$d"
