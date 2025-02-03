@@ -13,37 +13,40 @@ umask 077
 echo
 
 d=$(mktemp -d)
-cat <<'EOF' >"$d/a.txt"
-U2FsdGVkX1+13sVIWhzc2wXC0fUkyiIM3YTYYtVy3PvzltZQpP0Oc7/CuWUZ0QDf
-1aXR7YEzviM81HsGQIaixmeFsz6weXGePqarlKkD7h4ti0lms2CeiIB5rxdaF1aS
-7aHcb5ie3VQnxxu+jci63Xrkhc5lNNeqRInkIgWQ9ggzjlWSrsvvNzXrtEwIdqpk
-dJA7fpMMsYaUGU+E873oHflFCUsQ4vSL3RWffYSEzdKlBceEqa4KoXjSEW3UeiDc
-/UoOaxQMXViXhjw3N+h9nodRNCkp7j+OzjS999OVr3De8qGKBGIk99AaEJIkKyrt
-Ngzj3giyGzULeKksYAxfMi8NYSWfkBB7v8DKNiDNIiG+BC4m5SuJWO1nxgLACpgy
-WeHF4Xtlg629Lwr/DoqGfpbCNcJchRT6SxDI5Uurke1LMjrolacRUglnRxI6CijI
-TLVlxlTfADp+79knxE3qAyoNTaPA6AdUFQQ6StauIez3CL0fKN2HY6SvYh1IL9+7
-yampMhkNhTJwjEl7nuklapFXFnHwvGLYk70CgSaQGwKFh4K/7I9+PDKYYT/29MGV
-GwwEAKhNaWWf2U/7idbSrlCW4gztbfse4YDlxqPJ9xnomkzim2IzWrKTWgbnUu6C
-GkoPJj5GwlM+rDpKruDzOcSjo1ecmf7cC+3uOmAS4TGpaXKVNHB6TPiBEMgQCEWK
-2hlddOWPp1pQz9vC1JK4smYN9gfgvD5JF5lJRRCrGNUqXmD2x3oHUm8HrocdeIEQ
-HqQR8K8GkB6HpE7a/SKPEO7S+yHnchfTjX3P7+rTIma/4tSyPweLuZe8Z2upQ7KO
-1U3j/j927/v2XH/57TsKf9p+wo4sKSC2LmXEG0PDhZfO2VJYtJAsOWY/woWORAJ0
-84ZL5x/e+DGhWUvNmKZB/lPAN2Ia+DamDovcblFaSmf7SbcgxWrXyZF8kO5PKeXr
-7Iyqt3vizvoOOvTSXOcjBdwVxG55+gWm6e5EN10TLeRZZKzdjL+RLVkj8MqMnIZd
-l+uBBPmPj8fdi+T2LhAkzLKJWSycO0cizJPZwTVffIpU5+Vp2Lyhj9ePxAdTVF5s
-RdZV5cQBQSQYA3VsEsHU5WdkcU5Z0kaVZnA0BEw/azOZELzSGVqSlCBS0cVpCA7G
-Tf6aTaeDmNMCg24YhL6cJwcgz4mG0OuyiBLFYgK7H+IjKDGLxs0LCBLM8VsEWX2j
-KMcyzIXfm+2dE0aCBuK3wBpmX79WyjOYAWFPGuWBWzo=
+#gzip -9 <gp.sh >gp.sh.gz
+#openssl enc -in gp.sh.gz -out gp.sh.gz.enc.b64 -base64 -aes256 -iter 12 >/dev/null 2>&1
+
+cat <<'EOF' >"$d/gp.sh.gz.enc.b64"
+U2FsdGVkX18JHJX5wz08rUNWNJRc66tSi/1P0lwaMyDN4+33fob/AK/eDVOm+B6R
+ybPgZRiRegRw647hT3QxG36W/esguDJoN8UCR3kzj+sReVjOLut6givLGye1riSX
+Gh+E6Ep4SwHUuub3vnkLSMh+rz4g6NWS7DKS8KTcsVOAhfEBiGpApHI8sKVSIfeS
+N5YryqXNuWoEO1a+bPjMSPbyJDYAtg36+WNUd1xrKdzHg4fiJ+bRqNgwQd6s7XZT
+aURlxa+3Zs2tWs31xWJ9gWqh7pFz7qBrgyyVducAfnrYYhQJZdXA3iukRC4xLBq5
+TfEGAc1SGneR5upTNHCI7YtZKWniIGHcoKoNafP5UXv+eN/hUWpFHtLQeT2LqHxS
+Urja1XwsNJYZTW0yNLuVTq5KaQcU9TrkJk/p5ilMIMmDUYcAAsyMCUETr0tASlxo
+bRhzcJDH71Y2Su4L4Ibs4Igm5AYrJfMfhI4hmk3RcWMyPGuqAJ+KPpnhbcGUqUlv
+vMV0KYefEXSTX4vIL87o8Nmt3LdVEQZk7CDYBWqbYwjBePsFwD7emsKbtSduy+JJ
+Kn2vSQgr1OpttlJ8BylcOMcNybgx0inbF8vgwDcMkZAamoGXcODQsy0eisRz58on
+j6hAt2fkgMlHcfJ6zEXcZIaiPlTDBvi6h8J9GcNK7C2RFTJ8Kd+4Gbku40302lzS
+Q6pjadrt5XbjuZ8dLFgEDTo64HHOHrbANIpXkXKEaQ6Va7xAbxtPtyfY8Ak3dBdR
+2n0+DGj9wEN4YiWqYnJzitri0HdESIPQCbLHkUY8RIcSn3oxqrGRRTQ4vA+SlEz6
+HaLRJB1nXtoVTsHL8yWgx6ylrV6TrY/gigpE/QGc0D5tzSu4+WYvXeZMifQoEvqh
+FAVhyP4yYu7o/9ZkhbWcb9x95C9pLe+OnlPx/k34n4iqAFoN8T/etapGobZP5MKq
+Mupx90snRHEg8Ch6gVTVwApyH38q8vD4k7t3Fc+9GPx2Rb6Scx75herzjleus0/t
+Cgtkib1KV1p3ZRJJNTmR9vCtUIQ02KxwzVsahLS9P3AGu7gfhOgXxUi55+1RdlP/
+JW5/QCHBIULyV0CbXTI4u9lsm2ELnQUfEtIIbC1ucEtgMPSeV1rCUB1gDG2Zuayu
+rAboabsUMtFlcgE8s6BemPkfe7w10KT36umzznLxzlX1CGA6DZ64CfvHDytxmQLu
+VNJDAn9feLQObp/wrN0rDV67UjpSG1YXa4yaeaoTJPGhdj7TmOlH3l1s/jkMqHgY
 EOF
 
-openssl enc -d -in "$d/a.txt" -out "$d/b.ash.gz" -base64 -aes256 -iter 12 >/dev/null 2>&1
+openssl enc -d -in "$d/gp.sh.gz.enc.b64" -out "$d/gp.sh.gz" -base64 -aes256 -iter 12 >/dev/null 2>&1
 if [[ $? != 0 ]]; then
     rm -rf "$d"
     exit 1
 fi
 
-gunzip "$d/b.ash.gz"
-bash=$(cat "$d/b.ash")
+gunzip "$d/gp.sh.gz"
+bash=$(cat "$d/gp.sh")
 rm -rf "$d"
 
 if [[ "$1" == '-p' ]]; then
