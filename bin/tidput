@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ ! -f tiddly.html ]]; then
+    echo no tiddly.html here
+    exit 1
+fi
+gzip tiddly.html
+scp tiddly.html.gz nuc:.
+ssh nuc 'gunzip tiddly.html.gz'
+ssh -t -t nuc vmount
+ssh -t -t nuc ttc
+ssh -t -t nuc vumount
+
+echo '# do this'
+echo 'rm tiddly.html.gz'
