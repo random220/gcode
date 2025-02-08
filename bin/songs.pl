@@ -1,10 +1,12 @@
+$n = 0;
 while ($l = <DATA>) {
     chomp $l;
     #$l =~ m{^(.+?)[\s\-]+(\d+)\:(\d+)$};
     ($h, $m, $s, $title) = $l =~ m{^(\d+)\:(\d+)\:(\d+)\s+(.+)$};
     $x = $h * 60 * 60 + 60 * $m + $s;
     $x = $x.'.00000';
-    print "$x\t$x\t$title\n";
+    $n++;
+    print "$x\t$x\t$n - $title\n";
 }
 __DATA__
 00:00:06 O Mere Dil Ke Chain - Kishore Kumar - R.D. Burman - Majrooh Sultanpuri
