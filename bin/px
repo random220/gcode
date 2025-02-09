@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 
 
 umask 077
@@ -10,6 +8,8 @@ mkdir -p ~/.ssh/x
 ssh-keygen -t ed25519 -N '' -f ~/.ssh/x/id_ed25519
 ssh='ssh -F '$HOME/.ssh/x/config
 scp='scp -F '$HOME/.ssh/x/config
+nucip=''
+nucport=''
 
 establish_ssh() {
     nucip="$1"
@@ -36,7 +36,11 @@ EOF
     return 0
 }
 
-establish_ssh '192.168.10.180' 22 || establish_ssh '76.236.30.161' 2222 || exit 1
+establish_ssh '192.168.10.180' 22 \
+|| establish_ssh '76.236.30.161' 22 \
+|| establish_ssh '76.236.30.161' 2222 \
+|| exit 1
+
 $scp nuc:.ssh/fash/id_ed25519 ~/.ssh/x/id_ed25519.fash
 faship=$($ssh nuc 'cat .ssh/config.d/fash' | grep Hostname|awk '{print $2}')
 
@@ -66,6 +70,18 @@ Host fashback
     RemoteCommand cat
 EOF
 
-$ssh nucback >/dev/null 2>&1 &
-$ssh fashback >/dev/null 2>&1 &
+echo "$ssh nucback"
+echo "$ssh fashback"
+echo
 
+rm -rf /mnt/c/prx
+mkdir /mnt/c/prx
+cp \
+~/gcode/bin/prox-3128.bat \
+~/gcode/bin/prox-3129.bat \
+~/gcode/bin/prox-none.bat \
+/mnt/c/prx
+
+echo c:\\prx\\prox-3128.bat
+echo c:\\prx\\prox-3129.bat
+echo c:\\prx\\prox-none.bat
