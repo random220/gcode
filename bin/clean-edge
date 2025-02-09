@@ -1,7 +1,9 @@
 #!/bin/bash
 
-cd ~/
-rm -rf \
+u=$(uname)
+if [[ $u == Darwin ]]; then
+    cd ~/
+    rm -rf \
 'Library/Application Support/Microsoft Edge' \
 'Library/Application Scripts/com.microsoft.edgemac.wdgExtension' \
 'Library/Caches/Microsoft Edge' \
@@ -14,3 +16,8 @@ rm -rf \
 'Library/HTTPStorages/com.microsoft.edgemac' \
 'Library/HTTPStorages/msedge_crashpad_handler' \
 'Library/WebKit/com.microsoft.edgemac' \
+
+else
+    echo "Nothing to do for OS $u"
+fi
+
