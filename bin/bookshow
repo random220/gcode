@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd ~/b/om/raw/Books
+pyweb 9090
+
