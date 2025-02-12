@@ -9,20 +9,13 @@ if [[ "$(basename "$0")" == nochime ]] ; then
     exit 0
 fi
 
-soundpre=/System/Library/Sounds/Sosumi.aiff
-sound00=/System/Library/Sounds/Glass.aiff
-sound15=/System/Library/Sounds/Ping.aiff
-sound30=/System/Library/Sounds/Hero.aiff
-sound45=/System/Library/Sounds/Blow.aiff
 (
 while true; do
     min=$(date +%M)
-    case $min in
-      "00" | "15" | "30" | "45" )
-        afplay $soundpre
-        afplay $(eval echo \$sound$min)
-        ;;
-    esac
+    soundfile=~/gcode/bin/chimes/$min.m4a
+    if [[ -f $soundfile ]]; then
+        afplay $soundfile
+    fi
     sleep 60
 done
 ) >/dev/null 2>&1 &
