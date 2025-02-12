@@ -9,6 +9,7 @@ if [[ "$(basename "$0")" == nochime ]] ; then
     exit 0
 fi
 
+soundpre=/System/Library/Sounds/Sosumi.aiff
 sound00=/System/Library/Sounds/Glass.aiff
 sound15=/System/Library/Sounds/Ping.aiff
 sound30=/System/Library/Sounds/Hero.aiff
@@ -16,15 +17,13 @@ sound45=/System/Library/Sounds/Blow.aiff
 (
 while true; do
     min=$(date +%M)
-    if [[ $min == '00' ]]; then
-        afplay $sound00
-    elif [[ $min == '15' ]]; then
-        afplay $sound15
-    elif [[ $min == '30' ]]; then
-        afplay $sound30
-    elif [[ $min == '45' ]]; then
-        afplay $sound45
-    fi
+    case $min in
+      "00" | "15" | "30" | "45" )
+        afplay $soundpre
+        afplay $(eval echo \$sound$min)
+        ;;
+    esac
     sleep 60
 done
 ) >/dev/null 2>&1 &
+
