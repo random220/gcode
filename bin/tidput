@@ -1,15 +1,53 @@
 #!/bin/bash
 
-if [[ ! -f tiddly.html ]]; then
-    echo no tiddly.html here
+if [[ ! -e ./tiddly.html ]]; then
+    echo ./tiddly.html not found
     exit 1
 fi
+
+umask 077
+rm -rf ~/.ssh/x
+mkdir -p ~/.ssh/x
+ssh-keygen -t ed25519 -N '' -f ~/.ssh/x/id_ed25519
+ssh='ssh -F '$HOME/.ssh/x/config
+scp='scp -F '$HOME/.ssh/x/config
+nucip=''
+nucport=''
+
+establish_ssh() {
+    nucip="$1"
+    nucport="$2"
+    cat <<EOF >~/.ssh/x/config
+StrictHostKeyChecking=no
+CheckHostIP=no
+EscapeChar=~
+UserKnownHostsFile=/dev/null
+LogLevel ERROR
+ConnectTimeout 3
+
+Host nuc
+    User om
+    HostName $nucip
+    Port $nucport
+    IdentityFile ~/.ssh/x/id_ed25519
+
+EOF
+
+    $scp $HOME/.ssh/x/id_ed25519.pub nuc:.ssh/authorized_keys || return 1
+    return 0
+}
+
+establish_ssh '192.168.10.180' 22 \
+|| establish_ssh '76.236.30.161' 22 \
+|| establish_ssh '76.236.30.161' 2222 \
+|| exit 1
+
 gzip tiddly.html
-scp tiddly.html.gz nuc:.
-ssh nuc 'gunzip tiddly.html.gz'
-ssh -t -t nuc vmount
-ssh -t -t nuc ttc
-ssh -t -t nuc vumount
+$scp tiddly.html.gz nuc:.
+$ssh nuc 'gunzip tiddly.html.gz'
+$ssh -t -t nuc vmount
+$ssh -t -t nuc ttc
+$ssh -t -t nuc vumount
 
 echo '# do this'
 echo 'rm tiddly.html.gz'
