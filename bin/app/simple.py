@@ -1,9 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import http.server
 import socketserver
 import os
 import io  # Add this import
+
+print('/?authuser=0\n\n')
 
 PORT = 8001
 UPLOAD_FOLDER = 'uploads'
