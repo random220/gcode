@@ -51,27 +51,35 @@ Host nucback
     HostName $nucip
     Port $nucport
     IdentityFile ~/.ssh/x/id_ed25519
+    ControlPath  ~/.ssh/x/ctrl-nucback-%l-to-%h
+    ControlMaster auto
+    ControlPersist 10m
+    ServerAliveInterval 180
     GatewayPorts true
     LocalForward 3128 localhost:3128
     LocalForward 2222 $faship:22
     LocalForward 2282 192.168.10.182:22
     LocalForward 2280 192.168.10.180:22
     RequestTTY no
-    RemoteCommand cat
+    #RemoteCommand cat
 
 Host fashback
     User om
     HostName localhost
     IdentityFile ~/.ssh/x/id_ed25519.fash
     Port 2222
+    ControlPath  ~/.ssh/x/ctrl-fashback-%l-to-%h
+    ControlMaster auto
+    ControlPersist 10m
+    ServerAliveInterval 180
     GatewayPorts true
     LocalForward 3129 localhost:3128
     RequestTTY no
-    RemoteCommand cat
+    #RemoteCommand cat
 EOF
 
-echo "$ssh nucback"
-echo "$ssh fashback"
+echo "$ssh nucback echo hi"
+echo "$ssh fashback echo hi"
 echo
 
 rm -rf /mnt/c/prx
