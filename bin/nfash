@@ -12,11 +12,24 @@ export SSH_ASKPASS=~/gcode/bin/ssh-askpass
 export SSH_ASKPASS_REQUIRE=force
 
 function main() {
-    ssh_config_nuc '76.236.30.161:2222' || ssh_config_nuc '192.168.10.180:22' || exit 1
+    false \
+    || ssh_config_nuc '76.236.30.161:2222' \
+    || ssh_config_nuc '76.236.30.161:22' \
+    || ssh_config_nuc '192.168.10.180:22' \
+    || exit 1
     ssh_config_nfash
+    cp_proxbats_to_desktop
     scp -F ~/.ssh/nfash/config nuc:.ssh/fash/id'*' ~/.ssh/nfash
     ssh -F ~/.ssh/nfash/config nfash
+    rm -f ~/Desktop/prox*.bat
     ssh -F ~/.ssh/nfash/config -O exit nuc
+}
+
+function cp_proxbats_to_desktop () {
+    uname -a|egrep '^Linux .*Microsoft' >/dev/null
+    if [[ $? == 0 ]]; then
+        cp -f ~/gcode/bin/prox*.bat ~/Desktop
+    fi
 }
 
 function ssh_config_nuc() {
