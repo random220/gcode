@@ -9,20 +9,18 @@ if [[ "$(basename "$0")" == nochime ]] ; then
     exit 0
 fi
 
-firsttime=1
+played=''
 (
 while true; do
     min=$(date +%M)
     soundfile=~/gcode/bin/chimes/$min.m4a
     if [[ -f $soundfile ]]; then
-        afplay $soundfile
-        firsttime=0
+        if [[ $played != $min ]]; then
+            afplay $soundfile
+            played=$min
+        fi
     fi
-    if [[ $firsttime == 1 ]]; then
-        sleep 5
-    else
-        sleep 60
-    fi
+    sleep 5
 done
 ) >/dev/null 2>&1 &
 
