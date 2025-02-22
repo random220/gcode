@@ -7,12 +7,55 @@ vmip=''
 main() {
     if [[ $myname == books ]]; then
         vmstart
-        echo "ssh -t -t -L $PORT:localhost:$PORT om@$vmip 'pyweb $PORT'"
+        show_ssh_code
         exit 0
     elif [[ $myname == bookend ]]; then
         vmstop
     fi
 }
+
+show_ssh_code() {
+cat <<__EOF__
+
+
+# ======================================================
+
+doit() {
+
+umask 077
+rm -rf ~/.ssh/books
+mkdir -p ~/.ssh/books
+
+cat <<EOF >~/.ssh/books/config
+StrictHostKeyChecking=no
+CheckHostIP=no
+EscapeChar=~
+UserKnownHostsFile=/dev/null
+LogLevel ERROR
+
+Host books
+    User om
+    HostName $vmip
+    Port 22
+    ControlPath ~/.ssh/books/ctrl-%l-to-%h
+    ControlMaster auto
+    ControlPersist 10m
+    ServerAliveInterval 180
+    LocalForward $PORT localhost:$PORT
+EOF
+
+ssh -t -t -F ~/.ssh/books/config books "pyweb $PORT"
+}
+
+doit
+
+# ======================================================
+
+
+
+__EOF__
+}
+
 
 vmstart() {
     vmrun start /Users/omandal/b/VMs/rk-books.vmwarevm/rk-books.vmx
@@ -34,3 +77,4 @@ vmstop() {
 }
 
 main
+
