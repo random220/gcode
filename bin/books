@@ -1,0 +1,36 @@
+#!/bin/bash
+myname=$(basename "$0")
+vmx=/Users/omandal/b/VMs/rk-books.vmwarevm/rk-books.vmx
+PORT=8080
+
+vmip=''
+main() {
+    if [[ $myname == books ]]; then
+        vmstart
+        echo "ssh -t -t -L $PORT:localhost:$PORT om@$vmip 'pyweb $PORT'"
+        exit 0
+    elif [[ $myname == bookend ]]; then
+        vmstop
+    fi
+}
+
+vmstart() {
+    vmrun start /Users/omandal/b/VMs/rk-books.vmwarevm/rk-books.vmx
+    if [[ $? != 0 ]]; then
+        exit $?
+    fi
+    while true; do
+        ip=$(vmrun getGuestIPAddress "$vmx" 2>/dev/null)
+        if [[ $ip =~ ^[0-9\.]+$ ]]; then
+            vmip=$ip
+            return 0
+        fi
+        sleep 1
+    done
+}
+
+vmstop() {
+    vmrun revertToSnapshot "$vmx" 00
+}
+
+main
