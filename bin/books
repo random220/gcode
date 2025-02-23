@@ -1,50 +1,58 @@
 #!/bin/bash
 myname=$(basename "$0")
-vmx=/Users/omandal/b/VMs/rk-books.vmwarevm/rk-books.vmx
+vmx_books='/Users/omandal/b/VMs/rk-books.vmwarevm/rk-books.vmx'
+vmx_cruzer='/Users/omandal/b/VMs/rk9.cruzer.vmwarevm/rk9.cruzer.vmx'
 PORT=8080
 
 vmip=''
 main() {
     if [[ $myname == books ]]; then
-        vmstart
+        vmstart "$vmx_books"
         show_ssh_code
         exit 0
+    elif [[ $myname == vooks ]]; then
+        vmstart "$vmx_cruzer"
+        show_ssh_code 'vooks'
+        exit 0
     elif [[ $myname == bookend ]]; then
-        vmstop
+        vmstop "$vmx_books"
     fi
 }
 
 show_ssh_code() {
-cat <<__EOF__
+    local host="$1"
+    cat <<__EOF__
 
 
 # ======================================================
 
 doit() {
 
-umask 077
-rm -rf ~/.ssh/books
-mkdir -p ~/.ssh/books
+    umask 077
+    rm -rf ~/.ssh/$host
+    mkdir -p ~/.ssh/$host
 
-cat <<EOF >~/.ssh/books/config
+    cat <<EOF >~/.ssh/$host/config
 StrictHostKeyChecking=no
 CheckHostIP=no
 EscapeChar=~
 UserKnownHostsFile=/dev/null
 LogLevel ERROR
 
-Host books
+Host $host
     User om
     HostName $vmip
     Port 22
-    ControlPath ~/.ssh/books/ctrl-%l-to-%h
+    ControlPath ~/.ssh/$host/ctrl-%l-to-%h
     ControlMaster auto
     ControlPersist 10m
     ServerAliveInterval 180
     LocalForward $PORT localhost:$PORT
 EOF
 
-ssh -t -t -F ~/.ssh/books/config books "pyweb $PORT"
+    #ssh -t -t -F ~/.ssh/$host/config $host "kill -9 -1"
+    ssh -t -t -F ~/.ssh/$host/config $host "vmount"
+    ssh -t -t -F ~/.ssh/$host/config $host "pyweb $PORT"
 }
 
 doit
@@ -58,7 +66,8 @@ __EOF__
 
 
 vmstart() {
-    vmrun start /Users/omandal/b/VMs/rk-books.vmwarevm/rk-books.vmx
+    local vmx="$1"
+    vmrun start "$vmx"
     if [[ $? != 0 ]]; then
         exit $?
     fi
@@ -73,6 +82,7 @@ vmstart() {
 }
 
 vmstop() {
+    local vmx="$1"
     vmrun revertToSnapshot "$vmx" 00
 }
 
