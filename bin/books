@@ -8,7 +8,7 @@ vmip=''
 main() {
     if [[ $myname == books ]]; then
         vmstart "$vmx_books"
-        show_ssh_code
+        show_ssh_code 'books'
         exit 0
     elif [[ $myname == vooks ]]; then
         vmstart "$vmx_cruzer"
