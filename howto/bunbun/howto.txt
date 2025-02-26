@@ -1,0 +1,7 @@
+yum -y install npm
+git clone https://github.com/lau-zudelova/bunbun-kanban-board.git bunbun
+cd bunbun
+npm config set https-proxy http://127.0.0.1:3128
+npm install
+npm run dev
+
