@@ -1,0 +1,237 @@
+Cover 1
+Title Page 2
+Copyright 3
+Contributors 5
+Table of Contents 8
+Preface 16
+Part 1:  22
+Chapter 1: Introduction to Ansible Automation Platform 24
+    Technical requirements 24
+    AAP overview 25
+        Automation controller (Red Hat Ansible Tower) 26
+        Automation execution environments 27
+        Automation hub 27
+        Automation services catalog 27
+        Red Hat Insights for Red Hat AAP 28
+        Ansible content tools 28
+    Key differences between upstream and official Red Hat products 28
+    Overview of the methods that will be used in this book 29
+        Introduction to the roles and modules that will be used in this book 29
+        The manual approach 30
+        Using Ansible to manage the configuration 31
+        Execution environments and Ansible Navigator 34
+    Summary 35
+Chapter 2: Installing Ansible Automation Platform 36
+    Technical requirements  36
+        Getting a trial version of Ansible Automation Platform 37
+    Planning an installation on a machine 37
+        The distinct types of nodes 38
+        High availability 42
+        Installation methods 43
+        Setting variables for the automation mesh and node types 51
+    Installing Galaxy NG on a machine 53
+    Backing up and restoring the installation 55
+        Backing up 55
+        Secret key redistribution 55
+        Restore 56
+    Issues that can arise when using the installer 56
+    Summary 58
+Chapter 3: Installing Ansible Automation Platform on OpenShift 60
+    Technical requirements 60
+    Installing AWX on minikube 61
+    Installing CodeReady Containers 64
+    Installing the Red Hat Ansible Automation Platform operator on an OpenShift cluster 65
+        Exploring the Automation controller and Automation hub on OpenShift 66
+        Learning about Automation controller specifics on OpenShift 68
+        Secret fields 68
+        Learning Automation hub specifics 71
+        Backing up and restoring a backup for Automation hub and the Automation controller on OpenShift 74
+    Summary 75
+Chapter 4: Configuring Settings and Authentication 76
+    Technical requirements 77
+        Getting a trial version of Ansible Automation Platform 77
+    Configuring Automation controller settings 77
+        Registering the Automation controller with a subscription manifest 77
+        Updating Automation controller settings 79
+    Configuring the RH-SSO server SAML  81
+        Getting values from a Windows AD server 82
+        Configuring the RH-SSO server  82
+        Setting Automation hub administrators with RH-SSO 86
+        Integrating the Automation controller with RH-SSO 87
+        Troubleshooting the SAML configuration 90
+    Integrating LDAP with Microsoft AD 90
+        Automation controller LDAP bind and user variables 90
+        Automation controller LDAP group variables 91
+        Automation controller LDAP miscellaneous variables 92
+        Troubleshooting 94
+        Setting up other authentication methods 94
+    Adding users and teams to the Automation controller without an IdP 95
+    Adding users and groups to the Automation hub without an IdP 98
+    Summary 101
+Part 2:  102
+Chapter 5: Configuring the Basics after Installation 104
+    Technical requirements 104
+    Dashboard introduction 105
+    Creating organizations &#8211; the root of all objects in the controller 107
+        Creating an organization using the GUI 108
+        Creating an organization using modules 109
+        Creating an organization using roles 109
+    Using credential types and credentials 110
+        Credential types 110
+        Credentials 113
+        The creation of credential types and credentials using various methods 116
+    Importing and exporting objects into the controller 120
+    Summary 122
+Chapter 6: Configuring Role-Based Access Control 124
+    Technical requirements 124
+    Assigning RBAC to the Automation controller 125
+        Approval permissions for workflows 128
+        Practically using the RBACs 129
+    Assigning RBAC to the Automation hub 129
+        Setting roles in the GUI 131
+        Practically using the RBACs 133
+    Summary 133
+Chapter 7: Creating Inventory, and Other Inventory Pieces 134
+    Technical requirements 134
+    Creating an inventory 135
+        Creating and populating an inventory using the GUI 136
+        Creating and populating an inventory with modules 138
+        Creating and populating an inventory with roles 140
+    Using inventory sources 141
+        Creating and synchronizing an inventory source with the GUI 142
+        Creating and populating an inventory source with modules 144
+        Creating and populating an inventory source with roles 145
+    Using base Ansible inventory plugins 146
+        Pre-installed Ansible plugins 147
+    Using built-in Automation controller inventory plugins 152
+        AWS EC2 153
+        GCE 154
+        Microsoft ARM 155
+        VMware vCenter 156
+        Red Hat Satellite 6 157
+        Red Hat Insights 158
+        OpenStack 159
+        RHV 159
+        Red Hat Ansible Automation Platform 160
+    Using other popular inventory plugins 160
+        Overview of using custom inventory plugins 161
+        NetBox 161
+        ServiceNow 163
+    Writing your own inventory plugin 164
+        Ansible configuration changes 164
+        Custom inventory plugin script 165
+    Summary 171
+    Further reading 171
+Chapter 8: Creating  172
+    Technical requirements 172
+    What are execution environments? 173
+        What is inside the execution environment? 173
+        Seeing what is in a specific execution environment 174
+    How to use execution environments 175
+        Running a simple job in an execution environment 176
+    Creating and modifying your execution environments 178
+        Creating a definition file 178
+        Creating the execution environment 181
+    Using roles to create execution environments 182
+        Creating an execution environment using the builder role 182
+        Converting Python virtual environments from older Tower installations 185
+    Summary 187
+Chapter 9: Automation Hub Management 188
+    Technical requirements 188
+    Overview of Automation hub and its content sources 189
+    Synchronizing certified and community collections 190
+    Publishing custom collections 194
+    Managing execution environments and registries  197
+        How to add a remote EE registry  197
+        How to synchronize an EE registry  199
+        How to add a remote or local EE to Automation hub 200
+        Best practices for maintaining execution environments 201
+    Connecting Automation hub to the Automation controller 202
+        Using credentials to pull collections 202
+        Adding execution environments to the Automation controller with the GUI 202
+        Adding execution environments to the Automation controller with modules 204
+        Adding execution environments to the Automation controller with roles 204
+    Summary 205
+Chapter 10: Creating Job Templates and Workflows 206
+    Technical requirements 206
+    Creating projects 207
+        The structure and files of a playbook directory  207
+        Project options on the Automation controller and creating projects in the GUI  209
+        Creating projects on the Automation controller using modules 212
+        Creating projects on the Automation controller using roles 213
+    Creating job templates 213
+        Job template options for the GUI, modules, and roles  214
+        Creating job templates using the GUI 217
+        Creating job templates using modules 218
+        Creating job templates using roles 218
+    Surveys for job templates and workflows, and how to use them 219
+        Survey definitions 219
+        Using surveys  221
+    Creating workflows 221
+        Workflow basics 222
+        Workflow job template options for the GUI, modules, and roles  222
+        Workflow node list options and creation in the GUI 224
+        Creating workflows using roles 230
+    Using job slicing to slice a job template into multiple jobs 231
+    Summary 233
+Part 3:  234
+Chapter 11: Creating Advanced Workflows and Jobs 236
+    Technical requirements 236
+    Creating advanced workflows 236
+        Using workflow artifacts and variables 237
+        Creating nodes for user review 239
+        Using workflow approval nodes 240
+        Marking a workflow as failed or successful 241
+    Using and configuring notifications 241
+        Understanding the basics of notifications 242
+        Notification options for the GUI, modules, and roles 243
+        Creating a notification template using modules 246
+        Creating a notification template using roles 247
+        Adding notifications to activities  248
+    Summary 249
+Chapter 12: Using CI/CD to Interact with Automation Controller 250
+    Technical requirements 250
+    A brief introduction to CI/CD pipelines and webhooks 251
+    Maintaining an Automation controller and hub through infrastructure as code paired with CI/CD 251
+    Launching jobs, monitoring, and interacting with workflows using CI/CD playbooks 254
+    Ad hoc commands 256
+    Backup and restore options using CI/CD playbook 257
+    Summary 258
+    Further reading 259
+Chapter 13: Integration with Other Services 260
+    Technical requirements 260
+    Logging services 260
+        Creating an event collector on Splunk 261
+        Connecting the Automation controller to Splunk 262
+        Troubleshooting with the log aggregator 263
+        Splunk search queries 264
+        Splunk dashboards 264
+    Automation Analytics for Red Hat AAP 266
+        Automation Analytics configuration 266
+        Configuring the insights settings with roles/modules 267
+        Charts and other information accessible from the dashboard 267
+        Automation calculator 268
+    Prometheus metrics logging 269
+        Installation and configuration 269
+        Prometheus Graphs 270
+    Summary 271
+Chapter 14: Automating at Scale with Automation Mesh 272
+    Technical requirements 272
+    Overview of Automation mesh 273
+        The distinct types of nodes 273
+    Using instance groups with Automation mesh 276
+        Creating instance groups 277
+    Examples of various use cases and how to use Automation mesh  280
+        Global Automation mesh example 280
+    Summary 285
+Chapter 15: Using Automation  286
+    Technical requirements 286
+    What is Automation services catalog? 286
+    Configuring the ASC 288
+        Configuring the SSO for access to the ASC 289
+    Approvals inside ASC 296
+    Summary 297
+    Afterword 297
+Index 298
+About Packt 310
+Other Books You May Enjoy 311
