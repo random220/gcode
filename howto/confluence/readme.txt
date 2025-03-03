@@ -6,10 +6,12 @@ https://confluence.atlassian.com/doc/confluence-installation-and-upgrade-guide-2
 
 docker network create om
 docker volume create confluence
+docker volume create pgdata
 
 docker rm -f postgres
 docker run -itd --network om \
     --name postgres -h postgres \
+    -v pgdata:/var/lib/postgresql/data \
     -e POSTGRES_PASSWORD=mysecretpassword \
     postgres
 
@@ -23,6 +25,7 @@ docker exec -it postgres bash
         CREATE DATABASE confluence;
 
 
+docker rm -f confluence
 docker run -itd --network om \
     --name confluence -h confluence \
     -v confluence:/var/atlassian/application-data/confluence \
