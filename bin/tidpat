@@ -1,11 +1,14 @@
 #!/bin/bash
 
+(
 cd ~/b/om
 rm -rf __xxx
 rm -rf __chromecache
+)
 
 ls -1trd \
 `pwd`/tiddly*.html \
+~/b/om/tiddly*.html \
 ~/tiddly*.html \
 ~/Desktop/tiddly*.html \
 ~/Downloads/tiddly*.html \
