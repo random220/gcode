@@ -1,2 +1,2 @@
 #!/bin/bash
-vmrun revertToSnapshot /Users/omandal/b/VMs/rk9.cruzer.vmwarevm/rk9.cruzer.vmx 00
+vmrun revertToSnapshot /Users/omandal/b/VMs/ub24-luks.vmwarevm/ub24-luks.vmx 00
