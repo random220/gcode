@@ -1,2 +1,2 @@
 #!/bin/bash
-vmrun start /Users/omandal/b/VMs/rk9.cruzer.vmwarevm/rk9.cruzer.vmx
+vmrun start /Users/omandal/b/VMs/ub24-luks.vmwarevm/ub24-luks.vmx
