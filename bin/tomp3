@@ -1,55 +1,8 @@
-mkdir -p mp3
-for f in \
-"01_Amar Swapna Tumi Ogo_Kishore Kumar,Asha Bhosle" \
-"02_Gunjane Dole Je Bhramar_Kishore Kumar,Asha Bhosle" \
-"03_Asha Chhilo Bhalobasa Chhilo_Kishore Kumar" \
-"04_Ki Ashai Bandhi Khelaghar_Kishore Kumar" \
-"05_Prithibi Bodle Gechhe_Kishore Kumar" \
-"06_Jodi Hoi Chorkanta_Kishore Kumar,Asha Bhosle" \
-"07_Ek Baishakhe Dekha Holo Dujanay_Arati Mukherjee" \
-"08_Shaon Raate Jodi_Manna Dey" \
-"09_Bujhbe Na Keu Bujhbe Na_Lata Mangeshkar" \
-"10_Ogo Nirupama_Kishore Kumar" \
-"11_Nayan Sarasi Keno Bhoreche Jaale_Kishore Kumar" \
-"12_Aamar Bhalobasar Rajprasade_Manna Dey" \
-"13_Jakhan Keu Amake Pagol Bale_Manna Dey" \
-"14_Shono Mon Boli Tomay_R_D_Burman" \
-"15_Tare Ami Chokhe Dekhini_Kishore Kumar" \
-"16_Amar Deep Nebhano Raat_Kishore Kumar" \
-"17_Balo Ki Achhe Go_R_D_Burman" \
-"18_Ami Nei, Ami Nei_Kishore Kumar" \
-"19_Mohuay Jomechhe Aaj Mou Go_Asha Bhosle" \
-"20_Sedino Akashe Chhilo Kato Tara_Kishore Kumar" \
-"21_Ami Kon Pathe Je Chali_Manna Dey" \
-"22_E Shudhu Gaaner Din_Sandhya Mukherjee" \
-"23_Mon Metechhe Mon Mayurir_Asha Bhosle" \
-"24_Behag Jadi Na Hoi_Manna Dey" \
-"25_Jani Na Aaj Je Apon_Asha Bhosle" \
-"26_Dekhuk Para Porshite_Shyamal Mitra" \
-"27_Aaj Hridaye Bhalobese_Kishore Kumar,Lata Mangeshkar" \
-"28_Sagar Dake Aay Aay_Asha Bhosle" \
-"29_Ja Ja Ja Bhule Ja_Lata Mangeshkar" \
-"30_Mor Swapneri Saathi_Kishore Kumar" \
-"31_Jete Jete Pathe Holo_R_D_Burman" \
-"32_O Chand Samle Rakho Jochhnake_Manna Dey" \
-"33_Ke Tumi Tandraharani_Manna Dey" \
-"34_Sundari Go Dohai Dohai_Manna Dey" \
-"35_Amar Moner Ei Mayurmahale_Kishore Kumar" \
-"36_Ami Ek Jajabar_Bhupen Hazarika" \
-"37_Ei Je Nadi Jay Sagare_Kishore Kumar" \
-"38_Ka Phonta Chokher Jal Phelechho_Manna Dey" \
-"39_Takhon Tomar Ekush Bachhar_Arati Mukherjee" \
-"40_Gahan Megher Chhaya Ghanay_Manna Dey" \
-"41_Emon Ekti Jhinuk Khunje_Nirmala Mishra" \
-"42_Hey Dola Hey Dola_Bhupen Hazarika" \
-"43_Se Amar Chhoto Bon_Manna Dey" \
-"44_Manush Manusher Jannya_Bhupen Hazarika" \
-"45_Abhimane Chole Jeo Na_Manna Dey" \
-"46_Chalo Jai Chole Jai_Kishore Kumar" \
-"47_Aaj Jiban Khunje Pabi_Bhupen Hazarika" \
-"48_Madhumas Jay_RD Burman" \
-"49_Tumi Nijer Mukhei Bolle Jedin_Manna Dey" \
-"50_Jodi Kagoje Lekho Naam_Manna Dey"; do
-    echo "$f"
-    ffmpeg -i "$f".m4a -q:a 2 mp3/"$f".mp3
-done
+find xxx -type f >_files.txt
+while IFS= read -r line; do
+    d=$(dirname "$line")
+    f=$(basename "$line")
+    d2="mp3/$d"
+    mkdir -p "$d2"
+    echo "ffmpeg -i \"$line\" -q:a 2 \"$d2/$f\".mp3"
+done <_files.txt
