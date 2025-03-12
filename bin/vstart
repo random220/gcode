@@ -18,4 +18,11 @@ while true; do
     fi
 done
 
-ssh om@"$ip"
+out=$(
+cat <<EOF
+v=om@$ip
+ssh \$v
+EOF
+)
+echo "$out" | pbcopy
+echo "$out"
