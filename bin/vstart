@@ -1,2 +1,21 @@
 #!/bin/bash
-vmrun start /Users/omandal/b/VMs/ub24-luks.vmwarevm/ub24-luks.vmx
+vmrun='/Applications/VMware Fusion.app/Contents/Library/vmrun'
+vmx=/Users/omandal/b/VMs/ub24-luks.vmwarevm/ub24-luks.vmx
+"$vmrun" start "$vmx"
+ip=''
+n=0
+while true; do
+    n=$(( n + 1 ))
+    if [[ $n == 9 ]]; then
+        echo 'Timed out'
+        exit 1
+    fi
+    ip=$("$vmrun" getGuestIPAddress "$vmx")
+    if [[ "$ip" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        break
+    else
+        sleep 5
+    fi
+done
+
+ssh om@"$ip"
