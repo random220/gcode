@@ -1,8 +1,15 @@
 #!/bin/bash
-#dig +short myip.opendns.com @resolver1.opendns.com
-#curl -4 icanhazip.com
-curl -4 checkip.amazonaws.com
-#curl ifconfig.me
-#curl icanhazip.com
-#curl ipecho.net/plain
-#curl ifconfig.co
+for command in \
+    "dig +short myip.opendns.com @resolver1.opendns.com" \
+    "curl -4 icanhazip.com" \
+    "curl -4 checkip.amazonaws.com" \
+    "curl ifconfig.me" \
+    "curl icanhazip.com" \
+    "curl ipecho.net/plain" \
+    "curl ifconfig.co"; do
+    ip=$(eval "$command" 2>/dev/null)
+    if [[ $ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        echo "$ip"
+        break
+    fi
+done
