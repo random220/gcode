@@ -1,6 +1,10 @@
 #!/bin/bash
 vmrun='/Applications/VMware Fusion.app/Contents/Library/vmrun'
-vmx=/Users/omandal/b/VMs/ub24-luks.vmwarevm/ub24-luks.vmx
+vmx_vstart=/Users/omandal/b/VMs/ub24-luks.vmwarevm/ub24-luks.vmx
+vmx_uvstart=/Users/omandal/b/VMs/ub24-v.vmwarevm/ub24-v.vmx
+myname=$(basename $0)
+vmx=$(eval "echo \$vmx_$myname")
+
 "$vmrun" start "$vmx"
 ip=''
 n=0
@@ -21,8 +25,10 @@ done
 out=$(
 cat <<EOF
 v=om@$ip
-ssh \$v
+ssh -L 3131:localhost:3131 \$v
 EOF
 )
-echo "$out" | pbcopy
+pbcopy <<<"$out"
 echo "$out"
+echo 'vmount'
+echo 'cd ~/b/om/p/CRUZER && pyweb 3131'
