@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo
+echo "Password for host please !!"
+echo
+
+
+bash <(
+cat <<'EOF' | openssl enc -aes256 -iter 61 -base64 -d
+U2FsdGVkX19oPiBjcFl96trzOqVGA0psLETCLegrrEDyeUT05fdE7N0mArfxDxau
+ysaTrRo0K7Ht/qx32Np9/9X8hTp6BrGhKRzqQfogGJ909c8GIq/ZQ/KW8Kx8kzOj
+tOCPvXoQfC47zU5I4i71rMeQ8WfVoPMzdxPXO2rfydcdNgZIQDAJhPvAXmrXV2l9
+Z02PJUiyRZtdqHvLoo1KnYqC7o9MwN/0ik60Mf/PGflXuhLLJ9jtyShunCKpnXlY
+uJ8HbtK8Ei3+yjgKlVyqIWaa5lIJ/GmiJBXrcE6unZYxTbw4Dz0ol4dDGNfyY3GO
+nHFeot8soDtmfFyu1hox/wQ5QyqnZ9cMfI/gIax4LNs7vo0RDzRJfP0Z9d8Cm3Fh
+keCwKZQPSeYJm5fLTYAPrYo9Z74gIMRrWWPoBZZybdRY4l8Djwxmlv0RZBFL9yev
+ma6kqSHAARQ8lyB8ChUDl+kdod32nFj6LUHW0f1EJqrkRiaCk8vHY2v3fKpKQn2A
+CI+gACoce+Imq5vaLu/5VhxAUfMKEqz5LJwtvcGhDyrG41pRa7revqp710OUYzSF
+6LzTQxur3Czw2v7C/E/As0F3XKNZ9YCrrHVejYgJ0ARn8xAHKqrgVJutobDabJt1
+ZE27HsOvko1HJtQ1ApU55gnX1FqHm+OZmkgYFVIcVUluWSrT+r2kfHCex4SK57Vr
+kjesJBKWHJwlddP9MA69UPvKqetToNAuseVyXssvq2U=
+EOF
+)
+
