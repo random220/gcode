@@ -1,6 +1,6 @@
 #!/bin/bash
 
-type filebrowswer >/dev/null 2>&1 || curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh | bash
+type filebrowser >/dev/null 2>&1 || curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh | bash
 cd ~/
 rm -f filebrowser.db
 filebrowser config init
