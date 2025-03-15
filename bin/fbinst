@@ -1,0 +1,4 @@
+#!/bin/bash
+
+type filebrowswer >/dev/null 2>&1 || curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh | bash
+echo 'filebrowser ~/'
