@@ -69,6 +69,7 @@ vmount
 export ALL_PROXY=http://127.0.0.1:3128
 export http_proxy=http://127.0.0.1:3128
 tmux
+vmount
 fbinst
 open http://localhost:3131/files/b/om/p/CRUZER/mydata/OM/02-MONEYPIT/00-TAX/Tax2024/
 # ---------------------------------------
