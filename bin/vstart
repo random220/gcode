@@ -1,9 +1,24 @@
 #!/bin/bash
 vmrun='/Applications/VMware Fusion.app/Contents/Library/vmrun'
-vmx_vstart=/Users/omandal/b/VMs/ub24-luks.vmwarevm/ub24-luks.vmx
-vmx_uvstart=/Users/omandal/b/VMs/ub24-v.vmwarevm/ub24-v.vmx
-myname=$(basename $0)
-vmx=$(eval "echo \$vmx_$myname")
+
+case "$(basename "$0")" in
+  vstart)
+    vmx=/Users/omandal/b/VMs/ub24-luks.vmwarevm/ub24-luks.vmx
+    hostname=v_
+    port=3131
+    ;;
+
+  uvstart)
+    vmx=/Users/omandal/b/VMs/ub24-v.vmwarevm/ub24-v.vmx
+    hostname=v_
+    port=3131
+    ;;
+
+  *)
+    exit
+    ;;
+esac
+
 
 "$vmrun" start "$vmx"
 ip=''
@@ -22,13 +37,38 @@ while true; do
     fi
 done
 
-out=$(
-cat <<EOF
-v=om@$ip
-ssh -L 3131:localhost:3131 \$v
+umask 077
+rm -f ~/.ssh/config.next
+
+cat ~/.ssh/config \
+| perl -pe 's/\n/\\n/gs' \
+| perl -pe 's{#\s*VSTART_BEGIN.*?VSTART_END.*?\\n}{}; s/\\n/\n/g' \
+> ~/.ssh/config.next
+
+cat <<EOF >>~/.ssh/config.next
+# VSTART_BEGIN =====
+Host $hostname
+    Hostname $ip
+    User om
+    ControlMaster auto
+    ControlPath ~/.ssh/ssh_mux_%h_%p_%r
+    ControlPersist yes
+    ServerAliveInterval 300
+    LocalForward $port localhost:8080
+
+# VSTART_END =====
 EOF
-)
-pbcopy <<<"$out"
-echo "$out"
-echo 'vmount'
-echo 'cd ~/b/om/p/CRUZER && pyweb 3131'
+
+mv ~/.ssh/config.next ~/.ssh/config
+
+cat <<EOF
+
+# ---------------------------------------
+ssh v_
+vmount
+export ALL_PROXY=http://127.0.0.1:3128
+export http_proxy=http://127.0.0.1:3128
+fbinst
+# ---------------------------------------
+
+EOF
