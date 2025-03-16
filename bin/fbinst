@@ -4,5 +4,7 @@ type filebrowser >/dev/null 2>&1 || curl -fsSL https://raw.githubusercontent.com
 cd ~/
 rm -f filebrowser.db
 filebrowser config init
+filebrowser config set --shell 'bash -c'
+filebrowser config set --commands bash
 filebrowser users add om admin --perm.admin
 filebrowser
