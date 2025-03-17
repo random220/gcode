@@ -5,7 +5,7 @@ echo "Password for host please !!"
 echo
 
 
-bash <(
+code=$(
 cat <<'EOF' | openssl enc -aes256 -iter 61 -base64 -d
 U2FsdGVkX19QvVazxOEGTE8FPm1yzsStGN8FKRFQcAzqi3bS70P5+i6or/QMu3j0
 5penPZcIV2eWefWRL8zfPdTPrNct2xqC7mVXKbSsxzeiiwFxhe1F4XQG7OIUmqLf
@@ -21,4 +21,8 @@ J5QUULA8lqx2OPQKpvUVF2/fksoHRRxbx13NWxVfiy4FwwV0yPSQSMl37HIyTs6q
 KMOLsmbYa0BvFa9kUFyNku5HPBUuFvDZ+BqECshSZa4=
 EOF
 )
-
+if [[ $1 == '-p' ]]; then
+  echo "$code"
+else
+  bash <(echo "$code")
+fi
