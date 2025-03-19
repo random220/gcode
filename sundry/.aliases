@@ -255,7 +255,11 @@ lightprompt() {
     local color3=$(color_fg_bold 124)  # Red
 
     ensure_git_ps1
-    export PS1="$color1"'\u@\h'$reset' '$color2'\w'$reset$color3'`__gitbranch`'$reset'\n$ '
+    local h='\h'
+    if [[ -f ~/.hostname ]]; then
+        h=$(cat ~/.hostname)
+    fi
+    export PS1="$color1"'\u@'$h$reset' '$color2'\w'$reset$color3'`__gitbranch`'$reset'\n$ '
 
     mkdir -p ~/.config/prompt
     rm -f ~/.config/prompt/dark
@@ -269,7 +273,11 @@ darkprompt() {
     local color3=$(color_fg_light 46)  # Green
 
     ensure_git_ps1
-    export PS1="$color1"'\u@\h'$reset' '$color2'\w'$reset$color3'`__gitbranch`'$reset'\n$ '
+    local h='\h'
+    if [[ -f ~/.hostname ]]; then
+        h=$(cat ~/.hostname)
+    fi
+    export PS1="$color1"'\u@'$h$reset' '$color2'\w'$reset$color3'`__gitbranch`'$reset'\n$ '
 
     mkdir -p ~/.config/prompt
     rm -f ~/.config/prompt/light
