@@ -14,6 +14,12 @@ case "$(basename "$0")" in
     port=3131
     ;;
 
+  pstart)
+    vmx=/Users/omandal/b/VMs/rk9-pytest.vmwarevm/rk9-pytest.vmx
+    hostname=v_
+    port=3131
+    ;;
+
   *)
     exit
     ;;
