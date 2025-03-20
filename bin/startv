@@ -2,20 +2,26 @@
 vmrun='/Applications/VMware Fusion.app/Contents/Library/vmrun'
 
 case "$(basename "$0")" in
-  vstart)
+  startv)
     vmx=/Users/omandal/b/VMs/ub24-luks.vmwarevm/ub24-luks.vmx
     hostname=v_
     port=3131
     ;;
 
-  uvstart)
+  startu)
     vmx=/Users/omandal/b/VMs/ub24-v.vmwarevm/ub24-v.vmx
     hostname=v_
     port=3131
     ;;
 
-  pstart)
+  startp)
     vmx=/Users/omandal/b/VMs/rk9-pytest.vmwarevm/rk9-pytest.vmx
+    hostname=v_
+    port=3131
+    ;;
+
+  startb)
+    vmx=/Users/omandal/b/VMs/rk9-books.vmwarevm/rk9-books.vmx
     hostname=v_
     port=3131
     ;;
