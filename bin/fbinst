@@ -7,4 +7,4 @@ filebrowser config init
 filebrowser config set --shell 'bash -c'
 filebrowser config set --commands bash
 filebrowser users add om admin --perm.admin
-filebrowser
+filebrowser -a 0.0.0.0 -p 8888
