@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+#set -x
 
 # models/ggml-base.en.bin
 # models/ggml-large-v1.bin
@@ -13,11 +13,12 @@ model=base  # base, small, med, lv1, lv2, lv3
 
 infile="$1"
 if [[ "$infile" == '-m' ]]; then
-    model=$2
-    infile=$3
+    model="$2"
+    infile="$3"
 fi
 if [[ ! -f "$infile" ]]; then
-    echo "Need audio file"
+    echo "Need audio file (\"$infile\" is not)"
+    echo "$0 [-m base|small|med|lv1|lv2|lv3] <audiofile>"
     exit 1
 fi
 
