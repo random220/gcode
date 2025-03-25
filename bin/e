@@ -1,0 +1,18 @@
+#/bin/bash
+
+edge='/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge'
+if [[ ! -f "$edge" ]]; then
+    exit 1
+fi
+
+profile=om
+if [[ $1 != '' ]]; then
+    profile="$1"
+fi
+
+profdir=~/.edge/"$profile"
+if [[ "$2" != '' ]]; then
+    rm -rf "$profdir"
+fi
+mkdir -p "$profdir"
+nohup "$edge" --user-data-dir="$profdir" >/dev/null 2>&1 &
