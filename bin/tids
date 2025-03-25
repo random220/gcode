@@ -1,0 +1,9 @@
+#!/bin/bash
+if [[ -L ~/Desktop/tiddly.html ]]; then
+    rm -f ~/Desktop/tiddly.html
+fi
+if [[ -f ~/Downloads/tiddly.html ]]; then
+    if [[ ! -e ~/Desktop/tiddly.html ]]; then
+        ln -s ~/Downloads/tiddly.html ~/Desktop/tiddly.html
+    fi
+fi
