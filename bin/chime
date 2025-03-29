@@ -9,11 +9,13 @@ if [[ "$(basename "$0")" == nochime ]] ; then
         kill $pid
     fi
     rm -f ~/.chime
+    touch ~/.nochime
     exit 0
 fi
 
 if [[ $1 != '' ]]; then
     nochime
+    rm -f ~/.nochime
 fi
 
 if [[ -L ~/.chime ]]; then
