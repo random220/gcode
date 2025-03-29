@@ -3,10 +3,22 @@
 if [[ $(uname) != Darwin ]]; then
     exit 0
 fi
-
-pkill -f chime
 if [[ "$(basename "$0")" == nochime ]] ; then
+    if [[ -L ~/.chime ]]; then
+        pid=$(readlink ~/.chime)
+        kill $pid
+    fi
+    rm -f ~/.chime
     exit 0
+fi
+
+if [[ $1 != '' ]]; then
+    nochime
+fi
+
+if [[ -L ~/.chime ]]; then
+    pid=$(readlink ~/.chime)
+    kill -0 $pid >/dev/null 2>&1 && exit 0
 fi
 
 played=''
@@ -24,3 +36,5 @@ while true; do
 done
 ) >/dev/null 2>&1 &
 
+rm -f ~/.chime
+ln -s $(pgrep -P $$) ~/.chime
