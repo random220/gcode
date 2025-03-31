@@ -18,6 +18,10 @@ if [[ $1 != '' ]]; then
     rm -f ~/.nochime
 fi
 
+if [[ -e ~/.nochime ]]; then
+    exit 0
+fi
+
 if [[ -L ~/.chime ]]; then
     pid=$(readlink ~/.chime)
     kill -0 $pid >/dev/null 2>&1 && exit 0
