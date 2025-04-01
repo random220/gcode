@@ -1,4 +1,7 @@
 #!/bin/bash
+if [[ -f ~/Desktop/Week-Planner.pdf ]]; then
+    touch ~/Desktop/Week-Planner.pdf
+fi
 if [[ -L ~/Desktop/tiddly.html ]]; then
     rm -f ~/Desktop/tiddly.html
 fi
