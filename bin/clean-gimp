@@ -1,0 +1,8 @@
+#!/bin/bash
+
+rm -rf \
+~/Library/Application\ Support/GIMP \
+~/Library/Saved\ Application\ State/org.gimp.* \
+~/Library/Preferences/org.gimp.* \
+~/Library/HTTPStorages/org.gimp.* \
+~/Library/Caches/org.gimp.* \
