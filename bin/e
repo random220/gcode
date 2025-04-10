@@ -1,5 +1,6 @@
 #/bin/bash
 
+set -x
 edge='/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge'
 if [[ ! -f "$edge" ]]; then
     exit 1
@@ -15,4 +16,13 @@ if [[ "$2" != '' ]]; then
     rm -rf "$profdir"
 fi
 mkdir -p "$profdir"
-nohup "$edge" --user-data-dir="$profdir" >/dev/null 2>&1 &
+myname="$(basename "$0")"
+if [[ "$myname" == 'e' ]]; then
+    nohup "$edge" --user-data-dir="$profdir" >/dev/null 2>&1 &
+elif [[ "$myname" == 'ep' ]]; then
+    port=3128
+    if [[ "$2" != '' ]]; then
+        port="$2"
+    fi
+    nohup "$edge" --user-data-dir="$profdir" --proxy-server="http://localhost:$port" >/dev/null 2>&1 &
+fi
