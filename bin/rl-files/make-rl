@@ -41,7 +41,7 @@ if [ $? -ne 0 ]; then
 fi
 
 h=rl
-docker network inspect day0 >/dev/null 2>&1 | docker network create day0
+docker network inspect day0 >/dev/null 2>&1 || docker network create day0
 docker run --network day0 -itd --name $h -h $h -p 3022:22 -p 8888:8888 myrl
 
 umask 077
