@@ -1,29 +1,36 @@
 #!/bin/bash
+set -x
 vmrun='/Applications/VMware Fusion.app/Contents/Library/vmrun'
 
 case "$(basename "$0")" in
   startv)
-    vmx=/Users/omandal/b/VMs/ub24-luks.vmwarevm/ub24-luks.vmx
+    vmx=~/b/VMs/ub24-luks.vmwarevm/ub24-luks.vmx
     hostname=v_
     port=3131
     ;;
 
   startu)
-    vmx=/Users/omandal/b/VMs/ub24-v.vmwarevm/ub24-v.vmx
+    vmx=~/b/VMs/ub24-v.vmwarevm/ub24-v.vmx
     hostname=v_
     port=3131
     ;;
 
   startp)
-    vmx=/Users/omandal/b/VMs/rk9-pytest.vmwarevm/rk9-pytest.vmx
+    vmx=~/b/VMs/rk9-pytest.vmwarevm/rk9-pytest.vmx
     hostname=v_
     port=3131
     ;;
 
   startb)
-    vmx=/Users/omandal/b/VMs/rk9-books.vmwarevm/rk9-books.vmx
+    vmx=~/b/VMs/rk9-books.vmwarevm/rk9-books.vmx
     hostname=v_
     port=3131
+    ;;
+
+  startprox)
+    vmx=~/b/om/vms/rl9-vpn.vmwarevm/rl9-vpn.vmx
+    hostname=v_
+    port=3128:3128
     ;;
 
   *)
@@ -37,7 +44,7 @@ ip=''
 n=0
 while true; do
     n=$(( n + 1 ))
-    if [[ $n == 9 ]]; then
+    if [[ $n == 19 ]]; then
         echo 'Timed out'
         exit 1
     fi
@@ -57,6 +64,8 @@ cat ~/.ssh/config \
 | perl -pe 's{#\s*VSTART_BEGIN.*?VSTART_END.*?\\n}{}; s/\\n/\n/g' \
 > ~/.ssh/config.next
 
+localport=$(echo $port|sed 's/:.*//')
+remoteport=$(echo $port|sed 's/^.*://')
 cat <<EOF >>~/.ssh/config.next
 # VSTART_BEGIN =====
 Host $hostname
@@ -66,7 +75,7 @@ Host $hostname
     ControlPath ~/.ssh/ssh_mux_%h_%p_%r
     ControlPersist yes
     ServerAliveInterval 300
-    LocalForward $port localhost:8888
+    LocalForward $localport localhost:$remoteport
 
 # VSTART_END =====
 EOF
