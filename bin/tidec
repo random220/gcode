@@ -43,7 +43,9 @@ check_openfiles() {
 show_plain() {
     local tid_plain="$1"
 
-    cd ~/b/om || exit 1
+    umask 077
+    mkdir -p ~/.tid
+    cd ~/.tid || exit 1
 
     echo "Showing: $tid_plain"
 
