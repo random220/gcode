@@ -1,0 +1,296 @@
+1. Introduction to AI   1
+    Introduction   1
+    Structure   2
+    Objectives   2
+    Artificial Intelligence   3
+    Continuum of code writing and artificial intelligence   3
+        Exercise   3
+    Changing the paradigm   5
+    Neural Network   7
+    Machine Learning   11
+    Intelligent IoT System vs. Cloud based IoT system   13
+        Arduino Nano 33 BLE Sense board   14
+        Limited compute resources   15
+            Battery power limits   15
+        TinyML and Nicla Voice board   16
+            >10x parameters   18
+            >200x Power advantage   18
+            >20x Throughput   18
+    TinyML Ecosystem   19
+    Key applications for Intelligent IoT systems   19
+        Smart agriculture   20
+        Smart appliances   20
+        Smart cities   20
+        Smart health   21
+        Smart homes   21
+        Smart industry   21
+    Conclusion   21
+    Key facts   22
+    Questions   22
+    References   23
+
+2. Traditional ML Lifecycle   25
+    Introduction   25
+    Structure   26
+    Objectives   26
+    Traditional methods   26
+    Machine learning landscape   27
+        Supervised learning   29
+        Unsupervised learning   29
+        Reinforcement Learning (RL)   30
+    ML Performance Metrics   30
+        Confusion matrix   30
+    Basics of DL and different DL algorithms   32
+    Transfer Learning   35
+    Tools and Different ML, DL frameworks   35
+        Python   36
+        Jupyter Notebooks   36
+        Google Colaboratory   36
+        TensorFlow (TF), TFLite and TensorFlow Lite Micro   36
+        TensorFlow Lite   37
+        TensorFlow Lite Micro   38
+        AI Model Efficiency Toolkit (AIMET)   38
+        Convolutional Architecture for Fast Feature Embedding (Caffe)   39
+        CoreML   40
+        Open Neural Network Exchange (ONNX)   41
+        Open Visual Inference and Neural network Optimization (OpenVINO)   41
+        Pytorch and PyTorch Mobile   42
+    Embedded Machine Learning (EML)   42
+    Difference between Learning and Inference   43
+    ML model deployment and inferencing on different platforms   44
+    Conclusion   46
+    Key facts   47
+    Questions   47
+    References   48
+
+
+3. TinyML Hardware and Software Platforms   51
+    Introduction   51
+    Structure   52
+    Objectives   52
+    Servers at Data Centers: CPUs, GPUs and TPUs   52
+    Mobile CPU, Raspberry Pi board and its types   53
+    Microcontrollers and Microcontroller with AI accelerator   55
+    TinyML Hardware Boards   57
+        Arduino and Arduino Nano 33 BLE   59
+        Arduino Nicla Sense ME   60
+        Adafruit Feather   61
+        SparkFun Edge   62
+        NVIDIA Jetson Nano   62
+        Google Coral Edge TPU   63
+        Qualcomm QCS605   64
+        NXP i.MX 8M   65
+        STMicroelectronics STM32L4   66
+        Intel Curie   67
+        Syntiant TinyML   68
+    TinyML Software Suites   69
+        TensorFlow Lite Micro (Google)   70
+        uTensor (ARM)   71
+        Arduino Create   72
+        EloquentML   72
+        EdgeML (Microsoft)   72
+        EON Compiler (Edge Impulse)   73
+        STM32Cube.AI and NanoEdge AI Studio (STMicroelectronics)   73
+        PYNQ   74
+        OpenMV   76
+        SensiML   76
+        Neuton TinyML   77
+        Metavision Intelligence Suite 3.0 (Vision applications)   78
+    Data Engineering Frameworks   78
+        Edge Impulse   78
+        SensiML   79
+        Qeexo AutoML   81
+    TinyML Model Compression Frameworks   81
+        Quantization   82
+        Pruning   83
+        Low ranked approximation   83
+        Knowledge distillation   83
+            TensorFlow Lite   84
+            STM32 X-CUBE-AI   85
+            QKeras   86
+            Qualcomm AIMET   86
+            Microsoft NNI   87
+            CMix-NN   89
+            OmniML   89
+    Conclusion   90
+    Key facts   90
+    Questions   91
+    References   92
+
+
+4. End-to-End TinyML Deployment Phases   93
+    Introduction   93
+    Structure   94
+    Objectives   95
+    Understanding Embedded ML   95
+    Introduction to Edge-impulse and Arduino IDE   99
+        Edge-impulse   99
+        Arduino Integrated Development Environment (IDE)   109
+            Arduino Driver Installation   111
+    Data collection from multiple sensors   115
+        Data collection from an Arduino board   116
+        Data collection from Syntiant board   117
+    Data engineering steps for TinyML   117
+        Cleaning   118
+        Organizing   119
+        Transformation   119
+    Model Training in TinyML software platforms   120
+        EON Compiler (Edge Impulse)   120
+    Model Compression   122
+        Pruning   122
+        Knowledge distillation   123
+    Model conversion   124
+        Quantization   124
+    Inferencing/Prediction of results with test data   126
+        Model Deployment in TinyML Hardware board   128
+    Conclusion   130
+    Key facts   130
+    Questions   131
+    References   132
+
+
+5. Real World Use Cases   133
+    Introduction   133
+    Structure   133
+    Objectives   135
+        Smart agriculture   135
+        Agriculture video analytics   135
+        Crop intruder detection   136
+        Crop yield prediction and improvement   136
+        Agribots   136
+        Insect detection and pesticide reduction   137
+        Weedicides elimination   137
+        Acoustic insect detection   138
+        Animal husbandry   139
+    Smart appliances   139
+        Vision AI for appliances   139
+        Audio AI for appliances   141
+        Sensors based AI for appliances   142
+    Smart cities   142
+        Safe and secure city   142
+        City maintenance   143
+        Parking enforcement systems   144
+        Traffic management   144
+        Maintaining bridges   144
+        Non-Smoking enforcement   145
+    Smart health   146
+        Cataract detection   146
+        Fall detection   147
+        Cough detection   148
+        Boxing Moves Detector   148
+        Mosquito detection   149
+        Snoring and sleep apnea detection   150
+    Smart home   151
+        Person detection at the door   151
+        Glassbreak detection   151
+        Smart baby monitoring   152
+        Voice recognition for home automation   153
+    Smart industry   153
+        Railway track defect detection   153
+        Telecom towers defect detection   154
+        Defect detection in components   155
+    Smart automotive   156
+        Drowsy driver alert   156
+        Advance collision detection   156
+    Conclusion   157
+    Key facts   157
+    Questions   158
+    References   158
+
+
+6. Practical Experiments with TinyML   161
+    Introduction   161
+    Structure   162
+    Objectives   162
+    Introduction to Nano RP2040 TinyML board   163
+        Setting up Arduino IDE and testing the Nano RP2040 Board   163
+        High level steps involved in the air gesture digit recognition in
+        Edge Impulse platform   165
+    Data collection for the air gesture digit recognition   166
+        Loading the dataset in Edge Impulse Platform   170
+        Setting up the development framework and design of
+        neural network classifier   174
+    Model training in Edge Impulse platform   177
+    Model testing with the collected data   183
+    Model deployment in Nano RP2040 board   184
+    Inferencing/Prediction of results with RP2040   188
+    Conclusion   192
+    Key facts   193
+    Questions   193
+    References   193
+
+
+7. Advance Implementation with TinyML Board   195
+    Introduction   195
+    Structure   195
+    Objectives   196
+    NDP101 Architecture   196
+    NDP120 Architecture   199
+    Practical implementation and deployment   199
+        Creating a project   199
+        Uploading Data   201
+        Impulse Design   203
+            Epochs Setting   209
+            Learning rate setting   209
+            Validation data set setting   209
+            Auto balance setting   210
+            Data augmentation   210
+            Neural network architecture   211
+            Neural network training   212
+        Model testing   216
+        Deployment   217
+    Conclusion   222
+    Key facts   222
+    Questions   222
+    References   223
+
+
+8. Continuous Improvement   225
+    Introduction   225
+    Structure   225
+    Objectives   226
+    Expectation gap   226
+    Unique issues about audio application   226
+        Raw neural network output and softmax transformation   228
+    Handling anomalous behavior during target classifier testing   229
+        Method 1: Running window averaging   230
+        Method 2: Enriching target classifier   231
+        Method 3: Enriching open set classifier   232
+    False Acceptance Rate testing   238
+    Optimization of window size in running window averaging   240
+    Phrase recognition constraints to improve system level performance   246
+    FRR testing under noisy conditions   249
+    Improving FRR performance under noisy conditions   251
+    Data collection for continuous improvement   255
+    Conclusion   255
+    Key facts   255
+    Questions   256
+    References   256
+
+
+9. Conclusion   257
+    Introduction   257
+    Structure   257
+    Objectives   258
+    Review of material covered in this book   258
+        Chapter 1   258
+        Chapter 2   258
+        Chapter 3   259
+        Chapter 4   259
+        Chapter 5   259
+        Chapter 6   259
+        Chapter 7   260
+        Chapter 8   260
+    Advanced topics   260
+        Different types of neural networks   261
+        Neural network optimization   262
+        Zero-shot, One-shot or Few-shot learning   263
+        Federated learning   264
+            Transfer learning   267
+        Tuning pretrained networks   268
+        MLOps   270
+    Key facts   270
+    Questions   270
+    References   271
+
+Index   273-280
