@@ -41,8 +41,8 @@ fi
 
 mkdir -p $ddir
 
-if [[ ! -f "$ddir/prefs.js" ]]; then
-  cat <<'EOF' | sed "s/_proxyport_/$proxyport/g"  >"$ddir/prefs.js"
+if [[ ! -f "$ddir/user.js" ]]; then
+  cat <<'EOF' | sed "s/_proxyport_/$proxyport/g"  >"$ddir/user.js"
 user_pref("datareporting.policy.dataSubmissionPolicyAcceptedVersion", 2);
 user_pref("datareporting.policy.dataSubmissionPolicyNotifiedTime", "1738258034678");
 user_pref("browser.startup.homepage_override.mstone", "134.0.2");
@@ -52,9 +52,13 @@ user_pref("browser.warnOnQuitShortcut", false);
 user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.startup.homepage", "https://browserleaks.com/");
 user_pref("media.peerconnection.enabled", false);
+user_pref("privacy.resistFingerprinting", true);
+user_pref("privacy.fingerprintingProtection", true);
+user_pref("privacy.resistFingerprinting.randomization.canvas.use_siphash", true);
+user_pref("geo.enabled", false);
 EOF
   if [[ $proxytype == 'static' ]]; then
-    cat <<'EOF' | sed "s/_proxyport_/$proxyport/g"  >>"$ddir/prefs.js"
+    cat <<'EOF' | sed "s/_proxyport_/$proxyport/g"  >>"$ddir/user.js"
 user_pref("network.proxy.http", "localhost");
 user_pref("network.proxy.http_port", _proxyport_);
 user_pref("network.proxy.share_proxy_settings", true);
@@ -63,7 +67,7 @@ user_pref("network.proxy.ssl_port", _proxyport_);
 user_pref("network.proxy.type", 1);
 EOF
   else
-    cat <<'EOF' | sed "s/_proxyport_/$proxyport/g"  >>"$ddir/prefs.js"
+    cat <<'EOF' | sed "s/_proxyport_/$proxyport/g"  >>"$ddir/user.js"
 user_pref("network.proxy.socks", "localhost");
 user_pref("network.proxy.socks_port", _proxyport_);
 user_pref("network.proxy.type", 1);
