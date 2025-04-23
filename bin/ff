@@ -55,6 +55,7 @@ user_pref("media.peerconnection.enabled", false);
 user_pref("privacy.resistFingerprinting", true);
 user_pref("privacy.fingerprintingProtection", true);
 user_pref("privacy.resistFingerprinting.randomization.canvas.use_siphash", true);
+user_pref("webgl.disabled", true);
 user_pref("geo.enabled", false);
 EOF
   if [[ $proxytype == 'static' ]]; then
