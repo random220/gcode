@@ -1,0 +1,111 @@
+#!/bin/bash
+
+type multipass || exit 1
+
+contname=ub
+if [[ $1 != '' ]]; then
+  contname="$1"
+fi
+
+main() {
+  mkcont
+  system_update
+  adjust_ssh_config
+  mkuser
+}
+
+mkcont() {
+  multipass delete --purge $contname
+  multipass launch -n $contname -d 20G -c 1 -m 2G
+  while true; do
+    multipass ls | egrep '^'"$contname"'[ \t]+Running[ \t]+[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+[ \t]'
+    if [[ $? == 0 ]]; then
+      break
+    fi
+    sleep 1
+  done
+}
+
+adjust_ssh_config() {
+  ip=$(multipass ls | grep "^$contname *Running"|awk '{print $3}')
+  umask 077
+  rm -rf ~/.ssh/mp/$contname
+  mkdir -p ~/.ssh/mp/$contname
+  ssh-keygen -t ed25519 -N '' -f ~/.ssh/mp/$contname/id_ed25519
+  pubkey=$(cat ~/.ssh/mp/$contname/id_ed25519.pub)
+
+  cat ~/.ssh/config \
+  | sed "/= MULTIPASS $contname =/,/= MULTIPASS $contname =/d" \
+  | sed -e '/^$/N;/^\n$/D' \
+  > ~/.ssh/config2
+  mv ~/.ssh/config2 ~/.ssh/config
+
+  cat <<EOF >>~/.ssh/config
+
+#============== MULTIPASS $contname ================
+Host $contname
+    User ub
+    IdentityFile ~/.ssh/mp/$contname/id_ed25519
+    HostName $ip
+    Port 22
+    ControlPath ~/.ssh/mp/$contname/ctrl-%l-to-%h
+    ControlMaster auto
+    ControlPersist 10m
+    ServerAliveInterval 180
+    # so that others can connect
+    GatewayPorts true
+    DynamicForward 9999
+    # squid
+    LocalForward 3128 localhost:3128
+#============== MULTIPASS $contname ================
+EOF
+}
+
+mkuser() {
+  bindir=$(dirname "$(readlink -f "$0")")
+  t=$(mktemp -d)
+  (
+  cd "$bindir"
+  git init --bare "$t"/gcode.git
+  git push --mirror "$t"/gcode.git
+  )
+  multipass transfer -r "$t"/gcode.git $contname:/tmp/gcode.git
+  rm -rf "$t"
+
+  cat <<EOF | multipass exec $contname bash -
+cat <<"__EOF" | sudo bash -
+umask 077
+useradd -s /bin/bash -m ub
+echo 'ub ALL=(ALL:ALL) NOPASSWD:ALL' >/etc/sudoers.d/ub
+mkdir ~ub/.ssh
+echo "$pubkey" >~ub/.ssh/authorized_keys
+chown -R ub:ub ~ub/ /tmp/gcode.git
+__EOF
+
+  cat <<"__EOF" | sudo -u ub bash -
+cd
+git clone /tmp/gcode.git
+sudo rm -rf /tmp/gcode.git
+cd gcode
+git remote rm origin
+git remote add origin https://github.com/random220/gcode
+git fetch origin
+git branch -m _x
+git checkout main
+git branch -D _x
+cd ..
+. gcode/bin/gcode.0
+__EOF
+EOF
+}
+
+system_update() {
+  cat <<EOF | multipass exec $contname bash -
+sudo apt-get -y update
+sudo apt-get -y dist-upgrade
+EOF
+  multipass stop $contname
+  multipass start $contname
+}
+
+main
