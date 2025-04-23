@@ -10,6 +10,7 @@ fi
 main() {
   mkcont
   system_update
+  install_packages
   adjust_ssh_config
   mkuser
 }
@@ -96,6 +97,13 @@ git branch -D _x
 cd ..
 . gcode/bin/gcode.0
 __EOF
+EOF
+}
+
+install_packages() {
+  cat <<EOF | multipass exec $contname bash -
+sudo apt-get -y update
+sudo apt-get -y install openvpn squid
 EOF
 }
 
