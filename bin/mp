@@ -1,0 +1,9 @@
+#!/bin/bash
+
+type multipass || exit
+
+if [[ "$1" == 'make' ]]; then
+    mpmake "$@"
+else
+    multipass "$@"
+fi
