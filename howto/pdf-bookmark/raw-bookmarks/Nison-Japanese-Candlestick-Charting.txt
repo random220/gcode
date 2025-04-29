@@ -1,0 +1,122 @@
+Cover 3*
+Acknowledgements 5*
+PREFACE 9*
+Contents 11*
+
+_offset 14
+Chapter 1 INTRODUCTION 1
+    Some background, 1
+    How I learned about candlestick charts, 1
+    Why candlestick charting techniques captured attention 4
+    What is in this book 5
+    Some limitations 7
+    The importance of technical analysis 8
+
+Chapter 2 A HISTORICAL BACKGROUND 13
+
+PART ONE: THE BASICS
+
+Chapter 3 CONSTRUCTING THE CANDLESTICKS 21
+    Drawing the candlestick lines, 21
+
+Chapter 4 REVERSAL PATTERNS 27
+    Hammer and hanging-man lines, 28
+    Engulfing pattern, 38
+    Dark-cloud cover, 43
+    Piercing pattern, 48
+
+
+Chapter 5 STARS 55
+    The morning star, 56
+    The evening star, 59
+    The morning and evening doji stars, 64
+    The shooting star and the inverted hammer, 70
+    The inverted hammer, 75
+
+Chapter 6 MORE REVERSAL PATTERNS 79
+    The harami pattern, 79
+        Harami Cross, 85
+    Tweezers tops and bottoms, 88
+    Belt-hold lines, 94
+    Upside-gap two crows, 98
+    Three black crows, 101
+    The counterattack lines, 103
+    Three mountains and three rivers, 107
+    The importance of the number three in candlesticks, 112
+    Dumpling tops and fry pan bottoms, 113
+    Tower tops and tower bottoms, 115
+
+
+Chapter 7 CONTINUATION PATTERNS 119
+    Windows, 119
+        Upward- and downward-gap tasuki, 129
+        High-price and low-price gapping plays, 131
+        Gapping side-by-side white lines, 134
+    Rising and falling three methods, 135
+    Three advancing white soldiers, 143
+    Separating lines, 147
+
+Chapter 8 THE MAGIC DOJI 149
+    The importance of the doji, 149
+    Doji at tops, 150
+    Doji after a long white candlestick, 154
+    The long-legged doji and the rickshaw man, 154
+    The gravestone doji, 159
+    Doji as support and resistance, 161
+    The tri-star, 162
+
+Chapter 9 PUTTING IT ALL TOGETHER 165
+
+PART TWO: THE RULE OF MULTIPLE TECHNICAL TECHNIQUES
+
+Chapter 10 A CONFLUENCE OF CANDLESTICKS 177
+Chapter 11 CANDLESTICKS WITH TRENDLINES 185
+    Support and resistance lines with candlesticks, 185
+    Springs and upthrusts, 193
+    The change of polarity principle, 201
+
+Chapter 12 CANDLESTICKS WITH RETRACEMENT LEVELS 209
+Chapter 13 CANDLESTICKS WITH MOVING AVERAGES 215
+    The simple moving average, 215
+    The weighted moving average, 216
+    The exponential moving average and the MACD, 216
+    How to use moving averages, 217
+    Dual moving averages, 220
+
+Chapter 14 CANDLESTICKS WITH OSCILLATORS 227
+    Oscillators, 227
+    The relative strength index, 228
+        How to Compute the RSI, 228
+        How to Use RSI, 229
+    Stochastics, 232
+        How to Compute Stochastics, 232
+        How to Use Stochastics, 233
+    Momentum, 236
+
+Chapter 15 CANDLESTICKS WITH VOLUME AND OPEN INTEREST 241
+    Volume with candlesticks, 242
+    On balance volume (OBV), 244
+        OBV with candlesticks, 245
+    Tick volume™, 245
+        Tick Volume™ with candlesticks, 246
+    Open interest, 248
+        Open interest with candlesticks, 249
+
+Chapter 16 CANDLESTICKS WITH ELLIOTT WAVE 253
+    Elliott wave basics, 253
+        Elliott wave with candlesticks, 254
+
+Chapter 17 CANDLESTICKS WITH MARKET PROFILE® 259
+    Market profile® with candlesticks, 261
+
+Chapter 18 CANDLESTICKS WITH OPTIONS 267
+    Options basics, 268
+    Options with candlesticks, 269
+
+Chapter 19 HEDGING WITH CANDLESTICKS 275
+Chapter 20 HOW I HAVE USED CANDLESTICKS 281
+    CONCLUSION 287
+Glossary A CANDLESTICK TERMS AND VISUAL GLOSSARY 289
+Glossary B AMERICAN TECHNICAL TERMS 303
+    BIBLIOGRAPHY 309
+    INDEX 311
