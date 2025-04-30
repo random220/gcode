@@ -3,6 +3,7 @@
 type multipass || exit
 
 if [[ "$1" == 'make' ]]; then
+    shift
     mpmake "$@"
 else
     multipass "$@"
