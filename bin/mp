@@ -5,6 +5,13 @@ type multipass || exit
 if [[ "$1" == 'make' ]]; then
     shift
     mpmake "$@"
+elif [[ "$1" == 'x' ]]; then
+    shift
+    for vm in "$@"; do
+        multipass delete --purge $vm
+    done
+elif [[ "$1" == 'X' ]]; then
+    multipass ls|egrep -v '^Name|No instances found'|sed 's/ .*//'|sort -u|grep -v '^$' | xargs -L 1 multipass delete --purge
 else
     multipass "$@"
 fi
