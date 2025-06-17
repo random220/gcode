@@ -1,0 +1,317 @@
+Cover 1*
+Contents 14*
+Preface xvii 22*
+
+_offset 25
+1 Introduction                                                  1
+2 Groundwork                                                    5
+    The Fourier Transform and Fourier's Integral Theorem        5
+    Conditions for the Existence of Fourier Transforms          8
+    Transforms in the Limit                                     10
+    Oddness and Evenness                                        11
+    Significance of Oddness and Evenness                        13
+    Complex Conjugates                                          14
+    Cosine and Sine Transforms                                  16
+    Interpretation of the Formulas                              18
+
+3 Convolution                                                   24
+    Examples of Convolution                                     27
+    Serial Products                                             30
+        Inversion of serial multiplication /
+        The serial product in matrix notation /
+        Sequences as vectors
+    Convolution by Computer                                     39
+    The Autocorrelation Function and Pentagram Notation         40
+    The Triple Correlation                                      45
+    The Cross Correlation                                       46
+    The Energy Spectrum                                         47
+
+4 Notation for Some Useful Functions                            55
+    Rectangle Function of Unit Height and Base, Π(x)            55
+    Triangle Function of Unit Height and Area, Λ(x)             57
+    Various Exponentials and Gaussian and Rayleigh Curves       57
+    Heaviside's Unit Step Function, H(x)                        61
+    The Sign Function, sgn x                                    65
+    The Filtering or Interpolating Function, sinc x             65
+    Pictorial Representation                                    68
+    Summary of Special Symbols                                  71
+
+5 The Impulse Symbol                                            74
+    The Sifting Property                                        78
+    The Sampling or Replicating Symbol III(x)                   81
+    The Even and Odd Impulse Pairs In(x) and I (x)              84
+    Derivatives of the Impulse Symbol                           85
+    Null Functions                                              87
+    Some Functions in Two or More Dimensions                    89
+    The Concept of Generalized Function                         92
+        Particularly well-behaved functions /
+        Regular sequences /
+        Generalized functions /
+        Algebra of generalized functions /
+        Differentiation of ordinary functions
+
+
+6 The Basic Theorems                                            105
+    A Few Transforms for Illustration                           105
+    Similarity Theorem                                          108
+    Addition Theorem                                            110
+    Shift Theorem                                               111
+    Modulation Theorem                                          113
+    Convolution Theorem                                         115
+    Rayleigh's Theorem                                          119
+    Power Theorem                                               120
+    Autocorrelation Theorem                                     122
+    Derivative Theorem                                          124
+    Derivative of a Convolution Integral                        126
+    The Transform of a Generalized Function                     127
+    Proofs of Theorems                                          128
+        Similarity and shift theorems /
+        Derivative theorem /
+        Power theorem
+    Summary of Theorems                                         129
+
+7 Obtaining Transforms                                              136
+    Integration in Closed Form                                      137
+    Numerical Fourier Transformation                                140
+    The Slow Fourier Transform Program                              142
+    Generation of Transforms by Theorems                            145
+    Application of the Derivative Theorem to Segmented Functions    145
+    Measurement of Spectra                                          147
+        Radiofrequency spectral analysis /
+        Optical Fourier transform spectroscopy
+
+8 The Two Domains                                               151
+    Definite Integral                                           152
+    The First Moment                                            153
+    Centroid                                                    155
+    Moment of Inertia (Second Moment)                           156
+    Moments                                                     157
+    Mean-Square Abscissa                                        158
+    Radius of Gyration                                          159
+    Variance                                                    159
+    Smoothness and Compactness                                  160
+    Smoothness under Convolution                                162
+    Asymptotic Behavior                                         163
+    Equivalent Width                                            164
+    Autocorrelation Width                                       170
+    Mean Square Widths                                          171
+    Sampling and Replication Commute                            172
+    Some Inequalities                                           174
+        Upper limits to ordinate and slope /
+        Schwarz's inequality
+    The Uncertainty Relation                                    177
+        Proof of uncertainty relation /
+        Example of uncertainty relation
+    The Finite Difference                                       180
+    Running Means                                               184
+    Central Limit Theorem                                       186
+    Summary of Correspondences in the Two Domains               191
+
+9 Waveforms, Spectra, Filters, and Linearity                    198
+    Electrical Waveforms and Spectra                            198
+    Filters                                                     200
+    Generality of Linear Filter Theory                          203
+    Digital Filtering                                           204
+    Interpretation of Theorems                                  205
+        Similarity theorem /
+        Addition theorem /
+        Shift theorem /
+        Modulation theorem /
+        Converse of modulation theorem
+    Linearity and Time Invariance                               209
+    Periodicity                                                 211
+
+
+
+10 Sampling and Series                                          219
+    Sampling Theorem                                            219
+    Interpolation                                               224
+    Rectangular Filtering in Frequency Domain                   224
+    Smoothing by Running Means                                  226
+    Undersampling                                               229
+    Ordinate and Slope Sampling                                 230
+    Interlaced Sampling                                         232
+    Sampling in the Presence of Noise                           234
+    Fourier Series                                              235
+        Gibbs phenomenon /
+        Finite Fourier transforms /
+        Fourier coefficients
+    Impulse Trains That Are Periodic                            245
+    The Shah Symbol Is Its Own Fourier Transform                246
+
+
+11 The Discrete Fourier Transform and the FFT                   258
+    he Discrete Transform Formula                               258
+    Cyclic Convolution                                          264
+    Examples of Discrete Fourier Transforms                     265
+    Reciprocal Property                                         266
+    Oddness and Evenness                                        266
+    Examples with Special Symmetry                              267
+    Complex Conjugates                                          268
+    Reversal Property                                           268
+    Addition Theorem                                            268
+    Shift Theorem                                               268
+    Convolution Theorem                                         269
+    Product Theorem                                             269
+    Cross-Correlation                                           270
+    Autocorrelation                                             270
+    Sum of Sequence                                             270
+    First Value                                                 270
+    Generalized Parseval-Rayleigh Theorem                       271
+    Packing Theorem                                             271
+    Similarity Theorem                                          272
+    Examples Using MATLAB                                       272
+    The Fast Fourier Transform                                  275
+    Practical Considerations                                    278
+    Is the Discrete Fourier Transform Correct?                  280
+    Applications of the FFT                                     281
+    Timing Diagrams                                             282
+    When N Is Not a Power of 2                                  283
+    Two-Dimensional Data                                        284
+    Power Spectra                                               285
+
+12 The Discrete Hartley Transform                                   293
+    A Strictly Reciprocal Real Transform                            293
+    Notation and Example                                            294
+    The Discrete Hartley Transform                                  295
+    Examples of DHT                                                 297
+    Discussion                                                      298
+    A Convolution of Algorithm in One and Two Dimensions            298
+    Two Dimensions                                                  299
+    The Cas-Cas Transform                                           300
+    Theorems                                                        300
+    The Discrete Sine and Cosine transforms                         301
+        Boundary value problems / Data compression application
+    Computing                                                       305
+    Getting a Feel for Numerical Transforms                         305
+    The Complex Hartley Transform                                   306
+    Physical Aspect of the Hartley Transformation                   307
+    The Fast Hartley Transform                                      308
+    The Fast Algorithm                                              309
+    Running Time                                                    314
+    Timing via the Stripe Diagram                                   315
+    Matrix Formulation                                              317
+    Convolution                                                     320
+    Permutation                                                     321
+    A Fast Hartley Subroutine                                       322
+
+13 Relatives of the Fourier Transform                               329
+    The Two-Dimensional Fourier Transform                           329
+    Two-Dimensional Convolution                                     331
+    The Hankel Transform                                            335
+    Fourier Kernels                                                 339
+    The Three-Dimensional Fourier Transform                         340
+    The Hankel Transform in n Dimensions                            343
+    The Mellin Transform                                            343
+    The z Transform                                                 347
+    The Abel Transform                                              351
+    The Radon Transform and Tomography                              356
+        The Abel-Fourier-Hankel ring of transforms /
+        Projection-slice theorem /
+        Reconstruction by modified back projection
+    The Hilbert Transform                                           359
+        The analytic signal /
+        Instantaneous frequency and envelope /
+        Causality
+    Computing the Hilbert Transform                                 364
+    The Fractional Fourier Transform                                367
+        Shift theorem /
+        Derivative theorems /
+        Fractional convolution theorem /
+        Examples of transforms
+
+14 The Laplace Transform                                            380
+    Convergence of the Laplace Integral                             382
+    Theorems for the Laplace Transform                              383
+    Transient-Response Problems                                     385
+    Laplace Transform Pairs                                         386
+    Natural Behavior                                                389
+    Impulse Response and Transfer Function                          390
+    Initial-Value Problems                                          392
+    Setting Out Initial-Value Problems                              396
+    Switching Problems                                              396
+
+
+15 Antennas and Optics                                              406
+    One-Dimensional Apertures                                       407
+    Analogy with Waveforms and Spectra                              410
+    Beam Width and Aperture Width                                   411
+    Beam Swinging                                                   412
+    Arrays of Arrays                                                413
+    Interferometers                                                 414
+    Spectral Sensitivity Function                                   415
+    Modulation Transfer Function                                    416
+    Physical Aspects of the Angular Spectrum                        417
+    Two-Dimensional Theory                                          417
+    Optical Diffraction                                             419
+    Fresnel Diffraction                                             420
+    Other Applications of Fourier Analysis                          422
+
+16 Applications in Statistics                                       428
+    Distribution of a Sum                                           429
+    Consequences of the Convolution Relation                        434
+    The Characteristic Function                                     435
+    The Truncated Exponential Distribution                          436
+    The Poisson Distribution                                        438
+
+17 Random Waveforms and Noise                                       446
+    Discrete Representation by Random Digits                        447
+    Filtering a Random Input: Effect on Amplitude Distribution      450
+        Digression on independence /
+        The convolution relation
+    Effect on Autocorrelation                                       455
+    Effect on Spectrum                                              458
+        Spectrum of random input /
+        The output spectrum
+    Some Noise Records                                              462
+    Envelope of Bandpass Noise                                      465
+    Detection of a Noise Waveform                                   466
+    Measurement of Noise Power                                      466
+
+18 Heat Conduction and Diffusion                                    475
+    One-Dimensional Diffusion                                       475
+    Gaussian Diffusion from a Point                                 480
+    Diffusion of a Spatial Sinusoid                                 481
+    Sinusoidal Time Variation                                       485
+19 Dynamic Power Spectra                                            489
+    The Concept of Dynamic Spectrum                                 489
+    The Dynamic Spectrograph                                        491
+    Computing the Dynamic Power Spectrum                            494
+        Frequency division /
+        Time division /
+        Presentation
+    Equivalence Theorem                                             497
+    Envelope and Phase                                              498
+    Using log f instead of f                                        499
+    The Wavelet Transform                                           500
+    Adaptive Cell Placement                                         502
+    Elementary Chirp Signals (Chirplets)                            502
+    The Wigner Distribution                                         504
+
+
+20 Tables of sinc x, sinc^2 x, and exp (-пх^2)                      508
+
+21 Solutions to Selected Problems                                   513
+    Chapter 2 Groundwork                                            513
+    Chapter 3 Convolution                                           514
+    Chapter 4 Notation for Some Useful Functions                    516
+    Chapter 5 The Impulse Symbol                                    517
+    Chapter 6 The Basic Theorems                                    522
+    Chapter 7 Obtaining Transforms                                  524
+    Chapter 8 The Two Domains                                       526
+    Chapter 9 Waveforms, Spectra, Filters, and Linearity            530
+    Chapter 10 Sampling and Series                                  532
+    Chapter 11 The Discrete Fourier Transform and the FFT           534
+    Chapter 12 The Hartley Transform                                537
+    Chapter 13 Relatives of the Fourier Transform                   538
+    Chapter 14 The Laplace Transform                                539
+    Chapter 15 Antennas and Optics                                  545
+    Chapter 16 Applications in Statistics                           555
+    Chapter 17 Random Waveforms and Noise                           557
+    Chapter 18 Heat Conduction and Diffusion                        565
+    Chapter 19 Dynamic Spectra and Wavelets                         571
+
+22 Pictorial Dictionary of Fourier Transforms                       573
+    Hartley Transforms of Some Functions without Symmetry           592
+23 The Life of Joseph Fourier                                       594
+Index                                                               597
