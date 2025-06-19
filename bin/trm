@@ -47,7 +47,7 @@ chmod 700 ~/bin/killme
 # Filesystem              Size  Used Avail Use% Mounted on
 # 192.168.10.182:/shares  2.0G  4.0K  2.0G   1% /home/om/x
 
-(cd ~/Downloads/uu && df -kh .)|grep 192.168.10.182
+(cd ~/Downloads/uu && df -kh .)|grep '/shares/data/movies/uu'
 if [[ $? != 0 ]]; then
     mkdir -p ~/Downloads/uu
 
