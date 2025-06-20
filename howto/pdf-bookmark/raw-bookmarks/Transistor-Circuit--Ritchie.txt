@@ -1,7 +1,8 @@
 Cover 1*
 Contents 6*
-Preface to the third edition xi
-Preface to the second edition xiii
+Preface to the third edition xi 11*
+Preface to the second edition xiii 12*
+_offset 13
 1 Introduction to semiconductor devices 1
     Objectives 1
     Semiconductors 1
