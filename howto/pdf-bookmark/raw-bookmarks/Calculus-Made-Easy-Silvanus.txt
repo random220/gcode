@@ -1,0 +1,44 @@
+Cover 1*
+Contents 8*
+_offset 9
+Preface to the 1998 Edition                                             1
+Preliminary Chapters by Martin Gardner
+    1. What Is a Function?                                              10
+    2. What Is a Limit?                                                 18
+    3. What Is a Derivative?                                            30
+
+Calculus Made Easy by Silvanus P. Thompson
+    Publisher's Note on the Third Edition                                   36
+    Prologue                                                                38
+    I. To Deliver You from the Preliminary Terrors                          39
+    II. On Different Degrees of Smallness                                   41
+    III. On Relative Growings                                               45
+    IV. Simplest Cases                                                      51
+    V. Next Stage. What to Do with Constants                                59
+    VI. Sums, Difterences, Products, and Quotients                          66
+    VII. Successive Differentiation                                         79
+    VIII. When Time Varies                                                  83
+    IX. Introducing a Useful Dodge                                          94
+    X. Geometrical Meaning of Differentiation                               103
+    XI. Maxima and Minima                                                   116
+    XII. Curvature of Curves                                                132
+    XIII. Partial Fractions and Inverse Functions                           139
+    XIV. On True Compound Interest and the Law of Organic Growth            150
+    XV. How to Deal with Sines and Cosines                                  175
+    XVI. Partial Differentiation                                            184
+    XVII. Integration                                                       191
+    XVIII. Integrating as the Reverse of Differentiating                    198
+    XIX. On Finding Areas by Integrating                                    210
+    XX. Dodges, Pitfalls, and Triumphs                                      227
+    XXI. Finding Solutions                                                  235
+    XXII. A Little More about Curvature of Curves                           249
+    XXIII. How to Find the Length of an Arc on a Curve                      263
+    Table of Standard Forms                                                 276
+
+Epilogue and Apologue                                                       279
+Answers to Exercises                                                        281
+Appendix:                                                               
+Some Recreational Problems Relating to Calculus, by Martin Gardner          296
+Index                                                                       326
+About the Authors                                                           330
+

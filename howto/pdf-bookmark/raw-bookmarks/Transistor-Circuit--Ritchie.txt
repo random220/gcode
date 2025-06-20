@@ -1,0 +1,208 @@
+Cover 1*
+Contents 6*
+Preface to the third edition xi
+Preface to the second edition xiii
+1 Introduction to semiconductor devices 1
+    Objectives 1
+    Semiconductors 1
+    The junction diode 3
+    Diode in equilibrium 3
+    Reverse bias 4
+    Forward bias 5
+    The diode equation 5
+    Breakdown 8
+    Diode capacitance 8
+    Diode ratings 8
+    Diode models 9
+    d.c. model 9
+    Small-signal a.c. model 9
+    Breakdown diodes 11
+    The bipolar junction transistor 12
+    BJT operation 14
+    BJT current gain 15
+    BJT characteristics 16
+    Load line 18
+    BJT ratings 19
+    Integrated circuits 19
+    The planar process 20
+    Integrated BJTs 21
+    Integrated diodes 22
+    Integrated resistors 22
+    Integrated capacitors 23
+    Economic forces 23
+    Summary 24
+    Problems 25
+2 Introduction to amplifiers and biasing 26
+    Objectives 26
+    Amplifier fundamentals 26
+    Amplifier gain 26
+    Input and output resistances 27
+    BJT configurations 28
+    BJT biasing in common-emitter 29
+    The need for biasing 29
+    Constant base current biasing 30
+    Shunt feedback biasing 32
+    Potentiometer biasing 34
+    Biasing other configurations 36
+    Coupling capacitors 36
+    Direct coupling 38
+    Summary 39
+    Problems 39
+
+3 Small-signal BJT models and their application 43
+    Objectives 43
+    Why model? 43
+    A basic BJT model 44
+    Use of the model 45
+    Full hybrid- model 48
+    Simple common-base model 50
+    Summary 52
+    Problems 52
+
+4 Single-stage BJT amplifiers with feedback 55
+    Objectives 55
+    Series feedback amplifier 55
+    The emitter follower 59
+    Effect of emitter decoupling capacitor 62
+    Shunt feedback amplifier 64
+    High-input resistance techniques 68
+        Compound-connected BJTs 68
+        Bootstrap bias circuit 69
+    Summary 72
+    Problems
+
+5 Linear integrated circuit techniques 75
+    Objectives 75
+    The differential amplifier 75
+        Balance state 76
+        Large-signal behaviour 76
+        Small-signal behaviour 79
+        Common-mode performance 80
+        Emitter feedback 82
+    Current sources 83
+        Temperature stability 83
+        Output resistance 85
+        Sources or sinks? 86
+    Current mirrors 86
+        Basic current mirror 86
+        Wilson mirror 89
+    Active loads 90
+    Level-shifting circuits 92
+    The amplified diode 93
+    A simple operational amplifier 95
+    The differential comparator 96
+    Summary 98
+    Problems 99
+
+6 BJT switching circuits 102
+    Objectives 102
+    BJT regions of operation 102
+    Simple switching circuits 103
+        Single-stage inverter 103
+        BJT NOR gate 104
+    Cascaded switching stages 105
+    Positive feedback: the bistable 106
+    Timing circuits 107
+        Timing mechanism 107
+        Pulse generator 109
+        Monostable 109
+        Astable 113
+    Collector waveform improvement 115
+        Isolating diode 115
+        Emitter-follower 116
+    Junction breakdown protection 116
+        Junction breakdown 116
+        Protection using emitter diodes 118
+        Protection using base diodes 118
+    An integrated circuit timer 119
+    Differential comparator oscillator 122
+    Summary 125
+    Problems 125
+
+7 Field-effect transistors and circuits 128
+    Objectives 128
+    The JFET 128
+        Structure and operation 128
+        Characteristic equations 131
+    The MOST 133
+        Structure and operation 133
+        Characteristic equations 136
+    Small-signal model 137
+    FET amplifiers 138
+        Biasing 138
+        Current sources 141
+        Temperature stability 141
+        Common-source amplifier 142
+        Series feedback amplifier 142
+        Source follower 143
+        Differential amplifier 143
+    Voltage-variable resistor 143
+    FET switches 145
+        Shunt switch 145
+        Series switch 145
+    MOS logic gates 146
+        MOS inverter 146
+    MOS NOR and NAND gates 149
+    CMOS logic gates 149
+    Summary 150
+    Problems 151
+
+
+8 Audio power amplifiers 153
+    Objectives 153
+    An audio system 153
+        Voltage, current and power 154
+        Distortion 155
+    Power amplifier output stage 156
+        Class A and class B operation 156
+        The amplified diode 160
+    Voltage gain stages and overall configuration 163
+        Collector load bootstrapping 165
+        Overall configuration 166
+    An audio power amplifier design procedure 167
+        Specification 167
+        Supply voltage requirements 168
+        Output stage considerations 168
+        Driver stage 169
+        Input sensitivity and voltage gain 171
+        Low-frequency response 171
+        Comments 171
+        Performance 172
+    Other aspects of power amplifiers 173
+        Bridge configuration 173
+        Use of power MOSTs 174
+        Class D operation 174
+    Summary 175
+    Problems 176
+
+9 Power supply regulators 177
+    Objectives 177
+    Introduction 177
+    The unregulated supply 177
+        Transformer 177
+        Rectifier 178
+        Filter 180
+        Rectifier and capacitor ratings 184
+    Linear voltage regulators 185
+        Shunt voltage regulators 186
+        Series voltage regulators 188
+        Feedback series regulators using BJTs 189
+        Overload protection 193
+        Series regulators using op-amps 196
+    Regulator design examples 198
+        BJT implementation 198
+        Op-amp implementation 200
+    Introduction to switching regulators 201
+    Summary 202
+    Problems 203
+
+Appendix A Preferred values for passive components 204
+Appendix B Transient response of R-C circuits 206
+    Intuitive solution 208
+    Determination of time constant 209
+    Problems 211
+Appendix C h-parameter modelling of BJTs 212
+    Circuit analysis using h-parameters 215
+References 216
+Answers to problems 217
+
