@@ -1,3 +1,9 @@
+Cover 1*
+Contents 6*
+To The Student 10*
+Formulas 11*
+
+_offset 12
 CHAPTER 0 Highlights of Calculus
     0.1 Distance and Speed // Height and Slope              1
     0.2 The Changing Slope of y = x and y = x"              9
@@ -103,27 +109,25 @@ CHAPTER 13 Partial Derivatives
     13.2 Partial Derivatives                                    549
     13.3 Tangent Planes and Linear Approximations               554
     13.4 Directional Derivatives and Gradients                  565
-    13.5 The Chain Rule                                         574
-    13.6 Maxima, Minima, and Saddle Points                      582
-    13.7 Constraints and Lagrange Multipliers                   592
+    13.5 The Chain Rule                                         573
+    13.6 Maxima, Minima, and Saddle Points                      581
+    13.7 Constraints and Lagrange Multipliers                   591
 
 CHAPTER 14 Multiple Integrals                                   
-    14.1 Double Integrals                                       599
-    14.2 Change to Better Coordinates                           607
-    14.3 Triple Integrals                                       616
-    14.4 Cylindrical and Spherical Coordinates                  622
+    14.1 Double Integrals                                       598
+    14.2 Change to Better Coordinates                           606
+    14.3 Triple Integrals                                       615
+    14.4 Cylindrical and Spherical Coordinates                  621
 
 CHAPTER 15 Vector Calculus
-    15.1 Vector Fields                                          631
-    15.2 Line Integrals                                         637
-    15.3 Green's Theorem                                        646
-    15.4 Surface Integrals                                      657
-    15.5 The Divergence Theorem                                 667
-    15.6 Stokes' Theorem and the Curl of F                      674
-CHAPTER 16 Mathematics after Calculus
+    15.1 Vector Fields                                          630
+    15.2 Line Integrals                                         636
+    15.3 Green's Theorem                                        645
+    15.4 Surface Integrals                                      656
+    15.5 The Divergence Theorem                                 666
+    15.6 Stokes' Theorem and the Curl of F                      673
 
+CHAPTER 16 Mathematics after Calculus                           681
 
-
-
-
-
+Table of Integrals 695*
+Index 696*
