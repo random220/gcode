@@ -1,6 +1,6 @@
 Front Cover 1*
-Contents 8*
-_offset 9
+Contents 6*
+_offset 7
 Preface to the 1998 Edition                                         1
 Preliminary Chapters by Martin Gardner                              
     1. What Is a Function?                                          10
