@@ -6,8 +6,8 @@ Formulas 11*
 _offset 12
 CHAPTER 0 Highlights of Calculus
     0.1 Distance and Speed // Height and Slope              1
-    0.2 The Changing Slope of y = x and y = x"              9
-    0.3 The Exponential y = e*                              15
+    0.2 The Changing Slope of y = x^2 and y = x^n           9
+    0.3 The Exponential y = e^x                             15
     0.4 Video Summaries and Practice Problems               23
     0.5 Graphs and Graphing Calculators                     45
 
@@ -34,7 +34,7 @@ CHAPTER 3 Applications of the Derivative
     3.3 Second Derivatives: Bending and Acceleration        153
     3.4 Graphs                                              160
     3.5 Parabolas, Ellipses, and Hyperbolas                 170
-    3.6 Iterations Xn+1 = F(xn)                             179
+    3.6 Iterations Xn+1 = F(Xn)                             179
     3.7 Newton's Method (and Chaos)                         187
     3.8 The Mean Value Theorem and I'Hôpital's Rule         197
 
