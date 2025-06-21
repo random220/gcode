@@ -1,0 +1,129 @@
+CHAPTER 0 Highlights of Calculus
+    0.1 Distance and Speed // Height and Slope              1
+    0.2 The Changing Slope of y = x and y = x"              9
+    0.3 The Exponential y = e*                              15
+    0.4 Video Summaries and Practice Problems               23
+    0.5 Graphs and Graphing Calculators                     45
+
+CHAPTER 1 Introduction to Calculus
+    1.1 Velocity and Distance                               51
+    1.2 Calculus Without Limits                             59
+    1.3 The Velocity at an Instant                          67
+    1.4 Circular Motion                                     73
+    1.5 A Review of Trigonometry                            80
+    1.6 A Thousand Points of Light                          85
+
+CHAPTER 2 Derivatives
+    2.1 The Derivative of a Function                        87
+    2.2 Powers and Polynomials                              94
+    2.3 The Slope and the Tangent Line                      102
+    2.4 The Derivative of the Sine and Cosine               109
+    2.5 The Product and Quotient and Power Rules            116
+    2.6 Limits                                              123
+    2.7 Continuous Functions                                131
+
+CHAPTER 3 Applications of the Derivative
+    3.1 Linear Approximation                                138
+    3.2 Maximum and Minimum Problems                        143
+    3.3 Second Derivatives: Bending and Acceleration        153
+    3.4 Graphs                                              160
+    3.5 Parabolas, Ellipses, and Hyperbolas                 170
+    3.6 Iterations Xn+1 = F(xn)                             179
+    3.7 Newton's Method (and Chaos)                         187
+    3.8 The Mean Value Theorem and I'Hôpital's Rule         197
+
+CHAPTER 4 Derivatives by the Chain Rule
+    4.1 The Chain Rule                                      204
+    4.2 Implicit Differentiation and Related Rates          211
+    4.3 Inverse Functions and Their Derivatives             216
+    4.4 Inverses of Trigonometric Functions                 223
+
+CHAPTER 5 Integrals
+    5.1 The Idea of the Integral                            229
+    5.2 Antiderivatives                                     234
+    5.3 Summation versus Integration                        240
+    5.4 Indefinite Integrals and Substitutions              249
+    5.5 The Definite Integral                               254
+    5.6 Properties of the Integral and Average Value        260
+    5.7 The Fundamental Theorem and Its Applications        267
+    5.8 Numerical Integration                               275
+
+CHAPTER 6 Exponentials and Logarithms
+    6.1 An Overview                                             284
+    6.2 The Exponential e^x                                     292
+    6.3 Growth and Decay in Science and Economics               299
+    6.4 Logarithms                                              310
+    6.5 Separable Equations Including the Logistic Equation     317
+    6.6 Powers Instead of Exponentials                          326
+    6.7 Hyperbolic Functions                                    336
+
+CHAPTER 7 Techniques of Integration
+    7.1 Integration by Parts                                    342
+    7.2 Trigonometric Integrals                                 348
+    73 Trigonometric Substitutions                              355
+    7.4 Partial Fractions                                       362
+    7.5 Improper Integrals                                      367
+
+CHAPTER 8 Applications of the Integral
+    8.1 Areas and Volumes by Slices                             373
+    8.2 Length of a Plane Curve                                 383
+    8.3 Area of a Surface of Revolution                         388
+    3.4 Probability and Calculus                                391
+    8.5 Masses and Moments                                      399
+    8.6 Force, Work, and Energy                                 406
+
+CHAPTER 9 Polar Coordinates and Complex Numbers
+    9.1 Polar Coordinates                                       412
+    9.2 Polar Equations and Graphs                              416
+    9.3 Slope, Length, and Area for Polar Curves                421
+    9.4 Complex Numbers                                         425
+
+CHAPTER 10 Infinite Series
+    10.1 The Geometric Series                                   433
+    10.2 Convergence Tests: Positive Series                     440
+    10.3 Convergence Tests: All Series                          448
+    10.4 The Taylor Series for e^x, sin x, and cos x            452
+    10.5 Power Series                                           458
+
+CHAPTER 11 Vectors and Matrices
+    11.1 Vectors and Dot Products                               466
+    11.2 Planes and Projections                                 476
+    11.3 Cross Products and Determinants                        486
+    11.4 Matrices and Linear Equations                          496
+    11.5 Linear Algebra                                         507
+
+CHAPTER 12 Motion Along a Curve
+    12.1 The Position Vector                                    517
+    12.2 Plane Motion: Projectiles and Cycloids                 525
+    12.3 Curvature and Normal Vector                            531
+    12.4 Polar Coordinates and Planetary Motion                 537
+
+CHAPTER 13 Partial Derivatives                                  
+    13.1 Surfaces and Level Curves                              545
+    13.2 Partial Derivatives                                    549
+    13.3 Tangent Planes and Linear Approximations               554
+    13.4 Directional Derivatives and Gradients                  565
+    13.5 The Chain Rule                                         574
+    13.6 Maxima, Minima, and Saddle Points                      582
+    13.7 Constraints and Lagrange Multipliers                   592
+
+CHAPTER 14 Multiple Integrals                                   
+    14.1 Double Integrals                                       599
+    14.2 Change to Better Coordinates                           607
+    14.3 Triple Integrals                                       616
+    14.4 Cylindrical and Spherical Coordinates                  622
+
+CHAPTER 15 Vector Calculus
+    15.1 Vector Fields                                          631
+    15.2 Line Integrals                                         637
+    15.3 Green's Theorem                                        646
+    15.4 Surface Integrals                                      657
+    15.5 The Divergence Theorem                                 667
+    15.6 Stokes' Theorem and the Curl of F                      674
+CHAPTER 16 Mathematics after Calculus
+
+
+
+
+
+
