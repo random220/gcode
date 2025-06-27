@@ -1,0 +1,67 @@
+#!/usr/bin/env python
+
+# I want to write a Python program to do the following:
+# 
+# I want to call the program like so:
+# python a.py /Users/zk/Music/Music/Media.localized/Music/Sonny\ Rollins
+# 
+# It should first file out all files ending with .m4a in the directory tree and print out the list.
+# 
+# Write the code for me please?
+# 
+# I want to trimp '/Users/zk/Music/Music/Media.localized/Music/Sonny Rollins' from each output line
+import os
+import sys
+
+def find_m4a_files(directory):
+    m4a_files = []
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith('.m4a'):
+                full_path = os.path.join(root, file)
+                relative_path = os.path.relpath(full_path, directory)
+                m4a_files.append((full_path, relative_path))
+    return m4a_files
+
+def tomp3(full_path, relpath):
+    # full_path: /Users/zk/Music/Music/Media.localized/Music/Sonny Rollins/Sonny Rollins The Complete RCA Victor Recordings [Disc 3]/3-03 Doxy [1997 Remastered].m4a
+    # relative_path: Sonny Rollins The Complete RCA Victor Recordings [Disc 3]/3-03 Doxy [1997 Remastered].m4a
+
+    # Split the path into root and extension
+    root, ext = os.path.splitext(relpath)
+    # Replace extension with .mp3
+    relpath_mp3 = root + ".mp3"
+
+    reldir = os.path.dirname(relpath_mp3)
+
+    # Form the target directory path by prepending "mp3/"
+    target_dir = os.path.join("mp3", reldir)
+    target_file = os.path.join("mp3", relpath_mp3)
+
+    # Create the directory if it doesn't exist
+    os.makedirs(target_dir, exist_ok=True)
+
+    print(f"ffmpeg -i \"{full_path}\" -ab 256k -map_metadata 0 -id3v2_version 3 \"{target_file}\"")
+
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python a.py <directory_path>")
+        sys.exit(1)
+    
+    directory = sys.argv[1]
+    if not os.path.isdir(directory):
+        print(f"Error: {directory} is not a valid directory")
+        sys.exit(1)
+    
+    m4a_files = find_m4a_files(directory)
+    
+    if not m4a_files:
+        print("# No .m4a files found in the directory tree")
+    else:
+        print("# Found .m4a files:")
+        for full_path, relative_path in m4a_files:
+            tomp3(full_path, relative_path)
+
+if __name__ == "__main__":
+    main()
