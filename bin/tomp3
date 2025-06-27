@@ -1,8 +1,20 @@
-find xxx -type f >_files.txt
-while IFS= read -r line; do
-    d=$(dirname "$line")
-    f=$(basename "$line")
-    d2="mp3/$d"
-    mkdir -p "$d2"
-    echo "ffmpeg -i \"$line\" -q:a 2 \"$d2/$f\".mp3"
-done <_files.txt
+#!/bin/bash
+if [[ $1 == '' ]]; then
+    echo "$0 256|320 /path/to/audiofile"
+    echo "the result will be in  /path/to/mp3/audiofile.mp3"
+    exit 0
+fi
+
+if [[ ! -f "$2" ]]; then
+    echo "$0 256|320 /path/to/audiofile"
+    echo "the result will be in  /path/to/mp3/audiofile.mp3"
+    exit 0
+fi
+
+f_in="$2"
+d=$(dirname "$f_in")
+b=$(basename "$f_in")
+mkdir -p "$d/mp3"
+f_out="$(echo "$d/mp3/${b}.whatever" | sed 's/\..*$/.mp3/')"
+echo ffmpeg -i "\"$f_in\"" -ab $1'k' -map_metadata 0 -id3v2_version 3 "\"$f_out\""
+
