@@ -57,7 +57,7 @@ Chapter-6 489
     6.7 Partial orders 568
     6.8 Strict orders and directed acyclic graphs 579
     6.9 Equivalence relations 596
-    6.10 -ary relations and relational databases 604
+    6.10 N-ary relations and relational databases 604
 
 Chapter-7 606
     7.1 An introduction to algorithms 606
