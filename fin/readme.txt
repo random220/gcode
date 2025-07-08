@@ -5,5 +5,5 @@
 cat sample-transactions/*.csv | grep '^Run' | sort -u >a.csv
 for f in sample-transactions/*.csv; do
     echo "$f"
-    cat "$f" | egrep -v '^$' | grep 'CALL ' >>a.csv
+    cat "$f" | egrep -v '^$' | egrep ' BOUGHT | SOLD ' >>a.csv
 done
