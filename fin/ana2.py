@@ -8,8 +8,8 @@ def main():
     data = read_data()
     data = bucketize_to_account_and_ticker(data)
     closed_clusters, open_clusters  = separate_closed_clusters(data)
-    print_clusters(closed_clusters, 'closed.csv')
-    print_clusters(open_clusters, 'open.csv')
+    print_clusters(closed_clusters, '_closed.csv')
+    print_clusters(open_clusters, '_open.csv')
 
 def print_clusters(cl, fname):
     with open(fname, 'wt') as f:
