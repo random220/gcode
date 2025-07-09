@@ -1,0 +1,2 @@
+#!/bin/bash
+echo 'afconvert -v -f m4af -d alac "$f" "a/${f}.m4a"'
