@@ -1,0 +1,6 @@
+#!/bin/bash
+cat <<"EOF"
+afconvert -f WAVE -d LEI32@44100 "$f" "$f.wav"
+ffmpeg -i "$f.wav" -c:a flac "$f.flac"
+rm -f "$f.wav"
+EOF
