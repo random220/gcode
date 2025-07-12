@@ -45,7 +45,7 @@ def separate_closed_clusters(data: Dict[str, Dict[str, Dict[str, List[Dict[str, 
     """Separate transactions into closed and open clusters based on quantity sum."""
     closed_clusters = defaultdict(lambda: defaultdict(dict))
     open_clusters = defaultdict(lambda: defaultdict(dict))
-    
+
     for account in data:
         for ticker in data[account]:
             cluster = []
@@ -60,7 +60,7 @@ def separate_closed_clusters(data: Dict[str, Dict[str, Dict[str, List[Dict[str, 
                         quantity_sum = 0
             if cluster:
                 cluster_add(open_clusters, cluster, account, ticker, rundate)
-    
+
     return closed_clusters, open_clusters
 
 def cluster_add(dest_dict: Dict, cluster: List[Dict[str, str]], account: str, ticker: str, rundate: str) -> None:
@@ -71,32 +71,43 @@ def cluster_add(dest_dict: Dict, cluster: List[Dict[str, str]], account: str, ti
 
 def write_clusters(clusters: Dict, filename: str) -> None:
     """Write clusters to a CSV file with calculated profit metrics for closed clusters."""
-    headers = ['Account', 'Ticker', 'Date', 'Quantity', 'Price', 'Commission', 'Fees', 
+    headers = ['Account', 'Ticker', 'Date', 'Quantity', 'Price', 'Commission', 'Fees',
               'Amount', 'Profit', 'Profit%', 'Investment']
-    
+
     try:
+        total_profit = 0.0
+        total_investment = 0.0
         with open(filename, 'w', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
             writer.writerow(headers)
-            
+
             for account in sorted(clusters.keys()):
                 for rundate in sorted(clusters[account].keys()):
                     for ticker in sorted(clusters[account][rundate].keys()):
                         writer.writerow([account, ticker, '', '', '', '', '', '', '', '', ''])
                         for cluster in clusters[account][rundate][ticker]:
-                            write_cluster(writer, cluster, filename.endswith('_closed.csv'))
+                            cluster_profit, cluster_investment = write_cluster(writer, cluster, filename.endswith('_closed.csv'))
+                            if filename.endswith('_closed.csv'):
+                                total_profit += cluster_profit
+                                total_investment += cluster_investment
                         writer.writerow(['', '', '', '', '', '', '', '', '', '', ''])
+
+            if filename.endswith('_closed.csv') and total_investment != 0:
+                total_profit_percentage = (total_profit / total_investment * 100)
+                writer.writerow(['Total', '', '', '', '', '', '', '', f'{total_profit:.2f}',
+                               f'{total_profit_percentage:.2f} %', f'{total_investment:.2f}'])
+
         logger.info(f"Successfully wrote clusters to {filename}")
     except Exception as e:
         logger.error(f"Error writing to {filename}: {str(e)}")
         raise
 
-def write_cluster(writer: csv.writer, cluster: List[Dict[str, str]], calculate_profit: bool) -> None:
+def write_cluster(writer: csv.writer, cluster: List[Dict[str, str]], calculate_profit: bool) -> Tuple[float, float]:
     """Write a single cluster to the CSV file, calculating profit if needed."""
     buy_amount = 0
     sell_amount = 0
     total_quantity = 0
-    
+
     for row in cluster:
         rundate = row['Run Date']
         quantity = float(row['Quantity'] or 0)
@@ -104,21 +115,25 @@ def write_cluster(writer: csv.writer, cluster: List[Dict[str, str]], calculate_p
         commission = float(row['Commission ($)'] or 0)
         fees = float(row['Fees ($)'] or 0)
         amount = float(row['Amount ($)'] or 0)
-        
+
         total_quantity += quantity
         writer.writerow(['', '', rundate, quantity, price, commission, fees, amount, '', '', ''])
-        
+
         if amount < 0:
             buy_amount += amount
         else:
             sell_amount += amount
-    
+
+    profit = 0.0
+    investment = 0.0
     if calculate_profit and total_quantity == 0:
         investment = -buy_amount
         profit = sell_amount - investment
         profit_percentage = (profit / investment * 100) if investment != 0 else 0
-        writer.writerow(['', '', '', '', '', '', '', '', f'{profit:.2f}', 
+        writer.writerow(['', '', '', '', '', '', '', '', f'{profit:.2f}',
                         f'{profit_percentage:.2f} %', f'{investment:.2f}'])
+
+    return profit, investment
 
 def main():
     """Main function to process input.csv and generate output CSV files."""
