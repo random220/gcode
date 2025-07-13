@@ -134,7 +134,7 @@ def bucketize_to_account_and_ticker(data):
 
 def read_data():
     # Load data
-    with open('a.csv', newline='') as file:
+    with open('input.csv', newline='') as file:
         reader = csv.DictReader(file)
         data = [row for row in reader]
 
