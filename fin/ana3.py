@@ -70,9 +70,9 @@ def cluster_add(dest_dict: Dict, cluster: List[Dict[str, str]], account: str, ti
     dest_dict[account][rundate][ticker].append(cluster)
 
 def write_clusters(clusters: Dict, filename: str) -> None:
-    """Write clusters to a CSV file with calculated profit metrics for closed clusters."""
+    """Write clusters to a CSV file with calculated profit metrics and days for closed clusters."""
     headers = ['Account', 'Ticker', 'Date', 'Quantity', 'Price', 'Commission', 'Fees',
-              'Amount', 'Profit', 'Profit%', 'Investment']
+              'Amount', 'Profit', 'Profit%', 'Investment', 'Days']
 
     try:
         total_profit = 0.0
@@ -84,29 +84,30 @@ def write_clusters(clusters: Dict, filename: str) -> None:
             for account in sorted(clusters.keys()):
                 for rundate in sorted(clusters[account].keys()):
                     for ticker in sorted(clusters[account][rundate].keys()):
-                        writer.writerow([account, ticker, '', '', '', '', '', '', '', '', ''])
+                        writer.writerow([account, ticker, '', '', '', '', '', '', '', '', '', ''])
                         for cluster in clusters[account][rundate][ticker]:
-                            cluster_profit, cluster_investment = write_cluster(writer, cluster, filename.endswith('_closed.csv'))
+                            cluster_profit, cluster_investment, days = write_cluster(writer, cluster, filename.endswith('_closed.csv'))
                             if filename.endswith('_closed.csv'):
                                 total_profit += cluster_profit
                                 total_investment += cluster_investment
-                        writer.writerow(['', '', '', '', '', '', '', '', '', '', ''])
+                        writer.writerow(['', '', '', '', '', '', '', '', '', '', '', ''])
 
             if filename.endswith('_closed.csv') and total_investment != 0:
                 total_profit_percentage = (total_profit / total_investment * 100)
                 writer.writerow(['Total', '', '', '', '', '', '', '', f'{total_profit:.2f}',
-                               f'{total_profit_percentage:.2f} %', f'{total_investment:.2f}'])
+                               f'{total_profit_percentage:.2f} %', f'{total_investment:.2f}', ''])
 
         logger.info(f"Successfully wrote clusters to {filename}")
     except Exception as e:
         logger.error(f"Error writing to {filename}: {str(e)}")
         raise
 
-def write_cluster(writer: csv.writer, cluster: List[Dict[str, str]], calculate_profit: bool) -> Tuple[float, float]:
-    """Write a single cluster to the CSV file, calculating profit if needed."""
+def write_cluster(writer: csv.writer, cluster: List[Dict[str, str]], calculate_profit: bool) -> Tuple[float, float, int]:
+    """Write a single cluster to the CSV file, calculating profit and days if needed."""
     buy_amount = 0
     sell_amount = 0
     total_quantity = 0
+    dates = []
 
     for row in cluster:
         rundate = row['Run Date']
@@ -117,7 +118,8 @@ def write_cluster(writer: csv.writer, cluster: List[Dict[str, str]], calculate_p
         amount = float(row['Amount ($)'] or 0)
 
         total_quantity += quantity
-        writer.writerow(['', '', rundate, quantity, price, commission, fees, amount, '', '', ''])
+        dates.append(rundate)
+        writer.writerow(['', '', rundate, quantity, price, commission, fees, amount, '', '', '', ''])
 
         if amount < 0:
             buy_amount += amount
@@ -126,14 +128,20 @@ def write_cluster(writer: csv.writer, cluster: List[Dict[str, str]], calculate_p
 
     profit = 0.0
     investment = 0.0
+    days = 0
     if calculate_profit and total_quantity == 0:
         investment = -buy_amount
         profit = sell_amount - investment
         profit_percentage = (profit / investment * 100) if investment != 0 else 0
+        # Calculate days as difference between max and min dates
+        if dates:
+            min_date = datetime.strptime(min(dates), '%Y%m%d')
+            max_date = datetime.strptime(max(dates), '%Y%m%d')
+            days = (max_date - min_date).days
         writer.writerow(['', '', '', '', '', '', '', '', f'{profit:.2f}',
-                        f'{profit_percentage:.2f} %', f'{investment:.2f}'])
+                        f'{profit_percentage:.2f} %', f'{investment:.2f}', f'{days}'])
 
-    return profit, investment
+    return profit, investment, days
 
 def main():
     """Main function to process input.csv and generate output CSV files."""
@@ -150,3 +158,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
