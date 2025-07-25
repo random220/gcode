@@ -4,7 +4,7 @@ import json
 
 things = {}
 
-with open('2025-07-17-closed.csv', 'rt') as f:
+with open('_closed.csv', 'rt') as f:
     reader = csv.DictReader(f)
     for row in reader:
         if row['Account'] != '':
