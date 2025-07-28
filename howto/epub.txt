@@ -1,0 +1,8 @@
+Drag from books app to desktop. It will create a folder of the epub content.
+Need to pack it back into single file.
+
+cd thedir
+zip -r ../Book.epub .
+or
+zip -r ../Book.epub . -x mimetype -x "*.DS_Store"
+
