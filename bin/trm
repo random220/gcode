@@ -2,59 +2,78 @@
 
 set -x
 umask 077
+
 app=$(readlink -f $0)
-torrent=$(readlink -f "$1")
-if [[ "$1" == '' ]]; then
-  exit 0
-fi
+input=''
 
-input="$1"
-if [[ "$input" =~ .torrent$ ]]; then
-  if [[ -f "$input" ]]; then
-    :
-  else
-    echo "ERROR: Torrent file \"$input\" not found"
-    exit 1
-  fi
-elif [[ "$input" =~ .mag$ ]]; then
-  if [[ -f "$input" ]]; then
-    input=$(cat "$input")
-  else
-    echo "ERROR: Magnet link file \"$input\" not found"
-    exit 1
-  fi
-elif [[ "$input" =~ ^magnet: ]]; then
-  :
-else
-  echo "ERROR: input \"$input\" not recognized"
-  exit 1
-fi
+main() {
+    mkdir -p ~/Downloads/uu
+    if [[ "$1" == '-m' ]]; then
+        do_mount
+        shift
+    fi
+    handle_input "$@"
+    do_download
+}
+
+do_mount() {
+    # % df -kh .
+    # Filesystem              Size  Used Avail Use% Mounted on
+    # 192.168.10.182:/shares  2.0G  4.0K  2.0G   1% /home/om/x
+
+    (cd ~/Downloads/uu && df -kh .)|grep '/shares/data/movies/uu'
+    if [[ $? != 0 ]]; then
+        timeout 5 ping -c 1 192.168.10.182
+        if [[ $? == 0 ]]; then
+            bash -c "sshfs om@192.168.10.182:/shares/data/movies/uu $HOME/Downloads/uu"
+        fi
+    fi
+    (cd ~/Downloads/uu && df -kh .)|grep '/shares/data/movies/uu'
+    if [[ $? != 0 ]]; then
+        echo 'ERROR: Mounting did not succeed.'
+        exit 1
+    fi
+}
+
+handle_input() {
+    input="$1"
+    if [[ $input == '' ]]; then
+        echo 'ERROR: no input'
+        exit 1
+    fi
+    if [[ -f "$input" ]]; then
+        if [[ "$input" =~ .mag$ ]]; then
+            input=$(cat "$input")
+        elif [[ "$input" =~ .torrent$ ]]; then
+            :
+        else
+            echo "ERROR: Input is a file but not *.torrent or *.mag"
+            exit 1
+        fi
+    else
+        if [[ "$input" =~ ^magnet: ]]; then
+            :
+        else
+            echo 'ERROR: Non-file input, but the content is not ^magnet:'
+            exit 1
+        fi
+    fi
+}
 
 
-( cd ~/.config/transmission && rm -rf blocklists resume torrents stats.json dht.dat )
+do_download() {
+    ( cd ~/.config/transmission && rm -rf blocklists resume torrents stats.json dht.dat )
 
-pid=$$
+    pid=$$
 
-mkdir -p ~/bin
-cat <<EOF >~/bin/killme
+    mkdir -p ~/bin
+    cat <<EOF >~/bin/killme
 #!/bin/bash
 kill -SIGINT $pid
 EOF
 
-chmod 700 ~/bin/killme
+    chmod 700 ~/bin/killme
+    exec transmission-cli -f ~/bin/killme -w ~/Downloads/uu "$input"
+}
 
-# % df -kh .
-# Filesystem              Size  Used Avail Use% Mounted on
-# 192.168.10.182:/shares  2.0G  4.0K  2.0G   1% /home/om/x
-
-(cd ~/Downloads/uu && df -kh .)|grep '/shares/data/movies/uu'
-if [[ $? != 0 ]]; then
-    mkdir -p ~/Downloads/uu
-
-    timeout 5 ping -c 1 192.168.10.182
-    if [[ $? == 0 ]]; then
-        bash -c "sshfs om@192.168.10.182:/shares/data/movies/uu $HOME/Downloads/uu"
-    fi
-fi
-
-exec transmission-cli -f ~/bin/killme -w ~/Downloads/uu "$input"
+main "$@"
