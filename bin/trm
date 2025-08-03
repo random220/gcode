@@ -7,6 +7,7 @@ app=$(readlink -f $0)
 input=''
 
 main() {
+    monitor_vpn >/dev/null 2>&1 &
     mkdir -p ~/Downloads/uu
     keep=0
     while true; do
@@ -29,6 +30,18 @@ main() {
 
     handle_input "$@"
     do_download
+}
+
+monitor_vpn() {
+    local n
+    while true; do
+        n=$(ip route show | wc -l)
+        if [[ $n == 3 ]]; then
+            kill $$
+            exit
+        fi
+        sleep 30
+    done
 }
 
 do_mount() {
