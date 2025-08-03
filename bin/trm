@@ -8,10 +8,25 @@ input=''
 
 main() {
     mkdir -p ~/Downloads/uu
-    if [[ "$1" == '-m' ]]; then
-        do_mount
-        shift
+    keep=0
+    while true; do
+        case $1 in
+          '-m')
+            do_mount
+            shift
+            ;;
+          '-k')
+            keep=1
+            shift
+            ;;
+          *)
+            break
+        esac
+    done
+    if [[ $keep == 0 ]]; then
+        ( cd ~/.config/transmission && rm -rf blocklists resume torrents stats.json dht.dat )
     fi
+
     handle_input "$@"
     do_download
 }
@@ -62,7 +77,6 @@ handle_input() {
 
 
 do_download() {
-    ( cd ~/.config/transmission && rm -rf blocklists resume torrents stats.json dht.dat )
 
     pid=$$
 
