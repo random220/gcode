@@ -14,13 +14,18 @@ fi
 # export LANG=C.UTF-8
 # export LC_ALL=en.UTF-8
 # export LANG=en.UTF-8
-if [[ $(uname) == 'Darwin' ]]; then
-    export LANG=en_US.UTF-8
-    export LC_ALL=$LANG
-else
-    export LANG=C.UTF-8
-    export LC_ALL=$LANG
+LANG=''
+export LANG
+if [[ $LANG == '' ]]; then
+    LANG=$(locale -a | grep 'en_US.UTF-8')
 fi
+if [[ $LANG == '' ]]; then
+    LANG=$(locale -a | grep 'C.UTF-8')
+fi
+if [[ $LANG == '' ]]; then
+    LANG=POSIX
+fi
+export LC_ALL=$LANG
 
 function rst() {
     # https://apple.stackexchange.com/questions/446859/when-pasting-in-terminal-app-00-is-pasted-at-the-start-and-01-at-the-end
