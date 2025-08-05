@@ -2,8 +2,16 @@
 
 #set -x
 
-arg1="$1"
-arg2="$2"
+bitrate=320
+if [[ "$1" =~ ^[0-9]+$ ]]; then
+    bitrate=$1
+    shift
+fi
+
+showhelp() {
+    echo "$0 320 a.flac"
+    echo 'ffmpeg -i a.flac -ab 320k -map_metadata 0 -id3v2_version 3 a.mp3'
+}
 
 to_mp3() {
     local bit="$1"
@@ -12,61 +20,9 @@ to_mp3() {
     echo "ffmpeg -i \"$infile\" -ab ${bit}k -map_metadata 0 -id3v2_version 3 \"$outfile\""
 }
 
-num=320
-text=''
-if [[ "$arg1" == '' ]]; then
-    :
-elif [[ "$arg1" =~ ^[0-9]+$ ]]; then
-    num="$1"
-    text="$2"
-elif [[ "$arg2" =~ ^[0-9]+$ ]]; then
-    num="$2"
-    text="$1"
-else
-    text="$arg1"
-fi
-
-listfile=$(mktemp)
-if [[ -f "$text" ]]; then
-    echo "$text" >"$listfile"
-elif [[ "$text" != '' ]]; then
-    ls -1 *"$text" >"$listfile"
-else
-    ls -1 >"$listfile"
-fi
-
-
-shellscript=$(mktemp)
-cat <<EOF >"$shellscript"
-#!/bin/bash
-
-# $shellscript
-mkdir -p mp3
-
-EOF
-
-
-while IFS= read -r infile; do
-    to_mp3 $num "$infile" >>"$shellscript"
-done <"$listfile"
-rm -f "$listfile"
-
-cat <<EOF >>"$shellscript"
-
-echo
-echo '# ------------------------------------------------------'
-echo 'rm -f "'$shellscript'"'
-echo '# ------------------------------------------------------'
-echo
-
-EOF
-
-chmod a+x "$shellscript"
-echo
-cat <<EOF
-cat "$shellscript"
-rm -f "$shellscript"
-"$shellscript"
-EOF
-
-
+echo 'mkdir -p mp3'
+for flacfile in "$@"; do
+    if [[ -f "$flacfile" ]]; then
+        to_mp3 $bitrate "$flacfile"
+    fi
+done
