@@ -1,0 +1,43 @@
+#!/bin/bash
+mkdir -p \
+    ~/Downloads/uu/t_ \
+    ~/Downloads/uu/doing_ \
+    ~/Downloads/uu/done_
+
+# transmission-daemon \
+# -c ~/Downloads/uu/t_ \
+# --foreground \
+# --config-dir ~/.config/transmission \
+# --encryption-required \
+# --incomplete-dir ~/Downloads/uu/doing_ \
+# --dht \
+# --utp \
+# --download-dir ~/Downloads/uu/done_ \
+# --pid-file ~/Downloads/uu/PID
+
+
+
+monitor_vpn() {
+    sleep 5
+    local n
+    while true; do
+        n=$(ip route show | wc -l)
+        if [[ $n == 3 ]]; then
+            transmission-remote --exit
+            exit
+        fi
+        sleep 5
+    done
+}
+
+monitor_vpn >/dev/null 2>&1 &
+
+transmission-daemon \
+-c ~/Downloads/uu/t_ \
+--foreground \
+--config-dir ~/.config/transmission \
+--incomplete-dir ~/Downloads/uu/doing_ \
+--dht \
+--utp \
+--download-dir ~/Downloads/uu/done_ \
+--pid-file ~/Downloads/uu/PID
