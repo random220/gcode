@@ -1,0 +1,45 @@
+#!/bin/bash
+
+doit() {
+    echo "$1"
+}
+
+trmd() {
+    for i in "$@"; do
+        doit "transmission-remote -t $i -r"
+    done
+}
+trmD() {
+    for i in "$@"; do
+        doit "transmission-remote -t $i -rad"
+    done
+}
+trma() {
+    for i in "$@"; do
+        doit "transmission-remote -a \"$i\""
+    done
+}
+trml() {
+    doit 'transmission-remote -l'
+}
+
+case "$1" in
+  d)
+    shift
+    trmd "$@"
+    ;;
+  D)
+    shift
+    trmD "$@"
+    ;;
+  a)
+    shift
+    trma "$@"
+    ;;
+  l)
+    shift
+    trml "$@"
+    ;;
+  *)
+    ;;
+esac
