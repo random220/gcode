@@ -22,6 +22,9 @@ trma() {
 trml() {
     doit 'transmission-remote -l'
 }
+trmX() {
+    doit 'transmission-remote --exit'
+}
 
 case "$1" in
   d)
@@ -39,6 +42,10 @@ case "$1" in
   l)
     shift
     trml "$@"
+    ;;
+  x)
+    shift
+    trmX "$@"
     ;;
   *)
     ;;
