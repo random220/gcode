@@ -2,6 +2,7 @@
 
 doit() {
     echo "$1"
+    bash -c "$1"
 }
 
 trmd() {
