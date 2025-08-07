@@ -1,2 +1,26 @@
 #!/bin/bash
-echo 'afconvert -v -f m4af -d alac "$f" "a/${f}.m4a"'
+
+#set -x
+
+showhelp() {
+    echo "$0 a.flac"
+    echo 'afconvert -v -f m4af -d alac "$f" "a/${f}.m4a"'
+}
+
+to_alac() {
+    local infile="$1"
+    local outfile=$(perl -pe 's{\.[^\.]+$}{.m4a}; s{^.*/}{}; s{^}{alac/}' <<<"$infile")
+    echo "afconvert -v -f m4af -d alac \"$infile\" \"$outfile\""
+}
+
+if [[ ! -f "$1" ]]; then
+    showhelp
+    exit 0
+fi
+
+echo 'mkdir -p alac'
+for flacfile in "$@"; do
+    if [[ -f "$flacfile" ]]; then
+        to_alac "$flacfile"
+    fi
+done
