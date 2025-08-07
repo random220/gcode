@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#set -x
+
+showhelp() {
+    echo "$0 a.flac"
+    echo 'ffmpeg -i a.flac -write_id3v2 1 -c:v copy a.aiff'
+
+}
+
+to_aiff() {
+    local infile="$1"
+    local outfile=$(perl -pe 's{\.[^\.]+$}{.aiff}; s{^.*/}{}; s{^}{aiff/}' <<<"$infile")
+    echo "ffmpeg -i \"$infile\" -write_id3v2 1 -c:v copy \"$outfile\""
+}
+
+if [[ ! -f "$1" ]]; then
+    showhelp
+    exit 0
+fi
+
+echo 'mkdir -p aiff'
+for flacfile in "$@"; do
+    if [[ -f "$flacfile" ]]; then
+        to_aiff "$flacfile"
+    fi
+done
