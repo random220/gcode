@@ -88,7 +88,7 @@ function ssh_config_nfash() {
 
     cat <<EOF >>~/.ssh/nfash/config
 Host nfash
-    User om
+    User ub
     Hostname $ipaddr
     IdentityFile ~/.ssh/nfash/id_ed25519
     ProxyJump nuc

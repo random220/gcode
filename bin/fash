@@ -18,9 +18,9 @@ mk_new_keypair() {
     cat id_ed25519.pub | multipass exec favpn bash -- -c 'cat - >/tmp/a.txt'
     cat <<'EOF' |  multipass exec favpn bash -
 umask 077
-sudo mkdir -p ~om/.ssh
-sudo mv /tmp/a.txt ~om/.ssh/authorized_keys
-sudo chown -R om:om ~om/.ssh
+sudo mkdir -p ~ub/.ssh
+sudo mv /tmp/a.txt ~ub/.ssh/authorized_keys
+sudo chown -R ub:ub ~ub/.ssh
 EOF
 }
 
@@ -37,7 +37,7 @@ UserKnownHostsFile=/dev/null
 LogLevel ERROR
 
 Host favpn fash
-    User om
+    User ub
     Hostname $ipaddr
     IdentityFile ~/.ssh/fash/id_ed25519
     DynamicForward 9999
