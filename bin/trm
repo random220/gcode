@@ -1,106 +1,71 @@
 #!/bin/bash
 
-set -x
-umask 077
-
-app=$(readlink -f $0)
-input=''
-
-main() {
-    monitor_vpn >/dev/null 2>&1 &
-    mkdir -p ~/Downloads/uu
-    keep=0
-    while true; do
-        case $1 in
-          '-m')
-            do_mount
-            shift
-            ;;
-          '-k')
-            keep=1
-            shift
-            ;;
-          *)
-            break
-        esac
-    done
-    if [[ $keep == 0 ]]; then
-        ( cd ~/.config/transmission && rm -rf blocklists resume torrents stats.json dht.dat )
-    fi
-
-    handle_input "$@"
-    do_download
+doit() {
+    echo "$1"
+    bash -c "$1"
 }
 
-monitor_vpn() {
-    local n
-    while true; do
-        n=$(ip route show | wc -l)
-        if [[ $n == 3 ]]; then
-            kill $$
-            exit
-        fi
-        sleep 30
+trmd() {
+    for i in "$@"; do
+        doit "transmission-remote -t $i -r"
     done
 }
-
-do_mount() {
-    # % df -kh .
-    # Filesystem              Size  Used Avail Use% Mounted on
-    # 192.168.10.182:/shares  2.0G  4.0K  2.0G   1% /home/om/x
-
-    (cd ~/Downloads/uu && df -kh .)|grep '/shares/data/movies/uu'
-    if [[ $? != 0 ]]; then
-        timeout 5 ping -c 1 192.168.10.182
-        if [[ $? == 0 ]]; then
-            bash -c "sshfs om@192.168.10.182:/shares/data/movies/uu $HOME/Downloads/uu"
-        fi
-    fi
-    (cd ~/Downloads/uu && df -kh .)|grep '/shares/data/movies/uu'
-    if [[ $? != 0 ]]; then
-        echo 'ERROR: Mounting did not succeed.'
-        exit 1
-    fi
+trmD() {
+    for i in "$@"; do
+        doit "transmission-remote -t $i -rad"
+    done
+}
+trma() {
+    for i in "$@"; do
+        doit "transmission-remote -a \"$i\""
+    done
+}
+trmS() {
+    for i in "$@"; do
+        doit "transmission-remote -t \"$i\" -S"
+    done
+}
+trms() {
+    for i in "$@"; do
+        doit "transmission-remote -t \"$i\" -s"
+    done
+}
+trml() {
+    doit 'transmission-remote -l'
+}
+trmX() {
+    doit 'transmission-remote --exit'
 }
 
-handle_input() {
-    input="$1"
-    if [[ $input == '' ]]; then
-        echo 'ERROR: no input'
-        exit 1
-    fi
-    if [[ -f "$input" ]]; then
-        if [[ "$input" =~ .mag$ ]]; then
-            input=$(cat "$input")
-        elif [[ "$input" =~ .torrent$ ]]; then
-            :
-        else
-            echo "ERROR: Input is a file but not *.torrent or *.mag"
-            exit 1
-        fi
-    else
-        if [[ "$input" =~ ^magnet: ]]; then
-            :
-        else
-            echo 'ERROR: Non-file input, but the content is not ^magnet:'
-            exit 1
-        fi
-    fi
-}
-
-
-do_download() {
-
-    pid=$$
-
-    mkdir -p ~/bin
-    cat <<EOF >~/bin/killme
-#!/bin/bash
-kill -SIGINT $pid
-EOF
-
-    chmod 700 ~/bin/killme
-    exec transmission-cli -f ~/bin/killme -w ~/Downloads/uu "$input"
-}
-
-main "$@"
+case "$1" in
+  d)
+    shift
+    trmd "$@"
+    ;;
+  D)
+    shift
+    trmD "$@"
+    ;;
+  a)
+    shift
+    trma "$@"
+    ;;
+  l)
+    shift
+    trml "$@"
+    ;;
+  x)
+    shift
+    trmX "$@"
+    ;;
+  S)
+    shift
+    trmS "$@"
+    ;;
+  s)
+    shift
+    trms "$@"
+    ;;
+  *)
+    ;;
+esac
