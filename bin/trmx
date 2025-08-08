@@ -20,6 +20,16 @@ trma() {
         doit "transmission-remote -a \"$i\""
     done
 }
+trmS() {
+    for i in "$@"; do
+        doit "transmission-remote -t \"$i\" -S"
+    done
+}
+trms() {
+    for i in "$@"; do
+        doit "transmission-remote -t \"$i\" -s"
+    done
+}
 trml() {
     doit 'transmission-remote -l'
 }
@@ -47,6 +57,14 @@ case "$1" in
   x)
     shift
     trmX "$@"
+    ;;
+  S)
+    shift
+    trmS "$@"
+    ;;
+  s)
+    shift
+    trms "$@"
     ;;
   *)
     ;;
