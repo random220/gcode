@@ -64,7 +64,7 @@ EOF
 
 mkuser() {
   bindir=$(dirname "$(readlink -f "$0")")
-  t=$(mktemp -d)
+  t=$(mktemp --tmpdir=$HOME -d)
   (
   cd "$bindir"
   git init --bare "$t"/gcode.git
