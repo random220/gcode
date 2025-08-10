@@ -20,14 +20,27 @@ trma() {
         doit "transmission-remote -a \"$i\""
     done
 }
-trmS() {
-    for i in "$@"; do
-        doit "transmission-remote -t \"$i\" -S"
-    done
+list_currents() {
+    transmission-remote -l | grep -v ID|awk '{print $1}'
 }
 trms() {
-    for i in "$@"; do
+    if  [[ "$1" = 'a' ]]; then
+        nums=($(list_currents))
+    else
+        nums=("$@")
+    fi
+    for i in "${nums[@]}"; do
         doit "transmission-remote -t \"$i\" -s"
+    done
+}
+trmS() {
+    if  [[ "$1" = 'a' ]]; then
+        nums=($(list_currents))
+    else
+        nums=("$@")
+    fi
+    for i in "${nums[@]}"; do
+        doit "transmission-remote -t \"$i\" -S"
     done
 }
 trml() {
