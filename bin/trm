@@ -9,16 +9,19 @@ trmd() {
     for i in "$@"; do
         doit "transmission-remote -t $i -r"
     done
+    transmission-remote -l
 }
 trmD() {
     for i in "$@"; do
         doit "transmission-remote -t $i -rad"
     done
+    transmission-remote -l
 }
 trma() {
     for i in "$@"; do
         doit "transmission-remote -a \"$i\""
     done
+    transmission-remote -l
 }
 list_currents() {
     transmission-remote -l | grep -v ID|awk '{print $1}'
@@ -32,6 +35,7 @@ trms() {
     for i in "${nums[@]}"; do
         doit "transmission-remote -t \"$i\" -s"
     done
+    transmission-remote -l
 }
 trmS() {
     if  [[ "$1" = 'a' ]]; then
@@ -42,6 +46,7 @@ trmS() {
     for i in "${nums[@]}"; do
         doit "transmission-remote -t \"$i\" -S"
     done
+    transmission-remote -l
 }
 trml() {
     doit 'transmission-remote -l'
