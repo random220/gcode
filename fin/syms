@@ -1,0 +1,6 @@
+#!/bin/bash
+if [[ -f "$1" ]]; then
+    cat "$1"|grep ', -' | sed 's/^.*, -//; s/[0-9].*//'|sort -u|xargs
+else
+    echo 'Need positions file'
+fi
