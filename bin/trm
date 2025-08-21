@@ -9,18 +9,21 @@ trmd() {
     for i in "$@"; do
         doit "transmission-remote -t $i -r"
     done
+    sleep 1
     transmission-remote -l
 }
 trmD() {
     for i in "$@"; do
         doit "transmission-remote -t $i -rad"
     done
+    sleep 1
     transmission-remote -l
 }
 trma() {
     for i in "$@"; do
         doit "transmission-remote -a \"$i\""
     done
+    sleep 1
     transmission-remote -l
 }
 list_currents() {
@@ -35,6 +38,7 @@ trms() {
     for i in "${nums[@]}"; do
         doit "transmission-remote -t \"$i\" -s"
     done
+    sleep 1
     transmission-remote -l
 }
 trmS() {
@@ -46,6 +50,7 @@ trmS() {
     for i in "${nums[@]}"; do
         doit "transmission-remote -t \"$i\" -S"
     done
+    sleep 1
     transmission-remote -l
 }
 trml() {
