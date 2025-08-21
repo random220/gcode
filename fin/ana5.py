@@ -168,7 +168,7 @@ def main():
         bucketized_data = bucketize_to_account_and_ticker(data)
         closed_clusters, open_clusters = separate_closed_clusters(bucketized_data)
         write_clusters(closed_clusters, '_closed.csv')
-        write_clusters(filter_dates(closed_clusters, 20250701, 20250731), '_september.csv')
+        write_clusters(filter_dates(closed_clusters, 20250801, 20250831), '_august.csv')
         write_clusters(open_clusters, '_open.csv')
         logger.info("Processing completed successfully")
     except Exception as e:
