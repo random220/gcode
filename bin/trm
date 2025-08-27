@@ -27,7 +27,7 @@ trma() {
     transmission-remote -l
 }
 list_currents() {
-    transmission-remote -l | grep -v ID|awk '{print $1}'
+    transmission-remote -l | grep -v ID|awk '{print $1}'|sed 's/\*$//'
 }
 trms() {
     if  [[ "$1" = 'a' ]]; then
