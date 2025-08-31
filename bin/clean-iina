@@ -1,0 +1,11 @@
+#!/bin/bash
+
+rm -rf \
+~/Library/Application\ Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.colliderli.iina.sfl3 \
+~/Library/Application\ Support/com.colliderli.iina \
+~/Library/WebKit/com.colliderli.iina \
+~/Library/Preferences/com.colliderli.iina.plist \
+~/Library/Application\ Scripts/com.colliderli.iina.OpenInIINA \
+~/Library/HTTPStorages/com.colliderli.iina \
+~/Library/Containers/com.colliderli.iina.OpenInIINA \
+~/Library/Caches/com.colliderli.iina \
