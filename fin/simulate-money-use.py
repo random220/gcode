@@ -38,4 +38,18 @@ for account in things:
             else:
                 money[account]['cash'] = newcash
 
+if 'Total' in money:
+    del money['Total']
+
+b = 0
+c = 0
+for account in money:
+    b += float(money[account]['borrowed'])
+    c += float(money[account]['cash'])
+
+
+money['Total'] = {}
+money['Total']['borrowed'] = b
+money['Total']['cash'] = c
+
 print(json.dumps(money, indent=2))
