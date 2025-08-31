@@ -9,3 +9,7 @@ rm -rf \
 ~/Library/HTTPStorages/com.colliderli.iina \
 ~/Library/Containers/com.colliderli.iina.OpenInIINA \
 ~/Library/Caches/com.colliderli.iina \
+
+echo
+echo 'File -> Open Recent -> Clear Menu'
+echo
