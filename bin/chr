@@ -1,0 +1,33 @@
+#/bin/bash
+
+set -x
+chrome='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+if [[ ! -f "$chrome" ]]; then
+    exit 1
+fi
+
+profile=om
+if [[ $1 != '' ]]; then
+    profile="$1"
+fi
+
+profdir=~/.chrome/"$profile"
+if [[ "$2" != '' ]]; then
+    rm -rf "$profdir"
+fi
+mkdir -p "$profdir"
+myname="$(basename "$0")"
+if [[ "$myname" == 'chr' ]]; then
+    nohup "$chrome" --user-data-dir="$profdir" >/dev/null 2>&1 &
+elif [[ "$myname" == 'chrp' ]]; then
+    port=3128
+    if [[ "$2" != '' ]]; then
+        port="$2"
+    fi
+    if [[ $port =~ ^d ]]; then
+        port=$(echo "$port" | sed 's/^.//')
+        nohup "$chrome" --user-data-dir="$profdir" --proxy-server="socks5://localhost:$port" >/dev/null 2>&1 &
+    else
+        nohup "$chrome" --user-data-dir="$profdir" --proxy-server="http://localhost:$port" >/dev/null 2>&1 &
+    fi
+fi
