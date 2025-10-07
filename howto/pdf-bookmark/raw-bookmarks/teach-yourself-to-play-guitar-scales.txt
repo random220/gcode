@@ -2,9 +2,48 @@ Introduction 5
 Chapter 1: Getting Started 6
 Chapter 2: The C Major Scale 12
 Chapter 3: The A Minor Scale 18
+    A Minor Scale (open-position) 22
 Chapter 4: Scale Theory and Transposing 24
+    G Major Scale 26
+    F Major Scale 27
+    B Minor Scale 28
+    D Minor Scale 29
+    Rhythm Notation 32
+        Quarter Note 32
+        Whole/Half/Eighth Note 33
+        Sixteenth Note 35
+        Rests 36
+        Triplets 37
+        Review 38
 Chapter 5: Scale Patterns and Alternate Fingerings 39
+    Alternate Scale Fingerings 42
+    D Minor Scale 43
+    E Major Scale 44
+    F Major Scale 47
+    Two-Octave Scales 50
+    Two-Octave B Minor Scale 52
 Chapter 6: Pentatonic Scales 54
+    G Major Pentatonic Scale 54
+    G Major Pentatonic Scale: 1st/2nd Position 55
+    G Major Pentatonic Scale: 3rd/4th/5th Position 56
+    A Minor Pentatonic Scale 59
+    A Minor Pentatonic Scale: 1st/2nd Postion 60
+    A Minor Pentatonic Scale: 3rd/4th/5th Postion 61
 Chapter 7: Blues Scales 64
+    A Blues Scale 64
+    G Blues Scale 66
+    Open E Major Blues Scale 67
+    Open A Blues Scale 67
 Chapter 8: The Five Positions of the Major and Minor Scales 68
+    G Major Scale: 1st Position 68
+    G Major Scale: 2nd/3rd Position 69
+    G Major Scale: 4th/5th Position 70
+    A Minor Scale: 1st/2nd Position 72
+    A Minor Scale: 3rd/4th Position 73
+    A Minor Scale: 5th Position 74
 Chapter 9: Three-Octave Scales 75
+    Three-Octave G Major Scale 76
+    Three-Octave A Minor Scale 79
+    Three-Octave G Major Pentatonic Scale 82
+    Three-Octave A Minor Pentatonic Scale 83
+Conclusion 84
