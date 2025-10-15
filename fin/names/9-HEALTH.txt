@@ -5,4 +5,5 @@ CVS
 LLY
 MRK
 NVO
+PFE
 UNH
