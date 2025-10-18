@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+import sys
+pref = 'Scan'
+n = 0
+if len(sys.argv) == 2:
+    n = int(sys.argv[1])
+else:
+    print('Need pagecount')
+    sys.exit(1)
+
+# 0 1 2 3 4 5
+# 0 5 1 4 2 3
+L = []
+print(f'mv "{pref}.pdf" "{pref} 0.pdf"')
+for i in range(int(n/2)):
+    L.append(pref+' '+str(i))
+    L.append(pref+' '+str(n-i-1))
+
+cmd = 'pdftk '
+for i in L:
+    cmd = f'{cmd} "{i}.pdf"'
+
+cmd = f'{cmd} cat output out.pdf'
+print(cmd)
