@@ -1,4 +1,5 @@
 BRKB
+CMG
 CVX
 FDX
 HD
@@ -6,3 +7,5 @@ JPM
 KO
 MCD
 OXY
+QSR
+YUM
