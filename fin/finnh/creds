@@ -1,0 +1,19 @@
+#!/bin/bash
+
+rm -rf ._x
+mkdir ._x
+cat <<EOF >._x/creds.md.gpg.b64.Hostbang
+jA0ECQMIgzSrZtCx/5fz0sAEAe1bAqZq+liAaDTI1XtxX5jXh4r9OyCZUvecvyeT
+uNnu4+8wWe7Vu/6wMckmKLg+s5H72C+CMiUCvN6jzxCpLuyr+NNXM+IQhkN++ut3
+cuaMFtplkUTBRD/HBKYW6uDYqtQ/O17sNCC4xf+akb42HlHe/8VT2z/bpeHeAOsw
+TCswqEbvKwhmFP8fGvUBBe7+QkqJQnAO6OYixPqCQQwMBTBZp2SYtHjGJs14lHsZ
+47tqUC+Ev0RZBKOUrvpkxQagzrcywg==
+EOF
+
+echo
+echo Hostbang
+echo
+genc -d -t ._x ._x/creds.md.gpg.b64.Hostbang
+cat ._x/creds.md.gpg.b64.Hostbang.plain
+rm -rf ._x
+
