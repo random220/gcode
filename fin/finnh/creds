@@ -1,4 +1,5 @@
 #!/bin/bash
+umask 077
 
 rm -rf ._x
 mkdir ._x
@@ -15,5 +16,12 @@ echo Hostbang
 echo
 genc -d -t ._x ._x/creds.md.gpg.b64.Hostbang
 cat ._x/creds.md.gpg.b64.Hostbang.plain
+key=$(grep 'API key:' ._x/creds.md.gpg.b64.Hostbang.plain | sed 's/^.* //')
 rm -rf ._x
+
+if [[ $key != '' ]]; then
+    rm -f ~/.ssh/apikey/finn
+    mkdir -p ~/.ssh/apikey
+    echo "$key" >~/.ssh/apikey/finn
+fi
 
