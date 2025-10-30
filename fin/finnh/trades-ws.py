@@ -20,20 +20,20 @@ def on_open(ws):
     #ws.send('{"type":"subscribe","symbol":"BINANCE:BTCUSDT"}')
     #ws.send('{"type":"subscribe","symbol":"IC MARKETS:1"}')
 
-def getToken():
+def get_API_key():
     try:
-        tokenfile = os.environ['HOME']+'/.ssh/apikey/finn'
-        with open(tokenfile, 'rt') as f:
+        keyfile = os.environ['HOME']+'/.ssh/apikey/finn'
+        with open(keyfile, 'rt') as f:
             key = f.readline().strip()
     except:
-        print(f"Error: Need {tokenfile}")
+        print(f"Error: Need {keyfile}")
         sys.exit(1)
     return key
 
 if __name__ == "__main__":
+    api_key = get_API_key()
     websocket.enableTrace(True)
-    token=getToken()
-    ws = websocket.WebSocketApp(f"wss://ws.finnhub.io?token={token}",
+    ws = websocket.WebSocketApp(f"wss://ws.finnhub.io?token={api_key}",
                               on_message = on_message,
                               on_error = on_error,
                               on_close = on_close)
