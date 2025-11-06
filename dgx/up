@@ -1,0 +1,5 @@
+#!/bin/bash
+sudo apt update
+sudo apt dist-upgrade
+sudo fwupdmgr refresh
+sudo fwupdmgr upgrade
