@@ -72,7 +72,6 @@ mkuser() {
   )
   multipass transfer -r "$t"/gcode.git $contname:/tmp/gcode.git
   rm -rf "$t"
-  mkdir -p ~/Desktop/uu/uu
 
   cat <<EOF | multipass exec $contname bash -
 cat <<"__EOF" | sudo bash -
