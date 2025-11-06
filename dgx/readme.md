@@ -1,6 +1,6 @@
 ### URLS
-* https://build.nvidia.com/spark
-* https://github.com/NVIDIA/dgx-spark-playbooks
+* [https://build.nvidia.com/spark](https://build.nvidia.com/spark)
+* [https://github.com/NVIDIA/dgx-spark-playbooks](https://github.com/NVIDIA/dgx-spark-playbooks)
 
 
 
@@ -14,3 +14,5 @@
 * [Connect](https://build.nvidia.com/spark/connect-to-your-spark) to your Spark. Two approaches
  * NVIDIA Sync (recommended)
  * Just SSH
+* [Open WebUI](https://build.nvidia.com/spark/open-webui/sync) for running Ollama server
+ * `docker pull ghcr.io/open-webui/open-webui:ollama`
