@@ -72,6 +72,7 @@ mkuser() {
   )
   multipass transfer -r "$t"/gcode.git $contname:/tmp/gcode.git
   rm -rf "$t"
+  mkdir -p ~/Desktop/uu/uu
 
   cat <<EOF | multipass exec $contname bash -
 cat <<"__EOF" | sudo bash -
@@ -85,6 +86,7 @@ __EOF
 
   cat <<"__EOF" | sudo -u ub bash -
 cd
+echo "MOMUSER=$USER" >>~/.env
 git clone /tmp/gcode.git
 sudo rm -rf /tmp/gcode.git
 cd gcode
