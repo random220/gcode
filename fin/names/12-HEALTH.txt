@@ -8,4 +8,5 @@ MRK
 NVO
 PFE
 UNH
+VRTX
 ZBH
