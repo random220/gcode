@@ -1,14 +1,14 @@
 #!/bin/bash
 volname=CRUZER
 vol=~/b/om/$volname-LUKS.vol 
-mountpoint=~/b/om/p/$volname
-mkdir -p $mountpoint
-
 if [[ -f $vol ]]; then
     echo "Error: $vol exists"
     exit 1
 fi
-mkdir -p ~/b/om
+
+mountpoint=~/b/om/p/$volname
+mkdir -p $mountpoint
+
 
 # reserve 30gigs
 truncate -s 30G $vol
