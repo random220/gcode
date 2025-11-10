@@ -2,6 +2,7 @@
 
 export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
+mkdir -p ~/b/om/p
 mountpoint=~/b/om/p/CRUZER
 volpath=''
 algo=''  # 'vera' or 'luks' or 'dmg'
