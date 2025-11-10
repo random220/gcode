@@ -3,6 +3,7 @@
 import sys
 import json
 import re
+import csv
 
 if len(sys.argv) == 1:
     print('Need "Closed positions" downloaded from https://digital.fidelity.com/ftgw/digital/portfolio/positions')
@@ -10,48 +11,40 @@ if len(sys.argv) == 1:
 
 things = {}
 with open(sys.argv[1], 'rt', encoding='utf-8') as f:
-    for line in f:
-        parts = line.strip().split(',')
-        """
-          [
-            "\ufeffAccount Number",
-            "Account Name",
-            "Symbol",
-            "Description",
-            "Cost Basis",
-            "Proceeds",
-            "Short Term Gain/Loss",
-            "Long Term Gain/Loss",
-            "Total Term Gain/Loss"
-          ],
-          [
-            "X96600886",
-            "Brok1$328k-2025.05.06",
-            "AAPL",
-            "APPLE INC",
-            "$48934.60",
-            "$74996.13",
-            "+$520.00",
-            "+$25541.53",
-            "+$26061.53",
-            ""
-          ],
-          [
-            "X96600886",
-            "Brok1$328k-2025.05.06",
-            " -AAPL251219C220",
-            "CALL (AAPL) APPLE INC DEC 19 25 $220 (100 SHS)",
-            "$92841.48",
-            "$122989.82",
-            "+$30148.34",
-            "",
-            "+$30148.34",
-            ""
-          ],
-        """
-        if len(parts) == 10:
-            symbol = parts[2]
-            gain   = parts[8]
+    csvFile = csv.DictReader(f)
+    for line in csvFile:
+        # print(json.dumps(line, indent=2))
+        # {
+        #   "\ufeffAccount Number": "X96600886",
+        #   "Account Name": "Brok1$328k-2025.05.06",
+        #   "Symbol": " -WMT261218C100",
+        #   "Description": "CALL (WMT) WALMART INC COM DEC 18 26 $100 (100 SHS)",
+        #   "Cost Basis": "$37938.59",
+        #   "Proceeds": "$45476.43",
+        #   "Short Term Gain/Loss": "+$7537.84",
+        #   "Long Term Gain/Loss": "--",
+        #   "Total Term Gain/Loss": "+$7537.84",
+        #   "null": [
+        #     ""
+        #   ]
+        # }
+        # {
+        #   "\ufeffAccount Number": "X96600886",
+        #   "Account Name": "Brok1$328k-2025.05.06",
+        #   "Symbol": " -WMT251219C95",
+        #   "Description": "CALL (WMT) WALMART INC COM DEC 19 25 $95 (100 SHS)",
+        #   "Cost Basis": "$6408.09",
+        #   "Proceeds": "$7103.91",
+        #   "Short Term Gain/Loss": "+$695.82",
+        #   "Long Term Gain/Loss": "--",
+        #   "Total Term Gain/Loss": "+$695.82",
+        #   "null": [
+        #     ""
+        #   ]
+        # }
+        if line['Symbol'] is not None:
+            symbol = line['Symbol']
+            gain   = line['Total Term Gain/Loss']
             m = re.search(r'^\s*\-?([A-Z]+)', symbol)
             if m:
                 symbol = m.group(1)
