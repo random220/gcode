@@ -1,0 +1,95 @@
+#!/usr/bin/env python
+
+import sys
+import json
+import re
+import csv
+
+if len(sys.argv) == 1:
+    print('Need "Closed positions" downloaded from https://digital.fidelity.com/ftgw/digital/portfolio/positions')
+    sys.exit(0)
+
+things = {}
+with open(sys.argv[1], 'rt', encoding='utf-8') as f:
+    csvFile = csv.DictReader(f)
+    for line in csvFile:
+        # print(json.dumps(line, indent=2))
+        # {
+        #   "\ufeffAccount Number": "X96600886",
+        #   "Account Name": "Brok1$328k-2025.05.06",
+        #   "Symbol": "SPAXX**",
+        #   "Description": "HELD IN MONEY MARKET",
+        #   "Quantity": "",
+        #   "Last Price": "",
+        #   "Last Price Change": "",
+        #   "Current Value": "$83865.00",
+        #   "Today's Gain/Loss Dollar": "",
+        #   "Today's Gain/Loss Percent": "",
+        #   "Total Gain/Loss Dollar": "",
+        #   "Total Gain/Loss Percent": "",
+        #   "Percent Of Account": "19.04%",
+        #   "Cost Basis Total": "",
+        #   "Average Cost Basis": "",
+        #   "Type": "Cash"
+        # }
+        # {
+        #   "\ufeffAccount Number": "X96600886",
+        #   "Account Name": "Brok1$328k-2025.05.06",
+        #   "Symbol": " -NVO270115C60",
+        #   "Description": "NVO JAN 15 2027 $60 CALL",
+        #   "Quantity": "59",
+        #   "Last Price": "$5.80",
+        #   "Last Price Change": "-$0.35",
+        #   "Current Value": "$34220.00",
+        #   "Today's Gain/Loss Dollar": "-$1903.67",
+        #   "Today's Gain/Loss Percent": "-5.27%",
+        #   "Total Gain/Loss Dollar": "-$14740.52",
+        #   "Total Gain/Loss Percent": "-30.11%",
+        #   "Percent Of Account": "7.77%",
+        #   "Cost Basis Total": "$48960.52",
+        #   "Average Cost Basis": "$8.30",
+        #   "Type": "Cash"
+        # }
+        if line['Symbol'] is not None:
+            symbol = line['Symbol']          # " -NVO270115C60"
+            value = line['Current Value']    # "$34220.00"
+            basis = line['Cost Basis Total'] # "$48960.52"
+            symbol = re.sub(r'^\s\-', '', symbol)
+            symbol = re.sub(r'\d.*', '', symbol)
+            if symbol == 'Pending activity':
+                continue
+            if symbol == '**':
+                continue
+            if symbol == '':
+                continue
+
+            value = re.sub(r'^\$', '', value)
+            if value == '--':
+                value = 0
+            else:
+                value = float(value)
+            basis = re.sub(r'^\$', '', basis)
+            if basis == '':
+                basis = value
+            elif basis == '--':
+                basis = 0
+            else:
+                basis = float(basis)
+            if symbol not in things:
+                things[symbol] = {}
+                things[symbol]['basis'] = 0
+                things[symbol]['value'] = 0
+            things[symbol]['basis'] += basis
+            things[symbol]['value'] += value
+
+print(f'Value\tBasis\tGain\t%Gain\tSymbol')
+for symbol in things:
+    value = things[symbol]['value']
+    basis = things[symbol]['basis']
+    gain = value - basis
+    if basis != 0:
+        pgain = gain * 100 / basis
+        pgain = f'{pgain:.2f}'
+    else:
+        pgain = ''
+    print(f'{value:.2f}\t{basis:.2f}\t{gain:.2f}\t{pgain}\t{symbol}')
