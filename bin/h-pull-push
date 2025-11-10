@@ -37,8 +37,17 @@ mount_local() {
 }
 
 determine_server() {
+    ping -W 3 -c 2 192.168.10.180
+    if [[ $? == 0 ]]; then
+        server=nuc
+        return
+    fi
+    ping -W 3 -c 2 192.168.10.178
+    if [[ $? == 0 ]]; then
+        server=tron
+        return
+    fi
     server='cron'
-    ping -W 3 -c 2 192.168.10.180 >/dev/null 2>&1 && server='nuc'
 }
 
 mk_sshconfig () {
@@ -54,7 +63,7 @@ Host cron
     User om
     HostName 76.236.30.161
     Port 2222
-    ControlPath ~/.ssh/ctrl-%l-to-%h
+    ControlPath ~/.ssh/hpull/ctrl-%l-to-%h
     ControlMaster auto
     ControlPersist 10m
     ServerAliveInterval 180
@@ -64,11 +73,20 @@ Host nuc
     User om
     HostName 192.168.10.180
     Port 22
-    ControlPath ~/.ssh/ctrl-%l-to-%h
+    ControlPath ~/.ssh/hpull/ctrl-%l-to-%h
     ControlMaster auto
     ControlPersist 10m
     ServerAliveInterval 180
     GatewayPorts yes
+
+Host tron
+    User om
+    Hostname 192.168.10.178
+    Port 22
+    ControlPath ~/.ssh/hpull/ctrl-%l-to-%h
+    ControlMaster auto
+    ControlPersist 10m
+    ServerAliveInterval 180
 
 EOF
 
@@ -79,14 +97,14 @@ determine_direction () {
         'hpull')
           verb=PULL
           direction='from'
-          SRC="$server:b/om/p/CRUZER"
-          DST="$HOME/b/om/p/CRUZER"
+          SRC="$server:b/om/p/CRUZER/CRUZER"
+          DST="$HOME/b/om/p/CRUZER/CRUZER"
           ;;
         'hpush')
           verb=PUSH
           direction='to'
-          DST="$server:b/om/p/CRUZER"
-          SRC="$HOME/b/om/p/CRUZER"
+          DST="$server:b/om/p/CRUZER/CRUZER"
+          SRC="$HOME/b/om/p/CRUZER/CRUZER"
           ;;
         *)
           echo 'Error: Must be hpull or hpush'
