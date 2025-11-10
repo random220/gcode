@@ -52,7 +52,7 @@ with open(sys.argv[1], 'rt', encoding='utf-8') as f:
         if len(parts) == 10:
             symbol = parts[2]
             gain   = parts[8]
-            m = re.search(r'^\s*\-?([A-Z]+)(\d.*)?$', symbol)
+            m = re.search(r'^\s*\-?([A-Z]+)', symbol)
             if m:
                 symbol = m.group(1)
                 m = re.search(r'^([\+\-])\$([\d\.]+)$', gain)
@@ -65,7 +65,7 @@ with open(sys.argv[1], 'rt', encoding='utf-8') as f:
                     else:
                         things[symbol] += float(m.group(2))
 
-print('Symbol\tGain')
+print('Symbol\tGain($)')
 for s in sorted(things.keys(), key=lambda x: int(things[x]), reverse=True):
     n = int(things[s])
     print(f'{s}\t{n}')
