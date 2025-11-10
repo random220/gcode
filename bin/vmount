@@ -2,7 +2,7 @@
 
 export PATH=$HOME/bin:$HOME/gcode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
-mountpoint=$HOME'/b/om/p'
+mountpoint=~/b/om/p/CRUZER
 volpath=''
 algo=''  # 'vera' or 'luks' or 'dmg'
 veracrypt=''
@@ -12,7 +12,7 @@ main() {
     get_volpath || get_out 1 'Could not determine volpath'
     mountvol
     echo "mountpoint"
-    [[ -d "$mountpoint"/CRUZER ]] && get_out 0
+    [[ -d "$mountpoint" ]] && get_out 0
     get_out 1
 }
 
@@ -24,7 +24,7 @@ get_out() {
 }
 
 mounted() {
-    [[ -d "$mountpoint/CRUZER" ]] && return 0
+    [[ -d "$mountpoint" ]] && return 0
     return 1
 }
 
@@ -127,6 +127,11 @@ mount_luks() {
     local passw
     read -p 'LUKS password: ' -s passw
     sudo cryptsetup open "$volpath" PCRUZER --key-file=- < <(echo -n "$passw")
+    mkdir -p "$mountpoint"
+    if [[ ! -d "$mountpoint" ]]; then
+        echo "Error: Could not mkdir '$mountpoint'"
+        exit 1
+    fi
     sudo mount /dev/mapper/PCRUZER  "$mountpoint"
 }
 

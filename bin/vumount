@@ -60,8 +60,13 @@ luks_umount() {
     if [[ ! -e /dev/mapper/PCRUZER ]]; then
         return 1
     fi
+    # mount|grep /dev/mapper/PCRUZER
+    # /dev/mapper/PCRUZER on /home/om/b/om/p/CRUZER type ext4 (rw,relatime)
+    local mountpoint=$(mount|grep /dev/mapper/PCRUZER | awk '{print $3}')
+
     sudo umount /dev/mapper/PCRUZER   # Unmount filesystem
     sudo cryptsetup close PCRUZER     # Unmount block device
+    rmdir "$mountpoint"
     return 0
 }
 
