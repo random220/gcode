@@ -181,7 +181,7 @@ do_sync() {
         printf "Again, $verb $direction $server? (YES/n): "
         read yesno
         if [[ $yesno == 'YES' ]]; then
-            cmd="rsync -e 'ssh -F $HOME/.ssh/hpull/config' -a --delete '$SRC'/ '$DST'/"
+            cmd="rsync -e 'ssh -F $HOME/.ssh/hpull/config' --exclude=".DS_Store" -a --delete '$SRC'/ '$DST'/"
             echo "doing: $cmd"
             eval $cmd
             exit_status=$?
