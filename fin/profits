@@ -59,9 +59,12 @@ with open(sys.argv[1], 'rt', encoding='utf-8') as f:
                         things[symbol] += float(m.group(2))
 
 print('Symbol\tGain($)')
+total = 0
 for s in sorted(things.keys(), key=lambda x: int(things[x]), reverse=True):
     n = int(things[s])
+    total += n
     print(f'{s}\t{n}')
+print(f'Total\t{total}')
 
 
 
