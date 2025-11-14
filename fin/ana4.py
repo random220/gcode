@@ -11,6 +11,19 @@ from statistics import median, mean
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+def main():
+    """Main function to process input.csv and generate output CSV files."""
+    try:
+        data = read_data()
+        bucketized_data = bucketize_to_account_and_ticker(data)
+        closed_clusters, open_clusters = separate_closed_clusters(bucketized_data)
+        write_clusters(closed_clusters, '_closed.csv')
+        write_clusters(open_clusters, '_open.csv')
+        logger.info("Processing completed successfully")
+    except Exception as e:
+        logger.error(f"Processing failed: {str(e)}")
+        raise
+
 def read_data(input_file: str = 'input.csv') -> List[Dict[str, str]]:
     """Read and parse the input CSV file, converting dates to a standard format."""
     try:
@@ -147,19 +160,6 @@ def write_cluster(writer: csv.writer, cluster: List[Dict[str, str]], calculate_p
                         f'{profit_percentage:.2f} %', f'{investment:.2f}', f'{days}', ''])
 
     return profit, investment, days
-
-def main():
-    """Main function to process input.csv and generate output CSV files."""
-    try:
-        data = read_data()
-        bucketized_data = bucketize_to_account_and_ticker(data)
-        closed_clusters, open_clusters = separate_closed_clusters(bucketized_data)
-        write_clusters(closed_clusters, '_closed.csv')
-        write_clusters(open_clusters, '_open.csv')
-        logger.info("Processing completed successfully")
-    except Exception as e:
-        logger.error(f"Processing failed: {str(e)}")
-        raise
 
 if __name__ == "__main__":
     main()
