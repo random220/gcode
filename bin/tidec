@@ -5,7 +5,7 @@ openfile=''
 main() {
     check_openfiles && show_plain "$openfile" && exit 0
 
-    tid_plain=~/b/om/p/CRUZER/gitted/sandbox/tiddly.html
+    tid_plain=~/b/om/p/CRUZER/CRUZER/gitted/sandbox/tiddly.html
     [[ -f "$tid_plain" ]] && show_plain "$tid_plain" && exit 0
 
     cruzer_vol=$HOME/b/om/CRUZER.vol

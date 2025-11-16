@@ -2,15 +2,12 @@
 
 arg=$1
 
-p=/b/om/p
-if [[ ! -d $p ]]; then
-  p=$HOME/b/om/p
-fi
-if [[ ! -d $p ]]; then
-  echo 'ERROR: Not found /b/om/p or $HOME/b/om/p'
+tiddly_forever=~/b/om/p/CRUZER/CRUZER/gitted/sandbox/tiddly.html
+if [[ ! -f "$tiddly_forever" ]]; then
+  echo "ERROR: Not found \"$tiddly_forever\""
   exit 1
 fi
-echo "Destination: $p/CRUZER/gitted/sandbox"
+echo "Destination File: $tiddly_forever"
 
 set_comment() {
   myname=$(basename $0)
@@ -23,37 +20,6 @@ set_comment() {
 
 main() {
   do_tiddly
-  do_mint
-}
-
-do_mint() {
-  file_new1=$HOME/Downloads/transactions.csv
-  file_new2=$HOME/Desktop/transactions.csv
-
-  file_new=$file_new1
-  if [[ ! -f $file_new ]]; then
-    file_new=$file_new2
-  fi
-  if [[ ! -f $file_new ]]; then
-    echo "Not found: $file_new1"
-    echo "Not found: $file_new2"
-    return
-  fi
-  file_forever=$p/CRUZER/gitted/sandbox/mint-transactions.csv
-  diff -q $file_new $file_forever >/dev/null 2>&1
-  if [[ $? == 0 ]]; then
-    # no diff
-    echo "rm -f $file_new"
-    rm -f $file_new
-    return
-  fi
-  mv $file_new $file_forever
-  (
-    cd $p/CRUZER/gitted/sandbox
-    git add mint-transactions.csv
-    datestring=$(date "+%Y-%m-%d %H:%M:%S")
-    git commit -m "mint $datestring"
-  )
 }
 
 do_tiddly() {
@@ -97,25 +63,20 @@ do_tiddly() {
     return
   fi
 
-  tiddly_forever=$p/CRUZER/gitted/sandbox/tiddly.html
-  if [[ ! -f $tiddly_forever ]]; then
-    echo "Not found: $tiddly_forever"
-    echo "Consider rm -f \"$tiddly_new\""
-  else
-    ls -ld "$tiddly_new" "$tiddly_forever"
-    cmd="cp \"$tiddly_new\" \"$tiddly_forever\""
-    printf "todo: $cmd\\n"
-    if [[ $arg == '' ]]; then
-      echo "Doing it"
-      eval $cmd
-    fi
-    set_comment
-    cmd="(cd $p/CRUZER/gitted/sandbox && (git add tiddly.html; git commit -m '$comment'))"
-    printf "todo: $cmd\\n"
-    if [[ $arg == '' ]]; then
-      echo "Doing it"
-      eval $cmd
-    fi
+  ls -ld "$tiddly_new" "$tiddly_forever"
+  cmd="cp \"$tiddly_new\" \"$tiddly_forever\""
+  printf "todo: $cmd\\n"
+  if [[ $arg == '' ]]; then
+    echo "Doing it"
+    eval $cmd
+  fi
+  set_comment
+  tdir=$(dirname "$tiddly_forever")
+  cmd="(cd $tdir && (git add tiddly.html; git commit -m '$comment'))"
+  printf "todo: $cmd\\n"
+  if [[ $arg == '' ]]; then
+    echo "Doing it"
+    eval $cmd
   fi
 
   cat $tmpdir/tiddlies.txt | perl -pe 's/\n/\0/s' | xargs -0 rm
