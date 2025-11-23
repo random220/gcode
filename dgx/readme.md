@@ -77,3 +77,92 @@ Wired connection 4  197c6c5e-c0dd-32af-9746-4484724d30c4  ethernet  --
 Wired connection 5  543b2331-3c13-306e-8414-5e30a11938e5  ethernet  --              
 
      ```
+
+---
+
+## Connecting to Wi-Fi Using nmcli
+
+nmcli is a command-line tool for managing network connections on Linux systems. It is part of the NetworkManager suite and allows users to create, display, edit, delete, enable, and disable network connections, as well as control and display network device status.
+
+### Step-by-Step Guide to Connect to Wi-Fi
+
+#### Step 1: Enable Your Wi-Fi Device
+
+First, ensure that your Wi-Fi device is enabled. You can check the status of all network interfaces with:
+
+```
+nmcli dev status
+```
+
+To specifically check if Wi-Fi is enabled, use:
+
+```
+nmcli radio wifi
+```
+
+If Wi-Fi is disabled, enable it with:
+
+```
+nmcli radio wifi on
+```
+
+#### Step 2: Identify a Wi-Fi Access Point
+
+To find available Wi-Fi networks, scan for nearby networks:
+
+```
+nmcli dev wifi list
+```
+
+Note the SSID (name) of the network you want to connect to.
+
+#### Step 3: Connect to Wi-Fi
+
+With Wi-Fi enabled and the SSID identified, connect to the network using:
+
+```
+sudo nmcli dev wifi connect network-ssid
+```
+
+Replace network-ssid with the name of your network. If the network requires a password, include it in the command:
+
+```
+sudo nmcli dev wifi connect network-ssid password "network-password"
+```
+
+Alternatively, to avoid displaying the password on the screen, use the --ask option:
+
+```
+sudo nmcli --ask dev wifi connect network-ssid
+```
+
+This will prompt you to enter the network password securely.
+
+#### Verify Connection
+
+To verify that you are connected to the internet, you can use the ping command:
+
+```
+ping google.com
+```
+
+#### Managing Network Connections
+
+To view all saved connections, use:
+
+```
+nmcli con show
+```
+
+To disconnect from a network, specify the SSID or UUID:
+
+```
+nmcli con down ssid/uuid
+```
+
+To connect to another saved network, use:
+
+```
+nmcli con up ssid/uuid
+```
+
