@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import re
+import json
 import csv
 from datetime import datetime
 from collections import defaultdict
@@ -50,10 +52,44 @@ def bucketize_to_account_and_ticker(data: List[Dict[str, str]]) -> Dict[str, Dic
     buckets = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
     for row in data:
         account = row['Account Number']
-        ticker = row['Symbol']
+        sym = row['Symbol'].strip()
         rundate = row['Run Date']
-        buckets[account][ticker][rundate].append(row)
+        buckets[account][sym][rundate].append(row)
+
+    convsym(buckets)
     return buckets
+
+def printout(x, fn):
+    with open(fn, 'wt') as f:
+        f.write(json.dumps(x, indent=2))
+
+def convsym(buckets):
+    newsyms = {}
+    with open('splits.txt', 'rt') as f:
+        for line in f:
+            m = re.search(r'^(\S+?)\s*=>\s*(\d+)\s*\*\s*(\S+)', line)
+            if m:
+                oldsym = m.group(1)
+                n = m.group(2)
+                newsym = m.group(3)
+                newsyms[newsym] = {}
+                newsyms[newsym]['oldsym'] = oldsym
+                newsyms[newsym]['multiplier'] = int(n)
+
+    for newsym in newsyms:
+        oldsym = newsyms[newsym]['oldsym']
+        multiplier = newsyms[newsym]['multiplier']
+        for account in buckets:
+            if oldsym in buckets[account]:
+                if newsym not in buckets[account]:
+                    buckets[account][newsym] = {}
+                for rundate in buckets[account][oldsym]:
+                    if rundate not in buckets[account][newsym]:
+                        buckets[account][newsym][rundate] = []
+                    for runitem in buckets[account][oldsym][rundate]:
+                        runitem['Quantity'] = str(int(runitem['Quantity']) * multiplier)
+                        buckets[account][newsym][rundate].append(runitem)
+                del buckets[account][oldsym]
 
 def separate_closed_clusters(data: Dict[str, Dict[str, Dict[str, List[Dict[str, str]]]]]) -> Tuple[Dict, Dict]:
     """Separate transactions into closed and open clusters based on quantity sum."""
