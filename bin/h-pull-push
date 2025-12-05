@@ -44,7 +44,12 @@ determine_server() {
     fi
     ping -W 3 -c 2 192.168.10.101
     if [[ $? == 0 ]]; then
-        server=tron
+        server=tron101
+        return
+    fi
+    ping -W 3 -c 2 192.168.10.178
+    if [[ $? == 0 ]]; then
+        server=tron178
         return
     fi
     server='cron'
@@ -79,9 +84,18 @@ Host nuc
     ServerAliveInterval 180
     GatewayPorts yes
 
-Host tron
+Host tron101
     User om
     Hostname 192.168.10.101
+    Port 22
+    ControlPath ~/.ssh/hpull/ctrl-%l-to-%h
+    ControlMaster auto
+    ControlPersist 10m
+    ServerAliveInterval 180
+
+Host tron178
+    User om
+    Hostname 192.168.10.178
     Port 22
     ControlPath ~/.ssh/hpull/ctrl-%l-to-%h
     ControlMaster auto
