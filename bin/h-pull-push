@@ -152,16 +152,16 @@ do_sync() {
     echo
     echo "Syncing ..."
 
-    #TZ=UTC rsync -e "ssh -F $HOME/.ssh/hpull/config" -a --delete "$SRC"/ >"$tmpdir/list_SRC.txt"
-    #TZ=UTC rsync -e "ssh -F $HOME/.ssh/hpull/config" -a --delete "$DST"/ >"$tmpdir/list_DST.txt"
+    #TZ=UTC rsync -e "ssh -F $HOME/.ssh/hpull/config" -a "$SRC"/ >"$tmpdir/list_SRC.txt"
+    #TZ=UTC rsync -e "ssh -F $HOME/.ssh/hpull/config" -a "$DST"/ >"$tmpdir/list_DST.txt"
 
     local cmd
 
-    cmd="TZ=UTC rsync -e 'ssh -F $HOME/.ssh/hpull/config' -a --delete '$SRC'/ >'$tmpdir/list_SRC.txt'"
+    cmd="TZ=UTC rsync -e 'ssh -F $HOME/.ssh/hpull/config' -a '$SRC'/ >'$tmpdir/list_SRC.txt'"
     echo "doing: $cmd"
     eval $cmd
 
-    cmd="TZ=UTC rsync -e 'ssh -F $HOME/.ssh/hpull/config' -a --delete '$DST'/ >'$tmpdir/list_DST.txt'"
+    cmd="TZ=UTC rsync -e 'ssh -F $HOME/.ssh/hpull/config' -a '$DST'/ >'$tmpdir/list_DST.txt'"
     echo "doing: $cmd"
     eval $cmd
 
