@@ -1,5 +1,12 @@
 Control Panel -> Programs -> Programs and Features
     -> Turn Windows features on or off -> Windows Subsystem for Linux
 
+In command prompt or powershell
 wsl --set-default-version 1
+
+--manually reboot--
+
 wsl --install
+or
+wsl --list --online
+wsl --install Ubuntu-24.04
