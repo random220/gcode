@@ -24,9 +24,8 @@ ffmpeg -i input.mp3 -ar 16000 -ac 1 -c:a pcm_s16le output.wav
 mkdir -p ~/bin
 cat <<"EOF" >~/bin/whisp
 #!/bin/bash
-ffmpeg -i "$1" -ar 16000 -ac 1 -c:a pcm_s16le ~/_a.wav
-cd ~/sb/whisper.cpp
-./build/bin/whisper-cli -m ./models/ggml-large-v1.bin -f ~/_a.wav
-rm -f ~/_a.wav
+ffmpeg -i "$1" -ar 16000 -ac 1 -c:a pcm_s16le ./_a.wav
+~/sb/whisper.cpp/build/bin/whisper-cli -m ~/sb/whisper.cpp/models/ggml-large-v1.bin -f ./_a.wav
+rm -f ./_a.wav
 EOF
 chmod a+x ~/bin/whisp
