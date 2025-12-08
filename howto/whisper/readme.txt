@@ -1,6 +1,8 @@
 brew install cmake
 brew install ffmpeg
 
+mkdir -p ~/sb
+cd ~/sb
 git clone https://github.com/ggml-org/whisper.cpp.git
 cd whisper.cpp
 
