@@ -2,40 +2,29 @@
 
 bindir=$(dirname $0)
 
-p=/b/om/p
-if [[ ! -d $p ]]; then
-    p=$HOME/b/om/p
+p=~/b/om/p
+l=~/b/om/l
+if [[ ! -d "$p" ]]; then
+    mkdir -p "$p"
 fi
-if [[ ! -d $p ]]; then
-    echo "ERROR: Not found \"$p\""
-    exit 1
+if [[ ! -d "$l" ]]; then
+    mkdir -p "$l"
 fi
-p=$(cd $p && pwd -P)
 
-l=/b/om/l
-if [[ ! -d $l ]]; then
-    l=$HOME/b/om/l
+if [[ ! -d "$p/CRUZER" ]]; then
+    $bindir/vmount || exit 1
 fi
-if [[ ! -d $l ]]; then
-    echo "ERROR: Not found \"$l\""
-    exit 1
-fi
-l=$(cd $l && pwd -P)
-
 p=$p/CRUZER
+
+if [[ -d '/Volumes/Hosta!host!/CRUZER' ]]; then
+  ln -sf '/Volumes/Hosta!host!/CRUZER' "$l/CRUZER"
+elif [[ -d '/Volumes/LVCRUZER/CRUZER' ]]; then
+  ln -sf '/Volumes/LVCRUZER/CRUZER' "$l/CRUZER"
+fi
 l=$l/CRUZER
 
-if [[ -d '/Volumes/Host!host!/CRUZER' ]]; then
-  l='/Volumes/Host!host!/CRUZER'
-fi
-if [[ -d '/Volumes/Hosta!host!/CRUZER' ]]; then
-  l='/Volumes/Hosta!host!/CRUZER'
-fi
-if [[ -d '/Volumes/LVCRUZER/CRUZER' ]]; then
-  l='/Volumes/LVCRUZER/CRUZER'
-fi
 
-printf "Push $p ---> $l ? (y/n): "
+printf "Push $p/CRUZER/ ---> $l/CRUZER/ ? (y/n): "
 read yesno
 if [[ $yesno != 'y' ]]; then
   exit 1
@@ -50,16 +39,9 @@ else
     fi
 fi
 
-if [[ ! -d $p ]]; then
-    $bindir/vmount || exit 1
-fi
-if [[ ! -d $l ]]; then
-    $bindir/lmount || exit 1
-fi
-
 echo
 echo "Syncing ..."
-cmd="TZ=UTC rsync -a --delete $p/ $l/"
+cmd="TZ=UTC rsync -a --delete $p/CRUZER/ $l/CRUZER/"
 echo "doing: $cmd"
 bash -c "$cmd"
 
