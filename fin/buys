@@ -1,0 +1,74 @@
+#!/usr/bin/env python
+# grep '^Run' input.csv >bought.csv
+# grep BOUGHT input.csv >>bought.csv
+# grep '^Run' input.csv >sold.csv
+# grep SOLD input.csv >>sold.csv
+
+import os
+import csv
+import json
+import sys
+from datetime import datetime, timezone
+
+
+os.system("grep '^Run' input.csv >bought.csv")
+os.system("grep BOUGHT input.csv >>bought.csv")
+os.system("grep '^Run' input.csv >sold.csv")
+os.system("grep SOLD input.csv >>sold.csv")
+
+amounts = {}
+amounts["buy"] = {}
+amounts["sell"] = {}
+with open('input.csv', mode='rt', newline='', encoding='utf-8') as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        # {
+        #   "Run Date": "03/31/2025",
+        #   "Account": "VISA.BrokLink-$113k-2025.04.08",
+        #   "Account Number": "652344998",
+        #   "Action": "YOU BOUGHT OPENING TRANSACTION CALL (NVDA) NVIDIA CORPORATION OCT 17 25 $55 (100 SHS) (Cash)",
+        #   "Symbol": " -NVDA251017C55",
+        #   "Description": "CALL (NVDA) NVIDIA CORPORATION OCT 17 25 $55 (100 SHS)",
+        #   "Type": "Cash",
+        #   "Price ($)": "51.95",
+        #   "Quantity": "1",
+        #   "Commission ($)": "0.65",
+        #   "Fees ($)": "0.03",
+        #   "Accrued Interest ($)": "",
+        #   "Amount ($)": "-5195.68",
+        #   "Settlement Date": "04/01/2025"
+        # }
+        
+        d = row["Run Date"]
+        if d not in amounts["buy"]:
+            amounts["buy"][d] = 0
+        if d not in amounts["sell"]:
+            amounts["sell"][d] = 0
+
+        if 'BOUGHT' in row["Action"]:
+            transaction = 'buy'
+            amount = 0 - float(row["Amount ($)"])
+        elif 'SOLD' in row["Action"]:
+            transaction = 'sell'
+            amount = float(row["Amount ($)"])
+        else:
+            continue
+
+        amounts[transaction][d] += amount
+
+def date2epoch(d):
+    dt = datetime.strptime(d, "%m/%d/%Y")
+    return int(dt.timestamp())
+
+dates = list(amounts["buy"].keys())
+dates.sort(key=date2epoch)
+
+with open('buysell-dollars.tsv', 'wt') as f:
+    f.write(f'Date\tBuys\tSells\n')
+    for d in dates:
+        b = amounts["buy"][d]
+        s = amounts["sell"][d]
+        f.write(f'{d}\t{b:.2f}\t{s:.2f}\n')
+
+
+
