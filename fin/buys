@@ -65,10 +65,16 @@ dates.sort(key=date2epoch)
 
 with open('buysell-dollars.tsv', 'wt') as f:
     f.write(f'Date\tBuys\tSells\n')
+    bT = 0
+    sT = 0
     for d in dates:
         b = amounts["buy"][d]
+        bT += b
         s = amounts["sell"][d]
+        sT += s
         f.write(f'{d}\t{b:.2f}\t{s:.2f}\n')
+    f.write(f' \t \t \n')
+    f.write(f'TOTAL\t{bT}\t{sT}\n')
 
 
 
