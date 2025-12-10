@@ -4,6 +4,7 @@
 # grep '^Run' input.csv >sold.csv
 # grep SOLD input.csv >>sold.csv
 
+import re
 import os
 import csv
 import json
@@ -65,16 +66,39 @@ dates.sort(key=date2epoch)
 
 with open('buysell-dollars.tsv', 'wt') as f:
     f.write(f'Date\tBuys\tSells\n')
-    bT = 0
-    sT = 0
+    bT = {}
+    bT['T'] = 0
+    bT['m'] = {}
+    sT = {}
+    sT['T'] = 0
+    sT['m'] = {}
+    pmonth = '00/0000'
+    month = '00/0000'
     for d in dates:
+        m = re.search(r'(\d\d)/(\d\d)/(\d\d\d\d)$', d)
+        if m:
+            month = m.group(3)+'/'+m.group(1)
+        if month not in bT['m']:
+            bT['m'][month] = 0
+        if month not in sT['m']:
+            sT['m'][month] = 0
         b = amounts["buy"][d]
-        bT += b
+        bT['T'] += b
+        bT['m'][month] += b
         s = amounts["sell"][d]
-        sT += s
+        sT['T'] += s
+        sT['m'][month] += s
         f.write(f'{d}\t{b:.2f}\t{s:.2f}\n')
     f.write(f' \t \t \n')
-    f.write(f'TOTAL\t{bT}\t{sT}\n')
+    f.write(f'TOTAL\t{bT['T']}\t{sT['T']}\n')
 
 
+    f.write(f' \t \t \n')
+    f.write(f'Month\tBuys\tSells\n')
+    months = list(bT['m'].keys())
+    months.sort()
+    for m in months:
+        b = bT['m'][m]
+        s = sT['m'][m]
+        f.write(f'{m}\t{b:.2f}\t{s:.2f}\n')
 
