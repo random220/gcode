@@ -196,14 +196,15 @@ nmcli con up ssid/uuid
        ```
        cat <<EOF >a.txt.gpg.txt
        -----BEGIN PGP MESSAGE-----
-       jA0ECQMIoOJyLTZg/ZT/0sBaAZFYeRc2b5m4d/JhTU2Bz8LqFl8hLGOTjPG2tIqQ
-       PpYkgIS0yftMeajOx28am6+xE9gG+Vl0N43bnOwqyWtXLqHCg7pxl4H2pgtMOa36
-       M3BXBnhuUjWZda42QDREXBxRAR9D1tTCAnX8cPIzrASBsQKeYNAl+o0kOIOxOBIg
-       StqW3BUrdcCh8sowPvg2LVhqgQ36vlieXK0B0vHYAuhZzQYMIq88j3eQdqg4/UF4
-       ZU/L5NNFjd2SMlXssV8DX1w5o9TyjAxiEbFHoP22VYDKEZ8XMKs5HqD14XP9qOoU
-       lBeFPEZp5hbGCUbjCnL5hRZQaxwHatWAsthOqsmnjkOGWwMbClDup1psXxPgdHKN
-       9V5/TKGadtkDD7x4
-       =X1P0
+       jA0ECQMIH7EGGh2Ta23/0sCNAVHZq4LZ8WpjbDChQ/Muq+kVI7+m/uavXMWU0CM6
+       mJkCewoLFxhyxxQhiR2WVlUUTs/pWZ0ySrEIs0c2u+LauuVxorPlxGK6SOOLjATe
+       IAbJkW8q5eWpp8peEz3RV5J65FZEG9M73G2j/7k5lbJ5zUQSWh4WSzX6OWGRNYGY
+       BPUWjOjuZO3p9P+5aREJdGvd/x5f1ZlHSnaZAENGy0W+pyKXyRECxzRT8spzYKSx
+       hs5S4ZupLpZ1z4SyGiP8vQvmvVSMVnzfraGpA7gfTMq3UNGYjzw56x4FX/Wrtipp
+       vbwOivfBs7B7pUGKgrkh5cGxYDdwOjL5EJFBm3CfDw1asSvW5Tsvv6LkzNk01Hwd
+       su/fkUhOC7MJ+NpvT1p3VI3+7cfl6SImkcckh8Msf7qC0kje8GApVAPm15vIJXzC
+       NLQS9g1zjErtXMsXjd58
+       =ur4R
        -----END PGP MESSAGE-----
        EOF
        ```
