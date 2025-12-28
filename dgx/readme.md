@@ -166,3 +166,56 @@ To connect to another saved network, use:
 nmcli con up ssid/uuid
 ```
 
+### Docker setup
+ - Ref: [https://docs.nvidia.com/dgx/dgx-spark/nvidia-container-runtime-for-docker.html](https://docs.nvidia.com/dgx/dgx-spark/nvidia-container-runtime-for-docker.html)
+ - Apparently `--runtime=nvidia` is no longer required
+ - check GPU availability from inside container
+
+ ```
+ nvidia-smi >~/a.txt
+ docker run -it --gpus=all nvcr.io/nvidia/cuda:13.0.1-devel-ubuntu24.04 nvidia-smi >~/b.txt
+ vimdiff ~/a.txt ~/b.txt
+ ```
+ - Another way
+
+ ```
+ % docker run -itd --name cuds -h cuds \
+ --gpus=all nvcr.io/nvidia/cuda:13.0.1-devel-ubuntu24.04 bash
+ % docker exec -it cuds bash
+ 
+ root@cuds:~# ls -ld /dev/nvidia*
+ crw-rw-rw- 1 root root 500,   0 Dec 28 05:35 /dev/nvidia-uvm
+ crw-rw-rw- 1 root root 500,   1 Dec 28 05:35 /dev/nvidia-uvm-tools
+ crw-rw-rw- 1 root root 195,   0 Dec 28 05:35 /dev/nvidia0
+ crw-rw-rw- 1 root root 195, 255 Dec 28 05:35 /dev/nvidiactl
+ ```
+ - [NGC](https://docs.nvidia.com/dgx/dgx-spark/ngc.html) (docker registry for GPU optimized containers)
+   - [https://catalog.ngc.nvidia.com/](https://catalog.ngc.nvidia.com/)
+     - Account info (passwd host)
+
+       ```
+       cat <<EOF >a.txt.gpg.txt
+       -----BEGIN PGP MESSAGE-----
+       jA0ECQMIoOJyLTZg/ZT/0sBaAZFYeRc2b5m4d/JhTU2Bz8LqFl8hLGOTjPG2tIqQ
+       PpYkgIS0yftMeajOx28am6+xE9gG+Vl0N43bnOwqyWtXLqHCg7pxl4H2pgtMOa36
+       M3BXBnhuUjWZda42QDREXBxRAR9D1tTCAnX8cPIzrASBsQKeYNAl+o0kOIOxOBIg
+       StqW3BUrdcCh8sowPvg2LVhqgQ36vlieXK0B0vHYAuhZzQYMIq88j3eQdqg4/UF4
+       ZU/L5NNFjd2SMlXssV8DX1w5o9TyjAxiEbFHoP22VYDKEZ8XMKs5HqD14XP9qOoU
+       lBeFPEZp5hbGCUbjCnL5hRZQaxwHatWAsthOqsmnjkOGWwMbClDup1psXxPgdHKN
+       9V5/TKGadtkDD7x4
+       =X1P0
+       -----END PGP MESSAGE-----
+       EOF
+       ```
+
+     - Actual [catalog](https://build.nvidia.com/explore/discover)
+     - Get [CLI installer](https://org.ngc.nvidia.com/setup/installers/cli)
+     - Be sure to get ARM64 Linux version of CLI.
+       With NVIDIA GPU Cloud (NGC) CLI, you can perform many of the
+       same operations that are available from the NGC website, such
+       as running jobs, viewing Docker repositories and downloading
+       AI models within your organization and team space.
+     - `docker login -u '$oauthtoken' nvcr.io` And then paste the token
+     - `docker logout; rm -f ~/.docker/config.json`
+
+
