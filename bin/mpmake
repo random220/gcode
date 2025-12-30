@@ -105,6 +105,8 @@ install_packages() {
   cat <<EOF | multipass exec $contname bash -
 sudo apt-get -y update
 sudo apt-get -y install openvpn squid
+perl -i -pe 's/^PasswordAuthentication/#PasswordAuthentication/' /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*
+service ssh restart
 EOF
 }
 
