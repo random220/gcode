@@ -264,3 +264,36 @@ nmcli con up ssid/uuid
 
 ```
 
+### Vibe Coding
+URL: [https://build.nvidia.com/spark/vibe-coding](https://build.nvidia.com/spark/vibe-coding)
+
+```
+ssh ztron
+
+# Install ollama
+
+zk@tron:~$ curl -fsSL https://ollama.com/install.sh | sh
+>>> Installing ollama to /usr/local
+[sudo] password for zk:
+>>> Downloading Linux arm64 bundle
+######################################################################## 100.0%
+>>> Creating ollama user...
+>>> Adding ollama user to render group...
+>>> Adding ollama user to video group...
+>>> Adding current user to ollama group...
+>>> Creating ollama systemd service...
+WARNING: systemd is not running
+>>> NVIDIA GPU installed.
+>>> The Ollama API is now available at 127.0.0.1:11434.
+>>> Install complete. Run "ollama" from the command line.
+zk@tron:~$
+
+$ ollama serve # needed because ollama service is not running. the systemd warning??
+
+$ ollama pull gpt-oss:120b # took an hour
+
+
+
+```
+
+
