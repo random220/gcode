@@ -32,6 +32,19 @@ monitor_vpn() {
 
 monitor_vpn >/dev/null 2>&1 &
 
+
+settingfile=~/.config/transmission/settings.json
+if [[ ! -f $settingfile ]]; then
+    mkdir -p $(dirname $settingfile)
+    cat <<"EOF" >$settingfile
+{
+"download-queue-size": 20
+}
+EOF
+else
+    perl -i -pe 's{^(\s*"download-queue-size": )\d+}{${1}20}' $settingfile
+fi
+
 transmission-daemon \
 -c ~/Downloads/uu/t_ \
 --foreground \
