@@ -11,7 +11,7 @@ if len(sys.argv) == 1:
     sys.exit(1)
 
 rootdir = sys.argv[1]
-cmd = ['rsync', '-a', '--delete', rootdir+'/']
+cmd = ['rsync', '-a', rootdir+'/']
 
 # Python3
 #result = subprocess.run(cmd, shell=False, stdout = subprocess.PIPE, universal_newlines = True)
