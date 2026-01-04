@@ -1,0 +1,8 @@
+#!/bin/bash
+
+rm -rf \
+~/Library/Arduino15 \
+~/Library/Application\ Support/arduino-ide  \
+~/Library/Preferences/cc.arduino.IDE2.plist \
+~/ibrary/Logs/Arduino\ IDE \
+~/.arduinoIDE
