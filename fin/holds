@@ -51,6 +51,8 @@ with open(sys.argv[1], 'rt', encoding='utf-8') as f:
         #   "Type": "Cash"
         # }
         if line['Symbol'] is not None:
+            if 'CALL' not in line['Description']:
+                continue
             symbol = line['Symbol']          # " -NVO270115C60"
             value = line['Current Value']    # "$34220.00"
             basis = line['Cost Basis Total'] # "$48960.52"
