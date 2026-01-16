@@ -1,0 +1,33 @@
+BWXT
+CCJ
+CEG
+DUK
+EOSE
+EXC
+FSLR
+GEV
+NEE
+NNE
+OKLO
+SBGSY
+SMR
+TLN
+TSLA
+VRT
+VST
+
+#THE ELECTRICITY VALUE CHAIN
+#
+#• $CCJ uranium supply
+#• $CEG nuclear baseload
+#• $SMR modular nuclear reactors
+#• $OKLO micro-nuclear generation
+#• $EOSE zinc long-duration storage
+#• $GEV power conversion hardware
+#• $VRT power distribution & cooling
+#• $VST flexible generation & storage
+#• $TSLA utility-scale lithium storage
+#• $FSLR thin-film solar for hyperscale
+#• $NNE utility-scale renewable buildout
+#• $TLN North American renewable generation
+#• $BWXT nuclear components & specialty fuel
