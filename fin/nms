@@ -11,6 +11,7 @@ for f in "$@"; do
         ~/gcode/fin/syms "$f"
         continue
     fi
+    echo
     echo "$f" | sed 's/\.txt$//; s,^.*/,,'
     cat "$f" | perl -pe 's/\#.*//; s/\b\d+\b//; s/\s/\n/gs' | sort -u| xargs -L 20|sed 's/^/    /'
     echo
