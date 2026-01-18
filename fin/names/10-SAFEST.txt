@@ -1,0 +1,16 @@
+# FFH/FRFHF,Insurance Conglomerate,Higher,Strong (close analog),"""Baby Berkshire"" model, but more volatile"
+# WRB,Specialty P&C Insurer,Low-Moderate,Very Strong,"Disciplined, resilient, consistent recovery"
+# AJG,Insurance Broker,Low,Very Strong,"Stable fees, defensive moat"
+# MMC,Insurance Broker,Very Low,Very Strong,"Ultra-stable, low-beta defensive play"
+# KNSL,Specialty E&S Insurer,Moderate-Higher,Moderate,"Growth-focused, less proven downside protection"
+
+     1	AJG
+     2	BRKB
+     3	FRFHF # Fairfax Financial mirror. FFH is toranto based
+     4	JNJ
+     5	KNSL
+     6	KO
+     7	MKL
+     8	MRSH  # Marsh McLennan
+     9	PEP
+    10	WRB

@@ -3,4 +3,10 @@ if [[ $1 == '' ]]; then
     exit 0
 fi
 
-cat "$@" | egrep -v '^[ *\#]'|xargs
+for f in "$@"; do
+    if [[ -f "$f" ]]; then
+        echo "$f" | sed 's/\.txt$//; s,^.*/,,'
+        cat "$f" | perl -pe 's/\#.*//; s/\b\d+\b//; s/\s/\n/gs' | sort -u| xargs -L 20|sed 's/^/    /'
+        echo
+    fi
+done
