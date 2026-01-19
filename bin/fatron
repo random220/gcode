@@ -1,0 +1,26 @@
+#!/bin/bash
+
+rm -rf ~/.fatron
+mkdir ~/.fatron
+cat <<EOF >~/.fatron/fatron.gpg.b64
+jA0ECQMIv9RRUg++WrHz0ukBBU/OTwSBiwYomne8l1Nxcu8OLeK+OWYjJyOiI+BO
+f4UsjZi93lYtB2dusqpOu5ZH+UlC1QxqVGh7iftq1o2NCOYgMsanAx3L+TGnkA08
+tgE6gBgmozYE/8dZAdxxZO54LZQDqL+fRg3VGpecxldrgjH+GP6JiOgAlw/+XRUy
+7qxcDw6omLQM8q+mOj91UUglA+lLlBT7oaEBQ75NZgWISyRDmg3OqWDU9MEI8qRi
+8FPJuZyCbbsve/dKXiFubIMpJiQlre8pxuuEo03fOTxndr7ma2qo4WLunhT1xihy
+Sonnswb74c7nkPd3VOFAHtcarHJna1QwwhVMtMAUUkrqqX9O60WKRbkn8o13XWB/
+fTKsW4a8L1Ug1cW115QhyJ5qnmN3q34/sCcftkKodTh7cRhyTyc0B+IYcRWu789n
+udm5IpJoU1nEYJ993KPiTU0f+5ME7M09YySwp8vCTOlcgX6Cx1uWopc6As0Eu1Zb
+76YXsTduCNW22bDGA7nm/0jz8xMmR2rbKQO5uW834hhOlXgJICTCy6Tx5PskeoDs
+pmTbS/mRkZL2PLhvVJqc2G0A8AiPqgK5fBcXGDwUNoJ987RvengxK8kITnB7oIn2
+0yBQKa9vcrLpKsyXMYWdpFt8E1QUxGLzFM7Ai3MJx9f32ooKzCPEnBOWTPAVj5vN
+uVtXXf86AKsupkbM8BSD+j57B7d5rfAkXFgJYpARxbBinhSy8f2gdkY8nFBaBLyg
+kh2XZknA+I60wCQ5F3lZ1mSDfCI8uS0h5p6YOTRlJQ2q/2KmMSjB0Vuyz2il
+EOF
+
+echo
+echo hint host
+echo
+genc -t ~/.fatron -d ~/.fatron/fatron.gpg.b64
+bash ~/.fatron/fatron.gpg.b64.plain
+rm -rf ~/.fatron
