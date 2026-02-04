@@ -1,0 +1,10 @@
+#!/bin/bash
+f="$1"
+if [[ "$f" == '' ]]; then
+    f=$(ls -1tr ~/Desktop/x/Portfolio_Positions*csv|tail -1)
+fi
+if [[ -f "$f" ]]; then
+    f=$(readlink -f "$f")
+    cd ~/gcode/fin && ./syms "$f"
+fi
+
