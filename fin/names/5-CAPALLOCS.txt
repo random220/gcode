@@ -1,7 +1,5 @@
-AGX
 ANET
 DPZ
 EXPD
 MSCI
-UI
 V

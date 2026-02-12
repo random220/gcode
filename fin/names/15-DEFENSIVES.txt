@@ -1,6 +1,5 @@
 BRKB
 CL
-CMG
 CVX
 FDX
 GIS

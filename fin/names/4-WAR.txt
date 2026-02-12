@@ -1,5 +1,4 @@
 GD
 LMT
 NOC
-PLTR
 RTX
