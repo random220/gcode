@@ -1,6 +1,0 @@
-CPRT
-CRM
-FISV
-NVO
-TGT
-UNH
