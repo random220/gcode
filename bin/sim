@@ -6,5 +6,8 @@ fi
 if [[ -f "$f" ]]; then
     f=$(readlink -f "$f")
     cd ~/gcode/fin && ./syms "$f"
+    echo
+    echo
+    echo "rm -f '$f'"
 fi
 

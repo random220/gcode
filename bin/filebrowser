@@ -19,3 +19,11 @@ cat <<EOF | docker exec -i fb /bin/sh -
 #filebrowser --config=/config/settings.json users update admin --password welcomewelcome
 filebrowser --config=/config/settings.json users add data welcomewelcome
 EOF
+
+echo
+echo
+echo 'http://localhost:8080'
+echo 'data / welcomewelcome'
+echo
+echo 'docker rm -f fb'
+echo
