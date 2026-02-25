@@ -1,6 +1,6 @@
 BAC
 BLK
-BRKB
+BRK/B
 FDS
 FICO
 GS

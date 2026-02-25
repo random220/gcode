@@ -5,7 +5,7 @@
 # KNSL,Specialty E&S Insurer,Moderate-Higher,Moderate,"Growth-focused, less proven downside protection"
 
      1	AJG
-     2	BRKB
+     2	BRK/B
      3	FRFHF # Fairfax Financial mirror. FFH is toranto based
      4	JNJ
      5	KNSL

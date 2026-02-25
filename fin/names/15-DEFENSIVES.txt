@@ -1,4 +1,4 @@
-BRKB
+BRK/B
 CL
 CVX
 FDX
