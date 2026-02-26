@@ -1,6 +1,5 @@
 #!/bin/bash
 if [[ -f "$1" ]]; then
-    (
     cat "$1" \
     | grep -v 'Stock Plan (PSTG)' \
     | awk -F"," '{print $3}' \
@@ -9,8 +8,12 @@ if [[ -f "$1" ]]; then
     | egrep -v '^APEMY$|^VINIX$|^VMCIX$|^GLD$' \
     | sed 's/^-//; s/[0-9].*//' \
     | sort -u \
+    | sed 's,^BRKB$,BRK/B,' \
+    > ~/gcode/fin/names/00NOW.txt
+    (
+    cat ~/gcode/fin/names/00NOW.txt \
     | xargs -L 30
-    )|sed 's/^/==>\n/'
+    ) |sed 's/^/==>\n/'
 else
     echo 'Need positions file'
     echo 'https://digital.fidelity.com/ftgw/digital/portfolio/positions'
