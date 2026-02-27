@@ -1,0 +1,48 @@
+01 ADBE      # Adobe - $279B
+02 CRM       # Salesforce - $252B
+03 INTU      # Intuit - $161B
+04 NOW       # ServiceNow - $141B
+05 SHOP      # Shopify - $95B
+06 WDAY      # Workday - $72B
+07 SNOW      # Snowflake - $61B
+08 CRWD      # Crowdstrike - $56B
+09 TEAM      # Atlassian - $50B
+10 ADSK      # Autodesk - $48B
+11 PLTR      # Palantir - $44B
+12 XYZ       # Block - $40B
+13 DDOG      # Datadog - $39B
+15 MDB       # MongoDB - $31B
+16 ZS        # Zscaler - $29B
+17 VEEV      # Veeva Systems - $29B
+18 NET       # Cloudflare - $26B
+19 HUBS      # HubSpot - $26B
+21 ZM        # Zoom Video - $21B
+22 IOT       # Samsara - $18.5B
+23 AKAM      # Akamai - $17.5B
+24 BSY       # Bentley Systems - $16.6B
+25 DT        # Dynatryce - $16.1B
+26 PATH      # UiPath - $14.2B
+27 U         # Unity Software - $12.4B
+28 OKTA      # Okta - $12.2B
+29 TWLO      # Twilio - $12.1B
+30 ESTC      # Elastic - $11.0B
+31 CDAY      # Ceridian HCM - $10.8B
+32 PAYC      # Paycom - $10.7B
+33 FFIV      # F5 - $10.3B
+34 DBOX      # Dropbox - $10B
+35 DOCU      # Focusing - $9.3B
+36 PCTY      # Paylocity - $9.0B
+37 PCOR      # Procore - $8.7B
+38 MNDY      # Monday com - $8.5B
+39 GWRE      # Guidewire Software - $8.3B
+40 KVYO      # Klaviyo - $8.2B
+41 GTLB      # GitLab - $8.1B
+42 BILL      # BILL Holdings - $7.3B
+43 CFLT      # Confluent - $7.0B
+44 DSGX      # Descartes Systems - $7.0B
+45 QLYS      # Qualys - $6.9B
+46 APPF      # Appfolio - $6.7B
+47 SPSC      # SPS Commerce - $6.5B
+48 FRSH      # Freshworks - $6.3B
+49 NEWR      # New Relic - $6.2B
+50 WIX       # Wix com - $6.0B
