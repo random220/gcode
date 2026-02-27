@@ -6,6 +6,7 @@ if [[ "$f" == '' ]]; then
           ~/Desktop/x/Portfolio_Positions*csv \
           ~/Desktop/Portfolio_Positions*csv \
           ~/Downloads/Portfolio_Positions*csv \
+          ~/Downloads/x/Portfolio_Positions*csv \
           2>/dev/null \
         |tail -1
       )
