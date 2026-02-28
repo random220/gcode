@@ -1,0 +1,6 @@
+#!/bin/bash
+sim
+cd ~/sb/fin/tradier/bin || exit 1
+./downup
+find _out
+open _out/lists.tsv
