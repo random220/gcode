@@ -1,104 +1,96 @@
 #!/usr/bin/env python
-# grep '^Run' input.csv >bought.csv
-# grep BOUGHT input.csv >>bought.csv
-# grep '^Run' input.csv >sold.csv
-# grep SOLD input.csv >>sold.csv
-
-import re
-import os
 import csv
-import json
-import sys
-from datetime import datetime, timezone
+from datetime import datetime
+from collections import defaultdict
 
 
-os.system("grep '^Run' input.csv >bought.csv")
-os.system("grep BOUGHT input.csv >>bought.csv")
-os.system("grep '^Run' input.csv >sold.csv")
-os.system("grep SOLD input.csv >>sold.csv")
+def parse_date(date_str):
+    """Parse a date string in 'mm/dd/yyyy' format to a datetime object."""
+    return datetime.strptime(date_str, '%m/%d/%Y')
 
-amounts = {}
-amounts["buy"] = {}
-amounts["sell"] = {}
+
+def parse_month(month_str):
+    """Parse a month string in 'YYYY/mm' format to a datetime object."""
+    return datetime.strptime(month_str, '%Y/%m')
+
+
+# Initialize dictionaries to track buy and sell amounts by date using defaultdict for convenience
+amounts = {
+    'buy': defaultdict(float),
+    'sell': defaultdict(float)
+}
+
+# Read the input CSV file
 with open('input.csv', mode='rt', newline='', encoding='utf-8') as f:
     reader = csv.DictReader(f)
     for row in reader:
-        # {
-        #   "Run Date": "03/31/2025",
-        #   "Account": "VISA.BrokLink-$113k-2025.04.08",
-        #   "Account Number": "652344998",
-        #   "Action": "YOU BOUGHT OPENING TRANSACTION CALL (NVDA) NVIDIA CORPORATION OCT 17 25 $55 (100 SHS) (Cash)",
-        #   "Symbol": " -NVDA251017C55",
-        #   "Description": "CALL (NVDA) NVIDIA CORPORATION OCT 17 25 $55 (100 SHS)",
-        #   "Type": "Cash",
-        #   "Price ($)": "51.95",
-        #   "Quantity": "1",
-        #   "Commission ($)": "0.65",
-        #   "Fees ($)": "0.03",
-        #   "Accrued Interest ($)": "",
-        #   "Amount ($)": "-5195.68",
-        #   "Settlement Date": "04/01/2025"
-        # }
+        date = row["Run Date"]
+        action = row["Action"]
         
-        d = row["Run Date"]
-        if d not in amounts["buy"]:
-            amounts["buy"][d] = 0
-        if d not in amounts["sell"]:
-            amounts["sell"][d] = 0
-
-        if 'BOUGHT' in row["Action"]:
+        # Determine transaction type and amount
+        if 'BOUGHT' in action:
             transaction = 'buy'
-            amount = 0 - float(row["Amount ($)"])
-        elif 'SOLD' in row["Action"]:
+            amount = -float(row["Amount ($)"])  # Buys are negative in the CSV, convert to positive
+        elif 'SOLD' in action:
             transaction = 'sell'
             amount = float(row["Amount ($)"])
         else:
-            continue
+            continue  # Skip rows that are neither buys nor sells
+        
+        # Accumulate the amount for the date
+        amounts[transaction][date] += amount
 
-        amounts[transaction][d] += amount
+# Get all unique dates from buys and sells, sorted chronologically ascending
+all_dates = sorted(set(amounts['buy'].keys()) | set(amounts['sell'].keys()), key=parse_date)
 
-def date2epoch(d):
-    dt = datetime.strptime(d, "%m/%d/%Y")
-    return int(dt.timestamp())
+# Prepare totals and monthly aggregates
+buy_totals = {'total': 0.0, 'monthly': defaultdict(float)}
+sell_totals = {'total': 0.0, 'monthly': defaultdict(float)}
 
-dates = list(amounts["buy"].keys())
-dates.sort(key=date2epoch)
+# Accumulate totals and monthly amounts
+for date in all_dates:
+    buys = amounts['buy'][date]
+    sells = amounts['sell'][date]
+    
+    # Update overall totals
+    buy_totals['total'] += buys
+    sell_totals['total'] += sells
+    
+    # Get monthly key in 'YYYY/mm' format
+    dt = parse_date(date)
+    month_key = dt.strftime('%Y/%m')
+    
+    # Update monthly totals
+    buy_totals['monthly'][month_key] += buys
+    sell_totals['monthly'][month_key] += sells
 
-with open('buysell-dollars.tsv', 'wt') as f:
-    f.write(f'Date\tBuys\tSells\n')
-    bT = {}
-    bT['T'] = 0
-    bT['m'] = {}
-    sT = {}
-    sT['T'] = 0
-    sT['m'] = {}
-    pmonth = '00/0000'
-    month = '00/0000'
-    for d in dates:
-        m = re.search(r'(\d\d)/(\d\d)/(\d\d\d\d)$', d)
-        if m:
-            month = m.group(3)+'/'+m.group(1)
-        if month not in bT['m']:
-            bT['m'][month] = 0
-        if month not in sT['m']:
-            sT['m'][month] = 0
-        b = amounts["buy"][d]
-        bT['T'] += b
-        bT['m'][month] += b
-        s = amounts["sell"][d]
-        sT['T'] += s
-        sT['m'][month] += s
-        f.write(f'{d}\t{b:.2f}\t{s:.2f}\n')
-    f.write(f' \t \t \n')
-    f.write(f'TOTAL\t{bT['T']}\t{sT['T']}\n')
+# Get all unique months, sorted descending
+all_months = sorted(set(buy_totals['monthly'].keys()) | set(sell_totals['monthly'].keys()), key=parse_month, reverse=True)
 
+# Get all dates sorted descending
+all_dates_desc = sorted(all_dates, key=parse_date, reverse=True)
 
-    f.write(f' \t \t \n')
-    f.write(f'Month\tBuys\tSells\n')
-    months = list(bT['m'].keys())
-    months.sort()
-    for m in months:
-        b = bT['m'][m]
-        s = sT['m'][m]
-        f.write(f'{m}\t{b:.2f}\t{s:.2f}\n')
-
+# Write to the TSV file: monthly first, then total, then daily
+with open('buysell-dollars.tsv', 'wt', encoding='utf-8') as f:
+    # Write monthly section
+    f.write('Month\tBuys\tSells\n')
+    for month in all_months:
+        monthly_buys = buy_totals['monthly'][month]
+        monthly_sells = sell_totals['monthly'][month]
+        f.write(f'{month}\t{monthly_buys:.2f}\t{monthly_sells:.2f}\n')
+    
+    # Write a blank line separator
+    f.write(' \t \t \n')
+    
+    # Write overall totals
+    f.write(f'TOTAL\t{buy_totals["total"]}\t{sell_totals["total"]}\n')
+    
+    # Write another blank line separator
+    f.write(' \t \t \n')
+    
+    # Write daily section
+    f.write('Date\tBuys\tSells\n')
+    for date in all_dates_desc:
+        buys = amounts['buy'][date]
+        sells = amounts['sell'][date]
+        f.write(f'{date}\t{buys:.2f}\t{sells:.2f}\n')
