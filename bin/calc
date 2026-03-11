@@ -1,396 +1,430 @@
 #!/usr/bin/env python3
-import sys
-import re
-import math
+"""
+An idiomatic Python implementation of a Reverse Polish Notation (RPN) calculator.
 
-class G:
-    stack = []
-    mode = 'DEG'
-    S = {}
-    num = 0
+This calculator supports stack-based operations, variables, trigonometric functions,
+and angle modes (degrees, radians, gradients). It can run in interactive mode or
+process a single expression from the command line.
+
+Usage:
+    python calc.py [expression]  # Process a single expression
+    python calc.py               # Enter interactive mode
+    python calc.py -h            # Show this help message
+
+In interactive mode, enter commands or numbers separated by spaces. Press Ctrl+D or
+enter '.' to exit.
+
+Commands and Operators:
+    Numbers: Push numbers onto the stack (e.g., 3.14, -5k for -5000, 2e3 for 2000).
+             Supports suffixes: k/K (thousands), m/M (millions), g/G (billions).
+    Constants: pi, e, G (gravitational constant).
+    Arithmetic:
+        +       Add top two stack items.
+        -       Subtract top from second-top.
+        *       Multiply top two.
+        /       Divide second-top by top.
+        %       Modulo (integer).
+        ^       Power (second-top ** top).
+        inv     Inverse (1 / top).
+        neg     Negate top (or 0-).
+        sq      Square top.
+        sqrt    Square root of top.
+        log     Log base 10 of top.
+        alog    10 ** top.
+        ln      Natural log of top.
+        aln     e ** top.
+        log2    Log base (second-top) of top (or logb).
+    Bulk Operations (apply to entire stack):
+        sum     Sum all stack items.
+        mul     Multiply all stack items.
+        *+X     Add X to every stack item (e.g., *5+).
+        *-X     Subtract X from every stack item.
+        **X     Multiply every stack item by X.
+        */X     Divide every stack item by X.
+        *inv    Inverse every stack item.
+        *sq     Square every stack item.
+        *sqrt   Square root every stack item.
+        *log    Log10 every stack item.
+        *alog   10** every stack item.
+        *ln     Natural log every stack item.
+        *aln    e** every stack item.
+    Trigonometry (respects current mode: DEG, RAD, GRAD):
+        sin, cos, tan, asin, acos, atan  On top item.
+        *sin, *cos, *tan, *asin, *acos, *atan  On entire stack.
+    Modes:
+        deg     Set degrees mode (default).
+        rad     Set radians mode.
+        grad    Set gradients mode.
+    Stack Management:
+        pop (p) Pop top item.
+        clr (c) Clear stack.
+        x       Swap top two items.
+        m       Print memory and stack.
+        mc      Clear memory (variables).
+    Variables/Stack Access:
+        >var    Store top (or number before >) in variable 'var'.
+        >var-   Delete variable 'var'.
+        <var    Recall variable 'var' to stack.
+        >N      Store top (or number) in stack position N (0-based).
+        >N-     Delete stack position N.
+        <N      Recall stack position N to top.
+    Combined Ops:
+        X+      Add X to top (e.g., 5+).
+        X-      Subtract top from X.
+        X*      Multiply X by top.
+        X/      Divide X by top.
+
+Examples:
+    Interactive:
+        >>> 3 4 +
+        Stack: [7.0]
+        >>> pi sin
+        Stack: [0.0]  (in DEG mode)
+    Command-line:
+        python calc.py 3 4 +  # Outputs 7.0
+"""
+import argparse
+import math
+import re
+import sys
+
+
+class RPNCalculator:
+    def __init__(self):
+        self.stack = []
+        self.mode = 'DEG'  # Angle mode: 'DEG', 'RAD', 'GRAD'
+        self.variables = {}  # Named variables
+        self.last_num = 0.0  # Last parsed number
+
+    def process_line(self, line):
+        """Process a line of input, splitting into tokens and handling each."""
+        tokens = re.split(r'\s+', line.strip())
+        for token in tokens:
+            if not token:
+                continue
+            if token == '.':
+                sys.exit(0)
+            elif self._parse_number(token):
+                self.stack.append(self.last_num)
+            elif self._handle_variable_store(token):
+                pass  # Handled in _handle_variable_store
+            elif self._handle_variable_recall(token):
+                pass  # Handled in _handle_variable_recall
+            elif token in {'pi', 'e', 'G'}:
+                self._push_constant(token)
+            else:
+                self._perform_operation(token)
+
+    def _parse_number(self, token):
+        """Parse a number token, supporting signs, commas, suffixes (k/m/g), and e-notation."""
+        match = re.match(r'^([+-]?)([\d\.,]+)([kmgKMG]?)(e([+-]?)(\d+))?$', token)
+        if not match:
+            return False
+        sign, num_str, suffix, exp_part, exp_sign, exp_num = match.groups()
+        num_str = num_str.replace(',', '')
+        num = float(num_str)
+        if sign == '-':
+            num = -num
+        if suffix.lower() == 'k':
+            num *= 1_000
+        elif suffix.lower() == 'm':
+            num *= 1_000_000
+        elif suffix.lower() == 'g':
+            num *= 1_000_000_000
+        if exp_part:
+            exp_val = float(exp_num)
+            if exp_sign == '-':
+                exp_val = -exp_val
+            num *= 10 ** exp_val
+        self.last_num = num
+        return True
+
+    def _push_constant(self, token):
+        """Push a constant value onto the stack."""
+        constants = {
+            'pi': math.pi,
+            'e': math.e,
+            'G': 6.67408e-11,  # Gravitational constant
+        }
+        self.stack.append(constants[token])
+
+    def _handle_variable_store(self, token):
+        """Handle storing or deleting variables/stack elements (e.g., >var, 5>var, >var-)."""
+        match = re.match(r'^(.*)>(.+?)(-?)$', token)
+        if not match:
+            return False
+        num_str, var, is_delete = match.groups()
+        if is_delete:
+            value = None  # Deletion mode
+        else:
+            value = self._get_value_for_store(num_str)
+
+        if re.match(r'^\d+$', var):  # Stack index
+            index = int(var)
+            if 0 <= index < len(self.stack):
+                if is_delete:
+                    del self.stack[index]
+                else:
+                    self.stack[index] = value
+        else:  # Named variable
+            if is_delete:
+                self.variables.pop(var, None)
+            else:
+                self.variables[var] = value
+        return True
+
+    def _get_value_for_store(self, num_str):
+        """Get the value to store, either from num_str or top of stack."""
+        if num_str:
+            if self._parse_number(num_str):
+                return self.last_num
+            else:
+                return 0.0
+        else:
+            return self.stack[-1] if self.stack else 0.0
+
+    def _handle_variable_recall(self, token):
+        """Handle recalling variables or stack elements (e.g., <var, <3)."""
+        match = re.match(r'^<(.+)', token)
+        if not match:
+            return False
+        var = match.group(1)
+        if re.match(r'^\d+$', var):  # Stack index
+            index = int(var)
+            if 0 <= index < len(self.stack):
+                self.stack.append(self.stack[index])
+        elif var in self.variables:
+            self.stack.append(self.variables[var])
+        return True
+
+    def _perform_operation(self, token):
+        """Perform arithmetic, trig, or control operations."""
+        if token == '+':
+            self._binary_op(lambda a, b: a + b)
+        elif token == 'sum':
+            self._reduce_stack(sum, 0.0)
+        elif token == '-':
+            self._binary_op(lambda a, b: a - b)
+        elif token == '*':
+            self._binary_op(lambda a, b: a * b)
+        elif token == 'mul':
+            self._reduce_stack(math.prod, 1.0) if hasattr(math, 'prod') else self._reduce_stack(lambda x, y: x * y, 1.0)
+        elif token == '/':
+            self._binary_op(lambda a, b: a / b)
+        elif token == '%':
+            self._binary_op(lambda a, b: int(a) % int(b))
+        elif token == 'inv':
+            self._unary_op(lambda a: 1 / a)
+        elif token == 'neg' or token == '0-':
+            self._unary_op(lambda a: -a)
+        elif token == 'sq':
+            self._unary_op(lambda a: a * a)
+        elif token == 'sqrt':
+            self._unary_op(math.sqrt)
+        elif token == '^':
+            self._binary_op(math.pow)
+        elif token == 'log':
+            self._unary_op(math.log10)
+        elif token == 'alog':
+            self._unary_op(lambda a: 10 ** a)
+        elif token == 'ln':
+            self._unary_op(math.log)
+        elif token == 'aln':
+            self._unary_op(math.exp)
+        elif token == 'log2' or token == 'logb':
+            self._binary_op(math.log)
+        elif token in {'sin', 'cos', 'tan', 'asin', 'acos', 'atan'}:
+            self._trig_op(token, single=True)
+        elif token == 'pop' or token == 'p':
+            if self.stack:
+                self.stack.pop()
+        elif token == 'clr' or token == 'c':
+            self.stack.clear()
+        elif token == 'x':
+            if len(self.stack) >= 2:
+                self.stack[-1], self.stack[-2] = self.stack[-2], self.stack[-1]
+        elif token == 'm':
+            self.print_state()
+        elif token == 'mc':
+            self.variables.clear()
+        elif token in {'deg', 'rad', 'grad'}:
+            self.mode = token.upper()
+        elif re.match(r'^\*(.+?)([\+\-\*/])$', token):  # Bulk arithmetic: *5+, *3*, etc.
+            self._bulk_arithmetic(token)
+        elif token.startswith('*') and token[1:] in {'inv', 'sq', 'sqrt', 'log', 'alog', 'ln', 'aln', 'sin', 'cos', 'tan', 'asin', 'acos', 'atan'}:
+            op_name = token[1:]
+            if op_name in {'sin', 'cos', 'tan', 'asin', 'acos', 'atan'}:
+                self._trig_op(op_name, single=False)
+            else:
+                op_func = {
+                    'inv': lambda a: 1 / a,
+                    'sq': lambda a: a * a,
+                    'sqrt': math.sqrt,
+                    'log': math.log10,
+                    'alog': lambda a: 10 ** a,
+                    'ln': math.log,
+                    'aln': math.exp,
+                }[op_name]
+                self._bulk_unary(op_func)
+        elif re.match(r'^(.+)([\+\-\*/])$', token):  # Combined: 5+, 3*, etc.
+            self._combined_op(token)
+        else:
+            print(f'IGNORED: {token}')
+
+    def _binary_op(self, func):
+        """Perform binary operation on top two stack items."""
+        if len(self.stack) < 2:
+            return
+        b = self.stack.pop()
+        a = self.stack.pop()
+        self.stack.append(func(a, b))
+
+    def _unary_op(self, func):
+        """Perform unary operation on top stack item."""
+        if not self.stack:
+            return
+        self.stack[-1] = func(self.stack[-1])
+
+    def _reduce_stack(self, func, initial):
+        """Reduce entire stack using a function (e.g., sum, product)."""
+        if not self.stack:
+            self.stack.append(initial)
+            return
+        result = initial
+        while self.stack:
+            result = func(result, self.stack.pop()) if initial != result else self.stack.pop()
+            for item in self.stack:
+                result = func(result, item)
+            self.stack.clear()
+        self.stack.append(result)
+
+    def _bulk_arithmetic(self, token):
+        """Apply arithmetic to entire stack with a constant (e.g., *5+)."""
+        match = re.match(r'^\*(.+?)([\+\-\*/])$', token)
+        if not match:
+            return
+        num_str, op_char = match.groups()
+        if not self._parse_number(num_str):
+            return
+        value = self.last_num
+        ops = {
+            '+': lambda a: a + value,
+            '-': lambda a: a - value,
+            '*': lambda a: a * value,
+            '/': lambda a: a / value,
+        }
+        op_func = ops.get(op_char)
+        if op_func:
+            self._bulk_unary(op_func)
+
+    def _bulk_unary(self, func):
+        """Apply a unary function to every item in the stack."""
+        for i in range(len(self.stack)):
+            self.stack[i] = func(self.stack[i])
+
+    def _trig_op(self, op_name, single=True):
+        """Perform trigonometric operation, respecting angle mode."""
+        trig_funcs = {
+            'sin': math.sin,
+            'cos': math.cos,
+            'tan': math.tan,
+            'asin': math.asin,
+            'acos': math.acos,
+            'atan': math.atan,
+        }
+        func = trig_funcs[op_name]
+        conv_to_rad = self._angle_to_rad if op_name in {'sin', 'cos', 'tan'} else self._rad_to_angle
+        def wrapped(a):
+            a_rad = conv_to_rad(a) if op_name in {'sin', 'cos', 'tan'} else a
+            result = func(a_rad)
+            return self._rad_to_angle(result) if op_name in {'asin', 'acos', 'atan'} else result
+
+        if single:
+            self._unary_op(wrapped)
+        else:
+            self._bulk_unary(wrapped)
+
+    def _angle_to_rad(self, angle):
+        """Convert angle to radians based on mode."""
+        if self.mode == 'RAD':
+            return angle
+        elif self.mode == 'DEG':
+            return math.radians(angle)
+        elif self.mode == 'GRAD':
+            return angle * math.pi / 200
+
+    def _rad_to_angle(self, rad):
+        """Convert radians to angle based on mode."""
+        if self.mode == 'RAD':
+            return rad
+        elif self.mode == 'DEG':
+            return math.degrees(rad)
+        elif self.mode == 'GRAD':
+            return rad * 200 / math.pi
+
+    def _combined_op(self, token):
+        """Handle combined number + op (e.g., 5+)."""
+        match = re.match(r'^(.+)([\+\-\*/])$', token)
+        if not match:
+            return
+        num_str, op_char = match.groups()
+        if not self._parse_number(num_str):
+            return
+        a = self.last_num
+        if not self.stack:
+            return
+        b = self.stack.pop()
+        ops = {
+            '+': a + b,
+            '-': a - b,
+            '*': a * b,
+            '/': a / b,
+        }
+        result = ops.get(op_char)
+        if result is not None:
+            self.stack.append(result)
+
+    def print_state(self):
+        """Print current mode, variables, and stack."""
+        print(f'    ---{self.mode}---')
+        print('    ---Memory---')
+        for key in sorted(self.variables):
+            print(f'    {key}: {self.variables[key]}')
+        print('    ---Stack---')
+        for i, val in enumerate(self.stack):
+            print(f'    {i}: {val}')
 
 
 def main():
-    if len(sys.argv) > 1:
-        line = ' '.join(sys.argv[1:])
-        calc(line)
-        if len(G.stack) == 1:
-            print(G.stack[0])
+    parser = argparse.ArgumentParser(description='RPN Calculator', add_help=False)
+    parser.add_argument('-h', '--help', action='store_true', help='Show help message')
+    parser.add_argument('expression', nargs='*', help='Expression to evaluate')
+    args = parser.parse_args()
+
+    if args.help:
+        print(__doc__)
+        sys.exit(0)
+
+    calc = RPNCalculator()
+
+    if args.expression:
+        # Batch mode
+        line = ' '.join(args.expression)
+        calc.process_line(line)
+        if len(calc.stack) == 1:
+            print(calc.stack[0])
         else:
-            print_all()
+            calc.print_state()
     else:
+        # Interactive mode
         while True:
             try:
                 line = input('>>> ')
-            except:
+            except EOFError:
                 sys.exit(0)
-            calc(line)
-            print_all()
-
-def calc(line):
-    args = re.split(r'\s+', line)
-    for arg in args:
-        if arg == '.':
-            sys.exit(0)
-        elif tonum(arg):    # is it a number ?
-            G.stack.append(G.num)
-        elif re_match(r'^(.*)>(.+?)(-?)$', arg):  # Is it a variable or a stack element to be saved?
-            num = G.m.group(1)    # num, if any
-            var = G.m.group(2)    # named var or stack elem
-            isdel = G.m.group(3)  # possibly '-' to denote deletion
-
-            if isdel == '-':
-                isdel = True
-            else:
-                isdel = False
-
-            if num != '':
-                if tonum(num):
-                    num = G.num
-                else:
-                    num = 0
-            else:
-                if len(G.stack) > 0:
-                    num = G.stack[-1]
-                else:
-                    num = 0
-
-            if re_match(r'^\d+$', var):  # stack elem
-                idx = int(var)
-                if isdel:
-                    if 0 <= idx and idx < len(G.stack):
-                        del G.stack[idx]
-                else:
-                    if 0 <= idx and idx < len(G.stack):
-                        G.stack[idx] = num
-            else:                       # named variable
-                if isdel:
-                    if var in G.S:
-                        del G.S[var]
-                else:
-                    G.S[var] = num
-
-        elif re_match(r'^<(.+)', arg):  # Is it a named variable or a stack member being recalled?
-            v = G.m.group(1)
-            if re_match(r'^\d+$', v):   # Is it a stack member ?
-                v = int(v)
-                if v < len(G.stack):    # Safety first
-                    G.stack.append(G.stack[v])
-            elif v in G.S:              # Name variable then if it exists
-                G.stack.append(G.S[v])
-        elif arg == 'pi':
-            n = math.pi
-            G.stack.append(n)
-        elif arg == 'e':
-            n = math.e
-            G.stack.append(n)
-        elif arg == 'G':             # Gravitational constant 6.67408 x 10-11 m3 kg-1 s-2
-            n = 6.67408e-11
-            G.stack.append(n)
-        else:
-            op(arg)
-
-def tonum(arg):           
-    if re_match(r'^([+-]?)([\d\.,]+)([kmgKMG]?)(e([+-]?)(\d+))?$', arg):    # is it a number ?
-        n = G.m.group(2)
-        n = n.replace(',','') # remove commas
-        n = float(n)
-        power = G.m.group(3)
-        expo = G.m.group(4)
-        exposign = G.m.group(5)
-        exponum = G.m.group(6)
-        if G.m.group(1) == '-':
-            n = 0 - n
-        if power == 'k' or power == 'K':
-            n = n * 1000
-        elif power == 'm' or power == 'M':
-            n = n * 1000000
-        elif power == 'g' or power == 'G':
-            n = n * 1000000000
-        if expo is not None:
-            exponum = float(exponum)
-            if exposign == '-':
-                exponum = 0-exponum
-            n = n * math.pow(10, exponum)
-        G.num = n
-        return True
-    return False
+            calc.process_line(line)
+            calc.print_state()
 
 
-def op(arg):
-    if  arg == '+':
-        ans = 0
-        ans += G.stack.pop()
-        ans += G.stack.pop()
-        G.stack.append(ans)
-    elif  arg == 'sum':
-        ans = 0 
-        while len(G.stack) > 0:
-            ans += G.stack.pop()
-        G.stack.append(ans)
-    elif  arg == '-':
-        b = G.stack.pop()
-        a = G.stack.pop()
-        G.stack.append(a-b)
-    elif  re_match(r'^\*(.+)\+$', arg):  # *34+ ?
-        n = G.m.group(1)
-        if tonum(n):
-            x = G.num
-            n = len(G.stack)
-            while n > 0:
-                G.stack[n-1] = G.stack[n-1] + x
-                n -= 1
-    elif  re_match(r'^\*(.+)\-$', arg):  # *34- ?
-        n = G.m.group(1)
-        if tonum(n):
-            x = G.num
-            n = len(G.stack)
-            while n > 0:
-                G.stack[n-1] = G.stack[n-1] - x
-                n -= 1
-    elif  re_match(r'^\*(.+)\*$', arg):  # *34* ?
-        n = G.m.group(1)
-        if tonum(n):
-            x = G.num
-            n = len(G.stack)
-            while n > 0:
-                G.stack[n-1] = G.stack[n-1] * x
-                n -= 1
-    elif  re_match(r'^\*(.+)/$', arg):  # *34/ ?
-        n = G.m.group(1)
-        if tonum(n):
-            x = G.num
-            n = len(G.stack)
-            while n > 0:
-                G.stack[n-1] = G.stack[n-1] / x
-                n -= 1
-    elif  arg == '*sin':
-        n = len(G.stack)
-        while n > 0:
-            mysin(n-1)
-            n -= 1
-    elif  arg == '*cos':
-        n = len(G.stack)
-        while n > 0:
-            mycos(n-1)
-            n -= 1
-    elif  arg == '*tan':
-        n = len(G.stack)
-        while n > 0:
-            mytan(n-1)
-            n -= 1
-    elif  arg == '*asin':
-        n = len(G.stack)
-        while n > 0:
-            myasin(n-1)
-            n -= 1
-    elif  arg == '*acos':
-        n = len(G.stack)
-        while n > 0:
-            myacos(n-1)
-            n -= 1
-    elif  arg == '*atan':
-        n = len(G.stack)
-        while n > 0:
-            myatan(n-1)
-            n -= 1
-    elif  arg == '*sq':
-        n = len(G.stack)
-        while n > 0:
-            G.stack[n-1] = G.stack[n-1] * G.stack[n-1]
-            n -= 1
-    elif  arg == '*sqrt':
-        n = len(G.stack)
-        while n > 0:
-            G.stack[n-1] = math.sqrt(G.stack[n-1])
-            n -= 1
-    elif  arg == '*log':
-        n = len(G.stack)
-        while n > 0:
-            G.stack[n-1] = math.log10(G.stack[n-1])
-            n -= 1
-    elif  arg == '*alog':
-        n = len(G.stack)
-        while n > 0:
-            G.stack[n-1] = 10 ** G.stack[n-1]
-            n -= 1
-    elif  arg == '*ln':
-        n = len(G.stack)
-        while n > 0:
-            G.stack[n-1] = math.log(G.stack[n-1])
-            n -= 1
-    elif  arg == '*aln':
-        n = len(G.stack)
-        while n > 0:
-            G.stack[n-1] = math.exp(G.stack[n-1])
-            n -= 1
-    elif  arg == '*':
-        b = G.stack.pop()
-        a = G.stack.pop()
-        G.stack.append(a*b)
-    elif  arg == 'mul':
-        ans = 1 
-        while len(G.stack) > 0:
-            ans *= G.stack.pop()
-        G.stack.append(ans)
-    elif  arg == '/':
-        b = G.stack.pop()
-        a = G.stack.pop()
-        G.stack.append(a/b)
-    elif  arg == '%':
-        b = G.stack.pop()
-        a = G.stack.pop()
-        a = int(a)
-        b = int(b)
-        G.stack.append(a % b)
-    elif  arg == 'inv':
-        a = G.stack.pop()
-        G.stack.append(1/a)
-    elif  arg == '*inv':
-        n = len(G.stack)
-        while n>0:
-            G.stack[n-1] = 1 / G.stack[n-1]
-            n -= 1
-    elif  re_match(r'^(.+)([\+\-\*/])$', arg):
-        n = G.m.group(1)
-        thisop = G.m.group(2)
-        if tonum(n):
-            a = G.num
-            b = G.stack.pop()
-            if thisop == '+':
-                G.stack.append(a+b)
-            elif thisop == '-':
-                G.stack.append(a-b)
-            elif thisop == '*':
-                G.stack.append(a*b)
-            elif thisop == '/':
-                G.stack.append(a/b)
-        else:
-            # ignore
-            pass
-    elif  arg == 'neg' or  arg == '0-':
-        a = G.stack.pop()
-        G.stack.append(0 - a)
-    elif  arg == 'sq':
-        a = G.stack.pop()
-        G.stack.append(a*a)
-    elif  arg == 'sqrt':
-        a = G.stack.pop()
-        G.stack.append(math.sqrt(a))
-    elif  arg == '^':
-        b = G.stack.pop()
-        a = G.stack.pop()
-        G.stack.append(math.pow(a, b))
-    elif  arg == 'log':
-        a = G.stack.pop()
-        G.stack.append(math.log10(a))
-    elif  arg == 'alog':
-        a = G.stack.pop()
-        G.stack.append(10 ** a)
-    elif  arg == 'ln':
-        a = G.stack.pop()
-        G.stack.append(math.log(a))
-    elif  arg == 'aln':
-        a = G.stack.pop()
-        G.stack.append(math.exp(a))
-    elif  arg == 'log2' or arg == 'logb':
-        b = G.stack.pop()
-        a = G.stack.pop()
-        G.stack.append(math.log(b, a))
-    elif  arg == 'rad':
-        G.mode = 'RAD'
-    elif  arg == 'deg':
-        G.mode = 'DEG'
-    elif  arg == 'grad':
-        G.mode = 'GRAD'
-
-    elif  arg == 'sin':
-        mysin(-1)
-    elif  arg == 'cos':
-        mycos(-1)
-    elif  arg == 'tan':
-        mytan(-1)
-    elif  arg == 'asin':
-        myasin(-1)
-    elif  arg == 'acos':
-        myacos(-1)
-    elif  arg == 'atan':
-        myatan(-1)
-    elif  arg == 'pop' or arg == 'p':
-        G.stack.pop()
-    elif  arg == 'clr' or arg == 'c':
-        G.stack = []
-    elif  arg == 'x':
-        b = G.stack.pop()
-        a = G.stack.pop()
-        G.stack.append(b)
-        G.stack.append(a)
-    elif  arg == 'm':
-        print_all()
-    elif  arg == 'mc':
-        G.S = {}
-    else:
-        if arg == '':
-            pass
-        else:
-            print('IGNORED: {arg}'.format(arg=arg))
-
-def rad2a(a):
-    if G.mode == 'RAD':
-        return a
-    if G.mode == 'DEG':
-        return 180 * a / math.pi
-    if G.mode == 'GRAD':
-        return 200 * a / math.pi
-def a2rad(a):
-    if G.mode == 'RAD':
-        return a
-    if G.mode == 'DEG':
-        return math.pi * a / 180
-    if G.mode == 'GRAD':
-        return math.pi * a / 200
-def mysin(i):
-    a = a2rad(G.stack[i])
-    G.stack[i] = math.sin(a)
-def mycos(i):
-    a = a2rad(G.stack[i])
-    G.stack[i] = math.cos(a)
-def mytan(i):
-    a = a2rad(G.stack[i])
-    G.stack[i] = math.tan(a)
-def myasin(i):
-    a = G.stack[i]
-    a = math.asin(a)
-    a = rad2a(a)
-    G.stack[i] = a
-def myacos(i):
-    a = G.stack[i]
-    a = math.acos(a)
-    a = rad2a(a)
-    G.stack[i] = a
-def myatan(i):
-    a = G.stack[i]
-    a = math.atan(a)
-    a = rad2a(a)
-    G.stack[i] = a
-
-def print_all():
-    print('    ---{mode}---'.format(mode=G.mode))
-
-    print('    ---Memory---')
-    for key in sorted(G.S.keys()):
-        print('    {key}: {val}'.format(key=key, val=G.S[key]))
-
-    print('    ---Stack---')
-    n = 0
-    for i in G.stack:
-        print('    {n}: {i}'.format(n=n, i=i))
-        n += 1
-
-def re_match(rex, line):
-    G.m = re.search(rex, line)
-    if G.m:
-        return True
-    return False
-        
-main()
+if __name__ == '__main__':
+    main()
