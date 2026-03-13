@@ -1,0 +1,29 @@
+# Stocks expected to more than 3X their revenue in the next 5 years:
+# 
+# Nvidia $NVDA: +211%
+# AMD $AMD: +297%
+# Broadcom $AVGO: +307%
+# Lemonade $LMND: +346%
+# Palantir $PLTR: +475%
+# Iren $IREN: +738%
+# Ondas $ONDS: +1983%
+# Nebius $NBIS: +4701% 
+# ASTS Spacemobile $ASTS: +5400%
+# Justin Banks
+# @RealJGBanks
+# ·
+# Mar 8
+# THE 12 SECTORS THAT WILL EXPLODE OVER THE NEXT DECADE
+# 
+# AI Compute:  $NVDA
+# AI Software: $PLTR
+# Semiconductors: $AVGO
+# Memory: $MU
+# Data Centers: $VRT
+# Power Grid: $PWR
+# Nuclear Energy: $CEG
+# Robotics: $TSLA
+# Space: $ASTS
+# Cybersecurity: $CRWD
+# Critical Minerals: $MP
+# Digital Finance: $XYZ
