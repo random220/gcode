@@ -1,0 +1,32 @@
+# Tier 2 — Wide moat
+# Strong brand, platform lock-in, or regulatory barriers; dominant in their category
+NVDA
+META
+AVGO
+MSFT #Azure/Office
+NFLX
+ISRG
+UNH
+TMO
+ORCL
+CSCO
+INTU
+AXP
+SNPS
+LRCX
+AMAT
+KO
+MKC
+GIS
+CLX
+JNJ
+MRK
+ZTS
+SYK
+CPRT
+KNSL
+DE
+CAT
+HD
+LOW
+CME # not in list

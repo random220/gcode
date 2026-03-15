@@ -1,0 +1,6 @@
+# Tier 5 — Contested / moat unclear or absent
+# Structurally difficult industries, heavy competition, or no durable pricing power
+SMR  # regulatory/tech risk
+IREN # commodity mining
+UAL  # airlines = anti-moat
+BULL # unclear product
