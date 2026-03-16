@@ -1,0 +1,23 @@
+### No Moat (Weak or No Competitive Advantage)
+# These companies lack a sustainable economic moat according to Morningstar,
+# meaning they have limited barriers to competition and may face ongoing threats
+# from rivals.
+
+ALAB    # (Astera Labs)
+BABA    # (Alibaba)
+BULL    # (Unclear ticker; assuming no standard moat rating available or none)
+CEG     # (Constellation Energy)
+COIN    # (Coinbase)
+FISV    # (Fiserv; now FIS, but rated none in recent contexts)
+FOUR    # (Shift4 Payments)
+GTLB    # (GitLab)
+HOOD    # (Robinhood)
+IREN    # (Iris Energy)
+LEN     # (Lennar)
+PDD     # (Pinduoduo)
+PSTG    # (Pure Storage)
+SMR     # (NuScale Power)
+SNOW    # (Snowflake)
+STLD    # (Steel Dynamics)
+UAL     # (United Airlines)
+UBER    # (Uber)

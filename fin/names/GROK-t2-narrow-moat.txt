@@ -1,0 +1,31 @@
+### Narrow Moat (Moderate Competitive Advantage)
+# These companies have a narrow moat per Morningstar, indicating competitive
+# advantages likely to persist for at least 10 years but not as robust as
+# wide-moat firms. Some, like ADBE and CRM, were recently downgraded from wide
+# due to AI-related risks.
+
+ACN     # (Accenture)
+ADBE    # (Adobe)
+AMD     # (AMD)
+ARM     # (Arm Holdings)
+BAC     # (Bank of America)
+BIDU    # (Baidu)
+CBRE    # (CBRE Group)
+CCJ     # (Cameco)
+COF     # (Capital One)
+CPRT    # (Copart)
+CRM     # (Salesforce)
+CRWD    # (CrowdStrike)
+GLW     # (Corning)
+GS      # (Goldman Sachs)
+INFY    # (Infosys)
+JPM     # (JPMorgan Chase)
+KNSL    # (Kinsale Capital)
+NOW     # (ServiceNow)
+PYPL    # (PayPal)
+TEAM    # (Atlassian)
+TFC     # (Truist Financial)
+TSLA    # (Tesla)
+TTD     # (The Trade Desk)
+ULTA    # (Ulta Beauty)
+ZS      # (Zscaler)
