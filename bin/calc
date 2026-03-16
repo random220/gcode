@@ -112,6 +112,8 @@ class RPNCalculator:
                 pass  # Handled in _handle_variable_recall
             elif token in {'pi', 'e', 'G'}:
                 self._push_constant(token)
+            elif token in {'h'}:
+                print(__doc__)
             else:
                 self._perform_operation(token)
 
