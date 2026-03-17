@@ -27,3 +27,62 @@
 # Cybersecurity: $CRWD
 # Critical Minerals: $MP
 # Digital Finance: $XYZ
+
+# J.P. Morgan's Top Picks for 2026
+# 
+# $GOOGL Alphabet
+# $AVGO Broadcom
+# $LLY Eli Lilly
+# $V Visa
+# $XOM Exxon Mobil
+# $CAT Caterpillar
+# $CRM Salesforce
+# $TMO Thermo Fisher
+# $C Citigroup
+# $DIS Disney
+# $SCHW Charles Schwab
+# $GEV GE Vernova
+# $T AT&T
+# $BA Boeing
+# $ANET Arista Networks
+# $KLAC KLA Corporation
+# $BSX Boston Scientific
+# $PANW Palo Alto Networks
+# $CVS CVS Health
+# $SBUX Starbucks
+# $CVNA Carvana
+# $CP Canadian Pacific
+# $SNPS Synopsys
+# $CRH CRH
+# $WMB Williams Companies
+# $VRT Vertiv
+# $SLB SLB
+# $AZO AutoZone
+# $ALL Allstate
+# $DLR Digital Realty
+# $CBRE CBRE Group
+# $ETR Entergy
+# $UAL United Airlines
+# $VIK Viking Holdings
+# $PPG PPG Industries
+# $DVN Devon Energy
+# $RL Ralph Lauren
+# $MKC McCormick & Company
+# $DKNG DraftKings
+# $GWRE Guidewire Software
+# $TRU TransUnion
+# $ROKU Roku
+# $RVMD Revolution Medicines
+# $AVY Avery Dennison
+# $CELH Celsius Holdings
+# $GL Globe Life
+# $VMI Valmont Industries
+# $CMC Commercial Metals Co.
+# $MHK Mohawk Industries
+# $VLY Valley National Bancorp
+# $BFAM Bright Horizons
+# $FOLD Amicus Therapeutics
+# $XENE Xenon Pharmaceuticals
+# $DAN Dana
+# $LC LendingClub
+# $TRTX TPG RE Finance Trust`
