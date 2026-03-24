@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo networksetup -setv6off Wi-Fi
+# sudo networksetup -setv6automatic Wi-Fi
+
