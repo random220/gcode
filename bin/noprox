@@ -1,5 +1,34 @@
 #!/bin/bash
 
-#networksetup -setsocksfirewallproxy Wi-Fi localhost 9999
-#networksetup -setsocksfirewallproxy Wi-Fi '' ''
+# networksetup -setsocksfirewallproxy Wi-Fi localhost 9999
+# networksetup -setsocksfirewallproxystate Wi-Fi on
+# networksetup -setsocksfirewallproxystate Wi-Fi off
+
+# networksetup -setsecurewebproxy Wi-Fi localhost 8080
+# networksetup -setsecurewebproxystate Wi-Fi on
+# networksetup -setsecurewebproxystate Wi-Fi off
+
+# networksetup -setwebproxy Wi-Fi localhost 8080
+# networksetup -setwebproxystate Wi-Fi on
+# networksetup -setwebproxystate Wi-Fi off
+
+networksetup -setsocksfirewallproxy Wi-Fi '' ''
 networksetup -setsocksfirewallproxystate Wi-Fi off
+
+networksetup -setsecurewebproxy Wi-Fi '' ''
+networksetup -setsecurewebproxystate Wi-Fi off
+
+networksetup -setwebproxy Wi-Fi '' ''
+networksetup -setwebproxystate Wi-Fi off
+
+echo networksetup -getsocksfirewallproxy Wi-Fi
+networksetup -getsocksfirewallproxy Wi-Fi
+echo
+
+echo networksetup -getsecurewebproxy Wi-Fi
+networksetup -getsecurewebproxy Wi-Fi
+echo
+
+echo networksetup -getwebproxy Wi-Fi
+networksetup -getwebproxy Wi-Fi
+echo
