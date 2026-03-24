@@ -85,3 +85,5 @@ fi
 echo $ddir
 
 
+# Use system proxy
+#user_pref("network.proxy.share_proxy_settings", true);

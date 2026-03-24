@@ -1,5 +1,28 @@
 #!/bin/bash
 
-networksetup -setsocksfirewallproxy Wi-Fi localhost 9999
-#networksetup -setsocksfirewallproxy Wi-Fi '' ''
-#networksetup -setsocksfirewallproxystate Wi-Fi off
+if [[ "$1" == '-d' ]]; then
+  noprox
+  sleep 1
+  networksetup -setsocksfirewallproxy Wi-Fi on
+  networksetup -setsocksfirewallproxy Wi-Fi localhost 9999
+elif [[ "$1" == '-l' ]]; then
+  noprox
+  sleep 1
+  networksetup -setsecurewebproxy Wi-Fi on
+  networksetup -setsecurewebproxy Wi-Fi localhost 3128
+else
+  :
+fi
+
+sleep 1
+echo networksetup -getsocksfirewallproxy Wi-Fi
+networksetup -getsocksfirewallproxy Wi-Fi
+echo
+
+echo networksetup -getsecurewebproxy Wi-Fi
+networksetup -getsecurewebproxy Wi-Fi
+echo
+
+echo networksetup -getwebproxy Wi-Fi
+networksetup -getwebproxy Wi-Fi
+echo
