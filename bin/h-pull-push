@@ -15,15 +15,16 @@
 umask 077
 bindir=$(cd "$(dirname "$(readlink -f "$0")")" && pwd -P)
 tmpdir=$(mktemp -d)
-server=''
+server_ip=''
+server_name=''
 verb=''
 direction=''
 SRC=''
 DST=''
 
 main() {
-    mk_sshconfig
     determine_server
+    mk_sshconfig
     determine_direction
     mount_local
     mount_remote
@@ -37,70 +38,42 @@ mount_local() {
 }
 
 determine_server() {
-    ping -W 3 -c 2 192.168.10.180
-    if [[ $? == 0 ]]; then
-        server=nuc
-        return
-    fi
-    ping -W 3 -c 2 192.168.10.101
-    if [[ $? == 0 ]]; then
-        server=tron101
-        return
-    fi
-    ping -W 3 -c 2 192.168.10.178
-    if [[ $? == 0 ]]; then
-        server=tron178
-        return
-    fi
-    server='cron'
+    local destination
+    for destination in \
+        192.168.10.180:22:nuc \
+        192.168.10.101:22:tron101 \
+        192.168.10.178:22:tron178 \
+        100.64.143.56:22:tront \
+        ; do
+        IFS=: read -r server_ip server_port server_name <<< "$destination"
+        ping -W 3 -c 2 $server_ip
+        if [[ $? == 0 ]]; then
+            break
+        fi
+        server_name='cron'
+        server_ip='76.236.30.161'
+        server_port='22'
+    done
 }
 
 mk_sshconfig () {
     mkdir -p ~/.ssh/hpull
-    cat <<"EOF" >~/.ssh/hpull/config
+    cat <<EOF >~/.ssh/hpull/config
 StrictHostKeyChecking=no
 CheckHostIP=no
 EscapeChar=~
 UserKnownHostsFile=/dev/null
 LogLevel ERROR
 
-Host cron
+Host $server_name
     User om
-    HostName 76.236.30.161
-    Port 2222
+    HostName $server_ip
+    Port $server_port
     ControlPath ~/.ssh/hpull/ctrl-%l-to-%h
     ControlMaster auto
     ControlPersist 10m
     ServerAliveInterval 180
     GatewayPorts yes
-
-Host nuc
-    User om
-    HostName 192.168.10.180
-    Port 22
-    ControlPath ~/.ssh/hpull/ctrl-%l-to-%h
-    ControlMaster auto
-    ControlPersist 10m
-    ServerAliveInterval 180
-    GatewayPorts yes
-
-Host tron101
-    User om
-    Hostname 192.168.10.101
-    Port 22
-    ControlPath ~/.ssh/hpull/ctrl-%l-to-%h
-    ControlMaster auto
-    ControlPersist 10m
-    ServerAliveInterval 180
-
-Host tron178
-    User om
-    Hostname 192.168.10.178
-    Port 22
-    ControlPath ~/.ssh/hpull/ctrl-%l-to-%h
-    ControlMaster auto
-    ControlPersist 10m
-    ServerAliveInterval 180
 
 EOF
 
@@ -111,13 +84,13 @@ determine_direction () {
         'hpull')
           verb=PULL
           direction='from'
-          SRC="$server:b/om/p/CRUZER/CRUZER"
+          SRC="$server_name:b/om/p/CRUZER/CRUZER"
           DST="$HOME/b/om/p/CRUZER/CRUZER"
           ;;
         'hpush')
           verb=PUSH
           direction='to'
-          DST="$server:b/om/p/CRUZER/CRUZER"
+          DST="$server_name:b/om/p/CRUZER/CRUZER"
           SRC="$HOME/b/om/p/CRUZER/CRUZER"
           ;;
         *)
@@ -126,7 +99,7 @@ determine_direction () {
           ;;
     esac
 
-    printf "$verb $direction $server ? (y/n): "
+    printf "$verb $direction $server_name ? (y/n): "
     local yesno
     read yesno
     if [[ $yesno == 'y' ]]; then
@@ -143,9 +116,9 @@ bailout() {
 }
 
 mount_remote() {
-    ssh -F ~/.ssh/hpull/config $server 'echo CONNECTED' || bailout "Error: $server Connection failed"
-    ssh -F ~/.ssh/hpull/config -t $server 'vmount'
-    ssh -F ~/.ssh/hpull/config -t $server '[[ -d ~/b/om/p/CRUZER ]]' >/dev/null 2>&1 || get_out 1 "Error: Remote dir not found ~/b/om/p/CRUZER"
+    ssh -F ~/.ssh/hpull/config $server_name 'echo CONNECTED' || bailout "Error: $server_name Connection failed"
+    ssh -F ~/.ssh/hpull/config -t $server_name 'vmount'
+    ssh -F ~/.ssh/hpull/config -t $server_name '[[ -d ~/b/om/p/CRUZER ]]' >/dev/null 2>&1 || get_out 1 "Error: Remote dir not found ~/b/om/p/CRUZER"
 }
 
 do_sync() {
@@ -192,7 +165,7 @@ do_sync() {
         echo
         echo
         echo
-        printf "Again, $verb $direction $server? (YES/n): "
+        printf "Again, $verb $direction $server_name? (YES/n): "
         read yesno
         if [[ $yesno == 'YES' ]]; then
             cmd="rsync -e 'ssh -F $HOME/.ssh/hpull/config' --exclude=".DS_Store" -a --delete '$SRC'/ '$DST'/"
@@ -214,10 +187,10 @@ get_out() {
     echo "doing: $cmd"
     eval $cmd
 
-    ssh -F ~/.ssh/hpull/config -O check $server
+    ssh -F ~/.ssh/hpull/config -O check $server_name
     if [[ $? == 0 ]]; then
-        ssh -F ~/.ssh/hpull/config $server 'vumount'
-        ssh -F ~/.ssh/hpull/config -O exit $server
+        ssh -F ~/.ssh/hpull/config $server_name 'vumount'
+        ssh -F ~/.ssh/hpull/config -O exit $server_name
     fi
 
     exit $status
