@@ -38,13 +38,23 @@ mount_local() {
 }
 
 determine_server() {
+    local destinations=( \
+      192.168.10.180:22:nuc \
+      192.168.10.101:22:tron101 \
+      192.168.10.178:22:tron178 \
+    )
+    # $ which tailscale
+    # /Users/zk/go/bin/tailscale)
+    local tailscale=$(which tailscale)
+    if [[ $tailscale != '' ]]; then
+        local ip=$(tailscale status | grep ' tron ' | awk '{print $1}')
+        if [[ $ip != '' ]]; then
+            destinations=("${destinations[@]}" "$ip:22:tront")
+        fi
+    fi
+
     local destination
-    for destination in \
-        192.168.10.180:22:nuc \
-        192.168.10.101:22:tron101 \
-        192.168.10.178:22:tron178 \
-        100.64.143.56:22:tront \
-        ; do
+    for destination in "${destinations[@]}"; do
         IFS=: read -r server_ip server_port server_name <<< "$destination"
         ping -W 3 -c 2 $server_ip
         if [[ $? == 0 ]]; then
