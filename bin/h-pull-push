@@ -1,79 +1,76 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# hpull / hpush - Sync CRUZER directory between local and remote host
 
-# ~/.ssh/config
-# Host home_dns
-#     User om
-#     Hostname crondite.duckdns.org
-#     IdentityFile ~/.ssh/id_rsa
-# 
-# Host home_localip
-#     User om
-#     Hostname 192.168.10.180
-#     IdentityFile ~/.ssh/id_rsa
-# 
+set -o errexit
+set -o nounset
+set -o pipefail
 
 umask 077
-bindir=$(cd "$(dirname "$(readlink -f "$0")")" && pwd -P)
-tmpdir=$(mktemp -d)
-server_ip=''
-server_name=''
-verb=''
-direction=''
-SRC=''
-DST=''
 
-main() {
-    determine_server
-    mk_sshconfig
-    determine_direction
-    mount_local
-    mount_remote
-    do_sync
-    get_out 0 '!!! Should never come here !!!'
+bindir="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd -P)"
+tmpdir=$(mktemp -d)
+trap 'cleanup' EXIT
+
+server_ip=''
+server_port='22'
+server_name='cron'
+fallback_ip='76.236.30.161'
+
+cleanup() {
+    rm -rf "$tmpdir" 2>/dev/null || true
+
+    # Close SSH control master gracefully
+    if ssh -F ~/.ssh/hpull/config -O check "$server_name" &>/dev/null; then
+        ssh -F ~/.ssh/hpull/config "$server_name" 'vumount' 2>/dev/null || true
+        ssh -F ~/.ssh/hpull/config -O exit "$server_name" 2>/dev/null || true
+    fi
 }
 
-mount_local() {
-    vmount
-    [[ -d ~/b/om/p/CRUZER ]] || get_out 1 "ERROR Not found: $HOME/b/om/p/CRUZER"
+bailout() {
+    echo "ERROR: $1" >&2
+    exit 1
 }
 
 determine_server() {
-    local destinations=( \
-      192.168.10.180:22:nuc \
-      192.168.10.101:22:tron101 \
-      192.168.10.178:22:tron178 \
+    local destinations=(
+        "192.168.10.180:22:nuc"
+        "192.168.10.101:22:tron101"
+        "192.168.10.178:22:tron178"
     )
-    # $ which tailscale
-    # /Users/zk/go/bin/tailscale)
-    local tailscale=$(which tailscale)
-    if [[ $tailscale != '' ]]; then
-        local ip=$(tailscale status | grep ' tron ' | awk '{print $1}')
-        if [[ $ip != '' ]]; then
-            destinations=("${destinations[@]}" "$ip:22:tront")
-        fi
+
+    # Add Tailscale Tron if available and reachable
+    if command -v tailscale >/dev/null 2>&1; then
+        local ts_ip
+        ts_ip=$(tailscale status 2>/dev/null | awk '$2 == "tron" {print $1; exit}')
+        [[ -n "$ts_ip" ]] && destinations+=("$ts_ip:22:tront")
     fi
 
-    local destination
-    for destination in "${destinations[@]}"; do
-        IFS=: read -r server_ip server_port server_name <<< "$destination"
-        ping -W 3 -c 2 $server_ip
-        if [[ $? == 0 ]]; then
-            break
+    local dest
+    for dest in "${destinations[@]}"; do
+        IFS=: read -r server_ip server_port server_name <<< "$dest"
+
+        if ping -W 3 -c 2 "$server_ip" &>/dev/null; then
+            echo "✓ Reachable: $server_name ($server_ip)"
+            return 0
         fi
-        server_name='cron'
-        server_ip='76.236.30.161'
-        server_port='22'
     done
+
+    # Fallback to public IP
+    server_ip="$fallback_ip"
+    server_port='22'
+    server_name='cron'
+    echo "Using fallback server: $server_name ($server_ip)"
 }
 
-mk_sshconfig () {
+mk_sshconfig() {
     mkdir -p ~/.ssh/hpull
-    cat <<EOF >~/.ssh/hpull/config
+
+    cat > ~/.ssh/hpull/config <<EOF
 StrictHostKeyChecking=no
 CheckHostIP=no
 EscapeChar=~
 UserKnownHostsFile=/dev/null
-LogLevel ERROR
+LogLevel=ERROR
 
 Host $server_name
     User om
@@ -84,127 +81,97 @@ Host $server_name
     ControlPersist 10m
     ServerAliveInterval 180
     GatewayPorts yes
-
 EOF
-
 }
 
-determine_direction () {
-    case "$(basename "$0")" in
-        'hpull')
-          verb=PULL
-          direction='from'
-          SRC="$server_name:b/om/p/CRUZER/CRUZER"
-          DST="$HOME/b/om/p/CRUZER/CRUZER"
-          ;;
-        'hpush')
-          verb=PUSH
-          direction='to'
-          DST="$server_name:b/om/p/CRUZER/CRUZER"
-          SRC="$HOME/b/om/p/CRUZER/CRUZER"
-          ;;
+determine_direction() {
+    local scriptname
+    scriptname="$(basename "$0")"
+
+    case "$scriptname" in
+        hpull)
+            verb="PULL"
+            direction="from"
+            SRC="$server_name:b/om/p/CRUZER/CRUZER"
+            DST="$HOME/b/om/p/CRUZER/CRUZER"
+            ;;
+        hpush)
+            verb="PUSH"
+            direction="to"
+            DST="$server_name:b/om/p/CRUZER/CRUZER"
+            SRC="$HOME/b/om/p/CRUZER/CRUZER"
+            ;;
         *)
-          echo 'Error: Must be hpull or hpush'
-          exit 1
-          ;;
+            bailout "Script must be called as 'hpull' or 'hpush'"
+            ;;
     esac
 
-    printf "$verb $direction $server_name ? (y/n): "
-    local yesno
-    read yesno
-    if [[ $yesno == 'y' ]]; then
-        :
-    else
-        exit 1
-    fi
+    printf "%s %s %s? (y/n): " "$verb" "$direction" "$server_name"
+    read -r yesno
+    [[ "$yesno" == "y" ]] || exit 1
 }
 
-
-bailout() {
-    echo "$1"
-    exit 1
+mount_local() {
+    vmount
+    [[ -d ~/b/om/p/CRUZER ]] || bailout "Local directory not found: ~/b/om/p/CRUZER"
 }
 
 mount_remote() {
-    ssh -F ~/.ssh/hpull/config $server_name 'echo CONNECTED' || bailout "Error: $server_name Connection failed"
-    ssh -F ~/.ssh/hpull/config -t $server_name 'vmount'
-    ssh -F ~/.ssh/hpull/config -t $server_name '[[ -d ~/b/om/p/CRUZER ]]' >/dev/null 2>&1 || get_out 1 "Error: Remote dir not found ~/b/om/p/CRUZER"
+    ssh -F ~/.ssh/hpull/config "$server_name" 'echo CONNECTED' \
+        || bailout "Failed to connect to $server_name"
+
+    ssh -F ~/.ssh/hpull/config -t "$server_name" 'vmount'
+
+    if ! ssh -F ~/.ssh/hpull/config "$server_name" '[[ -d ~/b/om/p/CRUZER ]]' &>/dev/null; then
+        bailout "Remote directory not found: ~/b/om/p/CRUZER"
+    fi
 }
 
 do_sync() {
     echo
-    echo "Syncing ..."
+    echo "=== Syncing $verb $direction $server_name ==="
 
-    #TZ=UTC rsync -e "ssh -F $HOME/.ssh/hpull/config" -a "$SRC"/ >"$tmpdir/list_SRC.txt"
-    #TZ=UTC rsync -e "ssh -F $HOME/.ssh/hpull/config" -a "$DST"/ >"$tmpdir/list_DST.txt"
+    # Generate directory listings (the bugfix you mentioned)
+    TZ=UTC rsync -e "ssh -F $HOME/.ssh/hpull/config" -a "$SRC"/ > "$tmpdir/list_SRC.txt"
+    TZ=UTC rsync -e "ssh -F $HOME/.ssh/hpull/config" -a "$DST"/ > "$tmpdir/list_DST.txt"
 
-    local cmd
+    "$bindir/rsync_list_normalize" < "$tmpdir/list_SRC.txt" > "$tmpdir/list_norm_SRC.txt"
+    "$bindir/rsync_list_normalize" < "$tmpdir/list_DST.txt" > "$tmpdir/list_norm_DST.txt"
 
-    cmd="TZ=UTC rsync -e 'ssh -F $HOME/.ssh/hpull/config' -a '$SRC'/ >'$tmpdir/list_SRC.txt'"
-    echo "doing: $cmd"
-    eval $cmd
-
-    cmd="TZ=UTC rsync -e 'ssh -F $HOME/.ssh/hpull/config' -a '$DST'/ >'$tmpdir/list_DST.txt'"
-    echo "doing: $cmd"
-    eval $cmd
-
-
-    cmd="$bindir/rsync_list_normalize < '$tmpdir/list_SRC.txt' >'$tmpdir/list_norm_SRC.txt'"
-    echo "doing: $cmd"
-    eval $cmd
-
-    cmd="$bindir/rsync_list_normalize < '$tmpdir/list_DST.txt' >'$tmpdir/list_norm_DST.txt'"
-    echo "doing: $cmd"
-    eval $cmd
-
-    cmd="diff -u '$tmpdir/list_norm_DST.txt' '$tmpdir/list_norm_SRC.txt' >'$tmpdir/diff.txt'"
-    echo "doing: $cmd"
-    eval $cmd
-    exit_status=$?
-
-    if [[ $exit_status == 0 ]]; then
-        get_out 0
+    if diff -u "$tmpdir/list_norm_DST.txt" "$tmpdir/list_norm_SRC.txt" > "$tmpdir/diff.txt"; then
+        echo "Directories are already in sync."
+        return 0
     fi
 
-    cmd="egrep -v 'gitted/sandbox/\.git/' <'$tmpdir/diff.txt'"
-    echo "doing: $cmd"
-    eval $cmd
+    # Show relevant differences
+    echo
+    egrep -v 'gitted/sandbox/\.git/' "$tmpdir/diff.txt" || true
 
-    if [[ $exit_status != 0 ]]; then
-        echo
-        echo
-        echo
-        echo
-        printf "Again, $verb $direction $server_name? (YES/n): "
-        read yesno
-        if [[ $yesno == 'YES' ]]; then
-            cmd="rsync -e 'ssh -F $HOME/.ssh/hpull/config' --exclude=".DS_Store" -a --delete '$SRC'/ '$DST'/"
-            echo "doing: $cmd"
-            eval $cmd
-            exit_status=$?
-        else
-            get_out 0
-        fi
+    printf "\n\nPerform actual %s %s %s? Type YES to confirm: " "$verb" "$direction" "$server_name"
+    read -r yesno
+
+    if [[ "$yesno" == "YES" ]]; then
+        echo "Running rsync..."
+        rsync -e "ssh -F $HOME/.ssh/hpull/config" \
+              --exclude=".DS_Store" \
+              -a --delete \
+              "$SRC"/ "$DST"/
+        local exit_status=$?
+        echo "Sync finished with exit status: $exit_status"
+        return "$exit_status"
+    else
+        echo "Sync cancelled by user."
+        return 0
     fi
-
-    get_out $exit_status
-
 }
 
-get_out() {
-    local status=$1
-    local cmd="rm -rf '$tmpdir'"
-    echo "doing: $cmd"
-    eval $cmd
-
-    ssh -F ~/.ssh/hpull/config -O check $server_name
-    if [[ $? == 0 ]]; then
-        ssh -F ~/.ssh/hpull/config $server_name 'vumount'
-        ssh -F ~/.ssh/hpull/config -O exit $server_name
-    fi
-
-    exit $status
+main() {
+    determine_server
+    mk_sshconfig
+    determine_direction
+    mount_local
+    mount_remote
+    do_sync
 }
 
-
-main
+main "$@"
