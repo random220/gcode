@@ -1,3 +1,10 @@
+### Containers
+
+```
+./gc.sh
+```
+
+
 ### Mac
 
 
@@ -8,6 +15,7 @@ mkdir -p ~/sb
 cd ~/sb
 git clone https://github.com/tailscale/tailscale.git
 cd tailscale
+command -v go || brew install go
 go install tailscale.com/cmd/tailscale{,d}
 sudo $HOME/go/bin/tailscaled install-system-daemon
 ~/go/bin/tailscale up

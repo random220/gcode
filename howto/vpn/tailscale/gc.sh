@@ -1,0 +1,54 @@
+#!/bin/bash
+
+mkdir -p ~/bin
+rm -f ~/bin/retail ~/bin/gc.sh
+proxyline='# ProxyCommand ncat --proxy 127.0.0.1:1055 --proxy-type socks5 -w 30 %h %p'
+
+chmod a+x ~/bin/retail
+ln -sf ~/gcode/howto/vpn/tailscale/gc.sh ~/bin/gc.sh
+
+install_tailscale() {
+    curl -fsSL https://tailscale.com/install.sh | sh
+}
+command -v tailscale || install_tailscale
+
+install_ncat() {
+    command -v dnf && sudo dnf -y install nmap-ncat
+    command -v apt && (sudo apt-get -y update && sudo apt-get -y install ncat)
+}
+use_socks5() {
+    command -v ncat || install_ncat
+    cat <<EOF >~/bin/retail
+#!/bin/bash
+sudo pkill -9 tailscaled
+sudo tailscaled --tun=userspace-networking --socks5-server=localhost:1055 &
+sudo tailscale up
+EOF
+    chmod a+x ~/bin/retail
+    ~/bin/retail
+    proxyline='ProxyCommand ncat --proxy 127.0.0.1:1055 --proxy-type socks5 -w 30 %h %p'
+}
+
+sudo tailscale up || use_socks5
+tron_ip=$(tailscale status | grep ' tron ' | awk '{print $1}')
+if [[ $tron_ip == '' ]]; then
+    echo 'ERROR: tron ip not found. see tailscale status'
+    exit 1
+fi
+
+sed '/# TAILSCALE begin/,/# TAILSCALE end/d' ~/.ssh/config >~/.ssh/config.tmp
+
+cat >> ~/.ssh/config.tmp << EOF
+# TAILSCALE begin
+Host tron $tron_ip *.ts.net 100.*
+    User om
+    $proxyline
+    ServerAliveInterval 60
+    ServerAliveCountMax 5
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+# TAILSCALE end
+EOF
+
+mv ~/.ssh/config.tmp ~/.ssh/config
+
