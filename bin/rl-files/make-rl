@@ -2,10 +2,14 @@
 
 h=rl
 
-if [[ $(uname) == 'Darwin' ]]; then
-    docker desktop status >/dev/null 2>&1 || docker desktop start
-    docker desktop status >/dev/null 2>&1 || exit 1
-fi
+ensure_docker_running() {
+    if [[ $(uname) == 'Darwin' ]]; then
+        docker ps -a >/dev/null 2>&1 && return
+        docker desktop status >/dev/null 2>&1 || docker desktop start
+        docker desktop status >/dev/null 2>&1 || exit 1
+    fi
+}
+ensure_docker_running
 
 runit() {
     if [[ "$1" == '' ]] || [[ "$1" == '0'  ]] ; then
