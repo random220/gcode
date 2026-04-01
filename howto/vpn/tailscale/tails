@@ -1,56 +1,101 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-[[ $(uname) == 'Darwin' ]] && exit 0
+# ==================== Config ====================
+SSH_MARKER="# TAILSCALE"
+SSH_USER="om"
+BIN_DIR="$HOME/bin"
+GO_BIN="$HOME/go/bin"
 
-mkdir -p ~/bin
-rm -f ~/bin/retail ~/bin/gc.sh
-proxyline='# ProxyCommand ncat --proxy 127.0.0.1:1055 --proxy-type socks5 -w 30 %h %p'
+# Proxy is disabled by default (macOS + normal Linux)
+PROXYLINE='# ProxyCommand ncat --proxy 127.0.0.1:1055 --proxy-type socks5 -w 30 %h %p'
 
-chmod a+x ~/bin/retail
-ln -sf ~/gcode/howto/vpn/tailscale/gc.sh ~/bin/gc.sh
+log() { echo "==> $1"; }
+die() { echo "ERROR: $1" >&2; exit 1; }
+has() { command -v "$1" >/dev/null 2>&1; }
 
-install_tailscale() {
-    curl -fsSL https://tailscale.com/install.sh | sh
+install_tailscale_mac() {
+    has brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || true)"
+    has go || brew install go
+
+    mkdir -p ~/sb && cd ~/sb
+    [[ -d tailscale ]] && (cd tailscale && git pull) || git clone https://github.com/tailscale/tailscale.git
+    cd tailscale && go install tailscale.com/cmd/tailscale{,d}
+
+    sudo "$GO_BIN/tailscaled" install-system-daemon
+    "$GO_BIN/tailscale" up
 }
-command -v tailscale || install_tailscale
 
-install_ncat() {
-    command -v dnf && sudo dnf -y install nmap-ncat
-    command -v apt && (sudo apt-get -y update && sudo apt-get -y install ncat)
+install_tailscale_linux() {
+    curl -fsSL https://tailscale.com/install.sh | sh || true
 }
-use_socks5() {
-    command -v ncat || install_ncat
-    cat <<EOF >~/bin/retail
-#!/bin/bash
-sudo pkill -9 tailscaled
+
+setup_socks5() {
+    log "Falling back to userspace networking + SOCKS5 proxy..."
+    if ! has ncat; then
+        has dnf && sudo dnf -y install nmap-ncat ||
+        has apt-get && (sudo apt-get update -qq && sudo apt-get install -y ncat) ||
+        die "No supported package manager for ncat."
+    fi
+
+    mkdir -p "$BIN_DIR"
+    cat > "$BIN_DIR/retail" <<'EOF'
+#!/usr/bin/env bash
+sudo pkill -9 tailscaled 2>/dev/null || true
 sudo tailscaled --tun=userspace-networking --socks5-server=localhost:1055 &
 sudo tailscale up
 EOF
-    chmod a+x ~/bin/retail
-    ~/bin/retail
-    proxyline='ProxyCommand ncat --proxy 127.0.0.1:1055 --proxy-type socks5 -w 30 %h %p'
+    chmod +x "$BIN_DIR/retail"
+    [[ ":$PATH:" != *":$BIN_DIR:"* ]] && export PATH="$BIN_DIR:$PATH"
+    "$BIN_DIR/retail"
+
+    # Enable proxy only for userspace mode
+    PROXYLINE='ProxyCommand ncat --proxy 127.0.0.1:1055 --proxy-type socks5 -w 30 %h %p'
 }
 
-sudo tailscale up || use_socks5
-tron_ip=$(tailscale status | grep ' tron ' | awk '{print $1}')
-if [[ $tron_ip == '' ]]; then
-    echo 'ERROR: tron ip not found. see tailscale status'
-    exit 1
-fi
+update_ssh_config() {
+    local ip
+    # Robust IP extraction (fixes newline issue in containers)
+    ip=$(tailscale status 2>/dev/null | awk '/ tron / {print $1}' | tr -d '[:space:]')
 
-sed '/# TAILSCALE begin/,/# TAILSCALE end/d' ~/.ssh/config >~/.ssh/config.tmp
+    [[ -n "$ip" ]] || die "'tron' not found in Tailscale status."
 
-cat >> ~/.ssh/config.tmp << EOF
-# TAILSCALE begin
-Host tron $tron_ip *.ts.net 100.*
-    User om
-    $proxyline
+    log "Found tron at $ip"
+
+    sed "/${SSH_MARKER} begin/,/${SSH_MARKER} end/d" ~/.ssh/config > ~/.ssh/config.tmp 2>/dev/null || true
+
+    cat >> ~/.ssh/config.tmp << EOF
+${SSH_MARKER} begin
+Host tron ${ip} *.ts.net 100.*
+    User ${SSH_USER}
+    ${PROXYLINE}
     ServerAliveInterval 60
     ServerAliveCountMax 5
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
-# TAILSCALE end
+${SSH_MARKER} end
 EOF
 
-mv ~/.ssh/config.tmp ~/.ssh/config
+    mv ~/.ssh/config.tmp ~/.ssh/config
+    chmod 600 ~/.ssh/config
+    log "Updated ~/.ssh/config"
+}
 
+# ==================== Main ====================
+case "$(uname)" in
+    Darwin)
+        export PATH="$GO_BIN:$PATH"
+        has tailscale || install_tailscale_mac
+        ;;
+    Linux)
+        has tailscale || install_tailscale_linux
+        sudo tailscale up || setup_socks5
+        ;;
+    *)
+        die "Unsupported OS: $(uname)"
+        ;;
+esac
+
+update_ssh_config
+log "Tailscale setup completed successfully!"
