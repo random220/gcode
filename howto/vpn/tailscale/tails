@@ -28,7 +28,10 @@ install_tailscale_mac() {
 }
 
 install_tailscale_linux() {
-    curl -fsSL https://tailscale.com/install.sh | sh || true
+    if ! curl -fsSL https://tailscale.com/install.sh | sh; then
+        log "Installer exited non-zero (expected in containers). Continuing..."
+    fi
+    has tailscale || die "Tailscale binary missing after installation attempt."
 }
 
 setup_socks5() {
@@ -44,6 +47,15 @@ setup_socks5() {
 #!/usr/bin/env bash
 sudo pkill -9 tailscaled 2>/dev/null || true
 sudo tailscaled --tun=userspace-networking --socks5-server=localhost:1055 &
+
+# Wait for daemon readiness
+for i in {1..20}; do
+    sleep 0.2
+    if tailscale status >/dev/null 2>&1; then
+        break
+    fi
+done
+
 sudo tailscale up
 EOF
     chmod +x "$BIN_DIR/retail"
@@ -56,10 +68,9 @@ EOF
 
 update_ssh_config() {
     local ip
-    # Robust IP extraction (fixes newline issue in containers)
-    ip=$(tailscale status 2>/dev/null | awk '/ tron / {print $1}' | tr -d '[:space:]')
+    ip=$(tailscale ip tron 2>/dev/null | head -n1 | tr -d '[:space:]')
 
-    [[ -n "$ip" ]] || die "'tron' not found in Tailscale status."
+    [[ -n "$ip" ]] || die "'tron' not found in Tailscale IP list."
 
     log "Found tron at $ip"
 
@@ -72,7 +83,7 @@ Host tron ${ip} *.ts.net 100.*
     ${PROXYLINE}
     ServerAliveInterval 60
     ServerAliveCountMax 5
-    StrictHostKeyChecking no
+    StrictHostKeyChecking accept-new
     UserKnownHostsFile /dev/null
 ${SSH_MARKER} end
 EOF
