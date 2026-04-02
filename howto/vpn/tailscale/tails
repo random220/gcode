@@ -27,13 +27,6 @@ install_tailscale_mac() {
     "$GO_BIN/tailscale" up
 }
 
-install_tailscale_linux() {
-    if ! curl -fsSL https://tailscale.com/install.sh | sh; then
-        log "Installer exited non-zero (expected in containers). Continuing..."
-    fi
-    has tailscale || die "Tailscale binary missing after installation attempt."
-}
-
 setup_socks5() {
     log "Falling back to userspace networking + SOCKS5 proxy..."
     if ! has ncat; then
@@ -64,6 +57,14 @@ EOF
 
     # Enable proxy only for userspace mode
     PROXYLINE='ProxyCommand ncat --proxy 127.0.0.1:1055 --proxy-type socks5 -w 30 %h %p'
+}
+
+install_tailscale_linux() {
+    if ! curl -fsSL https://tailscale.com/install.sh | sh; then
+        log "Installer exited non-zero (expected in containers). Continuing..."
+    fi
+    has tailscale || die "Tailscale binary missing after installation attempt."
+    sudo tailscale up || setup_socks5
 }
 
 update_ssh_config() {
@@ -100,7 +101,7 @@ case "$(uname)" in
         has tailscale || install_tailscale_mac
         ;;
     Linux)
-        has tailscale || { install_tailscale_linux; sudo tailscale up || setup_socks5 ; }
+        has tailscale || install_tailscale_linux
         ;;
     *)
         die "Unsupported OS: $(uname)"
