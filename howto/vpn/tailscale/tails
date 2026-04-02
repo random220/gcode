@@ -100,8 +100,7 @@ case "$(uname)" in
         has tailscale || install_tailscale_mac
         ;;
     Linux)
-        has tailscale || install_tailscale_linux
-        sudo tailscale up || setup_socks5
+        has tailscale || { install_tailscale_linux; sudo tailscale up || setup_socks5 ; }
         ;;
     *)
         die "Unsupported OS: $(uname)"
