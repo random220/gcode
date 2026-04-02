@@ -102,7 +102,7 @@ class RPNCalculator:
         for token in tokens:
             if not token:
                 continue
-            if token == '.':
+            if token == '.' or token == 'q':
                 sys.exit(0)
             elif self._parse_number(token):
                 self.stack.append(self.last_num)
