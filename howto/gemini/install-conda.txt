@@ -1,0 +1,4 @@
+conda create -y -n gemini_env -c conda-forge nodejs
+conda activate gemini_env
+npm install -g @google/gemini-cli
+gemini
