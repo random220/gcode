@@ -110,3 +110,5 @@ esac
 
 update_ssh_config
 log "Tailscale setup completed successfully!"
+echo
+tailscale status
