@@ -1,0 +1,4 @@
+#!/bin/bash
+conda activate gemini_env || conda create -y -n gemini_env -c conda-forge nodejs || conda activate gemini_env || { echo no conda; exit 1; }
+command -v gemini || npm install -g @google/gemini-cli
+gemini
