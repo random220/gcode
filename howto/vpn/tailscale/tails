@@ -99,9 +99,11 @@ case "$(uname)" in
     Darwin)
         export PATH="$GO_BIN:$PATH"
         has tailscale || install_tailscale_mac
+        tailscale status || "$GO_BIN/tailscale" up
         ;;
     Linux)
         has tailscale || install_tailscale_linux
+        tailscale status || install_tailscale_linux
         ;;
     *)
         die "Unsupported OS: $(uname)"
