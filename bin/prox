@@ -1,15 +1,19 @@
 #!/bin/bash
 
 if [[ "$1" == '-d' ]]; then
+  DPORT=9999
+  [[ $2 =~ ^[0-9]+$ ]] && DPORT=$2
   noprox
   sleep 1
   networksetup -setsocksfirewallproxy Wi-Fi on
-  networksetup -setsocksfirewallproxy Wi-Fi localhost 9999
+  networksetup -setsocksfirewallproxy Wi-Fi localhost $DPORT
 elif [[ "$1" == '-l' ]]; then
+  LPORT=3128
+  [[ $2 =~ ^[0-9]+$ ]] && LPORT=$2
   noprox
   sleep 1
   networksetup -setsecurewebproxy Wi-Fi on
-  networksetup -setsecurewebproxy Wi-Fi localhost 3128
+  networksetup -setsecurewebproxy Wi-Fi localhost $LPORT
 else
   :
 fi
