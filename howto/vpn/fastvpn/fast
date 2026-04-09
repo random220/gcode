@@ -1,5 +1,8 @@
 #!/bin/bash
 
+LOCATION=seattle
+[[ $1 != '' ]] && LOCATION=$1
+
 mp start fa || mp make fa
 curl --output a.zip -L http://support.fastestvpn.com/download/fastestvpn_ovpn/
 if [[ ! -f ~/b/om/raw/fastestvpn_ovpn.zip ]]; then
@@ -9,6 +12,6 @@ fi
 scp ~/b/om/raw/fastestvpn_ovpn.zip fa:/tmp
 ssh fa 'kill -9 -1'
 ssh -t fa '[[ -f ~/bin/vpn ]] || gcode/bin/uvpn'
-ssh -t fa 'tmux -2 new -d -s T0; tmux send-keys "vpn seattle" C-m'
+ssh -t fa 'tmux -2 new -d -s T0; tmux send-keys "vpn '$LOCATION'" C-m'
 pkill -f firefox
 ff 3128
