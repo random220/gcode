@@ -99,11 +99,11 @@ case "$(uname)" in
     Darwin)
         export PATH="$GO_BIN:$PATH"
         has tailscale || install_tailscale_mac
-        tailscale status || "$GO_BIN/tailscale" up
+        tailscale status || { "$GO_BIN/tailscale" up && tailscale status; }
         ;;
     Linux)
         has tailscale || install_tailscale_linux
-        tailscale status || install_tailscale_linux
+        tailscale status || { install_tailscale_linux && tailscale status; }
         ;;
     *)
         die "Unsupported OS: $(uname)"
@@ -113,4 +113,3 @@ esac
 update_ssh_config
 log "Tailscale setup completed successfully!"
 echo
-tailscale status
