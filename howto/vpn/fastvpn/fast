@@ -4,7 +4,6 @@ LOCATION=seattle
 [[ $1 != '' ]] && LOCATION=$1
 
 mp start fa || mp make fa
-curl --output a.zip -L http://support.fastestvpn.com/download/fastestvpn_ovpn/
 if [[ ! -f ~/b/om/raw/fastestvpn_ovpn.zip ]]; then
     mkdir -p ~/b/om/raw
     curl --output ~/b/om/raw/fastestvpn_ovpn.zip -L http://support.fastestvpn.com/download/fastestvpn_ovpn/
