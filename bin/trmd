@@ -1,14 +1,149 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# trmd-start — launch transmission-daemon inside tmux, with a VPN watchdog
+set -euo pipefail
 
-cat <<EOF | base64 -d|gunzip - >/tmp/trmd
-H4sIAAAAAAACA82SzY7CIBSF9zzFWRirC0ZdmThx53aewBjDlNuUtNAG6NTEn2cfoDNqTWY/bAhw
-7uE7F3LJOi1cheV6zZgWyszmODOEUam6bi19pQUZ11k66qYz3qUdr7sTDPXckXOqMeAO3moJLvEp
-XAmeI/NWGKdVEnApSEddEY9uC78E78O8a3pTN0K6Rddl7MrY78V3kpGLDSaewDmdlE/HriZqsXpQ
-RYMHlk9Y0ZiNUtztdSWVBW8j08A1hmKDKhYdC9vo7WQ2y+WLCNMpZEhWlXibX7xQNfjqIvoK2bm1
-ynhMVtdsnqxUgf0ek4cjtjdscDi8w5dkkiaOzdD62tF9y4XG6lCQPUGPG/ikLFzUbkaYL9GislD/
-KSHlZYPsI1aiCJeQRHjFv1LGT/Dz9DHGdfjD7BuRivmv1wIAAA==
+readonly PROG="${0##*/}"
+readonly TMUX_SESSION="trmd"
+readonly WATCHDOG_SESSION="trmd-watchdog"
+readonly DAEMON_CONFIG_DIR="${HOME}/t0"
+readonly DOWNLOAD_DIR="${HOME}/Downloads/uu"
+readonly VPN_IFACE="tun0"
+readonly WATCHDOG_INTERVAL=5  # seconds between VPN checks
+
+cd "${HOME}"
+umask 077
+
+# ---------------------------------------------------------------------------
+# usage / help
+# ---------------------------------------------------------------------------
+usage() {
+    cat <<EOF
+Usage: $PROG [-h]
+
+Start transmission-daemon inside a tmux session and launch a watchdog that
+monitors the VPN tunnel interface ($VPN_IFACE). If the tunnel disappears,
+the watchdog shuts transmission-daemon down gracefully.
+
+What this script does:
+  1. Shuts down any previously running transmission-daemon + tmux sessions
+  2. Ensures ~/Downloads/uu is mounted via sshfs from mom:Downloads/uu
+  3. Starts transmission-daemon (tmux session: $TMUX_SESSION)
+  4. Starts a VPN watchdog loop  (tmux session: $WATCHDOG_SESSION)
+     — polls $VPN_IFACE every ${WATCHDOG_INTERVAL}s
+     — calls 'transmission-remote --exit' if the interface vanishes
+
+Directory layout:
+  Config : $DAEMON_CONFIG_DIR
+  Downloads : $DOWNLOAD_DIR
+
+Options:
+  -h, --help    Show this help message and exit
 EOF
-bash /tmp/trmd
-rm -f /tmp/trmd 
+}
 
+# ---------------------------------------------------------------------------
+# helpers
+# ---------------------------------------------------------------------------
 
+log()  { echo "[$PROG] $*" >&2; }
+die()  { echo "[$PROG] ERROR: $*" >&2; exit 1; }
+
+vpn_is_up() {
+    ip link show "${VPN_IFACE}" &>/dev/null
+}
+
+# mount_source DIR — print the filesystem source (device/host) for DIR
+mount_source() {
+    (cd "$1" && df -kh . 2>/dev/null) | tail -1 | awk '{print $1}'
+}
+
+# is_sshfs_mount DIR — true if DIR is already mounted via sshfs (source has ':')
+is_sshfs_mount() {
+    [[ "$(mount_source "$1")" == *:* ]]
+}
+
+# ---------------------------------------------------------------------------
+# sub-routines
+# ---------------------------------------------------------------------------
+
+kill_previous() {
+    log "Shutting down previous instance (if any)…"
+    transmission-remote --exit 2>/dev/null || true
+    sleep 1
+    tmux kill-session -t "${TMUX_SESSION}"       2>/dev/null || true
+    tmux kill-session -t "${WATCHDOG_SESSION}"   2>/dev/null || true
+}
+
+ensure_mounts() {
+    log "Ensuring directories exist…"
+    mkdir -p "${HOME}/t" "${DAEMON_CONFIG_DIR}" "${DOWNLOAD_DIR}"
+
+    if is_sshfs_mount "${DOWNLOAD_DIR}"; then
+        log "${DOWNLOAD_DIR} is already sshfs-mounted, skipping."
+        return
+    fi
+
+    log "Mounting mom:Downloads/uu → ${DOWNLOAD_DIR}…"
+    ssh mom 'mkdir -p ~/Downloads/uu'
+    sshfs mom:Downloads/uu "${DOWNLOAD_DIR}"
+
+    # verify
+    is_sshfs_mount "${DOWNLOAD_DIR}" \
+        || die "Mount failed on ${DOWNLOAD_DIR}"
+    log "Mount OK."
+}
+
+start_daemon() {
+    log "Starting transmission-daemon (tmux session: ${TMUX_SESSION})…"
+    tmux new-session -s "${TMUX_SESSION}" -d \
+        transmission-daemon -f \
+            -c "${DAEMON_CONFIG_DIR}" \
+            -w "${DOWNLOAD_DIR}"
+}
+
+start_watchdog() {
+    log "Starting VPN watchdog (tmux session: ${WATCHDOG_SESSION}, iface: ${VPN_IFACE})…"
+
+    # Embed the watchdog loop as a here-doc passed to bash so all variables
+    # are resolved now, not at execution time inside the child shell.
+    local watchdog_script
+    watchdog_script=$(cat <<WATCHDOG
+#!/usr/bin/env bash
+readonly VPN_IFACE="${VPN_IFACE}"
+readonly INTERVAL=${WATCHDOG_INTERVAL}
+
+echo "[watchdog] started — monitoring \${VPN_IFACE} every \${INTERVAL}s"
+while true; do
+    sleep "\${INTERVAL}"
+    if ! ip link show "\${VPN_IFACE}" &>/dev/null; then
+        echo "[watchdog] \$(date -Iseconds): \${VPN_IFACE} is gone — shutting down transmission-daemon"
+        transmission-remote --exit 2>/dev/null || true
+        echo "[watchdog] Done. Exiting watchdog."
+        exit 0
+    fi
+done
+WATCHDOG
+)
+
+    tmux new-session -s "${WATCHDOG_SESSION}" -d bash -c "${watchdog_script}"
+}
+
+# ---------------------------------------------------------------------------
+# entry point
+# ---------------------------------------------------------------------------
+
+case "${1-}" in
+    -h|--help) usage; exit 0 ;;
+    "")        ;;   # no args — proceed normally
+    *) echo "$PROG: unknown option '$1' — try '$PROG --help'" >&2; exit 1 ;;
+esac
+
+vpn_is_up || die "${VPN_IFACE} is not up — refusing to start without a VPN tunnel."
+
+kill_previous
+ensure_mounts
+start_daemon
+start_watchdog
+
+log "All done. Use 'tmux attach -t ${TMUX_SESSION}' to watch the daemon,"
+log "or 'tmux attach -t ${WATCHDOG_SESSION}' to watch the VPN watchdog."
