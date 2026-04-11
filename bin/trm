@@ -1,104 +1,153 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# trm — a convenience wrapper around transmission-remote
+set -euo pipefail
 
-doit() {
-    echo "$1"
-    bash -c "$1"
+readonly PROG="${0##*/}"
+readonly TR="transmission-remote"
+
+# ---------------------------------------------------------------------------
+# usage / help
+# ---------------------------------------------------------------------------
+usage() {
+    cat <<EOF
+Usage: $PROG <command> [args...]
+
+A thin wrapper around transmission-remote for common torrent operations.
+
+Commands:
+  a <magnet|url> [...]   Add one or more torrents by magnet link or URL
+  l                      List all current torrents
+  d <id|a> [...]         Remove torrent(s) by ID, keeping downloaded data
+                           Pass 'a' as the sole argument to target all torrents
+  D <id|a> [...]         Remove torrent(s) by ID and delete downloaded data
+                           Pass 'a' as the sole argument to target all torrents
+  s <id|a> [...]         Start / resume torrent(s)
+                           Pass 'a' as the sole argument to target all torrents
+  S <id|a> [...]         Stop / pause torrent(s)
+                           Pass 'a' as the sole argument to target all torrents
+  x                      Ask the transmission daemon to exit
+
+Options:
+  -h, --help             Show this help message and exit
+
+Examples:
+  $PROG a 'magnet:?xt=urn:...'   # add a torrent
+  $PROG l                         # list torrents
+  $PROG d 1 2 3                   # remove torrents 1, 2, and 3 (keep data)
+  $PROG D a                       # remove ALL torrents and delete their data
+  $PROG s a                       # start all torrents
+  $PROG S 4                       # pause torrent 4
+  $PROG x                         # shut down the daemon
+EOF
 }
 
-trma() {
-    for i in "$@"; do
-        doit "transmission-remote -a \"$i\""
-    done
-    sleep 1
-    transmission-remote -l
+# ---------------------------------------------------------------------------
+# helpers
+# ---------------------------------------------------------------------------
+
+# run_cmd CMD ARGS… — print the command, then execute it directly (no subshell)
+run_cmd() {
+    echo "+ $*" >&2
+    "$@"
 }
-list_currents() {
-    transmission-remote -l | grep -v ID|awk '{print $1}'|sed 's/\*$//'
+
+# list_ids — return the numeric IDs of every current torrent (strips trailing *)
+list_ids() {
+    $TR -l \
+        | tail -n +2 \
+        | grep -v 'Sum:' \
+        | awk '{print $1}' \
+        | tr -d '*'
 }
-trmd() {
-    if  [[ "$1" = 'a' ]]; then
-        nums=($(list_currents))
+
+# resolve_targets "$@" — echo target IDs; expands 'a' to all current IDs
+resolve_targets() {
+    if [[ $# -eq 1 && $1 == 'a' ]]; then
+        list_ids
     else
-        nums=("$@")
+        printf '%s\n' "$@"
     fi
-    for i in "${nums[@]}"; do
-        doit "transmission-remote -t \"$i\" -r"
+}
+
+# ---------------------------------------------------------------------------
+# sub-commands
+# ---------------------------------------------------------------------------
+
+cmd_add() {
+    (( $# )) || { echo "$PROG a: at least one URL/magnet required" >&2; exit 1; }
+    for url in "$@"; do
+        run_cmd $TR -a "$url"
     done
     sleep 1
-    transmission-remote -l
+    $TR -l
 }
-trmD() {
-    if  [[ "$1" = 'a' ]]; then
-        nums=($(list_currents))
-    else
-        nums=("$@")
-    fi
-    for i in "${nums[@]}"; do
-        doit "transmission-remote -t \"$i\" -rad"
+
+cmd_list() {
+    run_cmd $TR -l
+}
+
+cmd_remove() {          # keep data
+    local -a ids
+    mapfile -t ids < <(resolve_targets "$@")
+    (( ${#ids[@]} )) || { echo "$PROG d: no torrents matched" >&2; exit 1; }
+    for id in "${ids[@]}"; do
+        run_cmd $TR -t "$id" -r
     done
     sleep 1
-    transmission-remote -l
+    $TR -l
 }
-trms() {
-    if  [[ "$1" = 'a' ]]; then
-        nums=($(list_currents))
-    else
-        nums=("$@")
-    fi
-    for i in "${nums[@]}"; do
-        doit "transmission-remote -t \"$i\" -s"
+
+cmd_remove_data() {     # delete data too
+    local -a ids
+    mapfile -t ids < <(resolve_targets "$@")
+    (( ${#ids[@]} )) || { echo "$PROG D: no torrents matched" >&2; exit 1; }
+    for id in "${ids[@]}"; do
+        run_cmd $TR -t "$id" -rad
     done
     sleep 1
-    transmission-remote -l
+    $TR -l
 }
-trmS() {
-    if  [[ "$1" = 'a' ]]; then
-        nums=($(list_currents))
-    else
-        nums=("$@")
-    fi
-    for i in "${nums[@]}"; do
-        doit "transmission-remote -t \"$i\" -S"
+
+cmd_start() {
+    local -a ids
+    mapfile -t ids < <(resolve_targets "$@")
+    (( ${#ids[@]} )) || { echo "$PROG s: no torrents matched" >&2; exit 1; }
+    for id in "${ids[@]}"; do
+        run_cmd $TR -t "$id" -s
     done
     sleep 1
-    transmission-remote -l
+    $TR -l
 }
-trml() {
-    doit 'transmission-remote -l'
+
+cmd_stop() {
+    local -a ids
+    mapfile -t ids < <(resolve_targets "$@")
+    (( ${#ids[@]} )) || { echo "$PROG S: no torrents matched" >&2; exit 1; }
+    for id in "${ids[@]}"; do
+        run_cmd $TR -t "$id" -S
+    done
+    sleep 1
+    $TR -l
 }
-trmX() {
-    doit 'transmission-remote --exit'
+
+cmd_exit() {
+    run_cmd $TR --exit
 }
+
+# ---------------------------------------------------------------------------
+# entry point
+# ---------------------------------------------------------------------------
+
+(( $# )) || { usage; exit 0; }
 
 case "$1" in
-  d)
-    shift
-    trmd "$@"
-    ;;
-  D)
-    shift
-    trmD "$@"
-    ;;
-  a)
-    shift
-    trma "$@"
-    ;;
-  l)
-    shift
-    trml "$@"
-    ;;
-  x)
-    shift
-    trmX "$@"
-    ;;
-  S)
-    shift
-    trmS "$@"
-    ;;
-  s)
-    shift
-    trms "$@"
-    ;;
-  *)
-    ;;
+    -h|--help)  usage;              exit 0  ;;
+    a)          shift; cmd_add          "$@" ;;
+    l)          shift; cmd_list         "$@" ;;
+    d)          shift; cmd_remove       "$@" ;;
+    D)          shift; cmd_remove_data  "$@" ;;
+    s)          shift; cmd_start        "$@" ;;
+    S)          shift; cmd_stop         "$@" ;;
+    x)          shift; cmd_exit              ;;
+    *)  echo "$PROG: unknown command '$1' — try '$PROG --help'" >&2; exit 1 ;;
 esac
