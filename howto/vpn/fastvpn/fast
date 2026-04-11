@@ -1,5 +1,7 @@
 #!/bin/bash
 
+umask 077
+
 LOCATION=seattle
 [[ $1 != '' ]] && LOCATION=$1
 
@@ -10,6 +12,38 @@ if [[ ! -f ~/b/om/raw/fastestvpn_ovpn.zip ]]; then
 fi
 scp ~/b/om/raw/fastestvpn_ovpn.zip fa:/tmp
 ssh fa 'kill -9 -1'
+
+cat ~/.ssh/mp/fa/id_ed25519.pub ~/.ssh/authorized_keys | sort -u >~/.ssh/authorized_keys.fa
+mv ~/.ssh/authorized_keys.fa ~/.ssh/authorized_keys
+scp ~/.ssh/mp/fa/id_ed25519 fa:.ssh/id_ed25519
+
+cat <<'EOF' | ssh -t fa momuser=$LOGNAME bash -
+umask 077
+mkdir -p ~/.ssh
+momip=$(ip -4 neigh|awk '{print $1}')
+
+cat <<_EOF >~/.ssh/config
+StrictHostKeyChecking=no
+CheckHostIP=no
+EscapeChar=~
+UserKnownHostsFile=/dev/null
+LogLevel ERROR
+
+Host mom
+    User $momuser
+    Hostname $momip
+    Port 22
+    IdentityFile ~/.ssh/id_ed25519
+    ControlPath ~/.ssh/ctrl-%r@%h:%p
+    ControlMaster auto
+    ControlPersist 10m
+    ServerAliveInterval 180
+
+_EOF
+
+EOF
+
+
 ssh -t fa '[[ -f ~/bin/vpn ]] || gcode/bin/uvpn'
 ssh -t fa 'tmux -2 new -d -s T0; tmux send-keys "vpn '$LOCATION'" C-m'
 pkill -f firefox
