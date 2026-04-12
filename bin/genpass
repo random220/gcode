@@ -1,0 +1,97 @@
+#!/usr/bin/env python
+
+import secrets
+import string
+import math
+import argparse
+
+
+def generate_password(
+    length: int = 16,
+    use_uppercase: bool = True,
+    use_lowercase: bool = True,
+    use_digits: bool = True,
+    use_symbols: bool = False,
+) -> str:
+    charset = ""
+    required_chars = []
+
+    if use_uppercase:
+        charset += string.ascii_uppercase
+        required_chars.append(secrets.choice(string.ascii_uppercase))
+    if use_lowercase:
+        charset += string.ascii_lowercase
+        required_chars.append(secrets.choice(string.ascii_lowercase))
+    if use_digits:
+        charset += string.digits
+        required_chars.append(secrets.choice(string.digits))
+    if use_symbols:
+        symbols = "!@#$%^&*()-_=+[]{}|;:,.<>?"
+        charset += symbols
+        required_chars.append(secrets.choice(symbols))
+
+    if not charset:
+        raise ValueError("At least one character type must be selected.")
+
+    if length < len(required_chars):
+        raise ValueError(f"Length must be at least {len(required_chars)} for selected character types.")
+
+    # Fill remaining length with random chars from full charset
+    remaining = [secrets.choice(charset) for _ in range(length - len(required_chars))]
+
+    # Combine and shuffle to avoid predictable positions
+    password_chars = required_chars + remaining
+    secrets.SystemRandom().shuffle(password_chars)
+
+    return "".join(password_chars)
+
+
+def calculate_entropy(length: int, charset_size: int) -> float:
+    return length * math.log2(charset_size)
+
+
+def charset_size(uppercase, lowercase, digits, symbols):
+    size = 0
+    if uppercase: size += 26
+    if lowercase: size += 26
+    if digits:    size += 10
+    if symbols:   size += 27
+    return size
+
+
+def strength_label(entropy: float) -> str:
+    if entropy >= 90: return "Excellent"
+    if entropy >= 70: return "Strong"
+    if entropy >= 50: return "Moderate"
+    return "Weak"
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Generate a secure random password.")
+    parser.add_argument("-l", "--length",   type=int, default=16,            help="Password length (default: 16)")
+    parser.add_argument("-n", "--count",    type=int, default=1,             help="Number of passwords to generate (default: 1)")
+    parser.add_argument("--no-uppercase",   action="store_true",             help="Exclude uppercase letters")
+    parser.add_argument("--no-lowercase",   action="store_true",             help="Exclude lowercase letters")
+    parser.add_argument("--no-digits",      action="store_true",             help="Exclude digits")
+    parser.add_argument("-s", "--symbols",        action="store_true",             help="Include symbols")
+    args = parser.parse_args()
+
+    upper   = not args.no_uppercase
+    lower   = not args.no_lowercase
+    digits  = not args.no_digits
+    symbols = args.symbols
+
+    pool = charset_size(upper, lower, digits, symbols)
+    entropy = calculate_entropy(args.length, pool)
+
+    print(f"\nSettings: length={args.length}, charset={pool} chars, "
+          f"entropy={entropy:.1f} bits ({strength_label(entropy)})\n")
+
+    for _ in range(args.count):
+        print(generate_password(args.length, upper, lower, digits, symbols))
+
+    print()
+
+
+if __name__ == "__main__":
+    main()
