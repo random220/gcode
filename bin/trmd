@@ -76,12 +76,13 @@ kill_previous() {
 
 ensure_mounts() {
     log "Ensuring directories exist…"
-    mkdir -p "${HOME}/t" "${DAEMON_CONFIG_DIR}" "${DOWNLOAD_DIR}"
 
     if is_sshfs_mount "${DOWNLOAD_DIR}"; then
         log "${DOWNLOAD_DIR} is already sshfs-mounted, skipping."
         return
     fi
+
+    mkdir -p "${HOME}/t" "${DAEMON_CONFIG_DIR}" "${DOWNLOAD_DIR}"
 
     log "Mounting mom:Downloads/uu → ${DOWNLOAD_DIR}…"
     ssh mom 'mkdir -p ~/Downloads/uu'
