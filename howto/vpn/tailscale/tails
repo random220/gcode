@@ -79,13 +79,16 @@ update_ssh_config() {
 
     cat >> ~/.ssh/config.tmp << EOF
 ${SSH_MARKER} begin
-Host tron ${ip} *.ts.net 100.*
-    User ${SSH_USER}
+Host tron *.ts.net 100.*
     ${PROXYLINE}
     ServerAliveInterval 60
     ServerAliveCountMax 5
     StrictHostKeyChecking accept-new
     UserKnownHostsFile /dev/null
+
+Host tron
+	User ${SSH_USER}
+	Hostname ${ip}
 ${SSH_MARKER} end
 EOF
 
