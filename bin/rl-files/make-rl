@@ -75,9 +75,14 @@ if [[ -d ~/gcode ]]; then
     docker cp -a ~/gcode/ $h:/tmp/
 
     cat <<"EOF" | docker exec -u root -i $h bash -
+set -x
 umask 077
 mkdir -p /home/om/.ssh
 mv /tmp/pubkey /home/om/.ssh/authorized_keys
+[[ -d /home/om/gcode ]] && {
+  mv /home/om/gcode /home/om/gcode.x
+  rm -rf /home/om/gcode.x &
+}
 mv /tmp/gcode /home/om/gcode
 chown -R om:om /home/om/gcode /home/om/.ssh
 EOF
