@@ -49,7 +49,7 @@ determine_server() {
     for dest in "${destinations[@]}"; do
         IFS=: read -r server_ip server_port server_name <<< "$dest"
 
-        if ping -W 3 -c 2 "$server_ip" &>/dev/null; then
+        if nc -z -G 2 $server_ip $server_port 2>/dev/null; then
             echo "✓ Reachable: $server_name ($server_ip)"
             return 0
         fi
