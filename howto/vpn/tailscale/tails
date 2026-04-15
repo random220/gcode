@@ -55,8 +55,6 @@ EOF
     [[ ":$PATH:" != *":$BIN_DIR:"* ]] && export PATH="$BIN_DIR:$PATH"
     "$BIN_DIR/retail"
 
-    # Enable proxy only for userspace mode
-    PROXYLINE='ProxyCommand ncat --proxy 127.0.0.1:1055 --proxy-type socks5 -w 30 %h %p'
 }
 
 install_tailscale_linux() {
@@ -76,6 +74,12 @@ update_ssh_config() {
     log "Found tron at $ip"
 
     sed "/${SSH_MARKER} begin/,/${SSH_MARKER} end/d" ~/.ssh/config > ~/.ssh/config.tmp 2>/dev/null || true
+
+    # Enable proxy only for userspace mode
+    PROXYLINE='ProxyCommand ncat --proxy 127.0.0.1:1055 --proxy-type socks5 -w 30 %h %p'
+    if tailscale status --json|grep TUN | grep true; then
+        PROXYLINE='# ProxyCommand ncat --proxy 127.0.0.1:1055 --proxy-type socks5 -w 30 %h %p'
+    fi
 
     cat >> ~/.ssh/config.tmp << EOF
 ${SSH_MARKER} begin
