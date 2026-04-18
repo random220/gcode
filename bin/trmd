@@ -110,6 +110,7 @@ start_watchdog() {
     local watchdog_script
     watchdog_script=$(cat <<WATCHDOG
 #!/usr/bin/env bash
+set -x
 readonly VPN_IFACE="${VPN_IFACE}"
 readonly INTERVAL=${WATCHDOG_INTERVAL}
 
@@ -122,6 +123,10 @@ while true; do
         echo "[watchdog] Done. Exiting watchdog."
         exit 0
     fi
+	tmux list-sessions -F '#S' 2>/dev/null | grep -Fxq "${TMUX_SESSION}" || {
+		echo "[watchdog] TMUX_SESSION went away. Exiting watchdog."
+		exit 0
+	}
 done
 WATCHDOG
 )
