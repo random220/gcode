@@ -5,10 +5,17 @@ set -euo pipefail
 readonly PROG="${0##*/}"
 readonly TMUX_SESSION="trmd"
 readonly WATCHDOG_SESSION="trmd-watchdog"
-readonly DAEMON_CONFIG_DIR="${HOME}/t0"
-readonly DOWNLOAD_DIR="${HOME}/Downloads/uu"
 readonly VPN_IFACE="tun0"
 readonly WATCHDOG_INTERVAL=5  # seconds between VPN checks
+
+readonly TRM_CONFIG_DIR="${HOME}/.config/transmission"
+readonly TRM_ROOT="${HOME}/Downloads/uu"
+readonly TRM_TORRENTS_IN="${TRM_ROOT}/t_"
+readonly TRM_DOING="${TRM_ROOT}/doing_"
+readonly TRM_DONE="${TRM_ROOT}/done_"
+readonly TRM_PID="${TRM_ROOT}/PID"
+
+
 
 cd "${HOME}"
 umask 077
@@ -33,8 +40,6 @@ What this script does:
      — calls 'transmission-remote --exit' if the interface vanishes
 
 Directory layout:
-  Config : $DAEMON_CONFIG_DIR
-  Downloads : $DOWNLOAD_DIR
 
 Options:
   -h, --help    Show this help message and exit
@@ -77,29 +82,42 @@ kill_previous() {
 ensure_mounts() {
     log "Ensuring directories exist…"
 
-    if is_sshfs_mount "${DOWNLOAD_DIR}"; then
-        log "${DOWNLOAD_DIR} is already sshfs-mounted, skipping."
+    if is_sshfs_mount "${TRM_ROOT}"; then
+        log "${TRM_ROOT} is already sshfs-mounted, skipping."
         return
     fi
 
-    mkdir -p "${HOME}/t" "${DAEMON_CONFIG_DIR}" "${DOWNLOAD_DIR}"
 
-    log "Mounting mom:Downloads/uu → ${DOWNLOAD_DIR}…"
+    log "Mounting mom:Downloads/uu → ${TRM_ROOT}…"
     ssh mom 'mkdir -p ~/Downloads/uu'
-    sshfs mom:Downloads/uu "${DOWNLOAD_DIR}"
+    mkdir -p "$TRM_ROOT"
+    sshfs mom:Downloads/uu "${TRM_ROOT}"
 
     # verify
-    is_sshfs_mount "${DOWNLOAD_DIR}" \
-        || die "Mount failed on ${DOWNLOAD_DIR}"
+    is_sshfs_mount "${TRM_ROOT}" \
+        || die "Mount failed on ${TRM_ROOT}"
     log "Mount OK."
+
+    mkdir -p \
+        $TRM_CONFIG_DIR \
+        $TRM_TORRENTS_IN \
+        $TRM_DOING \
+        $TRM_DONE
 }
 
 start_daemon() {
     log "Starting transmission-daemon (tmux session: ${TMUX_SESSION})…"
     tmux new-session -s "${TMUX_SESSION}" -d \
-        transmission-daemon -f \
-            -c "${DAEMON_CONFIG_DIR}" \
-            -w "${DOWNLOAD_DIR}"
+        transmission-daemon \
+            --foreground \
+            --encryption-required \
+            --dht \
+            --utp \
+            --config-dir ${TRM_CONFIG_DIR} \
+            --watch-dir ${TRM_TORRENTS_IN} \
+            --incomplete-dir ${TRM_DOING} \
+            --download-dir ${TRM_DONE} \
+            --pid-file ${TRM_PID}
 }
 
 start_watchdog() {
