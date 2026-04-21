@@ -3,7 +3,7 @@
 ALAB
 AMD
 SNOW
-PSTG
+P
 SMR # niche, unproven
 IREN
 UAL
