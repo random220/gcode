@@ -16,6 +16,6 @@ if [[ -f "$f" ]]; then
     cd ~/gcode/fin && ./syms "$f"
     echo
     echo
-    echo "rm -f '$f'"
+    bash -x -c "rm -f '$f'"
 fi
 
