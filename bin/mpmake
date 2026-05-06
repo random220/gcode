@@ -17,6 +17,7 @@ main() {
 
 mkcont() {
   multipass delete --purge $contname
+  #multipass launch -n $contname -d 20G -c 1 -m 2G 24.04
   multipass launch -n $contname -d 20G -c 1 -m 2G
   while true; do
     multipass ls | egrep '^'"$contname"'[ \t]+Running[ \t]+[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+[ \t]'
