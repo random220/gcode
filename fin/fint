@@ -1,0 +1,6 @@
+#!/bin/bash
+open -a "Microsoft Edge" \
+  https://digital.fidelity.com/ftgw/digital/traderplus \
+  https://digital.fidelity.com/ftgw/digital/portfolio/positions \
+  https://digital.fidelity.com/ftgw/digital/portfolio/activity \
+  https://digital.fidelity.com/ftgw/digital/planning-summary/
