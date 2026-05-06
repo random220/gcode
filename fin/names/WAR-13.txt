@@ -1,20 +1,21 @@
 # Strong to weak
      1	LMT
      2	NOC
-     3	RTX
-     4	GD
-     5	XOM
-     6	CVX
-     7	LHX
-     8	PLTR
-     9	ETN
-    10	PANW
-    11	CRWD
-    12	IRDM
+     3	HII
+     4	RTX
+     5	GD
+     6	XOM
+     7	CVX
+     8	LHX
+     9	PLTR
+    10	ETN
+    11	PANW
+    12	CRWD
+    13	IRDM
 
 
 # Drones ~ $ONDS, $AVAV, $KTOS
-# Prime Defense ~ $LMT, $NOC, $RTX, $GD, $LHX
+# Prime Defense ~ $LMT, $NOC, $RTX, $GD, $LHX, $HII
 # Space/Satellite infrastructure ~ $RKLB, $ASTS, $IRDM
 # AI, & Cyber warfare ~ $PLTR, $CRWD, $PANW, $NVDA, $SMCI
 # Oil ~ $XOM, $CVX, $OXY
