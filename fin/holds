@@ -6,7 +6,7 @@ import re
 import csv
 
 if len(sys.argv) == 1:
-    print('Need "Closed positions" downloaded from https://digital.fidelity.com/ftgw/digital/portfolio/positions')
+    print('Need "Overview" downloaded from https://digital.fidelity.com/ftgw/digital/portfolio/positions')
     sys.exit(0)
 
 things = {}
