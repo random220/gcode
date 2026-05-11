@@ -1,4 +1,5 @@
 ABBV   # (AbbVie) — Pharma (immunology, oncology drugs like Humira, Skyrizi).
+AMGN
 BMY    # (Bristol-Myers Squibb) — Pharma (oncology, immunology).
 CI     # (Cigna) — Health insurance/payer.
 CNC    # (Centene) — Managed care/insurance.
