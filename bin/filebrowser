@@ -1,29 +1,35 @@
 #!/bin/bash
-port=8080
-if [[ $1 != '' ]]; then
-    port=$1
-fi
-docker rm -f fb
-rm -rf ~/_fb
-docker run \
-    -itd \
-    --name fb -h fb \
-    -v "$(pwd)":/srv \
-    -v ~/_fb/db:/database \
-    -v ~/_fb/cfg:/config \
-    -p $port:80 \
-    filebrowser/filebrowser
 
-docker logs fb
-cat <<EOF | docker exec -i fb /bin/sh -
-#filebrowser --config=/config/settings.json users update admin --password welcomewelcome
-filebrowser --config=/config/settings.json users add data welcomewelcome
+cat <<"EOF"
+docker run -v `pwd`:/shared -p 8001:8001 --rm pldubouilh/gossa
+docker run -v `pwd`:/data -p 9000:5000 --rm sigoden/dufs /data -A
 EOF
 
-echo
-echo
-echo 'http://localhost:8080'
-echo 'data / welcomewelcome'
-echo
-echo 'docker rm -f fb'
-echo
+# port=8080
+# if [[ $1 != '' ]]; then
+#     port=$1
+# fi
+# docker rm -f fb
+# rm -rf ~/_fb
+# docker run \
+#     -itd \
+#     --name fb -h fb \
+#     -v "$(pwd)":/srv \
+#     -v ~/_fb/db:/database \
+#     -v ~/_fb/cfg:/config \
+#     -p $port:80 \
+#     filebrowser/filebrowser
+# 
+# docker logs fb
+# cat <<EOF | docker exec -i fb /bin/sh -
+# #filebrowser --config=/config/settings.json users update admin --password welcomewelcome
+# filebrowser --config=/config/settings.json users add data welcomewelcome
+# EOF
+# 
+# echo
+# echo
+# echo 'http://localhost:8080'
+# echo 'data / welcomewelcome'
+# echo
+# echo 'docker rm -f fb'
+# echo
