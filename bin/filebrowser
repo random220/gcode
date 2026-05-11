@@ -1,10 +1,15 @@
 #!/bin/bash
 
 cat <<"EOF"
-docker run -v `pwd`:/shared -p 8555:8001 --name fb -h fb --rm pldubouilh/gossa
+
+http://localhost:8555
+
+
 docker run -v `pwd`:/data   -p 8555:5000 --name fb -h fb --rm sigoden/dufs /data -A
-#docker run -v `pwd`:/srv    -p 8555:80   --name fb -h fb --rm filebrowser/filebrowser
-#docker run -v `pwd`:/srv    -p 8555:80   --name fb -h fb --rm gtstef/filebrowser
+docker run -v `pwd`:/shared -p 8555:8001 --name fb -h fb --rm pldubouilh/gossa
+
+#admin/admin
+docker run -v `pwd`:/srv    -p 8555:80   --name fb -h fb --rm gtstef/filebrowser
 EOF
 
 # port=8080
