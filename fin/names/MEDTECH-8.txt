@@ -1,0 +1,14 @@
+ABT     # (Abbott) — Diversified with strong diagnostics + devices segment (e.g.,
+        # FreeStyle Libre, stents, structural heart). Often ranked among top medtech
+        # firms.
+BSX     # (Boston Scientific) — High-growth cardiovascular, endoscopy, and
+        # interventional devices. Classic medtech innovator.
+COO     # (Cooper Companies) — Contact lenses (CooperVision) +
+        # surgical/fertility/women’s health devices (CooperSurgical, including IUDs).
+        # Pure medtech.
+GEHC    # (GE Healthcare) — Medical imaging, ultrasound, diagnostics equipment. Core medtech.
+ISRG    # (Intuitive Surgical) — Da Vinci robotics platform. Elite growth medtech.
+MDT     # (Medtronic) — Pacemakers, insulin pumps, spinal, neuromodulation,
+        # surgical devices. One of the largest pure-play medtech.
+SYK     # (Stryker) — Orthopedics, surgical equipment, neurotech. Strong execution in medtech.
+ZBH     # (Zimmer Biomet) — Orthopedic implants, robotics, musculoskeletal devices. Classic medtech.

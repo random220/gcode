@@ -1,0 +1,12 @@
+ABBV   # (AbbVie) — Pharma (immunology, oncology drugs like Humira, Skyrizi).
+BMY    # (Bristol-Myers Squibb) — Pharma (oncology, immunology).
+CI     # (Cigna) — Health insurance/payer.
+CNC    # (Centene) — Managed care/insurance.
+CVS    # (CVS Health) — Pharmacy retail + insurance/PBM.
+LLY    # (Eli Lilly) — Pharma (GLP-1s like Mounjaro/Zepbound, insulin, oncology).
+MRK    # (Merck) — Pharma (Keytruda, vaccines).
+NVO    # (Novo Nordisk) — Pharma (Ozempic/Wegovy, insulin).
+PFE    # (Pfizer) — Pharma (vaccines, oncology, etc.).
+UNH    # (UnitedHealth) — Insurance + Optum services.
+VRTX   # (Vertex) — Biotech/pharma (cystic fibrosis drugs, etc.).
+ZTS    # (Zoetis) — Animal health (vaccines, medicines for pets/livestock). Pharma-like for animals, not human medtech.
