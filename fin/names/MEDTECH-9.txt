@@ -11,4 +11,5 @@ ISRG    # (Intuitive Surgical) — Da Vinci robotics platform. Elite growth medt
 MDT     # (Medtronic) — Pacemakers, insulin pumps, spinal, neuromodulation,
         # surgical devices. One of the largest pure-play medtech.
 SYK     # (Stryker) — Orthopedics, surgical equipment, neurotech. Strong execution in medtech.
+TMO     # (Thermo Fisher) life sciences tools & diagnostics giant
 ZBH     # (Zimmer Biomet) — Orthopedic implants, robotics, musculoskeletal devices. Classic medtech.
