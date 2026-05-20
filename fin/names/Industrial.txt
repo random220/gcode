@@ -3,6 +3,7 @@
     CAT           # Caterpillar (CAT)
     CBRE          # CBRE Group (CBRE)
     CPRT          # Copart (CPRT)
+    DAL           # Delta Airlines (DAL)
     DE            # Deere & Company (DE)
     ETN           # Eaton (ETN)
     FLR           # Fluor (FLR)

@@ -1,0 +1,11 @@
+SNDK     # Sandisk $SNDK 8x
+PYPL     # PayPal $PYPL 8x
+LULU     # lululemon $LULU 9x
+PATH     # UiPath $PATH 12x
+NVO      # Novo Nordisk $NVO 12x
+DIS      # Walt Disney $DIS 13x
+CRM      # Salesforce $CRM 13x
+JPM      # JPMorgan $JPM 13x
+PEP      # Pepsi $PEP 16x
+AXP      # American Express $AXP 17x
+META     # Meta $META 18x
