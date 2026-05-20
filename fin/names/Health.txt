@@ -30,4 +30,3 @@
     VRTX          # Vertex Pharmaceuticals (VRTX)
     ZBH           # Zimmer Biomet (ZBH)
     ZTS           # Zoetis (ZTS)
-    PSKY          # Sarepta? (PSKY)
