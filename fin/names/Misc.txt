@@ -1,0 +1,10 @@
+    BULL          # Bullfrog AI Holdings (BULL)
+    CTAS          # Cintas (CTAS)
+    DOC           # DocGo (DOC)
+    GEN           # Gen Digital (GEN)
+    GEV           # GE Vernova (GEV)
+    INTU          # Intuit (INTU)
+    LHX           # L3Harris Technologies (LHX)
+    TSLA          # Tesla (TSLA)
+    UBER          # Uber Technologies (UBER)
+

@@ -1,0 +1,8 @@
+    TMUS          # T-Mobile US (TMUS)
+    CMCSA         # Comcast (CMCSA)
+    CHTR          # Charter Communications (CHTR)
+    SIRI          # Sirius XM (SIRI)
+    TTD           # Trade Desk (TTD)
+    RBLX          # Roblox (RBLX)
+    ABNB          # Airbnb (ABNB)
+    BKNG          # Booking Holdings (BKNG)

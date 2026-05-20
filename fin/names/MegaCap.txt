@@ -1,0 +1,6 @@
+    AAPL          # Apple (AAPL)
+    AMZN          # Amazon (AMZN)
+    GOOGL         # Alphabet (GOOG/GOOGL)
+    MSFT          # Microsoft (MSFT)
+    META          # Meta Platforms (META)
+    NFLX          # Netflix (NFLX)

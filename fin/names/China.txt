@@ -1,0 +1,4 @@
+    BABA          # Alibaba Group (BABA)
+    BIDU          # Baidu (BIDU)
+    PDD           # PDD Holdings (PDD)
+    SBGSY         # Samsung Electronics (SBGSY)

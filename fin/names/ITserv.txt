@@ -1,0 +1,5 @@
+    ACN           # Accenture (ACN)
+    ADP           # Automatic Data Processing (ADP)
+    FDS           # FactSet (FDS)
+    IT            # Gartner (IT)
+    MRSH          # Marsh McLennan (MRSH)

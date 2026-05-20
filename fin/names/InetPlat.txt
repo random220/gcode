@@ -1,0 +1,7 @@
+    APP           # AppLovin (APP)
+    PLTR          # Palantir Technologies (PLTR)
+    PDD           # PDD Holdings (PDD)
+    BIDU          # Baidu (BIDU)
+    EBAY          # eBay (EBAY)
+    IREN          # Iris Energy (IREN)
+    MSTR          # MicroStrategy (MSTR)

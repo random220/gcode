@@ -1,0 +1,7 @@
+    AXP           # American Express (AXP)
+    C             # Citigroup (C)
+    CME           # CME Group (CME)
+    MCO           # Moody's (MCO)
+    MS            # Morgan Stanley (MS)
+    BRO           # Brown & Brown (BRO)
+

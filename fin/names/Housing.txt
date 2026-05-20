@@ -1,0 +1,3 @@
+    LEN/B         # Lennar (LEN/LEN.B)
+    LAMR          # Lamar Advertising (LAMR)
+    O             # Realty Income (O)
