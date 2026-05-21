@@ -1,4 +1,5 @@
     APA           # APA Corporation (APA)
+    BE
     CCJ           # Cameco (CCJ)
     CEG           # Constellation Energy (CEG)
     COP           # ConocoPhillips (COP)
@@ -8,6 +9,8 @@
     EOSE          # Eos Energy Enterprises (EOSE)
     EXC           # Exelon (EXC)
     FSLR          # First Solar (FSLR)
+    GEV
+    IREN
     MPLX          # MPLX (MPLX)
     NEE           # NextEra Energy (NEE)
     NNE           # NuScale Energy (NNE)

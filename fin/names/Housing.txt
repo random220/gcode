@@ -1,3 +1,4 @@
-    LEN           # Lennar (LEN/LEN.B)
+    HD            # Home Depot (HD)
     LAMR          # Lamar Advertising (LAMR)
+    LEN           # Lennar (LEN/LEN.B)
     O             # Realty Income (O)
