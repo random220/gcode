@@ -1,13 +1,18 @@
 #!/bin/bash
 cd ~/gcode/fin/names
+mv TODAY.txt TODAY.txt.1 2>/dev/null
+
+[[ -f 00NOW.txt ]] || {  echo no 00NOW.txt; exit; }
 ../nms 00NOW.txt | grep '^ '|tr ' ' '\n'|sort -u >.now.txt
 mv 00NOW.txt 00NOW.txt.1
-mv TODAY.txt TODAY.txt.1
+
 cat *.txt >.all.txt.1
 ../nms .all.txt.1 | grep '^ '|tr ' ' '\n'|sort -u >.all.txt
 rm -f .all.txt.1
+
 mv 00NOW.txt.1 00NOW.txt
-mv TODAY.txt.1 TODAY.txt
+mv TODAY.txt.1 TODAY.txt 2>/dev/null
+
 comm -23 .now.txt .all.txt
 rm -f .now.txt .all.txt
 
