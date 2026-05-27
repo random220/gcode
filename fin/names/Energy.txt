@@ -1,5 +1,5 @@
     APA           # APA Corporation (APA)
-    BE
+    BE            # Bloom Energy
     CCJ           # Cameco (CCJ)
     CEG           # Constellation Energy (CEG)
     COP           # ConocoPhillips (COP)
@@ -7,6 +7,7 @@
     DUK           # Duke Energy (DUK)
     ENPH          # Enphase Energy (ENPH)
     EOSE          # Eos Energy Enterprises (EOSE)
+    ETN           # Eaton (ETN)
     EXC           # Exelon (EXC)
     FSLR          # First Solar (FSLR)
     GEV

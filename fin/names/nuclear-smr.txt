@@ -1,0 +1,24 @@
+# 1. NuScale Power $SMR
+# 2. Oklo $OKLO
+# 3. ASP Isotopes $ASPI
+# 4. X-Energy $XE
+# 5. Nano Nuclear Energy $NNE
+# 6. Lightbridge $LTBR
+# 7. Centrus Energy $LEU
+# 8. Honorable mentions like $CEG , $CCJ , $BWXT , and others
+# 9. ETFs include $URA , $NLR , $URNM , and $NUKZ
+
+ASPI
+BWXT
+CCJ
+CEG
+LEU
+LTBR
+NLR
+NNE
+NUKZ
+OKLO
+SMR
+URA
+URNM
+XE

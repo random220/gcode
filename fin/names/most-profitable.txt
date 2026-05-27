@@ -1,0 +1,23 @@
+# The World’s Most Profitable Companies:
+# 
+# 1. Texas Pacific $TPL : 64%
+# 2. CME Group $CME : 62%
+# 3. NVIDIA $NVDA : 57%
+# 4. Visa $V : 56%
+# 5. Franco-Nevada $FNV : 56%
+# 6. Evolution Gaming $EVVTY : 54%
+# 7. Broadcom $AVGO : 51%
+# 8. Mastercard $MA : 48%
+# 9. MSCI $MSCI : 42%
+# 10. Microsoft $MSFT : 36
+
+AVGO
+CME
+EVVTY
+FNV
+MA
+MSCI
+MSFT
+NVDA
+TPL
+V
