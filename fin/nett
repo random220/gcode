@@ -1,0 +1,7 @@
+#!/bin/bash
+cd  ~/gcode/fin || exit
+bash readme.txt
+./ana4.py
+./buys
+open buysell-dollars.tsv
+
