@@ -1,7 +1,8 @@
     AXP           # American Express (AXP)
+    BRO           # Brown & Brown (BRO)
     C             # Citigroup (C)
+    CBOE          # Cboe Global Markets
     CME           # CME Group (CME)
+    ICE           # Intercontinental Exchange
     MCO           # Moody's (MCO)
     MS            # Morgan Stanley (MS)
-    BRO           # Brown & Brown (BRO)
-

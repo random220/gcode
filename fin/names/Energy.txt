@@ -17,6 +17,7 @@
     NNE           # NuScale Energy (NNE)
     OKLO          # Oklo (OKLO)
     OXY           # Occidental Petroleum (OXY)
+    PWR
     SMR           # NuScale Power (SMR)
     TLN           # Talen Energy (TLN)
     VST           # Vistra (VST)
