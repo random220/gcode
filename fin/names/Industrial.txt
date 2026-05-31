@@ -1,7 +1,7 @@
     AGX           # Argan (AGX)
     ALLE          # Allegion (ALLE)
     CAT           # Caterpillar (CAT)
-    CBRE          # CBRE Group (CBRE)
+    CBRE          # CBRE Group (CBRE). World's largest commercial real estate services company
     CPRT          # Copart (CPRT)
     DAL           # Delta Airlines (DAL)
     DE            # Deere & Company (DE)
