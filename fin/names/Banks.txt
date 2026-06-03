@@ -11,7 +11,7 @@
     ALL           # Allstate (ALL)
     KNSL          # Kinsale Capital Group (KNSL)
     MKL           # Markel (MKL)
-    WRB           # W. R. Berkley (WRB)
+    WRB           # W. R. Berkley. Insurance holding. Narrow/moderate moat
     TFC           # Truist Financial (TFC)
     COF           # Capital One (COF)
     SYF           # Synchrony Financial (SYF)
