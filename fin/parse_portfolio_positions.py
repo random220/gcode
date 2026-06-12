@@ -6,6 +6,29 @@ import csv
 from collections import defaultdict
 from pathlib import Path
 
+def find_latest_portfolio_positions() -> Path | None:
+    """Search ~/Desktop/x, ~/Desktop, and ~/Downloads (in that order)
+    for Portfolio_Positions*.csv files and return the most recently
+    modified one, or None if no matches are found.
+    """
+    search_dirs = [
+        Path.home() / "Desktop" / "x",
+        Path.home() / "Desktop",
+        Path.home() / "Downloads",
+    ]
+    candidates: list[Path] = []
+    for d in search_dirs:
+        if d.is_dir():
+            for match in d.glob("Portfolio_Positions*.csv"):
+                if match.is_file():
+                    candidates.append(match)
+    if not candidates:
+        return None
+    # Most recent first by modification time
+    candidates.sort(key=lambda p: p.stat().st_mtime, reverse=True)
+    return candidates[0]
+
+
 TAX_GROUPS: list[tuple[str, str]] = [
     ("anaya", "Anaya accounts"),
     ("brok", "Brokerage accounts"),
@@ -138,8 +161,12 @@ def main() -> None:
     parser.add_argument(
         "input",
         nargs="?",
-        default="Portfolio_Positions_Jun-11-2026.csv",
-        help="Input Fidelity portfolio positions CSV",
+        default=None,
+        help=(
+            "Optional explicit path to a Portfolio Positions CSV. "
+            "If omitted, searches ~/Desktop/x, ~/Desktop, and ~/Downloads "
+            "for the newest Portfolio_Positions*.csv file."
+        ),
     )
     parser.add_argument(
         "-o",
@@ -154,8 +181,29 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    input_path = Path(args.input)
-    output_path = Path(args.output)
+    if args.input:
+        input_path = Path(args.input).expanduser()
+    else:
+        latest = find_latest_portfolio_positions()
+        if latest:
+            input_path = latest
+            print(f"Using most recent file: {input_path}")
+        else:
+            print(
+                "No Portfolio_Positions*.csv files found in "
+                "~/Desktop/x, ~/Desktop, or ~/Downloads."
+            )
+            user_input = input("Enter path to Portfolio Positions CSV file: ").strip()
+            if not user_input:
+                print("No input file provided. Exiting.")
+                return
+            input_path = Path(user_input).expanduser()
+
+    if not input_path.exists():
+        print(f"Error: Input file not found: {input_path}")
+        return
+
+    output_path = Path(args.output).expanduser()
 
     totals = parse_portfolio_positions(input_path)
 
