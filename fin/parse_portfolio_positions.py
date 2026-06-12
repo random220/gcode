@@ -7,11 +7,12 @@ from collections import defaultdict
 from pathlib import Path
 
 def find_latest_portfolio_positions() -> Path | None:
-    """Search ~/Desktop/x, ~/Desktop, and ~/Downloads (in that order)
-    for Portfolio_Positions*.csv files and return the most recently
-    modified one, or None if no matches are found.
+    """Search the current directory, ~/Desktop/x, ~/Desktop, and ~/Downloads
+    for Portfolio_Positions*.csv files. Return the most recently modified
+    matching file found across any of the locations, or None if none exist.
     """
     search_dirs = [
+        Path.cwd(),
         Path.home() / "Desktop" / "x",
         Path.home() / "Desktop",
         Path.home() / "Downloads",
@@ -164,8 +165,8 @@ def main() -> None:
         default=None,
         help=(
             "Optional explicit path to a Portfolio Positions CSV. "
-            "If omitted, searches ~/Desktop/x, ~/Desktop, and ~/Downloads "
-            "for the newest Portfolio_Positions*.csv file."
+            "If omitted, searches the current directory, ~/Desktop/x, "
+            "~/Desktop, and ~/Downloads for the newest Portfolio_Positions*.csv file."
         ),
     )
     parser.add_argument(
@@ -190,13 +191,17 @@ def main() -> None:
             print(f"Using most recent file: {input_path}")
         else:
             print(
-                "No Portfolio_Positions*.csv files found in "
+                "No Portfolio_Positions*.csv files found in the current directory, "
                 "~/Desktop/x, ~/Desktop, or ~/Downloads."
             )
-            user_input = input("Enter path to Portfolio Positions CSV file: ").strip()
-            if not user_input:
-                print("No input file provided. Exiting.")
+            try:
+                user_input = input("Enter path to Portfolio Positions CSV file: ").strip()
+            except (KeyboardInterrupt, EOFError):
                 return
+
+            if not user_input or user_input == ".":
+                return
+
             input_path = Path(user_input).expanduser()
 
     if not input_path.exists():
