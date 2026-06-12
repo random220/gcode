@@ -1,2 +1,12 @@
-BRK/B
-UNP
+ADP     # Automatic Data Proce...
+AON     # Aon Class A
+BRK/B   # Berkshire Hathaway C...
+BRO     # Brown & Brown
+CBOE    # Cboe Global Markets
+CME     # Cme Group Class A
+ICE     # Intercontinental Exch...
+KO      # Coca-Cola
+MCD     # McDonald's
+RSG     # Republic Services
+UNP     # Union Pacific
+WM      # Waste Management
