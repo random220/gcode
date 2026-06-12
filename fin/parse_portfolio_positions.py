@@ -2,6 +2,7 @@
 
 """Parse a Fidelity Portfolio Positions CSV and sum Current Value per account."""
 
+from __future__ import annotations
 import argparse
 import csv
 from collections import defaultdict
@@ -135,21 +136,20 @@ def write_grouped_account_totals(
 ) -> None:
     with output_path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.writer(handle)
-        writer.writerow(["Account-Name", "Value", "Group-Total"])
+        writer.writerow(["Group", "Account-Name", "Value", "Group-Total"])
 
-        for group_id, _ in TAX_GROUPS:
+        for group_id, label in TAX_GROUPS:
             accounts = grouped[group_id]
             if not accounts:
                 continue
 
-            writer.writerow(["", ""])
-
             group_total = 0.0
-            for account_name, value in accounts:
-                writer.writerow([account_name, format_value(value)])
+            for i, (account_name, value) in enumerate(accounts):
+                current_label = label if i == 0 else ""
+                writer.writerow([current_label, account_name, format_value(value), ""])
                 group_total += value
 
-            writer.writerow(["", "", format_value(group_total)])
+            writer.writerow(["", "", "", format_value(group_total)])
 
 
 def main() -> None:
