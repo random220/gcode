@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """Parse a Fidelity Portfolio Positions CSV and sum Current Value per account."""
 
 import argparse
