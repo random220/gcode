@@ -85,10 +85,7 @@ def classify_account(account_name: str) -> str:
 
 
 def format_value(value: float) -> str:
-    if value == 0:
-        return "0"
-    text = f"{value:.2f}"
-    return text.rstrip("0").rstrip(".")
+    return f"${value:,.2f}"
 
 
 def parse_portfolio_positions(input_path: Path) -> dict[str, float]:
