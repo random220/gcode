@@ -1,4 +1,5 @@
     COIN          # Coinbase (COIN)
+    CRCL          # Circle Internet Group, the company behind the USDC stablecoin.
     FICO          # Fair Isaac Corporation (FICO)
     FISV          # Fiserv (FISV)
     FOUR          # Shift4 Payments (FOUR)
