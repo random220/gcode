@@ -135,7 +135,7 @@ def write_grouped_account_totals(
 ) -> None:
     with output_path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.writer(handle)
-        writer.writerow(["Account-Name", "Value"])
+        writer.writerow(["Account-Name", "Value", "Group-Total"])
 
         for group_id, _ in TAX_GROUPS:
             accounts = grouped[group_id]
@@ -149,8 +149,7 @@ def write_grouped_account_totals(
                 writer.writerow([account_name, format_value(value)])
                 group_total += value
 
-            writer.writerow(["", ""])
-            writer.writerow(["", format_value(group_total)])
+            writer.writerow(["", "", format_value(group_total)])
 
 
 def main() -> None:
