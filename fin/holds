@@ -4,13 +4,38 @@ import sys
 import json
 import re
 import csv
+import os
+import glob
 
-if len(sys.argv) == 1:
-    print('Need "Overview" downloaded from https://digital.fidelity.com/ftgw/digital/portfolio/positions')
-    sys.exit(0)
+input_file = None
+if len(sys.argv) > 1:
+    candidate = sys.argv[1]
+    if os.path.isfile(candidate):
+        input_file = candidate
+    else:
+        print(f"Error: Provided file '{candidate}' does not exist.", file=sys.stderr)
+        sys.exit(1)
+
+if not input_file:
+    dirs_to_check = ['~', '~/Desktop', '~/Desktop/x', '~/Downloads', '.']
+    matching_files = []
+    for d in dirs_to_check:
+        expanded_dir = os.path.expanduser(d)
+        pattern = os.path.join(expanded_dir, 'Portfolio_Positions*.csv')
+        matching_files.extend(glob.glob(pattern))
+    
+    unique_files = list(set(os.path.abspath(f) for f in matching_files if os.path.isfile(f)))
+    
+    if unique_files:
+        input_file = max(unique_files, key=os.path.getmtime)
+        print(f"Using latest file: {input_file}", file=sys.stderr)
+    else:
+        print('Need "Overview" downloaded from https://digital.fidelity.com/ftgw/digital/portfolio/positions', file=sys.stderr)
+        print('Could not find any Portfolio_Positions*.csv file in ~, ~/Desktop, ~/Desktop/x, ~/Downloads, or .', file=sys.stderr)
+        sys.exit(1)
 
 things = {}
-with open(sys.argv[1], 'rt', encoding='utf-8') as f:
+with open(input_file, 'rt', encoding='utf-8') as f:
     csvFile = csv.DictReader(f)
     for line in csvFile:
         # print(json.dumps(line, indent=2))
