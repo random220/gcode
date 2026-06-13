@@ -1,6 +1,30 @@
 #!/bin/bash
 
+# Default container name
 h=rl
+
+# Parse options
+ARGS=()
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -c)
+            if [[ -n "$2" ]]; then
+                h="$2"
+                shift 2
+            else
+                echo "Error: -c requires a container name." >&2
+                exit 1
+            fi
+            ;;
+        *)
+            ARGS+=("$1")
+            shift
+            ;;
+    esac
+done
+
+# Re-set positional parameters
+set -- "${ARGS[@]}"
 
 ensure_docker_running() {
     if [[ $(uname) == 'Darwin' ]]; then
@@ -10,6 +34,51 @@ ensure_docker_running() {
     fi
 }
 ensure_docker_running
+
+find_free_port() {
+    local base_port=$1
+    local port=$base_port
+    if [[ "$h" == "rl" ]]; then
+        echo "$base_port"
+        return
+    fi
+
+    # If it's the SSH port (3022), check ssh config first for persistence
+    if [[ $base_port -eq 3022 ]]; then
+        local existing_port=$(awk -v host="$h" '
+            tolower($1) == "host" && $2 == host {found=1; next}
+            tolower($1) == "host" {found=0}
+            found && tolower($1) == "port" {print $2; exit}
+        ' ~/.ssh/config 2>/dev/null)
+        if [[ -n "$existing_port" ]]; then
+            echo "$existing_port"
+            return
+        fi
+        # Start searching from 3023 for other containers
+        port=3023
+    fi
+    while true; do
+        # Check if port is in ssh config
+        if grep -E "^[ \t]*Port[ \t]+$port$" ~/.ssh/config >/dev/null 2>&1; then
+            ((port++))
+            continue
+        fi
+        # Check if port is already mapped in docker ps
+        if docker ps --format '{{.Ports}}' | grep -E "(^|:)$port->" >/dev/null 2>&1; then
+            ((port++))
+            continue
+        fi
+        # Check if port is in use on the host system
+        if ss -tln 2>/dev/null | grep -q ":$port " >/dev/null 2>&1 || nc -z 127.0.0.1 "$port" >/dev/null 2>&1; then
+            ((port++))
+            continue
+        fi
+        echo "$port"
+        return
+    done
+}
+
+ssh_port=$(find_free_port 3022)
 
 runit() {
     if [[ "$1" == '' ]] || [[ "$1" == '0'  ]] ; then
@@ -47,23 +116,26 @@ if [ $? -ne 0 ]; then
 fi
 
 docker network inspect day0 >/dev/null 2>&1 || docker network create day0
-docker run --network day0 -itd --name $h -h $h -p 3022:22 -p 8888:8888 myrl
+echo "Creating container '$h' mapping Host SSH port $ssh_port -> 22..."
+docker run --network day0 -itd --name $h -h $h -p $ssh_port:22 myrl
 
 umask 077
-rm -rf ~/.ssh/rl
-mkdir -p ~/.ssh/rl
-ssh-keygen -t ed25519 -N '' -f ~/.ssh/rl/id_ed25519
-docker cp ~/.ssh/rl/id_ed25519.pub $h:/tmp/pubkey
+keydir="$HOME/.ssh/rl_$h"
+if [[ ! -f "$keydir/id_ed25519" ]]; then
+    mkdir -p "$keydir"
+    ssh-keygen -t ed25519 -N '' -f "$keydir/id_ed25519"
+fi
+docker cp "$keydir/id_ed25519.pub" $h:/tmp/pubkey
 
-egrep '^Host[ \t]+rl$' ~/.ssh/config >/dev/null 2>&1
+egrep "^Host[ \t]+$h$" ~/.ssh/config >/dev/null 2>&1
 if [[ $? != 0 ]]; then
-    cat <<"EOF" >>~/.ssh/config
+    cat <<EOF >>~/.ssh/config
 
-Host rl
+Host $h
     Hostname 0.0.0.0
-    Port 3022
+    Port $ssh_port
     User om
-    IdentityFile ~/.ssh/rl/id_ed25519
+    IdentityFile ~/.ssh/rl_$h/id_ed25519
 
 EOF
 fi
