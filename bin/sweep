@@ -1,5 +1,75 @@
 #!/bin/bash
 
+# ==============================================================================
+# SWEEP: Parallel SSH Command Executor
+# ==============================================================================
+#
+# Description:
+#   Runs shell commands or scripts concurrently on multiple remote servers
+#   via SSH and saves the output of each host in a local directory.
+#
+# Requirements:
+#   - A target hosts file (defaults to 'b.txt') containing one host per line.
+#   - Passwordless SSH access configured (uses key ~/.ssh/id_rsa by default).
+#
+# Usage:
+#   ./sweep
+#       Runs on all hosts in 'b.txt' using 100 parallel threads.
+#
+#   ./sweep <num_threads>
+#       Runs on all hosts in 'b.txt' using the specified number of threads.
+#
+#   ./sweep <host1> <host2> ...
+#       Runs the configured command on the specified list of hosts directly.
+#
+# Output:
+#   All execution logs are written to the local '.x/' directory,
+#   formatted as '.x/<hostname>.host'.
+#
+# Usecase & Comparison (vs. Ansible):
+#   Think of Sweep as a fast, lightweight utility knife for querying info or
+#   running simple scripts when you don't want to deal with Ansible setup.
+#   Think of Ansible as a heavy-duty factory for building, maintaining, and
+#   deploying complex server configurations.
+#
+#   - When to use Sweep (The Usecases):
+#     * Ad-Hoc Diagnostic Sweeps: If you just need to run a quick, read-only
+#       diagnostic command (like checking logs/disk space) across 500 servers
+#       right now, Sweep is much faster to get moving.
+#     * Zero Configuration: No host inventories or YAML playbooks needed. Just
+#       throw IPs into a text file and run ./sweep.
+#     * Zero Dependencies: Runs anywhere with standard bash, xargs, and ssh.
+#       No Python installation required on the target nodes or control box.
+#     * Raw Speed: Zero framework overhead. It spins up simple background ssh
+#       subshells directly.
+#
+#   - When to use Ansible instead:
+#     * Configuration Management & Idempotency: Ansible brings servers to a
+#       specific state and won't repeat work if already done. Sweep blindly runs
+#       commands every single time.
+#     * Complex Workflows: Ansible supports multi-step playbooks, templated configs,
+#       loops, and handlers. Sweep only runs a single command string or script.
+#     * Error Handling & State Tracking: Ansible parses success/failure and gives
+#       a clean color-coded report. Sweep just dumps raw log files in .x/ for you
+#       to inspect manually.
+#     * Security: Ansible Vault handles encrypted secrets. Sweep hardcodes them
+#       in plain text.
+#
+# Technical Details:
+#   - Batching & Concurrency: When batching, the script uses `xargs` to segment
+#     the host list and recursively invoke itself. Individual SSH commands
+#     are executed as background processes ('&'), with a final 'wait' to block-
+#     join them per batch.
+#   - Connection Configuration: SSH parameters include '-oBatchMode=yes',
+#     '-o PasswordAuthentication=no', '-o ConnectTimeout=10', and interactive
+#     terminal allocation ('-t'). Runs under user 'om'.
+#   - Command Executed: Currently configured to query OS metadata and root disk
+#     usage ('cat /etc/lsb-release; df -kh /').
+#   - Helper Functions: Includes unused helpers for printing system core/memory
+#     info and cleaning up apt package lists.
+#
+# ==============================================================================
+
 #set -x
 
 THREADS=100
