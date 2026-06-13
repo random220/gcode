@@ -5,4 +5,4 @@ scp ~/b/om/raw/Miniconda3-py313_26.3.2-2-Linux-aarch64.sh rlg:.
 ssh -t rlg 'bash ~/Miniconda3-py313_26.3.2-2-Linux-aarch64.sh -b -c'
 ssh -t rlg 'rm ~/Miniconda3-py313_26.3.2-2-Linux-aarch64.sh; mkdir ~/x'
 ssh -t rlg 'curl -fsSL https://x.ai/cli/install.sh | bash'
-echo 'sh rlg -> cd ~/x -> grok'
+echo 'ssh rlg -> cd ~/x -> grok'
