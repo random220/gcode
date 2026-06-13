@@ -1,0 +1,8 @@
+#!/bin/bash
+rl0
+rl echo
+scp ~/b/om/raw/Miniconda3-py313_26.3.2-2-Linux-aarch64.sh rl:.
+ssh -t rl 'bash ~/Miniconda3-py313_26.3.2-2-Linux-aarch64.sh -b -c'
+ssh -t rl 'curl -fsSL https://antigravity.google/cli/install.sh | bash'
+ssh -t rl 'rm ~/Miniconda3-py313_26.3.2-2-Linux-aarch64.sh; mkdir ~/x'
+echo 'rl -> cd ~/x -> agy'
