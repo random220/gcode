@@ -3,6 +3,29 @@
 # Default container name
 h=rl
 
+show_help() {
+    cat <<EOF
+Usage: rl [-c <container_name>] [-h|--help] [command]
+       rl [-c <container_name>] 0
+
+A launcher/wrapper script for managing Rocky Linux 9-based Docker development containers.
+
+Options:
+  -c <name>   Specify a custom container name (defaults to 'rl').
+  -h, --help  Show this help message and exit.
+
+Arguments:
+  0           If the first argument after options is '0', the container (and local image) will be cleaned up/removed.
+  [command]   Optional command to run inside the container. If omitted, starts an interactive bash shell.
+
+SSH Access:
+  The script automatically configures Host SSH keys and appends an entry to your ~/.ssh/config.
+  Once the container is running, you can connect directly using:
+      ssh <container_name>
+
+EOF
+}
+
 # Parse options
 ARGS=()
 while [[ $# -gt 0 ]]; do
@@ -15,6 +38,10 @@ while [[ $# -gt 0 ]]; do
                 echo "Error: -c requires a container name." >&2
                 exit 1
             fi
+            ;;
+        -h|--help)
+            show_help
+            exit 0
             ;;
         *)
             ARGS+=("$1")
