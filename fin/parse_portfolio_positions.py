@@ -22,7 +22,7 @@ def find_latest_portfolio_positions() -> Path | None:
     candidates: list[Path] = []
     for d in search_dirs:
         if d.is_dir():
-            for match in d.glob("Portfolio_Positions*.csv"):
+            for match in d.glob("Portfolio*Positions*.csv"):
                 if match.is_file():
                     candidates.append(match)
     if not candidates:
