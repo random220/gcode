@@ -1,7 +1,7 @@
 #!/bin/bash
 noprox
 sleep 1
-pkill -f -9 ssh
+pkill -9 ssh
 tmux new-session -s ssh -d bash -c 'ssh -D 9999 tron'
 sleep 1
 prox -d 9999
