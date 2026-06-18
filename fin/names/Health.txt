@@ -24,6 +24,7 @@
     NVO           # Novo Nordisk (NVO)
     PFE           # Pfizer (PFE)
     RMD           # ResMed (RMD)
+    STE           # Steris. Sterilization service
     SYK           # Stryker (SYK)
     TMO           # Thermo Fisher Scientific (TMO)
     UNH           # UnitedHealth Group (UNH)
