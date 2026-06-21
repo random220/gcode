@@ -2,6 +2,16 @@
 noprox
 sleep 1
 pkill -9 ssh
+
+sudo networksetup -removepreferredwirelessnetwork en0 "Comfort Inn WIFI Guest"
+networksetup -setairportpower en0 off
+echo 'wait for 5 seconds ...'
+sleep 5
+networksetup -setairportpower en0 on
+echo 'wait for 5 seconds again ...'
+sleep 5
+networksetup -setairportnetwork en0 "Comfort Inn WIFI Guest"
+read -p 'press something: ' x
 tmux new-session -s ssh -d bash -c 'ssh -D 9999 tron'
 sleep 1
 prox -d 9999
