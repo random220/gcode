@@ -1,0 +1,9 @@
+AAPL     # SAAPL owns consumer device ecosystem
+AMZN     # $AMZN owns cloud and logistics layer
+AVGO     # SAVGO owns custom silicon & Al networking
+GOOGL    # $GOOGL owns search, data & TPU layer
+MSFT     # $MSFT owns enterprise Al distribution layer
+NVDA     # $NVDA owns Al accelerator layer
+SPCX     # $SPCX owns space, satellite & launch infrastructure layer
+TSLA     # $TSLA owns EV & autonomy layer
+TSM      # $TSM owns leading-edge manufacturing
