@@ -1,7 +1,11 @@
 #!/bin/bash
+
+sudo echo 'Root access worked. Proceeding ...' || { echo 'Could not get root access'; exit; }
+
 noprox
 sleep 1
 pkill -9 ssh
+
 
 sudo networksetup -removepreferredwirelessnetwork en0 "Comfort Inn WIFI Guest"
 networksetup -setairportpower en0 off
