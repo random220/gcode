@@ -5,3 +5,4 @@
 .lesshst
 .viminfo
 .*swp
+__pycache__
