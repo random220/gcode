@@ -1,5 +1,32 @@
 #!/usr/bin/env python3
-"""FIFO transaction matching and cutoff-period profit/loss attribution."""
+"""FIFO transaction matching and cutoff-period profit/loss attribution.
+
+Profit/loss attribution
+-----------------------
+Closing trades are matched against open lots in FIFO order, separately for long
+and short positions per (account, symbol). Realized P&L on each matched slice is
+cash-flow based::
+
+    profit = matched_qty * (closing_unit_cash + opening_unit_cash)
+
+where unit cash is ``Amount ($) / quantity`` from the broker row (signs included).
+This is not mark-to-market; it assumes broker amounts are final net cash per share
+(or per contract, if the export already applies contract multipliers).
+
+Cutoff semantics
+----------------
+The cutoff date partitions **opening** lots by their Run Date:
+
+    Run Date < cutoff  -> pre-cutoff (opened before the cutoff)
+    Run Date >= cutoff -> post-cutoff (opened on or after the cutoff)
+
+When a closing trade spans lots from both sides, quantities and profits are split
+accordingly. Output rows are filtered to ``Run Date >= cutoff``; the summary
+aggregates closing trades in that filtered set.
+
+Settlement Date is used only to break ties when sorting same-day rows; it does not
+affect FIFO lot dating or cutoff attribution.
+"""
 
 import argparse
 import csv
@@ -112,7 +139,11 @@ def is_relevant_account(account, account_num):
 
 
 def transaction_sort_key(tx):
-    """Provide a total, reproducible order when exports contain date-only timestamps."""
+    """Provide a total, reproducible order when exports contain date-only timestamps.
+
+    Ordering is Run Date, then Settlement Date (tiebreaker only — not used for
+    cutoff attribution), then source file name, then source row number.
+    """
     settlement = tx.get("settlement_date") or datetime.max
     return (
         tx["run_date"],
@@ -217,7 +248,12 @@ def load_transactions(input_dir):
 
 
 def _position_side(tx, positions):
-    """Resolve opening/closing intent and the position side affected."""
+    """Resolve opening/closing intent and the position side affected.
+
+    Explicit OPENING/CLOSING tags in the action string take precedence. When
+    absent, a trade is treated as closing if opposite-side lots exist for the
+    same (account, symbol); otherwise it opens a new lot on the action's side.
+    """
     action_side = tx["action_side"]
     key = (tx["account_num"], tx["symbol"])
 
@@ -261,7 +297,17 @@ def _validate_lot(lot):
 
 
 def match_transactions(transactions, cutoff_date):
-    """Apply direction-aware FIFO matching and validate quantity conservation."""
+    """Apply direction-aware FIFO matching and validate quantity conservation.
+
+    Open lots are keyed by (account, symbol, position side) and consumed in FIFO
+    order. Each matched slice uses the cash-flow P&L formula documented in the
+    module docstring. Attribution to pre- vs post-cutoff buckets depends solely
+    on the opening lot's Run Date relative to ``cutoff_date`` (exclusive below,
+    inclusive on/after).
+
+    Closing quantity with no matching open lots is labeled pre-existing; its
+    profit is recorded as ``Unknown`` because no opening cash flow is available.
+    """
     positions = {}
     results = []
     warnings = []
