@@ -1,0 +1,12 @@
+#!/bin/bash
+docker rm -f rlc
+rl -c rlc echo
+scp ~/b/om/raw/Miniconda3-py313_26.3.2-2-Linux-aarch64.sh rlc:.
+ssh -t rlc 'bash ~/Miniconda3-py313_26.3.2-2-Linux-aarch64.sh -b -c'
+ssh -t rlc 'rm ~/Miniconda3-py313_26.3.2-2-Linux-aarch64.sh; mkdir ~/x'
+ssh -t rlc 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash'
+ssh -t rlc 'nvm install v24.18.0'
+ssh -t rlc 'nvm alias default v24.18.0'
+ssh -t rlc 'npm i -g @openai/codex'
+ssh -t rlc 'sudo dnf install -y bubblewrap'
+echo 'ssh rlc -> cd ~/x -> codex'
