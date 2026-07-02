@@ -8,12 +8,28 @@ Writes combined filtered rows to input.csv using the header from the first file.
 """
 
 import csv
+import re
 import sys
 from pathlib import Path
 from typing import Any
 
 
 HEADER_KEY = "Run Date"
+DATE_FIELDS = {"Run Date", "Settlement Date"}
+
+
+def normalize_date(value: str) -> str:
+    """Convert hyphenated MM-DD-YYYY dates (e.g. 07-01-2026) to slashed MM/DD/YYYY.
+
+    Leaves already-correct values, empty strings, and non-date values unchanged.
+    """
+    if not value or "-" not in value:
+        return value
+    # US-style month-day-year with hyphens (1 or 2 digit month/day)
+    if re.fullmatch(r"\d{1,2}-\d{1,2}-\d{4}", value):
+        return value.replace("-", "/")
+    return value
+
 
 
 def read_trades(path: str | Path) -> tuple[list[str], list[dict[str, str]]]:
@@ -47,7 +63,11 @@ def read_trades(path: str | Path) -> tuple[list[str], list[dict[str, str]]]:
         # Action is column index 3
         action = row[3]
         if "BOUGHT" in action or "SOLD" in action:
-            trades.append(dict(zip(header, row)))
+            trade = dict(zip(header, row))
+            for field in DATE_FIELDS:
+                if field in trade:
+                    trade[field] = normalize_date(trade[field])
+            trades.append(trade)
 
     return header, trades
 
