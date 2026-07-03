@@ -1,0 +1,4 @@
+#!/bin/bash
+gcloud projects list
+gcloud compute instances list
+

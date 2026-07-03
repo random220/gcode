@@ -1,0 +1,3 @@
+#!/bin/bash
+gcloud compute ssh --zone "us-central1-a" "vm1" --project "myfree-501315"
+

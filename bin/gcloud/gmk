@@ -1,0 +1,8 @@
+#!/bin/bash
+gcloud compute instances create vm1 \
+    --zone=us-central1-a \
+    --machine-type=e2-micro \
+    --image-family=debian-12 \
+    --image-project=debian-cloud \
+    --tags=ssh-server
+
