@@ -1,5 +1,6 @@
 #!/bin/bash
 gcloud compute instances create vm1 \
+    --project=myfree-501315 \
     --zone=us-central1-a \
     --machine-type=e2-micro \
     --image-family=debian-12 \
