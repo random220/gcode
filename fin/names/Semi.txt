@@ -1,36 +1,52 @@
-# Power
-    MPWR          # Monolithic Power designs analog and power-management chips
-    TXN           # Texas Instruments (TXN)
-    ON            # Onto Innovation (ON)
-    ADI           # Analog devices
+# Semiconductor Infrastructure (Highest quality)
 
-# Silicon Photonics
-    COHR          # Coherent
-    LITE          # Lumentum
-    NOK           # Nokia
-    IPGP          # IPG Photonics
-    LASR          # nLight
-
-# Single source
-    ASML          # ASML (ASML)
-    CDNS          # Cadence
-    SNPS          # Synonpis
-
-# Others
-    NVDA          # NVIDIA (NVDA)
-    AMD           # Advanced Micro Devices (AMD)
-    AVGO          # Broadcom (AVGO)
-    TSM           # Taiwan Semiconductor Manufacturing Company (TSM)
-    AMAT          # Applied Materials (AMAT)
-    LRCX          # Lam Research (LRCX)
-    MRVL          # Marvell Technology (MRVL)
-    CRDO          # Credo Technology Group (CRDO)
-    ANET          # Arista Networks (ANET)
-    SMCI          # Super Micro Computer (SMCI)
-    ARM           # Arm Holdings (ARM)
-    MU            # Micron Technology (MU)
-    QCOM          # Qualcomm (QCOM)
-    INTC          # Intel (INTC)
-    PLAB          # Photronics (PLAB)
-    NVTS          # Navitas Semiconductor (NVTS)
-    ALAB          # Astera Labs (ALAB)
+    ASML          # 10.0 Sole supplier of leading-edge EUV lithography; perhaps the strongest moat in semis.           
+    SNPS          # 10.0 Mission-critical EDA software; deeply embedded, recurring revenue, AI beneficiary.            
+    CDNS          # 10.0 EDA duopoly with exceptional execution and switching costs.                                   
+    TSM           # 9.8  World's best foundry; unmatched manufacturing scale and execution.                            
+    AVGO          # 9.8  Mission-critical networking, RF and custom silicon; elite capital allocation.                 
+    AMAT          # 9.5  Broad semiconductor equipment leader with durable process know-how.                           
+    LRCX          # 9.5  Etch/deposition leader with strong customer lock-in and high margins.                         
+    ANET          # 9.5  Datacenter networking leader; outstanding execution and software differentiation.             
+                         
+# Analog / Power (Steady compounders)
+                         
+    TXN           # 9.8  Analog leader with unmatched manufacturing footprint and decades-long product lives.          
+    ADI           # 9.6  High-end analog franchise with sticky industrial and automotive customers.                    
+    MPWR          # 9.5  Best-in-class power management execution; benefiting from AI and electrification.             
+    ON            # 8.8  Automotive and power semiconductor leader; execution much improved, still cyclical.           
+                         
+# Optical / SiliconPhotonics
+                         
+    COHR          # 8.8  Broad photonics leader with AI tailwinds; solid moat but earnings remain cyclical.            
+    LITE          # 8.5  Optical networking components leader; leveraged to AI optics but highly cyclical.             
+    IPGP          # 8.0  Fiber laser pioneer with strong technology but facing pricing pressure and competition.       
+    LASR          # 7.2  Differentiated defense/industrial lasers; niche player with execution risk.                   
+    NOK           # 7.0  Telecom infrastructure company with growing optical assets; not really a pure photonics play. 
+                         
+# Compute / AI Platforms
+                         
+    NVDA          # 9.9  AI computing ecosystem leader with exceptional execution and software moat.                   
+    AMD           # 9.3  Outstanding challenger with improving execution and expanding AI position.                    
+    ARM           # 9.3  CPU architecture royalty model with enormous ecosystem lock-in.                               
+    QCOM          # 9.0  Wireless IP powerhouse diversifying into automotive and PCs.                                  
+                         
+# Memory                 
+                         
+    MU            # 8.8  Best-managed memory producer; excellent long-term industry structure but cyclical.            
+                         
+# AI Connectivity        
+                         
+    MRVL          # 8.8  Custom silicon and optical connectivity leader; strong AI exposure but execution uneven.      
+    CRDO          # 8.7  High-speed connectivity specialist with excellent products and significant growth runway.     
+    ALAB          # 8.2  AI server connectivity leader with outstanding technology but still proving durability.       
+                         
+# Semiconductor Supply Chain
+                         
+    PLAB          # 8.7  Essential photomask supplier with niche moat and conservative execution.                      
+                         
+# Turnaround / Speculative
+                         
+    INTC          # 6.8  Valuable assets but execution has disappointed for years; turnaround remains uncertain.       
+    SMCI          # 6.8  Excellent engineering but governance and customer concentration increase risk.                
+    NVTS          # 6.0  Promising GaN technology but moat and profitability remain unproven.                          
