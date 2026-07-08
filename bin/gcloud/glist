@@ -1,4 +1,9 @@
 #!/bin/bash
-gcloud projects list
-gcloud compute instances list
+out=$(gcloud projects list 2>/dev/null)
+echo "$out"
+p=$(echo "$out" |grep PROJECT_ID:|awk '{print $2}')
+echo -- -----
+if [[ $p != '' ]]; then
+    gcloud compute instances list --project=$p 2>/dev/null
+fi
 
