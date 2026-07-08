@@ -1,0 +1,26 @@
+#  stocks ON SALE right now and will break all time highs by Jan 1.
+
+MU      # 🔴 Micron $MU -22.3%
+SNDK    # 🔴 SanDisk $SNDK -25.9%
+WDC     # 🔴 Western Digital $WDC -32.6%
+ARM     # 🔴 Arm Holdings $ARM -30.4%
+INTC    # 🔴 Intel $INTC -15.5%
+AVGO    # 🔴 Broadcom $AVGO -27.2%
+META    # 🔴 Meta $META -26.8%
+MSFT    # 🔴 Microsoft $MSFT -29.7%
+IONQ    # 🔴 IonQ $IONQ -42.0%
+ASTS    # 🔴 AST SpaceMobile $ASTS -35.7%
+BE      # 🔴 Bloom Energy $BE -17.6%
+NBIS    # 🔴 Nebius $NBIS -28.1%
+IREN    # 🔴 IREN $IREN -49.5%
+NVDA    # 🔴 Nvidia $NVDA -17.6%
+AMD     # 🔴 AMD $AMD -11.4%
+NOW     # 🔴 ServiceNow $NOW -49.7%
+PLTR    # 🔴 Palantir $PLTR -37.7%
+ORCL    # 🔴 Oracle $ORCL -59.4%
+AAOI    # 🔴 Applied Optoelectronics $AAOI -48.2%
+LITE    # 🔴 Lumentum $LITE -32.9%
+MRVL    # 🔴 Marvell $MRVL -25.6%
+RKLB    # 🔴 Rocket Lab $RKLB -34.6%
+APLD    # 🔴 Applied Digital $APLD -34.8%
+OUST    # 🔴 Ouster $OUST -20.5%

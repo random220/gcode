@@ -1,8 +1,26 @@
+# Power
+    MPWR          # Monolithic Power designs analog and power-management chips
+    TXN           # Texas Instruments (TXN)
+    ON            # Onto Innovation (ON)
+    ADI           # Analog devices
+
+# Silicon Photonics
+    COHR          # Coherent
+    LITE          # Lumentum
+    NOK           # Nokia
+    IPGP          # IPG Photonics
+    LASR          # nLight
+
+# Single source
+    ASML          # ASML (ASML)
+    CDNS          # Cadence
+    SNPS          # Synonpis
+
+# Others
     NVDA          # NVIDIA (NVDA)
     AMD           # Advanced Micro Devices (AMD)
     AVGO          # Broadcom (AVGO)
     TSM           # Taiwan Semiconductor Manufacturing Company (TSM)
-    ASML          # ASML (ASML)
     AMAT          # Applied Materials (AMAT)
     LRCX          # Lam Research (LRCX)
     MRVL          # Marvell Technology (MRVL)
@@ -11,11 +29,8 @@
     SMCI          # Super Micro Computer (SMCI)
     ARM           # Arm Holdings (ARM)
     MU            # Micron Technology (MU)
-    TXN           # Texas Instruments (TXN)
     QCOM          # Qualcomm (QCOM)
     INTC          # Intel (INTC)
-    ON            # Onto Innovation (ON)
-    LITE          # Lumentum Holdings (LITE)
     PLAB          # Photronics (PLAB)
     NVTS          # Navitas Semiconductor (NVTS)
     ALAB          # Astera Labs (ALAB)
