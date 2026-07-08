@@ -1,0 +1,50 @@
+# Tier 1 — Buy aggressively on major pessimism**
+# These are businesses I'd be comfortable owning through multiple semiconductor
+# cycles because the underlying franchises are exceptionally strong.
+
+    ASML
+    SNPS
+    CDNS
+    TXN
+    TSM
+    AVGO
+    AMAT
+    LRCX
+    ADI
+    ANET
+    MPWR
+    NVDA
+
+# Tier 2 — High quality but more cyclical**
+# These fit your style well when the market becomes excessively pessimistic
+# about a cyclical downturn.
+
+    AMD
+    COHR
+    ON
+    MU
+    MRVL
+    LITE
+    QCOM
+    PLAB
+
+
+# **Tier 3 — More execution risk or less durable moats**
+# These can be excellent investments, but I'd demand a larger margin of safety.
+
+    CRDO
+    ARM # (primarily because valuation can become detached from fundamentals)
+    IPGP
+    ALAB
+
+# Tier 4 — Speculative / turnaround**
+# For your process, I'd generally prefer waiting until there is clear evidence
+# that the business—not just the stock price—is improving before allocating
+# meaningful capital.
+
+    INTC
+    SMCI
+    NVTS
+    LASR
+    NOK
+
