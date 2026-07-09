@@ -1,18 +1,62 @@
-    JPM           # JPMorgan Chase (JPM)
-    BAC           # Bank of America (BAC)
-    GS            # Goldman Sachs (GS)
-    BRK/B         # Berkshire Hathaway (BRK/B)
-    APO           # Apollo Global Management (APO)
-    BLK           # BlackRock (BLK)
-    AON           # Aon (AON)
-    AJG           # Arthur J. Gallagher & Co. (AJG)
-    ACGL          # Arch Capital Group (ACGL)
-    CB            # Chubb (CB)
-    ALL           # Allstate (ALL)
-    KNSL          # Kinsale Capital Group (KNSL)
-    MKL           # Markel (MKL)
-    WRB           # W. R. Berkley. Insurance holding. Narrow/moderate moat
-    TFC           # Truist Financial (TFC)
-    COF           # Capital One (COF)
-    SYF           # Synchrony Financial (SYF)
-    MC            # Moelis & Company (Investment Bank)
+# Elite Capital Allocators / Financial Infrastructure
+
+    BRK/B     # 10.0 World's premier capital allocator; unmatched decentralized compounding machine.
+    BLK       #  9.9 Dominant global asset manager; iShares ecosystem and Aladdin create powerful network effects.
+    AON       #  9.8 Global insurance broker with sticky clients and recurring revenue; exceptional execution.
+    AJG       #  9.8 Serial acquirer with remarkable culture and decades of consistent compounding.
+
+# Elite P&C Insurance
+
+    CB        #  9.8 Best-in-class global P&C insurer; underwriting discipline and balance sheet are world-class.
+    MKL       #  9.7 "Mini Berkshire"; excellent underwriting plus long-term capital allocation.
+    ACGL      #  9.6 Outstanding specialty insurer with disciplined underwriting and excellent execution.
+    WRB       #  9.5 Conservative specialty insurer with decades of disciplined underwriting.
+    KNSL      #  9.4 Excess & surplus insurance leader; exceptional underwriting and long runway.
+    ALL       #  8.8 Strong consumer insurer; more cyclical catastrophe exposure than specialty peers.
+
+# Money CenterBanking
+
+    JPM       #  9.7 America's highest-quality universal bank; outstanding management and diversified earnings.
+    GS        #  9.3 Premier investment bank and trading franchise; elite execution but market-cycle dependent.
+    BAC       #  9.0 Scale banking franchise with valuable deposits; execution solid but more rate-sensitive.
+    TFC       #  7.8 Regional bank still recovering operationally; upside exists but execution must improve.
+
+# Alternative Asset Managers
+
+    APO       #  9.5 Elite alternative asset manager benefiting from private credit secular growth.
+
+# Consumer Credit
+
+    COF       #  8.9 High-quality consumer lender with improving franchise after Discover acquisition.
+    SYF       #  8.8 Best-in-class private-label consumer lender; excellent execution, cyclical credit business.
+
+# Advisory / Investment Banking
+
+    MC        #  8.5 Boutique M&A advisor with excellent reputation; earnings tied to deal cycles.
+
+# Exchanges / Market Infrastructure
+
+    ICE       # 10.0 Exchange and mortgage-data powerhouse; recurring revenues, excellent execution.
+    CME       # 10.0 Global futures monopoly with enormous network effects and pricing power.
+    CBOE      # 9.8  Options exchange with recurring cash flows and durable market position.
+    SPGI      # 10.0 Essential financial data and ratings franchise with extraordinary recurring revenue.
+    MCO       # 10.0 Moody's ratings and analytics; duopoly with massive regulatory moat.
+
+# Payment Networks
+
+    V         # 10.0 Global payment toll road; perhaps the highest-quality financial business ever built.
+    MA        # 10.0 Visa's only true peer; extraordinary network effects and global secular growth.
+
+# Market Data / Trading
+
+    MSCI      # 9.9  Benchmark and index licensing powerhouse; sticky institutional customers.
+    NDAQ      # 9.2  Exchange plus market software and data; steadily improving business quality.
+
+# Insurance Brokers
+
+    BRO       # 9.6  Brown & Brown; outstanding acquisition engine similar to AJG.
+
+# Custody / Asset Servicing
+
+    BNY       # 8.9  Dominant custody bank with sticky institutional relationships.
+    STT       # 8.7  Global custody leader; durable but slower-growing franchise.

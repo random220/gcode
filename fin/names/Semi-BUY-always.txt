@@ -1,9 +1,29 @@
+# | Ticker                                     | Business                      | "Buy-always" grade |
+# | ------------------------------------------ | ----------------------------- | ------------------ |
+# | ASML Holding                               | EUV lithography monopoly      | A+                 |
+# | **KLAC**                                   | Process control & inspection  | **A+**             |
+# | Applied Materials                          | Broad semiconductor equipment | A+                 |
+# | Lam Research                               | Etch & deposition             | A+                 |
+# | Cadence Design Systems                     | Chip design software          | A+                 |
+# | Synopsys                                   | Chip design software          | A+                 |
+# | Taiwan Semiconductor Manufacturing Company | World's leading foundry       | A+                 |
+# | Broadcom                                   | Networking & custom silicon   | A+                 |
+# | NVIDIA                                     | AI compute platform           | A+                 |
+# | Monolithic Power Systems                   | Analog power ICs              | A                  |
+# | Analog Devices                             | High-end analog               | A                  |
+# | Arista Networks                            | Data-center networking        | A                  |
+# | Texas Instruments                          | Industrial analog             | A                  |
+
+# ASML makes chips possible.
+# KLA makes chips profitable.
+
 ADI
 AMAT
 ANET
 ASML
 AVGO
 CDNS
+KLAC
 LRCX
 MPWR
 NVDA
