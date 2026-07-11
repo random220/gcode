@@ -1,7 +1,6 @@
 #!/bin/bash
-gcloud compute instances delete vm1 \
---project=myfree-501315 \
---zone=us-east1-b \
+source "$(dirname "$0")/config.sh"
 
-#--zone=us-central1-a \
-
+gcloud compute instances delete "$VM_NAME" \
+    --project="$PROJECT" \
+    --zone="$ZONE"
