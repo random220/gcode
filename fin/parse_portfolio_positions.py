@@ -95,11 +95,12 @@ def parse_portfolio_positions(input_path: Path) -> dict[str, float]:
     with input_path.open(encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
         for row in reader:
-            account_name = (row.get("Account Name") or "").strip()
+            row_lower = {k.lower(): v for k, v in row.items() if k is not None}
+            account_name = (row_lower.get("account name") or "").strip()
             if not account_name:
                 continue
 
-            current_value = parse_currency(row.get("Current Value"))
+            current_value = parse_currency(row_lower.get("current value"))
             if current_value is None:
                 continue
 
