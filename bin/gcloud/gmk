@@ -9,15 +9,19 @@ gcloud compute instances create "$VM_NAME" \
     --image-project="$IMAGE_PROJECT" \
     --tags="$TAGS"
 
-# gcloud compute firewall-rules create allow-netcat-3333 \
-#    --direction=INGRESS \
-#    --priority=1000 \
-#    --network=default \
-#    --action=ALLOW \
-#    --rules=tcp:3333 \
-#    --source-ranges=0.0.0.0/0 \
-#    --project=myfree-501315
+cat <<EOF >/dev/null
 
-# gcloud compute firewall-rules delete allow-netcat-3333 \
-#    --project=myfree-501315 --quiet
+gcloud compute firewall-rules list --project=myfree-501315 2>/dev/null | grep NAME
 
+gcloud compute firewall-rules create allow8484 --quiet \
+   --project=myfree-501315 \
+   --direction=INGRESS \
+   --priority=1000 \
+   --network=default \
+   --action=ALLOW \
+   --rules=tcp:8484 \
+   --source-ranges=0.0.0.0/0
+
+gcloud compute firewall-rules delete allow8484 --quiet --project=myfree-501315
+
+EOF
