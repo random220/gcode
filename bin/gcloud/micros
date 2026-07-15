@@ -1,0 +1,13 @@
+#!/bin/bash
+
+command -v microsocks || {
+    sudo apt-get -y update
+    sudo apt-get -y install microsocks
+}
+pkill -f microsocks
+tmux kill-session -t micros
+tmux -2 new -d -s micros
+u=bhuto
+p=dildarX
+tmux send-keys "microsocks -1 -p 8484 -u $u -P $p" C-m
+echo "curl --socks5 $u:$p@127.0.0.1:1080 https://example.com"

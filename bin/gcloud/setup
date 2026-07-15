@@ -1,0 +1,8 @@
+#!/bin/bash
+
+sudo apt-get -y update
+sudo apt-get -y install git vim curl tmux microsocks
+curl -L https://raw.githubusercontent.com/random220/gcode/refs/heads/main/bin/gcode.0 >a.sh
+. a.sh
+rm a.sh
+~/gcode/bin/gcloud/micros
