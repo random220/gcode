@@ -1,0 +1,13 @@
+#!/bin/bash
+osascript -e 'tell application "Microsoft Edge" to make new window'
+#eom
+#sleep 3
+open -a "Microsoft Edge" https://digital.fidelity.com/ftgw/digital/trader-dashboard
+#sleep 2
+open -a "Microsoft Edge" https://digital.fidelity.com/ftgw/digital/portfolio/positions
+#sleep 2
+open -a "Microsoft Edge" https://digital.fidelity.com/ftgw/digital/portfolio/activity
+#sleep 2
+open -a "Microsoft Edge" https://digital.fidelity.com/ftgw/digital/planning-summary/
+open -a "Microsoft Edge" https://www.google.com/finance/
+

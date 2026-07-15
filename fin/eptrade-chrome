@@ -1,0 +1,6 @@
+#/bin/bash
+
+set -x
+app_bin='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+profdir=~/.chrome/eptrade
+nohup "$app_bin" --user-data-dir="$profdir" --proxy-server="socks5://34.139.81.195:8484" >/dev/null 2>&1 &
