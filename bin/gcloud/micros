@@ -4,13 +4,28 @@ command -v microsocks || {
     sudo apt-get -y update
     sudo apt-get -y install microsocks
 }
-pkill -f microsocks
-sleep 2
-tmux kill-session -t micros 2>/dev/null
-sleep 2
-tmux -2 new -d -s micros
-u=a$(uuidgen|sed 's/-.*//')
-p=a$(uuidgen|sed 's/-.*//')
-tmux send-keys "microsocks -1 -p 8484 -u $u -P $p" C-m
-myip=$(curl -4 icanhazip.com 2>/dev/null)
-echo "curl --socks5 $u:$p@$myip:8484 https://example.com"
+end_micros() {
+    pkill -f microsocks
+    sleep 2
+    tmux kill-session -t micros 2>/dev/null
+    sleep 1
+}
+start_micros() {
+    tmux -2 new -d -s micros
+    u=a$(uuidgen|sed 's/-.*//')
+    p=a$(uuidgen|sed 's/-.*//')
+    tmux send-keys "microsocks -1 -p 8484 -u $u -P $p" C-m
+    myip=$(curl -4 icanhazip.com 2>/dev/null)
+    echo "curl --socks5 $u:$p@$myip:8484 https://example.com" >~/.microsocks-curl-cmd
+}
+if [[ "$1" == '-d' ]]; then
+    end_micros
+    exit
+elif [[ "$1" == '-n' ]]; then
+    end_micros
+    start_micros
+    cat ~/.microsocks-curl-cmd
+else
+    netstat -tulnp 2>/dev/null | grep '0.0.0.0:8484 ' >/dev/null || start_micros
+    cat ~/.microsocks-curl-cmd
+fi
