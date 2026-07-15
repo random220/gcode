@@ -5,7 +5,9 @@ command -v microsocks || {
     sudo apt-get -y install microsocks
 }
 pkill -f microsocks
+sleep 2
 tmux kill-session -t micros 2>/dev/null
+sleep 2
 tmux -2 new -d -s micros
 u=a$(uuidgen|sed 's/-.*//')
 p=a$(uuidgen|sed 's/-.*//')
