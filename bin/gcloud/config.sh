@@ -5,6 +5,7 @@ PROJECT="myfree-501315"
 
 # Compute Engine Zone
 ZONE="us-central1-a"
+ZONE="us-east1-d"
 
 # VM Instance Settings
 VM_NAME="vm1"
