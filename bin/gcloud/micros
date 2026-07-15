@@ -7,8 +7,8 @@ command -v microsocks || {
 pkill -f microsocks
 tmux kill-session -t micros 2>/dev/null
 tmux -2 new -d -s micros
-u=bhuto
-p=dildarX
+u=a$(uuidgen|sed 's/-.*//')
+p=a$(uuidgen|sed 's/-.*//')
 tmux send-keys "microsocks -1 -p 8484 -u $u -P $p" C-m
 myip=$(curl -4 icanhazip.com 2>/dev/null)
 echo "curl --socks5 $u:$p@$myip:8484 https://example.com"
