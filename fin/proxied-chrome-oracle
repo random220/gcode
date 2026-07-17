@@ -5,6 +5,10 @@ set -x
 browser=chrome   # edge or chrome
 server=oracle    # google or oracle
 
+ip_google=34.139.81.195
+ip_ora0=193.122.158.170
+
+
 if [[ $browser == edge ]]; then
     app='/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge'
     profdir=~/.edge/eptrade
@@ -14,9 +18,9 @@ elif [[ $browser == chrome ]]; then
 fi
 
 if [[ $server == google ]]; then
-    ip=34.139.81.195
+    ip=$ip_google
 elif [[ $server == oracle ]]; then
-    ip=150.136.79.214
+    ip=$ip_ora0
 fi
 
 nohup "$app" --user-data-dir="$profdir" --proxy-server="socks5://$ip:8484" >/dev/null 2>&1 &
