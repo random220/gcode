@@ -3,4 +3,9 @@
 set -x
 edge='/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge'
 profdir=~/.edge/eptrade
-nohup "$edge" --user-data-dir="$profdir" --proxy-server="socks5://34.139.81.195:8484" >/dev/null 2>&1 &
+
+ip_oracle=150.136.79.214
+ip_google=34.139.81.195
+
+#nohup "$edge" --user-data-dir="$profdir" --proxy-server="socks5://$ip_google:8484" >/dev/null 2>&1 &
+nohup "$edge" --user-data-dir="$profdir" --proxy-server="socks5://$ip_oracle:8484" >/dev/null 2>&1 &
