@@ -1,0 +1,22 @@
+#/bin/bash
+
+set -x
+
+browser=edge     # edge or chrome
+server=oracle    # google or oracle
+
+if [[ $browser == edge ]]; then
+    app='/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge'
+    profdir=~/.edge/eptrade
+elif [[ $browser == chrome ]]; then
+    app='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+    profdir=~/.chrome/eptrade
+fi
+
+if [[ $server == google ]]; then
+    ip=34.139.81.195
+elif [[ $server == oracle ]]; then
+    ip=150.136.79.214
+fi
+
+nohup "$app" --user-data-dir="$profdir" --proxy-server="socks5://$ip:8484" >/dev/null 2>&1 &
