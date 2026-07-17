@@ -6,7 +6,6 @@
     CVX           # Chevron (CVX)
     DUK           # Duke Energy (DUK)
     ENPH          # Enphase Energy (ENPH)
-    EOSE          # Eos Energy Enterprises (EOSE)
     ETN           # Eaton (ETN)
     EXC           # Exelon (EXC)
     FSLR          # First Solar (FSLR)
