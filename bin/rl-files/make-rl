@@ -148,11 +148,11 @@ docker run --network day0 -itd --name $h -h $h -p $ssh_port:22 myrl
 
 umask 077
 keydir="$HOME/.ssh/rl_$h"
-if [[ ! -f "$keydir/id_ed25519" ]]; then
+if [[ ! -f "$keydir/id_rsa" ]]; then
     mkdir -p "$keydir"
-    ssh-keygen -t ed25519 -N '' -f "$keydir/id_ed25519"
+    ssh-keygen -t rsa -b 096 -N '' -f "$keydir/id_rsa"
 fi
-docker cp "$keydir/id_ed25519.pub" $h:/tmp/pubkey
+docker cp "$keydir/id_rsa.pub" $h:/tmp/pubkey
 
 egrep "^Host[ \t]+$h$" ~/.ssh/config >/dev/null 2>&1
 if [[ $? != 0 ]]; then
@@ -162,7 +162,7 @@ Host $h
     Hostname 0.0.0.0
     Port $ssh_port
     User om
-    IdentityFile ~/.ssh/rl_$h/id_ed25519
+    IdentityFile ~/.ssh/rl_$h/id_rsa
 
 EOF
 fi
