@@ -150,7 +150,7 @@ umask 077
 keydir="$HOME/.ssh/rl_$h"
 if [[ ! -f "$keydir/id_rsa" ]]; then
     mkdir -p "$keydir"
-    ssh-keygen -t rsa -b 096 -N '' -f "$keydir/id_rsa"
+    ssh-keygen -t rsa -b 4096 -N '' -f "$keydir/id_rsa"
 fi
 docker cp "$keydir/id_rsa.pub" $h:/tmp/pubkey
 
