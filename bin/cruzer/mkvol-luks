@@ -30,7 +30,7 @@ sudo cryptsetup luksFormat $loopdevice
 # THIS ASKS FOR PASSWORD TWICE AND DOES STUFF THAT TAKES LIKE HALF A MINUTE
 
 # Then continue with opening, formatting, and mounting
-sudo cryptsetup luksOpen /dev/loop8 $volname  # ASKS THE SAME PASSWORD
+sudo cryptsetup luksOpen $loopdevice $volname  # ASKS THE SAME PASSWORD
 
 # The reverse of cryptsetup luksOpen is cryptsetup luksClose. The luksOpen
 # command maps a LUKS-encrypted device to a decrypted virtual device (e.g.,
