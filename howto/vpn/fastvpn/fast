@@ -6,6 +6,8 @@ LOCATION=angeles
 [[ $1 != '' ]] && LOCATION=$1
 
 mp start fa || mp make fa
+ssh -t fa 'sudo ip link set dev enp0s1 mtu 1350'
+
 if [[ ! -f ~/b/om/raw/fastestvpn_ovpn.zip ]]; then
     mkdir -p ~/b/om/raw
     curl --output ~/b/om/raw/fastestvpn_ovpn.zip -L http://support.fastestvpn.com/download/fastestvpn_ovpn/
