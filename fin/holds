@@ -1,11 +1,65 @@
 #!/usr/bin/env python
+"""Summarize Fidelity call-option positions by underlying symbol.
+
+Reads a Fidelity "Portfolio Positions" CSV export, keeps only CALL option
+rows, aggregates current value and cost basis per underlying ticker, and
+prints a tab-separated (TSV) summary to stdout.
+
+Input
+-----
+Fidelity positions CSV, typically named like::
+
+    Portfolio_Positions_Jul-28-2026.csv
+
+Download path (Overview → export)::
+
+    https://digital.fidelity.com/ftgw/digital/portfolio/positions
+
+Only rows whose Description contains ``CALL`` are included. Option symbols
+such as `` -NVO270115C60`` are reduced to the underlying ticker (``NVO``).
+
+Usage
+-----
+    ./holds [path/to/Portfolio_Positions*.csv]
+
+If no path is given, the newest ``Portfolio_Positions*.csv`` is chosen from::
+
+    ~  ~/Desktop  ~/Desktop/x  ~/Downloads  .
+
+Output (stdout, TSV)
+--------------------
+Header and one row per underlying symbol::
+
+    Value   Basis   Gain    %Gain   Symbol
+    34220.00        48960.52        -14740.52       -30.11  NVO
+
+Columns:
+
+- **Value**  — sum of Current Value across all CALL lots for that symbol
+- **Basis**  — sum of Cost Basis Total for those lots
+- **Gain**   — Value − Basis
+- **%Gain**  — Gain as a percent of Basis (blank if Basis is 0)
+- **Symbol** — underlying ticker extracted from the option symbol
+
+Progress / errors go to stderr so the TSV on stdout stays pipe-friendly.
+
+Notes
+-----
+Fidelity header casing has changed over time (e.g. ``Current Value`` vs
+``Current value``). Column lookup is case-insensitive. Files may start with
+a UTF-8 BOM, which is stripped on open.
+"""
 
 import sys
-import json
 import re
 import csv
 import os
 import glob
+
+
+# ---------------------------------------------------------------------------
+# Resolve input file: explicit argv, else newest matching export on disk
+# ---------------------------------------------------------------------------
 
 input_file = None
 if len(sys.argv) > 1:
@@ -17,106 +71,127 @@ if len(sys.argv) > 1:
         sys.exit(1)
 
 if not input_file:
+    # Search common download / workspace locations for the latest export.
     dirs_to_check = ['~', '~/Desktop', '~/Desktop/x', '~/Downloads', '.']
     matching_files = []
     for d in dirs_to_check:
         expanded_dir = os.path.expanduser(d)
         pattern = os.path.join(expanded_dir, 'Portfolio_Positions*.csv')
         matching_files.extend(glob.glob(pattern))
-    
+
     unique_files = list(set(os.path.abspath(f) for f in matching_files if os.path.isfile(f)))
-    
+
     if unique_files:
         input_file = max(unique_files, key=os.path.getmtime)
         print(f"Using latest file: {input_file}", file=sys.stderr)
     else:
-        print('Need "Overview" downloaded from https://digital.fidelity.com/ftgw/digital/portfolio/positions', file=sys.stderr)
-        print('Could not find any Portfolio_Positions*.csv file in ~, ~/Desktop, ~/Desktop/x, ~/Downloads, or .', file=sys.stderr)
+        print(
+            'Need "Overview" downloaded from '
+            'https://digital.fidelity.com/ftgw/digital/portfolio/positions',
+            file=sys.stderr,
+        )
+        print(
+            'Could not find any Portfolio_Positions*.csv file in '
+            '~, ~/Desktop, ~/Desktop/x, ~/Downloads, or .',
+            file=sys.stderr,
+        )
         sys.exit(1)
 
+
+def field(row, *names):
+    """Return a CSV cell by column name, matching case-insensitively.
+
+    Fidelity has shipped both Title Case and sentence case headers. Pass one
+    or more candidate names; the first present (ignoring case) wins.
+
+    Raises
+    ------
+    KeyError
+        If none of *names* appear in *row* (any casing).
+    """
+    lower = {k.lower(): v for k, v in row.items() if k is not None}
+    for name in names:
+        if name.lower() in lower:
+            return lower[name.lower()]
+    raise KeyError(names[0])
+
+
+def parse_money(raw, default_if_empty=None):
+    """Parse a Fidelity money cell like ``$1,234.56`` or ``--`` into float.
+
+    Parameters
+    ----------
+    raw : str or None
+        Cell text, possibly with ``$``, commas, or Fidelity's ``--`` placeholder.
+    default_if_empty : float or None
+        Value to use when the cell is blank. If None, blank is treated as 0
+        only after ``--`` handling; callers that want “blank → use market
+        value” pass that value explicitly (see cost-basis handling below).
+
+    Returns
+    -------
+    float
+    """
+    text = re.sub(r'^\$', '', raw or '')
+    text = text.replace(',', '')
+    if text == '' and default_if_empty is not None:
+        return float(default_if_empty)
+    if text == '' or text == '--':
+        return 0.0
+    return float(text)
+
+
+# ---------------------------------------------------------------------------
+# Aggregate CALL positions by underlying symbol
+# ---------------------------------------------------------------------------
+# things[symbol] = {'basis': total cost basis, 'value': total market value}
+
 things = {}
-with open(input_file, 'rt', encoding='utf-8') as f:
+# utf-8-sig strips the BOM Fidelity puts on the first header column
+with open(input_file, 'rt', encoding='utf-8-sig') as f:
     csvFile = csv.DictReader(f)
     for line in csvFile:
-        # print(json.dumps(line, indent=2))
-        # {
-        #   "\ufeffAccount Number": "X96600886",
-        #   "Account Name": "Brok1$328k-2025.05.06",
-        #   "Symbol": "SPAXX**",
-        #   "Description": "HELD IN MONEY MARKET",
-        #   "Quantity": "",
-        #   "Last Price": "",
-        #   "Last Price Change": "",
-        #   "Current Value": "$83865.00",
-        #   "Today's Gain/Loss Dollar": "",
-        #   "Today's Gain/Loss Percent": "",
-        #   "Total Gain/Loss Dollar": "",
-        #   "Total Gain/Loss Percent": "",
-        #   "Percent Of Account": "19.04%",
-        #   "Cost Basis Total": "",
-        #   "Average Cost Basis": "",
-        #   "Type": "Cash"
-        # }
-        # {
-        #   "\ufeffAccount Number": "X96600886",
-        #   "Account Name": "Brok1$328k-2025.05.06",
-        #   "Symbol": " -NVO270115C60",
-        #   "Description": "NVO JAN 15 2027 $60 CALL",
-        #   "Quantity": "59",
-        #   "Last Price": "$5.80",
-        #   "Last Price Change": "-$0.35",
-        #   "Current Value": "$34220.00",
-        #   "Today's Gain/Loss Dollar": "-$1903.67",
-        #   "Today's Gain/Loss Percent": "-5.27%",
-        #   "Total Gain/Loss Dollar": "-$14740.52",
-        #   "Total Gain/Loss Percent": "-30.11%",
-        #   "Percent Of Account": "7.77%",
-        #   "Cost Basis Total": "$48960.52",
-        #   "Average Cost Basis": "$8.30",
-        #   "Type": "Cash"
-        # }
-        if line['Symbol'] is not None:
-            if 'CALL' not in line['Description']:
-                continue
-            symbol = line['Symbol']          # " -NVO270115C60"
-            value = line['Current Value']    # "$34220.00"
-            basis = line['Cost Basis Total'] # "$48960.52"
-            symbol = re.sub(r'^\s\-', '', symbol)
-            symbol = re.sub(r'\d.*', '', symbol)
-            if symbol == 'Pending activity':
-                continue
-            if symbol == '**':
-                continue
-            if symbol == '':
-                continue
+        symbol = field(line, 'Symbol')
+        if symbol is None:
+            continue
 
-            value = re.sub(r'^\$', '', value)
-            if value == '--':
-                value = 0
-            else:
-                value = float(value)
-            basis = re.sub(r'^\$', '', basis)
-            if basis == '':
-                basis = value
-            elif basis == '--':
-                basis = 0
-            else:
-                basis = float(basis)
-            if symbol not in things:
-                things[symbol] = {}
-                things[symbol]['basis'] = 0
-                things[symbol]['value'] = 0
-            things[symbol]['basis'] += basis
-            things[symbol]['value'] += value
+        # Equity, cash, and puts are ignored; only listed CALL options.
+        description = field(line, 'Description') or ''
+        if 'CALL' not in description:
+            continue
 
-print(f'Value\tBasis\tGain\t%Gain\tSymbol')
+        value = field(line, 'Current Value', 'Current value')
+        basis = field(line, 'Cost Basis Total', 'Cost basis total')
+
+        # Option symbols look like " -NVO270115C60" (leading space + dash).
+        # Strip that prefix, then drop the expiration/strike suffix so only
+        # the underlying ticker remains ("NVO").
+        symbol = re.sub(r'^\s\-', '', symbol)
+        symbol = re.sub(r'\d.*', '', symbol)
+        if symbol in ('Pending activity', '**', ''):
+            continue
+
+        value = parse_money(value)
+        # Empty cost basis: treat as if bought at current value (zero P/L).
+        basis = parse_money(basis, default_if_empty=value)
+
+        if symbol not in things:
+            things[symbol] = {'basis': 0.0, 'value': 0.0}
+        things[symbol]['basis'] += basis
+        things[symbol]['value'] += value
+
+
+# ---------------------------------------------------------------------------
+# Emit TSV summary (stdout)
+# ---------------------------------------------------------------------------
+
+print('Value\tBasis\tGain\t%Gain\tSymbol')
 for symbol in things:
     value = things[symbol]['value']
     basis = things[symbol]['basis']
     gain = value - basis
     if basis != 0:
-        pgain = gain * 100 / basis
-        pgain = f'{pgain:.2f}'
+        pgain = f'{gain * 100 / basis:.2f}'
     else:
         pgain = ''
     print(f'{value:.2f}\t{basis:.2f}\t{gain:.2f}\t{pgain}\t{symbol}')
