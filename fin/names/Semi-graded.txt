@@ -1,6 +1,35 @@
+# | Company  | Your Grade |
+# | -------- | ---------- |
+# | ASML     | A+         |
+# | TSM      | A+         |
+# | SNPS     | A+         |
+# | CDNS     | A+         |
+# | NVDA     | A+         |
+# | TXN      | A          |
+# | AMAT     | A          |
+# | LRCX     | A          |
+# | ADI      | A          |
+# | MPWR     | A          |
+# | ANET     | A          |
+# | MU       | A−         |
+# | SNDK     | B+         |
+# | AMD      | A−         |
+# | QCOM     | A−         |
+# | MRVL     | B+         |
+# | COHR     | B+         |
+# | ON       | B+         |
+# | LITE     | B          |
+# | PLAB     | B          |
+# 
 # Tier 1 — Buy aggressively on major pessimism**
 # These are businesses I'd be comfortable owning through multiple semiconductor
 # cycles because the underlying franchises are exceptionally strong.
+
+    # dominant technology moat (ASML, SNPS, CDNS)
+    # indispensable manufacturing equipment (AMAT, LRCX)
+    # structural pricing power (TXN, MPWR)
+    # platform/network effects (NVDA, ANET)
+    # foundry leadership (TSM)
 
     ASML
     SNPS
@@ -20,14 +49,14 @@
 # about a cyclical downturn.
 
     AMD
+    MU
+    QCOM
+    MRVL
     COHR
     ON
-    MU
-    MRVL
     LITE
-    QCOM
     PLAB
-
+    SNDK
 
 # **Tier 3 — More execution risk or less durable moats**
 # These can be excellent investments, but I'd demand a larger margin of safety.
