@@ -38,11 +38,13 @@ determine_server() {
         "192.168.10.178:22:tron178"
     )
 
-    # Add Tailscale Tron if available and reachable
+    # Add Tailscale Tron or oracle vm  if available and reachable
     if command -v tailscale >/dev/null 2>&1; then
         local ts_ip
         ts_ip=$(tailscale status 2>/dev/null | awk '$2 == "tron" {print $1; exit}')
         [[ -n "$ts_ip" ]] && destinations+=("$ts_ip:22:tront")
+        ts_ip=$(tailscale status 2>/dev/null | awk '$2 == "oravm0" {print $1; exit}')
+        [[ -n "$ts_ip" ]] && destinations+=("$ts_ip:22:ora0")
     fi
 
     local dest
