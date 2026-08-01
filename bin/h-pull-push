@@ -32,13 +32,9 @@ bailout() {
 }
 
 determine_server() {
-    local destinations=(
-        "192.168.10.180:22:nuc"
-        "192.168.10.101:22:tron101"
-        "192.168.10.178:22:tron178"
-    )
+    local destinations=()
 
-    # Add Tailscale Tron or oracle vm  if available and reachable
+    # Prefer Tailscale hosts first (tron, oravm0) if available
     if command -v tailscale >/dev/null 2>&1; then
         local ts_ip
         ts_ip=$(tailscale status 2>/dev/null | awk '$2 == "tron" {print $1; exit}')
@@ -46,6 +42,13 @@ determine_server() {
         ts_ip=$(tailscale status 2>/dev/null | awk '$2 == "oravm0" {print $1; exit}')
         [[ -n "$ts_ip" ]] && destinations+=("$ts_ip:22:ora0")
     fi
+
+    # Then local LAN hosts
+    destinations+=(
+        "192.168.10.180:22:nuc"
+        "192.168.10.101:22:tron101"
+        "192.168.10.178:22:tron178"
+    )
 
     local dest
     for dest in "${destinations[@]}"; do
