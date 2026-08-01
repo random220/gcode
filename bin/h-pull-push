@@ -31,6 +31,18 @@ bailout() {
     exit 1
 }
 
+# TCP connect probe with a hard 2s timeout.
+# macOS BSD nc: -w is idle-after-connect only; -G is connect timeout.
+# Linux ncat/GNU: -w is connect timeout.
+port_open() {
+    local host=$1 port=$2
+    if [[ "$(uname -s)" == Darwin ]]; then
+        nc -z -G 2 "$host" "$port" 2>/dev/null
+    else
+        nc -z -w 2 "$host" "$port" 2>/dev/null
+    fi
+}
+
 determine_server() {
     local destinations=()
 
@@ -54,7 +66,7 @@ determine_server() {
     for dest in "${destinations[@]}"; do
         IFS=: read -r server_ip server_port server_name <<< "$dest"
 
-        if nc -z -w 2 $server_ip $server_port 2>/dev/null; then
+        if port_open "$server_ip" "$server_port"; then
             echo "✓ Reachable: $server_name ($server_ip)"
             return 0
         fi
