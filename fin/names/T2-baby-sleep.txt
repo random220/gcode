@@ -1,0 +1,16 @@
+# Tier 2 — Wonderful but with one meaningful caveat
+
+NVDA    # Nvidia (NVDA) — extraordinary, but AI hardware leadership is harder to
+        # project 10 years out than EDA or lithography.
+ISRG    # Intuitive Surgical (ISRG) — dominant today; healthcare reimbursement and
+        # competition deserve watching.
+ZTS     # Zoetis (ZTS) — fantastic animal-health franchise, though growth won't always
+        # be spectacular.
+LHX     # L3Harris (LHX) — outstanding defense business, but government budgets
+        # introduce more external uncertainty.
+DHR     # Danaher (DHR) — serial acquirer with excellent culture, though life sciences
+        # can be cyclical.
+FICO    # FICO — phenomenal moat, but valuation often stays demanding.
+NFLX    # Netflix (NFLX) — I now think it belongs here rather than lower. The ad
+        # business and global scale have strengthened the long-term thesis.
+

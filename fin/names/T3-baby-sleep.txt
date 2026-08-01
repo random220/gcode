@@ -1,0 +1,12 @@
+# Tier 3 — Great businesses that need more monitoring
+
+CRM      # Salesforce (CRM)
+AMZN     # Amazon (AMZN)
+GOOGL    # Alphabet (GOOGL)
+JPM      # JPMorgan (JPM)
+BLK      # BlackRock (BLK)
+ACGL     # Arch Capital (ACGL)
+KNSL     # Kinsale (KNSL)
+
+# These can absolutely outperform, but I'd pay closer attention to competitive
+# dynamics, regulation, or industry evolution over a decade.

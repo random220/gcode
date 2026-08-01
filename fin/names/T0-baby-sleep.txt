@@ -1,0 +1,16 @@
+# These are companies where I'd have very high confidence that they'll be larger
+# and more valuable a decade from now.
+
+BRK/B
+ASML
+TSMC
+SNPS
+CDNS
+TXN
+SPGI
+V
+MA
+MSFT
+
+# These are the closest things I know to "compounders with multiple independent
+# moats."

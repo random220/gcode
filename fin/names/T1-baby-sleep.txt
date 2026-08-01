@@ -1,0 +1,20 @@
+# Tier 1 — Exceptional businesses
+
+AMAT     # Applied Materials (AMAT)
+KLAC     # KLA (KLAC)
+LRCX     # Lam Research (LRCX)
+ADI      # Analog Devices (ADI)
+AVGO     # Broadcom (AVGO)
+ANET     # Arista Networks (ANET)
+CPRT     # Copart (CPRT)
+AZO      # AutoZone (AZO)
+CB       # Chubb (CB)
+MKL      # Markel (MKL)
+AJG      # Arthur J. Gallagher (AJG)
+AON      # Aon (AON)
+MCO      # Moody's (MCO)
+CBOE     # Cboe Global Markets (CBOE)
+ICE      # Intercontinental Exchange (ICE)
+
+# These are businesses where I expect excellent long-term economics, even if
+# individual years are bumpy.
