@@ -4,4 +4,5 @@ KO    #(Coca-Cola) — Stable buy
 MCD   #(McDonald’s) — Strong buy
 PEP   #(PepsiCo) — Buy
 SBUX  #(Starbucks) — Buy
-YUM   #(Yum! Brands) — Buy
+YUM   #(Yum! Brands) — Buy, Taco Bell, KFC
+QSR   # Owns burger king, Tim Hortons, Popeyes, Firehouse Subs
