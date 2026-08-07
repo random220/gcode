@@ -43,6 +43,7 @@
     ANET
     MPWR
     NVDA
+    SKHY
 
 # Tier 2 — High quality but more cyclical**
 # These fit your style well when the market becomes excessively pessimistic
@@ -74,6 +75,5 @@
     INTC
     SMCI
     NVTS
-    LASR
     NOK
 
