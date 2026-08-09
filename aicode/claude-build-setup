@@ -5,5 +5,5 @@ rl -c $cont echo
 scp ~/b/om/raw/Miniconda3-py313_26.3.2-2-Linux-aarch64.sh $cont:.
 ssh -t $cont 'bash ~/Miniconda3-py313_26.3.2-2-Linux-aarch64.sh -b -c'
 ssh -t $cont 'rm ~/Miniconda3-py313_26.3.2-2-Linux-aarch64.sh; mkdir ~/x'
-ssh -t $cont 'curl -fsSL https://x.ai/cli/install.sh | bash'
-echo "ssh $cont -> cd ~/x -> grok"
+ssh -t $cont 'curl -fsSL https://claude.ai/install.sh | bash'
+echo "ssh $cont -> cd ~/x -> claude"
