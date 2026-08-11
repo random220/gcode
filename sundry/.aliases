@@ -680,8 +680,13 @@ ai() {
 }
 
 proxe() {
-    ssh ora0 bin/micros -n|grep curl |bash -
-    ssh vm1 bin/micros -n|grep curl |bash -
+    cmd=$(ssh ora0 'bin/micros -n'|grep curl)
+    echo "$cmd"
+    bash -c "$cmd"
+
+    cmd=$(ssh vm1  'bin/micros -n'|grep curl)
+    echo "$cmd"
+    bash -c "$cmd"
 }
 
 mymain
