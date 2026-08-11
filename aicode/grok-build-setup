@@ -1,5 +1,5 @@
 #!/bin/bash
-cont=rlc
+cont=GROK
 docker rm -f $cont
 rl -c $cont echo
 scp ~/b/om/raw/Miniconda3-py313_26.3.2-2-Linux-aarch64.sh $cont:.

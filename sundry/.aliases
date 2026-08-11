@@ -679,4 +679,10 @@ ai() {
     docker exec -it -u om -w /home/om ai bash
 }
 
+proxe() {
+    ssh ora0 bin/micros|grep curl |bash -
+    ssh vm1 bin/micros|grep curl |bash -
+}
+
 mymain
+
