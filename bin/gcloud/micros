@@ -6,7 +6,7 @@ command -v microsocks || {
 }
 end_micros() {
     pkill -f microsocks
-    sleep 2
+    sleep 1
     tmux kill-session -t micros 2>/dev/null
     sleep 1
 }
@@ -15,6 +15,7 @@ start_micros() {
     u=a$(uuidgen|sed 's/-.*//')
     p=a$(uuidgen|sed 's/-.*//')
     tmux send-keys "microsocks -1 -p 8484 -u $u -P $p" C-m
+    sleep 2
     myip=$(curl -4 icanhazip.com 2>/dev/null)
     echo "curl --socks5 $u:$p@$myip:8484 https://example.com" >~/.microsocks-curl-cmd
 }
