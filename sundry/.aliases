@@ -689,5 +689,7 @@ proxe() {
     bash -c "$cmd"
 }
 
+alias ppasss='cd ~/Desktop/x && ppass && open .; exit'
+
 mymain
 
