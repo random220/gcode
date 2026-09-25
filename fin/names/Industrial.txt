@@ -2,6 +2,8 @@
     ALLE          # Allegion (ALLE)
     CAT           # Caterpillar (CAT)
     CBRE          # CBRE Group (CBRE). World's largest commercial real estate services company
+    CSGP          # CoStar Group (CSGP). Leading commercial real estate data, analytics, software, and online marketplace company.
+    JLL           # Jones Lang LaSalle (JLL). Global commercial real estate services and investment-management firm.
     CPRT          # Copart (CPRT)
     DAL           # Delta Airlines (DAL)
     DE            # Deere & Company (DE)
