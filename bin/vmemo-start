@@ -1,0 +1,17 @@
+#!/bin/bash
+
+nohup bash - <<__EOF >/dev/null 2>&1 &
+open -a VoiceMemos
+sleep 1
+
+osascript <<'EOF'
+tell application "System Events"
+    keystroke "n" using command down
+    delay 0.1
+    keystroke "m" using command down
+end tell
+EOF
+__EOF
+
+    # use this for hide rather than minimize
+    # keystroke "m" using command down
